@@ -320,6 +320,7 @@ class YouTubeMain(Screen):
 			else:
 				if self.action == 'OpenSubscription':
 					self.subscriptionsList = self.entryList
+					self.list = 'opensubscription'
 				self.entryList = entryList
 				self.text = self.value[1]
 				if self.action == 'createSearchEntryList':
@@ -328,8 +329,6 @@ class YouTubeMain(Screen):
 					self.list = 'openfeeds'
 				elif self.action == 'OpenMyFeeds':
 					self.list = 'openmyfeeds'
-				elif self.action == 'OpenSubscription':
-					self.list = 'opensubscription'
 				self.setEntryList()
 
 	def setEntryList(self):
