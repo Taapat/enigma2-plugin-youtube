@@ -352,16 +352,19 @@ class YouTubeMain(Screen):
 			if entry[2]: # If thumbnail created
 				continue
 			entryId = entry[0]
-			url = entry[1]
-			if not url:
-				image = resolveFilename(SCOPE_PLUGINS,
-					'Extensions/YouTube/' + entryId + '.png')
-				self.decodeThumbnail(entryId, image)
+			if entryId in self.thumbnails:
+				self.updateThumbnails()
 			else:
-				image = os.path.join('/tmp/', str(entryId) + '.jpg')
-				downloadPage(url, image)\
-					.addCallback(boundFunction(self.downloadFinished, entryId))\
-					.addErrback(boundFunction(self.downloadFailed, entryId))
+				url = entry[1]
+				if not url:
+					image = resolveFilename(SCOPE_PLUGINS,
+						'Extensions/YouTube/' + entryId + '.png')
+					self.decodeThumbnail(entryId, image)
+				else:
+					image = os.path.join('/tmp/', str(entryId) + '.jpg')
+					downloadPage(url, image)\
+						.addCallback(boundFunction(self.downloadFinished, entryId))\
+						.addErrback(boundFunction(self.downloadFailed, entryId))
 
 	def downloadFinished(self, entryId, result):
 		image = os.path.join('/tmp/', str(entryId) + '.jpg')
