@@ -262,7 +262,7 @@ class YouTubeMain(Screen):
 				_('My subscriptions'), '', '', None
 			),(
 				'my watch later', None, None,
-				_('My watch later'), '', ''
+				_('My watch later'), '', '', None
 			),(
 				'my watch history', None, None,
 				_('My watch history'), '', '', None
