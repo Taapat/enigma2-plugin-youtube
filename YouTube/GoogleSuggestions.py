@@ -9,8 +9,6 @@ from Components.config import config, ConfigText
 from Components.config import KEY_DELETE, KEY_BACKSPACE, KEY_ASCII, KEY_TIMEOUT
 from Components.Sources.List import List
 
-from . import _
-
 
 class SuggestionsQueryThread(Thread):
 	def __init__(self, query, param, callback, errorback):
