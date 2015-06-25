@@ -542,12 +542,13 @@ class YouTubeMain(Screen):
 						user_agent = None
 					).authorize(Http())
 				try:
-					self.youtube = YouTube_build('youtube', 'v3', 
+					self.youtube = YouTube_build('youtube', 'v3',
 						developerKey = API_KEY, http = httpCredentials)
 					self.isAuth = True
-				except:
-					self.youtube = YouTube_build('youtube', 'v3', developerKey = API_KEY)
+				except Exception, e:
+					print "[YouTube] Error in build with credentials", str(e) 
 					self.isAuth = False
+					self.youtube = YouTube_build('youtube', 'v3', developerKey = API_KEY)
 			else:
 				self.youtube = YouTube_build('youtube', 'v3', developerKey = API_KEY)
 
