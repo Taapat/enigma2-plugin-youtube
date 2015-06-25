@@ -305,13 +305,30 @@ class YouTubeMain(Screen):
 			from youtube_dl import YoutubeDL as YouTube_YoutubeDL
 			self.createMainList()
 		elif self.action == 'playVideo':
-			if not self.value[2]:
+			if self.value[2] is None:
 				self.value[2] = self.getVideoUrl()
+				count = 0
+				for entry in self.entryList:
+					if entry[0] == self.value[0]:
+						entryList = entry
+						self.entryList[count] = (
+								entryList[0], # Id
+								entryList[1], # Thumbnail url
+								entryList[2], # Thumbnail
+								entryList[3], # Title
+								entryList[4], # Views
+								entryList[5], # Duration
+								self.value[2] # Video url
+							)
+						break
+					count += 1
 			if self.value[2]:
 				ref = eServiceReference(4097, 0, self.value[2])
 				ref.setName(self.value[1])
 				print "[YouTube] Play:", self.value[2]
 				self.session.openWithCallback(self.playCallback, YouTubePlayer, ref)
+			else:
+				self.setEntryList()
 		else:
 			entryList = self.createEntryList()
 			if not entryList:
@@ -403,7 +420,7 @@ class YouTubeMain(Screen):
 			for entry in self.entryList:
 				entryId = entry[0]
 				if not entry[2] and entryId in self.thumbnails:
-					entryList = self.entryList[count]
+					entryList = entry
 					thumbnailData = self.thumbnails[entryId]
 					if thumbnailData == True:
 						thumbnail = self.thumbnails['default']
@@ -416,7 +433,7 @@ class YouTubeMain(Screen):
 							entryList[3], # Title
 							entryList[4], # Views
 							entryList[5], # Duration
-							entryList[5]  # Video url
+							entryList[6]  # Video url
 						)
 				count += 1
 			self['list'].updateList(self.entryList)
