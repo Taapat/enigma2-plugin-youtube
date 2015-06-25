@@ -167,26 +167,26 @@ class YouTubeMain(Screen):
 				'green': self.ok,
 				'menu': self.openSetup
 			}, -2)
-		self['text'] = Label()
 		text = _('YouTube starting. Please wait...')
+		self['text'] = Label()
 		self['text'].setText(text)
+		self['list'] = List([])
 		self['thumbnail'] = Pixmap()
 		self['thumbnail'].hide()
+		self.splitTaimer = eTimer()
+		self.splitTaimer.timeout.callback.append(self.splitTaimerStop)
 		self.thumbnailTaimer = eTimer()
 		self.thumbnailTaimer.timeout.callback.append(self.updateThumbnails)
 		self.picloads = {}
 		self.thumbnails = {}
 		self.list = 'main'
-		self['list'] = List([])
-		self.splitTaimer = eTimer()
-		self.splitTaimer.timeout.callback.append(self.splitTaimerStop)
 		self.action = 'startup'
 		self.value = [None, None]
 		self.selectedIndex = None
 		self.youtube = None
-		self.isAuth = False
 		self.subscriptionsIndex = None
 		self.subscriptionsList = None
+		self.isAuth = False
 		self.onLayoutFinish.append(self.layoutFinish)
 		self.onClose.append(self.cleanVariables)
 
@@ -452,26 +452,23 @@ class YouTubeMain(Screen):
 	def ok(self):
 		current = self['list'].getCurrent()
 		if current:
-			selected = current[0]
-			title = current[3]
-			print "[YouTube] Selected:", selected
-			print self.value, self.list
-			if selected == 'Search':
+			print "[YouTube] Selected:", current[0]
+			if current[0] == 'Search':
 				self.session.openWithCallback(self.screenCallback, YouTubeSearch)
-			elif selected == 'PubFeeds':
+			elif current[0] == 'PubFeeds':
 				self.createFeedList()
-			elif selected == 'MyFeeds':
+			elif current[0] == 'MyFeeds':
 				self.createMyFeedList()
 			elif self.list == 'feeds':
-				self.screenCallback([selected, title], 'OpenFeeds')
+				self.screenCallback([current[0], current[3]], 'OpenFeeds')
 			elif self.list == 'myfeeds':
-				self.screenCallback([selected, title], 'OpenMyFeeds')
+				self.screenCallback([current[0], current[3]], 'OpenMyFeeds')
 			elif self.list == 'openmyfeeds':
 				self.subscriptionsIndex = self['list'].index
-				self.screenCallback([selected, title], 'OpenSubscription')
+				self.screenCallback([current[0], current[3]], 'OpenSubscription')
 			else: # Play video
 				self.selectedIndex = self['list'].index
-				self.screenCallback([selected, title], 'playVideo')
+				self.screenCallback([current[0], current[3]], 'playVideo')
 
 	def getVideoUrl(self):
 		VIDEO_FMT_PRIORITY_MAP = {
