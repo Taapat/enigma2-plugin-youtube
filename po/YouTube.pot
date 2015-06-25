@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-25 01:47+0300\n"
+"POT-Creation-Date: 2015-06-25 21:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: YouTubeUi.py:666
+#: YouTubeUi.py:680
 msgid " views"
 msgstr ""
 
@@ -41,7 +41,7 @@ msgstr ""
 msgid "Canada"
 msgstr ""
 
-#: YouTubeUi.py:815
+#: YouTubeUi.py:829
 msgid "Cancel"
 msgstr ""
 
@@ -57,35 +57,35 @@ msgstr ""
 msgid "Czech Republic"
 msgstr ""
 
-#: YouTubeUi.py:289
+#: YouTubeUi.py:290
 msgid "Download feed entries. Please wait..."
 msgstr ""
 
-#: YouTubeUi.py:287
+#: YouTubeUi.py:288
 msgid "Download search results. Please wait..."
 msgstr ""
 
-#: YouTubeUi.py:670
+#: YouTubeUi.py:684
 msgid "Duration: "
 msgstr ""
 
-#: YouTubeUi.py:245
+#: YouTubeUi.py:246
 msgid "Embedded videos feeds"
 msgstr ""
 
-#: YouTubeUi.py:248
+#: YouTubeUi.py:249
 msgid "Episodes of shows"
 msgstr ""
 
-#: YouTubeUi.py:840
+#: YouTubeUi.py:854
 msgid "Exclude restricted content:"
 msgstr ""
 
-#: YouTubeUi.py:346 YouTubeUi.py:729
+#: YouTubeUi.py:358 YouTubeUi.py:743
 msgid "Exit"
 msgstr ""
 
-#: YouTubeUi.py:291
+#: YouTubeUi.py:292
 msgid "Extract video url. Please wait..."
 msgstr ""
 
@@ -97,7 +97,7 @@ msgstr ""
 msgid "Germany"
 msgstr ""
 
-#: YouTubeUi.py:887
+#: YouTubeUi.py:901
 #, python-format
 msgid ""
 "Go to %s\n"
@@ -108,7 +108,7 @@ msgstr ""
 msgid "Great Britain"
 msgstr ""
 
-#: YouTubeUi.py:242
+#: YouTubeUi.py:243
 msgid "HD videos feeds"
 msgstr ""
 
@@ -144,13 +144,13 @@ msgstr ""
 msgid "Latvia"
 msgstr ""
 
-#: YouTubeUi.py:833
+#: YouTubeUi.py:847
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"
 "This needs to approve in the Google home page!"
 msgstr ""
 
-#: YouTubeUi.py:831
+#: YouTubeUi.py:845
 msgid "Login on startup:"
 msgstr ""
 
@@ -158,43 +158,43 @@ msgstr ""
 msgid "Mexico"
 msgstr ""
 
-#: YouTubeUi.py:239
+#: YouTubeUi.py:240
 msgid "Most recent feeds"
 msgstr ""
 
-#: YouTubeUi.py:236
+#: YouTubeUi.py:237
 msgid "Most viewed feeds"
 msgstr ""
 
-#: YouTubeUi.py:251
+#: YouTubeUi.py:252
 msgid "Movies feeds"
 msgstr ""
 
-#: YouTubeUi.py:273
+#: YouTubeUi.py:274
 msgid "My favorites"
 msgstr ""
 
-#: YouTubeUi.py:224 YouTubeUi.py:258
+#: YouTubeUi.py:225 YouTubeUi.py:259
 msgid "My feeds"
 msgstr ""
 
-#: YouTubeUi.py:270
+#: YouTubeUi.py:271
 msgid "My liked videos"
 msgstr ""
 
-#: YouTubeUi.py:261
+#: YouTubeUi.py:262
 msgid "My subscriptions"
 msgstr ""
 
-#: YouTubeUi.py:276
+#: YouTubeUi.py:277
 msgid "My uploads"
 msgstr ""
 
-#: YouTubeUi.py:267
+#: YouTubeUi.py:268
 msgid "My watch history"
 msgstr ""
 
-#: YouTubeUi.py:264
+#: YouTubeUi.py:265
 msgid "My watch later"
 msgstr ""
 
@@ -210,21 +210,15 @@ msgstr ""
 msgid "No, but play video again"
 msgstr ""
 
-#: YouTubeUi.py:317
-msgid ""
-"Not found any entry!\n"
-"Maybe try change the settings?"
-msgstr ""
-
-#: YouTubeUi.py:730
+#: YouTubeUi.py:744
 msgid "Ok"
 msgstr ""
 
-#: YouTubeUi.py:347
+#: YouTubeUi.py:359
 msgid "Open"
 msgstr ""
 
-#: YouTubeUi.py:839
+#: YouTubeUi.py:853
 msgid "Order in which search results will be displayed."
 msgstr ""
 
@@ -232,15 +226,15 @@ msgstr ""
 msgid "Play next"
 msgstr ""
 
-#: YouTubeUi.py:445
+#: YouTubeUi.py:461
 msgid "Play next video"
 msgstr ""
 
-#: YouTubeUi.py:446
+#: YouTubeUi.py:462
 msgid "Play previous video"
 msgstr ""
 
-#: YouTubeUi.py:447
+#: YouTubeUi.py:463
 msgid "Play video again"
 msgstr ""
 
@@ -248,11 +242,11 @@ msgstr ""
 msgid "Poland"
 msgstr ""
 
-#: YouTubeUi.py:220 YouTubeUi.py:230
+#: YouTubeUi.py:221 YouTubeUi.py:231
 msgid "Public feeds"
 msgstr ""
 
-#: YouTubeUi.py:444
+#: YouTubeUi.py:460
 msgid "Quit"
 msgstr ""
 
@@ -268,7 +262,7 @@ msgstr ""
 msgid "Repeat"
 msgstr ""
 
-#: YouTubeUi.py:836
+#: YouTubeUi.py:850
 msgid "Return search results for the specified country."
 msgstr ""
 
@@ -280,23 +274,23 @@ msgstr ""
 msgid "Russia"
 msgstr ""
 
-#: YouTubeUi.py:816
+#: YouTubeUi.py:830
 msgid "Save"
 msgstr ""
 
-#: YouTubeUi.py:843
+#: YouTubeUi.py:857
 msgid "Save search history:"
 msgstr ""
 
-#: YouTubeUi.py:845
+#: YouTubeUi.py:859
 msgid "Save your search value in the history, when search completed."
 msgstr ""
 
-#: YouTubeUi.py:834
+#: YouTubeUi.py:848
 msgid "Search region:"
 msgstr ""
 
-#: YouTubeUi.py:752
+#: YouTubeUi.py:766
 msgid "Search term"
 msgstr ""
 
@@ -304,7 +298,7 @@ msgstr ""
 msgid "Search videos"
 msgstr ""
 
-#: YouTubeUi.py:837
+#: YouTubeUi.py:851
 msgid "Sort search results by:"
 msgstr ""
 
@@ -328,22 +322,28 @@ msgstr ""
 msgid "Taiwan"
 msgstr ""
 
+#: YouTubeUi.py:336
+msgid ""
+"There was an error in creating entry list!\n"
+"Maybe try other feeds..."
+msgstr ""
+
 #: YouTubeUi.py:64
 msgid "Title"
 msgstr ""
 
-#: YouTubeUi.py:876
+#: YouTubeUi.py:890
 msgid ""
 "To perform authentication will need in a web browser open Google home page, and enter the code!\n"
 "If you continue, then you can not stop until the authentication will not be complete!\n"
 "Do you currently have Internet access on the other device and we can continue?"
 msgstr ""
 
-#: YouTubeUi.py:233
+#: YouTubeUi.py:234
 msgid "Top rated feeds"
 msgstr ""
 
-#: YouTubeUi.py:842
+#: YouTubeUi.py:856
 msgid "Try to exclude all restricted content from the search result."
 msgstr ""
 
@@ -359,23 +359,23 @@ msgstr ""
 msgid "Watch YouTube videos"
 msgstr ""
 
-#: YouTubeUi.py:442
+#: YouTubeUi.py:458
 msgid "What do you want to do?"
 msgstr ""
 
-#: YouTubeUi.py:851
+#: YouTubeUi.py:865
 msgid "What to do when stop playback in videoplayer."
 msgstr ""
 
-#: YouTubeUi.py:848
+#: YouTubeUi.py:862
 msgid "What to do when the video ends."
 msgstr ""
 
-#: YouTubeUi.py:849
+#: YouTubeUi.py:863
 msgid "When playback stop:"
 msgstr ""
 
-#: YouTubeUi.py:846
+#: YouTubeUi.py:860
 msgid "When video ends:"
 msgstr ""
 
@@ -391,7 +391,7 @@ msgstr ""
 msgid "Yes, but play previous video"
 msgstr ""
 
-#: YouTubeUi.py:869
+#: YouTubeUi.py:883
 msgid ""
 "You already authorized access for this plugin to your YouTube account.\n"
 "Do you want to do it again to update access data?"
@@ -401,14 +401,14 @@ msgstr ""
 msgid "YouTube"
 msgstr ""
 
-#: YouTubeUi.py:728
+#: YouTubeUi.py:742
 msgid "YouTube serch"
 msgstr ""
 
-#: YouTubeUi.py:858
+#: YouTubeUi.py:872
 msgid "YouTube setup"
 msgstr ""
 
-#: YouTubeUi.py:171
+#: YouTubeUi.py:170
 msgid "YouTube starting. Please wait..."
 msgstr ""
