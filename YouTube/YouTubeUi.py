@@ -181,7 +181,7 @@ class YouTubeMain(Screen):
 		self.thumbnails = {}
 		self.list = 'main'
 		self.action = 'startup'
-		self.value = [None, None]
+		self.value = [None, None, None]
 		self.selectedIndex = None
 		self.youtube = None
 		self.subscriptionsIndex = None
@@ -206,7 +206,7 @@ class YouTubeMain(Screen):
 
 	def createMainList(self):
 		self.list = 'main'
-		self.value = [None, None]
+		self.value = [None, None, None]
 		self.text = _('Choose what you want to do')
 		self.entryList = [(
 				'Search',           # Id
@@ -214,72 +214,73 @@ class YouTubeMain(Screen):
 				None,               # Thumbnail
 				_('Search videos'), # Title
 				'',                 # Views
-				''                  # Duration
+				'',                 # Duration
+				None                # Video url
 			),(
 				'PubFeeds', None, None,
-				_('Public feeds'), '', ''
+				_('Public feeds'), '', '', None
 			)]
 		if config.plugins.YouTube.login.value and config.plugins.YouTube.refreshToken.value != '':
 			self.entryList.append(('MyFeeds', None, None,
-				_('My feeds'), '', ''))
+				_('My feeds'), '', '', None))
 		self.setEntryList()
 
 	def createFeedList(self):
 		self.list = 'feeds'
-		self.value = [None, None]
+		self.value = [None, None, None]
 		self.text = _('Public feeds')
 		self.entryList = [(
 				'top rated', None, None,
-				_('Top rated feeds'), '', ''
+				_('Top rated feeds'), '', '', None
 			),(
 				'most viewed', None, None,
-				_('Most viewed feeds'), '', ''
+				_('Most viewed feeds'), '', '', None
 			),(
 				'most recent', None, None,
-				_('Most recent feeds'), '', ''
+				_('Most recent feeds'), '', '', None
 			),(
 				'HD videos', None, None,
-				_('HD videos feeds'), '', ''
+				_('HD videos feeds'), '', '', None
 			),(
 				'embedded videos', None, None,
-				_('Embedded videos feeds'), '', ''
+				_('Embedded videos feeds'), '', '', None
 			),(
 				'episodes of shows', None, None,
-				_('Episodes of shows'), '', ''
+				_('Episodes of shows'), '', '', None
 			),(
 				'movies', None, None,
-				_('Movies feeds'), '', ''
+				_('Movies feeds'), '', '', None
 			)]
 		self.setEntryList()
 
 	def createMyFeedList(self):
 		self.list = 'myfeeds'
-		self.value = [None, None]
+		self.value = [None, None, None]
 		self.text = _('My feeds')
 		self.entryList = [(
 				'my subscriptions', None, None,
-				_('My subscriptions'), '', ''
+				_('My subscriptions'), '', '', None
 			),(
 				'my watch later', None, None,
 				_('My watch later'), '', ''
 			),(
 				'my watch history', None, None,
-				_('My watch history'), '', ''
+				_('My watch history'), '', '', None
 			),(
 				'my liked videos', None, None,
-				_('My liked videos'), '', ''
+				_('My liked videos'), '', '', None
 			),(
 				'my favorites', None, None,
-				_('My favorites'), '', ''
+				_('My favorites'), '', '', None
 			),(
 				'my uploads', None, None,
-				_('My uploads'), '', ''
+				_('My uploads'), '', '', None
 			)]
 		self.setEntryList()
 
 	def screenCallback(self, value = None, action = None):
 		if not action:
-			self.list = 'main'
+			self.createMainList()
 		else:
 			self.value = value
 			self.action = action
@@ -304,11 +305,12 @@ class YouTubeMain(Screen):
 			from youtube_dl import YoutubeDL as YouTube_YoutubeDL
 			self.createMainList()
 		elif self.action == 'playVideo':
-			videoUrl = self.getVideoUrl()
-			if videoUrl:
-				ref = eServiceReference(4097, 0, videoUrl)
+			if not self.value[2]:
+				self.value[2] = self.getVideoUrl()
+			if self.value[2]:
+				ref = eServiceReference(4097, 0, self.value[2])
 				ref.setName(self.value[1])
-				print "[YouTube] Play:", videoUrl
+				print "[YouTube] Play:", self.value[2]
 				self.session.openWithCallback(self.playCallback, YouTubePlayer, ref)
 		else:
 			entryList = self.createEntryList()
@@ -413,7 +415,8 @@ class YouTubeMain(Screen):
 							thumbnail,    # Thumbnail
 							entryList[3], # Title
 							entryList[4], # Views
-							entryList[5]  # Duration
+							entryList[5], # Duration
+							entryList[5]  # Video url
 						)
 				count += 1
 			self['list'].updateList(self.entryList)
@@ -456,15 +459,15 @@ class YouTubeMain(Screen):
 			elif current[0] == 'MyFeeds':
 				self.createMyFeedList()
 			elif self.list == 'feeds':
-				self.screenCallback([current[0], current[3]], 'OpenFeeds')
+				self.screenCallback([current[0], current[3], current[6]], 'OpenFeeds')
 			elif self.list == 'myfeeds':
-				self.screenCallback([current[0], current[3]], 'OpenMyFeeds')
+				self.screenCallback([current[0], current[3], current[6]], 'OpenMyFeeds')
 			elif self.list == 'openmyfeeds':
 				self.subscriptionsIndex = self['list'].index
-				self.screenCallback([current[0], current[3]], 'OpenSubscription')
+				self.screenCallback([current[0], current[3], current[6]], 'OpenSubscription')
 			else: # Play video
 				self.selectedIndex = self['list'].index
-				self.screenCallback([current[0], current[3]], 'playVideo')
+				self.screenCallback([current[0], current[3], current[6]], 'playVideo')
 
 	def getVideoUrl(self):
 		VIDEO_FMT_PRIORITY_MAP = {
@@ -593,7 +596,7 @@ class YouTubeMain(Screen):
 						Title = str(result['snippet']['title'])
 					except:
 						Title = ''
-					videos.append((Id, Thumbnail, None, Title, '', ''))
+					videos.append((Id, Thumbnail, None, Title, '', '', None))
 				return videos
 
 			elif self.action != 'OpenSubscription':
@@ -663,7 +666,7 @@ class YouTubeMain(Screen):
 				Duration = _('Duration: ') + self.convertDate(str(result['contentDetails']['duration']))
 			except:
 				Duration = ''
-			videos.append((Id, Thumbnail, None, Title, Views, Duration))
+			videos.append((Id, Thumbnail, None, Title, Views, Duration, None))
 		return videos
 
 	def cancel(self):
@@ -783,7 +786,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					self.searchHistory.pop()
 				config.plugins.YouTube.searchHistory.value = ','.join(self.searchHistory)
 				config.plugins.YouTube.searchHistory.save()
-			self.close([None, searchValue], 'createSearchEntryList')
+			self.close([None, searchValue, None], 'createSearchEntryList')
 
 	def openSetup(self):
 		current = self['config'].getCurrent()[1]
