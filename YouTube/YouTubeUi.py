@@ -332,10 +332,10 @@ class YouTubeMain(Screen):
 		else:
 			entryList = self.createEntryList()
 			if not entryList:
-				self.session.open(MessageBox, 
-					_('Not found any entry!\nMaybe try change the settings?'), 
-					MessageBox.TYPE_INFO, timeout = 5)
-				self.createMainList()
+				self.session.open(MessageBox,
+					_('There was an error in creating entry list!\nMaybe try other feeds...'), 
+					MessageBox.TYPE_INFO, timeout = 8)
+				self.setEntryList()
 			else:
 				if self.action == 'OpenSubscription':
 					self.subscriptionsList = self.entryList
