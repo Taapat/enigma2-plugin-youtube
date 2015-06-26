@@ -103,14 +103,6 @@ class GoogleSuggestionsConfigText(ConfigText):
 		if self.suggestionsWindow.getlistlenght() > 0:
 			self.value = self.suggestionsWindow.down()
 
-	def suggestionListPageDown(self):
-		if self.suggestionsWindow.getlistlenght() > 0:
-			self.value = self.suggestionsWindow.pageDown()
-
-	def suggestionListPageUp(self):
-		if self.suggestionsWindow.getlistlenght() > 0:
-			self.value = self.suggestionsWindow.pageUp()
-
 	def deactivateSuggestionList(self):
 		ret = False
 		if self.suggestionsWindow is not None:
@@ -176,16 +168,6 @@ class SuggestionsList(Screen):
 			return self.getSelection()
 
 	def down(self):
-		if self.list and len(self.list) > 0:
-			self['suggestionslist'].selectNext()
-			return self.getSelection()
-
-	def pageUp(self):
-		if self.list and len(self.list) > 0:
-			self['suggestionslist'].selectPrevious()
-			return self.getSelection()
-
-	def pageDown(self):
 		if self.list and len(self.list) > 0:
 			self['suggestionslist'].selectNext()
 			return self.getSelection()
