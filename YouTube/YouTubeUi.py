@@ -27,7 +27,34 @@ from GoogleSuggestions import GoogleSuggestionsConfigText
 config.plugins.YouTube = ConfigSubsection()
 config.plugins.YouTube.login = ConfigYesNo(default = False)
 config.plugins.YouTube.searchRegion = ConfigSelection(
-	[(None, _('All')),
+	[('', _('All')),
+	('AU', _('Australia')),
+	('BR', _('Brazil')),
+	('CA', _('Canada')),
+	('CZ', _('Czech Republic')),
+	('FR', _('France')),
+	('DE', _('Germany')),
+	('GB', _('Great Britain')),
+	('NL', _('Holland')),
+	('HK', _('Hong Kong')),
+	('IN', _('India')),
+	('IE', _('Ireland')),
+	('IL', _('Israel')),
+	('IT', _('Italy')),
+	('JP', _('Japan')),
+	('LV', _('Latvia')),
+	('MX', _('Mexico')),
+	('NZ', _('New Zealand')),
+	('PL', _('Poland')),
+	('RU', _('Russia')),
+	('KR', _('South Korea')),
+	('ES', _('Spain')),
+	('SE', _('Sweden')),
+	('TW', _('Taiwan')),
+	('US', _('United States'))
+	], '')
+config.plugins.YouTube.searchLanguage = ConfigSelection(
+	[('', _('All')),
 	('au', _('Australia')),
 	('br', _('Brazil')),
 	('ca', _('Canada')),
@@ -52,7 +79,7 @@ config.plugins.YouTube.searchRegion = ConfigSelection(
 	('se', _('Sweden')),
 	('tw', _('Taiwan')),
 	('us', _('United States'))
-	], None)
+	], '')
 config.plugins.YouTube.searchOrder = ConfigSelection(
 	[('relevance', _('Relevance')),
 	('date', _('Created date')),
@@ -667,6 +694,7 @@ class YouTubeMain(Screen):
 					order = order,
 					q = q,
 					regionCode = config.plugins.YouTube.searchRegion.value,
+					relevanceLanguage = config.plugins.YouTube.searchLanguage.value,
 					safeSearch = safeSearch,
 					type = 'video',
 					videoDefinition = videoDefinition,
@@ -872,6 +900,9 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		configlist.append(getConfigListEntry(_('Search region:'),
 			config.plugins.YouTube.searchRegion,
 			 _('Return search results for the specified country.')))
+		configlist.append(getConfigListEntry(_('Search language:'),
+			config.plugins.YouTube.searchLanguage,
+			 _('Return search results that are most relevant to the specified language.')))
 		configlist.append(getConfigListEntry(_('Sort search results by:'),
 			config.plugins.YouTube.searchOrder,
 			_('Order in which search results will be displayed.')))
