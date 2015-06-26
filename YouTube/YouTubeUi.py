@@ -179,9 +179,9 @@ class YouTubeMain(Screen):
 		self.action = 'startup'
 		self.value = [None, None, None]
 		self.prevIndex = [0]
+		self.prevEntryList = []
 		self.ytdl = None
 		self.youtube = None
-		self.subscriptionsList = None
 		self.isAuth = False
 		self.onLayoutFinish.append(self.layoutFinish)
 		self.onClose.append(self.cleanVariables)
@@ -199,7 +199,7 @@ class YouTubeMain(Screen):
 		self.youtube = None
 		self.thumbnails = None
 		self.entryList = None
-		self.subscriptionsList = None
+		self.prevEntryList = None
 
 	def createMainList(self):
 		self.list = 'main'
@@ -283,10 +283,10 @@ class YouTubeMain(Screen):
 			self.action = action
 			if action == 'createSearchEntryList':
 				text = _('Download search results. Please wait...')
-			elif action in ('OpenFeeds', 'OpenMyFeeds', 'OpenSubscription'):
-				text = _('Download feed entries. Please wait...')
-			else: # play video
+			elif action == 'playVideo':
 				text = _('Extract video url. Please wait...')
+			else:
+				text = _('Download feed entries. Please wait...')
 			self['text'].setText(text)
 			self['list'].setList([])
 			self['key_red'].setText('')
@@ -346,8 +346,7 @@ class YouTubeMain(Screen):
 				self.setEntryList()
 			else:
 				if self.action == 'OpenSubscription':
-					self.subscriptionsList = self.entryList
-					self.list = 'opensubscription'
+					self.prevEntryList.append(self.entryList)
 				self.entryList = entryList
 				self.text = self.value[1]
 				if self.action == 'createSearchEntryList':
@@ -585,6 +584,7 @@ class YouTubeMain(Screen):
 				playlist = 'uploads'
 		elif self.action == 'OpenSubscription':
 			channel = self.value[0]
+			self.list = 'opensubscription'
 
 		if config.plugins.YouTube.safeSearch.value:
 			safeSearch = 'strict'
@@ -596,8 +596,9 @@ class YouTubeMain(Screen):
 			channels = []
 			if self.value[0] == 'my subscriptions':
 				searchResponse = self.youtube.subscriptions().list(
+						part='snippet',
 						mine=True,
-						part='snippet'
+						maxResults = 24
 					).execute()
 				for result in searchResponse.get('items', []):
 					try:
@@ -617,8 +618,8 @@ class YouTubeMain(Screen):
 
 			elif self.action != 'OpenSubscription':
 				searchResponse = self.youtube.channels().list(
-						mine=True,
-						part='contentDetails'
+						part='contentDetails',
+						mine=True
 					).execute()
 				for result in searchResponse.get('items', []):
 					channel = result['contentDetails']['relatedPlaylists'][playlist]
@@ -627,14 +628,37 @@ class YouTubeMain(Screen):
 				return None
 			try:
 				searchResponse = self.youtube.playlistItems().list(
-						playlistId=channel,
 						part='snippet',
+						playlistId=channel,
 						maxResults = 24
 					).execute()
+				for result in searchResponse.get('items', []):
+					videos.append(result['snippet']['resourceId']['videoId'])
 			except:
-				return None
-			for result in searchResponse.get('items', []):
-				videos.append(result['snippet']['resourceId']['videoId'])
+				videos = []
+
+			if len(videos) == 0: # not playlist
+				searchResponse = self.youtube.search().list(
+						part = 'id,snippet',
+						channelId = 'UC' + channel[2:],
+						maxResults = 24
+					).execute()
+				for result in searchResponse.get('items', []):
+					try:
+						Id = result['id']['playlistId']
+					except:
+						Id = None
+					try:
+						Thumbnail = str(result['snippet']['thumbnails']['default']['url'])
+					except:
+						Thumbnail = None
+					try:
+						Title = str(result['snippet']['title'])
+					except:
+						Title = ''
+					videos.append((Id, Thumbnail, None, Title, '', '', None))
+				self.list = 'openmyfeeds'
+				return videos
 
 		else: # search
 			searchResponse = self.youtube.search().list(
@@ -693,8 +717,10 @@ class YouTubeMain(Screen):
 		elif self.list == 'openmyfeeds':
 			self.createMyFeedList()
 		elif self.list == 'opensubscription':
-			self.entryList = self.subscriptionsList
-			self.list = 'openmyfeeds'
+			self.entryList = self.prevEntryList[len(self.prevEntryList) - 1]
+			self.prevEntryList.pop()
+			if len(self.prevEntryList) == 0:
+				self.list = 'openmyfeeds'
 			self.setEntryList()
 		else:
 			self.createMainList()
