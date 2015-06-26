@@ -279,7 +279,7 @@ class YouTubeMain(Screen):
 		self.setEntryList()
 
 	def screenCallback(self, value = None, action = None):
-		if not action:
+		if not action: # cancel in search
 			self.createMainList()
 		else:
 			self.value = value
@@ -305,7 +305,7 @@ class YouTubeMain(Screen):
 			from youtube_dl import YoutubeDL as YouTube_YoutubeDL
 			self.createMainList()
 		elif self.action == 'playVideo':
-			if self.value[2] is None:
+			if self.value[2] is None: # remenber video url
 				self.value[2] = self.getVideoUrl()
 				count = 0
 				for entry in self.entryList:
@@ -638,7 +638,7 @@ class YouTubeMain(Screen):
 			for result in searchResponse.get('items', []):
 				videos.append(result['snippet']['resourceId']['videoId'])
 
-		else:
+		else: # search
 			searchResponse = self.youtube.search().list(
 					part = 'id',
 					maxResults = 24,
@@ -707,7 +707,7 @@ class YouTubeMain(Screen):
 		self.session.openWithCallback(self.configScreenCallback, YouTubeSetup)
 
 	def configScreenCallback(self, callback=None):
-		if self.list == 'main':
+		if self.list == 'main': # if autentification changed
 			self.createMainList()
 
 class YouTubeSearch(Screen, ConfigListScreen):
