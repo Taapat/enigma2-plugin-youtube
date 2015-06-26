@@ -24,10 +24,6 @@ from . import _
 from GoogleSuggestions import GoogleSuggestionsConfigText
 
 
-YouTube_build = None
-YouTube_OAuth2Credentials = None
-YouTube_YoutubeDL = None
-
 config.plugins.YouTube = ConfigSubsection()
 config.plugins.YouTube.login = ConfigYesNo(default = False)
 config.plugins.YouTube.searchRegion = ConfigSelection(
@@ -93,7 +89,7 @@ class YouTubePlayer(MoviePlayer):
 					(_('Yes, but play next video'), 'playnext'),
 					(_('Yes, but play previous video'), 'playprev'),
 					(_('No, but play video again'), 'repeat'),
-					(_('No'), 'continue'),
+					(_('No'), 'continue')
 				)
 			self.session.openWithCallback(self.leavePlayerConfirmed,
 				ChoiceBox, title = title, list = list)
@@ -199,6 +195,7 @@ class YouTubeMain(Screen):
 	def cleanVariables(self):
 		del self.thumbnailTaimer
 		del self.splitTaimer
+		self.ytdl = None
 		self.youtube = None
 		self.thumbnails = None
 		self.entryList = None
@@ -299,10 +296,21 @@ class YouTubeMain(Screen):
 	def splitTaimerStop(self):
 		self.splitTaimer.stop()
 		if self.action == 'startup':
-			global YouTube_build, YouTube_OAuth2Credentials, YouTube_YoutubeDL
-			from apiclient.discovery import build as YouTube_build
-			from oauth2client.client import OAuth2Credentials as YouTube_OAuth2Credentials
-			from youtube_dl import YoutubeDL as YouTube_YoutubeDL
+			from youtube_dl import YoutubeDL
+			VIDEO_FMT_PRIORITY_MAP = {
+					1 : '38', #MP4 Original (HD)
+					2 : '37', #MP4 1080p (HD)
+					3 : '22', #MP4 720p (HD)
+					4 : '18', #MP4 360p
+					5 : '35', #FLV 480p
+					6 : '34'  #FLV 360p
+				}
+			self.ytdl = YoutubeDL(params = {
+					'youtube_include_dash_manifest': False, 
+					'format': '/'.join(VIDEO_FMT_PRIORITY_MAP.itervalues()), 
+					'nocheckcertificate': True
+				})
+			self.createBuild()
 			self.createMainList()
 		elif self.action == 'playVideo':
 			if self.value[2] is None: # remenber video url
@@ -487,24 +495,9 @@ class YouTubeMain(Screen):
 				self.screenCallback([current[0], current[3], current[6]], 'playVideo')
 
 	def getVideoUrl(self):
-		VIDEO_FMT_PRIORITY_MAP = {
-				1 : '38', #MP4 Original (HD)
-				2 : '37', #MP4 1080p (HD)
-				3 : '22', #MP4 720p (HD)
-				4 : '18', #MP4 360p
-				5 : '35', #FLV 480p
-				6 : '34' #FLV 360p
- 			}
 		watch_url = 'http://www.youtube.com/watch?v=%s' % self.value[0]
-
-		ytdl = YouTube_YoutubeDL(params = {
-				'youtube_include_dash_manifest': False, 
-				'format': '/'.join(VIDEO_FMT_PRIORITY_MAP.itervalues()), 
-				'nocheckcertificate': True
-			})
-
 		try:
-			entry = ytdl.extract_info(watch_url, download=False, ie_key='Youtube')
+			entry = self.ytdl.extract_info(watch_url, download=False, ie_key='Youtube')
 		except:
 			print "[YouTube] Error in extract info"
 			return None
@@ -527,12 +520,14 @@ class YouTubeMain(Screen):
 			time = time[:-4] + '0' + time[-4:]
 		return time[1:]
 
-	def createEntryList(self):
+	def createBuild(self):
 		refreshToken = config.plugins.YouTube.refreshToken.value
 		if not self.youtube or (not self.isAuth and \
 			refreshToken and config.plugins.YouTube.login.value):
+			from apiclient.discovery import build
 			if refreshToken:
-				httpCredentials = YouTube_OAuth2Credentials(
+				from oauth2client.client import OAuth2Credentials
+				httpCredentials = OAuth2Credentials(
 						access_token = None,
 						client_id = YOUTUBE_API_CLIENT_ID,
 						client_secret = YOUTUBE_API_CLIENT_SECRET,
@@ -541,17 +536,20 @@ class YouTubeMain(Screen):
 						token_uri = 'https://accounts.google.com/o/oauth2/token',
 						user_agent = None
 					).authorize(Http())
+
 				try:
-					self.youtube = YouTube_build('youtube', 'v3',
+					self.youtube = build('youtube', 'v3',
 						developerKey = API_KEY, http = httpCredentials)
 					self.isAuth = True
 				except Exception, e:
-					print "[YouTube] Error in build with credentials", str(e) 
+					print "[YouTube] Error in build with credentials", str(e)
 					self.isAuth = False
-					self.youtube = YouTube_build('youtube', 'v3', developerKey = API_KEY)
+					self.youtube = build('youtube', 'v3', developerKey = API_KEY)
 			else:
-				self.youtube = YouTube_build('youtube', 'v3', developerKey = API_KEY)
+				self.youtube = build('youtube', 'v3', developerKey = API_KEY)
 
+	def createEntryList(self):
+		self.createBuild()
 		order = 'date'
 		q = ''
 		videoDefinition = videoEmbeddable = videoType = 'any'
