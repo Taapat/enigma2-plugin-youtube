@@ -178,9 +178,9 @@ class YouTubeMain(Screen):
 		self.list = 'main'
 		self.action = 'startup'
 		self.value = [None, None, None]
-		self.selectedIndex = None
+		self.prevIndex = [0]
+		self.ytdl = None
 		self.youtube = None
-		self.subscriptionsIndex = None
 		self.subscriptionsList = None
 		self.isAuth = False
 		self.onLayoutFinish.append(self.layoutFinish)
@@ -361,8 +361,6 @@ class YouTubeMain(Screen):
 	def setEntryList(self):
 		self['text'].setText(self.text)
 		self['list'].setList(self.entryList)
-		if self.selectedIndex:
-			self['list'].setIndex(self.selectedIndex)
 		self['key_red'].setText(_('Exit'))
 		self['key_green'].setText(_('Open'))
 		self.createThumbnails()
@@ -448,6 +446,8 @@ class YouTubeMain(Screen):
 
 	def playCallback(self, action=None):
 		self.setEntryList()
+		self['list'].setIndex(self.prevIndex[len(self.prevIndex) - 1])
+		self.prevIndex.pop()
 		if action:
 			action = action[1]
 		if action == 'playnext':
@@ -463,6 +463,7 @@ class YouTubeMain(Screen):
 		elif action == 'repeat':
 			self.ok()
 		elif action == 'ask':
+			self.prevIndex.append(self['list'].index)
 			title = _('What do you want to do?')
 			list = (
 					(_('Quit'), 'quit'),
@@ -477,6 +478,7 @@ class YouTubeMain(Screen):
 		current = self['list'].getCurrent()
 		if current:
 			print "[YouTube] Selected:", current[0]
+			self.prevIndex.append(self['list'].index)
 			if current[0] == 'Search':
 				self.session.openWithCallback(self.screenCallback, YouTubeSearch)
 			elif current[0] == 'PubFeeds':
@@ -488,10 +490,8 @@ class YouTubeMain(Screen):
 			elif self.list == 'myfeeds':
 				self.screenCallback([current[0], current[3], current[6]], 'OpenMyFeeds')
 			elif self.list == 'openmyfeeds':
-				self.subscriptionsIndex = self['list'].index
 				self.screenCallback([current[0], current[3], current[6]], 'OpenSubscription')
 			else: # Play video
-				self.selectedIndex = self['list'].index
 				self.screenCallback([current[0], current[3], current[6]], 'playVideo')
 
 	def getVideoUrl(self):
@@ -686,20 +686,20 @@ class YouTubeMain(Screen):
 		return videos
 
 	def cancel(self):
-		self.selectedIndex = None
-		if self.list == 'openfeeds':
+		if self.list == 'main':
+			self.close()
+		elif self.list == 'openfeeds':
 			self.createFeedList()
 		elif self.list == 'openmyfeeds':
 			self.createMyFeedList()
 		elif self.list == 'opensubscription':
-			self.selectedIndex = self.subscriptionsIndex
 			self.entryList = self.subscriptionsList
 			self.list = 'openmyfeeds'
 			self.setEntryList()
-		elif self.list != 'main':
-			self.createMainList()
 		else:
-			self.close()
+			self.createMainList()
+		self['list'].setIndex(self.prevIndex[len(self.prevIndex) - 1])
+		self.prevIndex.pop()
 
 	def openSetup(self):
 		self.session.openWithCallback(self.configScreenCallback, YouTubeSetup)
