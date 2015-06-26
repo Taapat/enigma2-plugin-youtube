@@ -313,7 +313,7 @@ class YouTubeMain(Screen):
 			self.createBuild()
 			self.createMainList()
 		elif self.action == 'playVideo':
-			if self.value[2] is None: # remenber video url
+			if self.value[2] is None: # remember video url
 				self.value[2] = self.getVideoUrl()
 				count = 0
 				for entry in self.entryList:
@@ -469,7 +469,7 @@ class YouTubeMain(Screen):
 					(_('Quit'), 'quit'),
 					(_('Play next video'), 'playnext'),
 					(_('Play previous video'), 'playprev'),
-					(_('Play video again'), 'repeat'),
+					(_('Play video again'), 'repeat')
 				)
 			self.session.openWithCallback(self.playCallback,
 				ChoiceBox, title = title, list = list)
@@ -737,7 +737,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		self.setTitle(_('YouTube serch'))
+		self.setTitle(_('YouTube search'))
 		self['key_red'] = StaticText(_('Exit'))
 		self['key_green'] = StaticText(_('Ok'))
 		self['searchactions'] = ActionMap(['WizardActions', 'ColorActions', 'MenuActions'],
