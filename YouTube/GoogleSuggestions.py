@@ -72,7 +72,8 @@ class GoogleSuggestionsConfigText(ConfigText):
 		if config.plugins.YouTube.searchRegion.value:
 			self.suggestions.hl = config.plugins.YouTube.searchRegion.value
 		self.suggestionsThreadStarted()
-		self.suggestionsThread = SuggestionsQueryThread(self.suggestions, self.value, self.propagateSuggestions, self.gotSuggestionsError)
+		self.suggestionsThread = SuggestionsQueryThread(self.suggestions, 
+			self.value, self.propagateSuggestions, self.gotSuggestionsError)
 		self.suggestionsThread.start()
 
 	def handleKey(self, key):
@@ -83,7 +84,7 @@ class GoogleSuggestionsConfigText(ConfigText):
 	def onSelect(self, session):
 		ConfigText.onSelect(self, session)
 		if session is not None:
-			self.suggestionsWindow = session.instantiateDialog(SuggestionsList, self)
+			self.suggestionsWindow = session.instantiateDialog(YouTubeSuggestionsList, self)
 			self.suggestionsWindow.getSelection()
 			self.suggestionsWindow.hide()
 		self.getSuggestions()
@@ -113,9 +114,9 @@ class GoogleSuggestionsConfigText(ConfigText):
 		return ret
 
 
-class SuggestionsList(Screen):
+class YouTubeSuggestionsList(Screen):
 	skin = """
-		<screen name="SuggestionsList" position="center,center" size="600,280" \
+		<screen name="YouTubeSuggestionsList" position="center,center" size="600,280" \
 			flags="wfNoBorder" zPosition="6" >
 			<widget source="suggestionslist" render="Listbox" position="center,center" \
 				size="600,280" scrollbarMode="showOnDemand" >
@@ -207,7 +208,8 @@ class GoogleSuggestions():
 				else:
 					if response.status == 200:
 						data = response.read()
-						header = response.getheader('Content-Type', 'text/xml; charset=ISO-8859-1')
+						header = response.getheader('Content-Type',
+							'text/xml; charset=ISO-8859-1')
 						charset = 'ISO-8859-1'
 						try:
 							charset = header.split(';')[1].split('=')[1]
@@ -240,3 +242,4 @@ class ThreadQueue:
 		ret = self.__list.pop()
 		lock.release()
 		return ret
+
