@@ -513,10 +513,12 @@ class YouTubeMain(Screen):
 		lastInex = self.prevIndex[len(self.prevIndex) - 1]
 		self['list'].setIndex(lastInex[0])
 		self.list = lastInex[1]
+		self.text = lastInex[2]
+		self['text'].setText(self.text)
 		self.prevIndex.pop()
 
 	def rememberCurList(self):
-		self.prevIndex.append([self['list'].index, self.list])
+		self.prevIndex.append([self['list'].index, self.list, self.text])
 
 	def ok(self):
 		current = self['list'].getCurrent()
