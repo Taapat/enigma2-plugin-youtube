@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-26 19:55+0300\n"
+"POT-Creation-Date: 2015-06-28 01:44+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -206,6 +206,9 @@ msgstr "Atkārtot"
 msgid "Return search results for the specified country."
 msgstr "Izmantot meklēšanas rezultātus norādītajai valstij."
 
+msgid "Return search results that are most relevant to the specified language."
+msgstr "Izmantot meklēšanas rezultātus kuri visvairāk atbilst norādītajai valodai."
+
 msgid "Return to list"
 msgstr "Atgriesties sarakstā"
 
@@ -220,6 +223,18 @@ msgstr "Saglabāt meklēšanas vēsturi:"
 
 msgid "Save your search value in the history, when search completed."
 msgstr "Saglabāt jūsu meklēšanas rezultātu, kad meklēšana pabeigta."
+
+msgid "Search"
+msgstr "Meklēšana"
+
+msgid "Search channels"
+msgstr "Meklēt kanālus"
+
+msgid "Search language:"
+msgstr "Meklēšnas valoda:"
+
+msgid "Search playlists"
+msgstr "Meklēt atskaņošanas sarakstus"
 
 msgid "Search region:"
 msgstr "Meklēšnas reģions:"
