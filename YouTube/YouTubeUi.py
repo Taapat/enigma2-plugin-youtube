@@ -27,7 +27,7 @@ from GoogleSuggestions import GoogleSuggestionsConfigText
 config.plugins.YouTube = ConfigSubsection()
 config.plugins.YouTube.login = ConfigYesNo(default = False)
 config.plugins.YouTube.searchRegion = ConfigSelection(
-	[('', _('All')),
+	[(None, _('All')),
 	('AU', _('Australia')),
 	('BR', _('Brazil')),
 	('CA', _('Canada')),
@@ -52,9 +52,9 @@ config.plugins.YouTube.searchRegion = ConfigSelection(
 	('SE', _('Sweden')),
 	('TW', _('Taiwan')),
 	('US', _('United States'))
-	], '')
+	], None)
 config.plugins.YouTube.searchLanguage = ConfigSelection(
-	[('', _('All')),
+	[(None, _('All')),
 	('au', _('Australia')),
 	('br', _('Brazil')),
 	('ca', _('Canada')),
@@ -79,7 +79,7 @@ config.plugins.YouTube.searchLanguage = ConfigSelection(
 	('se', _('Sweden')),
 	('tw', _('Taiwan')),
 	('us', _('United States'))
-	], '')
+	], None)
 config.plugins.YouTube.searchOrder = ConfigSelection(
 	[('relevance', _('Relevance')),
 	('date', _('Created date')),
