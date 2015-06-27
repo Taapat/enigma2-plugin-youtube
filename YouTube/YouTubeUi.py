@@ -205,7 +205,7 @@ class YouTubeMain(Screen):
 		self.list = 'main'
 		self.action = 'startup'
 		self.value = [None, None, None]
-		self.prevIndex = [0]
+		self.prevIndex = []
 		self.prevEntryList = []
 		self.ytdl = None
 		self.youtube = None
@@ -236,7 +236,7 @@ class YouTubeMain(Screen):
 				'Search',           # Id
 				None,               # Thumbnail url
 				None,               # Thumbnail
-				_('Search videos'), # Title
+				_('Search'),        # Title
 				'',                 # Views
 				'',                 # Duration
 				None                # Video url
@@ -247,6 +247,22 @@ class YouTubeMain(Screen):
 		if config.plugins.YouTube.login.value and config.plugins.YouTube.refreshToken.value != '':
 			self.entryList.append(('MyFeeds', None, None,
 				_('My feeds'), '', '', None))
+		self.setEntryList()
+
+	def createSearchList(self):
+		self.list = 'search'
+		self.value = [None, None, None]
+		self.text = _('Search')
+		self.entryList = [(
+				'Searchvideo', None, None,
+				_('Search videos'), '', '', None
+			),(
+				'Searchchannel', None, None,
+				_('Search channels'), '', '', None
+			),(
+				'Searchplaylist', None, None,
+				_('Search playlists'), '', '', None
+			)]
 		self.setEntryList()
 
 	def createFeedList(self):
@@ -304,11 +320,11 @@ class YouTubeMain(Screen):
 
 	def screenCallback(self, value = None, action = None):
 		if not action: # cancel in search
-			self.createMainList()
+			self.setEntryList()
 		else:
 			self.value = value
 			self.action = action
-			if action == 'createSearchEntryList':
+			if action == 'OpenSearch':
 				text = _('Download search results. Please wait...')
 			elif action == 'playVideo':
 				text = _('Extract video url. Please wait...')
@@ -364,6 +380,7 @@ class YouTubeMain(Screen):
 				self.session.openWithCallback(self.playCallback, YouTubePlayer, ref)
 			else:
 				self.setEntryList()
+				self.setPreviousList()
 		else:
 			entryList = self.createEntryList()
 			if not entryList:
@@ -371,17 +388,10 @@ class YouTubeMain(Screen):
 					_('There was an error in creating entry list!\nMaybe try other feeds...'), 
 					MessageBox.TYPE_INFO, timeout = 8)
 				self.setEntryList()
+				self.setPreviousList()
 			else:
-				if self.action == 'OpenSubscription':
-					self.prevEntryList.append(self.entryList)
 				self.entryList = entryList
 				self.text = self.value[1]
-				if self.action == 'createSearchEntryList':
-					self.list = 'search'
-				elif self.action == 'OpenFeeds':
-					self.list = 'openfeeds'
-				elif self.action == 'OpenMyFeeds':
-					self.list = 'openmyfeeds'
 				self.setEntryList()
 
 	def setEntryList(self):
@@ -472,8 +482,7 @@ class YouTubeMain(Screen):
 
 	def playCallback(self, action=None):
 		self.setEntryList()
-		self['list'].setIndex(self.prevIndex[len(self.prevIndex) - 1])
-		self.prevIndex.pop()
+		self.setPreviousList()
 		if action:
 			action = action[1]
 		if action == 'playnext':
@@ -489,7 +498,7 @@ class YouTubeMain(Screen):
 		elif action == 'repeat':
 			self.ok()
 		elif action == 'ask':
-			self.prevIndex.append(self['list'].index)
+			self.rememberCurList()
 			title = _('What do you want to do?')
 			list = (
 					(_('Quit'), 'quit'),
@@ -500,25 +509,40 @@ class YouTubeMain(Screen):
 			self.session.openWithCallback(self.playCallback,
 				ChoiceBox, title = title, list = list)
 
+	def setPreviousList(self):
+		lastInex = self.prevIndex[len(self.prevIndex) - 1]
+		self['list'].setIndex(lastInex[0])
+		self.list = lastInex[1]
+		self.prevIndex.pop()
+
+	def rememberCurList(self):
+		self.prevIndex.append([self['list'].index, self.list])
+
 	def ok(self):
 		current = self['list'].getCurrent()
 		if current:
 			print "[YouTube] Selected:", current[0]
-			self.prevIndex.append(self['list'].index)
-			if current[0] == 'Search':
-				self.session.openWithCallback(self.screenCallback, YouTubeSearch)
-			elif current[0] == 'PubFeeds':
-				self.createFeedList()
-			elif current[0] == 'MyFeeds':
-				self.createMyFeedList()
-			elif self.list == 'feeds':
-				self.screenCallback([current[0], current[3], current[6]], 'OpenFeeds')
-			elif self.list == 'myfeeds':
-				self.screenCallback([current[0], current[3], current[6]], 'OpenMyFeeds')
-			elif self.list == 'openmyfeeds':
-				self.screenCallback([current[0], current[3], current[6]], 'OpenSubscription')
-			else: # Play video
+			self.rememberCurList()
+			if self.list == 'videolist':
 				self.screenCallback([current[0], current[3], current[6]], 'playVideo')
+			else:
+				self.prevEntryList.append(self.entryList)
+				if current[0] == 'Search':
+					self.createSearchList()
+				elif current[0] == 'PubFeeds':
+					self.createFeedList()
+				elif current[0] == 'MyFeeds':
+					self.createMyFeedList()
+				elif self.list == 'search':
+					self.session.openWithCallback(self.screenCallback, YouTubeSearch, current[0][6:])
+				elif self.list == 'feeds':
+					self.screenCallback([current[0], current[3], current[6]], 'OpenFeeds')
+				elif self.list == 'myfeeds':
+					self.screenCallback([current[0], current[3], current[6]], 'OpenMyFeeds')
+				elif self.list == 'playlist':
+					self.screenCallback([current[0], current[3], current[6]], 'OpenPlayList')
+				elif self.list == 'channel':
+					self.screenCallback([current[0], current[3], current[6]], 'OpenChannelList')
 
 	def getVideoUrl(self):
 		watch_url = 'http://www.youtube.com/watch?v=%s' % self.value[0]
@@ -577,11 +601,13 @@ class YouTubeMain(Screen):
 	def createEntryList(self):
 		self.createBuild()
 		order = 'date'
+		searchType = 'video'
 		q = ''
-		videoDefinition = videoEmbeddable = videoType = 'any'
+		videoDefinition = videoEmbeddable = videoType = None
 
-		if self.action == 'createSearchEntryList':
+		if self.action == 'OpenSearch':
 			order = config.plugins.YouTube.searchOrder.value
+			searchType = self.value[0]
 			q = self.value[1]
 		elif self.action == 'OpenFeeds':
 			if self.value[0] == 'top rated':
@@ -609,9 +635,6 @@ class YouTubeMain(Screen):
 				playlist = 'favorites'
 			elif self.value[0] == 'my uploads':
 				playlist = 'uploads'
-		elif self.action == 'OpenSubscription':
-			channel = self.value[0]
-			self.list = 'opensubscription'
 
 		if config.plugins.YouTube.safeSearch.value:
 			safeSearch = 'strict'
@@ -619,9 +642,10 @@ class YouTubeMain(Screen):
 			safeSearch = 'none'
 		videos = []
 
-		if self.action in ('OpenMyFeeds', 'OpenSubscription'):
+		if self.action == 'OpenMyFeeds':
 			channels = []
 			if self.value[0] == 'my subscriptions':
+				self.list = 'playlist'
 				searchResponse = self.youtube.subscriptions().list(
 						part='snippet',
 						mine=True,
@@ -643,7 +667,7 @@ class YouTubeMain(Screen):
 					videos.append((Id, Thumbnail, None, Title, '', '', None))
 				return videos
 
-			elif self.action != 'OpenSubscription':
+			else: # all other my data
 				searchResponse = self.youtube.channels().list(
 						part='contentDetails',
 						mine=True
@@ -651,61 +675,52 @@ class YouTubeMain(Screen):
 				for result in searchResponse.get('items', []):
 					channel = result['contentDetails']['relatedPlaylists'][playlist]
 
-			if len(channel) == 0:
-				return None
-			try:
-				searchResponse = self.youtube.playlistItems().list(
-						part='snippet',
-						playlistId=channel,
-						maxResults = 24
-					).execute()
-				for result in searchResponse.get('items', []):
-					videos.append(result['snippet']['resourceId']['videoId'])
-			except:
-				videos = []
+				videos = self.videoIdFromPlaylist(channel)
+				return self.extractVideoIdList(videos)
 
-			if len(videos) == 0: # not playlist
+		elif self.action == 'OpenPlayList':
+			videos = self.videoIdFromPlaylist(self.value[0])
+			if not videos: # if channel list from subscription
 				searchResponse = self.youtube.search().list(
 						part = 'id,snippet',
-						channelId = 'UC' + channel[2:],
+						channelId = 'UC' + self.value[0][2:],
 						maxResults = 24
 					).execute()
-				for result in searchResponse.get('items', []):
-					try:
-						Id = result['id']['playlistId']
-					except:
-						Id = None
-					try:
-						Thumbnail = str(result['snippet']['thumbnails']['default']['url'])
-					except:
-						Thumbnail = None
-					try:
-						Title = str(result['snippet']['title'])
-					except:
-						Title = ''
-					videos.append((Id, Thumbnail, None, Title, '', '', None))
-				self.list = 'openmyfeeds'
-				return videos
+				return self.createList(searchResponse, 'playlist')
+			return self.extractVideoIdList(videos)
 
-		else: # search
+		elif self.action == 'OpenChannelList':
+			videos = self.videoIdFromChannellist(self.value[0])
+			return self.extractVideoIdList(videos)
+
+		else: # search or pub feeds
 			searchResponse = self.youtube.search().list(
-					part = 'id',
+					part = 'id,snippet',
 					maxResults = 24,
 					order = order,
 					q = q,
 					regionCode = config.plugins.YouTube.searchRegion.value,
 					relevanceLanguage = config.plugins.YouTube.searchLanguage.value,
 					safeSearch = safeSearch,
-					type = 'video',
+					type = searchType,
 					videoDefinition = videoDefinition,
 					videoEmbeddable = videoEmbeddable,
 					videoType = videoType
 				).execute()
+			
+			if searchType != 'video':
+				videos = self.createList(searchResponse, searchType)
+				self.list = searchType
+				return videos
+
 			for result in searchResponse.get('items', []):
 				videos.append(result['id']['videoId'])
+			return self.extractVideoIdList(videos)
 
+	def extractVideoIdList(self, videos):
 		if len(videos) == 0:
 			return None
+		self.list = 'videolist'
 
 		searchResponse = self.youtube.videos().list(
 			id=','.join(videos),
@@ -737,23 +752,55 @@ class YouTubeMain(Screen):
 			videos.append((Id, Thumbnail, None, Title, Views, Duration, None))
 		return videos
 
+	def videoIdFromPlaylist(self, channel):
+		videos = []
+		searchResponse = self.youtube.playlistItems().list(
+				part='snippet',
+				playlistId=channel,
+				maxResults = 24
+			).execute()
+		for result in searchResponse.get('items', []):
+			videos.append(result['snippet']['resourceId']['videoId'])
+		return videos
+
+	def videoIdFromChannellist(self, channel):
+		videos = []
+		searchResponse = self.youtube.search().list(
+				part = 'id',
+				channelId = channel,
+				maxResults = 24
+			).execute()
+		for result in searchResponse.get('items', []):
+			videos.append(result['id']['videoId'])
+		return videos
+
+	def createList(self, searchResponse, listType):
+		videos = []
+		for result in searchResponse.get('items', []):
+			try:
+				Id = result['id'][listType + 'Id']
+			except:
+				Id = None
+			try:
+				Thumbnail = str(result['snippet']['thumbnails']['default']['url'])
+			except:
+				Thumbnail = None
+			try:
+				Title = str(result['snippet']['title'])
+			except:
+				Title = ''
+			videos.append((Id, Thumbnail, None, Title, '', '', None))
+		return videos
+
 	def cancel(self):
-		if self.list == 'main':
+		entryListIndex = len(self.prevEntryList) - 1
+		if len(self.prevIndex) == 0 or entryListIndex < 0:
 			self.close()
-		elif self.list == 'openfeeds':
-			self.createFeedList()
-		elif self.list == 'openmyfeeds':
-			self.createMyFeedList()
-		elif self.list == 'opensubscription':
-			self.entryList = self.prevEntryList[len(self.prevEntryList) - 1]
-			self.prevEntryList.pop()
-			if len(self.prevEntryList) == 0:
-				self.list = 'openmyfeeds'
-			self.setEntryList()
 		else:
-			self.createMainList()
-		self['list'].setIndex(self.prevIndex[len(self.prevIndex) - 1])
-		self.prevIndex.pop()
+			self.entryList = self.prevEntryList[entryListIndex]
+			self.prevEntryList.pop()
+			self.setEntryList()
+			self.setPreviousList()
 
 	def openSetup(self):
 		self.session.openWithCallback(self.configScreenCallback, YouTubeSetup)
@@ -788,9 +835,10 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				valign="center" halign="center" font="Regular;22" transparent="1" />
 		</screen>"""
 
-	def __init__(self, session):
+	def __init__(self, session, searchType):
 		Screen.__init__(self, session)
 		self.session = session
+		self.searchType = searchType
 		self.setTitle(_('YouTube search'))
 		self['key_red'] = StaticText(_('Exit'))
 		self['key_green'] = StaticText(_('Ok'))
@@ -856,7 +904,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					self.searchHistory.pop()
 				config.plugins.YouTube.searchHistory.value = ','.join(self.searchHistory)
 				config.plugins.YouTube.searchHistory.save()
-			self.close([None, searchValue, None], 'createSearchEntryList')
+			self.close([self.searchType, searchValue, None], 'OpenSearch')
 
 	def openSetup(self):
 		current = self['config'].getCurrent()[1]
