@@ -390,6 +390,7 @@ class YouTubeMain(Screen):
 					MessageBox.TYPE_INFO, timeout = 8)
 				self.setEntryList()
 				self.setPreviousList()
+				self.prevEntryList.pop()
 			else:
 				self.entryList = entryList
 				self.text = self.value[1]
