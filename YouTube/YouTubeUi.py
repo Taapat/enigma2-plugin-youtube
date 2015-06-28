@@ -207,6 +207,7 @@ class YouTubeMain(Screen):
 		self.value = [None, None, None]
 		self.prevIndex = []
 		self.prevEntryList = []
+		self.entryList = []
 		self.ytdl = None
 		self.youtube = None
 		self.isAuth = False
@@ -215,7 +216,7 @@ class YouTubeMain(Screen):
 
 	def layoutFinish(self):
 		defThumbnail = resolveFilename(SCOPE_PLUGINS,
-			'Extensions/YouTube/icon.png')
+			'Extensions/YouTube/icons/icon.png')
 		self.decodeThumbnail('default', defThumbnail)
 		self.splitTaimer.start(1)
 
@@ -412,7 +413,7 @@ class YouTubeMain(Screen):
 				url = entry[1]
 				if not url:
 					image = resolveFilename(SCOPE_PLUGINS,
-						'Extensions/YouTube/' + entryId + '.png')
+						'Extensions/YouTube/icons/' + entryId + '.png')
 					self.decodeThumbnail(entryId, image)
 				else:
 					image = os.path.join('/tmp/', str(entryId) + '.jpg')
