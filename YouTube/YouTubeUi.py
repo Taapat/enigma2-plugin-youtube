@@ -271,26 +271,26 @@ class YouTubeMain(Screen):
 		self.value = [None, None, None]
 		self.text = _('Public feeds')
 		self.entryList = [(
-				'top rated', None, None,
-				_('Top rated feeds'), '', '', None
+				'top_rated', None, None,
+				_('Top rated'), '', '', None
 			),(
-				'most viewed', None, None,
-				_('Most viewed feeds'), '', '', None
+				'most_viewed', None, None,
+				_('Most viewed'), '', '', None
 			),(
-				'most recent', None, None,
-				_('Most recent feeds'), '', '', None
+				'most_recent', None, None,
+				_('Recent'), '', '', None
 			),(
-				'HD videos', None, None,
-				_('HD videos feeds'), '', '', None
+				'HD_videos', None, None,
+				_('HD videos'), '', '', None
 			),(
-				'embedded videos', None, None,
-				_('Embedded videos feeds'), '', '', None
+				'embedded_videos', None, None,
+				_('Embedded in webpages'), '', '', None
 			),(
-				'episodes of shows', None, None,
-				_('Episodes of shows'), '', '', None
+				'episodes', None, None,
+				_('Shows'), '', '', None
 			),(
 				'movies', None, None,
-				_('Movies feeds'), '', '', None
+				_('Movies'), '', '', None
 			)]
 		self.setEntryList()
 
@@ -299,23 +299,23 @@ class YouTubeMain(Screen):
 		self.value = [None, None, None]
 		self.text = _('My feeds')
 		self.entryList = [(
-				'my subscriptions', None, None,
-				_('My subscriptions'), '', '', None
+				'my_subscriptions', None, None,
+				_('My Subscriptions'), '', '', None
 			),(
-				'my watch later', None, None,
-				_('My watch later'), '', '', None
+				'my_watch_later', None, None,
+				_('Watch Later'), '', '', None
 			),(
-				'my watch history', None, None,
-				_('My watch history'), '', '', None
+				'my_history', None, None,
+				_('History'), '', '', None
 			),(
-				'my liked videos', None, None,
-				_('My liked videos'), '', '', None
+				'my_liked_videos', None, None,
+				_('Liked videos'), '', '', None
 			),(
-				'my favorites', None, None,
-				_('My favorites'), '', '', None
+				'my_favorites', None, None,
+				_('Favorites'), '', '', None
 			),(
-				'my uploads', None, None,
-				_('My uploads'), '', '', None
+				'my_uploads', None, None,
+				_('Uploads'), '', '', None
 			)]
 		self.setEntryList()
 
@@ -613,30 +613,30 @@ class YouTubeMain(Screen):
 			searchType = self.value[0]
 			q = self.value[1]
 		elif self.action == 'OpenFeeds':
-			if self.value[0] == 'top rated':
+			if self.value[0] == 'top_rated':
 				order = 'rating'
-			elif self.value[0] == 'most viewed':
+			elif self.value[0] == 'most_viewed':
 				order = 'viewCount'
-			elif self.value[0] == 'HD videos':
+			elif self.value[0] == 'HD_videos':
 				videoDefinition = 'high'
-			elif self.value[0] == 'embedded videos':
+			elif self.value[0] == 'embedded_videos':
 				videoEmbeddable = 'true'
-			elif self.value[0] == 'episodes of shows':
+			elif self.value[0] == 'episodes':
 				videoType = 'episode'
 			elif self.value[0] == 'movies':
 				videoType = 'movie'
 		elif self.action == 'OpenMyFeeds':
 			if not self.isAuth:
 				return None
-			elif self.value[0] == 'my watch later':
+			elif self.value[0] == 'my_watch_later':
 				playlist = 'watchLater'
-			elif self.value[0] == 'my watch history':
+			elif self.value[0] == 'my_history':
 				playlist = 'watchHistory'
-			elif self.value[0] == 'my liked videos':
+			elif self.value[0] == 'my_liked_videos':
 				playlist = 'likes'
-			elif self.value[0] == 'my favorites':
+			elif self.value[0] == 'my_favorites':
 				playlist = 'favorites'
-			elif self.value[0] == 'my uploads':
+			elif self.value[0] == 'my_uploads':
 				playlist = 'uploads'
 
 		if config.plugins.YouTube.safeSearch.value:
@@ -647,7 +647,7 @@ class YouTubeMain(Screen):
 
 		if self.action == 'OpenMyFeeds':
 			channels = []
-			if self.value[0] == 'my subscriptions':
+			if self.value[0] == 'my_subscriptions':
 				self.list = 'playlist'
 				searchResponse = self.youtube.subscriptions().list(
 						part='snippet',
