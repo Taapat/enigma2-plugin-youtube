@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-28 01:44+0300\n"
+"POT-Creation-Date: 2015-06-28 14:05+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -53,11 +53,8 @@ msgstr "Lejuplādē meklēšanas rezultātus. Lūdzu uzgaidiet..."
 msgid "Duration: "
 msgstr "Ilgums: "
 
-msgid "Embedded videos feeds"
+msgid "Embedded in webpages"
 msgstr "Video no web lapām"
-
-msgid "Episodes of shows"
-msgstr "Šovu epizodes"
 
 msgid "Exclude restricted content:"
 msgstr "Nemeklēt ierobežotu saturu:"
@@ -67,6 +64,9 @@ msgstr "Iziet"
 
 msgid "Extract video url. Please wait..."
 msgstr "Meklē video saiti. Lūdzu uzgaidiet..."
+
+msgid "Favorites"
+msgstr "Favorīti"
 
 msgid "France"
 msgstr "Francija"
@@ -85,8 +85,11 @@ msgstr ""
 msgid "Great Britain"
 msgstr "Lielbritānija"
 
-msgid "HD videos feeds"
-msgstr "HD video saites"
+msgid "HD videos"
+msgstr "HD video"
+
+msgid "History"
+msgstr "Vēsture"
 
 msgid "Holland"
 msgstr "Holande"
@@ -112,6 +115,9 @@ msgstr "Japāna"
 msgid "Latvia"
 msgstr "Latvija"
 
+msgid "Liked videos"
+msgstr "Patīk"
+
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"
 "This needs to approve in the Google home page!"
@@ -125,35 +131,17 @@ msgstr "Startējot ielogoties:"
 msgid "Mexico"
 msgstr "Meksika"
 
-msgid "Most recent feeds"
-msgstr "Jaunākās saites"
+msgid "Most viewed"
+msgstr "Skatītākie"
 
-msgid "Most viewed feeds"
-msgstr "Skatītākās saites"
+msgid "Movies"
+msgstr "Filmas"
 
-msgid "Movies feeds"
-msgstr "Filmu saites"
-
-msgid "My favorites"
-msgstr "Mani favorīti"
+msgid "My Subscriptions"
+msgstr "Mani abonementi"
 
 msgid "My feeds"
 msgstr "Manas saites"
-
-msgid "My liked videos"
-msgstr "Mani atzīmētie video"
-
-msgid "My subscriptions"
-msgstr "Mani abonementi"
-
-msgid "My uploads"
-msgstr "Mani augšuplādētie"
-
-msgid "My watch history"
-msgstr "Mana skatīšanās vēsture"
-
-msgid "My watch later"
-msgstr "Mani noskatīties vēlāk"
 
 msgid "New Zealand"
 msgstr "Jaunzēlande"
@@ -196,6 +184,9 @@ msgstr "Iziet"
 
 msgid "Rating"
 msgstr "Vērtējuma"
+
+msgid "Recent"
+msgstr "Jaunākie"
 
 msgid "Relevance"
 msgstr "Atbilstības"
@@ -245,6 +236,9 @@ msgstr "Meklēšanas nosacījumi"
 msgid "Search videos"
 msgstr "Meklēt video"
 
+msgid "Shows"
+msgstr "Pārraides"
+
 msgid "Sort search results by:"
 msgstr "Kārtot meklēšnas rezultātus pēc:"
 
@@ -282,8 +276,8 @@ msgstr ""
 "Ja jūs turpināsiet, tad nebūs iespējams pārtraukt kamēr autentifikācija nav pabeigta!\n"
 "Vai jums pašreiz ir pieeja inernetam citā ierīcē, un varam turpināt?"
 
-msgid "Top rated feeds"
-msgstr "Novērtētākās saites"
+msgid "Top rated"
+msgstr "Novērtētākie"
 
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Mēģinās izslēgt visu ierobežotu saturu no meklēšanas rezultātiem."
@@ -291,8 +285,14 @@ msgstr "Mēģinās izslēgt visu ierobežotu saturu no meklēšanas rezultātiem
 msgid "United States"
 msgstr "ASV"
 
+msgid "Uploads"
+msgstr "Augšupielādētie"
+
 msgid "View count"
 msgstr "Skatījumiem"
+
+msgid "Watch Later"
+msgstr "Skatīties vēlāk"
 
 msgid "Watch YouTube videos"
 msgstr "Atskaņot YouTube video"

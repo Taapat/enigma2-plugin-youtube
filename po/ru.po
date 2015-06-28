@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-28 01:44+0300\n"
+"POT-Creation-Date: 2015-06-28 14:05+0300\n"
 "PO-Revision-Date: 2014-09-03 01:18+0900\n"
 "Last-Translator: vadim72 <regin92@gmail.com>\n"
 "Language-Team: www.linsat.net <spaeleus@croci.org>\n"
@@ -52,11 +52,8 @@ msgstr "Загрузка результатов поиска. Подождите
 msgid "Duration: "
 msgstr "Длительность: "
 
-msgid "Embedded videos feeds"
+msgid "Embedded in webpages"
 msgstr "Видео на веб сайтах"
-
-msgid "Episodes of shows"
-msgstr "Эпизоды шоу"
 
 msgid "Exclude restricted content:"
 msgstr "Исключить закрытый контент:"
@@ -66,6 +63,9 @@ msgstr "Выход"
 
 msgid "Extract video url. Please wait..."
 msgstr "Извлечение видео силки. Подождите..."
+
+msgid "Favorites"
+msgstr "Фавориты"
 
 msgid "France"
 msgstr "Франция"
@@ -84,8 +84,11 @@ msgstr ""
 msgid "Great Britain"
 msgstr "Англия"
 
-msgid "HD videos feeds"
+msgid "HD videos"
 msgstr "HD видео"
+
+msgid "History"
+msgstr "История"
 
 msgid "Holland"
 msgstr "Голландия"
@@ -109,7 +112,10 @@ msgid "Japan"
 msgstr "Япония"
 
 msgid "Latvia"
-msgstr ""
+msgstr "Латвия"
+
+msgid "Liked videos"
+msgstr "Понравившиеся"
 
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"
@@ -124,35 +130,17 @@ msgstr "Авторизация при запуске:"
 msgid "Mexico"
 msgstr "Мексика"
 
-msgid "Most recent feeds"
-msgstr "Самые последние"
-
-msgid "Most viewed feeds"
+msgid "Most viewed"
 msgstr "Лидеры по просмотру"
 
-msgid "Movies feeds"
-msgstr "Видеоролики"
+msgid "Movies"
+msgstr "Фильмы"
 
-msgid "My favorites"
-msgstr "Мои фавориты"
+msgid "My Subscriptions"
+msgstr "Мои подписки"
 
 msgid "My feeds"
 msgstr "Мои фиди"
-
-msgid "My liked videos"
-msgstr "Мои любимые видео"
-
-msgid "My subscriptions"
-msgstr "Мои подписки"
-
-msgid "My uploads"
-msgstr "Мои загрузки"
-
-msgid "My watch history"
-msgstr "Моя история просмотров"
-
-msgid "My watch later"
-msgstr "Мой просмотр позже"
 
 msgid "New Zealand"
 msgstr "Новая Зеландия"
@@ -195,6 +183,9 @@ msgstr "Выход"
 
 msgid "Rating"
 msgstr "Рейтинг"
+
+msgid "Recent"
+msgstr "Самые последние"
 
 msgid "Relevance"
 msgstr "Актуальность"
@@ -244,6 +235,9 @@ msgstr "Условия поиска"
 msgid "Search videos"
 msgstr "Поиск видео"
 
+msgid "Shows"
+msgstr "Шоу"
+
 msgid "Sort search results by:"
 msgstr "Сортировать результаты поиска по:"
 
@@ -281,7 +275,7 @@ msgstr ""
 "Если вы будете продолжать, то вы не сможете остановиться, пока аутентификация не будет закончена!\n"
 "Есть ли у вас в настоящее время доступ к интернету на другом устройстве, и мы можем продолжать?"
 
-msgid "Top rated feeds"
+msgid "Top rated"
 msgstr "Лучшие по рейтингу"
 
 msgid "Try to exclude all restricted content from the search result."
@@ -290,8 +284,14 @@ msgstr "Попробовать исключить всё ограниченно�
 msgid "United States"
 msgstr "США"
 
+msgid "Uploads"
+msgstr "Мои загрузки"
+
 msgid "View count"
 msgstr "Количество просмотров"
+
+msgid "Watch Later"
+msgstr "Посмотреть позже"
 
 msgid "Watch YouTube videos"
 msgstr "Просмотр видео с YouTube"
