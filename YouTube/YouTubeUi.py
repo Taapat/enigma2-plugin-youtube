@@ -26,6 +26,12 @@ from GoogleSuggestions import GoogleSuggestionsConfigText
 
 config.plugins.YouTube = ConfigSubsection()
 config.plugins.YouTube.login = ConfigYesNo(default = False)
+config.plugins.YouTube.searchResult = ConfigSelection(
+	[(4, '4'),
+	(16, '16'),
+	(24, '24'),
+	(50, '50')
+	], 24)
 config.plugins.YouTube.searchRegion = ConfigSelection(
 	[(None, _('All')),
 	('AU', _('Australia')),
@@ -653,7 +659,7 @@ class YouTubeMain(Screen):
 				searchResponse = self.youtube.subscriptions().list(
 						part='snippet',
 						mine=True,
-						maxResults = 24
+						maxResults = config.plugins.YouTube.searchResult.value
 					).execute()
 				for result in searchResponse.get('items', []):
 					try:
@@ -688,7 +694,7 @@ class YouTubeMain(Screen):
 				searchResponse = self.youtube.search().list(
 						part = 'id,snippet',
 						channelId = 'UC' + self.value[0][2:],
-						maxResults = 24
+						maxResults = config.plugins.YouTube.searchResult.value
 					).execute()
 				return self.createList(searchResponse, 'playlist')
 			return self.extractVideoIdList(videos)
@@ -700,7 +706,7 @@ class YouTubeMain(Screen):
 		else: # search or pub feeds
 			searchResponse = self.youtube.search().list(
 					part = 'id,snippet',
-					maxResults = 24,
+					maxResults = config.plugins.YouTube.searchResult.value,
 					order = order,
 					q = q,
 					regionCode = config.plugins.YouTube.searchRegion.value,
@@ -761,7 +767,7 @@ class YouTubeMain(Screen):
 		searchResponse = self.youtube.playlistItems().list(
 				part='snippet',
 				playlistId=channel,
-				maxResults = 24
+				maxResults = config.plugins.YouTube.searchResult.value
 			).execute()
 		for result in searchResponse.get('items', []):
 			videos.append(result['snippet']['resourceId']['videoId'])
@@ -772,7 +778,7 @@ class YouTubeMain(Screen):
 		searchResponse = self.youtube.search().list(
 				part = 'id',
 				channelId = channel,
-				maxResults = 24
+				maxResults = config.plugins.YouTube.searchResult.value
 			).execute()
 		for result in searchResponse.get('items', []):
 			videos.append(result['id']['videoId'])
@@ -949,6 +955,9 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		configlist.append(getConfigListEntry(_('Login on startup:'),
 			config.plugins.YouTube.login,
 			 _('Log in to your YouTube account when plugin starts.\nThis needs to approve in the Google home page!')))
+		configlist.append(getConfigListEntry(_('Search results:'),
+			config.plugins.YouTube.searchResult,
+			_('How many search results will be returned.\nIf greater value then longer time will be needed for thumbnail download.')))
 		configlist.append(getConfigListEntry(_('Search region:'),
 			config.plugins.YouTube.searchRegion,
 			 _('Return search results for the specified country.')))
