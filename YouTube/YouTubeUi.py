@@ -674,7 +674,11 @@ class YouTubeMain(Screen):
 						Title = str(result['snippet']['title'])
 					except:
 						Title = ''
-					videos.append((Id, Thumbnail, None, Title, '', '', None))
+					try:
+						Subscription = result['id']
+					except:
+						Subscription = ''
+					videos.append((Id, Thumbnail, None, Title, '', '', Subscription))
 				return videos
 
 			else: # all other my data
@@ -770,7 +774,10 @@ class YouTubeMain(Screen):
 				maxResults = int(config.plugins.YouTube.searchResult.value)
 			).execute()
 		for result in searchResponse.get('items', []):
-			videos.append(result['snippet']['resourceId']['videoId'])
+			try:
+				videos.append(result['snippet']['resourceId']['videoId'])
+			except:
+				pass
 		return videos
 
 	def videoIdFromChannellist(self, channel):
@@ -781,7 +788,10 @@ class YouTubeMain(Screen):
 				maxResults = int(config.plugins.YouTube.searchResult.value)
 			).execute()
 		for result in searchResponse.get('items', []):
-			videos.append(result['id']['videoId'])
+			try:
+				videos.append(result['id']['videoId'])
+			except:
+				pass
 		return videos
 
 	def createList(self, searchResponse, listType):
@@ -814,14 +824,19 @@ class YouTubeMain(Screen):
 
 	def openMenu(self):
 		if self.isAuth:
+			title = _('What do you want to do?')
+			list = None
 			if self.list == 'videolist':
-				title = _('What do you want to do?')
-				list = (
-						(_('I like this'), 'like'),
+				list = ((_('I like this'), 'like'),
 						(_('I dislike this'), 'dislike'),
-						(_('Remove my rating'), 'none'),
-						(_('Open YouTube setup'), 'setup')
-					)
+						(_('Remove my rating'), 'none'),)
+			elif self.list == 'channel' and self.prevIndex[1][1] != 'myfeeds':
+				list = ((_('Subscribe'), 'subscribe'),)
+			elif self.list == 'playlist' and self.prevIndex[1][1] == 'myfeeds' and \
+				len(self.prevIndex) == 2:
+				list = ((_('Unsubscribe'), 'unsubscribe'),)
+			if list:
+				list = ((_('Open YouTube setup'), 'setup'),) + list
 				self.session.openWithCallback(self.menuCallback,
 					ChoiceBox, title = title, list = list)
 				return
@@ -829,14 +844,58 @@ class YouTubeMain(Screen):
 
 	def menuCallback(self, answer):
 		if answer:
+			msg = None
 			if answer[1] == 'setup':
 				self.session.openWithCallback(self.configScreenCallback, YouTubeSetup)
+			elif answer[1] == 'subscribe':
+				msg = self.subscribeChannel()
+			elif answer[1] == 'unsubscribe':
+				msg = self.unsubscribeChannel()
 			else:
-				self.rateVideo(answer[1])
+				msg = self.rateVideo(answer[1])
+			if msg:
+				self.session.open(MessageBox, msg, MessageBox.TYPE_INFO, timeout = 3)
 
 	def configScreenCallback(self, callback=None):
 		if self.list == 'main': # if autentification changed
 			self.createMainList()
+
+	def subscribeChannel(self):
+		channelId = self['list'].getCurrent()[0]
+		try:
+			self.youtube.subscriptions().insert(
+					part = 'snippet',
+					body = dict(
+						snippet = dict(
+							resourceId = dict(
+								channelId=channelId
+							)
+						)
+					)
+				).execute()
+			return _('Subscribed!')
+		except:
+			return _('There was an error in subscribe!')
+
+	def unsubscribeChannel(self):
+		subscribtionId = self['list'].getCurrent()[6]
+		if subscribtionId:
+			try:
+				self.youtube.subscriptions().delete(
+						id = subscribtionId
+					).execute()
+
+				# update subscriptions list
+				newEntryList = []
+				for entry in self.entryList:
+					if entry[6] != subscribtionId:
+						newEntryList.append(entry)
+				self.entryList = newEntryList
+				self['list'].updateList(self.entryList)
+				return _('Unsubscribed!')
+			except:
+				pass
+		return _('There was an error in unsubscribe!')
 
 	def rateVideo(self, rating):
 		videoId = self['list'].getCurrent()[0]
@@ -850,10 +909,9 @@ class YouTubeMain(Screen):
 				'dislike': _('Disliked!'),
 				'none': _('Rating removed!')
 				}
-			msg = text[rating]
+			return text[rating]
 		except:
-			msg = _('There was an error in rating!')
-		self.session.open(MessageBox, msg, MessageBox.TYPE_INFO, timeout = 4)
+			return _('There was an error in rating!')
 
 
 class YouTubeSearch(Screen, ConfigListScreen):
