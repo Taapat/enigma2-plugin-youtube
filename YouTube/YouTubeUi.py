@@ -836,7 +836,7 @@ class YouTubeMain(Screen):
 				len(self.prevIndex) == 2:
 				list = ((_('Unsubscribe'), 'unsubscribe'),)
 			if list:
-				list = ((_('Open YouTube setup'), 'setup'),) + list
+				list = ((_('YouTube setup'), 'setup'),) + list
 				self.session.openWithCallback(self.menuCallback,
 					ChoiceBox, title = title, list = list)
 				return
