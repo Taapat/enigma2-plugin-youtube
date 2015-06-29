@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-30 01:06+0300\n"
+"POT-Creation-Date: 2015-06-30 02:12+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -37,6 +37,9 @@ msgstr "Atcelt"
 
 msgid "Choose what you want to do"
 msgstr "Izvēlieties ko vēlaties darīt"
+
+msgid "Close YouTube"
+msgstr "Aizvērt YouTube"
 
 msgid "Created date"
 msgstr "Izveidošanas datuma"

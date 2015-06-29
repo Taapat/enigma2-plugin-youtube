@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-30 01:06+0300\n"
+"POT-Creation-Date: 2015-06-30 02:12+0300\n"
 "PO-Revision-Date: 2014-09-03 01:18+0900\n"
 "Last-Translator: vadim72 <regin92@gmail.com>\n"
 "Language-Team: www.linsat.net <spaeleus@croci.org>\n"
@@ -36,6 +36,9 @@ msgstr "Отменить"
 
 msgid "Choose what you want to do"
 msgstr "Выберите, что будете делать"
+
+msgid "Close YouTube"
+msgstr "Закрыть YouTube"
 
 msgid "Created date"
 msgstr "Дата создания"
