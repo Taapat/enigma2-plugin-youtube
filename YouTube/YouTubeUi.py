@@ -194,7 +194,7 @@ class YouTubeMain(Screen):
 				'ok': self.ok,
 				'red': self.cancel,
 				'green': self.ok,
-				'menu': self.openSetup
+				'menu': self.openMenu
 			}, -2)
 		text = _('YouTube starting. Please wait...')
 		self['text'] = Label()
@@ -812,12 +812,49 @@ class YouTubeMain(Screen):
 			self.setEntryList()
 			self.setPreviousList()
 
-	def openSetup(self):
+	def openMenu(self):
+		if self.isAuth:
+			if self.list == 'videolist':
+				title = _('What do you want to do?')
+				list = (
+						(_('I like this'), 'like'),
+						(_('I dislike this'), 'dislike'),
+						(_('Remove my rating'), 'none'),
+						(_('Open YouTube setup'), 'setup')
+					)
+				self.session.openWithCallback(self.menuCallback,
+					ChoiceBox, title = title, list = list)
+				return
 		self.session.openWithCallback(self.configScreenCallback, YouTubeSetup)
+
+	def menuCallback(self, answer):
+		if answer:
+			if answer[1] == 'setup':
+				self.session.openWithCallback(self.configScreenCallback, YouTubeSetup)
+			else:
+				self.rateVideo(answer[1])
 
 	def configScreenCallback(self, callback=None):
 		if self.list == 'main': # if autentification changed
 			self.createMainList()
+
+	def rateVideo(self, rating):
+		videoId = self['list'].getCurrent()[0]
+		try:
+			self.youtube.videos().rate(
+					id = videoId,
+					rating = rating
+				).execute()
+			text = {
+				'like': _('Liked!'),
+				'dislike': _('Disliked!'),
+				'none': _('Rating removed!')
+				}
+			msg = text[rating]
+		except:
+			msg = _('There was an error in rating!')
+		self.session.open(MessageBox, msg, MessageBox.TYPE_INFO, timeout = 4)
+
 
 class YouTubeSearch(Screen, ConfigListScreen):
 	skin = """
