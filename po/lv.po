@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-28 14:05+0300\n"
+"POT-Creation-Date: 2015-06-30 01:06+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -43,6 +43,9 @@ msgstr "Izveidošanas datuma"
 
 msgid "Czech Republic"
 msgstr "Čehija"
+
+msgid "Disliked!"
+msgstr "Atzīmēts, ka nepatīk!"
 
 msgid "Download feed entries. Please wait..."
 msgstr "Lejuplādē barotnes. Lūdzu uzgaidiet..."
@@ -97,6 +100,19 @@ msgstr "Holande"
 msgid "Hong Kong"
 msgstr "Honkonga"
 
+msgid ""
+"How many search results will be returned.\n"
+"If greater value then longer time will be needed for thumbnail download."
+msgstr ""
+"Cik daudz meklēšanas rezultātu tiks parādīti.\n"
+"Jo lielāks skaits, jo ilgāks laiks būs nepieciešmas sīkattēlu lejuplādēšanai."
+
+msgid "I dislike this"
+msgstr "Man nepatīk"
+
+msgid "I like this"
+msgstr "Man patīk"
+
 msgid "India"
 msgstr "Indija"
 
@@ -117,6 +133,9 @@ msgstr "Latvija"
 
 msgid "Liked videos"
 msgstr "Patīk"
+
+msgid "Liked!"
+msgstr "Atzīmēts, ka patīk!"
 
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"
@@ -185,11 +204,17 @@ msgstr "Iziet"
 msgid "Rating"
 msgstr "Vērtējuma"
 
+msgid "Rating removed!"
+msgstr "Novērtējums dzēsts!"
+
 msgid "Recent"
 msgstr "Jaunākie"
 
 msgid "Relevance"
 msgstr "Atbilstības"
+
+msgid "Remove my rating"
+msgstr "Dzēst manu vērtējumu"
 
 msgid "Repeat"
 msgstr "Atkārtot"
@@ -230,6 +255,9 @@ msgstr "Meklēt atskaņošanas sarakstus"
 msgid "Search region:"
 msgstr "Meklēšnas reģions:"
 
+msgid "Search results:"
+msgstr "Meklēšnas rezultāti:"
+
 msgid "Search term"
 msgstr "Meklēšanas nosacījumi"
 
@@ -251,6 +279,12 @@ msgstr "Spānija"
 msgid "Stop playing this movie?"
 msgstr "Apturēt atskaņot šo filmu?"
 
+msgid "Subscribe"
+msgstr "Abonēt"
+
+msgid "Subscribed!"
+msgstr "Abonēts!"
+
 msgid "Sweden"
 msgstr "Zviedrija"
 
@@ -263,6 +297,15 @@ msgid ""
 msgstr ""
 "Kļūda izveidojot barotņu sarakstu!\n"
 "Varbūt pamēģiniet citas saites..."
+
+msgid "There was an error in rating!"
+msgstr "Kļūda veicot novērtējumu!"
+
+msgid "There was an error in subscribe!"
+msgstr "Kļūda veicot abonēšanu!"
+
+msgid "There was an error in unsubscribe!"
+msgstr "Kļūda anulējot abonementu!"
 
 msgid "Title"
 msgstr "Nosaukuma"
@@ -284,6 +327,12 @@ msgstr "Mēģinās izslēgt visu ierobežotu saturu no meklēšanas rezultātiem
 
 msgid "United States"
 msgstr "ASV"
+
+msgid "Unsubscribe"
+msgstr "Anulēt abonementu"
+
+msgid "Unsubscribed!"
+msgstr "Abonements anulēts!"
 
 msgid "Uploads"
 msgstr "Augšupielādētie"
