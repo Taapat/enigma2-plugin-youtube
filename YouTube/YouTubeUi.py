@@ -823,29 +823,31 @@ class YouTubeMain(Screen):
 			self.setPreviousList()
 
 	def openMenu(self):
-		if self.isAuth:
+		if self.list != 'main':
 			title = _('What do you want to do?')
-			list = None
-			if self.list == 'videolist':
-				list = ((_('I like this'), 'like'),
-						(_('I dislike this'), 'dislike'),
-						(_('Remove my rating'), 'none'),)
-			elif self.list == 'channel' and self.prevIndex[1][1] != 'myfeeds':
-				list = ((_('Subscribe'), 'subscribe'),)
-			elif self.list == 'playlist' and self.prevIndex[1][1] == 'myfeeds' and \
-				len(self.prevIndex) == 2:
-				list = ((_('Unsubscribe'), 'unsubscribe'),)
-			if list:
-				list = ((_('YouTube setup'), 'setup'),) + list
-				self.session.openWithCallback(self.menuCallback,
-					ChoiceBox, title = title, list = list)
-				return
+			list = ((_('YouTube setup'), 'setup'),
+					(_('Close YouTube'), 'close'),)
+			if self.isAuth:
+				if self.list == 'videolist':
+					list += ((_('I like this'), 'like'),
+							(_('I dislike this'), 'dislike'),
+							(_('Remove my rating'), 'none'),)
+				elif self.list == 'channel' and self.prevIndex[1][1] != 'myfeeds':
+					list += ((_('Subscribe'), 'subscribe'),)
+				elif self.list == 'playlist' and self.prevIndex[1][1] == 'myfeeds' and \
+					len(self.prevIndex) == 2:
+					list += ((_('Unsubscribe'), 'unsubscribe'),)
+			self.session.openWithCallback(self.menuCallback,
+				ChoiceBox, title = title, list = list)
+			return
 		self.session.openWithCallback(self.configScreenCallback, YouTubeSetup)
 
 	def menuCallback(self, answer):
 		if answer:
 			msg = None
-			if answer[1] == 'setup':
+			if answer[1] == 'close':
+				self.close()
+			elif answer[1] == 'setup':
 				self.session.openWithCallback(self.configScreenCallback, YouTubeSetup)
 			elif answer[1] == 'subscribe':
 				msg = self.subscribeChannel()
