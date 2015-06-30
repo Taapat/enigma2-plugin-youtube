@@ -831,7 +831,9 @@ class YouTubeMain(Screen):
 			self.setPreviousList()
 
 	def openMenu(self):
-		if self.list != 'main':
+		if self.list == 'main':
+			self.session.openWithCallback(self.configScreenCallback, YouTubeSetup)
+		else:
 			title = _('What do you want to do?')
 			list = ((_('YouTube setup'), 'setup'),
 					(_('Close YouTube'), 'close'),)
@@ -847,8 +849,6 @@ class YouTubeMain(Screen):
 					list += ((_('Unsubscribe'), 'unsubscribe'),)
 			self.session.openWithCallback(self.menuCallback,
 				ChoiceBox, title = title, list = list)
-			return
-		self.session.openWithCallback(self.configScreenCallback, YouTubeSetup)
 
 	def menuCallback(self, answer):
 		if answer:
