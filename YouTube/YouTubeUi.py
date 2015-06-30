@@ -28,6 +28,7 @@ config.plugins.YouTube = ConfigSubsection()
 config.plugins.YouTube.login = ConfigYesNo(default = False)
 config.plugins.YouTube.searchResult = ConfigSelection(
 	[('4', '4'),
+	('8', '8'),
 	('16', '16'),
 	('24', '24'),
 	('50', '50')
