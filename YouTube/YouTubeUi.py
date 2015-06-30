@@ -172,9 +172,9 @@ class YouTubeMain(Screen):
 				}
 				</convert>
 			</widget>
-			<ePixmap position="114,323" size="140,40" pixmap="skin_default/buttons/red.png" \
+			<widget name="red" position="114,323" size="140,40" pixmap="skin_default/buttons/red.png" \
 				transparent="1" alphatest="on" />
-			<ePixmap position="374,323" size="140,40" pixmap="skin_default/buttons/green.png" \
+			<widget name="green" position="374,323" size="140,40" pixmap="skin_default/buttons/green.png" \
 				transparent="1" alphatest="on" />
 			<widget source="key_red" render="Label" position="114,328" zPosition="2" size="140,30" \
 				valign="center" halign="center" font="Regular;22" transparent="1" />
@@ -186,6 +186,10 @@ class YouTubeMain(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.setTitle(_('YouTube'))
+		self['red'] = Pixmap()
+		self['red'].hide()
+		self['green'] = Pixmap()
+		self['green'].hide()
 		self['key_red'] = StaticText('')
 		self['key_green'] = StaticText('')
 		self['actions'] = ActionMap(['SetupActions', 'ColorActions', 'MenuActions'],
@@ -341,6 +345,8 @@ class YouTubeMain(Screen):
 			self['list'].setList([])
 			self['key_red'].setText('')
 			self['key_green'].setText('')
+			self['red'].hide()
+			self['green'].hide()
 			self.splitTaimer.start(1)
 
 	def splitTaimerStop(self):
@@ -405,6 +411,8 @@ class YouTubeMain(Screen):
 	def setEntryList(self):
 		self['text'].setText(self.text)
 		self['list'].setList(self.entryList)
+		self['red'].show()
+		self['green'].show()
 		self['key_red'].setText(_('Exit'))
 		self['key_green'].setText(_('Open'))
 		self.createThumbnails()
