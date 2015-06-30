@@ -181,6 +181,8 @@ class YouTubeMain(Screen):
 				valign="center" halign="center" font="Regular;22" transparent="1" />
 			<widget source="key_green" render="Label" position="374,328" zPosition="2" size="140,30" \
 				valign="center" halign="center" font="Regular;22" transparent="1" />
+			<widget name="menu" position="565,335" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
+				transparent="1" alphatest="on" />
 			<widget name="thumbnail" position="0,0" size="100,72" /> # Thumbnail size in list
 		</screen>"""
 
@@ -191,6 +193,8 @@ class YouTubeMain(Screen):
 		self['red'].hide()
 		self['green'] = Pixmap()
 		self['green'].hide()
+		self['menu'] = Pixmap()
+		self['menu'].hide()
 		self['key_red'] = StaticText('')
 		self['key_green'] = StaticText('')
 		self['actions'] = ActionMap(['SetupActions', 'ColorActions', 'MenuActions'],
@@ -351,6 +355,7 @@ class YouTubeMain(Screen):
 			self['key_green'].setText('')
 			self['red'].hide()
 			self['green'].hide()
+			self['menu'].hide()
 			self.splitTaimer.start(1)
 
 	def splitTaimerStop(self):
@@ -417,6 +422,7 @@ class YouTubeMain(Screen):
 		self['list'].setList(self.entryList)
 		self['red'].show()
 		self['green'].show()
+		self['menu'].show()
 		self['key_red'].setText(_('Exit'))
 		self['key_green'].setText(_('Open'))
 		self.createThumbnails()
@@ -974,6 +980,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				valign="center" halign="center" font="Regular;22" transparent="1" />
 			<widget source="key_green" render="Label" position="374,328" zPosition="2" size="140,30" \
 				valign="center" halign="center" font="Regular;22" transparent="1" />
+			<ePixmap position="565,335" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
+				transparent="1" alphatest="on" />
 		</screen>"""
 
 	def __init__(self, session, searchType):
