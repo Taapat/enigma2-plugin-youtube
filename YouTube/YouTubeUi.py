@@ -327,6 +327,9 @@ class YouTubeMain(Screen):
 			),(
 				'my_uploads', None, None,
 				_('Uploads'), '', '', None
+			),(
+				'my_playlists', None, None,
+				_('Playlists'), '', '', None
 			)]
 		self.setEntryList()
 
@@ -688,6 +691,28 @@ class YouTubeMain(Screen):
 					except:
 						Subscription = ''
 					videos.append((Id, Thumbnail, None, Title, '', '', Subscription))
+				return videos
+
+			elif self.value[0] == 'my_playlists':
+				self.list = 'playlist'
+				searchResponse = self.youtube.playlists().list(
+						part='snippet',
+						mine=True
+					).execute()
+				for result in searchResponse.get('items', []):
+					try:
+						Id = result['id']
+					except:
+						Id = None
+					try:
+						Thumbnail = str(result['snippet']['thumbnails']['default']['url'])
+					except:
+						Thumbnail = None
+					try:
+						Title = str(result['snippet']['title'])
+					except:
+						Title = ''
+					videos.append((Id, Thumbnail, None, Title, '', '', None))
 				return videos
 
 			else: # all other my data
