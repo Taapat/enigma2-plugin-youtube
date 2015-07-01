@@ -178,6 +178,8 @@ class YouTubeMain(Screen):
 				}
 				</convert>
 			</widget>
+			<widget name="info" position="30,335" size="35,25" pixmap="skin_default/buttons/key_info.png" \
+				transparent="1" alphatest="on" />
 			<widget name="red" position="114,323" size="140,40" pixmap="skin_default/buttons/red.png" \
 				transparent="1" alphatest="on" />
 			<widget name="green" position="374,323" size="140,40" pixmap="skin_default/buttons/green.png" \
@@ -194,6 +196,8 @@ class YouTubeMain(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.setTitle(_('YouTube'))
+		self['info'] = Pixmap()
+		self['info'].hide()
 		self['red'] = Pixmap()
 		self['red'].hide()
 		self['green'] = Pixmap()
@@ -387,6 +391,7 @@ class YouTubeMain(Screen):
 			self['red'].hide()
 			self['green'].hide()
 			self['menu'].hide()
+			self['info'].hide()
 			self.splitTaimer.start(1)
 
 	def splitTaimerStop(self):
@@ -462,6 +467,8 @@ class YouTubeMain(Screen):
 		self['menu'].show()
 		self['key_red'].setText(_('Exit'))
 		self['key_green'].setText(_('Open'))
+		if self.list == 'videolist':
+			self['info'].show()
 		self.createThumbnails()
 
 	def createThumbnails(self):
@@ -923,6 +930,7 @@ class YouTubeMain(Screen):
 			self.prevEntryList.pop()
 			self.setEntryList()
 			self.setPreviousList()
+			self['info'].hide()
 
 	def openMenu(self):
 		if self.list == 'main':
