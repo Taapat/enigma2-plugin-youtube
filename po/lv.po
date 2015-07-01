@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-30 02:12+0300\n"
+"POT-Creation-Date: 2015-07-02 00:13+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -13,6 +13,12 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Generator: Poedit 1.5.4\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
+
+msgid " dislikes"
+msgstr " nepatīk"
+
+msgid " likes"
+msgstr " patīk"
 
 msgid " views"
 msgstr " skatījumi"
@@ -195,6 +201,9 @@ msgstr "Atskaņot iepriekšējo video"
 msgid "Play video again"
 msgstr "Atskaņot video vēlreiz"
 
+msgid "Playlists"
+msgstr "Atskaņošanas saraksti"
+
 msgid "Poland"
 msgstr "Polija"
 
@@ -237,11 +246,11 @@ msgstr "Krievija"
 msgid "Save"
 msgstr "Saglabāt"
 
-msgid "Save search history:"
-msgstr "Saglabāt meklēšanas vēsturi:"
+msgid "Save search result:"
+msgstr "Saglabāt meklēšnas rezultātu:"
 
-msgid "Save your search value in the history, when search completed."
-msgstr "Saglabāt jūsu meklēšanas rezultātu, kad meklēšana pabeigta."
+msgid "Save your search result in the history, when search completed."
+msgstr "Saglabāt jūsu meklēšanas rezultātu vēsturē, kad meklēšana pabeigta."
 
 msgid "Search"
 msgstr "Meklēšana"
@@ -382,6 +391,9 @@ msgstr ""
 
 msgid "YouTube"
 msgstr "YouTube"
+
+msgid "YouTube info"
+msgstr "YouTube informācija"
 
 msgid "YouTube search"
 msgstr "YouTube meklēšana"

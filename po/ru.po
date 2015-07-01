@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-30 02:12+0300\n"
+"POT-Creation-Date: 2015-07-02 00:13+0300\n"
 "PO-Revision-Date: 2014-09-03 01:18+0900\n"
 "Last-Translator: vadim72 <regin92@gmail.com>\n"
 "Language-Team: www.linsat.net <spaeleus@croci.org>\n"
@@ -12,6 +12,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.6.5\n"
+
+msgid " dislikes"
+msgstr " не понравилось"
+
+msgid " likes"
+msgstr " понравилось"
 
 msgid " views"
 msgstr " просмотров"
@@ -194,6 +200,9 @@ msgstr "Играть предыдущее видео"
 msgid "Play video again"
 msgstr "Воспроизвести видео снова"
 
+msgid "Playlists"
+msgstr "Плейлисты"
+
 msgid "Poland"
 msgstr "Польша"
 
@@ -236,10 +245,10 @@ msgstr "Россия"
 msgid "Save"
 msgstr "Сохранить"
 
-msgid "Save search history:"
-msgstr "Сохранить историю поиска:"
+msgid "Save search result:"
+msgstr "Сохранить результат поиска:"
 
-msgid "Save your search value in the history, when search completed."
+msgid "Save your search result in the history, when search completed."
 msgstr "Сохранить результат поиска в истории, когда поиск завершен."
 
 msgid "Search"
@@ -381,6 +390,9 @@ msgstr ""
 
 msgid "YouTube"
 msgstr "YouTube"
+
+msgid "YouTube info"
+msgstr "YouTube информация"
 
 msgid "YouTube search"
 msgstr "Поиск YouTube"
