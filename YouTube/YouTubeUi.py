@@ -439,9 +439,11 @@ class YouTubeMain(Screen):
 			if videoUrl:
 				service = eServiceReference(4097, 0, videoUrl)
 				service.setName(self.value[3])
+				current = [self.value[3], self.value[4], self.value[5], self.value[7],
+					self.value[8], self.value[9], self.value[10]]
 				print "[YouTube] Play:", videoUrl
 				self.session.openWithCallback(self.playCallback,\
-					YouTubePlayer, service = service, current = self.value)
+					YouTubePlayer, service = service, current = current)
 			else:
 				self.setEntryList()
 				self.setPreviousList()
@@ -1028,6 +1030,8 @@ class YouTubeMain(Screen):
 	def showEventInfo(self):
 		if self.list == 'videolist':
 			current = self['list'].getCurrent()
+			current = [current[3], current[4], current[5], current[7],
+				current[8], current[9], current[10]]
 			self.session.open(YouTubeInfo, current = current)
 
 
@@ -1056,15 +1060,15 @@ class YouTubeInfo(Screen):
 				'cancel': self.close,
 				'red': self.close,
 			}, -2)
-		self['title'] = Label(current[3])
+		self['title'] = Label(current[0])
 		self['pic'] = Pixmap()
-		self['description'] = Label(current[7])
-		self['views'] = Label(current[4])
-		self['duration'] = Label(current[5])
-		self['likes'] = Label(current[8])
-		self['dislikes'] = Label(current[9])
+		self['description'] = Label(current[3])
+		self['views'] = Label(current[1])
+		self['duration'] = Label(current[2])
+		self['likes'] = Label(current[4])
+		self['dislikes'] = Label(current[5])
 		self.picloads = None
-		self.ThumbnailUrl = current[10]
+		self.ThumbnailUrl = current[6]
 		self.onLayoutFinish.append(self.LayoutFinish)
 
 	def LayoutFinish(self):
