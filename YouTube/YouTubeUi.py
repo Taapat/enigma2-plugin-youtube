@@ -1055,10 +1055,12 @@ class YouTubeInfo(Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_('YouTube info'))
 		self['key_red'] = StaticText(_('Exit'))
-		self['actions'] = ActionMap(['SetupActions', 'ColorActions'],
+		self['actions'] = ActionMap(['ColorActions', 'InfobarShowHideActions'],
 			{
-				'cancel': self.close,
 				'red': self.close,
+				'toggleShow': self.close,
+				'hide': self.close,
+				'infoButton': self.close
 			}, -2)
 		self['title'] = Label(current[0])
 		self['pic'] = Pixmap()
