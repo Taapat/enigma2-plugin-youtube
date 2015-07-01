@@ -1,7 +1,7 @@
 from httplib import HTTPConnection, CannotSendRequest, BadStatusLine
 from threading import Lock, Thread
 from urllib import quote
-from xml.etree.cElementTree import fromstring as cet_fromstring
+from xml.etree.cElementTree import fromstring
 
 from enigma import ePythonMessagePump
 from Screens.Screen import Screen
@@ -13,20 +13,20 @@ from Components.Sources.List import List
 class SuggestionsQueryThread(Thread):
 	def __init__(self, query, param, callback, errorback):
 		Thread.__init__(self)
-		self.messagePump = ePythonMessagePump()
-		self.messages = ThreadQueue()
 		self.query = query
 		self.param = param
 		self.callback = callback
 		self.errorback = errorback
 		self.canceled = False
+		self.messages = ThreadQueue()
+		self.messagePump = ePythonMessagePump()
 		self.messagePump.recv_msg.get().append(self.finished)
 
 	def cancel(self):
 		self.canceled = True
 
 	def run(self):
-		if self.param not in (None, ''):
+		if self.param:
 			try:
 				suggestions = self.query.getSuggestions(self.param)
 				self.messages.push((suggestions, self.callback))
@@ -141,20 +141,17 @@ class YouTubeSuggestionsList(Screen):
 		if suggestions and len(suggestions) > 0:
 			if not self.shown:
 				self.show()
-			suggestions_tree = cet_fromstring( suggestions )
-			if suggestions_tree:
+			suggestions = fromstring(suggestions)
+			if suggestions:
 				self.list = []
-				suggestlist = []
-				for suggestion in suggestions_tree.findall('CompleteSuggestion'):
+				for suggestion in suggestions.findall('CompleteSuggestion'):
 					name = None
-					for subelement in suggestion:
-						if subelement.attrib.has_key('data'):
-							name = subelement.attrib['data'].encode('UTF-8')
+					for element in suggestion:
+						if element.attrib.has_key('data'):
+							name = element.attrib['data'].encode('UTF-8')
 						if name:
-							suggestlist.append(name)
-				if len(suggestlist):
-					for entry in suggestlist:
-						self.list.append((entry, None))
+							self.list.append((name, None))
+				if self.list:
 					self['suggestionslist'].setList(self.list)
 					self['suggestionslist'].setIndex(0)
 		else:
@@ -182,46 +179,40 @@ class YouTubeSuggestionsList(Screen):
 class GoogleSuggestions():
 	def __init__(self):
 		self.hl = 'en'
-		self.conn = None
 
 	def getSuggestions(self, queryString):
-		prepQuerry = '/complete/search?output=toolbar&client=youtube&xml=true&ds=yt&'
-		if self.hl is not None:
-			prepQuerry = prepQuerry + 'hl=' + self.hl + '&'
-		prepQuerry = prepQuerry + 'jsonp=self.getSuggestions&q='
-		if queryString is not '':
+		if not queryString:
+			return None
+		else:
+			prepQuerry = '/complete/search?output=toolbar&client=youtube&xml=true&ds=yt&'
+			if self.hl:
+				prepQuerry = prepQuerry + 'hl=' + self.hl + '&'
+			prepQuerry = prepQuerry + 'jsonp=self.getSuggestions&q='
 			query = prepQuerry + quote(queryString)
 			try:
-				self.conn = HTTPConnection('google.com')
-				self.conn.request('GET', query, '', {'Accept-Encoding': 'UTF-8'})
+				connection = HTTPConnection('google.com')
+				connection.request('GET', query, '', {'Accept-Encoding': 'UTF-8'})
 			except (CannotSendRequest, gaierror, error):
-				self.conn.close()
 				print "[YouTube] Can not send request for suggestions"
-				return None
 			else:
 				try:
-					response = self.conn.getresponse()
+					response = connection.getresponse()
 				except BadStatusLine:
-					self.conn.close()
 					print "[YouTube] Can not get a response from google"
-					return None
 				else:
 					if response.status == 200:
 						data = response.read()
 						header = response.getheader('Content-Type',
 							'text/xml; charset=ISO-8859-1')
-						charset = 'ISO-8859-1'
 						try:
 							charset = header.split(';')[1].split('=')[1]
 						except:
-							pass
+							charset = 'ISO-8859-1'
 						data = data.decode(charset).encode('utf-8')
-						self.conn.close()
+						connection.close()
 						return data
-					else:
-						self.conn.close()
-						return None
-		else:
+			if connection:
+				connection.close()
 			return None
 
 
@@ -242,4 +233,3 @@ class ThreadQueue:
 		ret = self.__list.pop()
 		lock.release()
 		return ret
-
