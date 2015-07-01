@@ -25,7 +25,7 @@ from GoogleSuggestions import GoogleSuggestionsConfigText
 
 
 config.plugins.YouTube = ConfigSubsection()
-config.plugins.YouTube.login = ConfigYesNo(default = False)
+config.plugins.YouTube.saveHistory = ConfigYesNo(default = True)
 config.plugins.YouTube.searchResult = ConfigSelection(
 	[('4', '4'),
 	('8', '8'),
@@ -95,12 +95,12 @@ config.plugins.YouTube.searchOrder = ConfigSelection(
 	('viewCount', _('View count'))
 	], 'relevance')
 config.plugins.YouTube.safeSearch = ConfigYesNo(default = False)
-config.plugins.YouTube.saveHistory = ConfigYesNo(default = True)
 config.plugins.YouTube.onMovieEof = ConfigSelection(default = 'quit', choices = [
 	('quit', _('Return to list')), ('ask', _('Ask user')),
 	('playnext', _('Play next')), ('repeat', _('Repeat'))])
 config.plugins.YouTube.onMovieStop = ConfigSelection(default = 'ask', choices = [
 	('ask', _('Ask user')), ('quit', _('Return to list'))])
+config.plugins.YouTube.login = ConfigYesNo(default = False)
 
 config.plugins.YouTube.searchHistory = ConfigText(default='')
 config.plugins.YouTube.refreshToken = ConfigText(default='')
@@ -1091,9 +1091,9 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		ConfigListScreen.__init__(self, configlist, session=session,
 			on_change = self.checkLoginSatus)
 
-		configlist.append(getConfigListEntry(_('Login on startup:'),
-			config.plugins.YouTube.login,
-			 _('Log in to your YouTube account when plugin starts.\nThis needs to approve in the Google home page!')))
+		configlist.append(getConfigListEntry(_('Save search result:'),
+			config.plugins.YouTube.saveHistory,
+			_('Save your search result in the history, when search completed.')))
 		configlist.append(getConfigListEntry(_('Search results:'),
 			config.plugins.YouTube.searchResult,
 			_('How many search results will be returned.\nIf greater value then longer time will be needed for thumbnail download.')))
@@ -1109,15 +1109,15 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		configlist.append(getConfigListEntry(_('Exclude restricted content:'),
 			config.plugins.YouTube.safeSearch,
 			_('Try to exclude all restricted content from the search result.')))
-		configlist.append(getConfigListEntry(_('Save search history:'),
-			config.plugins.YouTube.saveHistory, 
-			_('Save your search value in the history, when search completed.')))
 		configlist.append(getConfigListEntry(_('When video ends:'),
-			config.plugins.YouTube.onMovieEof, 
+			config.plugins.YouTube.onMovieEof,
 			_('What to do when the video ends.')))
 		configlist.append(getConfigListEntry(_('When playback stop:'),
-			config.plugins.YouTube.onMovieStop, 
+			config.plugins.YouTube.onMovieStop,
 			_('What to do when stop playback in videoplayer.')))
+		configlist.append(getConfigListEntry(_('Login on startup:'),
+			config.plugins.YouTube.login,
+			 _('Log in to your YouTube account when plugin starts.\nThis needs to approve in the Google home page!')))
 
 		self['config'].list = configlist
 		self['config'].l.setList(configlist)
