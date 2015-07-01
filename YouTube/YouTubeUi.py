@@ -19,6 +19,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+from Tools.LoadPixmap import LoadPixmap
 
 from . import _
 from GoogleSuggestions import GoogleSuggestionsConfigText
@@ -111,9 +112,10 @@ YOUTUBE_API_CLIENT_SECRET = 'fYE-8T3qf4DrLPLv3NTgvjna'
 
 
 class YouTubePlayer(MoviePlayer):
-	def __init__(self, session, service):
+	def __init__(self, session, service, current):
 		MoviePlayer.__init__(self, session, service)
 		self.skinName = 'MoviePlayer'
+		self.current = current
 
 	def leavePlayer(self):
 		if config.plugins.YouTube.onMovieStop.value == 'ask':
@@ -145,6 +147,9 @@ class YouTubePlayer(MoviePlayer):
 				list.append(((boundFunction(self.getPluginName, p.name),
 					boundFunction(self.runPlugin, p), lambda: True), None))
 		return list
+
+	def openCurEventView(self):
+		self.session.open(YouTubeInfo, current = self.current)
 
 	def showMovies(self):
 		pass
@@ -197,13 +202,14 @@ class YouTubeMain(Screen):
 		self['menu'].hide()
 		self['key_red'] = StaticText('')
 		self['key_green'] = StaticText('')
-		self['actions'] = ActionMap(['SetupActions', 'ColorActions', 'MenuActions'],
+		self['actions'] = ActionMap(['SetupActions', 'ColorActions', 'MovieSelectionActions'],
 			{
 				'cancel': self.cancel,
 				'ok': self.ok,
 				'red': self.cancel,
 				'green': self.ok,
-				'menu': self.openMenu
+				'contextMenu': self.openMenu,
+				'showEventInfo': self.showEventInfo
 			}, -2)
 		text = _('YouTube starting. Please wait...')
 		self['text'] = Label()
@@ -226,6 +232,7 @@ class YouTubeMain(Screen):
 		self.ytdl = None
 		self.youtube = None
 		self.isAuth = False
+		self.eventInfo = [None]
 		self.onLayoutFinish.append(self.layoutFinish)
 		self.onClose.append(self.cleanVariables)
 
@@ -243,6 +250,7 @@ class YouTubeMain(Screen):
 		self.thumbnails = None
 		self.entryList = None
 		self.prevEntryList = None
+		self.eventInfo = None
 
 	def createMainList(self):
 		self.list = 'main'
@@ -255,14 +263,20 @@ class YouTubeMain(Screen):
 				_('Search'),        # Title
 				'',                 # Views
 				'',                 # Duration
-				None                # Video url
+				None,               # Video url
+				None,               # Description
+				None,               # Likes
+				None,               # Dislikes
+				None                # Big thumbnail url
 			),(
 				'PubFeeds', None, None,
-				_('Public feeds'), '', '', None
+				_('Public feeds'), '', '', None,
+				None, None, None, None
 			)]
-		if config.plugins.YouTube.login.value and config.plugins.YouTube.refreshToken.value != '':
+		if config.plugins.YouTube.login.value and \
+			config.plugins.YouTube.refreshToken.value != '':
 			self.entryList.append(('MyFeeds', None, None,
-				_('My feeds'), '', '', None))
+				_('My feeds'), '', '', None, None, None, None, None))
 		self.setEntryList()
 
 	def createSearchList(self):
@@ -271,13 +285,16 @@ class YouTubeMain(Screen):
 		self.text = _('Search')
 		self.entryList = [(
 				'Searchvideo', None, None,
-				_('Search videos'), '', '', None
+				_('Search videos'), '', '', None,
+				None, None, None, None
 			),(
 				'Searchchannel', None, None,
-				_('Search channels'), '', '', None
+				_('Search channels'), '', '', None,
+				None, None, None, None
 			),(
 				'Searchplaylist', None, None,
-				_('Search playlists'), '', '', None
+				_('Search playlists'), '', '', None,
+				None, None, None, None
 			)]
 		self.setEntryList()
 
@@ -287,25 +304,32 @@ class YouTubeMain(Screen):
 		self.text = _('Public feeds')
 		self.entryList = [(
 				'top_rated', None, None,
-				_('Top rated'), '', '', None
+				_('Top rated'), '', '', None,
+				None, None, None, None
 			),(
 				'most_viewed', None, None,
-				_('Most viewed'), '', '', None
+				_('Most viewed'), '', '', None,
+				None, None, None, None
 			),(
 				'most_recent', None, None,
-				_('Recent'), '', '', None
+				_('Recent'), '', '', None,
+				None, None, None, None
 			),(
 				'HD_videos', None, None,
-				_('HD videos'), '', '', None
+				_('HD videos'), '', '', None,
+				None, None, None, None
 			),(
 				'embedded_videos', None, None,
-				_('Embedded in webpages'), '', '', None
+				_('Embedded in webpages'), '', '', None,
+				None, None, None, None
 			),(
 				'episodes', None, None,
-				_('Shows'), '', '', None
+				_('Shows'), '', '', None,
+				None, None, None, None
 			),(
 				'movies', None, None,
-				_('Movies'), '', '', None
+				_('Movies'), '', '', None,
+				None, None, None, None
 			)]
 		self.setEntryList()
 
@@ -315,25 +339,32 @@ class YouTubeMain(Screen):
 		self.text = _('My feeds')
 		self.entryList = [(
 				'my_subscriptions', None, None,
-				_('My Subscriptions'), '', '', None
+				_('My Subscriptions'), '', '', None,
+				None, None, None, None
 			),(
 				'my_watch_later', None, None,
-				_('Watch Later'), '', '', None
+				_('Watch Later'), '', '', None,
+				None, None, None, None
 			),(
 				'my_history', None, None,
-				_('History'), '', '', None
+				_('History'), '', '', None,
+				None, None, None, None
 			),(
 				'my_liked_videos', None, None,
-				_('Liked videos'), '', '', None
+				_('Liked videos'), '', '', None,
+				None, None, None, None
 			),(
 				'my_favorites', None, None,
-				_('Favorites'), '', '', None
+				_('Favorites'), '', '', None,
+				None, None, None, None
 			),(
 				'my_uploads', None, None,
-				_('Uploads'), '', '', None
+				_('Uploads'), '', '', None,
+				None, None, None, None
 			),(
 				'my_playlists', None, None,
-				_('Playlists'), '', '', None
+				_('Playlists'), '', '', None,
+				None, None, None, None
 			)]
 		self.setEntryList()
 
@@ -378,8 +409,9 @@ class YouTubeMain(Screen):
 			self.createBuild()
 			self.createMainList()
 		elif self.action == 'playVideo':
-			if self.value[2] is None: # remember video url
-				self.value[2] = self.getVideoUrl()
+			videoUrl = self.value[6]
+			if not videoUrl: # remember video url
+				videoUrl = self.getVideoUrl()
 				count = 0
 				for entry in self.entryList:
 					if entry[0] == self.value[0]:
@@ -391,15 +423,20 @@ class YouTubeMain(Screen):
 								entryList[3], # Title
 								entryList[4], # Views
 								entryList[5], # Duration
-								self.value[2] # Video url
+								videoUrl,     # Video url
+								entryList[7], # Description
+								entryList[8], # Likes
+								entryList[9], # Dislikes
+								entryList[10] # Big thumbnail url
 							)
 						break
 					count += 1
-			if self.value[2]:
-				ref = eServiceReference(4097, 0, self.value[2])
-				ref.setName(self.value[1])
-				print "[YouTube] Play:", self.value[2]
-				self.session.openWithCallback(self.playCallback, YouTubePlayer, ref)
+			if videoUrl:
+				service = eServiceReference(4097, 0, videoUrl)
+				service.setName(self.value[3])
+				print "[YouTube] Play:", videoUrl
+				self.session.openWithCallback(self.playCallback,\
+					YouTubePlayer, service = service, current = self.value)
 			else:
 				self.setEntryList()
 				self.setPreviousList()
@@ -501,7 +538,11 @@ class YouTubeMain(Screen):
 							entryList[3], # Title
 							entryList[4], # Views
 							entryList[5], # Duration
-							entryList[6]  # Video url
+							entryList[6], # Video url
+							entryList[7], # Description
+							entryList[8], # Likes
+							entryList[9], # Dislikes
+							entryList[10] # Big thumbnail url
 						)
 				count += 1
 			self['list'].updateList(self.entryList)
@@ -552,7 +593,7 @@ class YouTubeMain(Screen):
 			print "[YouTube] Selected:", current[0]
 			self.rememberCurList()
 			if self.list == 'videolist':
-				self.screenCallback([current[0], current[3], current[6]], 'playVideo')
+				self.screenCallback(current, 'playVideo')
 			else:
 				self.prevEntryList.append(self.entryList)
 				if current[0] == 'Search':
@@ -696,7 +737,8 @@ class YouTubeMain(Screen):
 						Subscription = result['id']
 					except:
 						Subscription = ''
-					videos.append((Id, Thumbnail, None, Title, '', '', Subscription))
+					videos.append((Id, Thumbnail, None, Title, '', '', Subscription,
+						None, None, None, None))
 				return videos
 
 			elif self.value[0] == 'my_playlists':
@@ -718,7 +760,8 @@ class YouTubeMain(Screen):
 						Title = str(result['snippet']['title'])
 					except:
 						Title = ''
-					videos.append((Id, Thumbnail, None, Title, '', '', None))
+					videos.append((Id, Thumbnail, None, Title, '', '', None,
+						None, None, None, None))
 				return videos
 
 			else: # all other my data
@@ -803,7 +846,25 @@ class YouTubeMain(Screen):
 				Duration = _('Duration: ') + self.convertDate(str(result['contentDetails']['duration']))
 			except:
 				Duration = ''
-			videos.append((Id, Thumbnail, None, Title, Views, Duration, None))
+			try:
+				Description = str(result['snippet']['description'])
+			except:
+				Description = ''
+			try:
+				Likes = str(result['statistics']['likeCount']) + _(' likes')
+			except:
+				Likes = ''
+			try:
+				Dislikes = str(result['statistics']['dislikeCount']) + _(' dislikes')
+			except:
+				Dislikes = ''
+			try:
+				ThumbnailUrl = str(result['snippet']['thumbnails']['medium']['url'])
+			except:
+				ThumbnailUrl = None
+
+			videos.append((Id, Thumbnail, None, Title, Views, Duration, None, 
+				Description, Likes, Dislikes, ThumbnailUrl))
 		return videos
 
 	def videoIdFromPlaylist(self, channel):
@@ -849,7 +910,8 @@ class YouTubeMain(Screen):
 				Title = str(result['snippet']['title'])
 			except:
 				Title = ''
-			videos.append((Id, Thumbnail, None, Title, '', '', None))
+			videos.append((Id, Thumbnail, None, Title, '', '', None,
+				None, None, None, None))
 		return videos
 
 	def cancel(self):
@@ -954,6 +1016,72 @@ class YouTubeMain(Screen):
 			return text[rating]
 		except:
 			return _('There was an error in rating!')
+
+	def showEventInfo(self):
+		if self.list == 'videolist':
+			current = self['list'].getCurrent()
+			self.session.open(YouTubeInfo, current = current)
+
+
+class YouTubeInfo(Screen):
+	skin = """
+		<screen position="center,center" size="630,370">
+			<widget name="title" position="center,0" size="600,60" halign="center" font="Regular;24" />
+			<widget name="pic" position="20,70" size="320,180" transparent="1" alphatest="on" />
+			<widget name="description" position="360,70" size="260,248" font="Regular;16" />
+			<widget name="views" position="30,270" size="150,20" font="Regular;16" />
+			<widget name="duration" position="200,270" size="150,20" font="Regular;16" />
+			<widget name="likes" position="30,300" size="150,20" font="Regular;16" />
+			<widget name="dislikes" position="200,300" size="150,20" font="Regular;16" />
+			<ePixmap position="center,323" size="140,40" pixmap="skin_default/buttons/red.png" \
+				transparent="1" alphatest="on" />
+			<widget source="key_red" render="Label" position="center,328" zPosition="2" size="140,30" \
+				valign="center" halign="center" font="Regular;22" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session, current):
+		Screen.__init__(self, session)
+		self.setTitle(_('YouTube info'))
+		self['key_red'] = StaticText(_('Exit'))
+		self['actions'] = ActionMap(['SetupActions', 'ColorActions'],
+			{
+				'cancel': self.close,
+				'red': self.close,
+			}, -2)
+		self['title'] = Label(current[3])
+		self['pic'] = Pixmap()
+		self['description'] = Label(current[7])
+		self['views'] = Label(current[4])
+		self['duration'] = Label(current[5])
+		self['likes'] = Label(current[8])
+		self['dislikes'] = Label(current[9])
+		self.picloads = None
+		self.ThumbnailUrl = current[10]
+		self.onLayoutFinish.append(self.LayoutFinish)
+
+	def LayoutFinish(self):
+		if self.ThumbnailUrl:
+			downloadPage(self.ThumbnailUrl, '/tmp/hqdefault.jpg')\
+				.addCallback(self.downloadFinished)
+
+	def downloadFinished(self, result):
+		image = '/tmp/hqdefault.jpg'
+		if os.path.exists(image):
+			sc = AVSwitch().getFramebufferScale()
+			self.picloads = ePicLoad()
+			self.picloads.PictureData.get().append(self.FinishDecode)
+			self.picloads.setPara((
+				self['pic'].instance.size().width(),
+				self['pic'].instance.size().height(),
+				sc[0], sc[1], False, 1, '#00000000'))
+			self.picloads.startDecode(image)
+
+	def FinishDecode(self, picInfo = None):
+		ptr = self.picloads.getData()
+		if ptr:
+			self["pic"].instance.setPixmap(ptr.__deref__())
+			del self.picloads
+			os.remove('/tmp/hqdefault.jpg')
 
 
 class YouTubeSearch(Screen, ConfigListScreen):
@@ -1069,6 +1197,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			current.help_window.instance.show()
 		if current.suggestionsWindow.instance is not None:
 			current.suggestionsWindow.instance.show()
+
 
 class YouTubeSetup(ConfigListScreen, Screen):
 	def __init__(self, session):
