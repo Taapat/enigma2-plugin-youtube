@@ -374,7 +374,7 @@ class YouTubeMain(Screen):
 
 	def screenCallback(self, value = None, action = None):
 		if not action: # cancel in search
-			self.setEntryList()
+			self.cancel()
 		else:
 			self.value = value
 			self.action = action
