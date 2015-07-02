@@ -886,11 +886,14 @@ class YouTubeMain(Screen):
 
 	def videoIdFromPlaylist(self, channel):
 		videos = []
-		searchResponse = self.youtube.playlistItems().list(
-				part='snippet',
-				playlistId=channel,
-				maxResults = int(config.plugins.YouTube.searchResult.value)
-			).execute()
+		try:
+			searchResponse = self.youtube.playlistItems().list(
+					part='snippet',
+					playlistId=channel,
+					maxResults = int(config.plugins.YouTube.searchResult.value)
+				).execute()
+		except:
+			return []
 		for result in searchResponse.get('items', []):
 			try:
 				videos.append(result['snippet']['resourceId']['videoId'])
