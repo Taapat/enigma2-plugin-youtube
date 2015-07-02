@@ -1114,13 +1114,17 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			</widget>
 			<widget name="config" position="center,15" size="600,30" zPosition="2" \
 				scrollbarMode="showNever" />
-			<ePixmap position="114,323" size="140,40" pixmap="skin_default/buttons/red.png" \
+			<ePixmap position="85,323" size="140,40" pixmap="skin_default/buttons/red.png" \
 				transparent="1" alphatest="on" />
-			<ePixmap position="374,323" size="140,40" pixmap="skin_default/buttons/green.png" \
+			<ePixmap position="center,323" size="140,40" pixmap="skin_default/buttons/green.png" \
 				transparent="1" alphatest="on" />
-			<widget source="key_red" render="Label" position="114,328" zPosition="2" size="140,30" \
+			<ePixmap position="405,323" size="140,40" pixmap="skin_default/buttons/yellow.png" \
+				transparent="1" alphatest="on" />
+			<widget source="key_red" render="Label" position="85,328" zPosition="2" size="140,30" \
 				valign="center" halign="center" font="Regular;22" transparent="1" />
-			<widget source="key_green" render="Label" position="374,328" zPosition="2" size="140,30" \
+			<widget source="key_green" render="Label" position="center,328" zPosition="2" size="140,30" \
+				valign="center" halign="center" font="Regular;22" transparent="1" />
+			<widget source="key_yellow" render="Label" position="405,328" zPosition="2" size="140,30" \
 				valign="center" halign="center" font="Regular;22" transparent="1" />
 			<ePixmap position="565,335" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
 				transparent="1" alphatest="on" />
@@ -1133,12 +1137,14 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		self.setTitle(_('YouTube search'))
 		self['key_red'] = StaticText(_('Exit'))
 		self['key_green'] = StaticText(_('Ok'))
+		self['key_yellow'] = StaticText(_('Keyboard'))
 		self['searchactions'] = ActionMap(['WizardActions', 'ColorActions', 'MenuActions'],
 			{
 				'back': self.close,
 				'ok': self.ok,
 				'red': self.close,
 				'green': self.ok,
+				'yellow': self.openKeyboard,
 				'up': self.keyUp,
 				'down': self.keyDown,
 				'menu': self.openSetup
@@ -1154,7 +1160,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		self['list'].setList(searchList)
 
 	def setSearchEntry(self):
-		searchEntry = [getConfigListEntry(_('Search term'), self.searchValue)]
+		searchEntry = [getConfigListEntry(_('Search'), self.searchValue)]
 		self['config'].list = searchEntry
 		self['config'].l.setList(searchEntry)
 		self['config'].getCurrent()[1].getSuggestions()
@@ -1181,7 +1187,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			self.setSearchEntry()
 		else:
 			searchValue = self.searchValue.value
-			print "[YouTube] Selected:", searchValue
+			print "[YouTube] Search:", searchValue
 			current = self['config'].getCurrent()[1]
 			if current.help_window.instance is not None:
 				current.help_window.instance.hide()
@@ -1211,6 +1217,16 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			current.help_window.instance.show()
 		if current.suggestionsWindow.instance is not None:
 			current.suggestionsWindow.instance.show()
+
+	def openKeyboard(self):
+		from Screens.VirtualKeyBoard import VirtualKeyBoard
+		self.session.openWithCallback(self.keyBoardCallback, VirtualKeyBoard,
+			title = _("Search"), text = self.searchValue.value)
+
+	def keyBoardCallback(self, name):
+		if name:
+			self.searchValue.value = name
+			self['config'].getCurrent()[1].getSuggestions()
 
 
 class YouTubeSetup(ConfigListScreen, Screen):
@@ -1313,4 +1329,3 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		del self.splitTaimer
 		self.mbox = None
 		self.oauth = None
-
