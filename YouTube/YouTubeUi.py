@@ -1070,7 +1070,7 @@ class YouTubeInfo(Screen):
 		width = getDesktop(0).size().width()
 		if width >= 1280: #TODO sreen for 1920
 			w = 100
-			h = 50
+			h = 54
 		else:
 			w = 0
 			h = 0
