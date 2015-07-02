@@ -945,7 +945,8 @@ class YouTubeMain(Screen):
 				if self.list == 'videolist':
 					list += ((_('I like this'), 'like'),
 							(_('I dislike this'), 'dislike'),
-							(_('Remove my rating'), 'none'),)
+							(_('Remove my rating'), 'none'),
+							(_('Search for similar'), 'similar'),)
 				elif self.list == 'channel' and self.prevIndex[1][1] != 'myfeeds':
 					list += ((_('Subscribe'), 'subscribe'),)
 				elif self.list == 'playlist' and self.prevIndex[1][1] == 'myfeeds' and \
@@ -965,6 +966,9 @@ class YouTubeMain(Screen):
 				msg = self.subscribeChannel()
 			elif answer[1] == 'unsubscribe':
 				msg = self.unsubscribeChannel()
+			elif answer[1] == 'similar':
+				term = self['list'].getCurrent()[3][:20]
+				self.screenCallback(['video', term, None], 'OpenSearch')
 			else:
 				msg = self.rateVideo(answer[1])
 			if msg:
