@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-02 00:13+0300\n"
+"POT-Creation-Date: 2015-07-02 20:37+0300\n"
 "PO-Revision-Date: 2014-09-03 01:18+0900\n"
 "Last-Translator: vadim72 <regin92@gmail.com>\n"
 "Language-Team: www.linsat.net <spaeleus@croci.org>\n"
@@ -136,6 +136,9 @@ msgstr "Италия"
 msgid "Japan"
 msgstr "Япония"
 
+msgid "Keyboard"
+msgstr "Клавиатура"
+
 msgid "Latvia"
 msgstr "Латвия"
 
@@ -252,10 +255,13 @@ msgid "Save your search result in the history, when search completed."
 msgstr "Сохранить результат поиска в истории, когда поиск завершен."
 
 msgid "Search"
-msgstr "Поиск"
+msgstr "Искать"
 
 msgid "Search channels"
 msgstr "Поиск каналов"
+
+msgid "Search for similar"
+msgstr "Искать похожее"
 
 msgid "Search language:"
 msgstr "Язык поиска:"
@@ -268,9 +274,6 @@ msgstr "Регион поиска:"
 
 msgid "Search results:"
 msgstr "Результаты поиска:"
-
-msgid "Search term"
-msgstr "Условия поиска"
 
 msgid "Search videos"
 msgstr "Поиск видео"
