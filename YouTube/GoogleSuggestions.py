@@ -3,7 +3,7 @@ from threading import Lock, Thread
 from urllib import quote
 from xml.etree.cElementTree import fromstring
 
-from enigma import ePythonMessagePump
+from enigma import ePythonMessagePump, getDesktop
 from Screens.Screen import Screen
 from Components.config import config, ConfigText
 from Components.config import KEY_DELETE, KEY_BACKSPACE, KEY_ASCII, KEY_TIMEOUT
@@ -115,21 +115,33 @@ class GoogleSuggestionsConfigText(ConfigText):
 
 
 class YouTubeSuggestionsList(Screen):
-	skin = """
-		<screen name="YouTubeSuggestionsList" position="center,center" size="600,280" \
-			flags="wfNoBorder" zPosition="6" >
-			<widget source="suggestionslist" render="Listbox" position="center,center" \
-				size="600,280" scrollbarMode="showOnDemand" >
-				<convert type="TemplatedMultiContent">
-				{
-					"template": [MultiContentEntryText(pos=(10,1), size=(340,24), \
-						font=0, flags=RT_HALIGN_LEFT, text=0)],
-					"fonts": [gFont("Regular",20), gFont("Regular",18)],
-					"itemHeight": 25
-				}
-				</convert>
-			</widget>
-		</screen>"""
+	screenWidth = getDesktop(0).size().width()
+	if screenWidth and screenWidth == 1920:
+		skin = """<screen name="YouTubeSuggestionsList" position="center,center" size="900,409" \
+				flags="wfNoBorder" zPosition="6" >
+				<widget source="suggestionslist" render="Listbox" position="center,center" \
+					size="900,409" scrollbarMode="showOnDemand" >
+					<convert type="TemplatedMultiContent">
+						{"template": [MultiContentEntryText(pos=(15,1), size=(870,45), \
+							font=0, flags=RT_HALIGN_LEFT, text=0)],
+						"fonts": [gFont("Regular",30)],
+						"itemHeight": 45}
+					</convert>
+				</widget>
+			</screen>"""
+	else:
+		skin = """<screen name="YouTubeSuggestionsList" position="center,center" size="600,280" \
+				flags="wfNoBorder" zPosition="6" >
+				<widget source="suggestionslist" render="Listbox" position="center,center" \
+					size="600,280" scrollbarMode="showOnDemand" >
+					<convert type="TemplatedMultiContent">
+						{"template": [MultiContentEntryText(pos=(10,1), size=(580,30), \
+							font=0, flags=RT_HALIGN_LEFT, text=0)],
+						"fonts": [gFont("Regular",20)],
+						"itemHeight": 30}
+					</convert>
+				</widget>
+			</screen>"""
 
 	def __init__(self, session, configTextWithGoogleSuggestion):
 		Screen.__init__(self, session)
