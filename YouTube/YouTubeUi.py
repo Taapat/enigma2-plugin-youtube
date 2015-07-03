@@ -2,7 +2,7 @@ import os
 from twisted.web.client import downloadPage
 from httplib2 import Http
 
-from enigma import ePicLoad, eServiceReference, eTimer, getDesktop
+from enigma import ePicLoad, ePoint, eServiceReference, eTimer, getDesktop
 from Components.ActionMap import ActionMap
 from Components.AVSwitch import AVSwitch
 from Components.config import config, ConfigSelection, ConfigSubsection, \
@@ -213,14 +213,14 @@ class YouTubeMain(Screen):
 				</widget>
 				<widget name="info" position="75,718" size="53,38" pixmap="skin_default/buttons/key_info.png" \
 					transparent="1" alphatest="on" />
-				<widget name="red" position="322,714" size="210,60" pixmap="skin_default/buttons/red.png" \
+				<widget name="red" position="322,707" size="210,60" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
-				<widget name="green" position="563,714" size="210,60" pixmap="skin_default/buttons/green.png" \
+				<widget name="green" position="563,707" size="210,60" pixmap="skin_default/buttons/green.png" \
 					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="322,708" zPosition="2" size="210,45" \
-					valign="center" halign="center" font="Regular;22" transparent="1" />
-				<widget source="key_green" render="Label" position="563,708" zPosition="2" size="210,45" \
-					valign="center" halign="center" font="Regular;22" transparent="1" />
+				<widget source="key_red" render="Label" position="322,714" zPosition="2" size="210,45" \
+					valign="center" halign="center" font="Regular;33" transparent="1" />
+				<widget source="key_green" render="Label" position="563,714" zPosition="2" size="210,45" \
+					valign="center" halign="center" font="Regular;33" transparent="1" />
 				<widget name="menu" position="968,718" size="53,38" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="thumbnail" position="0,0" size="150,108" /> # Thumbnail size in list
@@ -1136,7 +1136,7 @@ class YouTubeInfo(Screen):
 				<widget name="dislikes" position="45,455" size="225,30" font="Regular;24" />
 				<ePixmap position="center,565" size="210,60" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="center,573" zPosition="2" size="210,60" \
+				<widget source="key_red" render="Label" position="center,563" zPosition="2" size="210,60" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 			</screen>"""
 	else:
@@ -1204,9 +1204,9 @@ class YouTubeInfo(Screen):
 class YouTubeSearch(Screen, ConfigListScreen):
 	screenWidth = getDesktop(0).size().width()
 	if screenWidth and screenWidth == 1920:
-		skin = """<screen position="center,center" size="945,555">
+		skin = """<screen position="center,100" size="945,555">
 				<widget name="config" position="center,22" size="900,45" zPosition="2" \
-					scrollbarMode="showNever" />
+					scrollbarMode="showNever" itemHeight="45" font="Regular;30" />
 				<widget source="list" render="Listbox" position="center,75" size="900,409" \
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
@@ -1222,11 +1222,11 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					transparent="1" alphatest="on" />
 				<ePixmap position="608,484" size="210,60" pixmap="skin_default/buttons/yellow.png" \
 					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="127,492" zPosition="2" size="210,60" \
+				<widget source="key_red" render="Label" position="127,485" zPosition="2" size="210,60" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
-				<widget source="key_green" render="Label" position="center,492" zPosition="2" size="210,60" \
+				<widget source="key_green" render="Label" position="center,485" zPosition="2" size="210,60" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
-				<widget source="key_yellow" render="Label" position="608,492" zPosition="2" size="210,60" \
+				<widget source="key_yellow" render="Label" position="608,485" zPosition="2" size="210,60" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 				<ePixmap position="847,502" size="53,38" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />

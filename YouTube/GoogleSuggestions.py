@@ -117,7 +117,7 @@ class GoogleSuggestionsConfigText(ConfigText):
 class YouTubeSuggestionsList(Screen):
 	screenWidth = getDesktop(0).size().width()
 	if screenWidth and screenWidth == 1920:
-		skin = """<screen name="YouTubeSuggestionsList" position="center,center" size="900,409" \
+		skin = """<screen name="YouTubeSuggestionsList" position="center,175" size="900,409" \
 				flags="wfNoBorder" zPosition="6" >
 				<widget source="suggestionslist" render="Listbox" position="center,center" \
 					size="900,409" scrollbarMode="showOnDemand" >
