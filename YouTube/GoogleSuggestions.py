@@ -130,10 +130,10 @@ class YouTubeSuggestionsList(Screen):
 				</widget>
 			</screen>"""
 	else:
-		skin = """<screen name="YouTubeSuggestionsList" position="center,center" size="600,280" \
+		skin = """<screen name="YouTubeSuggestionsList" position="center,center" size="600,273" \
 				flags="wfNoBorder" zPosition="6" >
 				<widget source="suggestionslist" render="Listbox" position="center,center" \
-					size="600,280" scrollbarMode="showOnDemand" >
+					size="600,273" scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent">
 						{"template": [MultiContentEntryText(pos=(10,1), size=(580,30), \
 							font=0, flags=RT_HALIGN_LEFT, text=0)],

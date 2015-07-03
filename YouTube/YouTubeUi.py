@@ -1235,7 +1235,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		skin = """<screen position="center,center" size="630,370">
 				<widget name="config" position="center,15" size="600,30" zPosition="2" \
 					scrollbarMode="showNever" />
-				<widget source="list" render="Listbox" position="center,50" size="600,273" \
+				<widget source="list" render="Listbox" position="center,48" size="600,273" \
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [MultiContentEntryText(pos=(10,1), size=(580,30), \
