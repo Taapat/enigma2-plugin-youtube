@@ -1,0 +1,326 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tuxbox-enigma 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-25 01:07+0300\n"
+"PO-Revision-Date: 2015-06-25 00:44+0300\n"
+"Last-Translator: Tapat <taapat@gmail.com>\n"
+"Language-Team: Taapat <taapat@gmail.com>\n"
+"Language: lv_LV\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.5.4\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
+
+msgid " views"
+msgstr " skatījumi"
+
+msgid "All"
+msgstr "Visi"
+
+msgid "Ask user"
+msgstr "Jautāt"
+
+msgid "Australia"
+msgstr "Austrālija"
+
+msgid "Brazil"
+msgstr "Brazīlija"
+
+msgid "Canada"
+msgstr "Kanāda"
+
+msgid "Cancel"
+msgstr "Atcelt"
+
+msgid "Choose what you want to do"
+msgstr "Izvēlieties ko vēlaties darīt"
+
+msgid "Created date"
+msgstr "Izveidošanas datuma"
+
+msgid "Czech Republic"
+msgstr "Čehija"
+
+msgid "Download feed entries. Please wait..."
+msgstr "Lejuplādē barotnes. Lūdzu uzgaidiet..."
+
+msgid "Download search results. Please wait..."
+msgstr "Lejuplādē meklēšanas rezultātus. Lūdzu uzgaidiet..."
+
+msgid "Duration: "
+msgstr "Ilgums: "
+
+msgid "Embedded videos feeds"
+msgstr "Video no web lapām"
+
+msgid "Episodes of shows"
+msgstr "Šovu epizodes"
+
+msgid "Exclude restricted content:"
+msgstr "Nemeklēt ierobežotu saturu:"
+
+msgid "Exit"
+msgstr "Iziet"
+
+msgid "Extract video url. Please wait..."
+msgstr "Meklē video saiti. Lūdzu uzgaidiet..."
+
+msgid "France"
+msgstr "Francija"
+
+msgid "Germany"
+msgstr "Vācija"
+
+#, python-format
+msgid ""
+"Go to %s\n"
+"And enter the code %s"
+msgstr ""
+"Ejiet uz %s\n"
+"Un ievadiet kodu %s"
+
+msgid "Great Britain"
+msgstr "Lielbritānija"
+
+msgid "HD videos feeds"
+msgstr "HD video saites"
+
+msgid "Holland"
+msgstr "Holande"
+
+msgid "Hong Kong"
+msgstr "Honkonga"
+
+msgid "India"
+msgstr "Indija"
+
+msgid "Ireland"
+msgstr "Īrija"
+
+msgid "Israel"
+msgstr "Izrēla"
+
+msgid "Italy"
+msgstr "Itālija"
+
+msgid "Japan"
+msgstr "Japāna"
+
+msgid "Latvia"
+msgstr "Latvija"
+
+msgid ""
+"Log in to your YouTube account when plugin starts.\n"
+"This needs to approve in the Google home page!"
+msgstr ""
+"Startējot sprudni ielogoties jūsu YouTube kontā.\n"
+"Tam nepieciešams apstiprinājums Google mājas lapā!"
+
+msgid "Login on startup:"
+msgstr "Startējot ielogoties:"
+
+msgid "Mexico"
+msgstr "Meksika"
+
+msgid "Most recent feeds"
+msgstr "Jaunākās saites"
+
+msgid "Most viewed feeds"
+msgstr "Skatītākās saites"
+
+msgid "Movies feeds"
+msgstr "Filmu saites"
+
+msgid "My favorites"
+msgstr "Mani favorīti"
+
+msgid "My feeds"
+msgstr "Manas saites"
+
+msgid "My liked videos"
+msgstr "Mani atzīmētie video"
+
+msgid "My subscriptions"
+msgstr "Mani abonementi"
+
+msgid "My uploads"
+msgstr "Mani augšuplādētie"
+
+msgid "My watch history"
+msgstr "Mana skatīšanās vēsture"
+
+msgid "My watch later"
+msgstr "Mani noskatīties vēlāk"
+
+msgid "New Zealand"
+msgstr "Jaunzēlande"
+
+msgid "No"
+msgstr "Nē"
+
+msgid "No, but play video again"
+msgstr "Nē, atskaņot video vēlreiz"
+
+msgid ""
+"Not found any entry!\n"
+"Maybe try change the settings?"
+msgstr ""
+"Nav atrasti nekādi ieraksti!\n"
+"Varbūt pamēģiniet nomainīt iestatījumus?"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Open"
+msgstr "Atvērt"
+
+msgid "Order in which search results will be displayed."
+msgstr "Kārtība, kādā meklēšanas rezultāti tiks attēloti."
+
+msgid "Play next"
+msgstr "Atskaņot nākošo"
+
+msgid "Play next video"
+msgstr "Atskaņot nākošo video"
+
+msgid "Play previous video"
+msgstr "Atskaņot iepriekšējo video"
+
+msgid "Play video again"
+msgstr "Atskaņot video vēlreiz"
+
+msgid "Poland"
+msgstr "Polija"
+
+msgid "Public feeds"
+msgstr "Publiskās saites"
+
+msgid "Quit"
+msgstr "Iziet"
+
+msgid "Rating"
+msgstr "Vērtējuma"
+
+msgid "Relevance"
+msgstr "Atbilstības"
+
+msgid "Repeat"
+msgstr "Atkārtot"
+
+msgid "Return search results for the specified country."
+msgstr "Izmantot meklēšanas rezultātus norādītajai valstij."
+
+msgid "Return to list"
+msgstr "Atgriesties sarakstā"
+
+msgid "Russia"
+msgstr "Krievija"
+
+msgid "Save"
+msgstr "Saglabāt"
+
+msgid "Save search history:"
+msgstr "Saglabāt meklēšanas vēsturi:"
+
+msgid "Save your search value in the history, when search completed."
+msgstr "Saglabāt jūsu meklēšanas rezultātu, kad meklēšana pabeigta."
+
+msgid "Search region:"
+msgstr "Meklēšnas reģions:"
+
+msgid "Search term"
+msgstr "Meklēšanas nosacījumi"
+
+msgid "Search videos"
+msgstr "Meklēt video"
+
+msgid "Sort search results by:"
+msgstr "Kārtot meklēšnas rezultātus pēc:"
+
+msgid "South Korea"
+msgstr "Dienvidkoreja"
+
+msgid "Spain"
+msgstr "Spānija"
+
+msgid "Stop playing this movie?"
+msgstr "Apturēt atskaņot šo filmu?"
+
+msgid "Sweden"
+msgstr "Zviedrija"
+
+msgid "Taiwan"
+msgstr "Taivāna"
+
+msgid "Title"
+msgstr "Nosaukuma"
+
+msgid ""
+"To perform authentication will need in a web browser open Google home page, and enter the code!\n"
+"If you continue, then you can not stop until the authentication will not be complete!\n"
+"Do you currently have Internet access on the other device and we can continue?"
+msgstr ""
+"Lai veiktu autentifikāciju vajag web pārlūkā atvērt Google mājas lapu un ievadīt kodu!\n"
+"Ja jūs turpināsiet, tad nebūs iespējams pārtraukt kamēr autentifikācija nav pabeigta!\n"
+"Vai jums pašreiz ir pieeja inernetam citā ierīcē, un varam turpināt?"
+
+msgid "Top rated feeds"
+msgstr "Novērtētākās saites"
+
+msgid "Try to exclude all restricted content from the search result."
+msgstr "Mēģinās izslēgt visu ierobežotu saturu no meklēšanas rezultātiem."
+
+msgid "United States"
+msgstr "ASV"
+
+msgid "View count"
+msgstr "Skatījumiem"
+
+msgid "Watch YouTube videos"
+msgstr "Atskaņot YouTube video"
+
+msgid "What do you want to do?"
+msgstr "Ko vēlaties darīt?"
+
+msgid "What to do when stop playback in videoplayer."
+msgstr "Ko darīt kad apstādiniet atskaņošanu."
+
+msgid "What to do when the video ends."
+msgstr "Ko darīt kad video beidzas."
+
+msgid "When playback stop:"
+msgstr "Kad apstādina atskaņošanu:"
+
+msgid "When video ends:"
+msgstr "Kad video beidzas:"
+
+msgid "Yes"
+msgstr "Jā"
+
+msgid "Yes, but play next video"
+msgstr "Jā, atskaņot nākošo video"
+
+msgid "Yes, but play previous video"
+msgstr "Jā, atskaņot iepriekšējo video"
+
+msgid ""
+"You already authorized access for this plugin to your YouTube account.\n"
+"Do you want to do it again to update access data?"
+msgstr ""
+"Jūs jau esat autorizējis pieeju šim sprudnim jūsu YouTube kontam.\n"
+"Vai vēlaties darīt to vēlreiz, lai atjaunotu pieejas datus?"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "YouTube serch"
+msgstr "YouTube meklēšana"
+
+msgid "YouTube setup"
+msgstr "YouTube iestatījumi"
+
+msgid "YouTube starting. Please wait..."
+msgstr "YouTube startējas. Lūdzu uzgaidiet..."
