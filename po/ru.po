@@ -1,0 +1,325 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: enigma2.plugins.mytube\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-25 21:34+0300\n"
+"PO-Revision-Date: 2014-09-03 01:18+0900\n"
+"Last-Translator: vadim72 <regin92@gmail.com>\n"
+"Language-Team: www.linsat.net <spaeleus@croci.org>\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.6.5\n"
+
+msgid " views"
+msgstr " просмотров"
+
+msgid "All"
+msgstr "Все"
+
+msgid "Ask user"
+msgstr "Спросить пользователя"
+
+msgid "Australia"
+msgstr "Австралия"
+
+msgid "Brazil"
+msgstr "Бразилия"
+
+msgid "Canada"
+msgstr "Канада"
+
+msgid "Cancel"
+msgstr "Отменить"
+
+msgid "Choose what you want to do"
+msgstr "Выберите, что будете делать"
+
+msgid "Created date"
+msgstr "Дата создания"
+
+msgid "Czech Republic"
+msgstr "Чехия"
+
+msgid "Download feed entries. Please wait..."
+msgstr "Происходит загрузка фидов. Подождите..."
+
+msgid "Download search results. Please wait..."
+msgstr "Загрузка результатов поиска. Подождите..."
+
+msgid "Duration: "
+msgstr "Длительность: "
+
+msgid "Embedded videos feeds"
+msgstr "Видео на веб сайтах"
+
+msgid "Episodes of shows"
+msgstr "Эпизоды шоу"
+
+msgid "Exclude restricted content:"
+msgstr "Исключить закрытый контент:"
+
+msgid "Exit"
+msgstr "Выход"
+
+msgid "Extract video url. Please wait..."
+msgstr "Извлечение видео силки. Подождите..."
+
+msgid "France"
+msgstr "Франция"
+
+msgid "Germany"
+msgstr "Германия"
+
+#, python-format
+msgid ""
+"Go to %s\n"
+"And enter the code %s"
+msgstr ""
+"Идите на %s\n"
+"И введите код %s"
+
+msgid "Great Britain"
+msgstr "Англия"
+
+msgid "HD videos feeds"
+msgstr "HD видео"
+
+msgid "Holland"
+msgstr "Голландия"
+
+msgid "Hong Kong"
+msgstr "Гонконг"
+
+msgid "India"
+msgstr "Индия"
+
+msgid "Ireland"
+msgstr "Ирландия"
+
+msgid "Israel"
+msgstr "Израиль"
+
+msgid "Italy"
+msgstr "Италия"
+
+msgid "Japan"
+msgstr "Япония"
+
+msgid "Latvia"
+msgstr ""
+
+msgid ""
+"Log in to your YouTube account when plugin starts.\n"
+"This needs to approve in the Google home page!"
+msgstr ""
+"Использовать ваш аккаунт YouTube, при запуске плагина."
+"Это надо подтвердить на домашней странице Google!"
+
+msgid "Login on startup:"
+msgstr "Авторизация при запуске:"
+
+msgid "Mexico"
+msgstr "Мексика"
+
+msgid "Most recent feeds"
+msgstr "Самые последние"
+
+msgid "Most viewed feeds"
+msgstr "Лидеры по просмотру"
+
+msgid "Movies feeds"
+msgstr "Видеоролики"
+
+msgid "My favorites"
+msgstr "Мои фавориты"
+
+msgid "My feeds"
+msgstr "Мои фиди"
+
+msgid "My liked videos"
+msgstr "Мои любимые видео"
+
+msgid "My subscriptions"
+msgstr "Мои подписки"
+
+msgid "My uploads"
+msgstr "Мои загрузки"
+
+msgid "My watch history"
+msgstr "Моя история просмотров"
+
+msgid "My watch later"
+msgstr "Мой просмотр позже"
+
+msgid "New Zealand"
+msgstr "Новая Зеландия"
+
+msgid "No"
+msgstr "Нет"
+
+msgid "No, but play video again"
+msgstr "Нет, проиграть это видео еще раз"
+
+msgid "Ok"
+msgstr "Ок"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Order in which search results will be displayed."
+msgstr "Порядок, в котором будут отображаться результаты поиска."
+
+msgid "Play next"
+msgstr "Играть следующее"
+
+msgid "Play next video"
+msgstr "Играть следующее видео"
+
+msgid "Play previous video"
+msgstr "Играть предыдущее видео"
+
+msgid "Play video again"
+msgstr "Воспроизвести видео снова"
+
+msgid "Poland"
+msgstr "Польша"
+
+msgid "Public feeds"
+msgstr "Публичные фиди"
+
+msgid "Quit"
+msgstr "Выход"
+
+msgid "Rating"
+msgstr "Рейтинг"
+
+msgid "Relevance"
+msgstr "Актуальность"
+
+msgid "Repeat"
+msgstr "Повторить"
+
+msgid "Return search results for the specified country."
+msgstr "Вернуть результатов поиска для конкретной страны."
+
+msgid "Return to list"
+msgstr "Вернуться к списку"
+
+msgid "Russia"
+msgstr "Россия"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Save search history:"
+msgstr "Сохранить историю поиска:"
+
+msgid "Save your search value in the history, when search completed."
+msgstr "Сохранить результат поиска в истории, когда поиск завершен."
+
+msgid "Search region:"
+msgstr "Регион поиска:"
+
+msgid "Search term"
+msgstr "Условия поиска"
+
+msgid "Search videos"
+msgstr "Поиск видео"
+
+msgid "Sort search results by:"
+msgstr "Сортировать результаты поиска по:"
+
+msgid "South Korea"
+msgstr "Южная Корея"
+
+msgid "Spain"
+msgstr "Испания"
+
+msgid "Stop playing this movie?"
+msgstr "Выйти из этого видео?"
+
+msgid "Sweden"
+msgstr "Швеция"
+
+msgid "Taiwan"
+msgstr "Тайвань"
+
+msgid ""
+"There was an error in creating entry list!\n"
+"Maybe try other feeds..."
+msgstr ""
+"Ошибка в создании списка!\n"
+"Может быть, попробуйте другие каналы..."
+
+msgid "Title"
+msgstr "Название"
+
+msgid ""
+"To perform authentication will need in a web browser open Google home page, and enter the code!\n"
+"If you continue, then you can not stop until the authentication will not be complete!\n"
+"Do you currently have Internet access on the other device and we can continue?"
+msgstr ""
+"Для выполнения проверки подлинности нужно будет в веб-браузере открыть домашнюю страницу Google, и ввести код!\n"
+"Если вы будете продолжать, то вы не сможете остановиться, пока аутентификация не будет закончена!\n"
+"Есть ли у вас в настоящее время доступ к интернету на другом устройстве, и мы можем продолжать?"
+
+msgid "Top rated feeds"
+msgstr "Лучшие по рейтингу"
+
+msgid "Try to exclude all restricted content from the search result."
+msgstr "Попробовать исключить всё ограниченное содержание из результатов поиска."
+
+msgid "United States"
+msgstr "США"
+
+msgid "View count"
+msgstr "Количество просмотров"
+
+msgid "Watch YouTube videos"
+msgstr "Просмотр видео с YouTube"
+
+msgid "What do you want to do?"
+msgstr "Что вы хотите сделать?"
+
+msgid "What to do when stop playback in videoplayer."
+msgstr "Что делать, если остановить воспроизведения в видеоплеере."
+
+msgid "What to do when the video ends."
+msgstr "Что делать, когда видео закончилось."
+
+msgid "When playback stop:"
+msgstr "Когда воспроизведения остановлено:"
+
+msgid "When video ends:"
+msgstr "Когда видео закончилось:"
+
+msgid "Yes"
+msgstr "Да"
+
+msgid "Yes, but play next video"
+msgstr "Да, но проиграть следующее видео"
+
+msgid "Yes, but play previous video"
+msgstr "Да, но проиграть предыдущее видео"
+
+msgid ""
+"You already authorized access for this plugin to your YouTube account.\n"
+"Do you want to do it again to update access data?"
+msgstr ""
+"Вы уже авторизовали доступ этому плагину к вашей учетной записи YouTube.\n"
+"Вы хотите это сделать снова, чтобы обновить данные доступа?"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "YouTube serch"
+msgstr "Поиск YouTube"
+
+msgid "YouTube setup"
+msgstr "Настройки YouTube"
+
+msgid "YouTube starting. Please wait..."
+msgstr "YouTube запускается. Подождите..."
