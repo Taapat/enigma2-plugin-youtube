@@ -47,28 +47,27 @@ class OAuth:
 		return self.user_code
 
 	def get_new_token(self):
-		while self.token == None:
-			self.conn.request(
+		self.conn.request(
 				"POST",
 				"/o/oauth2/token",
 				urlencode({
-					'client_id'     : self.client_id,
-					'client_secret' : self.client_secret,
-					'code'          : self.device_code,
-					'grant_type'    : 'http://oauth.net/grant_type/device/1.0'
+						'client_id'     : self.client_id,
+						'client_secret' : self.client_secret,
+						'code'          : self.device_code,
+						'grant_type'    : 'http://oauth.net/grant_type/device/1.0'
 					}),
 				{"Content-type": "application/x-www-form-urlencoded"}
-				)
+			)
 
-			response = self.conn.getresponse()
-			if (response.status == 200):
-				data = loads(response.read())
-				print data
-				if 'access_token' in data:
-					self.token = data
-					return self.token['refresh_token']
-				else:
-					sleep(self.retry_interval + 2)
+		response = self.conn.getresponse()
+		if (response.status == 200):
+			data = loads(response.read())
+			print data
+			if 'access_token' in data:
+				self.token = data
+				return self.token['refresh_token'], 1
+			else:
+				return None, self.retry_interval + 2
 
 	def refresh_token(self):
 		refresh_token = self.token['refresh_token']

@@ -1290,14 +1290,18 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			self.splitTaimer.start(9000)
 
 	def splitTaimerStop(self):
-		# Here we waiting until the user enter a code
 		self.splitTaimer.stop()
-		refreshToken = self.oauth.get_new_token()
-		print "[YouTube] Get refresh token"
-		if self.mbox:
-			self.mbox.close()
-		config.plugins.YouTube.refreshToken.value = refreshToken
-		config.plugins.YouTube.refreshToken.save()
-		del self.splitTaimer
-		self.mbox = None
-		self.oauth = None
+		# Here we waiting until the user enter a code
+		refreshToken, retryInterval = self.oauth.get_new_token()
+		if not refreshToken:
+			self.splitTaimer.start(retryInterval * 1000)
+		else:
+			print "[YouTube] Get refresh token"
+			if self.mbox:
+				self.mbox.close()
+			config.plugins.YouTube.refreshToken.value = refreshToken
+			config.plugins.YouTube.refreshToken.save()
+			del self.splitTaimer
+			self.mbox = None
+			self.oauth = None
+			
