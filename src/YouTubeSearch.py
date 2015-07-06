@@ -5,9 +5,172 @@ from xml.etree.cElementTree import fromstring
 
 from enigma import ePythonMessagePump, getDesktop
 from Screens.Screen import Screen
-from Components.config import config, ConfigText
+from Components.config import config, ConfigText, getConfigListEntry
 from Components.config import KEY_DELETE, KEY_BACKSPACE, KEY_ASCII, KEY_TIMEOUT
+from Components.ActionMap import ActionMap
+from Components.ConfigList import ConfigListScreen
 from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
+
+from . import _
+
+
+class YouTubeSearch(Screen, ConfigListScreen):
+	screenWidth = getDesktop(0).size().width()
+	if screenWidth and screenWidth == 1920:
+		skin = """<screen position="center,100" size="945,555">
+				<widget name="config" position="center,22" size="900,45" zPosition="2" \
+					scrollbarMode="showNever" itemHeight="45" font="Regular;30" />
+				<widget source="list" render="Listbox" position="center,75" size="900,409" \
+					scrollbarMode="showOnDemand" >
+					<convert type="TemplatedMultiContent" >
+						{"template": [MultiContentEntryText(pos=(15,1), size=(870,45), \
+							font=0, flags=RT_HALIGN_LEFT, text=0)],
+						"fonts": [gFont("Regular",30)],
+						"itemHeight": 45}
+					</convert>
+				</widget>
+				<ePixmap position="127,484" size="210,60" pixmap="skin_default/buttons/red.png" \
+					transparent="1" alphatest="on" />
+				<ePixmap position="center,484" size="210,60" pixmap="skin_default/buttons/green.png" \
+					transparent="1" alphatest="on" />
+				<ePixmap position="608,484" size="210,60" pixmap="skin_default/buttons/yellow.png" \
+					transparent="1" alphatest="on" />
+				<widget source="key_red" render="Label" position="127,485" zPosition="2" size="210,60" \
+					valign="center" halign="center" font="Regular;33" transparent="1" />
+				<widget source="key_green" render="Label" position="center,485" zPosition="2" size="210,60" \
+					valign="center" halign="center" font="Regular;33" transparent="1" />
+				<widget source="key_yellow" render="Label" position="608,485" zPosition="2" size="210,60" \
+					valign="center" halign="center" font="Regular;33" transparent="1" />
+				<ePixmap position="847,502" size="53,38" pixmap="skin_default/buttons/key_menu.png" \
+					transparent="1" alphatest="on" />
+				</screen>"""
+	else:
+		skin = """<screen position="center,center" size="630,370">
+				<widget name="config" position="center,15" size="600,30" zPosition="2" \
+					scrollbarMode="showNever" />
+				<widget source="list" render="Listbox" position="center,48" size="600,273" \
+					scrollbarMode="showOnDemand" >
+					<convert type="TemplatedMultiContent" >
+						{"template": [MultiContentEntryText(pos=(10,1), size=(580,30), \
+							font=0, flags=RT_HALIGN_LEFT, text=0)],
+						"fonts": [gFont("Regular",20)],
+						"itemHeight": 30}
+					</convert>
+				</widget>
+				<ePixmap position="85,323" size="140,40" pixmap="skin_default/buttons/red.png" \
+					transparent="1" alphatest="on" />
+				<ePixmap position="center,323" size="140,40" pixmap="skin_default/buttons/green.png" \
+					transparent="1" alphatest="on" />
+				<ePixmap position="405,323" size="140,40" pixmap="skin_default/buttons/yellow.png" \
+					transparent="1" alphatest="on" />
+				<widget source="key_red" render="Label" position="85,328" zPosition="2" size="140,30" \
+					valign="center" halign="center" font="Regular;22" transparent="1" />
+				<widget source="key_green" render="Label" position="center,328" zPosition="2" size="140,30" \
+					valign="center" halign="center" font="Regular;22" transparent="1" />
+				<widget source="key_yellow" render="Label" position="405,328" zPosition="2" size="140,30" \
+					valign="center" halign="center" font="Regular;22" transparent="1" />
+				<ePixmap position="565,335" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
+					transparent="1" alphatest="on" />
+				</screen>"""
+
+	def __init__(self, session, searchType):
+		Screen.__init__(self, session)
+		self.session = session
+		self.searchType = searchType
+		self.setTitle(_('YouTube search'))
+		self['key_red'] = StaticText(_('Exit'))
+		self['key_green'] = StaticText(_('Ok'))
+		self['key_yellow'] = StaticText(_('Keyboard'))
+		self['searchactions'] = ActionMap(['WizardActions', 'ColorActions', 'MenuActions'],
+			{
+				'back': self.close,
+				'ok': self.ok,
+				'red': self.close,
+				'green': self.ok,
+				'yellow': self.openKeyboard,
+				'up': self.keyUp,
+				'down': self.keyDown,
+				'menu': self.openSetup
+			}, -2)
+		searchList = []
+		ConfigListScreen.__init__(self, searchList, session)
+		self.searchValue = GoogleSuggestionsConfigText(default = '', fixed_size = False)
+		self.setSearchEntry()
+		self['list'] = List([])
+		self.searchHistory = config.plugins.YouTube.searchHistory.value.split(',')
+		for entry in self.searchHistory:
+			searchList.append((entry, None))
+		self['list'].setList(searchList)
+
+	def setSearchEntry(self):
+		searchEntry = [getConfigListEntry(_('Search'), self.searchValue)]
+		self['config'].list = searchEntry
+		self['config'].l.setList(searchEntry)
+		self['config'].getCurrent()[1].getSuggestions()
+
+	def keyUp(self):
+		if self['config'].getCurrent()[1].suggestionsListActivated:
+			self['config'].getCurrent()[1].suggestionListUp()
+			self['config'].invalidateCurrent()
+		else:
+			self['list'].selectPrevious()
+
+	def keyDown(self):
+		if self['config'].getCurrent()[1].suggestionsListActivated:
+			self['config'].getCurrent()[1].suggestionListDown()
+			self['config'].invalidateCurrent()
+		else:
+			self['list'].selectNext()
+
+	def ok(self):
+		selected = self['list'].getCurrent()
+		if selected[0]:
+			self['list'].setIndex(0)
+			self.searchValue.value = selected[0]
+			self.setSearchEntry()
+		else:
+			searchValue = self.searchValue.value
+			print "[YouTube] Search:", searchValue
+			current = self['config'].getCurrent()[1]
+			if current.help_window.instance is not None:
+				current.help_window.instance.hide()
+			if current.suggestionsWindow.instance is not None:
+				current.suggestionsWindow.instance.hide()
+			if searchValue != '' and config.plugins.YouTube.saveHistory.value:
+				if searchValue in self.searchHistory:
+					self.searchHistory.remove(searchValue)
+				self.searchHistory.insert(1, searchValue)
+				if len(self.searchHistory) > 20:
+					self.searchHistory.pop()
+				config.plugins.YouTube.searchHistory.value = ','.join(self.searchHistory)
+				config.plugins.YouTube.searchHistory.save()
+			self.close([self.searchType, searchValue, None], 'OpenSearch')
+
+	def openSetup(self):
+		current = self['config'].getCurrent()[1]
+		if current.help_window.instance is not None:
+			current.help_window.instance.hide()
+		if current.suggestionsWindow.instance is not None:
+			current.suggestionsWindow.instance.hide()
+		self.session.openWithCallback(self.screenCallback, YouTubeSetup)
+
+	def screenCallback(self, callback=None):
+		current = self['config'].getCurrent()[1]
+		if current.help_window.instance is not None:
+			current.help_window.instance.show()
+		if current.suggestionsWindow.instance is not None:
+			current.suggestionsWindow.instance.show()
+
+	def openKeyboard(self):
+		from Screens.VirtualKeyBoard import VirtualKeyBoard
+		self.session.openWithCallback(self.keyBoardCallback, VirtualKeyBoard,
+			title = _("Search"), text = self.searchValue.value)
+
+	def keyBoardCallback(self, name):
+		if name:
+			self.searchValue.value = name
+			self['config'].getCurrent()[1].getSuggestions()
 
 
 class SuggestionsQueryThread(Thread):
