@@ -23,7 +23,8 @@ class build_trans(cmd.Command):
 				if lang.endswith('.po'):
 					src = os.path.join(s, lang)
 					lang = lang[:-3]
-					destdir = os.path.join('build', 'lib', 'YouTube', 'locale', lang, 'LC_MESSAGES')
+					destdir = os.path.join('build', 'lib', 'Extensions',
+						'YouTube', 'locale', lang, 'LC_MESSAGES')
 					if not os.path.exists(destdir):
 						os.makedirs(destdir)
 					for lang_domain in lang_domains:
