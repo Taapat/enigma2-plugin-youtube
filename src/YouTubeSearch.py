@@ -148,6 +148,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			self.close([self.searchType, searchValue, None], 'OpenSearch')
 
 	def openSetup(self):
+		from YouTubeUi import YouTubeSetup
 		current = self['config'].getCurrent()[1]
 		if current.help_window.instance is not None:
 			current.help_window.instance.hide()
