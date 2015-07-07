@@ -82,20 +82,19 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		self['key_red'] = StaticText(_('Exit'))
 		self['key_green'] = StaticText(_('Ok'))
 		self['key_yellow'] = StaticText(_('Keyboard'))
-		self['searchactions'] = ActionMap(['WizardActions', 'ColorActions', 'MenuActions'],
+		self['searchactions'] = ActionMap(['SetupActions', 'ColorActions', 'MenuActions'],
 			{
-				'back': self.close,
+				'cancel': self.close,
 				'ok': self.ok,
 				'red': self.close,
 				'green': self.ok,
 				'yellow': self.openKeyboard,
-				'up': self.keyUp,
-				'down': self.keyDown,
 				'menu': self.openSetup
 			}, -2)
 		searchList = []
 		ConfigListScreen.__init__(self, searchList, session)
-		self.searchValue = GoogleSuggestionsConfigText(default = '', fixed_size = False)
+		self.searchValue = GoogleSuggestionsConfigText(default = '', fixed_size = False,
+			visible_width = False, updateSuggestions = self.updateSuggestions)
 		self.setSearchEntry()
 		self['list'] = List([])
 		self.searchHistory = config.plugins.YouTube.searchHistory.value.split(',')
@@ -109,34 +108,35 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		self['config'].l.setList(searchEntry)
 		self['config'].getCurrent()[1].getSuggestions()
 
-	def keyUp(self):
-		if self['config'].getCurrent()[1].suggestionsListActivated:
-			self['config'].getCurrent()[1].suggestionListUp()
-			self['config'].invalidateCurrent()
-		else:
-			self['list'].selectPrevious()
-
-	def keyDown(self):
-		if self['config'].getCurrent()[1].suggestionsListActivated:
-			self['config'].getCurrent()[1].suggestionListDown()
-			self['config'].invalidateCurrent()
-		else:
-			self['list'].selectNext()
+	def updateSuggestions(self, suggestions):
+		if suggestions and len(suggestions) > 0:
+			suggestions = fromstring(suggestions)
+			if suggestions:
+				suggestionsList = [('', None)]
+				for suggestion in suggestions.findall('CompleteSuggestion'):
+					name = None
+					for element in suggestion:
+						if element.attrib.has_key('data'):
+							name = element.attrib['data'].encode('UTF-8')
+						if name:
+							suggestionsList.append((name, None))
+				if len(suggestionsList) > 1:
+					self['list'].setList(suggestionsList)
+					self['list'].setIndex(0)
 
 	def ok(self):
 		selected = self['list'].getCurrent()
+		current = self['config'].getCurrent()[1]
 		if selected[0]:
 			self['list'].setIndex(0)
 			self.searchValue.value = selected[0]
 			self.setSearchEntry()
+			current.getSuggestions()
 		else:
 			searchValue = self.searchValue.value
 			print "[YouTube] Search:", searchValue
-			current = self['config'].getCurrent()[1]
 			if current.help_window.instance is not None:
 				current.help_window.instance.hide()
-			if current.suggestionsWindow.instance is not None:
-				current.suggestionsWindow.instance.hide()
 			if searchValue != '' and config.plugins.YouTube.saveHistory.value:
 				if searchValue in self.searchHistory:
 					self.searchHistory.remove(searchValue)
@@ -152,16 +152,12 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		current = self['config'].getCurrent()[1]
 		if current.help_window.instance is not None:
 			current.help_window.instance.hide()
-		if current.suggestionsWindow.instance is not None:
-			current.suggestionsWindow.instance.hide()
 		self.session.openWithCallback(self.screenCallback, YouTubeSetup)
 
 	def screenCallback(self, callback=None):
 		current = self['config'].getCurrent()[1]
 		if current.help_window.instance is not None:
 			current.help_window.instance.show()
-		if current.suggestionsWindow.instance is not None:
-			current.suggestionsWindow.instance.show()
 
 	def openKeyboard(self):
 		from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -206,12 +202,12 @@ class SuggestionsQueryThread(Thread):
 
 
 class GoogleSuggestionsConfigText(ConfigText):
-	def __init__(self, default = '', fixed_size = True, visible_width = False):
+	def __init__(self, default, fixed_size, visible_width, updateSuggestions):
 		ConfigText.__init__(self, default, fixed_size, visible_width)
+		self.updateSuggestions = updateSuggestions
 		self.suggestions = GoogleSuggestions()
 		self.suggestionsThread = None
 		self.suggestionsThreadRunning = False
-		self.suggestionsListActivated = False
 
 	def suggestionsThreadStarted(self):
 		if self.suggestionsThreadRunning:
@@ -224,10 +220,8 @@ class GoogleSuggestionsConfigText(ConfigText):
 		self.suggestionsThreadRunning = False
 
 	def propagateSuggestions(self, suggestionsList):
-		self.suggestionsListActivated = True
 		self.cancelSuggestionsThread()
-		if self.suggestionsWindow:
-			self.suggestionsWindow.update(suggestionsList)
+		self.updateSuggestions(suggestionsList)
 
 	def gotSuggestionsError(self, val):
 		print "[YouTube] Error in get suggestions:", val
@@ -247,109 +241,11 @@ class GoogleSuggestionsConfigText(ConfigText):
 
 	def onSelect(self, session):
 		ConfigText.onSelect(self, session)
-		if session is not None:
-			self.suggestionsWindow = session.instantiateDialog(YouTubeSuggestionsList, self)
-			self.suggestionsWindow.getSelection()
-			self.suggestionsWindow.hide()
 		self.getSuggestions()
 
 	def onDeselect(self, session):
 		self.cancelSuggestionsThread()
 		ConfigText.onDeselect(self, session)
-		if self.suggestionsWindow:
-			session.deleteDialog(self.suggestionsWindow)
-			self.suggestionsWindow = None
-
-	def suggestionListUp(self):
-		if self.suggestionsWindow.getlistlenght() > 0:
-			self.value = self.suggestionsWindow.up()
-
-	def suggestionListDown(self):
-		if self.suggestionsWindow.getlistlenght() > 0:
-			self.value = self.suggestionsWindow.down()
-
-	def deactivateSuggestionList(self):
-		ret = False
-		if self.suggestionsWindow is not None:
-			self.suggestionsWindow.getSelection()
-			self.getSuggestions()
-			self.allmarked = True
-			ret = True
-		return ret
-
-
-class YouTubeSuggestionsList(Screen):
-	screenWidth = getDesktop(0).size().width()
-	if screenWidth and screenWidth == 1920:
-		skin = """<screen name="YouTubeSuggestionsList" position="center,175" size="900,409" \
-				flags="wfNoBorder" zPosition="6" >
-				<widget source="suggestionslist" render="Listbox" position="center,center" \
-					size="900,409" scrollbarMode="showOnDemand" >
-					<convert type="TemplatedMultiContent">
-						{"template": [MultiContentEntryText(pos=(15,1), size=(870,45), \
-							font=0, flags=RT_HALIGN_LEFT, text=0)],
-						"fonts": [gFont("Regular",30)],
-						"itemHeight": 45}
-					</convert>
-				</widget>
-			</screen>"""
-	else:
-		skin = """<screen name="YouTubeSuggestionsList" position="center,center" size="600,273" \
-				flags="wfNoBorder" zPosition="6" >
-				<widget source="suggestionslist" render="Listbox" position="center,center" \
-					size="600,273" scrollbarMode="showOnDemand" >
-					<convert type="TemplatedMultiContent">
-						{"template": [MultiContentEntryText(pos=(10,1), size=(580,30), \
-							font=0, flags=RT_HALIGN_LEFT, text=0)],
-						"fonts": [gFont("Regular",20)],
-						"itemHeight": 30}
-					</convert>
-				</widget>
-			</screen>"""
-
-	def __init__(self, session, configTextWithGoogleSuggestion):
-		Screen.__init__(self, session)
-		self.list = []
-		self['suggestionslist'] = List(self.list)
-		self.configTextWithSuggestion = configTextWithGoogleSuggestion
-
-	def update(self, suggestions):
-		if suggestions and len(suggestions) > 0:
-			if not self.shown:
-				self.show()
-			suggestions = fromstring(suggestions)
-			if suggestions:
-				self.list = []
-				for suggestion in suggestions.findall('CompleteSuggestion'):
-					name = None
-					for element in suggestion:
-						if element.attrib.has_key('data'):
-							name = element.attrib['data'].encode('UTF-8')
-						if name:
-							self.list.append((name, None))
-				if self.list:
-					self['suggestionslist'].setList(self.list)
-					self['suggestionslist'].setIndex(0)
-		else:
-			self.hide()
-
-	def getlistlenght(self):
-		return len(self.list)
-
-	def up(self):
-		if self.list and len(self.list) > 0:
-			self['suggestionslist'].selectPrevious()
-			return self.getSelection()
-
-	def down(self):
-		if self.list and len(self.list) > 0:
-			self['suggestionslist'].selectNext()
-			return self.getSelection()
-
-	def getSelection(self):
-		if self['suggestionslist'].getCurrent() is None:
-			return None
-		return self['suggestionslist'].getCurrent()[0]
 
 
 class GoogleSuggestions():
@@ -409,3 +305,4 @@ class ThreadQueue:
 		ret = self.__list.pop()
 		lock.release()
 		return ret
+
