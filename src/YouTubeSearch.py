@@ -194,6 +194,8 @@ class GoogleSuggestionsConfigText(ConfigText):
 		ConfigText.__init__(self, default, fixed_size, visible_width)
 		self.updateSuggestions = updateSuggestions
 		self.suggestions = GoogleSuggestions()
+		if config.plugins.YouTube.searchRegion.value:
+			self.suggestions.hl = config.plugins.YouTube.searchRegion.value
 		self.suggestionsThread = None
 		self.suggestionsThreadRunning = False
 
@@ -222,8 +224,6 @@ class GoogleSuggestionsConfigText(ConfigText):
 		print "[YouTube] Error in get suggestions:", val
 
 	def getSuggestions(self):
-		if config.plugins.YouTube.searchRegion.value:
-			self.suggestions.hl = config.plugins.YouTube.searchRegion.value
 		if self.suggestionsThreadRunning:
 			self.cancelSuggestionsThread()
 		self.suggestionsThreadRunning = True
