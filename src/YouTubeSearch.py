@@ -194,7 +194,7 @@ class GoogleSuggestionsConfigText(ConfigText):
 		self.updateSuggestions = updateSuggestions
 		self.suggestions = GoogleSuggestions()
 		if config.plugins.YouTube.searchRegion.value:
-			self.suggestions.hl = config.plugins.YouTube.searchRegion.value
+			self.suggestions.hl = config.plugins.YouTube.searchRegion.value.lower()
 		self.suggestionsThread = None
 		self.suggestionsThreadRunning = False
 
