@@ -109,20 +109,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		self['config'].getCurrent()[1].getSuggestions()
 
 	def updateSuggestions(self, suggestions):
-		if suggestions and len(suggestions) > 0:
-			suggestions = fromstring(suggestions)
-			if suggestions:
-				suggestionsList = [('', None)]
-				for suggestion in suggestions.findall('CompleteSuggestion'):
-					name = None
-					for element in suggestion:
-						if element.attrib.has_key('data'):
-							name = element.attrib['data'].encode('UTF-8')
-						if name:
-							suggestionsList.append((name, None))
-				if len(suggestionsList) > 1:
-					self['list'].setList(suggestionsList)
-					self['list'].setIndex(0)
+		self['list'].setList(suggestions)
+		self['list'].setIndex(0)
 
 	def ok(self):
 		selected = self['list'].getCurrent()[0]
@@ -221,7 +209,19 @@ class GoogleSuggestionsConfigText(ConfigText):
 
 	def propagateSuggestions(self, suggestionsList):
 		self.cancelSuggestionsThread()
-		self.updateSuggestions(suggestionsList)
+		if suggestionsList and len(suggestionsList) > 0:
+			suggestionsList = fromstring(suggestionsList)
+			if suggestionsList:
+				suggestions = [('', None)]
+				for suggestion in suggestionsList.findall('CompleteSuggestion'):
+					name = None
+					for element in suggestion:
+						if element.attrib.has_key('data'):
+							name = element.attrib['data'].encode('UTF-8')
+						if name:
+							suggestions.append((name, None))
+				if len(suggestions) > 1:
+					self.updateSuggestions(suggestions)
 
 	def gotSuggestionsError(self, val):
 		print "[YouTube] Error in get suggestions:", val
