@@ -197,11 +197,6 @@ class GoogleSuggestionsConfigText(ConfigText):
 		self.suggestionsThread = None
 		self.suggestionsThreadRunning = False
 
-	def suggestionsThreadStarted(self):
-		if self.suggestionsThreadRunning:
-			self.cancelSuggestionsThread()
-		self.suggestionsThreadRunning = True
-
 	def cancelSuggestionsThread(self):
 		if self.suggestionsThread is not None:
 			self.suggestionsThread.cancel()
@@ -229,8 +224,10 @@ class GoogleSuggestionsConfigText(ConfigText):
 	def getSuggestions(self):
 		if config.plugins.YouTube.searchRegion.value:
 			self.suggestions.hl = config.plugins.YouTube.searchRegion.value
-		self.suggestionsThreadStarted()
-		self.suggestionsThread = SuggestionsQueryThread(self.suggestions, 
+		if self.suggestionsThreadRunning:
+			self.cancelSuggestionsThread()
+		self.suggestionsThreadRunning = True
+		self.suggestionsThread = SuggestionsQueryThread(self.suggestions,
 			self.value, self.propagateSuggestions, self.gotSuggestionsError)
 		self.suggestionsThread.start()
 
