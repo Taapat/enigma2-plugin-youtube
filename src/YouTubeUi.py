@@ -473,9 +473,12 @@ class YouTubeMain(Screen):
 					6 : '34'  #FLV 360p
 				}
 			self.ytdl = YoutubeDL(params = {
-					'youtube_include_dash_manifest': False, 
-					'format': '/'.join(VIDEO_FMT_PRIORITY_MAP.itervalues()), 
-					'nocheckcertificate': True
+					'youtube_include_dash_manifest': False,
+					'format': '/'.join(VIDEO_FMT_PRIORITY_MAP.itervalues()),
+					'nocheckcertificate': True,
+					'quiet': True,
+					'no_warnings': True,
+					'no_color': True
 				})
 			self.createBuild()
 			self.createMainList()
