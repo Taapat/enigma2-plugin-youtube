@@ -482,26 +482,31 @@ class YouTubeMain(Screen):
 		elif self.action == 'playVideo':
 			videoUrl = self.value[6]
 			if not videoUrl: # remember video url
-				videoUrl = self.getVideoUrl()
-				count = 0
-				for entry in self.entryList:
-					if entry[0] == self.value[0]:
-						entryList = entry
-						self.entryList[count] = (
-								entryList[0], # Id
-								entryList[1], # Thumbnail url
-								entryList[2], # Thumbnail
-								entryList[3], # Title
-								entryList[4], # Views
-								entryList[5], # Duration
-								videoUrl,     # Video url
-								entryList[7], # Description
-								entryList[8], # Likes
-								entryList[9], # Dislikes
-								entryList[10] # Big thumbnail url
-							)
-						break
-					count += 1
+				videoUrl, urlError = self.getVideoUrl()
+				if urlError:
+					self.session.open(MessageBox,
+						_('There was an error in extract video url:\n%s') % urlError, 
+						MessageBox.TYPE_INFO, timeout = 8)
+				elif videoUrl:
+					count = 0
+					for entry in self.entryList:
+						if entry[0] == self.value[0]:
+							entryList = entry
+							self.entryList[count] = (
+									entryList[0], # Id
+									entryList[1], # Thumbnail url
+									entryList[2], # Thumbnail
+									entryList[3], # Title
+									entryList[4], # Views
+									entryList[5], # Duration
+									videoUrl,     # Video url
+									entryList[7], # Description
+									entryList[8], # Likes
+									entryList[9], # Dislikes
+									entryList[10] # Big thumbnail url
+								)
+							break
+						count += 1
 			if videoUrl:
 				service = eServiceReference(4097, 0, videoUrl)
 				service.setName(self.value[3])
@@ -693,13 +698,13 @@ class YouTubeMain(Screen):
 		watch_url = 'http://www.youtube.com/watch?v=%s' % self.value[0]
 		try:
 			entry = self.ytdl.extract_info(watch_url, download=False, ie_key='Youtube')
-		except:
-			print "[YouTube] Error in extract info"
-			return None
+		except Exception as e:
+			print "[YouTube] Error in extract info:", e
+			return None, e
 
 		if 'entries' in entry: # Can be a playlist or a list of videos
 			entry = entry['entries'][0] #TODO handle properly
-		return str(entry.get('url'))
+		return str(entry.get('url')), None
 
 	def convertDate(self, duration):
 		time = ':' + duration.replace('P', '')\
