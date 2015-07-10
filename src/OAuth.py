@@ -11,15 +11,14 @@ class OAuth:
 	def __init__(self, client_id, client_secret):
 		self.client_id = client_id
 		self.client_secret = client_secret
-		self.token = None
 		self.device_code = None
 		self.verfication_url = None
-		self.reset_connection()
+		self.set_connection()
 
 	# this setup is isolated because it eventually generates a BadStatusLine
 	# exception, after which we always get httplib.CannotSendRequest errors.
 	#  When this happens, we try re-creating the exception.
-	def reset_connection(self):
+	def set_connection(self):
 		# HTTPConnection.debuglevel = 1
 		self.conn = HTTPSConnection('accounts.google.com')
 
@@ -62,37 +61,33 @@ class OAuth:
 		response = self.conn.getresponse()
 		if (response.status == 200):
 			data = loads(response.read())
-			print data
 			if 'access_token' in data:
-				self.token = data
-				return self.token['refresh_token'], 1
+				self.conn.close()
+				return data['refresh_token'], 1
 			else:
 				return None, self.retry_interval + 2
 
-	def refresh_token(self):
-		refresh_token = self.token['refresh_token']
+	def get_access_token(self, refresh_token):
 		self.conn.request(
-			"POST",
-			"/o/oauth2/token",
-			urlencode({
-				'client_id'     : self.client_id,
-				'client_secret' : self.client_secret,
-				'refresh_token' : refresh_token,
-				'grant_type'    : 'refresh_token'
-				}),
-			{"Content-type": "application/x-www-form-urlencoded"}			
+				"POST",
+				"/o/oauth2/token",
+				urlencode({
+						'client_id'     : self.client_id,
+						'client_secret' : self.client_secret,
+						'refresh_token' : refresh_token,
+						'grant_type'    : 'refresh_token'
+					}),
+				{"Content-type": "application/x-www-form-urlencoded"}			
 			)
 
 		response = self.conn.getresponse()
 		if (response.status == 200):
 			data = loads(response.read())
-			if 'access_token' in data:
-				self.token = data
-				# in fact we NEVER get a new refresh token at this point
-				if not 'refresh_token' in self.token:
-					self.token['refresh_token'] = refresh_token
-				return self.token['refresh_token']
+			self.conn.close()
+			return data['access_token']
 		else:
-			print("Unexpected response %d to renewal request" % response.status)
+			print("Unexpected response %d" % response.status)
 			print(response.read())
-		return False
+			self.conn.close()
+		return None
+

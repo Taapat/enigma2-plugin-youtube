@@ -1,6 +1,5 @@
 import os
 from twisted.web.client import downloadPage
-from httplib2 import Http
 
 from enigma import ePicLoad, ePoint, eServiceReference, eTimer, getDesktop
 from Components.ActionMap import ActionMap
@@ -34,7 +33,7 @@ config.plugins.YouTube.searchResult = ConfigSelection(
 	('50', '50')
 	], '24')
 config.plugins.YouTube.searchRegion = ConfigSelection(
-	[(None, _('All')),
+	[('', _('All')),
 	('AU', _('Australia')),
 	('BR', _('Brazil')),
 	('CA', _('Canada')),
@@ -61,7 +60,7 @@ config.plugins.YouTube.searchRegion = ConfigSelection(
 	('US', _('United States'))
 	], None)
 config.plugins.YouTube.searchLanguage = ConfigSelection(
-	[(None, _('All')),
+	[('', _('All')),
 	('au', _('Australia')),
 	('br', _('Brazil')),
 	('ca', _('Canada')),
@@ -727,36 +726,23 @@ class YouTubeMain(Screen):
 		refreshToken = config.plugins.YouTube.refreshToken.value
 		if not self.youtube or (not self.isAuth and \
 			refreshToken and config.plugins.YouTube.login.value):
-			from apiclient.discovery import build
-			if refreshToken:
-				from oauth2client.client import OAuth2Credentials
-				httpCredentials = OAuth2Credentials(
-						access_token = None,
-						client_id = YOUTUBE_API_CLIENT_ID,
-						client_secret = YOUTUBE_API_CLIENT_SECRET,
-						refresh_token = refreshToken,
-						token_expiry = None,
-						token_uri = 'https://accounts.google.com/o/oauth2/token',
-						user_agent = None
-					).authorize(Http())
-
-				try:
-					self.youtube = build('youtube', 'v3',
-						developerKey = API_KEY, http = httpCredentials)
-					self.isAuth = True
-				except Exception, e:
-					print "[YouTube] Error in build with credentials", str(e)
-					self.isAuth = False
-					self.youtube = build('youtube', 'v3', developerKey = API_KEY)
+			from YouTubeApi import YouTubeApi
+			self.youtube = YouTubeApi(
+				client_id = YOUTUBE_API_CLIENT_ID,
+				client_secret = YOUTUBE_API_CLIENT_SECRET,
+				developer_key = API_KEY,
+				refresh_token = refreshToken)
+			if refreshToken and '&access_token=' in self.youtube.key:
+				self.isAuth = True
 			else:
-				self.youtube = build('youtube', 'v3', developerKey = API_KEY)
+				self.isAuth = False
 
 	def createEntryList(self):
 		self.createBuild()
 		order = 'date'
 		searchType = 'video'
 		q = ''
-		videoDefinition = videoEmbeddable = videoType = None
+		videoEmbeddable = videoDefinition = videoType = ''
 
 		if self.action == 'OpenSearch':
 			order = config.plugins.YouTube.searchOrder.value
@@ -799,11 +785,9 @@ class YouTubeMain(Screen):
 			channels = []
 			if self.value[0] == 'my_subscriptions':
 				self.list = 'playlist'
-				searchResponse = self.youtube.subscriptions().list(
-						part='snippet',
-						mine=True,
-						maxResults = int(config.plugins.YouTube.searchResult.value)
-					).execute()
+				searchResponse = self.youtube.subscriptions_list(
+						maxResults = config.plugins.YouTube.searchResult.value
+					)
 				for result in searchResponse.get('items', []):
 					try:
 						Id = 'UU' + result['snippet']['resourceId']['channelId'][2:]
@@ -827,10 +811,7 @@ class YouTubeMain(Screen):
 
 			elif self.value[0] == 'my_playlists':
 				self.list = 'playlist'
-				searchResponse = self.youtube.playlists().list(
-						part='snippet',
-						mine=True
-					).execute()
+				searchResponse = self.youtube.playlists_list()
 				for result in searchResponse.get('items', []):
 					try:
 						Id = result['id']
@@ -849,10 +830,7 @@ class YouTubeMain(Screen):
 				return videos
 
 			else: # all other my data
-				searchResponse = self.youtube.channels().list(
-						part='contentDetails',
-						mine=True
-					).execute()
+				searchResponse = self.youtube.channels_list()
 				for result in searchResponse.get('items', []):
 					channel = result['contentDetails']['relatedPlaylists'][playlist]
 
@@ -862,11 +840,11 @@ class YouTubeMain(Screen):
 		elif self.action == 'OpenPlayList':
 			videos = self.videoIdFromPlaylist(self.value[0])
 			if not videos: # if channel list from subscription
-				searchResponse = self.youtube.search().list(
+				searchResponse = self.youtube.search_list(
 						part = 'id,snippet',
 						channelId = 'UC' + self.value[0][2:],
-						maxResults = int(config.plugins.YouTube.searchResult.value)
-					).execute()
+						maxResults = config.plugins.YouTube.searchResult.value
+					)
 				return self.createList(searchResponse, 'playlist')
 			return self.extractVideoIdList(videos)
 
@@ -875,20 +853,20 @@ class YouTubeMain(Screen):
 			return self.extractVideoIdList(videos)
 
 		else: # search or pub feeds
-			searchResponse = self.youtube.search().list(
-					part = 'id,snippet',
-					maxResults = int(config.plugins.YouTube.searchResult.value),
-					order = order,
-					q = q,
-					regionCode = config.plugins.YouTube.searchRegion.value,
-					relevanceLanguage = config.plugins.YouTube.searchLanguage.value,
-					safeSearch = safeSearch,
-					type = searchType,
-					videoDefinition = videoDefinition,
+			searchResponse = self.youtube.search_list_full(
 					videoEmbeddable = videoEmbeddable,
-					videoType = videoType
-				).execute()
-			
+					safeSearch = safeSearch,
+					videoType = videoType,
+					videoDefinition = videoDefinition,
+					order = order,
+					part = 'id,snippet',
+					q = q,
+					relevanceLanguage = config.plugins.YouTube.searchLanguage.value,
+					s_type = searchType,
+					regionCode = config.plugins.YouTube.searchRegion.value,
+					maxResults = config.plugins.YouTube.searchResult.value
+				)
+
 			if searchType != 'video':
 				videos = self.createList(searchResponse, searchType)
 				self.list = searchType
@@ -903,11 +881,7 @@ class YouTubeMain(Screen):
 			return None
 		self.list = 'videolist'
 
-		searchResponse = self.youtube.videos().list(
-			id=','.join(videos),
-			part='id,snippet,statistics,contentDetails'
-			).execute()
-
+		searchResponse = self.youtube.videos_list(v_id=','.join(videos))
 		videos = []
 		for result in searchResponse.get('items', []):
 			try:
@@ -954,11 +928,10 @@ class YouTubeMain(Screen):
 	def videoIdFromPlaylist(self, channel):
 		videos = []
 		try:
-			searchResponse = self.youtube.playlistItems().list(
-					part='snippet',
-					playlistId=channel,
-					maxResults = int(config.plugins.YouTube.searchResult.value)
-				).execute()
+			searchResponse = self.youtube.playlistItems_list(
+					maxResults = config.plugins.YouTube.searchResult.value,
+					playlistId = channel
+				)
 		except:
 			return []
 		for result in searchResponse.get('items', []):
@@ -970,11 +943,11 @@ class YouTubeMain(Screen):
 
 	def videoIdFromChannellist(self, channel):
 		videos = []
-		searchResponse = self.youtube.search().list(
+		searchResponse = self.youtube.search_list(
 				part = 'id',
 				channelId = channel,
-				maxResults = int(config.plugins.YouTube.searchResult.value)
-			).execute()
+				maxResults = config.plugins.YouTube.searchResult.value
+			)
 		for result in searchResponse.get('items', []):
 			try:
 				videos.append(result['id']['videoId'])
@@ -1058,29 +1031,14 @@ class YouTubeMain(Screen):
 
 	def subscribeChannel(self):
 		channelId = self['list'].getCurrent()[0]
-		try:
-			self.youtube.subscriptions().insert(
-					part = 'snippet',
-					body = dict(
-						snippet = dict(
-							resourceId = dict(
-								channelId=channelId
-							)
-						)
-					)
-				).execute()
+		if self.youtube.subscriptions_insert(channelId = channelId):
 			return _('Subscribed!')
-		except:
-			return _('There was an error in subscribe!')
+		return _('There was an error in subscribe!')
 
 	def unsubscribeChannel(self):
 		subscribtionId = self['list'].getCurrent()[6]
 		if subscribtionId:
-			try:
-				self.youtube.subscriptions().delete(
-						id = subscribtionId
-					).execute()
-
+			if self.youtube.subscriptions_delete(subscribtionId):
 				# update subscriptions list
 				newEntryList = []
 				for entry in self.entryList:
@@ -1089,24 +1047,18 @@ class YouTubeMain(Screen):
 				self.entryList = newEntryList
 				self['list'].updateList(self.entryList)
 				return _('Unsubscribed!')
-			except:
-				pass
 		return _('There was an error in unsubscribe!')
 
 	def rateVideo(self, rating):
 		videoId = self['list'].getCurrent()[0]
-		try:
-			self.youtube.videos().rate(
-					id = videoId,
-					rating = rating
-				).execute()
+		if self.youtube.videos_rate(videoId = videoId, rating = rating):
 			text = {
 				'like': _('Liked!'),
 				'dislike': _('Disliked!'),
 				'none': _('Rating removed!')
 				}
 			return text[rating]
-		except:
+		else:
 			return _('There was an error in rating!')
 
 	def showEventInfo(self):
