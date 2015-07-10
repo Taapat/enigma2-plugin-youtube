@@ -4,7 +4,7 @@ Enigma2 plugin to manage your youtube account and wach videos
 
 Depends
 -------
-python-twisted-web, google-api-python-client, python-youtube-dl
+python-twisted-web, python-youtube-dl
 
 -------
 ![](https://cloud.githubusercontent.com/assets/1623947/8530672/fba6e786-242a-11e5-830e-7b088abca6da.jpg)
