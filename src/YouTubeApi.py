@@ -7,12 +7,14 @@ class YouTubeApi:
 	def __init__(self, client_id, client_secret, developer_key, refresh_token):
 		self.client_id = client_id
 		self.client_secret = client_secret
-		self.developer_key = developer_key
 		self.refresh_token = refresh_token
 		self.key = '&key=' + developer_key
 		if self.refresh_token:
-			access_token = self.get_access_token()
-			self.key = self.key + '&access_token=' + access_token
+			self.access_token = self.get_access_token()
+		else:
+			self.access_token = None
+		if self.access_token:
+			self.key = self.key + '&access_token=' + self.access_token
 
 	def get_access_token(self):
 		from OAuth import OAuth
@@ -22,14 +24,16 @@ class YouTubeApi:
 	def renew_access_token(self):
 		print '[YouTubeApi] Unauthorized, try get new access token'
 		self.key = self.key.split('&access_token=')[0]
-		self.key = self.key + '&access_token=' + self.get_access_token()
+		self.access_token = self.get_access_token()
+		if self.access_token:
+			self.key = self.key + '&access_token=' + self.access_token
 
 	def get_response(self, url, count):
 		url = 'https://www.googleapis.com/youtube/v3/' + url
 		try:
 			response = urlopen(url)
 		except URLError, e:
-			if e.code == 401 and '&access_token=' in self.key and count:
+			if e.code == 401 and self.access_token and count:
 				self.renew_access_token()
 				self.get_response(url, False)
 			else:
@@ -39,7 +43,7 @@ class YouTubeApi:
 
 	def get_aut_response(self, method, url, data, header, status, count):
 		url = '/youtube/v3/' + url + self.key
-		headers = {'Authorization': 'Bearer %s' % (self.key.split('&access_token=')[1])}
+		headers = {'Authorization': 'Bearer %s' % self.access_token}
 		if header:
 			headers[header[0]] = header[1]
 		conn = HTTPSConnection('www.googleapis.com')
@@ -48,7 +52,7 @@ class YouTubeApi:
 		conn.close()
 		if response.status == status:
 			return True
-		elif response.status == 401 and '&access_token=' in self.key and count:
+		elif response.status == 401 and self.access_token and count:
 			self.renew_access_token()
 			self.get_aut_response(self, method, url, data, header, status, False)
 		else:
@@ -81,7 +85,7 @@ class YouTubeApi:
 		url = 'search?' + videoEmbeddable + 'safeSearch=' + safeSearch + videoType + \
 			videoDefinition + '&order=' + order + '&part=' + part.replace(',', '%2C') + \
 			'&q=' + q.replace(' ', '+') + relevanceLanguage + '&type=' + s_type + regionCode + \
-			'&maxResults=' + maxResults + '&key=' + self.developer_key
+			'&maxResults=' + maxResults + '&key=' + self.key
 		return self.get_response(url, True)
 
 	def search_list(self, part, channelId, maxResults):

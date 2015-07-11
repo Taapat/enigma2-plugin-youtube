@@ -732,7 +732,7 @@ class YouTubeMain(Screen):
 				client_secret = YOUTUBE_API_CLIENT_SECRET,
 				developer_key = API_KEY,
 				refresh_token = refreshToken)
-			if refreshToken and '&access_token=' in self.youtube.key:
+			if self.youtube.access_token:
 				self.isAuth = True
 			else:
 				self.isAuth = False
