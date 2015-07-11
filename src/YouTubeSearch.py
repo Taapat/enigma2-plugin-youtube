@@ -1,6 +1,7 @@
 from httplib import HTTPConnection, CannotSendRequest, BadStatusLine
 from threading import Lock, Thread
 from urllib import quote
+from xml.etree.cElementTree import fromstring
 
 from enigma import ePythonMessagePump, getDesktop
 from Screens.Screen import Screen
@@ -205,13 +206,19 @@ class GoogleSuggestionsConfigText(ConfigText):
 
 	def propagateSuggestions(self, suggestionsList):
 		self.cancelSuggestionsThread()
-		if suggestionsList:
-			suggestionsList = suggestionsList.split('data="', 1)
-			if len(suggestionsList) > 1:
+		if suggestionsList and len(suggestionsList) > 0:
+			suggestionsList = fromstring(suggestionsList)
+			if suggestionsList:
 				suggestions = [('', None)]
-				for suggestion in suggestionsList[1].split('data="'):
-					suggestions.append((suggestion.split('"/')[0], None))
-				self.updateSuggestions(suggestions)
+				for suggestion in suggestionsList.findall('CompleteSuggestion'):
+					name = None
+					for element in suggestion:
+						if element.attrib.has_key('data'):
+							name = element.attrib['data'].encode('UTF-8')
+						if name:
+							suggestions.append((name, None))
+				if len(suggestions) > 1:
+					self.updateSuggestions(suggestions)
 
 	def gotSuggestionsError(self, val):
 		print "[YouTube] Error in get suggestions:", val
