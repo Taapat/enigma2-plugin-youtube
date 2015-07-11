@@ -1,5 +1,3 @@
-# -*- coding: UTF-8 -*-
-
 from httplib import HTTPConnection, CannotSendRequest, BadStatusLine
 from threading import Lock, Thread
 from urllib import quote
@@ -240,49 +238,6 @@ class GoogleSuggestionsConfigText(ConfigText):
 		ConfigText.onDeselect(self, session)
 
 
-def unescape(text):
-   """Removes HTML or XML character references 
-      and entities from a text string.
-   @param text The HTML (or XML) source text.
-   @return The plain text, as a Unicode string, if necessary.
-   from Fredrik Lundh
-   2008-01-03: input only unicode characters string.
-   http://effbot.org/zone/re-sub.htm#unescape-html
-   """
-   import re
-   import htmlentitydefs
-   def fixup(m):
-      text = m.group(0)
-      if text[:2] == '&#':
-         # character reference
-         try:
-            if text[:3] == '&#x':
-               return unichr(int(text[3:-1], 16))
-            else:
-               return unichr(int(text[2:-1]))
-         except ValueError:
-            print '[YouTube] unescape value error'
-            pass
-      else:
-         # named entity
-         # reescape the reserved characters.
-         try:
-            if text[1:-1] == 'amp':
-               text = '&amp;amp;'
-            elif text[1:-1] == 'gt':
-               text = '&amp;gt;'
-            elif text[1:-1] == 'lt':
-               text = '&amp;lt;'
-            else:
-               print text[1:-1]
-               text = unichr(htmlentitydefs.name2codepoint[text[1:-1]])
-         except KeyError:
-            print '[YouTube] unescape keyerror'
-            pass
-      return text # leave as is
-   return re.sub('&#?\w+;', fixup, text)
-
-
 class GoogleSuggestions():
 	def __init__(self):
 		self.hl = 'en'
@@ -299,18 +254,22 @@ class GoogleSuggestions():
 				connection = HTTPConnection('google.com')
 				connection.request('GET', query, '', {'Accept-Encoding': 'UTF-8'})
 			except (CannotSendRequest, gaierror, error):
-				print '[YouTube] Can not send request for suggestions'
+				print "[YouTube] Can not send request for suggestions"
 			else:
 				try:
 					response = connection.getresponse()
 				except BadStatusLine:
-					print '[YouTube] Can not get a response from google'
+					print "[YouTube] Can not get a response from google"
 				else:
 					if response.status == 200:
 						data = response.read()
-						if '&#x' in data:
-							data = unescape(data)
-						data = data.encode('utf-8')
+						header = response.getheader('Content-Type',
+							'text/xml; charset=ISO-8859-1')
+						try:
+							charset = header.split(';')[1].split('=')[1]
+						except:
+							charset = 'ISO-8859-1'
+						data = data.decode(charset).encode('utf-8')
 						connection.close()
 						return data
 			if connection:
