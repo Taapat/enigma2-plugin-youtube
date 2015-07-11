@@ -291,11 +291,10 @@ class GoogleSuggestions():
 		if not queryString:
 			return None
 		else:
-			prepQuerry = '/complete/search?output=toolbar&client=youtube&xml=true&ds=yt&'
+			query = '/complete/search?output=toolbar&client=youtube&xml=true&ds=yt&'
 			if self.hl:
-				prepQuerry = prepQuerry + 'hl=' + self.hl + '&'
-			prepQuerry = prepQuerry + 'jsonp=self.getSuggestions&q='
-			query = prepQuerry + quote(queryString)
+				query += 'hl=' + self.hl + '&'
+			query += 'jsonp=self.getSuggestions&q=' + quote(queryString)
 			try:
 				connection = HTTPConnection('google.com')
 				connection.request('GET', query, '', {'Accept-Encoding': 'UTF-8'})
