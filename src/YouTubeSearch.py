@@ -211,7 +211,6 @@ class GoogleSuggestionsConfigText(ConfigText):
 			if suggestionsList:
 				suggestions = [('', None)]
 				for suggestion in suggestionsList.findall('CompleteSuggestion'):
-					name = None
 					for element in suggestion:
 						if element.attrib.has_key('data'):
 							name = element.attrib['data'].encode('UTF-8')
@@ -270,15 +269,13 @@ class GoogleSuggestions():
 				else:
 					if response.status == 200:
 						data = response.read()
-						header = response.getheader('Content-Type',
-							'text/xml; charset=ISO-8859-1')
 						try:
-							charset = header.split(';')[1].split('=')[1]
+							charset = response.getheader('Content-Type',
+								'text/xml; charset=ISO-8859-1').rsplit('=')[1]
 						except:
 							charset = 'ISO-8859-1'
-						data = data.decode(charset).encode('utf-8')
 						connection.close()
-						return data
+						return data.decode(charset).encode('utf-8')
 			if connection:
 				connection.close()
 			return None
