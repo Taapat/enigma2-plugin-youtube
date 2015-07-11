@@ -34,8 +34,8 @@ class YouTubeApi:
 				self.get_response(url, False)
 			else:
 				print ('[YouTubeApi] error in response %d' %e.code)
-				return {}
-		return load(response)
+				return []
+		return load(response).get('items', [])
 
 	def get_aut_response(self, method, url, data, header, status, count):
 		url = '/youtube/v3/' + url + self.key

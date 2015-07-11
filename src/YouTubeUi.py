@@ -788,7 +788,7 @@ class YouTubeMain(Screen):
 				searchResponse = self.youtube.subscriptions_list(
 						maxResults = config.plugins.YouTube.searchResult.value
 					)
-				for result in searchResponse.get('items', []):
+				for result in searchResponse:
 					try:
 						Id = 'UU' + result['snippet']['resourceId']['channelId'][2:]
 					except:
@@ -812,7 +812,7 @@ class YouTubeMain(Screen):
 			elif self.value[0] == 'my_playlists':
 				self.list = 'playlist'
 				searchResponse = self.youtube.playlists_list()
-				for result in searchResponse.get('items', []):
+				for result in searchResponse:
 					try:
 						Id = result['id']
 					except:
@@ -831,7 +831,7 @@ class YouTubeMain(Screen):
 
 			else: # all other my data
 				searchResponse = self.youtube.channels_list()
-				for result in searchResponse.get('items', []):
+				for result in searchResponse:
 					channel = result['contentDetails']['relatedPlaylists'][playlist]
 
 				videos = self.videoIdFromPlaylist(channel)
@@ -872,7 +872,7 @@ class YouTubeMain(Screen):
 				self.list = searchType
 				return videos
 
-			for result in searchResponse.get('items', []):
+			for result in searchResponse:
 				videos.append(result['id']['videoId'])
 			return self.extractVideoIdList(videos)
 
@@ -883,7 +883,7 @@ class YouTubeMain(Screen):
 
 		searchResponse = self.youtube.videos_list(v_id=','.join(videos))
 		videos = []
-		for result in searchResponse.get('items', []):
+		for result in searchResponse:
 			try:
 				Id = result['id']
 			except:
@@ -934,7 +934,7 @@ class YouTubeMain(Screen):
 				)
 		except:
 			return []
-		for result in searchResponse.get('items', []):
+		for result in searchResponse:
 			try:
 				videos.append(result['snippet']['resourceId']['videoId'])
 			except:
@@ -948,7 +948,7 @@ class YouTubeMain(Screen):
 				channelId = channel,
 				maxResults = config.plugins.YouTube.searchResult.value
 			)
-		for result in searchResponse.get('items', []):
+		for result in searchResponse:
 			try:
 				videos.append(result['id']['videoId'])
 			except:
@@ -957,7 +957,7 @@ class YouTubeMain(Screen):
 
 	def createList(self, searchResponse, listType):
 		videos = []
-		for result in searchResponse.get('items', []):
+		for result in searchResponse:
 			try:
 				Id = result['id'][listType + 'Id']
 			except:
