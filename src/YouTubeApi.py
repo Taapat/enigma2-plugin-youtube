@@ -85,7 +85,7 @@ class YouTubeApi:
 		url = 'search?' + videoEmbeddable + 'safeSearch=' + safeSearch + videoType + \
 			videoDefinition + '&order=' + order + '&part=' + part.replace(',', '%2C') + \
 			'&q=' + q.replace(' ', '+') + relevanceLanguage + '&type=' + s_type + regionCode + \
-			'&maxResults=' + maxResults + '&key=' + self.key
+			'&maxResults=' + maxResults + self.key
 		return self.get_response(url, True)
 
 	def search_list(self, part, channelId, maxResults):
