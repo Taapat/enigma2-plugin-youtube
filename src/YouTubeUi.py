@@ -93,7 +93,8 @@ config.plugins.YouTube.searchOrder = ConfigSelection(
 	('title', _('Title')),
 	('viewCount', _('View count'))
 	], 'relevance')
-config.plugins.YouTube.safeSearch = ConfigYesNo(default = False)
+config.plugins.YouTube.safeSearch = ConfigSelection(default = 'moderate', choices = [
+	('moderate', _('Moderate')), ('none', _('No')), ('strict', _('Yes'))])
 config.plugins.YouTube.onMovieEof = ConfigSelection(default = 'quit', choices = [
 	('quit', _('Return to list')), ('ask', _('Ask user')),
 	('playnext', _('Play next')), ('repeat', _('Repeat'))])
@@ -775,10 +776,6 @@ class YouTubeMain(Screen):
 			elif self.value[0] == 'my_uploads':
 				playlist = 'uploads'
 
-		if config.plugins.YouTube.safeSearch.value:
-			safeSearch = 'strict'
-		else:
-			safeSearch = 'none'
 		videos = []
 
 		if self.action == 'OpenMyFeeds':
@@ -855,7 +852,7 @@ class YouTubeMain(Screen):
 		else: # search or pub feeds
 			searchResponse = self.youtube.search_list_full(
 					videoEmbeddable = videoEmbeddable,
-					safeSearch = safeSearch,
+					safeSearch = config.plugins.YouTube.safeSearch.value,
 					videoType = videoType,
 					videoDefinition = videoDefinition,
 					order = order,
