@@ -927,13 +927,10 @@ class YouTubeMain(Screen):
 
 	def videoIdFromPlaylist(self, channel):
 		videos = []
-		try:
-			searchResponse = self.youtube.playlistItems_list(
-					maxResults = config.plugins.YouTube.searchResult.value,
-					playlistId = channel
-				)
-		except:
-			return []
+		searchResponse = self.youtube.playlistItems_list(
+				maxResults = config.plugins.YouTube.searchResult.value,
+				playlistId = channel
+			)
 		for result in searchResponse:
 			try:
 				videos.append(result['snippet']['resourceId']['videoId'])
@@ -1037,16 +1034,15 @@ class YouTubeMain(Screen):
 
 	def unsubscribeChannel(self):
 		subscribtionId = self['list'].getCurrent()[6]
-		if subscribtionId:
-			if self.youtube.subscriptions_delete(subscribtionId):
-				# update subscriptions list
-				newEntryList = []
-				for entry in self.entryList:
-					if entry[6] != subscribtionId:
-						newEntryList.append(entry)
-				self.entryList = newEntryList
-				self['list'].updateList(self.entryList)
-				return _('Unsubscribed!')
+		if subscribtionId and self.youtube.subscriptions_delete(subscribtionId):
+			# update subscriptions list
+			newEntryList = []
+			for entry in self.entryList:
+				if entry[6] != subscribtionId:
+					newEntryList.append(entry)
+			self.entryList = newEntryList
+			self['list'].updateList(self.entryList)
+			return _('Unsubscribed!')
 		return _('There was an error in unsubscribe!')
 
 	def rateVideo(self, rating):
