@@ -463,23 +463,8 @@ class YouTubeMain(Screen):
 	def splitTaimerStop(self):
 		self.splitTaimer.stop()
 		if self.action == 'startup':
-			from youtube_dl import YoutubeDL
-			VIDEO_FMT_PRIORITY_MAP = {
-					1 : '38', #MP4 Original (HD)
-					2 : '37', #MP4 1080p (HD)
-					3 : '22', #MP4 720p (HD)
-					4 : '18', #MP4 360p
-					5 : '35', #FLV 480p
-					6 : '34'  #FLV 360p
-				}
-			self.ytdl = YoutubeDL(params = {
-					'youtube_include_dash_manifest': False,
-					'format': '/'.join(VIDEO_FMT_PRIORITY_MAP.itervalues()),
-					'nocheckcertificate': True,
-					'quiet': True,
-					'no_warnings': True,
-					'no_color': True
-				})
+			from YouTubeVideoUrl import YouTubeVideoUrl
+			self.ytdl = YouTubeVideoUrl()
 			self.createBuild()
 			self.createMainList()
 		elif self.action == 'playVideo':
@@ -698,16 +683,11 @@ class YouTubeMain(Screen):
 					self.screenCallback([current[0], current[3], current[6]], 'OpenChannelList')
 
 	def getVideoUrl(self):
-		watch_url = 'http://www.youtube.com/watch?v=%s' % self.value[0]
 		try:
-			entry = self.ytdl.extract_info(watch_url, download=False, ie_key='Youtube')
+			return self.ytdl.extract(self.value[0]), None
 		except Exception as e:
 			print "[YouTube] Error in extract info:", e
 			return None, e
-
-		if 'entries' in entry: # Can be a playlist or a list of videos
-			entry = entry['entries'][0] #TODO handle properly
-		return str(entry.get('url')), None
 
 	def convertDate(self, duration):
 		time = ':' + duration.replace('P', '')\
