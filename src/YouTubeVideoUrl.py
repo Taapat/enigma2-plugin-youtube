@@ -14,12 +14,14 @@ from swfinterp import SWFInterpreter
 
 
 VIDEO_FMT_PRIORITY_MAP = [
-		'38', #MP4 Original (HD)
-		'37', #MP4 1080p (HD)
-		'22', #MP4 720p (HD)
-		'18', #MP4 360p
-		'35', #FLV 480p
-		'34'  #FLV 360p
+		'22', #mp4 1280x720
+		'18', #mp4 640x380
+		'37', #mp4 1920x1080
+		'38', #mp4 4096x3072
+		'59', #mp4 854x480
+		'78', #mp4 854x480
+		'35', #flv 854x480
+		'34'  #flv 640x360
 	]
 
 
