@@ -475,7 +475,7 @@ class YouTubeMain(Screen):
 					self.session.open(MessageBox,
 						_('There was an error in extract video url:\n%s') % urlError, 
 						MessageBox.TYPE_INFO, timeout = 8)
-				elif videoUrl:
+				else:
 					count = 0
 					for entry in self.entryList:
 						if entry[0] == self.value[0]:
@@ -684,10 +684,14 @@ class YouTubeMain(Screen):
 
 	def getVideoUrl(self):
 		try:
-			return self.ytdl.extract(self.value[0]), None
+			videoUrl = self.ytdl.extract(self.value[0])
 		except Exception as e:
-			print "[YouTube] Error in extract info:", e
+			print '[YouTube] Error in extract info:', e
 			return None, e
+		if videoUrl:
+			return videoUrl, None
+		print '[YouTube] Video url not found'
+		return None, ' '
 
 	def convertDate(self, duration):
 		time = ':' + duration.replace('P', '')\
