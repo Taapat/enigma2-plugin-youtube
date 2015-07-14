@@ -24,6 +24,16 @@ VIDEO_FMT_PRIORITY_MAP = [
 		'34'  #flv 640x360
 	]
 
+VIDEO_FMT_IGNORE_MAP = [
+		'43', #webm
+		'44', #webm
+		'45', #webm
+		'46', #webm
+		'100', #webm
+		'101', #webm
+		'102' #webm
+	]
+
 
 def uppercase_escape(s):
 	unicode_escape = codecs.getdecoder('unicode_escape')
@@ -271,7 +281,6 @@ class YouTubeVideoUrl():
 				return None
 
 			# Find the best format from our format priority map
-			# if anything not found, used first in the list
 			encoded_url_map = encoded_url_map.split(',')
 			url_data_count = None
 			for our_format in VIDEO_FMT_PRIORITY_MAP:
@@ -284,12 +293,24 @@ class YouTubeVideoUrl():
 					count += 1
 				if url_data_count is not None:
 					break
+			# If anything not found, used first in the list if it not in ignore map
+			if url_data_count is None:
+				count = 0
+				for url_map_str in encoded_url_map:
+					for ignore_format in VIDEO_FMT_IGNORE_MAP:
+						ignore_format = 'itag=' + ignore_format
+						if ignore_format not in url_map_str and \
+							'url=' in url_map_str:
+							url_data_count = count
+							break
+					if url_data_count is not None:
+						break
+					count += 1
 			if url_data_count is None:
 				url_data_count = 0
 
 			url_data = compat_parse_qs(encoded_url_map[url_data_count])
 			url = url_data['url'][0]
-
 			if 'sig' in url_data:
 				url += '&signature=' + url_data['sig'][0]
 			elif 's' in url_data:
@@ -322,11 +343,19 @@ class YouTubeVideoUrl():
 			url_map = self._extract_from_m3u8(manifest_url)
 
 			# Find the best format from our format priority map
-			# if anything not found, used first in the list
 			for our_format in VIDEO_FMT_PRIORITY_MAP:
 				if url_map.get(our_format):
 					url = url_map[our_format]
 					break
+			# If anything not found, used first in the list if it not in ignore map
+			if not url:
+				for url_map_key in url_map.keys():
+					for ignore_format in VIDEO_FMT_IGNORE_MAP:
+						if url_map_key != ignore_format:
+							url = url_map[url_map_key]
+							break
+					if url:
+						break
 			if not url:
 				url = url_map.values()[0]
 		else:
