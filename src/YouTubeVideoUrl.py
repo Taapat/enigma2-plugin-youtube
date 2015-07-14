@@ -282,34 +282,30 @@ class YouTubeVideoUrl():
 
 			# Find the best format from our format priority map
 			encoded_url_map = encoded_url_map.split(',')
-			url_data_count = None
+			url_map_str = None
 			for our_format in VIDEO_FMT_PRIORITY_MAP:
 				our_format = 'itag=' + our_format
-				count = 0
-				for url_map_str in encoded_url_map:
-					if our_format in url_map_str and 'url=' in url_map_str:
-						url_data_count = count
+				for encoded_url in encoded_url_map:
+					if our_format in encoded_url and 'url=' in encoded_url:
+						url_map_str = encoded_url
 						break
-					count += 1
-				if url_data_count is not None:
+				if url_map_str:
 					break
 			# If anything not found, used first in the list if it not in ignore map
-			if url_data_count is None:
-				count = 0
-				for url_map_str in encoded_url_map:
+			if not url_map_str:
+				for encoded_url in encoded_url_map:
 					for ignore_format in VIDEO_FMT_IGNORE_MAP:
 						ignore_format = 'itag=' + ignore_format
-						if ignore_format not in url_map_str and \
-							'url=' in url_map_str:
-							url_data_count = count
+						if ignore_format not in encoded_url and \
+							'url=' in encoded_url:
+							url_map_str = encoded_url
 							break
-					if url_data_count is not None:
+					if url_map_str:
 						break
-					count += 1
-			if url_data_count is None:
-				url_data_count = 0
+			if not url_map_str:
+				url_map_str = encoded_url_map[0]
 
-			url_data = compat_parse_qs(encoded_url_map[url_data_count])
+			url_data = compat_parse_qs(url_map_str)
 			url = url_data['url'][0]
 			if 'sig' in url_data:
 				url += '&signature=' + url_data['sig'][0]
@@ -350,11 +346,8 @@ class YouTubeVideoUrl():
 			# If anything not found, used first in the list if it not in ignore map
 			if not url:
 				for url_map_key in url_map.keys():
-					for ignore_format in VIDEO_FMT_IGNORE_MAP:
-						if url_map_key != ignore_format:
-							url = url_map[url_map_key]
-							break
-					if url:
+					if url_map_key not in VIDEO_FMT_IGNORE_MAP:
+						url = url_map[url_map_key]
 						break
 			if not url:
 				url = url_map.values()[0]
