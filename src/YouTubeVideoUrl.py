@@ -66,7 +66,7 @@ def compat_urllib_parse_unquote(string, encoding='utf-8', errors='replace'):
 	return string
 
 def _parse_qsl(qs, keep_blank_values=False, strict_parsing=False,
-			   encoding='utf-8', errors='replace'):
+			encoding='utf-8', errors='replace'):
 	qs, _coerce_result = qs, unicode
 	pairs = [s2 for s1 in qs.split('&') for s2 in s1.split(';')]
 	r = []
@@ -98,7 +98,7 @@ def compat_parse_qs(qs, keep_blank_values=False, strict_parsing=False,
 					encoding='utf-8', errors='replace'):
 	parsed_result = {}
 	pairs = _parse_qsl(qs, keep_blank_values, strict_parsing,
-					   encoding=encoding, errors=errors)
+					encoding=encoding, errors=errors)
 	for name, value in pairs:
 		if name in parsed_result:
 			parsed_result[name].append(value)
@@ -258,14 +258,8 @@ class YouTubeVideoUrl():
 				print '[YouTubeVideoUrl] "token" parameter not in video info for unknown reason'
 
 		# Start extracting information
-		def _map_to_format_list(urlmap):
-			formats = []
-			for video_real_url in urlmap.items():
-				formats.append(video_real_url)
-			return formats
-
 		if 'conn' in video_info and video_info['conn'][0][:4] == 'rtmp':
-			formats = [(video_info['conn'][0]),]
+			url = video_info['conn'][0]
 		elif len(video_info.get('url_encoded_fmt_stream_map', [''])[0]) >= 1 or \
 			len(video_info.get('adaptive_fmts', [''])[0]) >= 1:
 			encoded_url_map = video_info.get('url_encoded_fmt_stream_map', [''])[0] + \
@@ -273,57 +267,69 @@ class YouTubeVideoUrl():
 			if 'rtmpe%3Dyes' in encoded_url_map:
 				print '[YouTubeVideoUrl] rtmpe downloads are not supported, see https://github.com/rg3/youtube-dl/issues/343 for more information.'
 				return None
-			url_map = {}
-			for url_data_str in encoded_url_map.split(','):
-				url_data = compat_parse_qs(url_data_str)
-				if 'itag' not in url_data or 'url' not in url_data:
-					continue
-				format_id = url_data['itag'][0]
-				if format_id not in VIDEO_FMT_PRIORITY_MAP:
-					# if formats not in own format list don't parse
-					#TODO return if not any own format found
-					continue
 
-				url = url_data['url'][0]
+			# Find the best format from our format priority map
+			# if anything not found, used first in the list
+			encoded_url_map = encoded_url_map.split(',')
+			url_data_count = None
+			for our_format in VIDEO_FMT_PRIORITY_MAP:
+				our_format = 'itag=' + our_format + '&'
+				count = 0
+				for url_map_str in encoded_url_map:
+					if our_format in url_map_str and 'url=' in encoded_url_map:
+						url_data_count = count
+						break
+						count += 1
+				if url_data_count is not None:
+					break
+			if url_data_count is None:
+				url_data_count = 0
 
-				if 'sig' in url_data:
-					url += '&signature=' + url_data['sig'][0]
-				elif 's' in url_data:
-					encrypted_sig = url_data['s'][0]
-					ASSETS_RE = r'"assets":.+?"js":\s*("[^"]+")'
+			url_data = compat_parse_qs(encoded_url_map[url_data_count])
+			url = url_data['url'][0]
 
-					jsplayer_url_json = self._search_regex(ASSETS_RE,
-						embed_webpage if age_gate else video_webpage)
-					if not jsplayer_url_json and not age_gate:
-						# We need the embed website after all
-						if embed_webpage is None:
-							embed_url = 'https://www.youtube.com/embed/%s' % video_id
-							embed_webpage = self._download_webpage(embed_url)
-						jsplayer_url_json = self._search_regex(ASSETS_RE, embed_webpage)
+			if 'sig' in url_data:
+				url += '&signature=' + url_data['sig'][0]
+			elif 's' in url_data:
+				encrypted_sig = url_data['s'][0]
+				ASSETS_RE = r'"assets":.+?"js":\s*("[^"]+")'
 
-					player_url = json.loads(jsplayer_url_json)
-					if player_url is None:
-						player_url_json = self._search_regex(
-							r'ytplayer\.config.*?"url"\s*:\s*("[^"]+")',
-							video_webpage)
-						player_url = json.loads(player_url_json)
+				jsplayer_url_json = self._search_regex(ASSETS_RE,
+					embed_webpage if age_gate else video_webpage)
+				if not jsplayer_url_json and not age_gate:
+					# We need the embed website after all
+					if embed_webpage is None:
+						embed_url = 'https://www.youtube.com/embed/%s' % video_id
+						embed_webpage = self._download_webpage(embed_url)
+					jsplayer_url_json = self._search_regex(ASSETS_RE, embed_webpage)
 
-					signature = self._decrypt_signature(encrypted_sig, player_url)
-					url += '&signature=' + signature
-				if 'ratebypass' not in url:
-					url += '&ratebypass=yes'
-				url_map[format_id] = url
-			formats = _map_to_format_list(url_map)
+				player_url = json.loads(jsplayer_url_json)
+				if player_url is None:
+					player_url_json = self._search_regex(
+						r'ytplayer\.config.*?"url"\s*:\s*("[^"]+")',
+						video_webpage)
+					player_url = json.loads(player_url_json)
+
+				signature = self._decrypt_signature(encrypted_sig, player_url)
+				url += '&signature=' + signature
+			if 'ratebypass' not in url:
+				url += '&ratebypass=yes'
 		elif video_info.get('hlsvp'):
+			url = None
 			manifest_url = video_info['hlsvp'][0]
-			url_map = self._extract_from_m3u8(manifest_url)
-			formats = _map_to_format_list(url_map)
+			url_map = self._extract_from_m3u8(manifest_url)[1]
+
+			# Find the best format from our format priority map
+			# if anything not found, used first in the list
+			for our_format in VIDEO_FMT_PRIORITY_MAP:
+				if url_map.get(our_format):
+					url = url_map[our_format]
+					break
+			if not url:
+				url = url_map.values()[0]
 		else:
 			print '[YouTubeVideoUrl] No conn, hlsvp or url_encoded_fmt_stream_map information found in video info'
 			return None
 
-		for our_format in VIDEO_FMT_PRIORITY_MAP:
-			for x in formats:
-				if x[0] == our_format:
-					return str(x[1])
+		return str(url)
 
