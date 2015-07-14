@@ -317,7 +317,7 @@ class YouTubeVideoUrl():
 		elif video_info.get('hlsvp'):
 			url = None
 			manifest_url = video_info['hlsvp'][0]
-			url_map = self._extract_from_m3u8(manifest_url)[1]
+			url_map = self._extract_from_m3u8(manifest_url)
 
 			# Find the best format from our format priority map
 			# if anything not found, used first in the list
