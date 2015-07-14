@@ -273,13 +273,13 @@ class YouTubeVideoUrl():
 			encoded_url_map = encoded_url_map.split(',')
 			url_data_count = None
 			for our_format in VIDEO_FMT_PRIORITY_MAP:
-				our_format = 'itag=' + our_format + '&'
+				our_format = 'itag=' + our_format
 				count = 0
 				for url_map_str in encoded_url_map:
-					if our_format in url_map_str and 'url=' in encoded_url_map:
+					if our_format in url_map_str and 'url=' in url_map_str:
 						url_data_count = count
 						break
-						count += 1
+					count += 1
 				if url_data_count is not None:
 					break
 			if url_data_count is None:
