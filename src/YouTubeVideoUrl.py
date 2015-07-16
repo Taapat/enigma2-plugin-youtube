@@ -294,13 +294,13 @@ class YouTubeVideoUrl():
 			# If anything not found, used first in the list if it not in ignore map
 			if not url_map_str:
 				for encoded_url in encoded_url_map:
-					url_map_str = encoded_url
-					for ignore_format in VIDEO_FMT_IGNORE_MAP:
-						ignore_format = 'itag=' + ignore_format
-						if ignore_format in encoded_url or \
-							'url=' not in encoded_url:
-							url_map_str = None
-							break
+					if 'url=' in encoded_url:
+						url_map_str = encoded_url
+						for ignore_format in VIDEO_FMT_IGNORE_MAP:
+							ignore_format = 'itag=' + ignore_format
+							if ignore_format in encoded_url:
+								url_map_str = None
+								break
 					if url_map_str:
 						break
 			if not url_map_str:
