@@ -126,7 +126,7 @@ class YouTubeVideoUrl():
 		try:
 			urlh = urlopen(url)
 		except URLError, e:
-			print '[YouTubeVideoUrl] Error in urlopen %d' %e.code
+			print '[YouTubeVideoUrl] Error in urlopen:', e.reason
 			return False
 		return urlh.read()
 
