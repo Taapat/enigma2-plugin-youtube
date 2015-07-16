@@ -30,6 +30,7 @@ class YouTubeApi:
 
 	def get_response(self, url, count):
 		url = 'https://www.googleapis.com/youtube/v3/' + url
+		response = None
 		try:
 			response = urlopen(url)
 		except HTTPError, e:
@@ -39,7 +40,8 @@ class YouTubeApi:
 			else:
 				print ('[YouTubeApi] error in response %d' %e.code)
 				return []
-		return load(response).get('items', [])
+		if response:
+			return load(response).get('items', [])
 
 	def get_aut_response(self, method, url, data, header, status, count):
 		url = '/youtube/v3/' + url + self.key
