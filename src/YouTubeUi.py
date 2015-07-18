@@ -1220,7 +1220,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 	def startupCallback(self, answer):
 		if answer:
 			self.session.openWithCallback(self.warningCallback,
-				MessageBox, _('To perform authentication will need in a web browser open Google home page, and enter the code!\nIf you continue, then you can not stop until the authentication will not be complete!\nDo you currently have Internet access on the other device and we can continue?'))
+				MessageBox, _('To perform authentication will need in a web browser open Google home page, and enter the code!\nDo you currently have Internet access on the other device and we can continue?'))
 
 	def warningCallback(self, answer):
 		if not answer:
