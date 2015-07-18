@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-12 13:25+0300\n"
+"POT-Creation-Date: 2015-07-18 12:54+0300\n"
 "PO-Revision-Date: 2015-07-15 09:47+0100\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -157,6 +157,9 @@ msgstr ""
 
 msgid "Login on startup:"
 msgstr "Авторизация при запуске:"
+
+msgid "Maximum video resolution:"
+msgstr "Максимальное разрешение видео:"
 
 msgid "Mexico"
 msgstr "Мексика"
@@ -373,6 +376,13 @@ msgstr "Просмотр видео с YouTube"
 
 msgid "What do you want to do?"
 msgstr "Что вы хотите сделать?"
+
+msgid ""
+"What maximum resolution used when playing video, if available.\n"
+"If you have a slow Internet connection, you can use a lower resolution."
+msgstr ""
+"Какое максимальное разрешение использовать при воспроизведении видео, если такая доступна.\n"
+"Если у вас медленное подключение к интернету, вы можете использовать более низкое разрешение."
 
 msgid "What to do when stop playback in videoplayer."
 msgstr "Что делать, если остановить воспроизведение в видеоплеере."

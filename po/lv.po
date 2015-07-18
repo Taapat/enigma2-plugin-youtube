@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-12 13:25+0300\n"
+"POT-Creation-Date: 2015-07-18 12:54+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -158,6 +158,9 @@ msgstr ""
 
 msgid "Login on startup:"
 msgstr "Startējot ielogoties:"
+
+msgid "Maximum video resolution:"
+msgstr "Мaksimālā video izšķirtspēja:"
 
 msgid "Mexico"
 msgstr "Meksika"
@@ -374,6 +377,13 @@ msgstr "Atskaņot YouTube video"
 
 msgid "What do you want to do?"
 msgstr "Ko vēlaties darīt?"
+
+msgid ""
+"What maximum resolution used when playing video, if available.\n"
+"If you have a slow Internet connection, you can use a lower resolution."
+msgstr ""
+"Kādu maksimālo izšķirtspēju lietot atskaņojot video, ja tāda ir pieejama.\n"
+"Ja jums ir lēns interneta pieslēgums, varat lietot mazāku izšķirtspēju."
 
 msgid "What to do when stop playback in videoplayer."
 msgstr "Ko darīt kad apstādiniet atskaņošanu."
