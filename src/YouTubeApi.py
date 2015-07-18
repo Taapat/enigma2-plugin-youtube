@@ -1,5 +1,6 @@
 from httplib import HTTPSConnection
 from json import dumps, load
+from urllib import quote
 from urllib2 import urlopen, HTTPError
 
 
@@ -83,6 +84,7 @@ class YouTubeApi:
 		videoDefinition = videoDefinition and '&videoDefinition=' + videoDefinition
 		relevanceLanguage = relevanceLanguage and '&relevanceLanguage=' + relevanceLanguage
 		regionCode = regionCode and '&regionCode=' + regionCode
+		q = quote(q)
 
 		url = 'search?' + videoEmbeddable + 'safeSearch=' + safeSearch + videoType + \
 			videoDefinition + '&order=' + order + '&part=' + part.replace(',', '%2C') + \
