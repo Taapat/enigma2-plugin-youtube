@@ -133,7 +133,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					self.searchHistory.pop()
 				config.plugins.YouTube.searchHistory.value = ','.join(self.searchHistory)
 				config.plugins.YouTube.searchHistory.save()
-			self.close([self.searchType, searchValue, None], 'OpenSearch')
+			self.close([self.searchType, quote(searchValue), None], 'OpenSearch')
 
 	def openSetup(self):
 		from YouTubeUi import YouTubeSetup
