@@ -9,29 +9,35 @@ import re
 from urllib import urlencode
 from urllib2 import urlopen, URLError
 
+from Components.config import config
+
 from jsinterp import JSInterpreter
 from swfinterp import SWFInterpreter
 
 
-VIDEO_FMT_PRIORITY_MAP = [
-		'22', #mp4 1280x720
-		'18', #mp4 640x380
-		'37', #mp4 1920x1080
-		'38', #mp4 4096x3072
-		'59', #mp4 854x480
-		'78', #mp4 854x480
-		'35', #flv 854x480
-		'34'  #flv 640x360
-	]
+PRIORITY_VIDEO_FORMAT= []
 
-VIDEO_FMT_IGNORE_MAP = [
+def createPriorityFormats():
+	global PRIORITY_VIDEO_FORMAT
+	PRIORITY_VIDEO_FORMAT= []
+	use_format = False
+	for itag_value in ['38', '37', '96', '22', '95', '120', 
+		'35', '94', '18', '93', '5', '92', '132', '17']:
+		if itag_value == config.plugins.YouTube.maxResolution.value:
+			use_format = True
+		if use_format:
+			PRIORITY_VIDEO_FORMAT.append(itag_value)
+
+createPriorityFormats()
+
+IGNORE_VIDEO_FORMAT = [
 		'43', #webm
 		'44', #webm
 		'45', #webm
 		'46', #webm
 		'100', #webm
 		'101', #webm
-		'102' #webm
+		'102'  #webm
 	]
 
 
@@ -283,7 +289,10 @@ class YouTubeVideoUrl():
 			# Find the best format from our format priority map
 			encoded_url_map = encoded_url_map.split(',')
 			url_map_str = None
-			for our_format in VIDEO_FMT_PRIORITY_MAP:
+			# If format changed in config, recreate priority list
+			if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.value:
+				createPriorityFormats()
+			for our_format in PRIORITY_VIDEO_FORMAT:
 				our_format = 'itag=' + our_format
 				for encoded_url in encoded_url_map:
 					if our_format in encoded_url and 'url=' in encoded_url:
@@ -296,7 +305,7 @@ class YouTubeVideoUrl():
 				for encoded_url in encoded_url_map:
 					if 'url=' in encoded_url:
 						url_map_str = encoded_url
-						for ignore_format in VIDEO_FMT_IGNORE_MAP:
+						for ignore_format in IGNORE_VIDEO_FORMAT:
 							ignore_format = 'itag=' + ignore_format
 							if ignore_format in encoded_url:
 								url_map_str = None
@@ -340,14 +349,14 @@ class YouTubeVideoUrl():
 			url_map = self._extract_from_m3u8(manifest_url)
 
 			# Find the best format from our format priority map
-			for our_format in VIDEO_FMT_PRIORITY_MAP:
+			for our_format in PRIORITY_VIDEO_FORMAT:
 				if url_map.get(our_format):
 					url = url_map[our_format]
 					break
 			# If anything not found, used first in the list if it not in ignore map
 			if not url:
 				for url_map_key in url_map.keys():
-					if url_map_key not in VIDEO_FMT_IGNORE_MAP:
+					if url_map_key not in IGNORE_VIDEO_FORMAT:
 						url = url_map[url_map_key]
 						break
 			if not url:

@@ -95,6 +95,9 @@ config.plugins.YouTube.searchOrder = ConfigSelection(
 	], 'relevance')
 config.plugins.YouTube.safeSearch = ConfigSelection(default = 'moderate', choices = [
 	('moderate', _('Moderate')), ('none', _('No')), ('strict', _('Yes'))])
+config.plugins.YouTube.maxResolution = ConfigSelection(default = '22', choices = [
+	('38', '3072p'), ('37', '1080p'), ('22', '720p'), ('35', '480p'), 
+	('18', '360p'), ('5', '240p'), ('17', '144p')])
 config.plugins.YouTube.onMovieEof = ConfigSelection(default = 'quit', choices = [
 	('quit', _('Return to list')), ('ask', _('Ask user')),
 	('playnext', _('Play next')), ('repeat', _('Repeat'))])
@@ -1181,6 +1184,9 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		configlist.append(getConfigListEntry(_('Exclude restricted content:'),
 			config.plugins.YouTube.safeSearch,
 			_('Try to exclude all restricted content from the search result.')))
+		configlist.append(getConfigListEntry(_('Maximum video resolution:'),
+		config.plugins.YouTube.maxResolution,
+			_('What maximum resolution used when playing video, if available.\nIf you have a slow Internet connection, you can use a lower resolution.')))
 		configlist.append(getConfigListEntry(_('When video ends:'),
 			config.plugins.YouTube.onMovieEof,
 			_('What to do when the video ends.')))
