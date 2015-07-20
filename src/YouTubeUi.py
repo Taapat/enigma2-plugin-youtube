@@ -160,9 +160,6 @@ class YouTubePlayer(MoviePlayer):
 		if hasattr(self, "toggleShow"):
 			self.toggleShow()
 
-	def showPiP(self):
-		pass
-
 
 class YouTubeMain(Screen):
 	screenWidth = getDesktop(0).size().width()
