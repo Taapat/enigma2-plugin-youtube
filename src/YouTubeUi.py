@@ -13,7 +13,7 @@ from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
-from Screens.InfoBar import MoviePlayer
+from Screens.InfoBar import InfoBar, MoviePlayer
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
@@ -118,6 +118,7 @@ class YouTubePlayer(MoviePlayer):
 		MoviePlayer.__init__(self, session, service)
 		self.skinName = 'MoviePlayer'
 		self.current = current
+		self.servicelist = InfoBar.instance and InfoBar.instance.servicelist
 
 	def leavePlayer(self):
 		if config.plugins.YouTube.onMovieStop.value == 'ask':
@@ -1251,4 +1252,4 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			del self.splitTaimer
 			self.mbox = None
 			self.oauth = None
-			
+
