@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-18 15:32+0300\n"
+"POT-Creation-Date: 2015-07-23 00:35+0300\n"
 "PO-Revision-Date: 2015-07-15 09:47+0100\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -21,6 +21,9 @@ msgstr " понравилось"
 
 msgid " views"
 msgstr " просмотров"
+
+msgid "Active video downloads"
+msgstr "Активные видео загрузки"
 
 msgid "All"
 msgstr "Все"
@@ -55,11 +58,20 @@ msgstr "Чехия"
 msgid "Disliked!"
 msgstr "Отмечен, что не нравилось!"
 
+msgid "Download directory:"
+msgstr "Каталог для загрузки"
+
 msgid "Download feed entries. Please wait..."
 msgstr "Происходит загрузка фидов. Подождите..."
 
 msgid "Download search results. Please wait..."
 msgstr "Загрузка результатов поиска. Подождите..."
+
+msgid "Download video"
+msgstr "Скачать видео"
+
+msgid "Downloading"
+msgstr "Загрузка"
 
 msgid "Duration: "
 msgstr "Длительность: "
@@ -212,6 +224,9 @@ msgstr "Воспроизвести видео снова"
 msgid "Playlists"
 msgstr "Плейлисты"
 
+msgid "Please select the download directory"
+msgstr "Пожалуйста, выберите каталог для загрузки"
+
 msgid "Poland"
 msgstr "Польша"
 
@@ -251,9 +266,6 @@ msgstr "Вернуться к списку"
 msgid "Russia"
 msgstr "Россия"
 
-msgid "Save"
-msgstr "Сохранить"
-
 msgid "Save search result:"
 msgstr "Сохранить результат поиска:"
 
@@ -287,6 +299,14 @@ msgstr "Поиск видео"
 msgid "Shows"
 msgstr "Шоу"
 
+#, python-format
+msgid ""
+"Sorry, this file already exists:\n"
+"%s"
+msgstr ""
+"К сожалению, этот файл уже существует:\n"
+"%s"
+
 msgid "Sort search results by:"
 msgstr "Сортировать результаты поиска по:"
 
@@ -295,6 +315,9 @@ msgstr "Южная Корея"
 
 msgid "Spain"
 msgstr "Испания"
+
+msgid "Specify the directory where save downloaded video files."
+msgstr "Укажите каталог, где сохранить видео файлы."
 
 msgid "Stop playing this movie?"
 msgstr "Выйти из этого видео?"
@@ -362,6 +385,12 @@ msgstr "Подписка отменена!"
 
 msgid "Uploads"
 msgstr "Мои загрузки"
+
+msgid "Use"
+msgstr "Использовать"
+
+msgid "Video download started!"
+msgstr "Видео загрузка началась!"
 
 msgid "View count"
 msgstr "Количество просмотров"

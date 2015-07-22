@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-18 15:32+0300\n"
+"POT-Creation-Date: 2015-07-23 00:35+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -22,6 +22,9 @@ msgstr " patīk"
 
 msgid " views"
 msgstr " skatījumi"
+
+msgid "Active video downloads"
+msgstr "Aktīvās video lejupielādes"
 
 msgid "All"
 msgstr "Visi"
@@ -56,11 +59,20 @@ msgstr "Čehija"
 msgid "Disliked!"
 msgstr "Atzīmēts, ka nepatīk!"
 
+msgid "Download directory:"
+msgstr "Lejupielādes mape:"
+
 msgid "Download feed entries. Please wait..."
 msgstr "Lejuplādē barotnes. Lūdzu uzgaidiet..."
 
 msgid "Download search results. Please wait..."
 msgstr "Lejuplādē meklēšanas rezultātus. Lūdzu uzgaidiet..."
+
+msgid "Download video"
+msgstr "Lejuplādēt video"
+
+msgid "Downloading"
+msgstr "Lejuplādē"
 
 msgid "Duration: "
 msgstr "Ilgums: "
@@ -213,6 +225,9 @@ msgstr "Atskaņot video vēlreiz"
 msgid "Playlists"
 msgstr "Atskaņošanas saraksti"
 
+msgid "Please select the download directory"
+msgstr "Lūdzu izvēlieties lejupielādes mapi"
+
 msgid "Poland"
 msgstr "Polija"
 
@@ -252,9 +267,6 @@ msgstr "Atgriesties sarakstā"
 msgid "Russia"
 msgstr "Krievija"
 
-msgid "Save"
-msgstr "Saglabāt"
-
 msgid "Save search result:"
 msgstr "Saglabāt meklēšnas rezultātu:"
 
@@ -288,6 +300,14 @@ msgstr "Meklēt video"
 msgid "Shows"
 msgstr "Pārraides"
 
+#, python-format
+msgid ""
+"Sorry, this file already exists:\n"
+"%s"
+msgstr ""
+"Atvainojiet, šāds fails jau eksistē:\n"
+"%s"
+
 msgid "Sort search results by:"
 msgstr "Kārtot meklēšnas rezultātus pēc:"
 
@@ -296,6 +316,9 @@ msgstr "Dienvidkoreja"
 
 msgid "Spain"
 msgstr "Spānija"
+
+msgid "Specify the directory where save downloaded video files."
+msgstr "Norādiet mapi kurā saglabāt lejupielādētos video failus."
 
 msgid "Stop playing this movie?"
 msgstr "Apturēt atskaņot šo filmu?"
@@ -363,6 +386,12 @@ msgstr "Abonements anulēts!"
 
 msgid "Uploads"
 msgstr "Augšupielādētie"
+
+msgid "Use"
+msgstr "Lietot"
+
+msgid "Video download started!"
+msgstr "Video lejupielāde uzsākta!"
 
 msgid "View count"
 msgstr "Skatījumiem"
