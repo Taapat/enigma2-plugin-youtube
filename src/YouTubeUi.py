@@ -4,8 +4,8 @@ from twisted.web.client import downloadPage
 from enigma import ePicLoad, ePoint, eServiceReference, eTimer, getDesktop
 from Components.ActionMap import ActionMap
 from Components.AVSwitch import AVSwitch
-from Components.config import config, ConfigSelection, ConfigSubsection, \
-	ConfigText, ConfigYesNo, getConfigListEntry
+from Components.config import config, ConfigDirectory, ConfigSelection, \
+	ConfigSubsection, ConfigText, ConfigYesNo, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Pixmap import Pixmap
@@ -17,7 +17,7 @@ from Screens.InfoBar import InfoBar, MoviePlayer
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_PLUGINS
 from Tools.LoadPixmap import LoadPixmap
 
 from . import _
@@ -104,6 +104,7 @@ config.plugins.YouTube.onMovieEof = ConfigSelection(default = 'quit', choices = 
 config.plugins.YouTube.onMovieStop = ConfigSelection(default = 'ask', choices = [
 	('ask', _('Ask user')), ('quit', _('Return to list'))])
 config.plugins.YouTube.login = ConfigYesNo(default = False)
+config.plugins.YouTube.downloadDir = ConfigDirectory(default=resolveFilename(SCOPE_HDD))
 
 config.plugins.YouTube.searchHistory = ConfigText(default='')
 config.plugins.YouTube.refreshToken = ConfigText(default='')
@@ -238,7 +239,7 @@ class YouTubeMain(Screen):
 				<widget source="list" render="Listbox" position="center,32" size="600,288" \
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
-					{"template": [
+						{"template": [
 							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
 								size=(100,72), png=2), # Thumbnail
 							MultiContentEntryText(pos=(110,1), size=(475,52), \
@@ -454,7 +455,7 @@ class YouTubeMain(Screen):
 			self.action = action
 			if action == 'OpenSearch':
 				text = _('Download search results. Please wait...')
-			elif action == 'playVideo':
+			elif action in ['playVideo', 'downloadVideo']:
 				text = _('Extract video url. Please wait...')
 			else:
 				text = _('Download feed entries. Please wait...')
@@ -475,7 +476,7 @@ class YouTubeMain(Screen):
 			self.ytdl = YouTubeVideoUrl()
 			self.createBuild()
 			self.createMainList()
-		elif self.action == 'playVideo':
+		elif self.action in ['playVideo', 'downloadVideo']:
 			videoUrl = self.value[6]
 			if not videoUrl: # remember video url
 				videoUrl, urlError = self.getVideoUrl()
@@ -504,13 +505,18 @@ class YouTubeMain(Screen):
 							break
 						count += 1
 			if videoUrl:
-				service = eServiceReference(4097, 0, videoUrl)
-				service.setName(self.value[3])
-				current = [self.value[3], self.value[4], self.value[5], self.value[7],
-					self.value[8], self.value[9], self.value[10]]
-				print "[YouTube] Play:", videoUrl
-				self.session.openWithCallback(self.playCallback,\
-					YouTubePlayer, service = service, current = current)
+				if self.action == 'playVideo':
+					service = eServiceReference(4097, 0, videoUrl)
+					service.setName(self.value[3])
+					current = [self.value[3], self.value[4], self.value[5], self.value[7],
+						self.value[8], self.value[9], self.value[10]]
+					print "[YouTube] Play:", videoUrl
+					self.session.openWithCallback(self.playCallback,\
+						YouTubePlayer, service = service, current = current)
+				else:
+					self.videoDownload(videoUrl, self.value[3])
+					self.setEntryList()
+					self.setPreviousList()
 			else:
 				self.setEntryList()
 				self.setPreviousList()
@@ -983,12 +989,14 @@ class YouTubeMain(Screen):
 					list += ((_('I like this'), 'like'),
 							(_('I dislike this'), 'dislike'),
 							(_('Remove my rating'), 'none'),
-							(_('Search for similar'), 'similar'),)
+							(_('Search for similar'), 'similar'),
+							(_('Download video'), 'download'),)
 				elif self.list == 'channel' and self.prevIndex[1][1] != 'myfeeds':
 					list += ((_('Subscribe'), 'subscribe'),)
 				elif self.list == 'playlist' and self.prevIndex[1][1] == 'myfeeds' and \
 					len(self.prevIndex) == 2:
 					list += ((_('Unsubscribe'), 'unsubscribe'),)
+			list += ((_('Active video downloads'), 'download_list'),)
 			self.session.openWithCallback(self.menuCallback,
 				ChoiceBox, title = title, list = list)
 
@@ -1006,6 +1014,16 @@ class YouTubeMain(Screen):
 			elif answer[1] == 'similar':
 				term = self['list'].getCurrent()[3][:20]
 				self.screenCallback(['video', term, None], 'OpenSearch')
+			elif answer[1] == 'download':
+				current = self['list'].getCurrent()
+				if current[6]:
+					self.videoDownload(current[6], current[3])
+				else:
+					self.rememberCurList()
+					self.screenCallback(current, 'downloadVideo')
+			elif answer[1] == 'download_list':
+				from YouTubeDownload import YouTubeDownloadList
+				self.session.open(YouTubeDownloadList)
 			else:
 				msg = self.rateVideo(answer[1])
 			if msg:
@@ -1052,6 +1070,17 @@ class YouTubeMain(Screen):
 			current = [current[3], current[4], current[5], current[7],
 				current[8], current[9], current[10]]
 			self.session.open(YouTubeInfo, current = current)
+
+	def videoDownload(self, url, title):
+		outputfile = config.plugins.YouTube.downloadDir.value[2:-2] + title + '.mp4'
+		if os.path.exists(outputfile):
+			msg = _('Sorry, this file already exists:\n%s') % title
+		else:
+			from YouTubeDownload import downloadJob
+			from Components.Task import job_manager
+			job_manager.AddJob(downloadJob(url, outputfile, title[:20]))
+			msg = _('Video download started!')
+		self.session.open(MessageBox, msg, MessageBox.TYPE_INFO, timeout = 5)
 
 
 class YouTubeInfo(Screen):
@@ -1152,14 +1181,14 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		self.session = session
 		self.skinName = ['YouTubeSetup', 'Setup']
 		self['key_red'] = StaticText(_('Cancel'))
-		self['key_green'] = StaticText(_('Save'))
+		self['key_green'] = StaticText(_('Ok'))
 		self['description'] = Label('')
 		self['setupActions'] = ActionMap(['SetupActions', 'ColorActions'],
 			{
 				'cancel': self.keyCancel,
 				'red': self.keyCancel,
-				'ok': self.keySave,
-				'green': self.keySave
+				'ok': self.ok,
+				'green': self.ok
 			}, -2)
 		self.mbox = None
 		self.login = config.plugins.YouTube.login.value
@@ -1197,6 +1226,9 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		configlist.append(getConfigListEntry(_('Login on startup:'),
 			config.plugins.YouTube.login,
 			 _('Log in to your YouTube account when plugin starts.\nThis needs to approve in the Google home page!')))
+		configlist.append(getConfigListEntry(_('Download directory:'),
+			config.plugins.YouTube.downloadDir,
+			 _('Specify the directory where save downloaded video files.')))
 
 		self['config'].list = configlist
 		self['config'].l.setList(configlist)
@@ -1204,6 +1236,18 @@ class YouTubeSetup(ConfigListScreen, Screen):
 
 	def layoutFinished(self):
 		self.setTitle(_('YouTube setup'))
+
+	def ok(self):
+		if self["config"].getCurrent()[1] == config.plugins.YouTube.downloadDir:
+			from YouTubeDownload import YouTubeDirBrowser
+			self.session.openWithCallback(self.downloadPath, YouTubeDirBrowser, 
+				config.plugins.YouTube.downloadDir.value[2:-2])
+		else:
+			self.keySave()
+
+	def downloadPath(self, res):
+		if res:
+			config.plugins.YouTube.downloadDir.setValue("'[" + res + "]'")
 
 	def checkLoginSatus(self):
 		if self.login != config.plugins.YouTube.login.value:
