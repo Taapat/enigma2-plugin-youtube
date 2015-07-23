@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-23 00:35+0300\n"
+"POT-Creation-Date: 2015-07-24 00:33+0300\n"
 "PO-Revision-Date: 2015-07-15 09:47+0100\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -299,6 +299,13 @@ msgstr "Поиск видео"
 msgid "Shows"
 msgstr "Шоу"
 
+msgid ""
+"Sorry, download directory not exist!\n"
+"Please specify in the settings existing directory."
+msgstr ""
+"К сожалению, каталог для загрузки не существует!"
+"Пожалуйста, укажите в настройках существующего каталога."
+
 #, python-format
 msgid ""
 "Sorry, this file already exists:\n"
@@ -333,6 +340,9 @@ msgstr "Швеция"
 
 msgid "Taiwan"
 msgstr "Тайвань"
+
+msgid "Thailand"
+msgstr "Таиланд"
 
 msgid ""
 "There was an error in creating entry list!\n"
