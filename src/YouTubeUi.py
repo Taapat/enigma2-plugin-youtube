@@ -59,7 +59,7 @@ config.plugins.YouTube.searchRegion = ConfigSelection(
 	('TW', _('Taiwan')),
 	('TH', _('Thailand')),
 	('US', _('United States'))
-	], None)
+	], '')
 config.plugins.YouTube.searchLanguage = ConfigSelection(
 	[('', _('All')),
 	('au', _('Australia')),
@@ -87,7 +87,7 @@ config.plugins.YouTube.searchLanguage = ConfigSelection(
 	('tw', _('Taiwan')),
 	('th', _('Thailand')),
 	('us', _('United States'))
-	], None)
+	], '')
 config.plugins.YouTube.searchOrder = ConfigSelection(
 	[('relevance', _('Relevance')),
 	('date', _('Created date')),
