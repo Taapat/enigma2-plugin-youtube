@@ -46,7 +46,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					transparent="1" alphatest="on" />
 				</screen>"""
 	else:
-		skin = """<screen position="center,center" size="630,370">
+		skin = """<screen position="center,80" size="630,370">
 				<widget name="config" position="center,15" size="600,30" zPosition="2" \
 					scrollbarMode="showNever" />
 				<widget source="list" render="Listbox" position="center,48" size="600,273" \
