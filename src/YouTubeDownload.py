@@ -1,3 +1,5 @@
+import os
+
 from enigma import eTimer, getDesktop
 from Components.ActionMap import ActionMap
 from Components.FileList import FileList
@@ -14,6 +16,8 @@ class YouTubeDirBrowser(Screen):
 		self.skinName = ['YouTubeDirBrowser', 'FileBrowser']
 		self['key_red'] = StaticText(_('Cancel'))
 		self['key_green'] = StaticText(_('Use'))
+		if not os.path.exists(downloadDir):
+			downloadDir = '/'
 		self.filelist = FileList(downloadDir, showFiles = False)
 		self['filelist'] = self.filelist
 		self['FilelistActions'] = ActionMap(['SetupActions', 'ColorActions'],

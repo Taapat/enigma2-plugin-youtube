@@ -1077,15 +1077,19 @@ class YouTubeMain(Screen):
 			self.session.open(YouTubeInfo, current = current)
 
 	def videoDownload(self, url, title):
-		outputfile = config.plugins.YouTube.downloadDir.value[2:-2] + title + '.mp4'
-		if os.path.exists(outputfile):
-			msg = _('Sorry, this file already exists:\n%s') % title
+		downloadDir = config.plugins.YouTube.downloadDir.value[2:-2]
+		if not os.path.exists(downloadDir):
+			msg = _('Sorry, download directory not exist!\nPlease specify in the settings existing directory.')
 		else:
-			from YouTubeDownload import downloadJob
-			from Components.Task import job_manager
-			job_manager.AddJob(downloadJob(url, outputfile, title[:20], self.downloadStop))
-			self.activeDownloads += 1
-			msg = _('Video download started!')
+			outputfile = downloadDir + title + '.mp4'
+			if os.path.exists(outputfile):
+				msg = _('Sorry, this file already exists:\n%s') % title
+			else:
+				from YouTubeDownload import downloadJob
+				from Components.Task import job_manager
+				job_manager.AddJob(downloadJob(url, outputfile, title[:20], self.downloadStop))
+				self.activeDownloads += 1
+				msg = _('Video download started!')
 		self.session.open(MessageBox, msg, MessageBox.TYPE_INFO, timeout = 5)
 
 	def downloadStop(self):
