@@ -1077,7 +1077,9 @@ class YouTubeMain(Screen):
 			self.session.open(YouTubeInfo, current = current)
 
 	def videoDownload(self, url, title):
-		downloadDir = config.plugins.YouTube.downloadDir.value[2:-2]
+		downloadDir = config.plugins.YouTube.downloadDir.value
+		if downloadDir[0] == "'":
+			downloadDir = downloadDir[2:-2]
 		if not os.path.exists(downloadDir):
 			msg = _('Sorry, download directory not exist!\nPlease specify in the settings existing directory.')
 		else:
@@ -1253,14 +1255,17 @@ class YouTubeSetup(ConfigListScreen, Screen):
 	def ok(self):
 		if self["config"].getCurrent()[1] == config.plugins.YouTube.downloadDir:
 			from YouTubeDownload import YouTubeDirBrowser
-			self.session.openWithCallback(self.downloadPath, YouTubeDirBrowser, 
-				config.plugins.YouTube.downloadDir.value[2:-2])
+			downloadDir = config.plugins.YouTube.downloadDir.value
+			if downloadDir[0] == "'":
+				downloadDir = downloadDir[2:-2]
+			self.session.openWithCallback(self.downloadPath,
+				YouTubeDirBrowser, downloadDir)
 		else:
 			self.keySave()
 
 	def downloadPath(self, res):
 		if res:
-			config.plugins.YouTube.downloadDir.setValue("'[" + res + "]'")
+			config.plugins.YouTube.downloadDir.setValue(res)
 
 	def checkLoginSatus(self):
 		if self.login != config.plugins.YouTube.login.value:
