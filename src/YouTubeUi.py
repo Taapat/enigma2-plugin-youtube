@@ -57,6 +57,7 @@ config.plugins.YouTube.searchRegion = ConfigSelection(
 	('ES', _('Spain')),
 	('SE', _('Sweden')),
 	('TW', _('Taiwan')),
+	('TH', _('Thailand')),
 	('US', _('United States'))
 	], None)
 config.plugins.YouTube.searchLanguage = ConfigSelection(
@@ -84,6 +85,7 @@ config.plugins.YouTube.searchLanguage = ConfigSelection(
 	('es', _('Spain')),
 	('se', _('Sweden')),
 	('tw', _('Taiwan')),
+	('th', _('Thailand')),
 	('us', _('United States'))
 	], None)
 config.plugins.YouTube.searchOrder = ConfigSelection(
