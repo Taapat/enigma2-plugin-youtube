@@ -1,0 +1,463 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: enigma2.plugins.mytube\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-12 13:25+0300\n"
+"PO-Revision-Date: 2015-07-23 17:32+0100\n"
+"Last-Translator: Vasiliks <vasiliks@yandex.ru>\n"
+"Language-Team: Vasiliks <vasiliks@yandex.ru>\n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.7.4\n"
+
+msgid " dislikes"
+msgstr " не сподобалося"
+
+msgid " likes"
+msgstr " сподобалося"
+
+msgid " views"
+msgstr " переглядів"
+
+msgid "Active video downloads"
+msgstr "Активні відеозавантаження"
+
+msgid "All"
+msgstr "Всі"
+
+msgid "Ask user"
+msgstr "Запитати користувача"
+
+msgid "Australia"
+msgstr "Австралія"
+
+msgid "Brazil"
+msgstr "Бразилія"
+
+msgid "Canada"
+msgstr "Канада"
+
+msgid "Cancel"
+msgstr "Скасувати"
+
+msgid "Choose what you want to do"
+msgstr "Виберіть, що будете робити"
+
+msgid "Close YouTube"
+msgstr "Закрити YouTube"
+
+msgid "Created date"
+msgstr "Дата створення"
+
+msgid "Czech Republic"
+msgstr "Чехія"
+
+msgid "Disliked!"
+msgstr "Не сподобалося!"
+
+msgid "Download directory:"
+msgstr "Каталог для завантаження"
+
+msgid "Download feed entries. Please wait..."
+msgstr "Відбувається завантаження фідів. Зачекайте ..."
+
+msgid "Download search results. Please wait..."
+msgstr "Завантаження результатів пошуку. Зачекайте ..."
+
+msgid "Download video"
+msgstr "Скачати відео"
+
+msgid "Downloading"
+msgstr "Заванаження"
+
+msgid "Duration: "
+msgstr "Тривалість: "
+
+msgid "Embedded in webpages"
+msgstr "Відео на веб-сайтах"
+
+msgid "Exclude restricted content:"
+msgstr "Виключити закритий контент:"
+
+msgid "Exit"
+msgstr "Вихід"
+
+msgid "Extract video url. Please wait..."
+msgstr "Витяг відеопосилання. Подождите..."
+
+msgid "Favorites"
+msgstr "Фаворити"
+
+msgid "France"
+msgstr "Франція"
+
+msgid "Germany"
+msgstr "Німеччина"
+
+msgid ""
+"Go to %s\n"
+"And enter the code %s"
+msgstr ""
+"Ідіть на %s\n"
+"Та введіть код %s"
+
+msgid "Great Britain"
+msgstr "Англія"
+
+msgid "HD videos"
+msgstr "HD відео"
+
+msgid "History"
+msgstr "Історія"
+
+msgid "Holland"
+msgstr "Голландія"
+
+msgid "Hong Kong"
+msgstr "Гонконг"
+
+msgid ""
+"How many search results will be returned.\n"
+"If greater value then longer time will be needed for thumbnail download."
+msgstr ""
+"Скільки результатів пошуку будуть показані.\n"
+"Чим більше значення, тим більше часу буде потрібно для завантаження мініатюр."
+
+msgid "I dislike this"
+msgstr "Мені не сподобалося"
+
+msgid "I like this"
+msgstr "Мені сподобалося"
+
+msgid "India"
+msgstr "Індія"
+
+msgid "Ireland"
+msgstr "Ірландія"
+
+msgid "Israel"
+msgstr "Ізраїль"
+
+msgid "Italy"
+msgstr "Італія"
+
+msgid "Japan"
+msgstr "Японія"
+
+msgid "Keyboard"
+msgstr "Клавіатура"
+
+msgid "Latvia"
+msgstr "Латвія"
+
+msgid "Liked videos"
+msgstr "Відео сподобалося"
+
+msgid "Liked!"
+msgstr "Сподобалося!"
+
+msgid ""
+"Log in to your YouTube account when plugin starts.\n"
+"This needs to approve in the Google home page!"
+msgstr ""
+"Використовувати ваш аккаунт YouTube, при запуску плагіна.\n"
+"Це треба підтвердити на домашній сторінці Google!"
+
+msgid "Login on startup:"
+msgstr "Авторизація при запуску:"
+
+msgid "Maximum video resolution:"
+msgstr "Максимальний дозвіл відео:"
+
+msgid "Mexico"
+msgstr "Мексика"
+
+msgid "Moderate"
+msgstr "Помірно"
+
+msgid "Most viewed"
+msgstr "Лідери переглядів"
+
+msgid "Movies"
+msgstr "Фільми"
+
+msgid "My Subscriptions"
+msgstr "Мої підписки"
+
+msgid "My feeds"
+msgstr "Мої фіди"
+
+msgid "New Zealand"
+msgstr "Нова Зеландія"
+
+msgid "No"
+msgstr "Ні"
+
+msgid "No, but play video again"
+msgstr "Ні, програти це відео ще раз"
+
+msgid "Ok"
+msgstr "Ок"
+
+msgid "Open"
+msgstr "Відкрити"
+
+msgid "Order in which search results will be displayed."
+msgstr "Порядок, відображення результатів пошуку."
+
+msgid "Play next"
+msgstr "Відтворити наступне"
+
+msgid "Play next video"
+msgstr "Відтворити наступне відео"
+
+msgid "Play previous video"
+msgstr "Відтворити попереднє відео"
+
+msgid "Play video again"
+msgstr "Відтворити відео знову"
+
+msgid "Playlists"
+msgstr "Плейлисти"
+
+msgid "Please select the download directory"
+msgstr "Пожалуйста, выберите каталог для загрузки"
+
+msgid "Poland"
+msgstr "Польща"
+
+msgid "Public feeds"
+msgstr "Публічні фіди"
+
+msgid "Quit"
+msgstr "Вихід"
+
+msgid "Rating"
+msgstr "Рейтинг"
+
+msgid "Rating removed!"
+msgstr "Рейтинг видалений!"
+
+msgid "Recent"
+msgstr "Недавні"
+
+msgid "Relevance"
+msgstr "Актуальність"
+
+msgid "Remove my rating"
+msgstr "Видалити мій рейтинг"
+
+msgid "Repeat"
+msgstr "Повторення"
+
+msgid "Return search results for the specified country."
+msgstr "Повернути результати пошуку для конкретної країни."
+
+msgid "Return search results that are most relevant to the specified language."
+msgstr "Повернути результати пошуку, найбільш актуальні для зазначеної мови."
+
+msgid "Return to list"
+msgstr "Повернутися до списку"
+
+msgid "Russia"
+msgstr "Россія"
+
+msgid "Save search result:"
+msgstr "Зберегти результат пошуку:"
+
+msgid "Save your search result in the history, when search completed."
+msgstr "Зберегти результат пошуку в історії, після завершення."
+
+msgid "Search"
+msgstr "Шукати"
+
+msgid "Search channels"
+msgstr "Пошук каналів"
+
+msgid "Search for similar"
+msgstr "Шукати схоже"
+
+msgid "Search language:"
+msgstr "Мова пошуку:"
+
+msgid "Search playlists"
+msgstr "Пошук плейлистів"
+
+msgid "Search region:"
+msgstr "Регіон пошуку:"
+
+msgid "Search results:"
+msgstr "Результати пошуку:"
+
+msgid "Search videos"
+msgstr "Пошук відео"
+
+msgid "Shows"
+msgstr "Шоу"
+
+msgid ""
+"Sorry, this file already exists:\n"
+"%s"
+msgstr ""
+"На жаль, цей файл уже існує:\n"
+"%s"
+
+msgid "Sort search results by:"
+msgstr "Сортувати результати пошуку по:"
+
+msgid "South Korea"
+msgstr "Южна Корея"
+
+msgid "Spain"
+msgstr "Іспанія"
+
+msgid "Specify the directory where save downloaded video files."
+msgstr "Вкажіть каталог, для збереження відеофайлів."
+
+msgid "Stop playing this movie?"
+msgstr "Вийти з цього відео?"
+
+msgid "Subscribe"
+msgstr "Підписатися"
+
+msgid "Subscribed!"
+msgstr "Підписка оформлена!"
+
+msgid "Sweden"
+msgstr "Швеція"
+
+msgid "Taiwan"
+msgstr "Тайвань"
+
+msgid ""
+"There was an error in creating entry list!\n"
+"Maybe try other feeds..."
+msgstr ""
+"Помилка у створенні списку!\n"
+"Спробуйте інші канали ..."
+
+msgid ""
+"There was an error in extract video url:\n"
+"%s"
+msgstr ""
+"Помилка при витяганні відеоссилки:\n"
+"%s"
+
+msgid "There was an error in rating!"
+msgstr "Помилка в створенні рейтингу!"
+
+msgid "There was an error in subscribe!"
+msgstr "Помилка в підписці!"
+
+msgid "There was an error in unsubscribe!"
+msgstr "Помилка в скасування підписки!"
+
+msgid "Title"
+msgstr "Назва"
+
+msgid ""
+"To perform authentication will need in a web browser open Google home page, "
+"and enter the code!\n"
+"If you continue, then you can not stop until the authentication will not be "
+"complete!\n"
+"Do you currently have Internet access on the other device and we can "
+"continue?"
+msgstr ""
+"Для виконання перевірки аутентичності потрібно буде в веб-браузері відкрити "
+"домашню сторінку Google, та ввести код!\n"
+"Якщо ви будете продовжувати, то ви не зможете зупинитися, поки "
+"аутентифікація не буде закінчена!\n"
+"Чи є у вас в даний час доступ до інтернету на іншому пристрої, та ми можемо "
+"продовжити?"
+
+msgid "Top rated"
+msgstr "Кращі по рейтингу"
+
+msgid "Try to exclude all restricted content from the search result."
+msgstr "Спробувати виключити весь обмежений вміст з результатів пошуку."
+
+msgid "United States"
+msgstr "США"
+
+msgid "Unsubscribe"
+msgstr "Відмінити підписку"
+
+msgid "Unsubscribed!"
+msgstr "Підписка відмінена!"
+
+msgid "Uploads"
+msgstr "Мої завантаження"
+
+msgid "Use"
+msgstr "Використати"
+
+msgid "Video download started!"
+msgstr "Завантаження відео розпочалась!"
+
+msgid "View count"
+msgstr "Кількість переглядів"
+
+msgid "Watch Later"
+msgstr "Переглянути пізніше"
+
+msgid "Watch YouTube videos"
+msgstr "Перегляд видео з YouTube"
+
+msgid "What do you want to do?"
+msgstr "Що ви хочете зробити?"
+
+msgid ""
+"What maximum resolution used when playing video, if available.\n"
+"If you have a slow Internet connection, you can use a lower resolution."
+msgstr ""
+"Який максимальний дозвіл використовувати при відтворенні відео, якщо такий "
+"є\n"
+"Якщо у вас повільне підключення до інтернету, ви можете використовувати "
+"більш низкий дозвіл."
+
+msgid "What to do when stop playback in videoplayer."
+msgstr "Що робити, якщо зупинити відтворення в відеоплеєрі."
+
+msgid "What to do when the video ends."
+msgstr "Що робити, коли відео закінчилося."
+
+msgid "When playback stop:"
+msgstr "Коли відтворення зупинено:"
+
+msgid "When video ends:"
+msgstr "Коли відео закінчилося:"
+
+msgid "Yes"
+msgstr "Да"
+
+msgid "Yes, but play next video"
+msgstr "Так, але програти наступне відео"
+
+msgid "Yes, but play previous video"
+msgstr "Так, але програти попереднє відео"
+
+msgid ""
+"You already authorized access for this plugin to your YouTube account.\n"
+"Do you want to do it again to update access data?"
+msgstr ""
+"Ви вже авторизовали доступ цього плагіну до вашого облікового запису "
+"YouTube.\n"
+"Ви хочете це зробити знову, щоб оновити дані доступу?"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "YouTube info"
+msgstr "YouTube інформація"
+
+msgid "YouTube search"
+msgstr "Пошук YouTube"
+
+msgid "YouTube setup"
+msgstr "Налаштування YouTube"
+
+msgid "YouTube starting. Please wait..."
+msgstr "YouTube запускається. Зачекайте ..."
