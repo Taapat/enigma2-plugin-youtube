@@ -991,14 +991,15 @@ class YouTubeMain(Screen):
 				if self.list == 'videolist':
 					list += ((_('I like this'), 'like'),
 							(_('I dislike this'), 'dislike'),
-							(_('Remove my rating'), 'none'),
-							(_('Search for similar'), 'similar'),
-							(_('Download video'), 'download'),)
+							(_('Remove my rating'), 'none'),)
 				elif self.list == 'channel' and self.prevIndex[1][1] != 'myfeeds':
 					list += ((_('Subscribe'), 'subscribe'),)
 				elif self.list == 'playlist' and self.prevIndex[1][1] == 'myfeeds' and \
 					len(self.prevIndex) == 2:
 					list += ((_('Unsubscribe'), 'unsubscribe'),)
+			if self.list == 'videolist':
+				list += ((_('Search for similar'), 'similar'),
+					(_('Download video'), 'download'),)
 			if self.activeDownloads > 0:
 				list += ((_('Active video downloads'), 'download_list'),)
 			self.session.openWithCallback(self.menuCallback,
