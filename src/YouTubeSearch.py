@@ -195,7 +195,9 @@ class GoogleSuggestionsConfigText(ConfigText):
 		self.updateSuggestions = updateSuggestions
 		self.suggestions = GoogleSuggestions()
 		if config.plugins.YouTube.searchRegion.value:
-			self.suggestions.hl = config.plugins.YouTube.searchRegion.value.lower()
+			self.suggestions.gl = config.plugins.YouTube.searchRegion.value
+		if config.plugins.YouTube.searchLanguage.value:
+			self.suggestions.hl = config.plugins.YouTube.searchLanguage.value
 		self.suggestionsThread = None
 		self.suggestionsThreadRunning = False
 
@@ -246,13 +248,16 @@ class GoogleSuggestionsConfigText(ConfigText):
 
 class GoogleSuggestions():
 	def __init__(self):
-		self.hl = 'en'
+		self.gl = None
+		self.hl = None
 
 	def getSuggestions(self, queryString):
 		if not queryString:
 			return None
 		else:
 			query = '/complete/search?output=toolbar&client=youtube&xml=true&ds=yt'
+			if self.gl:
+				query += '&gl=' + self.gl
 			if self.hl:
 				query += '&hl=' + self.hl
 			query += '&jsonp=self.getSuggestions&q=' + quote(queryString)
