@@ -314,6 +314,7 @@ class YouTubeMain(Screen):
 		self.youtube = None
 		self.isAuth = False
 		self.eventInfo = [None]
+		self.activeDownloads = 0
 		self.onLayoutFinish.append(self.layoutFinish)
 		self.onClose.append(self.cleanVariables)
 
@@ -998,7 +999,8 @@ class YouTubeMain(Screen):
 				elif self.list == 'playlist' and self.prevIndex[1][1] == 'myfeeds' and \
 					len(self.prevIndex) == 2:
 					list += ((_('Unsubscribe'), 'unsubscribe'),)
-			list += ((_('Active video downloads'), 'download_list'),)
+			if self.activeDownloads > 0:
+				list += ((_('Active video downloads'), 'download_list'),)
 			self.session.openWithCallback(self.menuCallback,
 				ChoiceBox, title = title, list = list)
 
@@ -1080,9 +1082,13 @@ class YouTubeMain(Screen):
 		else:
 			from YouTubeDownload import downloadJob
 			from Components.Task import job_manager
-			job_manager.AddJob(downloadJob(url, outputfile, title[:20]))
+			job_manager.AddJob(downloadJob(url, outputfile, title[:20], self.downloadStop))
+			self.activeDownloads += 1
 			msg = _('Video download started!')
 		self.session.open(MessageBox, msg, MessageBox.TYPE_INFO, timeout = 5)
+
+	def downloadStop(self):
+		self.activeDownloads -= 1
 
 
 class YouTubeInfo(Screen):

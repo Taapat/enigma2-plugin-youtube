@@ -44,16 +44,17 @@ class YouTubeDirBrowser(Screen):
 
 
 class downloadJob(Job):
-	def __init__(self, url, outputfile, title):
+	def __init__(self, url, outputfile, title, downloadStop):
 		Job.__init__(self, title)
-		downloadTask(self, url, outputfile)
+		downloadTask(self, url, outputfile, downloadStop)
 
 
 class downloadTask(Task):
-	def __init__(self, job, url, outputfile):
+	def __init__(self, job, url, outputfile, downloadStop):
 		Task.__init__(self, job, _('Downloading'))
 		self.url = url
 		self.outputfile = outputfile
+		self.downloadStop = downloadStop
 
 	def run(self, callback):
 		self.callback = callback
@@ -67,6 +68,7 @@ class downloadTask(Task):
 
 	def downloadFinished(self, result):
 		Task.processFinished(self, 0)
+		self.downloadStop()
 
 	def downloadFailed(self, failure_instance=None, error_message=''):
 		print '[YouTube] Video download failed'
@@ -74,6 +76,7 @@ class downloadTask(Task):
 			error_message = failure_instance.getErrorMessage()
 			print '[YouTube]', str(error_message)
 		Task.processFinished(self, 1)
+		self.downloadStop()
 
 
 class YouTubeDownloadList(Screen):
