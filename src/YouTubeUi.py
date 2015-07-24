@@ -1,7 +1,7 @@
 import os
 from twisted.web.client import downloadPage
 
-from enigma import ePicLoad, ePoint, eServiceReference, eTimer, getDesktop
+from enigma import ePicLoad, eServiceReference, eTimer, getDesktop
 from Components.ActionMap import ActionMap
 from Components.AVSwitch import AVSwitch
 from Components.config import config, ConfigDirectory, ConfigSelection, \
