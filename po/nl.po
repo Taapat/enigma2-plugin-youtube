@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-24 00:33+0300\n"
+"POT-Creation-Date: 2015-07-25 01:14+0300\n"
 "PO-Revision-Date: 2015-07-24 12:51+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team:  <LL@li.org>\n"
@@ -54,6 +54,9 @@ msgstr "Gemaakt op"
 
 msgid "Czech Republic"
 msgstr "Czechische Republiek"
+
+msgid "Delete this entry"
+msgstr ""
 
 msgid "Disliked!"
 msgstr ""

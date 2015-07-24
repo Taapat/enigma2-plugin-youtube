@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-24 00:33+0300\n"
+"POT-Creation-Date: 2015-07-25 01:14+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -55,6 +55,9 @@ msgstr "Izveidošanas datuma"
 
 msgid "Czech Republic"
 msgstr "Čehija"
+
+msgid "Delete this entry"
+msgstr "Dzēst šo ierakstu"
 
 msgid "Disliked!"
 msgstr "Atzīmēts, ka nepatīk!"

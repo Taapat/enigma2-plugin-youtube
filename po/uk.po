@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-24 00:33+0300\n"
+"POT-Creation-Date: 2015-07-25 01:14+0300\n"
 "PO-Revision-Date: 2015-07-23 17:32+0100\n"
 "Last-Translator: Vasiliks <vasiliks@yandex.ru>\n"
 "Language-Team: Vasiliks <vasiliks@yandex.ru>\n"
@@ -54,6 +54,9 @@ msgstr "Дата створення"
 
 msgid "Czech Republic"
 msgstr "Чехія"
+
+msgid "Delete this entry"
+msgstr ""
 
 msgid "Disliked!"
 msgstr "Не сподобалося!"
