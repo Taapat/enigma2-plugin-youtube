@@ -9,6 +9,7 @@ from Components.config import config, ConfigText, getConfigListEntry
 from Components.config import KEY_DELETE, KEY_BACKSPACE, KEY_ASCII, KEY_TIMEOUT
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
+from Components.Pixmap import Pixmap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 
@@ -18,7 +19,7 @@ from . import _
 class YouTubeSearch(Screen, ConfigListScreen):
 	screenWidth = getDesktop(0).size().width()
 	if screenWidth and screenWidth == 1920:
-		skin = """<screen position="center,100" size="945,555">
+		skin = """<screen position="center,225" size="945,555">
 				<widget name="config" position="center,22" size="900,45" zPosition="2" \
 					scrollbarMode="showNever" itemHeight="45" font="Regular;30" />
 				<widget source="list" render="Listbox" position="center,75" size="900,409" \
@@ -44,9 +45,11 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 				<ePixmap position="847,502" size="53,38" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
-				</screen>"""
+				<widget name="HelpWindow" position="600,810" size="1,1" zPosition="5" \
+					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
+			</screen>"""
 	else:
-		skin = """<screen position="center,80" size="630,370">
+		skin = """<screen position="center,150" size="630,370">
 				<widget name="config" position="center,15" size="600,30" zPosition="2" \
 					scrollbarMode="showNever" />
 				<widget source="list" render="Listbox" position="center,48" size="600,273" \
@@ -72,7 +75,9 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					valign="center" halign="center" font="Regular;22" transparent="1" />
 				<ePixmap position="565,335" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
-				</screen>"""
+				<widget name="HelpWindow" position="400,540" size="1,1" zPosition="5" \
+					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
+			</screen>"""
 
 	def __init__(self, session, searchType):
 		Screen.__init__(self, session)
@@ -82,6 +87,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		self['key_red'] = StaticText(_('Exit'))
 		self['key_green'] = StaticText(_('Ok'))
 		self['key_yellow'] = StaticText(_('Keyboard'))
+		self['HelpWindow'] = Pixmap()
 		self['searchactions'] = ActionMap(['SetupActions', 'ColorActions', 'MenuActions'],
 			{
 				'cancel': self.close,
