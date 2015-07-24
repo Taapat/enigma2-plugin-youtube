@@ -11,6 +11,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
+from Components.Task import job_manager
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.InfoBar import InfoBar, MoviePlayer
@@ -479,6 +480,8 @@ class YouTubeMain(Screen):
 			self.ytdl = YouTubeVideoUrl()
 			self.createBuild()
 			self.createMainList()
+			for job in job_manager.getPendingJobs():
+				self.activeDownloads += 1
 		elif self.action in ['playVideo', 'downloadVideo']:
 			videoUrl = self.value[6]
 			if not videoUrl: # remember video url
@@ -1088,7 +1091,6 @@ class YouTubeMain(Screen):
 				msg = _('Sorry, this file already exists:\n%s') % title
 			else:
 				from YouTubeDownload import downloadJob
-				from Components.Task import job_manager
 				job_manager.AddJob(downloadJob(url, outputfile, title[:20], self.downloadStop))
 				self.activeDownloads += 1
 				msg = _('Video download started!')
