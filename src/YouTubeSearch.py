@@ -4,6 +4,7 @@ from urllib import quote
 from xml.etree.cElementTree import fromstring
 
 from enigma import ePythonMessagePump, getDesktop
+from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Components.config import config, ConfigText, getConfigListEntry
 from Components.config import KEY_DELETE, KEY_BACKSPACE, KEY_ASCII, KEY_TIMEOUT
@@ -95,7 +96,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				'red': self.close,
 				'green': self.ok,
 				'yellow': self.openKeyboard,
-				'menu': self.openSetup
+				'menu': self.openMenu
 			}, -2)
 		searchList = []
 		ConfigListScreen.__init__(self, searchList, session)
@@ -141,12 +142,33 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				config.plugins.YouTube.searchHistory.save()
 			self.close([self.searchType, searchValue, None], 'OpenSearch')
 
-	def openSetup(self):
-		from YouTubeUi import YouTubeSetup
-		current = self['config'].getCurrent()[1]
-		if current.help_window.instance is not None:
-			current.help_window.instance.hide()
-		self.session.openWithCallback(self.screenCallback, YouTubeSetup)
+	def openMenu(self):
+		selected = self['list'].getCurrent()[0]
+		if selected:
+			title = _('What do you want to do?')
+			sellist = ((_('YouTube setup'), 'setup'),
+					(_('Delete this entry'), 'delete'),)
+			self.session.openWithCallback(self.menuCallback,
+				ChoiceBox, title = title, list = sellist)
+		else:
+			self.menuCallback('setup')
+
+	def menuCallback(self, answer):
+		if answer:
+			if answer[1] == 'delete':
+				self.searchHistory.remove(self['list'].getCurrent()[0])
+				searchList = []
+				for entry in self.searchHistory:
+					searchList.append((entry, None))
+				self['list'].updateList(searchList)
+				config.plugins.YouTube.searchHistory.value = ','.join(self.searchHistory)
+				config.plugins.YouTube.searchHistory.save()
+			else:
+				from YouTubeUi import YouTubeSetup
+				current = self['config'].getCurrent()[1]
+				if current.help_window.instance is not None:
+					current.help_window.instance.hide()
+				self.session.openWithCallback(self.screenCallback, YouTubeSetup)
 
 	def screenCallback(self, callback=None):
 		current = self['config'].getCurrent()[1]
