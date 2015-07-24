@@ -9,6 +9,7 @@ from Components.config import config, ConfigDirectory, ConfigSelection, \
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Pixmap import Pixmap
+from Components.ScrollLabel import ScrollLabel
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.Task import job_manager
@@ -1149,20 +1150,23 @@ class YouTubeInfo(Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_('YouTube info'))
 		self['key_red'] = StaticText(_('Exit'))
-		self['actions'] = ActionMap(['ColorActions', 'InfobarShowHideActions'],
-			{
-				'red': self.close,
-				'toggleShow': self.close,
-				'hide': self.close,
-				'infoButton': self.close
-			}, -2)
 		self['title'] = Label(current[0])
 		self['pic'] = Pixmap()
-		self['description'] = Label(current[3])
+		self['description'] = ScrollLabel(current[3])
 		self['views'] = Label(current[1])
 		self['duration'] = Label(current[2])
 		self['likes'] = Label(current[4])
 		self['dislikes'] = Label(current[5])
+		self['actions'] = ActionMap(['ColorActions',
+			'InfobarShowHideActions', 'DirectionActions'],
+			{
+				'red': self.close,
+				'toggleShow': self.close,
+				'hide': self.close,
+				'infoButton': self.close,
+				'up': self['description'].pageUp,
+				'down': self['description'].pageDown
+			}, -2)
 		self.picloads = None
 		self.ThumbnailUrl = current[6]
 		self.onLayoutFinish.append(self.LayoutFinish)
