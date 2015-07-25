@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-25 01:14+0300\n"
-"PO-Revision-Date: 2015-07-24 12:51+0100\n"
+"PO-Revision-Date: 2015-07-25 11:03+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team:  <LL@li.org>\n"
 "Language: \n"
@@ -20,10 +20,10 @@ msgid " likes"
 msgstr ""
 
 msgid " views"
-msgstr ""
+msgstr "gezien"
 
 msgid "Active video downloads"
-msgstr "Aktieve videodownloads"
+msgstr "Actieve videodownloads"
 
 msgid "All"
 msgstr "Alle"
@@ -56,7 +56,7 @@ msgid "Czech Republic"
 msgstr "Czechische Republiek"
 
 msgid "Delete this entry"
-msgstr ""
+msgstr "Verwijder dit trefwoord "
 
 msgid "Disliked!"
 msgstr ""
@@ -83,7 +83,7 @@ msgid "Embedded in webpages"
 msgstr "Opgenomen in webpagina's"
 
 msgid "Exclude restricted content:"
-msgstr ""
+msgstr "Sluit vertrouwelijke inhoud uit"
 
 msgid "Exit"
 msgstr "Sluit af"
@@ -180,10 +180,10 @@ msgid "Mexico"
 msgstr "Mexico"
 
 msgid "Moderate"
-msgstr ""
+msgstr "Gamatigd"
 
 msgid "Most viewed"
-msgstr ""
+msgstr "Meest bekeken"
 
 msgid "Movies"
 msgstr "Films"
@@ -385,7 +385,7 @@ msgid "Top rated"
 msgstr "Hoogste waarderingen"
 
 msgid "Try to exclude all restricted content from the search result."
-msgstr ""
+msgstr "Probeer alle vertrouwelijke inhoud te verbergen voor de geschiedenis."
 
 msgid "United States"
 msgstr "Verenigde Staten"
@@ -406,7 +406,7 @@ msgid "Video download started!"
 msgstr "Videodownload gestart!"
 
 msgid "View count"
-msgstr ""
+msgstr "Aantal keren gezien"
 
 msgid "Watch Later"
 msgstr "Bekijk later"
@@ -466,3 +466,4 @@ msgstr "YouTube instellingen"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube is aan het starten. Even wachten..."
+
