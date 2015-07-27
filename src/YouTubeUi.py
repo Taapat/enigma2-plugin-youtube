@@ -1030,11 +1030,12 @@ class YouTubeMain(Screen):
 			elif answer[1] == 'unsubscribe':
 				msg = self.unsubscribeChannel()
 			elif answer[1] == 'similar':
-				term = self['list'].getCurrent()[3][:20]
+				term = self['list'].getCurrent()[3][:30]
 				self.screenCallback(['video', term, None], 'OpenSearch')
 			elif answer[1] == 'channel_videos':
-				term = self['list'].getCurrent()[11]
-				self.screenCallback([term, _('Search'), None], 'OpenChannelList')
+				current = self['list'].getCurrent()
+				self.screenCallback([current[11], current[3][:30], None],
+					'OpenChannelList')
 			elif answer[1] == 'download':
 				current = self['list'].getCurrent()
 				if current[6]:
