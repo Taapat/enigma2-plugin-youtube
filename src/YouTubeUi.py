@@ -336,122 +336,77 @@ class YouTubeMain(Screen):
 		self.prevEntryList = None
 		self.eventInfo = None
 
+	def createDefEntryList(self, entry_list, append):
+		if not append:
+			self.entryList = []
+		for Id, Title in entry_list:
+			self.entryList.append((
+					Id,     # Id
+					None,   # Thumbnail url
+					None,   # Thumbnail
+					Title,  # Title
+					'',     # Views
+					'',     # Duration
+					None,   # Video url
+					None,   # Description
+					None,   # Likes
+					None,   # Dislikes
+					None,   # Big thumbnail url
+					None,   # Channel Id
+				))
+
 	def createMainList(self):
 		self.list = 'main'
 		self.value = [None, None, None]
 		self.text = _('Choose what you want to do')
-		self.entryList = [(
-				'Search',           # Id
-				None,               # Thumbnail url
-				None,               # Thumbnail
-				_('Search'),        # Title
-				'',                 # Views
-				'',                 # Duration
-				None,               # Video url
-				None,               # Description
-				None,               # Likes
-				None,               # Dislikes
-				None,               # Big thumbnail url
-				None                # Channel Id
-			),(
-				'PubFeeds', None, None,
-				_('Public feeds'), '', '', None,
-				None, None, None, None, None
-			)]
+		self.createDefEntryList([
+				['Search', _('Search')],
+				['PubFeeds', _('Public feeds')]
+			], False)
 		if config.plugins.YouTube.login.value and \
 			config.plugins.YouTube.refreshToken.value != '':
-			self.entryList.append(('MyFeeds', None, None,
-				_('My feeds'), '', '', None, None,
-				None, None, None, None))
+			self.createDefEntryList([['MyFeeds', _('My feeds')]], True)
 		self.setEntryList()
 
 	def createSearchList(self):
 		self.list = 'search'
 		self.value = [None, None, None]
 		self.text = _('Search')
-		self.entryList = [(
-				'Searchvideo', None, None,
-				_('Search videos'), '', '', None,
-				None, None, None, None, None
-			),(
-				'Searchchannel', None, None,
-				_('Search channels'), '', '', None,
-				None, None, None, None, None
-			),(
-				'Searchplaylist', None, None,
-				_('Search playlists'), '', '', None,
-				None, None, None, None, None
-			)]
+		self.createDefEntryList([
+				['Searchvideo', _('Search videos')],
+				['Searchchannel', _('Search channels')],
+				['Searchplaylist', _('Search playlists')]
+			], False)
 		self.setEntryList()
 
 	def createFeedList(self):
 		self.list = 'feeds'
 		self.value = [None, None, None]
 		self.text = _('Public feeds')
-		self.entryList = [(
-				'top_rated', None, None,
-				_('Top rated'), '', '', None,
-				None, None, None, None, None
-			),(
-				'most_viewed', None, None,
-				_('Most viewed'), '', '', None,
-				None, None, None, None, None
-			),(
-				'most_recent', None, None,
-				_('Recent'), '', '', None,
-				None, None, None, None, None
-			),(
-				'HD_videos', None, None,
-				_('HD videos'), '', '', None,
-				None, None, None, None, None
-			),(
-				'embedded_videos', None, None,
-				_('Embedded in webpages'), '', '', None,
-				None, None, None, None, None
-			),(
-				'episodes', None, None,
-				_('Shows'), '', '', None,
-				None, None, None, None, None
-			),(
-				'movies', None, None,
-				_('Movies'), '', '', None,
-				None, None, None, None, None
-			)]
+		self.createDefEntryList([
+				['top_rated', _('Top rated')],
+				['most_viewed', _('Most viewed')],
+				['most_recent', _('Recent')],
+				['HD_videos', _('HD videos')],
+				['embedded_videos', _('Embedded in webpages')],
+				['episodes', _('Shows')],
+				['movies', _('Movies')]
+			], False)
 		self.setEntryList()
 
 	def createMyFeedList(self):
 		self.list = 'myfeeds'
 		self.value = [None, None, None]
 		self.text = _('My feeds')
-		self.entryList = [(
-				'my_subscriptions', None, None,
-				_('My Subscriptions'), '', '', None,
-				None, None, None, None, None
-			),(
-				'my_watch_later', None, None,
-				_('Watch Later'), '', '', None,
-				None, None, None, None, None
-			),(
-				'my_history', None, None,
-				_('History'), '', '', None,
-				None, None, None, None, None
-			),(
-				'my_liked_videos', None, None,
-				_('Liked videos'), '', '', None,
-				None, None, None, None, None
-			),(
-				'my_favorites', None, None,
-				_('Favorites'), '', '', None,
-				None, None, None, None, None
-			),(
-				'my_uploads', None, None,
-				_('Uploads'), '', '', None,
-				None, None, None, None, None
-			),(
-				'my_playlists', None, None,
-				_('Playlists'), '', '', None,
-				None, None, None, None, None
-			)]
+		self.createDefEntryList([
+				['my_subscriptions', _('My Subscriptions')],
+				['my_watch_later', _('Watch Later')],
+				['my_history', _('History')],
+				['my_liked_videos', _('Liked videos')],
+				['my_favorites', _('Favorites')],
+				['my_uploads', _('Uploads')],
+				['my_playlists', _('Playlists')]
+			], False)
 		self.setEntryList()
 
 	def screenCallback(self, value = None, action = None):
