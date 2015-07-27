@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-25 01:14+0300\n"
+"POT-Creation-Date: 2015-07-27 21:24+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -405,6 +405,9 @@ msgstr "Lietot"
 
 msgid "Video download started!"
 msgstr "Video lejupielāde uzsākta!"
+
+msgid "Videos from this video channel"
+msgstr "Citi video no šī video kanāla"
 
 msgid "View count"
 msgstr "Skatījumiem"

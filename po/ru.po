@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-25 01:14+0300\n"
+"POT-Creation-Date: 2015-07-27 21:24+0300\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -404,6 +404,9 @@ msgstr "Использовать"
 
 msgid "Video download started!"
 msgstr "Загрузка видео началась!"
+
+msgid "Videos from this video channel"
+msgstr "Другие видео от канала этого видео"
 
 msgid "View count"
 msgstr "Количество просмотров"
