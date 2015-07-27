@@ -1003,7 +1003,8 @@ class YouTubeMain(Screen):
 				if self.list == 'videolist':
 					list += ((_('I like this'), 'like'),
 							(_('I dislike this'), 'dislike'),
-							(_('Remove my rating'), 'none'),)
+							(_('Remove my rating'), 'none'),
+							(_('Subscribe this video channel'), 'subscribe_video'),)
 				elif self.list == 'channel' and self.prevIndex[1][1] != 'myfeeds':
 					list += ((_('Subscribe'), 'subscribe'),)
 				elif self.list == 'playlist' and self.prevIndex[1][1] == 'myfeeds' and \
@@ -1026,7 +1027,11 @@ class YouTubeMain(Screen):
 			elif answer[1] == 'setup':
 				self.session.openWithCallback(self.configScreenCallback, YouTubeSetup)
 			elif answer[1] == 'subscribe':
-				msg = self.subscribeChannel()
+				current = self['list'].getCurrent()[0]
+				msg = self.subscribeChannel(current)
+			elif answer[1] == 'subscribe_video':
+				current = self['list'].getCurrent()[11]
+				msg = self.subscribeChannel(current)
 			elif answer[1] == 'unsubscribe':
 				msg = self.unsubscribeChannel()
 			elif answer[1] == 'similar':
@@ -1055,8 +1060,7 @@ class YouTubeMain(Screen):
 		if self.list == 'main': # if autentification changed
 			self.createMainList()
 
-	def subscribeChannel(self):
-		channelId = self['list'].getCurrent()[0]
+	def subscribeChannel(self, channelId):
 		if self.youtube.subscriptions_insert(channelId = channelId):
 			return _('Subscribed!')
 		return _('There was an error in subscribe!')
