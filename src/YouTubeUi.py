@@ -351,16 +351,18 @@ class YouTubeMain(Screen):
 				None,               # Description
 				None,               # Likes
 				None,               # Dislikes
-				None                # Big thumbnail url
+				None,               # Big thumbnail url
+				None                # Channel Id
 			),(
 				'PubFeeds', None, None,
 				_('Public feeds'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			)]
 		if config.plugins.YouTube.login.value and \
 			config.plugins.YouTube.refreshToken.value != '':
 			self.entryList.append(('MyFeeds', None, None,
-				_('My feeds'), '', '', None, None, None, None, None))
+				_('My feeds'), '', '', None, None,
+				None, None, None, None))
 		self.setEntryList()
 
 	def createSearchList(self):
@@ -370,15 +372,15 @@ class YouTubeMain(Screen):
 		self.entryList = [(
 				'Searchvideo', None, None,
 				_('Search videos'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			),(
 				'Searchchannel', None, None,
 				_('Search channels'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			),(
 				'Searchplaylist', None, None,
 				_('Search playlists'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			)]
 		self.setEntryList()
 
@@ -389,31 +391,31 @@ class YouTubeMain(Screen):
 		self.entryList = [(
 				'top_rated', None, None,
 				_('Top rated'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			),(
 				'most_viewed', None, None,
 				_('Most viewed'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			),(
 				'most_recent', None, None,
 				_('Recent'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			),(
 				'HD_videos', None, None,
 				_('HD videos'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			),(
 				'embedded_videos', None, None,
 				_('Embedded in webpages'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			),(
 				'episodes', None, None,
 				_('Shows'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			),(
 				'movies', None, None,
 				_('Movies'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			)]
 		self.setEntryList()
 
@@ -424,31 +426,31 @@ class YouTubeMain(Screen):
 		self.entryList = [(
 				'my_subscriptions', None, None,
 				_('My Subscriptions'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			),(
 				'my_watch_later', None, None,
 				_('Watch Later'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			),(
 				'my_history', None, None,
 				_('History'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			),(
 				'my_liked_videos', None, None,
 				_('Liked videos'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			),(
 				'my_favorites', None, None,
 				_('Favorites'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			),(
 				'my_uploads', None, None,
 				_('Uploads'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			),(
 				'my_playlists', None, None,
 				_('Playlists'), '', '', None,
-				None, None, None, None
+				None, None, None, None, None
 			)]
 		self.setEntryList()
 
@@ -507,7 +509,8 @@ class YouTubeMain(Screen):
 									entryList[7], # Description
 									entryList[8], # Likes
 									entryList[9], # Dislikes
-									entryList[10] # Big thumbnail url
+									entryList[10],# Big thumbnail url
+									entryList[11] # Channel Id
 								)
 							break
 						count += 1
@@ -631,7 +634,8 @@ class YouTubeMain(Screen):
 							entryList[7], # Description
 							entryList[8], # Likes
 							entryList[9], # Dislikes
-							entryList[10] # Big thumbnail url
+							entryList[10],# Big thumbnail url
+							entryList[11] # Channel Id
 						)
 				count += 1
 			self['list'].updateList(self.entryList)
@@ -808,7 +812,7 @@ class YouTubeMain(Screen):
 					except:
 						Subscription = ''
 					videos.append((Id, Thumbnail, None, Title, '', '', Subscription,
-						None, None, None, None))
+						None, None, None, None, None))
 				return videos
 
 			elif self.value[0] == 'my_playlists':
@@ -828,7 +832,7 @@ class YouTubeMain(Screen):
 					except:
 						Title = ''
 					videos.append((Id, Thumbnail, None, Title, '', '', None,
-						None, None, None, None))
+						None, None, None, None, None))
 				return videos
 
 			else: # all other my data
@@ -922,9 +926,13 @@ class YouTubeMain(Screen):
 				ThumbnailUrl = str(result['snippet']['thumbnails']['medium']['url'])
 			except:
 				ThumbnailUrl = None
+			try:
+				ChannelId = result['snippet']['channelId']
+			except:
+				ChannelId = None
 
-			videos.append((Id, Thumbnail, None, Title, Views, Duration, None, 
-				Description, Likes, Dislikes, ThumbnailUrl))
+			videos.append((Id, Thumbnail, None, Title, Views, Duration, None,
+				Description, Likes, Dislikes, ThumbnailUrl, ChannelId))
 		return videos
 
 	def videoIdFromPlaylist(self, channel):
@@ -970,7 +978,7 @@ class YouTubeMain(Screen):
 			except:
 				Title = ''
 			videos.append((Id, Thumbnail, None, Title, '', '', None,
-				None, None, None, None))
+				None, None, None, None, None))
 		return videos
 
 	def cancel(self):
@@ -1003,6 +1011,7 @@ class YouTubeMain(Screen):
 					list += ((_('Unsubscribe'), 'unsubscribe'),)
 			if self.list == 'videolist':
 				list += ((_('Search for similar'), 'similar'),
+					(_('Videos from this video channel'), 'channel_videos'),
 					(_('Download video'), 'download'),)
 			if self.activeDownloads > 0:
 				list += ((_('Active video downloads'), 'download_list'),)
@@ -1023,6 +1032,9 @@ class YouTubeMain(Screen):
 			elif answer[1] == 'similar':
 				term = self['list'].getCurrent()[3][:20]
 				self.screenCallback(['video', term, None], 'OpenSearch')
+			elif answer[1] == 'channel_videos':
+				term = self['list'].getCurrent()[11]
+				self.screenCallback([term, _('Search'), None], 'OpenChannelList')
 			elif answer[1] == 'download':
 				current = self['list'].getCurrent()
 				if current[6]:
