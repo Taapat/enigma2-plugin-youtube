@@ -1,0 +1,474 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: enigma2.plugins.mytube\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-27 21:48+0300\n"
+"PO-Revision-Date: 2015-07-28 10:18+0300\n"
+"Last-Translator: rimas\n"
+"Language-Team: rimas <rimas@croci.org>\n"
+"Language: et_EE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.2\n"
+
+msgid " dislikes"
+msgstr " - ei meeldi"
+
+msgid " likes"
+msgstr " - meeldib"
+
+msgid " views"
+msgstr " vaatamist"
+
+msgid "Active video downloads"
+msgstr "Aktiivsed allalaadimised"
+
+msgid "All"
+msgstr "Kõik"
+
+msgid "Ask user"
+msgstr "Küsitakse"
+
+msgid "Australia"
+msgstr "Austraalia"
+
+msgid "Brazil"
+msgstr "Brasiilia"
+
+msgid "Canada"
+msgstr "Kanada"
+
+msgid "Cancel"
+msgstr "Tühista"
+
+msgid "Choose what you want to do"
+msgstr "Vali soovitud tegevus"
+
+msgid "Close YouTube"
+msgstr "Sulge YouTube"
+
+msgid "Created date"
+msgstr "Loodud"
+
+msgid "Czech Republic"
+msgstr "Tšehhi"
+
+msgid "Delete this entry"
+msgstr "Kustuta kirje"
+
+msgid "Disliked!"
+msgstr "Ei meeldi kirjas!"
+
+msgid "Download directory:"
+msgstr "Allalaadimised:"
+
+msgid "Download feed entries. Please wait..."
+msgstr "Kanalite laadimine. Oota..."
+
+msgid "Download search results. Please wait..."
+msgstr "Otsingu tulemuste laadimine. Oota..."
+
+msgid "Download video"
+msgstr "Laadi alla"
+
+msgid "Downloading"
+msgstr "Allalaadimine"
+
+msgid "Duration: "
+msgstr "Kestus: "
+
+msgid "Embedded in webpages"
+msgstr "Põimitud veebilehtedes"
+
+msgid "Exclude restricted content:"
+msgstr "Eemalda piiratud sisu:"
+
+msgid "Exit"
+msgstr "Välju"
+
+msgid "Extract video url. Please wait..."
+msgstr "Video aadressi eraldamine. Oota..."
+
+msgid "Favorites"
+msgstr "Lemmikud"
+
+msgid "France"
+msgstr "Prantsusmaa"
+
+msgid "Germany"
+msgstr "Saksamaa"
+
+#, python-format
+msgid ""
+"Go to %s\n"
+"And enter the code %s"
+msgstr ""
+"Mine asukohta %s\n"
+"ja sisesta kood %s"
+
+msgid "Great Britain"
+msgstr "Suurbritannia"
+
+msgid "HD videos"
+msgstr "HD videod"
+
+msgid "History"
+msgstr "Ajalugu"
+
+msgid "Holland"
+msgstr "Holland"
+
+msgid "Hong Kong"
+msgstr "Hong Kong"
+
+msgid ""
+"How many search results will be returned.\n"
+"If greater value then longer time will be needed for thumbnail download."
+msgstr ""
+"Otsingu tulemuste arv.\n"
+"Mida suurem arv, seda kauem kulub pisipiltide laadimiseks."
+
+msgid "I dislike this"
+msgstr "Mulle ei meeldi"
+
+msgid "I like this"
+msgstr "Mulle meeldib"
+
+msgid "India"
+msgstr "India"
+
+msgid "Ireland"
+msgstr "Iirimaa"
+
+msgid "Israel"
+msgstr "Iisrael"
+
+msgid "Italy"
+msgstr "Itaalia"
+
+msgid "Japan"
+msgstr "Jaapan"
+
+msgid "Keyboard"
+msgstr "Klaviatuur"
+
+msgid "Latvia"
+msgstr "Läti"
+
+msgid "Liked videos"
+msgstr "Meeldinud videod"
+
+msgid "Liked!"
+msgstr "Meeldib kirjas!"
+
+msgid ""
+"Log in to your YouTube account when plugin starts.\n"
+"This needs to approve in the Google home page!"
+msgstr ""
+"Laienduse käivitamisel logi sisse oma YouTube kontosse.\n"
+"See tuleb kinnitada Google kodulehel!"
+
+msgid "Login on startup:"
+msgstr "Sisselogimine käivitamisel:"
+
+msgid "Maximum video resolution:"
+msgstr "Suurim videolahutus:"
+
+msgid "Mexico"
+msgstr "Mehhiko"
+
+msgid "Moderate"
+msgstr "Keskmine"
+
+msgid "Most viewed"
+msgstr "Vaadatuimad"
+
+msgid "Movies"
+msgstr "Filmid"
+
+msgid "My Subscriptions"
+msgstr "Мinu tellimused"
+
+msgid "My feeds"
+msgstr "Minu kanalid"
+
+msgid "New Zealand"
+msgstr "Uus Meremaa"
+
+msgid "No"
+msgstr "Ei"
+
+msgid "No, but play video again"
+msgstr "Ei, aga esita video uuesti"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Open"
+msgstr "Ava"
+
+msgid "Order in which search results will be displayed."
+msgstr "Otsingu tulemuste kuvamise järjestus."
+
+msgid "Play next"
+msgstr "Esita järgmine"
+
+msgid "Play next video"
+msgstr "Esita järgmine video"
+
+msgid "Play previous video"
+msgstr "Esita eelmine video"
+
+msgid "Play video again"
+msgstr "Esita video uuesti"
+
+msgid "Playlists"
+msgstr "Mängukavad"
+
+msgid "Please select the download directory"
+msgstr "Vali allalaaditud videotele kataloog"
+
+msgid "Poland"
+msgstr "Poola"
+
+msgid "Public feeds"
+msgstr "Avalikud kanalid"
+
+msgid "Quit"
+msgstr "Välju"
+
+msgid "Rating"
+msgstr "Hinnang"
+
+msgid "Rating removed!"
+msgstr "Hinnang eemaldati!"
+
+msgid "Recent"
+msgstr "Uusimad"
+
+msgid "Relevance"
+msgstr "Tähtsus"
+
+msgid "Remove my rating"
+msgstr "Eemalda minu hinnang"
+
+msgid "Repeat"
+msgstr "Korda"
+
+msgid "Return search results for the specified country."
+msgstr "Kuva otsingu tulemused konkreetse riigi jaoks."
+
+msgid "Return search results that are most relevant to the specified language."
+msgstr "Kuva tähtsaimad otsingu tulemused määratud keele järgi."
+
+msgid "Return to list"
+msgstr "Tagasi nimekirja"
+
+msgid "Russia"
+msgstr "Venemaa"
+
+msgid "Save search result:"
+msgstr "Salvesta otsingu tulemus:"
+
+msgid "Save your search result in the history, when search completed."
+msgstr "Jäta otsingu tulemus meelde."
+
+msgid "Search"
+msgstr "Otsing"
+
+msgid "Search channels"
+msgstr "Otsi kanaleid"
+
+msgid "Search for similar"
+msgstr "Otsi sarnaseid"
+
+msgid "Search language:"
+msgstr "Otsingu keel:"
+
+msgid "Search playlists"
+msgstr "Otsi pleiliste"
+
+msgid "Search region:"
+msgstr "Otsingu piirkond:"
+
+msgid "Search results:"
+msgstr "Otsingu tulemusi:"
+
+msgid "Search videos"
+msgstr "Otsi videoid"
+
+msgid "Shows"
+msgstr "Saated"
+
+msgid ""
+"Sorry, download directory not exist!\n"
+"Please specify in the settings existing directory."
+msgstr ""
+"Allalaadimiste kataloog puudub!\n"
+"Määra seadistustes olemasolev kataloog."
+
+#, python-format
+msgid ""
+"Sorry, this file already exists:\n"
+"%s"
+msgstr ""
+"See fail on juba olemas.:\n"
+"%s"
+
+msgid "Sort search results by:"
+msgstr "Otsingu tulemuste järjestus:"
+
+msgid "South Korea"
+msgstr "Lõuna-Korea"
+
+msgid "Spain"
+msgstr "Hispaania"
+
+msgid "Specify the directory where save downloaded video files."
+msgstr "Määra kataloog, kuhu tõmmatud videod salvestada."
+
+msgid "Stop playing this movie?"
+msgstr "Kas peatada video esitus?"
+
+msgid "Subscribe"
+msgstr "Telli"
+
+msgid "Subscribe this video channel"
+msgstr "Telli see kanal"
+
+msgid "Subscribed!"
+msgstr "Tellitud"
+
+msgid "Sweden"
+msgstr "Rootsi"
+
+msgid "Taiwan"
+msgstr "Taiwan"
+
+msgid "Thailand"
+msgstr "Tai"
+
+msgid ""
+"There was an error in creating entry list!\n"
+"Maybe try other feeds..."
+msgstr ""
+"Viga nimekirja loomisel!\n"
+"Ehk proovid teisi kanaleid..."
+
+#, python-format
+msgid ""
+"There was an error in extract video url:\n"
+"%s"
+msgstr ""
+"Viga video aadressi eraldamisel:\n"
+"%s"
+
+msgid "There was an error in rating!"
+msgstr "Viga hindamisel!"
+
+msgid "There was an error in subscribe!"
+msgstr "Viga tellimisel!"
+
+msgid "There was an error in unsubscribe!"
+msgstr "Viga tellimusest loobumisel!"
+
+msgid "Title"
+msgstr "Nimi"
+
+msgid ""
+"To perform authentication will need in a web browser open Google home page, and enter the code!\n"
+"Do you currently have Internet access on the other device and we can continue?"
+msgstr ""
+"Autentimiseks tuleb avada veebilehitseja Google kodulehel ja sisestada kood!\n"
+"Kas omad teise seadmega ligipääsu internetile ja saame jätkata?"
+
+msgid "Top rated"
+msgstr "Kõrgeima hinnanguga"
+
+msgid "Try to exclude all restricted content from the search result."
+msgstr "Ürita piiratud sisu otsingu tulemustest eemaldada."
+
+msgid "United States"
+msgstr "USA"
+
+msgid "Unsubscribe"
+msgstr "Loobu tellimusest"
+
+msgid "Unsubscribed!"
+msgstr "Tellimusest loobutud!"
+
+msgid "Uploads"
+msgstr "Minu lisatud"
+
+msgid "Use"
+msgstr "Kasuta"
+
+msgid "Video download started!"
+msgstr "Alustati allalaadimist!"
+
+msgid "Videos from this video channel"
+msgstr "Videod sellelt kanalilt"
+
+msgid "View count"
+msgstr "Vaatamisi"
+
+msgid "Watch Later"
+msgstr "Vaata hiljem"
+
+msgid "Watch YouTube videos"
+msgstr "Vaata YouTube videoid"
+
+msgid "What do you want to do?"
+msgstr "Mida soovid teha?"
+
+msgid ""
+"What maximum resolution used when playing video, if available.\n"
+"If you have a slow Internet connection, you can use a lower resolution."
+msgstr ""
+"Vali suurim kasutatav videolahutus.\n"
+"Omades aeglast netiühendust kasuta madalamat lahutust."
+
+msgid "What to do when stop playback in videoplayer."
+msgstr "Tegevus taasesituse peatamisel."
+
+msgid "What to do when the video ends."
+msgstr "Tegevus video lõppedes."
+
+msgid "When playback stop:"
+msgstr "Taasesituse lõppedes:"
+
+msgid "When video ends:"
+msgstr "Video lõppedes:"
+
+msgid "Yes"
+msgstr "Jah"
+
+msgid "Yes, but play next video"
+msgstr "Jah, aga esita järgmine video"
+
+msgid "Yes, but play previous video"
+msgstr "Jah, aga esita eelmine video"
+
+msgid ""
+"You already authorized access for this plugin to your YouTube account.\n"
+"Do you want to do it again to update access data?"
+msgstr ""
+"Oled selle laienduse ligipääsu oma YouTube kontole juba autoriseerinud.\n"
+"Kas soovid seda teha uuesti, et uuendada ligipääsu andmeid?"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "YouTube info"
+msgstr "YouTube info"
+
+msgid "YouTube search"
+msgstr "YouTube otsing"
+
+msgid "YouTube setup"
+msgstr "YouTube seadistamine"
+
+msgid "YouTube starting. Please wait..."
+msgstr "YouTube käivitub. Oota..."
