@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-28 16:08+0300\n"
+"POT-Creation-Date: 2015-07-29 00:26+0300\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: Vasiliks <vasiliks@yandex.ru>\n"
 "Language-Team: Vasiliks <vasiliks@yandex.ru>\n"
@@ -197,6 +197,10 @@ msgstr "Мої фіди"
 msgid "New Zealand"
 msgstr "Нова Зеландія"
 
+#, python-format
+msgid "Next %s entries"
+msgstr ""
+
 msgid "No"
 msgstr "Ні"
 
@@ -233,6 +237,10 @@ msgstr "Пожалуйста, выберите каталог для загру�
 msgid "Poland"
 msgstr "Польща"
 
+#, python-format
+msgid "Previous %s entries"
+msgstr ""
+
 msgid "Public feeds"
 msgstr "Публічні фіди"
 
@@ -241,6 +249,9 @@ msgstr ""
 
 msgid "Quit"
 msgstr "Вихід"
+
+msgid "Rate video"
+msgstr ""
 
 msgid "Rating"
 msgstr "Рейтинг"

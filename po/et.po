@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-28 16:08+0300\n"
+"POT-Creation-Date: 2015-07-29 00:26+0300\n"
 "PO-Revision-Date: 2015-07-28 10:18+0300\n"
 "Last-Translator: rimas\n"
 "Language-Team: rimas <rimas@croci.org>\n"
@@ -197,6 +197,10 @@ msgstr "Minu kanalid"
 msgid "New Zealand"
 msgstr "Uus Meremaa"
 
+#, python-format
+msgid "Next %s entries"
+msgstr ""
+
 msgid "No"
 msgstr "Ei"
 
@@ -233,6 +237,10 @@ msgstr "Vali allalaaditud videotele kataloog"
 msgid "Poland"
 msgstr "Poola"
 
+#, python-format
+msgid "Previous %s entries"
+msgstr ""
+
 msgid "Public feeds"
 msgstr "Avalikud kanalid"
 
@@ -241,6 +249,9 @@ msgstr ""
 
 msgid "Quit"
 msgstr "Välju"
+
+msgid "Rate video"
+msgstr ""
 
 msgid "Rating"
 msgstr "Hinnang"

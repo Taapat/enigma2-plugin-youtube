@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-28 16:08+0300\n"
+"POT-Creation-Date: 2015-07-29 00:26+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -198,6 +198,10 @@ msgstr "Manas saites"
 msgid "New Zealand"
 msgstr "Jaunzēlande"
 
+#, python-format
+msgid "Next %s entries"
+msgstr "Nākošie %s ieraksti"
+
 msgid "No"
 msgstr "Nē"
 
@@ -234,6 +238,10 @@ msgstr "Lūdzu izvēlieties lejupielādes mapi"
 msgid "Poland"
 msgstr "Polija"
 
+#, python-format
+msgid "Previous %s entries"
+msgstr "Iepriekšējie %s ieraksti"
+
 msgid "Public feeds"
 msgstr "Publiskās saites"
 
@@ -242,6 +250,9 @@ msgstr "Publicēts: "
 
 msgid "Quit"
 msgstr "Iziet"
+
+msgid "Rate video"
+msgstr "Novērtēt video"
 
 msgid "Rating"
 msgstr "Vērtējuma"
