@@ -1043,10 +1043,10 @@ class YouTubeMain(Screen):
 					(_('Videos from this video channel'), 'channel_videos'),)
 			elif answer[1] == 'similar':
 				term = self['list'].getCurrent()[3][:30]
-				self.screenCallback(['video', term, None], 'OpenSearch')
+				self.screenCallback(['video', term, ''], 'OpenSearch')
 			elif answer[1] == 'channel_videos':
 				current = self['list'].getCurrent()
-				self.screenCallback([current[11], current[3][:30], None],
+				self.screenCallback([current[11], current[3][:30], ''],
 					'OpenChannelList')
 			elif answer[1] == 'download':
 				current = self['list'].getCurrent()
