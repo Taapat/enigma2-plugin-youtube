@@ -476,7 +476,7 @@ class YouTubeMain(Screen):
 					service = eServiceReference(4097, 0, videoUrl)
 					service.setName(self.value[3])
 					current = [self.value[3], self.value[4], self.value[5], self.value[7],
-						self.value[8], self.value[9], self.value[10]]
+						self.value[8], self.value[9], self.value[10], self.value[12]]
 					print "[YouTube] Play:", videoUrl
 					self.session.openWithCallback(self.playCallback,\
 						YouTubePlayer, service = service, current = current)
