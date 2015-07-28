@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-27 21:48+0300\n"
-"PO-Revision-Date: 2015-07-25 11:28+0100\n"
+"PO-Revision-Date: 2015-07-28 08:21+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team:  <LL@li.org>\n"
 "Language: \n"
@@ -336,7 +336,7 @@ msgid "Subscribe"
 msgstr "Inschrijven"
 
 msgid "Subscribe this video channel"
-msgstr ""
+msgstr "Schrijf in op dit videokanaal"
 
 msgid "Subscribed!"
 msgstr "Ingeschreven!"
@@ -409,7 +409,7 @@ msgid "Video download started!"
 msgstr "Videodownload gestart!"
 
 msgid "Videos from this video channel"
-msgstr ""
+msgstr "Video's van dit videokanaal"
 
 msgid "View count"
 msgstr "Aantal keren gezien"
@@ -472,3 +472,4 @@ msgstr "YouTube instellingen"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube is aan het starten. Even wachten..."
+
