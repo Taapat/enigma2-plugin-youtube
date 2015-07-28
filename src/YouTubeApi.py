@@ -40,9 +40,9 @@ class YouTubeApi:
 				self.get_response(url, False)
 			else:
 				print ('[YouTubeApi] error in response %d' %e.code)
-				return []
+				return {}
 		if response:
-			return load(response).get('items', [])
+			return load(response)
 
 	def get_aut_response(self, method, url, data, header, status, count):
 		url = '/youtube/v3/' + url + self.key
@@ -62,42 +62,47 @@ class YouTubeApi:
 			print '[YouTubeApi] error in response', response.status
 			return None
 
-	def subscriptions_list(self, maxResults):
+	def subscriptions_list(self, maxResults, pageToken):
+		pageToken = pageToken and '&pageToken=' + pageToken
 		url = 'subscriptions?part=snippet&maxResults=' + maxResults + \
-			 '&mine=true' + self.key
+			 '&mine=true' + pageToken + self.key
 		return self.get_response(url, True)
 
-	def playlists_list(self, maxResults):
+	def playlists_list(self, maxResults, pageToken):
+		pageToken = pageToken and '&pageToken=' + pageToken
 		url = 'playlists?part=snippet&maxResults=' + maxResults + \
-			 '&mine=true' + self.key
+			 '&mine=true' + pageToken + self.key
 		return self.get_response(url, True)
 
-	def channels_list(self, maxResults):
+	def channels_list(self, maxResults, pageToken):
+		pageToken = pageToken and '&pageToken=' + pageToken
 		url = 'channels?part=contentDetails&maxResults=' + maxResults + \
-			 '&mine=true' + self.key
+			 '&mine=true' + pageToken + self.key
 		return self.get_response(url, True)
 
 	def search_list_full(self, videoEmbeddable, safeSearch, videoType,
 			videoDefinition, order, part, q, relevanceLanguage,
-			s_type, regionCode, maxResults):
+			s_type, regionCode, maxResults, pageToken):
 
 		videoEmbeddable = videoEmbeddable and 'videoEmbeddable=' + videoEmbeddable + '&'
 		videoType = videoType and '&videoType=' + videoType
 		videoDefinition = videoDefinition and '&videoDefinition=' + videoDefinition
 		relevanceLanguage = relevanceLanguage and '&relevanceLanguage=' + relevanceLanguage
 		regionCode = regionCode and '&regionCode=' + regionCode
+		pageToken = pageToken and '&pageToken=' + pageToken
 		q = quote(q)
 
 		url = 'search?' + videoEmbeddable + 'safeSearch=' + safeSearch + videoType + \
 			videoDefinition + '&order=' + order + '&part=' + part.replace(',', '%2C') + \
 			'&q=' + q + relevanceLanguage + '&type=' + s_type + regionCode + \
-			'&maxResults=' + maxResults + self.key
+			'&maxResults=' + maxResults + pageToken + self.key
 		return self.get_response(url, True)
 
-	def search_list(self, part, channelId, maxResults):
+	def search_list(self, part, channelId, maxResults, pageToken):
+		pageToken = pageToken and '&pageToken=' + pageToken
 		url = 'search?part=' + part.replace(',', '%2C') + \
-		'&channelId=' + channelId + '&maxResults=' + maxResults + \
-		self.key
+			'&channelId=' + channelId + '&maxResults=' + maxResults + \
+			pageToken + self.key
 		return self.get_response(url, True)
 
 	def videos_list(self, v_id):
@@ -105,9 +110,10 @@ class YouTubeApi:
 			 v_id.replace(',', '%2C') + self.key
 		return self.get_response(url, True)
 
-	def playlistItems_list(self, maxResults, playlistId):
+	def playlistItems_list(self, maxResults, playlistId, pageToken):
+		pageToken = pageToken and '&pageToken=' + pageToken
 		url = 'playlistItems?part=snippet&maxResults=' + \
-			 maxResults + '&playlistId=' + playlistId + self.key
+			 maxResults + '&playlistId=' + playlistId + pageToken + self.key
 		return self.get_response(url, True)
 
 	def subscriptions_insert(self, channelId):
