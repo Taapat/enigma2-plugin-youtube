@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-27 21:48+0300\n"
+"POT-Creation-Date: 2015-07-28 16:08+0300\n"
 "PO-Revision-Date: 2015-07-28 10:18+0300\n"
 "Last-Translator: rimas\n"
 "Language-Team: rimas <rimas@croci.org>\n"
@@ -235,6 +235,9 @@ msgstr "Poola"
 
 msgid "Public feeds"
 msgstr "Avalikud kanalid"
+
+msgid "Published at: "
+msgstr ""
 
 msgid "Quit"
 msgstr "Välju"

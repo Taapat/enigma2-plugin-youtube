@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-27 21:48+0300\n"
+"POT-Creation-Date: 2015-07-28 16:08+0300\n"
 "PO-Revision-Date: 2015-07-28 08:21+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team:  <LL@li.org>\n"
@@ -235,6 +235,9 @@ msgstr "Polen"
 
 msgid "Public feeds"
 msgstr "Openbare feeds"
+
+msgid "Published at: "
+msgstr ""
 
 msgid "Quit"
 msgstr "Sluit af"
@@ -472,4 +475,3 @@ msgstr "YouTube instellingen"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube is aan het starten. Even wachten..."
-

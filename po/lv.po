@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-27 21:48+0300\n"
+"POT-Creation-Date: 2015-07-28 16:08+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -236,6 +236,9 @@ msgstr "Polija"
 
 msgid "Public feeds"
 msgstr "Publiskās saites"
+
+msgid "Published at: "
+msgstr "Publicēts: "
 
 msgid "Quit"
 msgstr "Iziet"
