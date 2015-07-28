@@ -775,7 +775,9 @@ class YouTubeMain(Screen):
 
 			elif self.value[0] == 'my_playlists':
 				self.list = 'playlist'
-				searchResponse = self.youtube.playlists_list()
+				searchResponse = self.youtube.playlists_list(
+						maxResults = config.plugins.YouTube.searchResult.value
+					)
 				for result in searchResponse:
 					try:
 						Id = result['id']
@@ -794,7 +796,9 @@ class YouTubeMain(Screen):
 				return videos
 
 			else: # all other my data
-				searchResponse = self.youtube.channels_list()
+				searchResponse = self.youtube.channels_list(
+						maxResults = config.plugins.YouTube.searchResult.value
+					)
 				for result in searchResponse:
 					channel = result['contentDetails']['relatedPlaylists'][playlist]
 
@@ -845,7 +849,10 @@ class YouTubeMain(Screen):
 			return None
 		self.list = 'videolist'
 
-		searchResponse = self.youtube.videos_list(v_id=','.join(videos))
+		searchResponse = self.youtube.videos_list(
+				v_id=','.join(videos),
+				maxResults = config.plugins.YouTube.searchResult.value
+			)
 		videos = []
 		for result in searchResponse:
 			try:
