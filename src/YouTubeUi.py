@@ -849,10 +849,7 @@ class YouTubeMain(Screen):
 			return None
 		self.list = 'videolist'
 
-		searchResponse = self.youtube.videos_list(
-				v_id=','.join(videos),
-				maxResults = config.plugins.YouTube.searchResult.value
-			)
+		searchResponse = self.youtube.videos_list(v_id=','.join(videos))
 		videos = []
 		for result in searchResponse:
 			try:

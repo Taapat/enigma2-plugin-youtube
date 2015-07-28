@@ -100,9 +100,9 @@ class YouTubeApi:
 		self.key
 		return self.get_response(url, True)
 
-	def videos_list(self, v_id, maxResults):
+	def videos_list(self, v_id):
 		url = 'videos?part=id%2Csnippet%2Cstatistics%2CcontentDetails&id=' + \
-			 v_id.replace(',', '%2C') + '&maxResults=' + maxResults + self.key
+			 v_id.replace(',', '%2C') + self.key
 		return self.get_response(url, True)
 
 	def playlistItems_list(self, maxResults, playlistId):
