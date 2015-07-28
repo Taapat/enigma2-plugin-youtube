@@ -991,41 +991,45 @@ class YouTubeMain(Screen):
 			self.session.openWithCallback(self.configScreenCallback, YouTubeSetup)
 		else:
 			title = _('What do you want to do?')
-			list = ((_('YouTube setup'), 'setup'),
-					(_('Close YouTube'), 'close'),)
+			clist = ((_('YouTube setup'), 'setup'),)
+			if self.nextPageToken:
+				clist += ((_('Next %s entries') % config.plugins.YouTube.searchResult.value,
+					'next'),)
+			if self.prevPageToken:
+				clist += ((_('Previous %s entries') % config.plugins.YouTube.searchResult.value,
+					'prev'),)
 			if self.isAuth:
 				if self.list == 'videolist':
-					list += ((_('I like this'), 'like'),
-							(_('I dislike this'), 'dislike'),
-							(_('Remove my rating'), 'none'),
+					clist += ((_('Rate video'), 'rate'),
 							(_('Subscribe this video channel'), 'subscribe_video'),)
 				elif self.list == 'channel' and self.prevIndex[1][1] != 'myfeeds':
-					list += ((_('Subscribe'), 'subscribe'),)
+					clist += ((_('Subscribe'), 'subscribe'),)
 				elif self.list == 'playlist' and self.prevIndex[1][1] == 'myfeeds' and \
 					len(self.prevIndex) == 2:
-					list += ((_('Unsubscribe'), 'unsubscribe'),)
+					clist += ((_('Unsubscribe'), 'unsubscribe'),)
 			if self.list == 'videolist':
-				list += ((_('Search for similar'), 'similar'),
-					(_('Videos from this video channel'), 'channel_videos'),
+				clist += ((_('Search'), 'search'),
 					(_('Download video'), 'download'),)
 			if self.activeDownloads > 0:
-				list += ((_('Active video downloads'), 'download_list'),)
-			if self.prevPageToken:
-				list += ((_('Previous %s entries') % config.plugins.YouTube.searchResult.value,
-					'prev'),)
-			if self.nextPageToken:
-				list += ((_('Next %s entries') % config.plugins.YouTube.searchResult.value,
-					'next'),)
+				clist += ((_('Active video downloads'), 'download_list'),)
+			clist += ((_('Close YouTube'), 'close'),)
 			self.session.openWithCallback(self.menuCallback,
-				ChoiceBox, title = title, list = list)
+				ChoiceBox, title = title, list = clist)
 
 	def menuCallback(self, answer):
 		if answer:
 			msg = None
-			if answer[1] == 'close':
-				self.close()
-			elif answer[1] == 'setup':
+			clist = None
+			if answer[1] == 'setup':
 				self.session.openWithCallback(self.configScreenCallback, YouTubeSetup)
+			elif answer[1] == 'next':
+				self.setNextEntries()
+			elif answer[1] == 'prev':
+				self.setPrevEntries()
+			elif answer[1] == 'rate':
+				clist = ((_('I like this'), 'like'),
+					(_('I dislike this'), 'dislike'),
+					(_('Remove my rating'), 'none'),)
 			elif answer[1] == 'subscribe':
 				current = self['list'].getCurrent()[0]
 				msg = self.subscribeChannel(current)
@@ -1034,13 +1038,12 @@ class YouTubeMain(Screen):
 				msg = self.subscribeChannel(current)
 			elif answer[1] == 'unsubscribe':
 				msg = self.unsubscribeChannel()
+			elif answer[1] == 'search':
+				clist = ((_('Search for similar'), 'similar'),
+					(_('Videos from this video channel'), 'channel_videos'),)
 			elif answer[1] == 'similar':
 				term = self['list'].getCurrent()[3][:30]
 				self.screenCallback(['video', term, None], 'OpenSearch')
-			elif answer[1] == 'prev':
-				self.setPrevEntries()
-			elif answer[1] == 'next':
-				self.setNextEntries()
 			elif answer[1] == 'channel_videos':
 				current = self['list'].getCurrent()
 				self.screenCallback([current[11], current[3][:30], None],
@@ -1055,10 +1058,16 @@ class YouTubeMain(Screen):
 			elif answer[1] == 'download_list':
 				from YouTubeDownload import YouTubeDownloadList
 				self.session.open(YouTubeDownloadList)
+			elif answer[1] == 'close':
+				self.close()
 			else:
 				msg = self.rateVideo(answer[1])
 			if msg:
 				self.session.open(MessageBox, msg, MessageBox.TYPE_INFO, timeout = 3)
+			elif clist:
+				title = _('What do you want to do?')
+				self.session.openWithCallback(self.menuCallback,
+					ChoiceBox, title = title, list = clist)
 
 	def configScreenCallback(self, callback=None):
 		if self.list == 'main': # if autentification changed
