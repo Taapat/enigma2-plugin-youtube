@@ -1156,12 +1156,12 @@ class YouTubeInfo(Screen):
 		skin = """<screen position="center,center" size="730,424">
 				<widget name="title" position="center,0" size="700,60" halign="center" font="Regular;24" />
 				<widget name="pic" position="20,70" size="320,180" transparent="1" alphatest="on" />
-				<widget name="description" position="360,70" size="360,302" font="Regular;16" />
+				<widget name="description" position="360,70" size="360,300" font="Regular;16" />
 				<widget name="views" position="30,270" size="150,20" font="Regular;16" />
 				<widget name="duration" position="200,270" size="150,20" font="Regular;16" />
 				<widget name="likes" position="30,300" size="150,20" font="Regular;16" />
 				<widget name="dislikes" position="200,300" size="150,20" font="Regular;16" />
-				<widget name="published" position="30,330" size="350,20" font="Regular;16" />
+				<widget name="published" position="30,330" size="300,20" font="Regular;16" />
 				<ePixmap position="center,377" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
 				<widget source="key_red" render="Label" position="center,382" zPosition="2" size="140,30" \
