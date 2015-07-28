@@ -1,6 +1,6 @@
 YouTube
 =========
-Enigma2 plugin to manage your youtube account and wach videos
+Enigma2 plugin to manage your youtube account and watch videos
 
 Depends
 -------
