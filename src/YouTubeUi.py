@@ -353,6 +353,7 @@ class YouTubeMain(Screen):
 					None,   # Dislikes
 					None,   # Big thumbnail url
 					None,   # Channel Id
+					'',     # Published
 				))
 
 	def createMainList(self):
@@ -465,7 +466,8 @@ class YouTubeMain(Screen):
 									entryList[8], # Likes
 									entryList[9], # Dislikes
 									entryList[10],# Big thumbnail url
-									entryList[11] # Channel Id
+									entryList[11],# Channel Id
+									entryList[12],# Published
 								)
 							break
 						count += 1
@@ -590,7 +592,8 @@ class YouTubeMain(Screen):
 							entryList[8], # Likes
 							entryList[9], # Dislikes
 							entryList[10],# Big thumbnail url
-							entryList[11] # Channel Id
+							entryList[11],# Channel Id
+							entryList[12],# Published
 						)
 				count += 1
 			self['list'].updateList(self.entryList)
@@ -767,7 +770,7 @@ class YouTubeMain(Screen):
 					except:
 						Subscription = ''
 					videos.append((Id, Thumbnail, None, Title, '', '', Subscription,
-						None, None, None, None, None))
+						None, None, None, None, None, ''))
 				return videos
 
 			elif self.value[0] == 'my_playlists':
@@ -787,7 +790,7 @@ class YouTubeMain(Screen):
 					except:
 						Title = ''
 					videos.append((Id, Thumbnail, None, Title, '', '', None,
-						None, None, None, None, None))
+						None, None, None, None, None, ''))
 				return videos
 
 			else: # all other my data
@@ -885,9 +888,14 @@ class YouTubeMain(Screen):
 				ChannelId = result['snippet']['channelId']
 			except:
 				ChannelId = None
+			try:
+				PublishedAt = _('Published at: ') + str(result['snippet']['publishedAt'])\
+					.replace('T', ' ').split('.')[0]
+			except:
+				PublishedAt = ''
 
 			videos.append((Id, Thumbnail, None, Title, Views, Duration, None,
-				Description, Likes, Dislikes, ThumbnailUrl, ChannelId))
+				Description, Likes, Dislikes, ThumbnailUrl, ChannelId, PublishedAt))
 		return videos
 
 	def videoIdFromPlaylist(self, channel):
@@ -933,7 +941,7 @@ class YouTubeMain(Screen):
 			except:
 				Title = ''
 			videos.append((Id, Thumbnail, None, Title, '', '', None,
-				None, None, None, None, None))
+				None, None, None, None, None, ''))
 		return videos
 
 	def cancel(self):
@@ -1049,7 +1057,7 @@ class YouTubeMain(Screen):
 		if self.list == 'videolist':
 			current = self['list'].getCurrent()
 			current = [current[3], current[4], current[5], current[7],
-				current[8], current[9], current[10]]
+				current[8], current[9], current[10], current[12]]
 			self.session.open(YouTubeInfo, current = current)
 
 	def videoDownload(self, url, title):
@@ -1084,6 +1092,7 @@ class YouTubeInfo(Screen):
 				<widget name="duration" position="200,270" size="150,20" font="Regular;16" />
 				<widget name="likes" position="30,300" size="150,20" font="Regular;16" />
 				<widget name="dislikes" position="200,300" size="150,20" font="Regular;16" />
+				<widget name="published" position="30,330" size="350,20" font="Regular;16" />
 				<ePixmap position="center,377" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
 				<widget source="key_red" render="Label" position="center,382" zPosition="2" size="140,30" \
@@ -1098,6 +1107,7 @@ class YouTubeInfo(Screen):
 				<widget name="duration" position="45,355" size="225,30" font="Regular;24" />
 				<widget name="likes" position="45,405" size="225,30" font="Regular;24" />
 				<widget name="dislikes" position="45,455" size="225,30" font="Regular;24" />
+				<widget name="published" position="45,505" size="335,30" font="Regular;24" />
 				<ePixmap position="center,565" size="210,60" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
 				<widget source="key_red" render="Label" position="center,563" zPosition="2" size="210,60" \
@@ -1107,11 +1117,12 @@ class YouTubeInfo(Screen):
 		skin = """<screen position="center,center" size="630,370">
 				<widget name="title" position="center,0" size="600,60" halign="center" font="Regular;24" />
 				<widget name="pic" position="20,70" size="320,180" transparent="1" alphatest="on" />
-				<widget name="description" position="360,70" size="260,248" font="Regular;16" />
+				<widget name="description" position="360,70" size="260,225" font="Regular;16" />
 				<widget name="views" position="30,270" size="150,20" font="Regular;16" />
 				<widget name="duration" position="200,270" size="150,20" font="Regular;16" />
 				<widget name="likes" position="30,300" size="150,20" font="Regular;16" />
 				<widget name="dislikes" position="200,300" size="150,20" font="Regular;16" />
+				<widget name="published" position="360,300" size="260,20" font="Regular;16" />
 				<ePixmap position="center,323" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
 				<widget source="key_red" render="Label" position="center,328" zPosition="2" size="140,30" \
@@ -1129,6 +1140,7 @@ class YouTubeInfo(Screen):
 		self['duration'] = Label(current[2])
 		self['likes'] = Label(current[4])
 		self['dislikes'] = Label(current[5])
+		self['published'] = Label(current[7])
 		self['actions'] = ActionMap(['ColorActions',
 			'InfobarShowHideActions', 'DirectionActions'],
 			{
