@@ -141,6 +141,7 @@ class YouTubeApi:
 	def videos_rate(self, videoId, rating):
 		method = 'POST'
 		url = 'videos/rate?id=' + videoId + '&rating=' + rating
+		header = ['content-length', '0']
 		status = 204
-		return self.get_aut_response(method, url, '', None, status, True)
+		return self.get_aut_response(method, url, '', header, status, True)
 
