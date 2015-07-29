@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 00:26+0300\n"
-"PO-Revision-Date: 2015-07-28 08:21+0100\n"
+"PO-Revision-Date: 2015-07-29 17:09+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team:  <LL@li.org>\n"
 "Language: \n"
@@ -199,7 +199,7 @@ msgstr "Nieuw-Zeeland"
 
 #, python-format
 msgid "Next %s entries"
-msgstr ""
+msgstr "Volgende %s resultaten"
 
 msgid "No"
 msgstr "Nee"
@@ -229,7 +229,7 @@ msgid "Play video again"
 msgstr "Speel video opnieuw"
 
 msgid "Playlists"
-msgstr ""
+msgstr "Afspeellijst "
 
 msgid "Please select the download directory"
 msgstr "Kies de downloadmap"
@@ -239,19 +239,19 @@ msgstr "Polen"
 
 #, python-format
 msgid "Previous %s entries"
-msgstr ""
+msgstr "Vorige %s resultaten"
 
 msgid "Public feeds"
 msgstr "Openbare feeds"
 
 msgid "Published at: "
-msgstr ""
+msgstr "Gepubliceerd op:"
 
 msgid "Quit"
 msgstr "Sluit af"
 
 msgid "Rate video"
-msgstr ""
+msgstr "Waardeer video"
 
 msgid "Rating"
 msgstr "Waardering"
@@ -486,3 +486,4 @@ msgstr "YouTube instellingen"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube is aan het starten. Even wachten..."
+
