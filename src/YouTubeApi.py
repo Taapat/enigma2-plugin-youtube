@@ -48,7 +48,7 @@ class YouTubeApi:
 		url = '/youtube/v3/' + url + self.key
 		headers = {'Authorization': 'Bearer %s' % self.access_token}
 		if header:
-			headers[header[0]] = header[1]
+			headers.update(header)
 		conn = HTTPSConnection('www.googleapis.com')
 		conn.request(method, url, data, headers)
 		response = conn.getresponse()
@@ -128,7 +128,7 @@ class YouTubeApi:
 					}
 				}
 			})
-		header = ['content-type', 'application/json']
+		header = {'content-type': 'application/json'}
 		status = 200
 		return self.get_aut_response(method, url, data, header, status, True)
 
@@ -141,7 +141,7 @@ class YouTubeApi:
 	def videos_rate(self, videoId, rating):
 		method = 'POST'
 		url = 'videos/rate?id=' + videoId + '&rating=' + rating
-		header = ['content-length', '0']
+		header = {'content-length': '0'}
 		status = 204
 		return self.get_aut_response(method, url, '', header, status, True)
 
