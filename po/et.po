@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-29 00:26+0300\n"
-"PO-Revision-Date: 2015-07-28 10:18+0300\n"
+"PO-Revision-Date: 2015-07-29 10:17+0300\n"
 "Last-Translator: rimas\n"
 "Language-Team: rimas <rimas@croci.org>\n"
 "Language: et_EE\n"
@@ -105,7 +105,7 @@ msgid ""
 "Go to %s\n"
 "And enter the code %s"
 msgstr ""
-"Mine asukohta %s\n"
+"Mine aadressile %s\n"
 "ja sisesta kood %s"
 
 msgid "Great Britain"
@@ -199,7 +199,7 @@ msgstr "Uus Meremaa"
 
 #, python-format
 msgid "Next %s entries"
-msgstr ""
+msgstr "Järgmised %s kirjet"
 
 msgid "No"
 msgstr "Ei"
@@ -208,7 +208,7 @@ msgid "No, but play video again"
 msgstr "Ei, aga esita video uuesti"
 
 msgid "Ok"
-msgstr "Ok"
+msgstr "OK"
 
 msgid "Open"
 msgstr "Ava"
@@ -229,7 +229,7 @@ msgid "Play video again"
 msgstr "Esita video uuesti"
 
 msgid "Playlists"
-msgstr "Mängukavad"
+msgstr "Pleilistid"
 
 msgid "Please select the download directory"
 msgstr "Vali allalaaditud videotele kataloog"
@@ -239,19 +239,19 @@ msgstr "Poola"
 
 #, python-format
 msgid "Previous %s entries"
-msgstr ""
+msgstr "Eelmised %s kirjet"
 
 msgid "Public feeds"
 msgstr "Avalikud kanalid"
 
 msgid "Published at: "
-msgstr ""
+msgstr "Avaldatud:"
 
 msgid "Quit"
 msgstr "Välju"
 
 msgid "Rate video"
-msgstr ""
+msgstr "Hinda video"
 
 msgid "Rating"
 msgstr "Hinnang"
