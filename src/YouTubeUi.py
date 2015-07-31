@@ -916,9 +916,17 @@ class YouTubeMain(Screen):
 					.replace('T', ' ').split('.')[0]
 			except:
 				PublishedAt = ''
+			try:
+				liveBroadcast = result['snippet']['liveBroadcastContent']
+			except:
+				liveBroadcast = None
 
-			videos.append((Id, Thumbnail, None, Title, Views, Duration, None,
-				Description, Likes, Dislikes, ThumbnailUrl, ChannelId, PublishedAt))
+			if liveBroadcast == 'live': # if live broadcast insert in top of list
+				videos.insert(0, (Id, Thumbnail, None, Title, Views, Duration, None,
+					Description, Likes, Dislikes, ThumbnailUrl, ChannelId, PublishedAt))
+			else:
+				videos.append((Id, Thumbnail, None, Title, Views, Duration, None,
+					Description, Likes, Dislikes, ThumbnailUrl, ChannelId, PublishedAt))
 		return videos
 
 	def videoIdFromPlaylist(self, channel):
