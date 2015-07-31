@@ -376,7 +376,8 @@ class YouTubeMain(Screen):
 		self.createDefEntryList([
 				['Searchvideo', _('Search videos')],
 				['Searchchannel', _('Search channels')],
-				['Searchplaylist', _('Search playlists')]
+				['Searchplaylist', _('Search playlists')],
+				['Searchbroadcasts', _('Search active broadcasts')]
 			], False)
 		self.setEntryList()
 
@@ -715,11 +716,14 @@ class YouTubeMain(Screen):
 		order = 'date'
 		searchType = 'video'
 		q = ''
-		videoEmbeddable = videoDefinition = videoType = ''
+		videoEmbeddable = videoDefinition = videoType = eventType = ''
 
 		if self.action == 'OpenSearch':
 			order = config.plugins.YouTube.searchOrder.value
-			searchType = self.value[0]
+			if self.value[0] == 'broadcasts':
+				eventType = 'live'
+			else:
+				searchType = self.value[0]
 			q = self.value[1]
 		elif self.action == 'OpenFeeds':
 			if self.value[0] == 'top_rated':
@@ -840,6 +844,7 @@ class YouTubeMain(Screen):
 			searchResponse = self.youtube.search_list_full(
 					videoEmbeddable = videoEmbeddable,
 					safeSearch = config.plugins.YouTube.safeSearch.value,
+					eventType = eventType,
 					videoType = videoType,
 					videoDefinition = videoDefinition,
 					order = order,

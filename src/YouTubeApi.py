@@ -80,11 +80,12 @@ class YouTubeApi:
 			 '&mine=true' + pageToken + self.key
 		return self.get_response(url, True)
 
-	def search_list_full(self, videoEmbeddable, safeSearch, videoType,
+	def search_list_full(self, videoEmbeddable, safeSearch, eventType, videoType,
 			videoDefinition, order, part, q, relevanceLanguage,
 			s_type, regionCode, maxResults, pageToken):
 
 		videoEmbeddable = videoEmbeddable and 'videoEmbeddable=' + videoEmbeddable + '&'
+		eventType = eventType and '&eventType=' + eventType
 		videoType = videoType and '&videoType=' + videoType
 		videoDefinition = videoDefinition and '&videoDefinition=' + videoDefinition
 		relevanceLanguage = relevanceLanguage and '&relevanceLanguage=' + relevanceLanguage
@@ -92,7 +93,7 @@ class YouTubeApi:
 		pageToken = pageToken and '&pageToken=' + pageToken
 		q = quote(q)
 
-		url = 'search?' + videoEmbeddable + 'safeSearch=' + safeSearch + videoType + \
+		url = 'search?' + videoEmbeddable + 'safeSearch=' + safeSearch + eventType + videoType + \
 			videoDefinition + '&order=' + order + '&part=' + part.replace(',', '%2C') + \
 			'&q=' + q + relevanceLanguage + '&type=' + s_type + regionCode + \
 			'&maxResults=' + maxResults + pageToken + self.key
