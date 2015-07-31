@@ -377,7 +377,7 @@ class YouTubeMain(Screen):
 				['Searchvideo', _('Search videos')],
 				['Searchchannel', _('Search channels')],
 				['Searchplaylist', _('Search playlists')],
-				['Searchbroadcasts', _('Search active broadcasts')]
+				['Searchbroadcasts', _('Search live broadcasts')]
 			], False)
 		self.setEntryList()
 
