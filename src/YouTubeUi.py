@@ -608,7 +608,7 @@ class YouTubeMain(Screen):
 			self['list'].selectNext()
 		else:
 			if self.nextPageToken: # call next serch results if it exist
-				self.menuCallback((None, 'next'))
+				self.setNextEntries()
 			else:
 				self['list'].setIndex(0)
 
@@ -617,7 +617,7 @@ class YouTubeMain(Screen):
 			self['list'].selectPrevious()
 		else:
 			if self.prevPageToken: # call previous serch results if it exist
-				self.menuCallback((None, 'prev'))
+				self.setPrevEntries()
 			else:
 				self['list'].setIndex(len(self.entryList) - 1)
 
@@ -626,29 +626,34 @@ class YouTubeMain(Screen):
 		self.setPreviousList()
 		if action:
 			action = action[1]
-		if action == 'playnext':
-			l = self['list'].index + 1
-			if l < len(self.entryList):
-				self['list'].selectNext()
+			if action == 'quit':
+				pass
+			elif action == 'repeat':
 				self.ok()
-		elif action == 'playprev':
-			l = self['list'].index - 1
-			if l >= 0:
-				self['list'].selectPrevious()
-				self.ok()
-		elif action == 'repeat':
-			self.ok()
-		elif action == 'ask':
-			self.rememberCurList()
-			title = _('What do you want to do?')
-			list = (
-					(_('Quit'), 'quit'),
-					(_('Play next video'), 'playnext'),
-					(_('Play previous video'), 'playprev'),
-					(_('Play video again'), 'repeat')
-				)
-			self.session.openWithCallback(self.playCallback,
-				ChoiceBox, title = title, list = list)
+			elif action == 'ask':
+				self.rememberCurList()
+				title = _('What do you want to do?')
+				list = (
+						(_('Quit'), 'quit'),
+						(_('Play next video'), 'playnext'),
+						(_('Play previous video'), 'playprev'),
+						(_('Play video again'), 'repeat')
+					)
+				self.session.openWithCallback(self.playCallback,
+					ChoiceBox, title = title, list = list)
+			else:
+				if action == 'playnext':
+					self.selectNext()
+				elif action == 'playprev':
+					self.selectPrevious()
+				self.playTaimer = eTimer()
+				self.playTaimer.timeout.callback.append(self.playTaimerStop)
+				self.playTaimer.start(1)
+
+	def playTaimerStop(self):
+		self.playTaimer.stop()
+		del self.playTaimer
+		self.ok()		
 
 	def setPreviousList(self):
 		lastInex = self.prevIndex[len(self.prevIndex) - 1]
