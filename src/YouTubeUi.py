@@ -285,12 +285,14 @@ class YouTubeMain(Screen):
 		self['menu'].hide()
 		self['key_red'] = StaticText('')
 		self['key_green'] = StaticText('')
-		self['actions'] = ActionMap(['SetupActions', 'ColorActions', 'MovieSelectionActions'],
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'MovieSelectionActions'],
 			{
-				'cancel': self.cancel,
+				'back': self.cancel,
 				'ok': self.ok,
 				'red': self.cancel,
 				'green': self.ok,
+				'up' : self.selectPrevious,
+				'down' : self.selectNext,
 				'contextMenu': self.openMenu,
 				'showEventInfo': self.showEventInfo
 			}, -2)
@@ -600,6 +602,24 @@ class YouTubeMain(Screen):
 						)
 				count += 1
 			self['list'].updateList(self.entryList)
+
+	def selectNext(self):
+		if self['list'].index + 1 < len(self.entryList): # not last enrty in entry list
+			self['list'].selectNext()
+		else:
+			if self.nextPageToken: # call next serch results if it exist
+				self.menuCallback((None, 'next'))
+			else:
+				self['list'].setIndex(0)
+
+	def selectPrevious(self):
+		if self['list'].index > 0: # not first enrty in entry list
+			self['list'].selectPrevious()
+		else:
+			if self.prevPageToken: # call previous serch results if it exist
+				self.menuCallback((None, 'prev'))
+			else:
+				self['list'].setIndex(len(self.entryList) - 1)
 
 	def playCallback(self, action=None):
 		self.setEntryList()
