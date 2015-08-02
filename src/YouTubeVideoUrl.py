@@ -3,7 +3,6 @@
 
 import codecs
 import json
-import os
 import re
 
 from urllib import urlencode
