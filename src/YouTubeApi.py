@@ -1,7 +1,7 @@
 from httplib import HTTPSConnection
 from json import dumps, load
 from urllib import quote
-from urllib2 import urlopen, HTTPError
+from urllib2 import urlopen, URLError, HTTPError
 
 
 class YouTubeApi:
@@ -34,13 +34,16 @@ class YouTubeApi:
 		response = None
 		try:
 			response = urlopen(url)
-		except HTTPError, e:
+		except HTTPError as e:
 			if e.code == 401 and self.access_token and count:
 				self.renew_access_token()
 				self.get_response(url, False)
 			else:
 				print ('[YouTubeApi] error in response %d' %e.code)
 				return {}
+		except URLError as e:
+			print '[YouTubeApi] failed to reach a server:', e.reason
+			return {}
 		if response:
 			return load(response)
 
