@@ -320,6 +320,7 @@ class YouTubeMain(Screen):
 		self.prevPageToken = None
 		self.isAuth = False
 		self.activeDownloads = 0
+		self.searchResult = config.plugins.YouTube.searchResult.value
 		self.onLayoutFinish.append(self.layoutFinish)
 		self.onClose.append(self.cleanVariables)
 
@@ -653,7 +654,7 @@ class YouTubeMain(Screen):
 	def playTaimerStop(self):
 		self.playTaimer.stop()
 		del self.playTaimer
-		self.ok()		
+		self.ok()
 
 	def setPreviousList(self):
 		lastInex = self.prevIndex[len(self.prevIndex) - 1]
@@ -784,7 +785,7 @@ class YouTubeMain(Screen):
 			if self.value[0] == 'my_subscriptions':
 				self.list = 'playlist'
 				searchResponse = self.youtube.subscriptions_list(
-						maxResults = config.plugins.YouTube.searchResult.value,
+						maxResults = self.searchResult,
 						pageToken = self.value[2]
 					)
 				self.nextPageToken = searchResponse.get('nextPageToken')
@@ -813,7 +814,7 @@ class YouTubeMain(Screen):
 			elif self.value[0] == 'my_playlists':
 				self.list = 'playlist'
 				searchResponse = self.youtube.playlists_list(
-						maxResults = config.plugins.YouTube.searchResult.value,
+						maxResults = self.searchResult,
 						pageToken = self.value[2]
 					)
 				self.nextPageToken = searchResponse.get('nextPageToken')
@@ -837,7 +838,7 @@ class YouTubeMain(Screen):
 
 			else: # all other my data
 				searchResponse = self.youtube.channels_list(
-						maxResults = config.plugins.YouTube.searchResult.value,
+						maxResults = self.searchResult,
 						pageToken = self.value[2]
 					)
 				
@@ -855,7 +856,7 @@ class YouTubeMain(Screen):
 				searchResponse = self.youtube.search_list(
 						part = 'id,snippet',
 						channelId = 'UC' + self.value[0][2:],
-						maxResults = config.plugins.YouTube.searchResult.value,
+						maxResults = self.searchResult,
 						pageToken = self.value[2]
 					)
 				return self.createList(searchResponse, 'playlist')
@@ -878,7 +879,7 @@ class YouTubeMain(Screen):
 					relevanceLanguage = config.plugins.YouTube.searchLanguage.value,
 					s_type = searchType,
 					regionCode = config.plugins.YouTube.searchRegion.value,
-					maxResults = config.plugins.YouTube.searchResult.value,
+					maxResults = self.searchResult,
 					pageToken = self.value[2]
 				)
 
@@ -962,7 +963,7 @@ class YouTubeMain(Screen):
 	def videoIdFromPlaylist(self, channel):
 		videos = []
 		searchResponse = self.youtube.playlistItems_list(
-				maxResults = config.plugins.YouTube.searchResult.value,
+				maxResults = self.searchResult,
 				playlistId = channel,
 				pageToken = self.value[2]
 			)
@@ -980,7 +981,7 @@ class YouTubeMain(Screen):
 		searchResponse = self.youtube.search_list(
 				part = 'id',
 				channelId = channel,
-				maxResults = config.plugins.YouTube.searchResult.value,
+				maxResults = self.searchResult,
 				pageToken = self.value[2]
 			)
 		self.nextPageToken = searchResponse.get('nextPageToken')
@@ -1031,10 +1032,10 @@ class YouTubeMain(Screen):
 			title = _('What do you want to do?')
 			clist = ((_('YouTube setup'), 'setup'),)
 			if self.nextPageToken:
-				clist += ((_('Next %s entries') % config.plugins.YouTube.searchResult.value,
+				clist += ((_('Next %s entries') % self.searchResult,
 					'next'),)
 			if self.prevPageToken:
-				clist += ((_('Previous %s entries') % config.plugins.YouTube.searchResult.value,
+				clist += ((_('Previous %s entries') % self.searchResult,
 					'prev'),)
 			if self.isAuth:
 				if self.list == 'videolist':
@@ -1108,7 +1109,8 @@ class YouTubeMain(Screen):
 					ChoiceBox, title = title, list = clist)
 
 	def configScreenCallback(self, callback=None):
-		if self.list == 'main': # if autentification changed
+		self.searchResult = config.plugins.YouTube.searchResult.value
+		if self.list == 'main': # maybe autentification changed
 			self.createMainList()
 
 	def subscribeChannel(self, channelId):
