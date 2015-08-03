@@ -80,10 +80,9 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
 			</screen>"""
 
-	def __init__(self, session, searchType):
+	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		self.searchType = searchType
 		self.setTitle(_('YouTube search'))
 		self['key_red'] = StaticText(_('Exit'))
 		self['key_green'] = StaticText(_('Ok'))
@@ -140,7 +139,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					self.searchHistory.pop()
 				config.plugins.YouTube.searchHistory.value = ','.join(self.searchHistory)
 				config.plugins.YouTube.searchHistory.save()
-			self.close([self.searchType, searchValue, ''], 'OpenSearch')
+			self.close(searchValue)
 
 	def openMenu(self):
 		selected = self['list'].getCurrent()[0]

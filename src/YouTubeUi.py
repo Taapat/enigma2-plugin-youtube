@@ -415,26 +415,23 @@ class YouTubeMain(Screen):
 		self.setEntryList()
 
 	def screenCallback(self, value = None, action = None):
-		if not action: # cancel in search
-			self.cancel()
+		self.value = value
+		self.action = action
+		if action == 'OpenSearch':
+			text = _('Download search results. Please wait...')
+		elif action in ['playVideo', 'downloadVideo']:
+			text = _('Extract video url. Please wait...')
 		else:
-			self.value = value
-			self.action = action
-			if action == 'OpenSearch':
-				text = _('Download search results. Please wait...')
-			elif action in ['playVideo', 'downloadVideo']:
-				text = _('Extract video url. Please wait...')
-			else:
-				text = _('Download feed entries. Please wait...')
-			self['text'].setText(text)
-			self['list'].setList([])
-			self['key_red'].setText('')
-			self['key_green'].setText('')
-			self['red'].hide()
-			self['green'].hide()
-			self['menu'].hide()
-			self['info'].hide()
-			self.splitTaimer.start(1)
+			text = _('Download feed entries. Please wait...')
+		self['text'].setText(text)
+		self['list'].setList([])
+		self['key_red'].setText('')
+		self['key_green'].setText('')
+		self['red'].hide()
+		self['green'].hide()
+		self['menu'].hide()
+		self['info'].hide()
+		self.splitTaimer.start(1)
 
 	def splitTaimerStop(self):
 		self.splitTaimer.stop()
@@ -687,7 +684,7 @@ class YouTubeMain(Screen):
 					self.createMyFeedList()
 				elif self.list == 'search':
 					from YouTubeSearch import YouTubeSearch
-					self.session.openWithCallback(self.screenCallback, YouTubeSearch, current[0][6:])
+					self.session.openWithCallback(self.searchScreenCallback, YouTubeSearch)
 				elif self.list == 'feeds':
 					self.screenCallback([current[0], current[3], self.value[2]], 'OpenFeeds')
 				elif self.list == 'myfeeds':
@@ -696,6 +693,13 @@ class YouTubeMain(Screen):
 					self.screenCallback([current[0], current[3], self.value[2]], 'OpenPlayList')
 				elif self.list == 'channel':
 					self.screenCallback([current[0], current[3], self.value[2]], 'OpenChannelList')
+
+	def searchScreenCallback(self, searchValue = None):
+		if not searchValue: # cancel in search
+			self.cancel()
+		else:
+			self.searchResult = config.plugins.YouTube.searchResult.value
+			self.screenCallback([self['list'].getCurrent()[0][6:], searchValue, ''], 'OpenSearch')
 
 	def getVideoUrl(self):
 		try:
