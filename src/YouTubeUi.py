@@ -617,7 +617,9 @@ class YouTubeMain(Screen):
 			self['list'].selectPrevious()
 		else:
 			if self.prevPageToken: # call previous serch results if it exist
-				self.pageIndex -= 1
+				self.pageIndex -= int(self.searchResult) - 1
+				if self.pageIndex < 1:
+					self.pageIndex = 1
 				self.setPrevEntries()
 			else:
 				self['list'].setIndex(len(self.entryList) - 1)
@@ -1046,13 +1048,14 @@ class YouTubeMain(Screen):
 
 	def setSearchResults(self, totalResults):
 		if totalResults > 0:
-			startItem = int(self.searchResult) * (self.pageIndex - 1) + 1
-			endItem = int(self.searchResult) * self.pageIndex
-			if startItem + totalResults - 1 < endItem:
-				endItem = startItem + totalResults - 1
+			endItem = self.pageIndex + int(self.searchResult) - 1
+			if self.pageIndex + totalResults -1 < endItem:
+				endItem = self.pageIndex + totalResults -1
 			if '  (' in self.value[1]:
 				self.value[1] = self.value[1].rsplit('  (', 1)[0]
-			self.value[1] = self.value[1] + _('  (%d-%d of %d)') % (startItem, endItem, totalResults)
+			self.value[1] = self.value[1] + _('  (%d-%d of %d)') % \
+				(self.pageIndex, endItem, totalResults)
+			self.pageIndex = endItem
 
 	def cancel(self):
 		entryListIndex = len(self.prevEntryList) - 1
