@@ -1053,7 +1053,7 @@ class YouTubeMain(Screen):
 				endItem = self.pageIndex + totalResults -1
 			if '  (' in self.value[1]:
 				self.value[1] = self.value[1].rsplit('  (', 1)[0]
-			self.value[1] = self.value[1] + _('  (%d-%d of %d)') % \
+			self.value[1] = self.value[1][:40] + _('  (%d-%d of %d)') % \
 				(self.pageIndex, endItem, totalResults)
 			self.pageIndex = endItem
 
@@ -1124,11 +1124,11 @@ class YouTubeMain(Screen):
 				clist = ((_('Search for similar'), 'similar'),
 					(_('Videos from this video channel'), 'channel_videos'),)
 			elif answer[1] == 'similar':
-				term = self['list'].getCurrent()[3][:30]
+				term = self['list'].getCurrent()[3][:40]
 				self.screenCallback(['video', term, ''], 'OpenSearch')
 			elif answer[1] == 'channel_videos':
 				current = self['list'].getCurrent()
-				self.screenCallback([current[11], current[3][:30], ''],
+				self.screenCallback([current[11], current[3][:40], ''],
 					'OpenChannelList')
 			elif answer[1] == 'download':
 				current = self['list'].getCurrent()
