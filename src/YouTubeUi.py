@@ -320,8 +320,9 @@ class YouTubeMain(Screen):
 		self.prevPageToken = None
 		self.isAuth = False
 		self.activeDownloads = 0
-		self.pageIndex = 1
 		self.searchResult = config.plugins.YouTube.searchResult.value
+		self.pageStartIndex = 1
+		self.pageEndIndex = int(self.searchResult)
 		self.onLayoutFinish.append(self.layoutFinish)
 		self.onClose.append(self.cleanVariables)
 
@@ -607,7 +608,8 @@ class YouTubeMain(Screen):
 			self['list'].selectNext()
 		else:
 			if self.nextPageToken: # call next serch results if it exist
-				self.pageIndex += 1
+				self.pageStartIndex = self.pageEndIndex + 1
+				self.pageEndIndex += int(self.searchResult)
 				self.setNextEntries()
 			else:
 				self['list'].setIndex(0)
@@ -617,9 +619,8 @@ class YouTubeMain(Screen):
 			self['list'].selectPrevious()
 		else:
 			if self.prevPageToken: # call previous serch results if it exist
-				self.pageIndex -= int(self.searchResult) - 1
-				if self.pageIndex < 1:
-					self.pageIndex = 1
+				self.pageEndIndex = self.pageStartIndex - 1
+				self.pageStartIndex -= int(self.searchResult)
 				self.setPrevEntries()
 			else:
 				self['list'].setIndex(len(self.entryList) - 1)
@@ -801,8 +802,6 @@ class YouTubeMain(Screen):
 					)
 				self.nextPageToken = searchResponse.get('nextPageToken')
 				self.prevPageToken = searchResponse.get('prevPageToken')
-				if not self.prevPageToken:
-					self.pageIndex = 1
 				self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
 				for result in searchResponse.get('items', []):
 					try:
@@ -833,8 +832,6 @@ class YouTubeMain(Screen):
 					)
 				self.nextPageToken = searchResponse.get('nextPageToken')
 				self.prevPageToken = searchResponse.get('prevPageToken')
-				if not self.prevPageToken:
-					self.pageIndex = 1
 				self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
 				for result in searchResponse.get('items', []):
 					try:
@@ -861,8 +858,6 @@ class YouTubeMain(Screen):
 				
 				self.nextPageToken = searchResponse.get('nextPageToken')
 				self.prevPageToken = searchResponse.get('prevPageToken')
-				if not self.prevPageToken:
-					self.pageIndex = 1
 				self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
 				for result in searchResponse.get('items', []):
 					channel = result['contentDetails']['relatedPlaylists'][playlist]
@@ -910,8 +905,6 @@ class YouTubeMain(Screen):
 
 			self.nextPageToken = searchResponse.get('nextPageToken')
 			self.prevPageToken = searchResponse.get('prevPageToken')
-			if not self.prevPageToken:
-				self.pageIndex = 1
 			self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
 			for result in searchResponse.get('items', []):
 				videos.append(result['id']['videoId'])
@@ -992,8 +985,6 @@ class YouTubeMain(Screen):
 			)
 		self.nextPageToken = searchResponse.get('nextPageToken')
 		self.prevPageToken = searchResponse.get('prevPageToken')
-		if not self.prevPageToken:
-			self.pageIndex = 1
 		self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
 		for result in searchResponse.get('items', []):
 			try:
@@ -1012,8 +1003,6 @@ class YouTubeMain(Screen):
 			)
 		self.nextPageToken = searchResponse.get('nextPageToken')
 		self.prevPageToken = searchResponse.get('prevPageToken')
-		if not self.prevPageToken:
-			self.pageIndex = 1
 		self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
 		for result in searchResponse.get('items', []):
 			try:
@@ -1026,8 +1015,6 @@ class YouTubeMain(Screen):
 		videos = []
 		self.nextPageToken = searchResponse.get('nextPageToken')
 		self.prevPageToken = searchResponse.get('prevPageToken')
-		if not self.prevPageToken:
-			self.pageIndex = 1
 		self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
 		for result in searchResponse.get('items', []):
 			try:
@@ -1047,15 +1034,16 @@ class YouTubeMain(Screen):
 		return videos
 
 	def setSearchResults(self, totalResults):
+		if not self.prevPageToken:
+			self.pageStartIndex = 1
+			self.pageEndIndex = int(self.searchResult)
 		if totalResults > 0:
-			endItem = self.pageIndex + int(self.searchResult) - 1
-			if self.pageIndex + totalResults -1 < endItem:
-				endItem = self.pageIndex + totalResults -1
+			if self.pageEndIndex > totalResults:
+				self.pageEndIndex = totalResults
 			if '  (' in self.value[1]:
 				self.value[1] = self.value[1].rsplit('  (', 1)[0]
 			self.value[1] = self.value[1][:40] + _('  (%d-%d of %d)') % \
-				(self.pageIndex, endItem, totalResults)
-			self.pageIndex = endItem
+				(self.pageStartIndex, self.pageEndIndex, totalResults)
 
 	def cancel(self):
 		entryListIndex = len(self.prevEntryList) - 1
