@@ -30,7 +30,8 @@ class YouTubeApi:
 			self.key = self.key + '&access_token=' + self.access_token
 
 	def get_response(self, url, count):
-		url = 'https://www.googleapis.com/youtube/v3/' + url
+		if count:
+			url = 'https://www.googleapis.com/youtube/v3/' + url
 		response = None
 		try:
 			response = urlopen(url)
@@ -46,6 +47,7 @@ class YouTubeApi:
 			return {}
 		if response:
 			return load(response)
+		return {}
 
 	def get_aut_response(self, method, url, data, header, status, count):
 		url = '/youtube/v3/' + url + self.key
