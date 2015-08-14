@@ -1,0 +1,653 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Youtube plugin greek translation\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-04 19:30+0300\n"
+"PO-Revision-Date: 2015-08-10 03:06+0200\n"
+"Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
+"Language-Team: MCelliot_g <mcelliot_g@hotmail.com>\n"
+"Language: el_GR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.7.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: YouTubeUi.py:1045
+#, python-format
+msgid "  (%d-%d of %d)"
+msgstr "  (%d-%d από %d)"
+
+#: YouTubeUi.py:950
+msgid " dislikes"
+msgstr " δεν μου αρέσει"
+
+#: YouTubeUi.py:946
+msgid " likes"
+msgstr " μου αρέσει"
+
+#: YouTubeUi.py:934
+msgid " views"
+msgstr " προβολές"
+
+#: YouTubeDownload.py:153 YouTubeUi.py:1084
+msgid "Active video downloads"
+msgstr "Ενεργές μεταφορτώσεις βίντεο"
+
+#: YouTubeUi.py:38 YouTubeUi.py:66
+msgid "All"
+msgstr "Όλα"
+
+#: YouTubeUi.py:106 YouTubeUi.py:109
+msgid "Ask user"
+msgstr "Ορισμός χρήστη"
+
+#: YouTubeUi.py:39 YouTubeUi.py:67
+msgid "Australia"
+msgstr "Αυστραλία"
+
+#: YouTubeUi.py:40 YouTubeUi.py:68
+msgid "Brazil"
+msgstr "Βραζιλία"
+
+#: YouTubeUi.py:41 YouTubeUi.py:69
+msgid "Canada"
+msgstr "Καναδάς"
+
+#: YouTubeDownload.py:17 YouTubeUi.py:1328
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: YouTubeUi.py:367
+msgid "Choose what you want to do"
+msgstr "Επιλέξτε τι θέλετε να γίνει"
+
+#: YouTubeUi.py:1085
+msgid "Close YouTube"
+msgstr "Κλείσιμο YouTube"
+
+#: YouTubeUi.py:95
+msgid "Created date"
+msgstr "Ημερομηνία δημιουργίας"
+
+#: YouTubeUi.py:42 YouTubeUi.py:70
+msgid "Czech Republic"
+msgstr "Δημοκρατία της Τσεχίας"
+
+#: YouTubeSearch.py:149
+msgid "Delete this entry"
+msgstr "Διαγραφή αυτού του στοιχείου"
+
+#: YouTubeUi.py:1170
+msgid "Disliked!"
+msgstr "Δεν μου αρέσει!"
+
+#: YouTubeUi.py:1374
+msgid "Download directory:"
+msgstr "Φάκελος λήψεων:"
+
+#: YouTubeUi.py:427
+msgid "Download feed entries. Please wait..."
+msgstr "Λήψη πηγών. Παρακαλώ περιμένετε..."
+
+#: YouTubeUi.py:423
+msgid "Download search results. Please wait..."
+msgstr "Λήψη αποτελεσμάτων αναζήτησης. Παρακαλώ περιμένετε..."
+
+#: YouTubeUi.py:1082
+msgid "Download video"
+msgstr "Λήψη βίντεο"
+
+#: YouTubeDownload.py:58
+msgid "Downloading"
+msgstr "Λήψη"
+
+#: YouTubeUi.py:938
+msgid "Duration: "
+msgstr "Διάρκεια:"
+
+#: YouTubeUi.py:398
+msgid "Embedded in webpages"
+msgstr "Ενσωματωμένα σε ιστοσελίδες"
+
+#: YouTubeUi.py:1359
+msgid "Exclude restricted content:"
+msgstr "Εξαίρεση περιορισμένου περιεχομένου:"
+
+#: YouTubeDownload.py:139 YouTubeUi.py:515 YouTubeUi.py:1275
+#: YouTubeSearch.py:87
+msgid "Exit"
+msgstr "Έξοδος"
+
+#: YouTubeUi.py:425
+msgid "Extract video url. Please wait..."
+msgstr "Εξαγωγή διεύθυνσης βίντεο. Παρακαλώ περιμένετε:"
+
+#: YouTubeUi.py:413
+msgid "Favorites"
+msgstr "Αγαπημένα"
+
+#: YouTubeUi.py:43 YouTubeUi.py:71
+msgid "France"
+msgstr "Γαλλία"
+
+#: YouTubeUi.py:44 YouTubeUi.py:72
+msgid "Germany"
+msgstr "Γερμανία"
+
+#: YouTubeUi.py:1427
+#, python-format
+msgid ""
+"Go to %s\n"
+"And enter the code %s"
+msgstr ""
+"Μεταβείτε στο %s\n"
+"Και εισάγετε τον κωδικό %s"
+
+#: YouTubeUi.py:45 YouTubeUi.py:73
+msgid "Great Britain"
+msgstr "Μεγάλη Βρετανία"
+
+#: YouTubeUi.py:397
+msgid "HD videos"
+msgstr "HD βίντεο"
+
+#: YouTubeUi.py:411
+msgid "History"
+msgstr "Ιστορικό"
+
+#: YouTubeUi.py:46 YouTubeUi.py:74
+msgid "Holland"
+msgstr "Ολλανδία"
+
+#: YouTubeUi.py:47 YouTubeUi.py:75
+msgid "Hong Kong"
+msgstr "Χονγκ Κονγκ"
+
+#: YouTubeUi.py:1349
+msgid ""
+"How many search results will be returned.\n"
+"If greater value then longer time will be needed for thumbnail download."
+msgstr ""
+"Πόσα αποτελέσματα αναζήτησης θα επιστρέφονται.\n"
+"Αν η τιμή είναι μεγαλύτερη, τότε θα απαιτείται περισσότερος χρόνος λήψης "
+"μικρογραφιών."
+
+#: YouTubeUi.py:1101
+msgid "I dislike this"
+msgstr "Δεν μου αρέσει αυτό"
+
+#: YouTubeUi.py:1100
+msgid "I like this"
+msgstr "Μου αρέσει αυτό"
+
+#: YouTubeUi.py:48 YouTubeUi.py:76
+msgid "India"
+msgstr "Ινδία"
+
+#: YouTubeUi.py:49 YouTubeUi.py:77
+msgid "Ireland"
+msgstr "Ιρλανδία"
+
+#: YouTubeUi.py:50 YouTubeUi.py:78
+msgid "Israel"
+msgstr "Ισραήλ"
+
+#: YouTubeUi.py:51 YouTubeUi.py:79
+msgid "Italy"
+msgstr "Ιταλία"
+
+#: YouTubeUi.py:52 YouTubeUi.py:80
+msgid "Japan"
+msgstr "Ιαπωνία"
+
+#: YouTubeSearch.py:89
+msgid "Keyboard"
+msgstr "Πληκτρολόγιο"
+
+#: YouTubeUi.py:53 YouTubeUi.py:81
+msgid "Latvia"
+msgstr "Λετονία"
+
+#: YouTubeUi.py:412
+msgid "Liked videos"
+msgstr "Βίντεο που σας αρέσουν"
+
+#: YouTubeUi.py:1169
+msgid "Liked!"
+msgstr "Σας αρέσει!"
+
+#: YouTubeUi.py:1373
+msgid ""
+"Log in to your YouTube account when plugin starts.\n"
+"This needs to approve in the Google home page!"
+msgstr ""
+"Σύνδεση στον YouTube λογαριασμό σας όταν το πρόσθετο ξεκινά.\n"
+"Αυτό απαιτεί έγκριση στην αρχική σελίδα της Google!"
+
+#: YouTubeUi.py:1371
+msgid "Login on startup:"
+msgstr "Σύνδεση κατά την εκκίνηση:"
+
+#: YouTubeUi.py:1362
+msgid "Maximum video resolution:"
+msgstr "Μέγιστη ανάλυση βίντεο:"
+
+#: YouTubeUi.py:54 YouTubeUi.py:82
+msgid "Mexico"
+msgstr "Μεξικό"
+
+#: YouTubeUi.py:101
+msgid "Moderate"
+msgstr "Μέτριο"
+
+#: YouTubeUi.py:395
+msgid "Most viewed"
+msgstr "Με τις περισσότερες προβολές"
+
+#: YouTubeUi.py:400
+msgid "Movies"
+msgstr "Ταινίες"
+
+#: YouTubeUi.py:409
+msgid "My Subscriptions"
+msgstr "Οι Συνδρομές μου"
+
+#: YouTubeUi.py:374 YouTubeUi.py:407
+msgid "My feeds"
+msgstr "Οι πηγές μου"
+
+#: YouTubeUi.py:55 YouTubeUi.py:83
+msgid "New Zealand"
+msgstr "Νέα Ζηλανδία"
+
+#: YouTubeUi.py:1066
+#, python-format
+msgid "Next %s entries"
+msgstr "Επόμενα %s στοιχεία"
+
+#: YouTubeUi.py:101 YouTubeUi.py:136
+msgid "No"
+msgstr "Όχι"
+
+#: YouTubeUi.py:135
+msgid "No, but play video again"
+msgstr "Όχι, αλλά αναπαραγωγή του βίντεο ξανά"
+
+#: YouTubeUi.py:1329 YouTubeSearch.py:88
+msgid "Ok"
+msgstr "ΟΚ"
+
+#: YouTubeUi.py:516
+msgid "Open"
+msgstr "Άνοιγμα"
+
+#: YouTubeUi.py:1358
+msgid "Order in which search results will be displayed."
+msgstr "Σειρά εμφάνισης των αποτελεσμάτων αναζήτησης."
+
+#: YouTubeUi.py:107
+msgid "Play next"
+msgstr "Αναπαραγωγή επόμενου"
+
+#: YouTubeUi.py:642
+msgid "Play next video"
+msgstr "Αναπαραγωγή του επόμενου βίντεο"
+
+#: YouTubeUi.py:643
+msgid "Play previous video"
+msgstr "Αναπαραγωγή του προηγούμενου βίντεο"
+
+#: YouTubeUi.py:644
+msgid "Play video again"
+msgstr "Αναπαραγωγή βίντεο ξανά"
+
+#: YouTubeUi.py:415
+msgid "Playlists"
+msgstr "Λίστες αναπαραγωγής"
+
+#: YouTubeDownload.py:33
+msgid "Please select the download directory"
+msgstr "Παρακαλώ επιλέξτε το φάκελο μεταφορτώσεων"
+
+#: YouTubeUi.py:56 YouTubeUi.py:84
+msgid "Poland"
+msgstr "Πολωνία"
+
+#: YouTubeUi.py:1069
+#, python-format
+msgid "Previous %s entries"
+msgstr "Προηγούμενα %s στοιχεία"
+
+#: YouTubeUi.py:370 YouTubeUi.py:392
+msgid "Public feeds"
+msgstr "Δημόσιες πηγές"
+
+#: YouTubeUi.py:962
+msgid "Published at: "
+msgstr "Δημοσιεύτηκε στις: "
+
+#: YouTubeUi.py:641
+msgid "Quit"
+msgstr "Έξοδος"
+
+#: YouTubeUi.py:1073
+msgid "Rate video"
+msgstr "Βαθμολογία βίντεο"
+
+#: YouTubeUi.py:96
+msgid "Rating"
+msgstr "Αξιολόγηση"
+
+#: YouTubeUi.py:1171
+msgid "Rating removed!"
+msgstr "Η αξιολόγηση αφαιρέθηκε"
+
+#: YouTubeUi.py:396
+msgid "Recent"
+msgstr "Πρόσφατα"
+
+#: YouTubeUi.py:94
+msgid "Relevance"
+msgstr "Συνάφεια"
+
+#: YouTubeUi.py:1102
+msgid "Remove my rating"
+msgstr "Αφαίρεση της αξιολόγησής μου"
+
+#: YouTubeUi.py:107
+msgid "Repeat"
+msgstr "Επανάληψη"
+
+#: YouTubeUi.py:1352
+msgid "Return search results for the specified country."
+msgstr "Επιστροφή αποτελεσμάτων αναζήτησης για την επιλεγμένη χώρα."
+
+#: YouTubeUi.py:1355
+msgid "Return search results that are most relevant to the specified language."
+msgstr ""
+"Επιστροφή των αποτελεσμάτων αναζήτησης που είναι πιο σχετικά με την "
+"επιλεγμένη γλώσσα."
+
+#: YouTubeUi.py:106 YouTubeUi.py:109
+msgid "Return to list"
+msgstr "Επιστροφή στη λίστα"
+
+#: YouTubeUi.py:57 YouTubeUi.py:85
+msgid "Russia"
+msgstr "Ρωσία"
+
+#: YouTubeUi.py:1344
+msgid "Save search result:"
+msgstr "Αποθήκευση αποτελεσμάτων αναζήτησης:"
+
+#: YouTubeUi.py:1346
+msgid "Save your search result in the history, when search completed."
+msgstr ""
+"Αποθήκευση των αποτελεσμάτων στο ιστορικό μετά το πέρας της αναζήτησης."
+
+#: YouTubeUi.py:369 YouTubeUi.py:380 YouTubeUi.py:1081 YouTubeSearch.py:112
+#: YouTubeSearch.py:180
+msgid "Search"
+msgstr "Αναζήτηση"
+
+#: YouTubeUi.py:383
+msgid "Search channels"
+msgstr "Αναζήτηση καναλιών"
+
+#: YouTubeUi.py:1112
+msgid "Search for similar"
+msgstr "Αναζήτηση παρόμοιων"
+
+#: YouTubeUi.py:1353
+msgid "Search language:"
+msgstr "Αναζήτηση γλώσσας:"
+
+#: YouTubeUi.py:385
+msgid "Search live broadcasts"
+msgstr "Αναζήτηση ζωντανών εκπομπών"
+
+#: YouTubeUi.py:384
+msgid "Search playlists"
+msgstr "Αναζήτηση λιστών αναπαραγωγής"
+
+#: YouTubeUi.py:1350
+msgid "Search region:"
+msgstr "Αναζήτηση περιοχής:"
+
+#: YouTubeUi.py:1347
+msgid "Search results:"
+msgstr "Αποτελέσματα αναζήτησης:"
+
+#: YouTubeUi.py:382
+msgid "Search videos"
+msgstr "Αναζήτηση βίντεο"
+
+#: YouTubeUi.py:399
+msgid "Shows"
+msgstr "Σόου"
+
+#: YouTubeUi.py:1189
+msgid ""
+"Sorry, download directory not exist!\n"
+"Please specify in the settings existing directory."
+msgstr ""
+"Λυπούμαστε, ο φάκελος μεταφόρτωσης δεν υπάρχει!\n"
+"Παρακαλούμε επιλέξτε έναν υπάρχον στις ρυθμίσεις."
+
+#: YouTubeUi.py:1193
+#, python-format
+msgid ""
+"Sorry, this file already exists:\n"
+"%s"
+msgstr ""
+"Λυπούμαστε, το αρχείο υπάρχει ήδη:\n"
+"%s"
+
+#: YouTubeUi.py:1356
+msgid "Sort search results by:"
+msgstr "Ταξινόμηση αποτελεσμάτων κατά:"
+
+#: YouTubeUi.py:58 YouTubeUi.py:86
+msgid "South Korea"
+msgstr "Νότια Κορέα"
+
+#: YouTubeUi.py:59 YouTubeUi.py:87
+msgid "Spain"
+msgstr "Ισπανία"
+
+#: YouTubeUi.py:1376
+msgid "Specify the directory where save downloaded video files."
+msgstr "Επιλέξτε το φάκελο όπου θα αποθηκεύονται τα αρχεία βίντεο."
+
+#: YouTubeUi.py:130
+msgid "Stop playing this movie?"
+msgstr "Διακοπή αναπαραγωγής;"
+
+#: YouTubeUi.py:1076
+msgid "Subscribe"
+msgstr "Εγγραφή"
+
+#: YouTubeUi.py:1074
+msgid "Subscribe this video channel"
+msgstr "Εγγραφή σε αυτό το κανάλι βίντεο"
+
+#: YouTubeUi.py:1149
+msgid "Subscribed!"
+msgstr "Εγγεγραμένος!"
+
+#: YouTubeUi.py:60 YouTubeUi.py:88
+msgid "Sweden"
+msgstr "Σουηδία"
+
+#: YouTubeUi.py:61 YouTubeUi.py:89
+msgid "Taiwan"
+msgstr "Ταϊβάν"
+
+#: YouTubeUi.py:62 YouTubeUi.py:90
+msgid "Thailand"
+msgstr "Ταϊλάνδη"
+
+#: YouTubeUi.py:499
+msgid ""
+"There was an error in creating entry list!\n"
+"Maybe try other feeds..."
+msgstr ""
+"Υπήρξε σφάλμα στη δημιουργία λίστας στοιχείων!\n"
+"Ίσως να δοκιμάζατε άλλες πηγές..."
+
+#: YouTubeUi.py:453
+#, python-format
+msgid ""
+"There was an error in extract video url:\n"
+"%s"
+msgstr ""
+"Υπήρξε σφάλμα στην εξαγωγή της διεύθυνσης του βίντεο:\n"
+"%s"
+
+#: YouTubeUi.py:1175
+msgid "There was an error in rating!"
+msgstr "Υπήρξε σφάλμα στην αξιολόγηση!"
+
+#: YouTubeUi.py:1150
+msgid "There was an error in subscribe!"
+msgstr "Υπήρξε σφάλμα στην εγγραφή!"
+
+#: YouTubeUi.py:1163
+msgid "There was an error in unsubscribe!"
+msgstr "Υπήρξε σφάλμα στην κατάργηση της εγγραφής!"
+
+#: YouTubeUi.py:97
+msgid "Title"
+msgstr "Τίτλος"
+
+#: YouTubeUi.py:1416
+msgid ""
+"To perform authentication will need in a web browser open Google home page, "
+"and enter the code!\n"
+"Do you currently have Internet access on the other device and we can "
+"continue?"
+msgstr ""
+"Για να γίνει πιστοποίηση θα χεριαστείτε έναν πλοηγό διαδικτύου, ανοίξτε την "
+"αρχική σελίδα της Google και εισάγετε τον κωδικό σας!\n"
+"Έχετε πρόσβαση στο διαδίκτυο στην άλλη συσκευή ώστε να συνεχίσουμε;"
+
+#: YouTubeUi.py:394
+msgid "Top rated"
+msgstr "Κορυφαίας βαθμολογίας"
+
+#: YouTubeUi.py:1361
+msgid "Try to exclude all restricted content from the search result."
+msgstr ""
+"Προσπάθεια εξαίρεσης όλου του περιορισμένου περιεχομένου από τα αποτελέσματα "
+"αναζήτησης."
+
+#: YouTubeUi.py:63 YouTubeUi.py:91
+msgid "United States"
+msgstr "Ηνωμένες Πολιτείες"
+
+#: YouTubeUi.py:1079
+msgid "Unsubscribe"
+msgstr "Κατάργηση εγγραφής"
+
+#: YouTubeUi.py:1162
+msgid "Unsubscribed!"
+msgstr "Καταργήθηκε!"
+
+#: YouTubeUi.py:414
+msgid "Uploads"
+msgstr "Μεταφορτώσεις"
+
+#: YouTubeDownload.py:18
+msgid "Use"
+msgstr "Χρήση"
+
+#: YouTubeUi.py:1198
+msgid "Video download started!"
+msgstr "Η λήψη του βίντεο ξεκίνησε!"
+
+#: YouTubeUi.py:1113
+msgid "Videos from this video channel"
+msgstr "Βίντεο από αυτό το κανάλι"
+
+#: YouTubeUi.py:98
+msgid "View count"
+msgstr "Πλήθος προβολών"
+
+#: YouTubeUi.py:410
+msgid "Watch Later"
+msgstr "Παρακολούθηση αργότερα"
+
+#: plugin.py:16 plugin.py:27
+msgid "Watch YouTube videos"
+msgstr "Παρακολούθηση βίντεο YouTube"
+
+#: YouTubeUi.py:639 YouTubeUi.py:1063 YouTubeUi.py:1138 YouTubeSearch.py:147
+msgid "What do you want to do?"
+msgstr "Τι θέλετε να κάνετε;"
+
+#: YouTubeUi.py:1364
+msgid ""
+"What maximum resolution used when playing video, if available.\n"
+"If you have a slow Internet connection, you can use a lower resolution."
+msgstr ""
+"Ποια θα είναι η μέγιστη ανάλυση αναπαραγωγής βίντεο, εάν διατίθεται.\n"
+"Αν η σύνδεσή σας στο διαδίκτυο είναι αργή, χρησιμοποιήστε μια χαμηλότερη "
+"ανάλυση."
+
+#: YouTubeUi.py:1370
+msgid "What to do when stop playback in videoplayer."
+msgstr "Τι να γίνεται όταν σταματά η αναπαραγωγή."
+
+#: YouTubeUi.py:1367
+msgid "What to do when the video ends."
+msgstr "Τι να γίνεται όταν ένα βίντεο τελειώνει."
+
+#: YouTubeUi.py:1368
+msgid "When playback stop:"
+msgstr "Όταν η αναπαραγωγή σταματήσει:"
+
+#: YouTubeUi.py:1365
+msgid "When video ends:"
+msgstr "Όταν το βίντεο τελειώσει:"
+
+#: YouTubeUi.py:101 YouTubeUi.py:132
+msgid "Yes"
+msgstr "Ναι"
+
+#: YouTubeUi.py:133
+msgid "Yes, but play next video"
+msgstr "Ναι, αλλά αναπαραγωγή του επόμενου βίντεο"
+
+#: YouTubeUi.py:134
+msgid "Yes, but play previous video"
+msgstr "Ναι, αλλά αναπαραγωγή του προηγούμενου βίντεο"
+
+#: YouTubeUi.py:1409
+msgid ""
+"You already authorized access for this plugin to your YouTube account.\n"
+"Do you want to do it again to update access data?"
+msgstr ""
+"Έχετε ήδη πρόσβαση για αυτό το πρόσθετο στον YouTube λογαριασμό σας.\n"
+"Θέλετε να το κάνετε ξανά για ανανέωση των δεδομένων πρόσβασης;"
+
+#: plugin.py:15 plugin.py:26 YouTubeUi.py:154 YouTubeUi.py:277
+msgid "YouTube"
+msgstr "YouTube"
+
+#: YouTubeUi.py:1274
+msgid "YouTube info"
+msgstr "Πληροφορίες YouTube"
+
+#: YouTubeSearch.py:86
+msgid "YouTube search"
+msgstr "Αναζήτηση στο YouTube"
+
+#: YouTubeUi.py:1064 YouTubeUi.py:1383 YouTubeSearch.py:148
+msgid "YouTube setup"
+msgstr "Ρυθμίσεις YouTube"
+
+#: YouTubeUi.py:299
+msgid "YouTube starting. Please wait..."
+msgstr "Το YouTube ξεκινά. Παρακαλώ περιμένετε..."
