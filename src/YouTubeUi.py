@@ -675,7 +675,7 @@ class YouTubeMain(Screen):
 
 	def ok(self):
 		current = self['list'].getCurrent()
-		if current:
+		if current and current[0]:
 			print "[YouTube] Selected:", current[0]
 			self.rememberCurList()
 			if self.list == 'videolist':
