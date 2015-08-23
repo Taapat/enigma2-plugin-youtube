@@ -308,6 +308,7 @@ class YouTubeMain(Screen):
 		self.thumbnailTaimer.timeout.callback.append(self.updateThumbnails)
 		self.picloads = {}
 		self.thumbnails = {}
+		self.sc = AVSwitch().getFramebufferScale()
 		self.list = 'main'
 		self.action = 'startup'
 		self.value = [None, None, '']
@@ -551,14 +552,13 @@ class YouTubeMain(Screen):
 			self.thumbnails[entryId] = True
 			self.thumbnailTaimer.start(1)
 		else:
-			sc = AVSwitch().getFramebufferScale()
 			self.picloads[entryId] = ePicLoad()
 			self.picloads[entryId].PictureData.get()\
 				.append(boundFunction(self.FinishDecode, entryId, image))
 			self.picloads[entryId].setPara((
 				self['thumbnail'].instance.size().width(),
 				self['thumbnail'].instance.size().height(),
-				sc[0], sc[1], False, 1, '#00000000'))
+				self.sc[0], self.sc[1], False, 1, '#00000000'))
 			self.picloads[entryId].startDecode(image)
 
 	def FinishDecode(self, entryId, image, picInfo = None):
