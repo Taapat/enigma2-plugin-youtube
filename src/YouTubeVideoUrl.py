@@ -231,7 +231,7 @@ class YouTubeVideoUrl():
 			# We simulate the access to the video from www.youtube.com/v/{video_id}
 			# this can be viewed without login into Youtube
 			url = 'https://www.youtube.com/embed/%s' % video_id
-			embed_webpage = self._download_webpage(url, video_id)
+			embed_webpage = self._download_webpage(url)
 			data = urlencode({
 				'video_id': video_id,
 				'eurl': 'https://youtube.googleapis.com/v/' + video_id,
