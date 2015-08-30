@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-30 13:23+0300\n"
+"POT-Creation-Date: 2015-08-14 22:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,16 +62,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: YouTubeVideoUrl.py:153
-msgid "Cannot decrypt signature without player_url!"
-msgstr ""
-
-#: YouTubeVideoUrl.py:168
-#, python-format
-msgid "Cannot identify player %r!"
-msgstr ""
-
-#: YouTubeUi.py:368
+#: YouTubeUi.py:367
 msgid "Choose what you want to do"
 msgstr ""
 
@@ -99,11 +90,11 @@ msgstr ""
 msgid "Download directory:"
 msgstr ""
 
-#: YouTubeUi.py:428
+#: YouTubeUi.py:427
 msgid "Download feed entries. Please wait..."
 msgstr ""
 
-#: YouTubeUi.py:424
+#: YouTubeUi.py:423
 msgid "Download search results. Please wait..."
 msgstr ""
 
@@ -119,7 +110,7 @@ msgstr ""
 msgid "Duration: "
 msgstr ""
 
-#: YouTubeUi.py:399
+#: YouTubeUi.py:398
 msgid "Embedded in webpages"
 msgstr ""
 
@@ -127,16 +118,16 @@ msgstr ""
 msgid "Exclude restricted content:"
 msgstr ""
 
-#: YouTubeDownload.py:139 YouTubeUi.py:516 YouTubeUi.py:1275
+#: YouTubeDownload.py:139 YouTubeUi.py:515 YouTubeUi.py:1275
 #: YouTubeSearch.py:87
 msgid "Exit"
 msgstr ""
 
-#: YouTubeUi.py:426
+#: YouTubeUi.py:425
 msgid "Extract video url. Please wait..."
 msgstr ""
 
-#: YouTubeUi.py:414
+#: YouTubeUi.py:413
 msgid "Favorites"
 msgstr ""
 
@@ -159,11 +150,11 @@ msgstr ""
 msgid "Great Britain"
 msgstr ""
 
-#: YouTubeUi.py:398
+#: YouTubeUi.py:397
 msgid "HD videos"
 msgstr ""
 
-#: YouTubeUi.py:412
+#: YouTubeUi.py:411
 msgid "History"
 msgstr ""
 
@@ -193,11 +184,6 @@ msgstr ""
 msgid "India"
 msgstr ""
 
-#: YouTubeVideoUrl.py:176
-#, python-format
-msgid "Invalid player type %r!"
-msgstr ""
-
 #: YouTubeUi.py:49 YouTubeUi.py:77
 msgid "Ireland"
 msgstr ""
@@ -222,7 +208,7 @@ msgstr ""
 msgid "Latvia"
 msgstr ""
 
-#: YouTubeUi.py:413
+#: YouTubeUi.py:412
 msgid "Liked videos"
 msgstr ""
 
@@ -252,19 +238,19 @@ msgstr ""
 msgid "Moderate"
 msgstr ""
 
-#: YouTubeUi.py:396
+#: YouTubeUi.py:395
 msgid "Most viewed"
 msgstr ""
 
-#: YouTubeUi.py:401
+#: YouTubeUi.py:400
 msgid "Movies"
 msgstr ""
 
-#: YouTubeUi.py:410
+#: YouTubeUi.py:409
 msgid "My Subscriptions"
 msgstr ""
 
-#: YouTubeUi.py:375 YouTubeUi.py:408
+#: YouTubeUi.py:374 YouTubeUi.py:407
 msgid "My feeds"
 msgstr ""
 
@@ -281,10 +267,6 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: YouTubeVideoUrl.py:355
-msgid "No supported formats found in video info!"
-msgstr ""
-
 #: YouTubeUi.py:135
 msgid "No, but play video again"
 msgstr ""
@@ -293,7 +275,7 @@ msgstr ""
 msgid "Ok"
 msgstr ""
 
-#: YouTubeUi.py:517
+#: YouTubeUi.py:516
 msgid "Open"
 msgstr ""
 
@@ -317,7 +299,7 @@ msgstr ""
 msgid "Play video again"
 msgstr ""
 
-#: YouTubeUi.py:416
+#: YouTubeUi.py:415
 msgid "Playlists"
 msgstr ""
 
@@ -334,7 +316,7 @@ msgstr ""
 msgid "Previous %s entries"
 msgstr ""
 
-#: YouTubeUi.py:371 YouTubeUi.py:393
+#: YouTubeUi.py:370 YouTubeUi.py:392
 msgid "Public feeds"
 msgstr ""
 
@@ -358,7 +340,7 @@ msgstr ""
 msgid "Rating removed!"
 msgstr ""
 
-#: YouTubeUi.py:397
+#: YouTubeUi.py:396
 msgid "Recent"
 msgstr ""
 
@@ -398,12 +380,12 @@ msgstr ""
 msgid "Save your search result in the history, when search completed."
 msgstr ""
 
-#: YouTubeUi.py:370 YouTubeUi.py:381 YouTubeUi.py:1081 YouTubeSearch.py:112
+#: YouTubeUi.py:369 YouTubeUi.py:380 YouTubeUi.py:1081 YouTubeSearch.py:112
 #: YouTubeSearch.py:180
 msgid "Search"
 msgstr ""
 
-#: YouTubeUi.py:384
+#: YouTubeUi.py:383
 msgid "Search channels"
 msgstr ""
 
@@ -415,11 +397,11 @@ msgstr ""
 msgid "Search language:"
 msgstr ""
 
-#: YouTubeUi.py:386
+#: YouTubeUi.py:385
 msgid "Search live broadcasts"
 msgstr ""
 
-#: YouTubeUi.py:385
+#: YouTubeUi.py:384
 msgid "Search playlists"
 msgstr ""
 
@@ -431,16 +413,12 @@ msgstr ""
 msgid "Search results:"
 msgstr ""
 
-#: YouTubeUi.py:383
+#: YouTubeUi.py:382
 msgid "Search videos"
 msgstr ""
 
-#: YouTubeUi.py:400
+#: YouTubeUi.py:399
 msgid "Shows"
-msgstr ""
-
-#: YouTubeVideoUrl.py:161
-msgid "Signature extraction failed!"
 msgstr ""
 
 #: YouTubeUi.py:1189
@@ -500,13 +478,13 @@ msgstr ""
 msgid "Thailand"
 msgstr ""
 
-#: YouTubeUi.py:500
+#: YouTubeUi.py:499
 msgid ""
 "There was an error in creating entry list!\n"
 "Maybe try other feeds..."
 msgstr ""
 
-#: YouTubeUi.py:454
+#: YouTubeUi.py:453
 #, python-format
 msgid ""
 "There was an error in extract video url:\n"
@@ -535,16 +513,12 @@ msgid ""
 "Do you currently have Internet access on the other device and we can continue?"
 msgstr ""
 
-#: YouTubeUi.py:395
+#: YouTubeUi.py:394
 msgid "Top rated"
 msgstr ""
 
 #: YouTubeUi.py:1361
 msgid "Try to exclude all restricted content from the search result."
-msgstr ""
-
-#: YouTubeVideoUrl.py:147
-msgid "Unable extract pattern from string!"
 msgstr ""
 
 #: YouTubeUi.py:63 YouTubeUi.py:91
@@ -559,7 +533,7 @@ msgstr ""
 msgid "Unsubscribed!"
 msgstr ""
 
-#: YouTubeUi.py:415
+#: YouTubeUi.py:414
 msgid "Uploads"
 msgstr ""
 
@@ -571,14 +545,6 @@ msgstr ""
 msgid "Video download started!"
 msgstr ""
 
-#: YouTubeUi.py:719
-msgid "Video url not found!"
-msgstr ""
-
-#: YouTubeVideoUrl.py:210
-msgid "Video webpage not found!"
-msgstr ""
-
 #: YouTubeUi.py:1113
 msgid "Videos from this video channel"
 msgstr ""
@@ -587,7 +553,7 @@ msgstr ""
 msgid "View count"
 msgstr ""
 
-#: YouTubeUi.py:411
+#: YouTubeUi.py:410
 msgid "Watch Later"
 msgstr ""
 
@@ -657,8 +623,4 @@ msgstr ""
 
 #: YouTubeUi.py:299
 msgid "YouTube starting. Please wait..."
-msgstr ""
-
-#: YouTubeVideoUrl.py:277
-msgid "rtmpe downloads are not supported, see https://github.com/rg3/youtube-dl/issues/343"
 msgstr ""

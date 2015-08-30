@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin greek translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-30 13:23+0300\n"
+"POT-Creation-Date: 2015-08-14 22:50+0300\n"
 "PO-Revision-Date: 2015-08-10 03:06+0200\n"
 "Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: MCelliot_g <mcelliot_g@hotmail.com>\n"
@@ -47,13 +47,6 @@ msgstr "Καναδάς"
 
 msgid "Cancel"
 msgstr "Ακύρωση"
-
-msgid "Cannot decrypt signature without player_url!"
-msgstr ""
-
-#, python-format
-msgid "Cannot identify player %r!"
-msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Επιλέξτε τι θέλετε να γίνει"
@@ -151,10 +144,6 @@ msgstr "Μου αρέσει αυτό"
 msgid "India"
 msgstr "Ινδία"
 
-#, python-format
-msgid "Invalid player type %r!"
-msgstr ""
-
 msgid "Ireland"
 msgstr "Ιρλανδία"
 
@@ -219,9 +208,6 @@ msgstr "Επόμενα %s στοιχεία"
 
 msgid "No"
 msgstr "Όχι"
-
-msgid "No supported formats found in video info!"
-msgstr ""
 
 msgid "No, but play video again"
 msgstr "Όχι, αλλά αναπαραγωγή του βίντεο ξανά"
@@ -338,9 +324,6 @@ msgstr "Αναζήτηση βίντεο"
 msgid "Shows"
 msgstr "Σόου"
 
-msgid "Signature extraction failed!"
-msgstr ""
-
 msgid ""
 "Sorry, download directory not exist!\n"
 "Please specify in the settings existing directory."
@@ -429,9 +412,6 @@ msgstr "Κορυφαίας βαθμολογίας"
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Προσπάθεια εξαίρεσης όλου του περιορισμένου περιεχομένου από τα αποτελέσματα αναζήτησης."
 
-msgid "Unable extract pattern from string!"
-msgstr ""
-
 msgid "United States"
 msgstr "Ηνωμένες Πολιτείες"
 
@@ -449,12 +429,6 @@ msgstr "Χρήση"
 
 msgid "Video download started!"
 msgstr "Η λήψη του βίντεο ξεκίνησε!"
-
-msgid "Video url not found!"
-msgstr ""
-
-msgid "Video webpage not found!"
-msgstr ""
 
 msgid "Videos from this video channel"
 msgstr "Βίντεο από αυτό το κανάλι"
@@ -520,6 +494,3 @@ msgstr "Ρυθμίσεις YouTube"
 
 msgid "YouTube starting. Please wait..."
 msgstr "Το YouTube ξεκινά. Παρακαλώ περιμένετε..."
-
-msgid "rtmpe downloads are not supported, see https://github.com/rg3/youtube-dl/issues/343"
-msgstr ""

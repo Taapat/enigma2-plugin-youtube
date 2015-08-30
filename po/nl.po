@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-30 13:23+0300\n"
+"POT-Creation-Date: 2015-08-04 19:30+0300\n"
 "PO-Revision-Date: 2015-07-31 21:53+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team:  <LL@li.org>\n"
@@ -46,13 +46,6 @@ msgstr "Canada"
 
 msgid "Cancel"
 msgstr "Annuleer"
-
-msgid "Cannot decrypt signature without player_url!"
-msgstr ""
-
-#, python-format
-msgid "Cannot identify player %r!"
-msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Kies wat u wilt doen"
@@ -150,10 +143,6 @@ msgstr ""
 msgid "India"
 msgstr "India"
 
-#, python-format
-msgid "Invalid player type %r!"
-msgstr ""
-
 msgid "Ireland"
 msgstr "Ierland"
 
@@ -218,9 +207,6 @@ msgstr "Volgende %s resultaten"
 
 msgid "No"
 msgstr "Nee"
-
-msgid "No supported formats found in video info!"
-msgstr ""
 
 msgid "No, but play video again"
 msgstr "Nee, maar speel video opnieuw"
@@ -337,9 +323,6 @@ msgstr "Zoek video's"
 msgid "Shows"
 msgstr "voorstellingen"
 
-msgid "Signature extraction failed!"
-msgstr ""
-
 msgid ""
 "Sorry, download directory not exist!\n"
 "Please specify in the settings existing directory."
@@ -428,9 +411,6 @@ msgstr "Hoogste waarderingen"
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Probeer alle vertrouwelijke inhoud te verbergen voor de geschiedenis."
 
-msgid "Unable extract pattern from string!"
-msgstr ""
-
 msgid "United States"
 msgstr "Verenigde Staten"
 
@@ -448,12 +428,6 @@ msgstr "Gebruik"
 
 msgid "Video download started!"
 msgstr "Videodownload gestart!"
-
-msgid "Video url not found!"
-msgstr ""
-
-msgid "Video webpage not found!"
-msgstr ""
 
 msgid "Videos from this video channel"
 msgstr "Video's van dit videokanaal"
@@ -519,6 +493,3 @@ msgstr "YouTube instellingen"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube is aan het starten. Even wachten..."
-
-msgid "rtmpe downloads are not supported, see https://github.com/rg3/youtube-dl/issues/343"
-msgstr ""
