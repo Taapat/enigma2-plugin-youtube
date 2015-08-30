@@ -716,7 +716,7 @@ class YouTubeMain(Screen):
 		if videoUrl:
 			return videoUrl, None
 		print '[YouTube] Video url not found'
-		return None, ' '
+		return None, _('Video url not found!')
 
 	def convertDate(self, duration):
 		time = ':' + duration.replace('P', '')\

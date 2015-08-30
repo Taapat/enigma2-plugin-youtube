@@ -131,31 +131,26 @@ class YouTubeVideoUrl():
 		try:
 			urlh = urlopen(url)
 		except URLError, e:
-			print '[YouTubeVideoUrl] Error in urlopen:', e.reason
-			return False
+			raise Exception(e.reason)
 		return urlh.read()
 
 	def _search_regex(self, pattern, string):
 		"""
 		Perform a regex search on the given string, using a single or a list of
 		patterns returning the first matching group.
-		In case of failure return a default value or raise a WARNING or a
-		RegexNotFoundError, depending on fatal, specifying the field name.
 		"""
 		mobj = re.search(pattern, string, 0)
 		if mobj:
 			# return the first matching group
 			return next(g for g in mobj.groups() if g is not None)
 		else:
-			print '[YouTubeVideoUrl] Unable extract'
-			return None
+			raise Exception(_('Unable extract pattern from string!'))
 
 	def _decrypt_signature(self, s, player_url):
 		"""Turn the encrypted s field into a working signature"""
 
 		if player_url is None:
-			print '[YouTubeVideoUrl] Cannot decrypt signature without player_url'
-			return None
+			raise Exception(_('Cannot decrypt signature without player_url!'))
 
 		if player_url[:2] == '//':
 			player_url = 'https:' + player_url
@@ -163,16 +158,14 @@ class YouTubeVideoUrl():
 			func = self._extract_signature_function(player_url)
 			return func(s)
 		except:
-			print '[YouTubeVideoUrl] Signature extraction failed'
-			return None
+			raise Exception(_('Signature extraction failed!'))
 
 	def _extract_signature_function(self, player_url):
 		id_m = re.match(
 			r'.*?-(?P<id>[a-zA-Z0-9_-]+)(?:/watch_as3|/html5player(?:-new)?)?\.(?P<ext>[a-z]+)$',
 			player_url)
 		if not id_m:
-			print '[YouTubeVideoUrl] Cannot identify player %r' % player_url
-			return None
+			raise Exception(_('Cannot identify player %r!') % player_url)
 		player_type = id_m.group('ext')
 		code = self._download_webpage(player_url)
 		if player_type == 'js':
@@ -180,8 +173,7 @@ class YouTubeVideoUrl():
 		elif player_type == 'swf':
 			return self._parse_sig_swf(code)
 		else:
-			print '[YouTubeVideoUrl] Invalid player type %r' % player_type
-			return None
+			raise Exception(_('Invalid player type %r!') % player_type)
 
 	def _parse_sig_js(self, jscode):
 		funcname = self._search_regex(r'\.sig\|\|([a-zA-Z0-9$]+)\(', jscode)
@@ -215,7 +207,7 @@ class YouTubeVideoUrl():
 		# Get video webpage
 		video_webpage = self._download_webpage(url)
 		if not video_webpage:
-			return None
+			raise Exception(_('Video webpage not found!'))
 
 		# Attempt to extract SWF player URL
 		mobj = re.search(r'swfConfig.*?"(https?:\\/\\/.*?watch.*?-.*?\.swf)"', video_webpage)
@@ -282,8 +274,7 @@ class YouTubeVideoUrl():
 			encoded_url_map = video_info.get('url_encoded_fmt_stream_map', [''])[0] + \
 				',' + video_info.get('adaptive_fmts', [''])[0]
 			if 'rtmpe%3Dyes' in encoded_url_map:
-				print '[YouTubeVideoUrl] rtmpe downloads are not supported, see https://github.com/rg3/youtube-dl/issues/343 for more information.'
-				return None
+				raise Exception(_('rtmpe downloads are not supported, see https://github.com/rg3/youtube-dl/issues/343'))
 
 			# Find the best format from our format priority map
 			encoded_url_map = encoded_url_map.split(',')
@@ -361,8 +352,7 @@ class YouTubeVideoUrl():
 			if not url:
 				url = url_map.values()[0]
 		else:
-			print '[YouTubeVideoUrl] No conn, hlsvp or url_encoded_fmt_stream_map information found in video info'
-			return None
+			raise Exception(_('No supported formats found in video info!'))
 
 		return str(url)
 
