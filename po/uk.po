@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-04 19:30+0300\n"
+"POT-Creation-Date: 2015-08-30 13:23+0300\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: Vasiliks <vasiliks@yandex.ru>\n"
 "Language-Team: Vasiliks <vasiliks@yandex.ru>\n"
@@ -46,6 +46,13 @@ msgstr "Канада"
 
 msgid "Cancel"
 msgstr "Скасувати"
+
+msgid "Cannot decrypt signature without player_url!"
+msgstr ""
+
+#, python-format
+msgid "Cannot identify player %r!"
+msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Виберіть, що будете робити"
@@ -143,6 +150,10 @@ msgstr "Мені сподобалося"
 msgid "India"
 msgstr "Індія"
 
+#, python-format
+msgid "Invalid player type %r!"
+msgstr ""
+
 msgid "Ireland"
 msgstr "Ірландія"
 
@@ -207,6 +218,9 @@ msgstr ""
 
 msgid "No"
 msgstr "Ні"
+
+msgid "No supported formats found in video info!"
+msgstr ""
 
 msgid "No, but play video again"
 msgstr "Ні, програти це відео ще раз"
@@ -323,6 +337,9 @@ msgstr "Пошук відео"
 msgid "Shows"
 msgstr "Шоу"
 
+msgid "Signature extraction failed!"
+msgstr ""
+
 msgid ""
 "Sorry, download directory not exist!\n"
 "Please specify in the settings existing directory."
@@ -411,6 +428,9 @@ msgstr "Кращі по рейтингу"
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Спробувати виключити весь обмежений вміст з результатів пошуку."
 
+msgid "Unable extract pattern from string!"
+msgstr ""
+
 msgid "United States"
 msgstr "США"
 
@@ -428,6 +448,12 @@ msgstr "Використати"
 
 msgid "Video download started!"
 msgstr "Завантаження відео розпочалась!"
+
+msgid "Video url not found!"
+msgstr ""
+
+msgid "Video webpage not found!"
+msgstr ""
 
 msgid "Videos from this video channel"
 msgstr ""
@@ -493,3 +519,6 @@ msgstr "Налаштування YouTube"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube запускається. Зачекайте ..."
+
+msgid "rtmpe downloads are not supported, see https://github.com/rg3/youtube-dl/issues/343"
+msgstr ""

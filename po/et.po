@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-04 19:30+0300\n"
+"POT-Creation-Date: 2015-08-30 13:23+0300\n"
 "PO-Revision-Date: 2015-08-01 10:17+0300\n"
 "Last-Translator: rimas\n"
 "Language-Team: rimas <rimas@croci.org>\n"
@@ -46,6 +46,13 @@ msgstr "Kanada"
 
 msgid "Cancel"
 msgstr "Tühista"
+
+msgid "Cannot decrypt signature without player_url!"
+msgstr ""
+
+#, python-format
+msgid "Cannot identify player %r!"
+msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Vali soovitud tegevus"
@@ -143,6 +150,10 @@ msgstr "Mulle meeldib"
 msgid "India"
 msgstr "India"
 
+#, python-format
+msgid "Invalid player type %r!"
+msgstr ""
+
 msgid "Ireland"
 msgstr "Iirimaa"
 
@@ -207,6 +218,9 @@ msgstr "Järgmised %s tulemust"
 
 msgid "No"
 msgstr "Ei"
+
+msgid "No supported formats found in video info!"
+msgstr ""
 
 msgid "No, but play video again"
 msgstr "Ei, aga esita video uuesti"
@@ -323,6 +337,9 @@ msgstr "Otsi videoid"
 msgid "Shows"
 msgstr "Saated"
 
+msgid "Signature extraction failed!"
+msgstr ""
+
 msgid ""
 "Sorry, download directory not exist!\n"
 "Please specify in the settings existing directory."
@@ -411,6 +428,9 @@ msgstr "Kõrgeima hinnanguga"
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Ürita piiratud sisu otsingu tulemustest eemaldada."
 
+msgid "Unable extract pattern from string!"
+msgstr ""
+
 msgid "United States"
 msgstr "USA"
 
@@ -428,6 +448,12 @@ msgstr "Kasuta"
 
 msgid "Video download started!"
 msgstr "Alustati allalaadimist!"
+
+msgid "Video url not found!"
+msgstr ""
+
+msgid "Video webpage not found!"
+msgstr ""
 
 msgid "Videos from this video channel"
 msgstr "Videod sellelt kanalilt"
@@ -493,3 +519,6 @@ msgstr "YouTube seadistamine"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube käivitub. Oota..."
+
+msgid "rtmpe downloads are not supported, see https://github.com/rg3/youtube-dl/issues/343"
+msgstr ""

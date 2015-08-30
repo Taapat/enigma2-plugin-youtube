@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-04 19:30+0300\n"
+"POT-Creation-Date: 2015-08-30 13:23+0300\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -46,6 +46,13 @@ msgstr "Канада"
 
 msgid "Cancel"
 msgstr "Отменить"
+
+msgid "Cannot decrypt signature without player_url!"
+msgstr "Нельзя расшифровать подпись без player_url!"
+
+#, python-format
+msgid "Cannot identify player %r!"
+msgstr "Не удается идентифицировать плеер %r!"
 
 msgid "Choose what you want to do"
 msgstr "Выберите, что будете делать"
@@ -143,6 +150,10 @@ msgstr "Мне понравилось"
 msgid "India"
 msgstr "Индия"
 
+#, python-format
+msgid "Invalid player type %r!"
+msgstr "Неверный тип плеера %r!"
+
 msgid "Ireland"
 msgstr "Ирландия"
 
@@ -207,6 +218,9 @@ msgstr "Следующие %s записи"
 
 msgid "No"
 msgstr "Нет"
+
+msgid "No supported formats found in video info!"
+msgstr "В информации видео нет поддерживаемых форматов!"
 
 msgid "No, but play video again"
 msgstr "Нет, проиграть это видео еще раз"
@@ -323,6 +337,9 @@ msgstr "Поиск видео"
 msgid "Shows"
 msgstr "Шоу"
 
+msgid "Signature extraction failed!"
+msgstr "Извлечение подписи не удалось!"
+
 msgid ""
 "Sorry, download directory not exist!\n"
 "Please specify in the settings existing directory."
@@ -411,6 +428,9 @@ msgstr "Лучшие по рейтингу"
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Попробовать исключить всё ограниченное содержание из результатов поиска."
 
+msgid "Unable extract pattern from string!"
+msgstr "Невозможно извлечение шаблона из строки!"
+
 msgid "United States"
 msgstr "США"
 
@@ -428,6 +448,12 @@ msgstr "Использовать"
 
 msgid "Video download started!"
 msgstr "Загрузка видео началась!"
+
+msgid "Video url not found!"
+msgstr "Ссылка на видео не найденa!"
+
+msgid "Video webpage not found!"
+msgstr "Веб-страница видео не найдена!"
 
 msgid "Videos from this video channel"
 msgstr "Другие видео от канала этого видео"
@@ -493,3 +519,6 @@ msgstr "Настройки YouTube"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube запускается. Подождите..."
+
+msgid "rtmpe downloads are not supported, see https://github.com/rg3/youtube-dl/issues/343"
+msgstr "Загрузка rtmpe не поддерживаются, смотрите в https://github.com/rg3/youtube-dl/issues/343"
