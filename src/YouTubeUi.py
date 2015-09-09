@@ -577,28 +577,24 @@ class YouTubeMain(Screen):
 		else:
 			count = 0
 			for entry in self.entryList:
-				entryId = entry[0]
-				if not entry[2] and entryId in self.thumbnails:
-					entryList = entry
-					thumbnailData = self.thumbnails[entryId]
-					if thumbnailData == True:
+				if not entry[2] and entry[0] in self.thumbnails:
+					thumbnail = self.thumbnails[entry[0]]
+					if thumbnail == True:
 						thumbnail = self.thumbnails['default']
-					else:
-						thumbnail = self.thumbnails[entryId]
 					self.entryList[count] = (
-							entryList[0], # Id
-							entryList[1], # Thumbnail url
-							thumbnail,    # Thumbnail
-							entryList[3], # Title
-							entryList[4], # Views
-							entryList[5], # Duration
-							entryList[6], # Video url
-							entryList[7], # Description
-							entryList[8], # Likes
-							entryList[9], # Dislikes
-							entryList[10],# Big thumbnail url
-							entryList[11],# Channel Id
-							entryList[12],# Published
+							entry[0],  # Id
+							entry[1],  # Thumbnail url
+							thumbnail, # Thumbnail
+							entry[3],  # Title
+							entry[4],  # Views
+							entry[5],  # Duration
+							entry[6],  # Video url
+							entry[7],  # Description
+							entry[8],  # Likes
+							entry[9],  # Dislikes
+							entry[10], # Big thumbnail url
+							entry[11], # Channel Id
+							entry[12], # Published
 						)
 				count += 1
 			self['list'].updateList(self.entryList)
