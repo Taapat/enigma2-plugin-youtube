@@ -457,21 +457,20 @@ class YouTubeMain(Screen):
 					count = 0
 					for entry in self.entryList:
 						if entry[0] == self.value[0]:
-							entryList = entry
 							self.entryList[count] = (
-									entryList[0], # Id
-									entryList[1], # Thumbnail url
-									entryList[2], # Thumbnail
-									entryList[3], # Title
-									entryList[4], # Views
-									entryList[5], # Duration
-									videoUrl,     # Video url
-									entryList[7], # Description
-									entryList[8], # Likes
-									entryList[9], # Dislikes
-									entryList[10],# Big thumbnail url
-									entryList[11],# Channel Id
-									entryList[12],# Published
+									entry[0],  # Id
+									entry[1],  # Thumbnail url
+									entry[2],  # Thumbnail
+									entry[3],  # Title
+									entry[4],  # Views
+									entry[5],  # Duration
+									videoUrl,  # Video url
+									entry[7],  # Description
+									entry[8],  # Likes
+									entry[9],  # Dislikes
+									entry[10], # Big thumbnail url
+									entry[11], # Channel Id
+									entry[12], # Published
 								)
 							break
 						count += 1
