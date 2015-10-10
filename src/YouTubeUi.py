@@ -817,6 +817,9 @@ class YouTubeMain(Screen):
 						Subscription = ''
 					videos.append((Id, Thumbnail, None, Title, '', '', Subscription,
 						None, None, None, None, None, ''))
+				if videos: 
+					videos.insert(0, ('recent_subscr', None, None, _('Recent'), '', '',
+						None, None, None, None, None, None, ''))
 				return videos
 
 			elif self.value[0] == 'my_playlists':
@@ -861,15 +864,25 @@ class YouTubeMain(Screen):
 				return self.extractVideoIdList(videos)
 
 		elif self.action == 'OpenPlayList':
-			videos = self.videoIdFromPlaylist(self.value[0])
-			if not videos: # if channel list from subscription
-				searchResponse = self.youtube.search_list(
-						part = 'id,snippet',
-						channelId = 'UC' + self.value[0][2:],
-						maxResults = self.searchResult,
-						pageToken = self.value[2]
-					)
-				return self.createList(searchResponse, 'playlist')
+			if self.value[0] == 'recent_subscr':
+				self.searchResult = '5' # used only recent 5 videos for speed
+				for subscription in self.entryList:
+					if subscription[0] != 'recent_subscr':
+						videos += self.videoIdFromPlaylist(subscription[0])
+				videos = sorted(self.extractVideoIdList(videos), key=lambda k: k[12], reverse=True) # sort by date
+				self.searchResult = config.plugins.YouTube.searchResult.value
+				del videos[int(self.searchResult):] # leaves only the latest in searchResult long list
+				return videos
+			else:
+				videos = self.videoIdFromPlaylist(self.value[0])
+				if not videos: # if channel list from subscription
+					searchResponse = self.youtube.search_list(
+							part = 'id,snippet',
+							channelId = 'UC' + self.value[0][2:],
+							maxResults = self.searchResult,
+							pageToken = self.value[2]
+						)
+					return self.createList(searchResponse, 'playlist')
 			return self.extractVideoIdList(videos)
 
 		elif self.action == 'OpenChannelList':
