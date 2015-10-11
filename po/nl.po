@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-04 19:30+0300\n"
+"POT-Creation-Date: 2015-10-11 19:04+0300\n"
 "PO-Revision-Date: 2015-07-31 21:53+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team:  <LL@li.org>\n"
@@ -28,6 +28,13 @@ msgstr "gezien"
 
 msgid "Active video downloads"
 msgstr "Actieve videodownloads"
+
+#, fuzzy
+msgid "Add to favorites"
+msgstr "Favorieten"
+
+msgid "Added!"
+msgstr ""
 
 msgid "All"
 msgstr "Alle"
@@ -269,8 +276,15 @@ msgstr "Recent"
 msgid "Relevance"
 msgstr "Overeenkomst"
 
+msgid "Remove from favorites"
+msgstr ""
+
 msgid "Remove my rating"
 msgstr "Verwijder mijn waardering"
+
+#, fuzzy
+msgid "Removed!"
+msgstr "Waardering verwijderd!"
 
 msgid "Repeat"
 msgstr "Herhaal"
@@ -386,14 +400,9 @@ msgstr ""
 "Er is een fout opgetreden bij het extraheren van de video url:\n"
 "%s"
 
-msgid "There was an error in rating!"
+#, fuzzy
+msgid "There was an error!"
 msgstr "Er is een fout opgetreden in de waardering!"
-
-msgid "There was an error in subscribe!"
-msgstr "Er is een fout opgetreden bij het inschrijven!"
-
-msgid "There was an error in unsubscribe!"
-msgstr "Er is een fout opgetreden in het uitschrijven!"
 
 msgid "Title"
 msgstr "Titel"
@@ -493,3 +502,9 @@ msgstr "YouTube instellingen"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube is aan het starten. Even wachten..."
+
+#~ msgid "There was an error in subscribe!"
+#~ msgstr "Er is een fout opgetreden bij het inschrijven!"
+
+#~ msgid "There was an error in unsubscribe!"
+#~ msgstr "Er is een fout opgetreden in het uitschrijven!"

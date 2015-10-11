@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin greek translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 22:50+0300\n"
+"POT-Creation-Date: 2015-10-11 19:04+0300\n"
 "PO-Revision-Date: 2015-08-10 03:06+0200\n"
 "Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: MCelliot_g <mcelliot_g@hotmail.com>\n"
@@ -29,6 +29,13 @@ msgstr " προβολές"
 
 msgid "Active video downloads"
 msgstr "Ενεργές μεταφορτώσεις βίντεο"
+
+#, fuzzy
+msgid "Add to favorites"
+msgstr "Αγαπημένα"
+
+msgid "Added!"
+msgstr ""
 
 msgid "All"
 msgstr "Όλα"
@@ -270,8 +277,15 @@ msgstr "Πρόσφατα"
 msgid "Relevance"
 msgstr "Συνάφεια"
 
+msgid "Remove from favorites"
+msgstr ""
+
 msgid "Remove my rating"
 msgstr "Αφαίρεση της αξιολόγησής μου"
+
+#, fuzzy
+msgid "Removed!"
+msgstr "Η αξιολόγηση αφαιρέθηκε"
 
 msgid "Repeat"
 msgstr "Επανάληψη"
@@ -387,14 +401,9 @@ msgstr ""
 "Υπήρξε σφάλμα στην εξαγωγή της διεύθυνσης του βίντεο:\n"
 "%s"
 
-msgid "There was an error in rating!"
+#, fuzzy
+msgid "There was an error!"
 msgstr "Υπήρξε σφάλμα στην αξιολόγηση!"
-
-msgid "There was an error in subscribe!"
-msgstr "Υπήρξε σφάλμα στην εγγραφή!"
-
-msgid "There was an error in unsubscribe!"
-msgstr "Υπήρξε σφάλμα στην κατάργηση της εγγραφής!"
 
 msgid "Title"
 msgstr "Τίτλος"
@@ -494,3 +503,9 @@ msgstr "Ρυθμίσεις YouTube"
 
 msgid "YouTube starting. Please wait..."
 msgstr "Το YouTube ξεκινά. Παρακαλώ περιμένετε..."
+
+#~ msgid "There was an error in subscribe!"
+#~ msgstr "Υπήρξε σφάλμα στην εγγραφή!"
+
+#~ msgid "There was an error in unsubscribe!"
+#~ msgstr "Υπήρξε σφάλμα στην κατάργηση της εγγραφής!"

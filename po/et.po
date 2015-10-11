@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-04 19:30+0300\n"
+"POT-Creation-Date: 2015-10-11 19:04+0300\n"
 "PO-Revision-Date: 2015-08-01 10:17+0300\n"
 "Last-Translator: rimas\n"
 "Language-Team: rimas <rimas@croci.org>\n"
@@ -28,6 +28,13 @@ msgstr " vaatamist"
 
 msgid "Active video downloads"
 msgstr "Aktiivsed allalaadimised"
+
+#, fuzzy
+msgid "Add to favorites"
+msgstr "Lemmikud"
+
+msgid "Added!"
+msgstr ""
 
 msgid "All"
 msgstr "Kõik"
@@ -269,8 +276,15 @@ msgstr "Uusimad"
 msgid "Relevance"
 msgstr "Tähtsus"
 
+msgid "Remove from favorites"
+msgstr ""
+
 msgid "Remove my rating"
 msgstr "Eemalda minu hinnang"
+
+#, fuzzy
+msgid "Removed!"
+msgstr "Hinnang eemaldati!"
 
 msgid "Repeat"
 msgstr "Korda"
@@ -386,14 +400,9 @@ msgstr ""
 "Viga video aadressi eraldamisel:\n"
 "%s"
 
-msgid "There was an error in rating!"
+#, fuzzy
+msgid "There was an error!"
 msgstr "Viga hindamisel!"
-
-msgid "There was an error in subscribe!"
-msgstr "Viga tellimisel!"
-
-msgid "There was an error in unsubscribe!"
-msgstr "Viga tellimusest loobumisel!"
 
 msgid "Title"
 msgstr "Nimi"
@@ -493,3 +502,9 @@ msgstr "YouTube seadistamine"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube käivitub. Oota..."
+
+#~ msgid "There was an error in subscribe!"
+#~ msgstr "Viga tellimisel!"
+
+#~ msgid "There was an error in unsubscribe!"
+#~ msgstr "Viga tellimusest loobumisel!"

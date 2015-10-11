@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-04 19:30+0300\n"
+"POT-Creation-Date: 2015-10-11 19:04+0300\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -28,6 +28,13 @@ msgstr " просмотров"
 
 msgid "Active video downloads"
 msgstr "Активные загрузки видео"
+
+#, fuzzy
+msgid "Add to favorites"
+msgstr "Фавориты"
+
+msgid "Added!"
+msgstr ""
 
 msgid "All"
 msgstr "Все"
@@ -269,8 +276,15 @@ msgstr "Самые последние"
 msgid "Relevance"
 msgstr "Актуальность"
 
+msgid "Remove from favorites"
+msgstr ""
+
 msgid "Remove my rating"
 msgstr "Удалить мой рейтинг"
+
+#, fuzzy
+msgid "Removed!"
+msgstr "Рейтинг удален!"
 
 msgid "Repeat"
 msgstr "Повторить"
@@ -386,14 +400,9 @@ msgstr ""
 "Ошибка при извлечении видеоссылки:\n"
 "%s"
 
-msgid "There was an error in rating!"
+#, fuzzy
+msgid "There was an error!"
 msgstr "Ошибка в создании рейтинга!"
-
-msgid "There was an error in subscribe!"
-msgstr "Ошибка в подписке!"
-
-msgid "There was an error in unsubscribe!"
-msgstr "Ошибка в отмене подписки!"
 
 msgid "Title"
 msgstr "Название"
@@ -493,3 +502,9 @@ msgstr "Настройки YouTube"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube запускается. Подождите..."
+
+#~ msgid "There was an error in subscribe!"
+#~ msgstr "Ошибка в подписке!"
+
+#~ msgid "There was an error in unsubscribe!"
+#~ msgstr "Ошибка в отмене подписки!"
