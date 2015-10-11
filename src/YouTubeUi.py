@@ -865,13 +865,14 @@ class YouTubeMain(Screen):
 
 		elif self.action == 'OpenPlayList':
 			if self.value[0] == 'recent_subscr':
-				self.searchResult = '5' # used only recent 5 videos for speed
 				for subscription in self.entryList:
 					if subscription[0] != 'recent_subscr':
 						videos += self.videoIdFromPlaylist(subscription[0])
 				videos = sorted(self.extractVideoIdList(videos), key=lambda k: k[12], reverse=True) # sort by date
-				self.searchResult = config.plugins.YouTube.searchResult.value
 				del videos[int(self.searchResult):] # leaves only the latest in searchResult long list
+				self.nextPageToken = None
+				self.prevPageToken = None
+				self.setSearchResults(int(self.searchResult))
 				return videos
 			else:
 				videos = self.videoIdFromPlaylist(self.value[0])
