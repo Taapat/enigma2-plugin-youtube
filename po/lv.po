@@ -30,12 +30,11 @@ msgstr " skatījumi"
 msgid "Active video downloads"
 msgstr "Aktīvās video lejupielādes"
 
-#, fuzzy
 msgid "Add to favorites"
-msgstr "Favorīti"
+msgstr "Pievienot favorītiem"
 
 msgid "Added!"
-msgstr ""
+msgstr "Pievienots!"
 
 msgid "All"
 msgstr "Visi"
@@ -278,14 +277,13 @@ msgid "Relevance"
 msgstr "Atbilstības"
 
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Noņemt no favorītiem"
 
 msgid "Remove my rating"
 msgstr "Dzēst manu vērtējumu"
 
-#, fuzzy
 msgid "Removed!"
-msgstr "Novērtējums dzēsts!"
+msgstr "Noņemts!"
 
 msgid "Repeat"
 msgstr "Atkārtot"
@@ -401,9 +399,8 @@ msgstr ""
 "Kļūda meklējot video saiti:\n"
 "%s"
 
-#, fuzzy
 msgid "There was an error!"
-msgstr "Kļūda veicot novērtējumu!"
+msgstr "Atvainojiet, ir notikusi kļūda!"
 
 msgid "Title"
 msgstr "Nosaukuma"
@@ -503,9 +500,3 @@ msgstr "YouTube iestatījumi"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube startējas. Lūdzu uzgaidiet..."
-
-#~ msgid "There was an error in subscribe!"
-#~ msgstr "Kļūda veicot abonēšanu!"
-
-#~ msgid "There was an error in unsubscribe!"
-#~ msgstr "Kļūda anulējot abonementu!"
