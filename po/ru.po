@@ -29,12 +29,11 @@ msgstr " просмотров"
 msgid "Active video downloads"
 msgstr "Активные загрузки видео"
 
-#, fuzzy
 msgid "Add to favorites"
-msgstr "Фавориты"
+msgstr "Добавить в фавориты"
 
 msgid "Added!"
-msgstr ""
+msgstr "Добавлен!"
 
 msgid "All"
 msgstr "Все"
@@ -277,14 +276,13 @@ msgid "Relevance"
 msgstr "Актуальность"
 
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Удалить из фаворитов"
 
 msgid "Remove my rating"
 msgstr "Удалить мой рейтинг"
 
-#, fuzzy
 msgid "Removed!"
-msgstr "Рейтинг удален!"
+msgstr "Удален!"
 
 msgid "Repeat"
 msgstr "Повторить"
@@ -400,9 +398,8 @@ msgstr ""
 "Ошибка при извлечении видеоссылки:\n"
 "%s"
 
-#, fuzzy
 msgid "There was an error!"
-msgstr "Ошибка в создании рейтинга!"
+msgstr "Извините, произошла ошибка!"
 
 msgid "Title"
 msgstr "Название"
@@ -502,9 +499,3 @@ msgstr "Настройки YouTube"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube запускается. Подождите..."
-
-#~ msgid "There was an error in subscribe!"
-#~ msgstr "Ошибка в подписке!"
-
-#~ msgid "There was an error in unsubscribe!"
-#~ msgstr "Ошибка в отмене подписки!"
