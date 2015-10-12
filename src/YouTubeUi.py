@@ -883,7 +883,7 @@ class YouTubeMain(Screen):
 							maxResults = self.searchResult,
 							pageToken = self.value[2]
 						)
-					return self.createList(searchResponse, 'playlist')
+					return self.createList(searchResponse, 'playlist', True)
 			return self.extractVideoIdList(videos)
 
 		elif self.action == 'OpenChannelList':
@@ -908,7 +908,7 @@ class YouTubeMain(Screen):
 				)
 
 			if searchType != 'video':
-				videos = self.createList(searchResponse, searchType)
+				videos = self.createList(searchResponse, searchType, False)
 				self.list = searchType
 				return videos
 
@@ -1020,7 +1020,7 @@ class YouTubeMain(Screen):
 				pass
 		return videos
 
-	def createList(self, searchResponse, listType):
+	def createList(self, searchResponse, listType, subscription):
 		videos = []
 		self.nextPageToken = searchResponse.get('nextPageToken')
 		self.prevPageToken = searchResponse.get('prevPageToken')
@@ -1040,6 +1040,9 @@ class YouTubeMain(Screen):
 				Title = ''
 			videos.append((Id, Thumbnail, None, Title, '', '', None,
 				None, None, None, None, None, ''))
+		if subscription and videos: 
+			videos.insert(0, ('recent_subscr', None, None, _('Recent'), '', '',
+				None, None, None, None, None, None, ''))
 		return videos
 
 	def setSearchResults(self, totalResults):
