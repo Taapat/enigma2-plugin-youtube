@@ -817,7 +817,7 @@ class YouTubeMain(Screen):
 						Subscription = ''
 					videos.append((Id, Thumbnail, None, Title, '', '', Subscription,
 						None, None, None, None, None, ''))
-				if videos: 
+				if len(videos) > 1: 
 					videos.insert(0, ('recent_subscr', None, None, _('Recent'), '', '',
 						None, None, None, None, None, None, ''))
 				return videos
@@ -1040,7 +1040,7 @@ class YouTubeMain(Screen):
 				Title = ''
 			videos.append((Id, Thumbnail, None, Title, '', '', None,
 				None, None, None, None, None, ''))
-		if subscription and videos: 
+		if subscription and len(videos) > 1: 
 			videos.insert(0, ('recent_subscr', None, None, _('Recent'), '', '',
 				None, None, None, None, None, None, ''))
 		return videos
