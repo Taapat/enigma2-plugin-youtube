@@ -868,11 +868,12 @@ class YouTubeMain(Screen):
 				for subscription in self.entryList:
 					if subscription[0] != 'recent_subscr':
 						videos += self.videoIdFromPlaylist(subscription[0])
-				videos = sorted(self.extractVideoIdList(videos), key=lambda k: k[12], reverse=True) # sort by date
-				del videos[int(self.searchResult):] # leaves only the latest in searchResult long list
-				self.nextPageToken = None
-				self.prevPageToken = None
-				self.setSearchResults(int(self.searchResult))
+				if videos:
+					videos = sorted(self.extractVideoIdList(videos), key=lambda k: k[12], reverse=True) # sort by date
+					del videos[int(self.searchResult):] # leaves only searchResult long list
+					self.nextPageToken = ''
+					self.prevPageToken = ''
+					self.setSearchResults(int(self.searchResult))
 				return videos
 			else:
 				videos = self.videoIdFromPlaylist(self.value[0])
