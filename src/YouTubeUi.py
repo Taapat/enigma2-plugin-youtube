@@ -328,6 +328,8 @@ class YouTubeMain(Screen):
 		self.onClose.append(self.cleanVariables)
 
 	def layoutFinish(self):
+		self.thumbSize = [self['thumbnail'].instance.size().width(),
+			self['thumbnail'].instance.size().height()]
 		defThumbnail = resolveFilename(SCOPE_PLUGINS,
 			'Extensions/YouTube/icons/icon.png')
 		self.decodeThumbnail('default', defThumbnail)
@@ -555,8 +557,7 @@ class YouTubeMain(Screen):
 			self.picloads[entryId].PictureData.get()\
 				.append(boundFunction(self.FinishDecode, entryId, image))
 			self.picloads[entryId].setPara((
-				self['thumbnail'].instance.size().width(),
-				self['thumbnail'].instance.size().height(),
+				self.thumbSize[0], self.thumbSize[1],
 				self.sc[0], self.sc[1], False, 1, '#00000000'))
 			self.picloads[entryId].startDecode(image)
 
