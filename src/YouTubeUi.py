@@ -789,7 +789,6 @@ class YouTubeMain(Screen):
 		videos = []
 
 		if self.action == 'OpenMyFeeds':
-			channels = []
 			if self.value[0] == 'my_subscriptions':
 				self.list = 'playlist'
 				searchResponse = self.youtube.subscriptions_list(
@@ -850,6 +849,7 @@ class YouTubeMain(Screen):
 				return videos
 
 			else: # all other my data
+				channel = ''
 				searchResponse = self.youtube.channels_list(
 						maxResults = self.searchResult,
 						pageToken = self.value[2]
