@@ -10,6 +10,7 @@ from urllib2 import urlopen, URLError
 
 from Components.config import config
 
+from . import sslContext
 from jsinterp import JSInterpreter
 from swfinterp import SWFInterpreter
 
@@ -129,7 +130,10 @@ class YouTubeVideoUrl():
 	def _download_webpage(self, url):
 		""" Returns a tuple (page content as string, URL handle) """
 		try:
-			urlh = urlopen(url)
+			if sslContext:
+				urlh = urlopen(url, context = sslContext)
+			else:
+				urlh = urlopen(url)
 		except URLError, e:
 			raise Exception(e.reason)
 		return urlh.read()

@@ -3,6 +3,8 @@ from json import dumps, load
 from urllib import quote
 from urllib2 import urlopen, URLError, HTTPError
 
+from . import sslContext
+
 
 class YouTubeApi:
 	def __init__(self, client_id, client_secret, developer_key, refresh_token):
@@ -34,7 +36,10 @@ class YouTubeApi:
 			url = 'https://www.googleapis.com/youtube/v3/' + url
 		response = None
 		try:
-			response = urlopen(url)
+			if sslContext:
+				response = urlopen(url, context = sslContext)
+			else:
+				response = urlopen(url)
 		except HTTPError as e:
 			if e.code == 401 and self.access_token and count:
 				self.renew_access_token()
@@ -54,7 +59,10 @@ class YouTubeApi:
 		headers = {'Authorization': 'Bearer %s' % self.access_token}
 		if header:
 			headers.update(header)
-		conn = HTTPSConnection('www.googleapis.com')
+		if sslContext:
+			conn = HTTPSConnection('www.googleapis.com', context = sslContext)
+		else:
+			conn = HTTPSConnection('www.googleapis.com')
 		conn.request(method, url, data, headers)
 		response = conn.getresponse()
 		conn.close()
