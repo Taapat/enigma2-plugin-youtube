@@ -6,6 +6,8 @@ from httplib import HTTPSConnection
 from json import loads
 from time import sleep
 
+from . import sslContext
+
 
 class OAuth:
 	def __init__(self, client_id, client_secret):
@@ -20,7 +22,10 @@ class OAuth:
 	#  When this happens, we try re-creating the exception.
 	def set_connection(self):
 		# HTTPConnection.debuglevel = 1
-		self.conn = HTTPSConnection('accounts.google.com')
+		if sslContext:
+			self.conn = HTTPSConnection('accounts.google.com', context = sslContext)
+		else:
+			self.conn = HTTPSConnection('accounts.google.com')
 
 	def get_user_code(self):
 		self.conn.request(
