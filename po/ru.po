@@ -168,7 +168,7 @@ msgid "Latvia"
 msgstr "Латвия"
 
 msgid "Liked videos"
-msgstr "Понравившиеся"
+msgstr "Понравившиеся видео"
 
 msgid "Liked!"
 msgstr "Отмечен, что понравилось!"
@@ -202,7 +202,7 @@ msgid "My Subscriptions"
 msgstr "Мои подписки"
 
 msgid "My feeds"
-msgstr "Мои фиди"
+msgstr "Мои фиды"
 
 msgid "New Zealand"
 msgstr "Новая Зеландия"
@@ -215,7 +215,7 @@ msgid "No"
 msgstr "Нет"
 
 msgid "No, but play video again"
-msgstr "Нет, проиграть это видео еще раз"
+msgstr "Нет, но проиграть это видео еще раз"
 
 msgid "Ok"
 msgstr "Ок"
@@ -388,7 +388,7 @@ msgid ""
 "Maybe try other feeds..."
 msgstr ""
 "Ошибка в создании списка!\n"
-"Может быть, попробуйте другие каналы..."
+"Может быть, попробуйте другие фиды..."
 
 #, python-format
 msgid ""
@@ -408,8 +408,8 @@ msgid ""
 "To perform authentication will need in a web browser open Google home page, and enter the code!\n"
 "Do you currently have Internet access on the other device and we can continue?"
 msgstr ""
-"Для выполнения проверки подлинности нужно будет в веб-браузере открыть домашнюю страницу Google, и ввести код!\n"
-"Есть ли у вас в настоящее время доступ к интернету на другом устройстве, и мы можем продолжать?"
+"Для выполнения проверки подлинности, в веб-браузере надо открыть домашнюю страницу Google и ввести код!\n"
+"Есть ли у Вас в настоящее время доступ к интернету на другом устройстве, и мы можем продолжать?"
 
 msgid "Top rated"
 msgstr "Лучшие по рейтингу"
