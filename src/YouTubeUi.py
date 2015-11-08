@@ -1026,6 +1026,7 @@ class YouTubeMain(Screen):
 		self.nextPageToken = searchResponse.get('nextPageToken')
 		self.prevPageToken = searchResponse.get('prevPageToken')
 		self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
+		kind = self.list
 		for result in searchResponse.get('items', []):
 			try:
 				kind = result['id']['kind'].split('#')[1]
