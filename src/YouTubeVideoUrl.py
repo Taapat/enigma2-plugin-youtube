@@ -166,7 +166,7 @@ class YouTubeVideoUrl():
 
 	def _extract_signature_function(self, player_url):
 		id_m = re.match(
-			r'.*?-(?P<id>[a-zA-Z0-9_-]+)(?:/watch_as3|/html5player(?:-new)?)?\.(?P<ext>[a-z]+)$',
+			r'.*?-(?P<id>[a-zA-Z0-9_-]+)(?:/watch_as3|/html5player(?:-new)?|/base)?\.(?P<ext>[a-z]+)$',
 			player_url)
 		if not id_m:
 			raise Exception('Cannot identify player %r!' % player_url)
