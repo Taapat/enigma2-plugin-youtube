@@ -171,8 +171,8 @@ class YouTubeMain(Screen):
 	screenWidth = getDesktop(0).size().width()
 	if screenWidth and screenWidth == 1280:
 		skin = """<screen position="center,center" size="730,514">
-				<widget name="text" position="center,0" size="700,30" halign="center" font="Regular;24" />
-				<widget source="list" render="Listbox" position="center,32" size="700,432" \
+				<widget name="text" position="15,0" size="700,30" halign="center" font="Regular;24" />
+				<widget source="list" render="Listbox" position="15,32" size="700,432" \
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [
@@ -205,8 +205,8 @@ class YouTubeMain(Screen):
 			</screen>"""
 	elif screenWidth and screenWidth == 1920:
 		skin = """<screen position="center,center" size="1095,771">
-				<widget name="text" position="center,0" size="1050,45" halign="center" font="Regular;36" />
-				<widget source="list" render="Listbox" position="center,48" size="1050,648" \
+				<widget name="text" position="22,0" size="1050,45" halign="center" font="Regular;36" />
+				<widget source="list" render="Listbox" position="22,48" size="1050,648" \
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [
@@ -239,8 +239,8 @@ class YouTubeMain(Screen):
 			</screen>"""
 	else:
 		skin = """<screen position="center,center" size="630,370">
-				<widget name="text" position="center,0" size="600,30" halign="center" font="Regular;24" />
-				<widget source="list" render="Listbox" position="center,32" size="600,288" \
+				<widget name="text" position="15,0" size="600,30" halign="center" font="Regular;24" />
+				<widget source="list" render="Listbox" position="15,32" size="600,288" \
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [
@@ -1305,7 +1305,7 @@ class YouTubeInfo(Screen):
 	screenWidth = getDesktop(0).size().width()
 	if screenWidth and screenWidth == 1280:
 		skin = """<screen position="center,center" size="730,424">
-				<widget name="title" position="center,0" size="700,60" halign="center" font="Regular;24" />
+				<widget name="title" position="15,0" size="700,60" halign="center" font="Regular;24" />
 				<widget name="pic" position="20,70" size="320,180" transparent="1" alphatest="on" />
 				<widget name="description" position="360,70" size="360,300" font="Regular;16" />
 				<widget name="views" position="30,270" size="150,20" font="Regular;16" />
@@ -1313,14 +1313,14 @@ class YouTubeInfo(Screen):
 				<widget name="likes" position="30,300" size="150,20" font="Regular;16" />
 				<widget name="dislikes" position="200,300" size="150,20" font="Regular;16" />
 				<widget name="published" position="30,330" size="300,20" font="Regular;16" />
-				<ePixmap position="center,377" size="140,40" pixmap="skin_default/buttons/red.png" \
+				<ePixmap position="295,377" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
 				<widget source="key_red" render="Label" position="center,382" zPosition="2" size="140,30" \
-					valign="center" halign="center" font="Regular;22" transparent="1" />
+					valign="295" halign="center" font="Regular;22" transparent="1" />
 			</screen>"""
 	elif screenWidth and screenWidth == 1920:
 		skin = """<screen position="center,center" size="1095,636">
-				<widget name="title" position="center,0" size="1050,90" halign="center" font="Regular;36" />
+				<widget name="title" position="22,0" size="1050,90" halign="center" font="Regular;36" />
 				<widget name="pic" position="30,105" size="320,180" transparent="1" alphatest="on" />
 				<widget name="description" position="380,105" size="670,453" font="Regular;24" />
 				<widget name="views" position="45,305" size="225,30" font="Regular;24" />
@@ -1328,14 +1328,14 @@ class YouTubeInfo(Screen):
 				<widget name="likes" position="45,405" size="225,30" font="Regular;24" />
 				<widget name="dislikes" position="45,455" size="225,30" font="Regular;24" />
 				<widget name="published" position="45,505" size="335,30" font="Regular;24" />
-				<ePixmap position="center,565" size="210,60" pixmap="skin_default/buttons/red.png" \
+				<ePixmap position="442,565" size="210,60" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="center,563" zPosition="2" size="210,60" \
+				<widget source="key_red" render="Label" position="442,563" zPosition="2" size="210,60" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 			</screen>"""
 	else:
 		skin = """<screen position="center,center" size="630,370">
-				<widget name="title" position="center,0" size="600,60" halign="center" font="Regular;24" />
+				<widget name="title" position="15,0" size="600,60" halign="center" font="Regular;24" />
 				<widget name="pic" position="20,70" size="320,180" transparent="1" alphatest="on" />
 				<widget name="description" position="360,70" size="260,225" font="Regular;16" />
 				<widget name="views" position="30,270" size="150,20" font="Regular;16" />
@@ -1343,9 +1343,9 @@ class YouTubeInfo(Screen):
 				<widget name="likes" position="30,300" size="150,20" font="Regular;16" />
 				<widget name="dislikes" position="200,300" size="150,20" font="Regular;16" />
 				<widget name="published" position="360,300" size="260,20" font="Regular;16" />
-				<ePixmap position="center,323" size="140,40" pixmap="skin_default/buttons/red.png" \
+				<ePixmap position="245,323" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="center,328" zPosition="2" size="140,30" \
+				<widget source="key_red" render="Label" position="245,328" zPosition="2" size="140,30" \
 					valign="center" halign="center" font="Regular;22" transparent="1" />
 			</screen>"""
 

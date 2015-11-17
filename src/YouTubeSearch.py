@@ -21,9 +21,9 @@ class YouTubeSearch(Screen, ConfigListScreen):
 	screenWidth = getDesktop(0).size().width()
 	if screenWidth and screenWidth == 1920:
 		skin = """<screen position="center,225" size="945,555">
-				<widget name="config" position="center,22" size="900,45" zPosition="2" \
+				<widget name="config" position="22,22" size="900,45" zPosition="2" \
 					scrollbarMode="showNever" itemHeight="45" font="Regular;30" />
-				<widget source="list" render="Listbox" position="center,75" size="900,409" \
+				<widget source="list" render="Listbox" position="22,75" size="900,409" \
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [MultiContentEntryText(pos=(15,1), size=(870,45), \
@@ -34,13 +34,13 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				</widget>
 				<ePixmap position="127,484" size="210,60" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
-				<ePixmap position="center,484" size="210,60" pixmap="skin_default/buttons/green.png" \
+				<ePixmap position="367,484" size="210,60" pixmap="skin_default/buttons/green.png" \
 					transparent="1" alphatest="on" />
 				<ePixmap position="608,484" size="210,60" pixmap="skin_default/buttons/yellow.png" \
 					transparent="1" alphatest="on" />
 				<widget source="key_red" render="Label" position="127,485" zPosition="2" size="210,60" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
-				<widget source="key_green" render="Label" position="center,485" zPosition="2" size="210,60" \
+				<widget source="key_green" render="Label" position="367,485" zPosition="2" size="210,60" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 				<widget source="key_yellow" render="Label" position="608,485" zPosition="2" size="210,60" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
@@ -51,9 +51,9 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			</screen>"""
 	else:
 		skin = """<screen position="center,150" size="630,370">
-				<widget name="config" position="center,15" size="600,30" zPosition="2" \
+				<widget name="config" position="15,15" size="600,30" zPosition="2" \
 					scrollbarMode="showNever" />
-				<widget source="list" render="Listbox" position="center,48" size="600,273" \
+				<widget source="list" render="Listbox" position="15,48" size="600,273" \
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [MultiContentEntryText(pos=(10,1), size=(580,30), \
@@ -64,13 +64,13 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				</widget>
 				<ePixmap position="85,323" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
-				<ePixmap position="center,323" size="140,40" pixmap="skin_default/buttons/green.png" \
+				<ePixmap position="245,323" size="140,40" pixmap="skin_default/buttons/green.png" \
 					transparent="1" alphatest="on" />
 				<ePixmap position="405,323" size="140,40" pixmap="skin_default/buttons/yellow.png" \
 					transparent="1" alphatest="on" />
 				<widget source="key_red" render="Label" position="85,328" zPosition="2" size="140,30" \
 					valign="center" halign="center" font="Regular;22" transparent="1" />
-				<widget source="key_green" render="Label" position="center,328" zPosition="2" size="140,30" \
+				<widget source="key_green" render="Label" position="245,328" zPosition="2" size="140,30" \
 					valign="center" halign="center" font="Regular;22" transparent="1" />
 				<widget source="key_yellow" render="Label" position="405,328" zPosition="2" size="140,30" \
 					valign="center" halign="center" font="Regular;22" transparent="1" />
