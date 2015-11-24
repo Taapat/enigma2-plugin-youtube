@@ -205,6 +205,23 @@ class YouTubeVideoUrl():
 			url_map[itag] = format_url
 		return url_map
 
+	def _get_ytplayer_config(self, webpage):
+		# User data may contain arbitrary character sequences that may affect
+		# JSON extraction with regex, e.g. when '};' is contained the second
+		# regex won't capture the whole JSON. Yet working around by trying more
+		# concrete regex first keeping in mind proper quoted string handling
+		# to be implemented in future that will replace this workaround (see
+		# https://github.com/rg3/youtube-dl/issues/7468,
+		# https://github.com/rg3/youtube-dl/pull/7599)
+		patterns = [
+			r';ytplayer\.config\s*=\s*({.+?});ytplayer',
+			r';ytplayer\.config\s*=\s*({.+?});',
+		]
+		for pattern in patterns:
+			config = self._search_regex(pattern, webpage)
+			if config:
+				return json.loads(uppercase_escape(config))
+
 	def extract(self, video_id):
 		url = 'https://www.youtube.com/watch?v=%s&gl=US&hl=en&has_verified=1&bpctr=9999999999' % video_id
 
@@ -240,10 +257,8 @@ class YouTubeVideoUrl():
 			age_gate = False
 			video_info = None
 			# Try looking directly into the video webpage
-			mobj = re.search(r';ytplayer\.config\s*=\s*({.*?});', video_webpage)
-			if mobj:
-				json_code = uppercase_escape(mobj.group(1))
-				ytplayer_config = json.loads(json_code)
+			ytplayer_config = self._get_ytplayer_config(video_webpage)
+			if ytplayer_config:
 				args = ytplayer_config['args']
 				if args.get('url_encoded_fmt_stream_map'):
 					# Convert to the same format returned by compat_parse_qs
