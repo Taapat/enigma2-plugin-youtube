@@ -176,13 +176,19 @@ class YouTubeSearch(Screen, ConfigListScreen):
 
 	def openKeyboard(self):
 		from Screens.VirtualKeyBoard import VirtualKeyBoard
+		current = self['config'].getCurrent()[1]
+		if current.help_window.instance is not None:
+			current.help_window.instance.hide()
 		self.session.openWithCallback(self.keyBoardCallback, VirtualKeyBoard,
 			title = _("Search"), text = self.searchValue.value)
 
 	def keyBoardCallback(self, name):
+		current = self['config'].getCurrent()[1]
+		if current.help_window.instance is not None:
+			current.help_window.instance.show()
 		if name:
 			self.searchValue.value = name
-			self['config'].getCurrent()[1].getSuggestions()
+			current.getSuggestions()
 
 
 class SuggestionsQueryThread(Thread):
