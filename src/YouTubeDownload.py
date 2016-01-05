@@ -162,7 +162,7 @@ class YouTubeDownloadList(Screen):
 		for job in job_manager.getPendingJobs():
 			progress = job.progress / float(job.end) * 100
 			downloadList.append((job, job.name, job.getStatustext(),
-				int(progress), str(progress) + "%" ))
+				int(progress), str(progress) + "%"))
 		self['list'].updateList(downloadList)
 		if downloadList:
 			self.progressTimer.startLongTimer(2)
