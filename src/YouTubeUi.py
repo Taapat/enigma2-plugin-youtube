@@ -582,7 +582,7 @@ class YouTubeMain(Screen):
 			for entry in self.entryList:
 				if not entry[2] and entry[0] in self.thumbnails:
 					thumbnail = self.thumbnails[entry[0]]
-					if thumbnail == True:
+					if thumbnail is True:
 						thumbnail = self.thumbnails['default']
 					self.entryList[count] = (
 							entry[0],  # Id
