@@ -247,7 +247,7 @@ class GoogleSuggestionsConfigText(ConfigText):
 				suggestions = [('', None)]
 				for suggestion in suggestionsList.findall('CompleteSuggestion'):
 					for element in suggestion:
-						if element.attrib.has_key('data'):
+						if 'data' in element.attrib:
 							name = element.attrib['data'].encode('UTF-8')
 						if name:
 							suggestions.append((name, None))
