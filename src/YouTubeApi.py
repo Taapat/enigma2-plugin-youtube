@@ -45,7 +45,7 @@ class YouTubeApi:
 				self.renew_access_token()
 				self.get_response(url, False)
 			else:
-				print ('[YouTubeApi] error in response %d' %e.code)
+				print ('[YouTubeApi] error in response %d' % e.code)
 				return {}
 		except URLError as e:
 			print '[YouTubeApi] failed to reach a server:', e.reason
