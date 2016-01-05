@@ -194,10 +194,12 @@ class YouTubeVideoUrl():
 
 	def _extract_from_m3u8(self, manifest_url):
 		url_map = {}
+
 		def _get_urls(_manifest):
 			lines = _manifest.split('\n')
 			urls = filter(lambda l: l and not l.startswith('#'), lines)
 			return urls
+
 		manifest = self._download_webpage(manifest_url)
 		formats_urls = _get_urls(manifest)
 		for format_url in formats_urls:
