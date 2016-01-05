@@ -452,7 +452,7 @@ class YouTubeMain(Screen):
 				self.activeDownloads += 1
 		elif self.action in ['playVideo', 'downloadVideo']:
 			videoUrl = self.value[6]
-			if not videoUrl: # remember video url
+			if not videoUrl:  # remember video url
 				videoUrl, urlError = self.getVideoUrl()
 				if urlError:
 					self.session.open(MessageBox,
@@ -473,9 +473,9 @@ class YouTubeMain(Screen):
 									entry[7],  # Description
 									entry[8],  # Likes
 									entry[9],  # Dislikes
-									entry[10], # Big thumbnail url
-									entry[11], # Channel Id
-									entry[12], # Published
+									entry[10],  # Big thumbnail url
+									entry[11],  # Channel Id
+									entry[12],  # Published
 								)
 							break
 						count += 1
@@ -525,7 +525,7 @@ class YouTubeMain(Screen):
 
 	def createThumbnails(self):
 		for entry in self.entryList:
-			if entry[2]: # If thumbnail created
+			if entry[2]:  # If thumbnail created
 				continue
 			entryId = entry[0]
 			if entryId in self.thumbnails:
@@ -587,7 +587,7 @@ class YouTubeMain(Screen):
 					self.entryList[count] = (
 							entry[0],  # Id
 							entry[1],  # Thumbnail url
-							thumbnail, # Thumbnail
+							thumbnail,  # Thumbnail
 							entry[3],  # Title
 							entry[4],  # Views
 							entry[5],  # Duration
@@ -595,18 +595,18 @@ class YouTubeMain(Screen):
 							entry[7],  # Description
 							entry[8],  # Likes
 							entry[9],  # Dislikes
-							entry[10], # Big thumbnail url
-							entry[11], # Channel Id
-							entry[12], # Published
+							entry[10],  # Big thumbnail url
+							entry[11],  # Channel Id
+							entry[12],  # Published
 						)
 				count += 1
 			self['list'].updateList(self.entryList)
 
 	def selectNext(self):
-		if self['list'].index + 1 < len(self.entryList): # not last enrty in entry list
+		if self['list'].index + 1 < len(self.entryList):  # not last enrty in entry list
 			self['list'].selectNext()
 		else:
-			if self.nextPageToken: # call next serch results if it exist
+			if self.nextPageToken:  # call next serch results if it exist
 				self.pageStartIndex = self.pageEndIndex + 1
 				self.pageEndIndex += int(self.searchResult)
 				self.setNextEntries()
@@ -614,10 +614,10 @@ class YouTubeMain(Screen):
 				self['list'].setIndex(0)
 
 	def selectPrevious(self):
-		if self['list'].index > 0: # not first enrty in entry list
+		if self['list'].index > 0:  # not first enrty in entry list
 			self['list'].selectPrevious()
 		else:
-			if self.prevPageToken: # call previous serch results if it exist
+			if self.prevPageToken:  # call previous serch results if it exist
 				self.pageEndIndex = self.pageStartIndex - 1
 				self.pageStartIndex -= int(self.searchResult)
 				self.setPrevEntries()
@@ -700,7 +700,7 @@ class YouTubeMain(Screen):
 					self.screenCallback([current[0], current[3], self.value[2]], 'OpenChannelList')
 
 	def searchScreenCallback(self, searchValue = None):
-		if not searchValue: # cancel in search
+		if not searchValue:  # cancel in search
 			self.cancel()
 		else:
 			self.searchResult = config.plugins.YouTube.searchResult.value
@@ -851,7 +851,7 @@ class YouTubeMain(Screen):
 						None, None, None, None, None, ''))
 				return videos
 
-			else: # all other my data
+			else:  # all other my data
 				channel = ''
 				searchResponse = self.youtube.channels_list(
 						maxResults = self.searchResult,
@@ -873,15 +873,15 @@ class YouTubeMain(Screen):
 					if subscription[0] != 'recent_subscr':
 						videos += self.videoIdFromPlaylist(subscription[0])
 				if videos:
-					videos = sorted(self.extractVideoIdList(videos), key=lambda k: k[12], reverse=True) # sort by date
-					del videos[int(self.searchResult):] # leaves only searchResult long list
+					videos = sorted(self.extractVideoIdList(videos), key=lambda k: k[12], reverse=True)  # sort by date
+					del videos[int(self.searchResult):]  # leaves only searchResult long list
 					self.nextPageToken = ''
 					self.prevPageToken = ''
 					self.setSearchResults(int(self.searchResult))
 				return videos
 			else:
 				videos = self.videoIdFromPlaylist(self.value[0])
-				if not videos: # if channel list from subscription
+				if not videos:  # if channel list from subscription
 					searchResponse = self.youtube.search_list(
 							part = 'id,snippet',
 							channelId = 'UC' + self.value[0][2:],
@@ -895,7 +895,7 @@ class YouTubeMain(Screen):
 			videos = self.videoIdFromChannellist(self.value[0])
 			return self.extractVideoIdList(videos)
 
-		else: # search or pub feeds
+		else:  # search or pub feeds
 			searchResponse = self.youtube.search_list_full(
 					videoEmbeddable = videoEmbeddable,
 					safeSearch = config.plugins.YouTube.safeSearch.value,
@@ -981,7 +981,7 @@ class YouTubeMain(Screen):
 			except:
 				liveBroadcast = None
 
-			if liveBroadcast == 'live': # if live broadcast insert in top of list
+			if liveBroadcast == 'live':  # if live broadcast insert in top of list
 				videos.insert(0, (Id, Thumbnail, None, Title, Views, Duration, None,
 					Description, Likes, Dislikes, ThumbnailUrl, ChannelId, PublishedAt))
 			else:
@@ -1173,7 +1173,7 @@ class YouTubeMain(Screen):
 
 	def configScreenCallback(self, callback=None):
 		self.searchResult = config.plugins.YouTube.searchResult.value
-		if self.list == 'main': # maybe autentification changed
+		if self.list == 'main':  # maybe autentification changed
 			self.createMainList()
 
 	def subscribeChannel(self, channelId):

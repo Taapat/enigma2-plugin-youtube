@@ -31,12 +31,12 @@ def createPriorityFormats():
 createPriorityFormats()
 
 IGNORE_VIDEO_FORMAT = [
-		'43', #webm
-		'44', #webm
-		'45', #webm
-		'46', #webm
-		'100', #webm
-		'101', #webm
+		'43',  # webm
+		'44',  # webm
+		'45',  # webm
+		'46',  # webm
+		'100',  # webm
+		'101',  # webm
 		'102'  #webm
 	]
 
