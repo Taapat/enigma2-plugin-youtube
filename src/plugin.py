@@ -15,8 +15,8 @@ def Plugins(**kwargs):
 			name = _('YouTube'),
 			description = _('Watch YouTube videos'),
 			where = [
-			PluginDescriptor.WHERE_PLUGINMENU,
-			PluginDescriptor.WHERE_EXTENSIONSMENU
+				PluginDescriptor.WHERE_PLUGINMENU,
+				PluginDescriptor.WHERE_EXTENSIONSMENU
 			],
 			icon = "piconhd.png", 
 			fnc = main
@@ -26,8 +26,8 @@ def Plugins(**kwargs):
 			name = _('YouTube'),
 			description = _('Watch YouTube videos'),
 			where = [
-			PluginDescriptor.WHERE_PLUGINMENU,
-			PluginDescriptor.WHERE_EXTENSIONSMENU
+				PluginDescriptor.WHERE_PLUGINMENU,
+				PluginDescriptor.WHERE_EXTENSIONSMENU
 			],
 			icon = "picon.png", 
 			fnc = main
