@@ -55,10 +55,10 @@ class OAuth:
 				"POST",
 				"/o/oauth2/token",
 				urlencode({
-						'client_id'     : self.client_id,
-						'client_secret' : self.client_secret,
-						'code'          : self.device_code,
-						'grant_type'    : 'http://oauth.net/grant_type/device/1.0'
+						'client_id': self.client_id,
+						'client_secret': self.client_secret,
+						'code': self.device_code,
+						'grant_type': 'http://oauth.net/grant_type/device/1.0'
 					}),
 				{"Content-type": "application/x-www-form-urlencoded"}
 			)
@@ -77,10 +77,10 @@ class OAuth:
 				"POST",
 				"/o/oauth2/token",
 				urlencode({
-						'client_id'     : self.client_id,
-						'client_secret' : self.client_secret,
-						'refresh_token' : refresh_token,
-						'grant_type'    : 'refresh_token'
+						'client_id': self.client_id,
+						'client_secret': self.client_secret,
+						'refresh_token': refresh_token,
+						'grant_type': 'refresh_token'
 					}),
 				{"Content-type": "application/x-www-form-urlencoded"}			
 			)

@@ -294,8 +294,8 @@ class YouTubeMain(Screen):
 				'ok': self.ok,
 				'red': self.cancel,
 				'green': self.ok,
-				'up' : self.selectPrevious,
-				'down' : self.selectNext,
+				'up': self.selectPrevious,
+				'down': self.selectNext,
 				'contextMenu': self.openMenu,
 				'showEventInfo': self.showEventInfo
 			}, -2)
