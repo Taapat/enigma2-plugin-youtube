@@ -172,4 +172,3 @@ class YouTubeDownloadList(Screen):
 		if current:
 			from Screens.TaskView import JobView
 			self.session.open(JobView, current[0])
-

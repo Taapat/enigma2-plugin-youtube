@@ -380,4 +380,3 @@ class YouTubeVideoUrl():
 			raise Exception('No supported formats found in video info!')
 
 		return str(url)
-

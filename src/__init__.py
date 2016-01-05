@@ -29,4 +29,3 @@ if version_info >= (2, 7, 9):
 		sslContext = ssl._create_unverified_context()
 	except:
 		pass
-

@@ -1527,4 +1527,3 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			del self.splitTaimer
 			self.mbox = None
 			self.oauth = None
-
