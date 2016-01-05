@@ -11,6 +11,7 @@ def localeInit():
 	bindtextdomain("YouTube", resolveFilename(SCOPE_PLUGINS, \
 		"Extensions/YouTube/locale"))
 
+
 def _(txt):
 	t = dgettext("YouTube", txt)
 	if t == txt:

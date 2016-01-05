@@ -17,6 +17,7 @@ from swfinterp import SWFInterpreter
 
 PRIORITY_VIDEO_FORMAT = []
 
+
 def createPriorityFormats():
 	global PRIORITY_VIDEO_FORMAT
 	PRIORITY_VIDEO_FORMAT = []
@@ -47,6 +48,7 @@ def uppercase_escape(s):
 		r'\\U[0-9a-fA-F]{8}',
 		lambda m: unicode_escape(m.group(0))[0],
 		s)
+
 
 def compat_urllib_parse_unquote(string, encoding='utf-8', errors='replace'):
 	if string == '':
@@ -83,6 +85,7 @@ def compat_urllib_parse_unquote(string, encoding='utf-8', errors='replace'):
 		string += pct_sequence.decode(encoding, errors)
 	return string
 
+
 def _parse_qsl(qs, keep_blank_values=False, strict_parsing=False,
 			encoding='utf-8', errors='replace'):
 	qs, _coerce_result = qs, unicode
@@ -111,6 +114,7 @@ def _parse_qsl(qs, keep_blank_values=False, strict_parsing=False,
 			value = _coerce_result(value)
 			r.append((name, value))
 	return r
+
 
 def compat_parse_qs(qs, keep_blank_values=False, strict_parsing=False,
 					encoding='utf-8', errors='replace'):
