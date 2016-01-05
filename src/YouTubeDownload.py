@@ -155,7 +155,7 @@ class YouTubeDownloadList(Screen):
 
 	def cleanVariables(self):
 		del self.progressTimer
-		
+
 	def updateDownloadList(self):
 		self.progressTimer.stop()
 		downloadList = []

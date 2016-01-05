@@ -857,7 +857,7 @@ class YouTubeMain(Screen):
 						maxResults = self.searchResult,
 						pageToken = self.value[2]
 					)
-				
+
 				self.nextPageToken = searchResponse.get('nextPageToken')
 				self.prevPageToken = searchResponse.get('prevPageToken')
 				self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
