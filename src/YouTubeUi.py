@@ -1432,10 +1432,10 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			_('How many search results will be returned.\nIf greater value then longer time will be needed for thumbnail download.')))
 		configlist.append(getConfigListEntry(_('Search region:'),
 			config.plugins.YouTube.searchRegion,
-			 _('Return search results for the specified country.')))
+			_('Return search results for the specified country.')))
 		configlist.append(getConfigListEntry(_('Search language:'),
 			config.plugins.YouTube.searchLanguage,
-			 _('Return search results that are most relevant to the specified language.')))
+			_('Return search results that are most relevant to the specified language.')))
 		configlist.append(getConfigListEntry(_('Sort search results by:'),
 			config.plugins.YouTube.searchOrder,
 			_('Order in which search results will be displayed.')))
@@ -1453,10 +1453,10 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			_('What to do when stop playback in videoplayer.')))
 		configlist.append(getConfigListEntry(_('Login on startup:'),
 			config.plugins.YouTube.login,
-			 _('Log in to your YouTube account when plugin starts.\nThis needs to approve in the Google home page!')))
+			_('Log in to your YouTube account when plugin starts.\nThis needs to approve in the Google home page!')))
 		configlist.append(getConfigListEntry(_('Download directory:'),
 			config.plugins.YouTube.downloadDir,
-			 _('Specify the directory where save downloaded video files.')))
+			_('Specify the directory where save downloaded video files.')))
 
 		self['config'].list = configlist
 		self['config'].l.setList(configlist)

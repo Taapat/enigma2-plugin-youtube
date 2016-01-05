@@ -78,19 +78,19 @@ class YouTubeApi:
 	def subscriptions_list(self, maxResults, pageToken):
 		pageToken = pageToken and '&pageToken=' + pageToken
 		url = 'subscriptions?part=snippet&maxResults=' + maxResults + \
-			 '&mine=true' + pageToken + self.key
+			'&mine=true' + pageToken + self.key
 		return self.get_response(url, True)
 
 	def playlists_list(self, maxResults, pageToken):
 		pageToken = pageToken and '&pageToken=' + pageToken
 		url = 'playlists?part=snippet&maxResults=' + maxResults + \
-			 '&mine=true' + pageToken + self.key
+			'&mine=true' + pageToken + self.key
 		return self.get_response(url, True)
 
 	def channels_list(self, maxResults, pageToken):
 		pageToken = pageToken and '&pageToken=' + pageToken
 		url = 'channels?part=contentDetails&maxResults=' + maxResults + \
-			 '&mine=true' + pageToken + self.key
+			'&mine=true' + pageToken + self.key
 		return self.get_response(url, True)
 
 	def search_list_full(self, videoEmbeddable, safeSearch, eventType, videoType,
@@ -121,13 +121,13 @@ class YouTubeApi:
 
 	def videos_list(self, v_id):
 		url = 'videos?part=id%2Csnippet%2Cstatistics%2CcontentDetails&id=' + \
-			 v_id.replace(',', '%2C') + self.key
+			v_id.replace(',', '%2C') + self.key
 		return self.get_response(url, True)
 
 	def playlistItems_list(self, maxResults, playlistId, pageToken):
 		pageToken = pageToken and '&pageToken=' + pageToken
 		url = 'playlistItems?part=snippet&maxResults=' + \
-			 maxResults + '&playlistId=' + playlistId + pageToken + self.key
+			maxResults + '&playlistId=' + playlistId + pageToken + self.key
 		return self.get_response(url, True)
 
 	def subscriptions_insert(self, channelId):
