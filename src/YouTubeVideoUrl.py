@@ -37,7 +37,7 @@ IGNORE_VIDEO_FORMAT = [
 		'46',  # webm
 		'100',  # webm
 		'101',  # webm
-		'102'  #webm
+		'102'  # webm
 	]
 
 
