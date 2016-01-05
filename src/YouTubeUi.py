@@ -721,11 +721,11 @@ class YouTubeMain(Screen):
 		time = ':' + duration.replace('P', '')\
 			.replace('W', '-').replace('D', ' ').replace('T', '')\
 			.replace('H', ':').replace('M', ':').replace('S', '')
-		if not 'S' in duration:
+		if 'S' not in duration:
 			time += '00'
 		elif time[-2] == ':':
 			time = time[:-1] + '0' + time[-1]
-		if not 'M' in duration:
+		if 'M' not in duration:
 			time = time[:-2] + '00' + time[-3:]
 		elif time[-5] == ':':
 			time = time[:-4] + '0' + time[-4:]
