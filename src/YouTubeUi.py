@@ -486,7 +486,7 @@ class YouTubeMain(Screen):
 					current = [self.value[3], self.value[4], self.value[5], self.value[7],
 						self.value[8], self.value[9], self.value[10], self.value[12]]
 					print "[YouTube] Play:", videoUrl
-					self.session.openWithCallback(self.playCallback,\
+					self.session.openWithCallback(self.playCallback,
 						YouTubePlayer, service = service, current = current)
 				else:
 					self.videoDownload(videoUrl, self.value[3])
@@ -733,7 +733,7 @@ class YouTubeMain(Screen):
 
 	def createBuild(self):
 		refreshToken = config.plugins.YouTube.refreshToken.value
-		if not self.youtube or (not self.isAuth and \
+		if not self.youtube or (not self.isAuth and 
 			refreshToken and config.plugins.YouTube.login.value):
 			from YouTubeApi import YouTubeApi
 			self.youtube = YouTubeApi(

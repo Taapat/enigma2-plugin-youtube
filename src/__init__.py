@@ -8,7 +8,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 def localeInit():
 	environ["LANGUAGE"] = language.getLanguage()[:2]
-	bindtextdomain("YouTube", resolveFilename(SCOPE_PLUGINS, \
+	bindtextdomain("YouTube", resolveFilename(SCOPE_PLUGINS,
 		"Extensions/YouTube/locale"))
 
 
