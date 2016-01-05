@@ -22,7 +22,7 @@ def createPriorityFormats():
 	global PRIORITY_VIDEO_FORMAT
 	PRIORITY_VIDEO_FORMAT = []
 	use_format = False
-	for itag_value in ['38', '37', '96', '22', '95', '120', 
+	for itag_value in ['38', '37', '96', '22', '95', '120',
 		'35', '94', '18', '93', '5', '92', '132', '17']:
 		if itag_value == config.plugins.YouTube.maxResolution.value:
 			use_format = True

@@ -100,7 +100,7 @@ config.plugins.YouTube.searchOrder = ConfigSelection(
 config.plugins.YouTube.safeSearch = ConfigSelection(default = 'moderate', choices = [
 	('moderate', _('Moderate')), ('none', _('No')), ('strict', _('Yes'))])
 config.plugins.YouTube.maxResolution = ConfigSelection(default = '22', choices = [
-	('38', '3072p'), ('37', '1080p'), ('22', '720p'), ('35', '480p'), 
+	('38', '3072p'), ('37', '1080p'), ('22', '720p'), ('35', '480p'),
 	('18', '360p'), ('5', '240p'), ('17', '144p')])
 config.plugins.YouTube.onMovieEof = ConfigSelection(default = 'quit', choices = [
 	('quit', _('Return to list')), ('ask', _('Ask user')),
@@ -456,7 +456,7 @@ class YouTubeMain(Screen):
 				videoUrl, urlError = self.getVideoUrl()
 				if urlError:
 					self.session.open(MessageBox,
-						_('There was an error in extract video url:\n%s') % urlError, 
+						_('There was an error in extract video url:\n%s') % urlError,
 						MessageBox.TYPE_INFO, timeout = 8)
 				else:
 					count = 0
@@ -501,7 +501,7 @@ class YouTubeMain(Screen):
 			self.value[2] = ''
 			if not entryList:
 				self.session.open(MessageBox,
-					_('There was an error in creating entry list!\nMaybe try other feeds...'), 
+					_('There was an error in creating entry list!\nMaybe try other feeds...'),
 					MessageBox.TYPE_INFO, timeout = 8)
 				self.setEntryList()
 				self.setPreviousList()
@@ -733,7 +733,7 @@ class YouTubeMain(Screen):
 
 	def createBuild(self):
 		refreshToken = config.plugins.YouTube.refreshToken.value
-		if not self.youtube or (not self.isAuth and 
+		if not self.youtube or (not self.isAuth and
 			refreshToken and config.plugins.YouTube.login.value):
 			from YouTubeApi import YouTubeApi
 			self.youtube = YouTubeApi(
@@ -820,7 +820,7 @@ class YouTubeMain(Screen):
 						Subscription = ''
 					videos.append((Id, Thumbnail, None, Title, '', '', Subscription,
 						None, None, None, None, None, ''))
-				if len(videos) > 1: 
+				if len(videos) > 1:
 					videos.insert(0, ('recent_subscr', None, None, _('Recent'), '', '',
 						None, None, None, None, None, None, ''))
 				return videos
@@ -1239,7 +1239,7 @@ class YouTubeMain(Screen):
 	def addToFavorites(self, videoId):
 		playlistId = self.myFavoritesId()
 		if playlistId and self.youtube.playlistItems_insert(
-				playlistId = playlistId, 
+				playlistId = playlistId,
 				videoId = videoId
 			):
 			return _('Added!')
@@ -1298,7 +1298,7 @@ class YouTubeMain(Screen):
 		if self.list == 'search':
 			self.rememberCurList()
 			self.prevEntryList.append(self.entryList)
-			self.screenCallback([self['list'].getCurrent()[0][6:], 
+			self.screenCallback([self['list'].getCurrent()[0][6:],
 				text, self.value[2]], 'OpenSearch')
 		else:
 			self.ok()

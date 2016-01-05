@@ -82,7 +82,7 @@ class OAuth:
 						'refresh_token': refresh_token,
 						'grant_type': 'refresh_token'
 					}),
-				{"Content-type": "application/x-www-form-urlencoded"}			
+				{"Content-type": "application/x-www-form-urlencoded"}
 			)
 
 		response = self.conn.getresponse()
