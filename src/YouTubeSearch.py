@@ -49,7 +49,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				<widget name="HelpWindow" position="600,810" size="1,1" zPosition="5" \
 					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
 			</screen>"""
-	else:
+	elif screenWidth and screenWidth == 1920:
 		skin = """<screen position="center,150" size="630,370">
 				<widget name="config" position="15,15" size="600,30" zPosition="2" \
 					scrollbarMode="showNever" />
@@ -77,6 +77,36 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				<ePixmap position="565,335" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="HelpWindow" position="400,540" size="1,1" zPosition="5" \
+					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
+			</screen>"""
+	else:
+		skin = """<screen position="center,55" size="630,370">
+				<widget name="config" position="15,15" size="600,30" zPosition="2" \
+					scrollbarMode="showNever" />
+				<widget source="list" render="Listbox" position="15,48" size="600,273" \
+					scrollbarMode="showOnDemand" >
+					<convert type="TemplatedMultiContent" >
+						{"template": [MultiContentEntryText(pos=(10,1), size=(580,30), \
+							font=0, flags=RT_HALIGN_LEFT, text=0)],
+						"fonts": [gFont("Regular",20)],
+						"itemHeight": 30}
+					</convert>
+				</widget>
+				<ePixmap position="85,323" size="140,40" pixmap="skin_default/buttons/red.png" \
+					transparent="1" alphatest="on" />
+				<ePixmap position="245,323" size="140,40" pixmap="skin_default/buttons/green.png" \
+					transparent="1" alphatest="on" />
+				<ePixmap position="405,323" size="140,40" pixmap="skin_default/buttons/yellow.png" \
+					transparent="1" alphatest="on" />
+				<widget source="key_red" render="Label" position="85,328" zPosition="2" size="140,30" \
+					valign="center" halign="center" font="Regular;22" transparent="1" />
+				<widget source="key_green" render="Label" position="245,328" zPosition="2" size="140,30" \
+					valign="center" halign="center" font="Regular;22" transparent="1" />
+				<widget source="key_yellow" render="Label" position="405,328" zPosition="2" size="140,30" \
+					valign="center" halign="center" font="Regular;22" transparent="1" />
+				<ePixmap position="565,335" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
+					transparent="1" alphatest="on" />
+				<widget name="HelpWindow" position="160,440" size="1,1" zPosition="5" \
 					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
 			</screen>"""
 
