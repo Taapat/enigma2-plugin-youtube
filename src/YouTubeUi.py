@@ -159,8 +159,10 @@ class YouTubePlayer(MoviePlayer):
 	def openCurEventView(self):
 		self.session.open(YouTubeInfo, current = self.current)
 
-	def openEventView(self):
-		self.session.open(YouTubeInfo, current = self.current)
+	def showSecondInfoBar(self):
+		self.hide()
+		self.hideTimer.stop()
+		self.openCurEventView()
 
 	def showMovies(self):
 		pass
