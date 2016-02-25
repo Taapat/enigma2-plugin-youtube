@@ -8,6 +8,7 @@ def main(session, **kwargs):
 	from YouTubeUi import YouTubeMain
 	session.open(YouTubeMain)
 
+
 def Plugins(**kwargs):
 	screenwidth = getDesktop(0).size().width()
 	if screenwidth and screenwidth == 1920:
@@ -15,10 +16,10 @@ def Plugins(**kwargs):
 			name = _('YouTube'),
 			description = _('Watch YouTube videos'),
 			where = [
-			PluginDescriptor.WHERE_PLUGINMENU,
-			PluginDescriptor.WHERE_EXTENSIONSMENU
-			],
-			icon = "piconhd.png", 
+					PluginDescriptor.WHERE_PLUGINMENU,
+					PluginDescriptor.WHERE_EXTENSIONSMENU
+				],
+			icon = "piconhd.png",
 			fnc = main
 			)]
 	else:
@@ -26,10 +27,9 @@ def Plugins(**kwargs):
 			name = _('YouTube'),
 			description = _('Watch YouTube videos'),
 			where = [
-			PluginDescriptor.WHERE_PLUGINMENU,
-			PluginDescriptor.WHERE_EXTENSIONSMENU
-			],
-			icon = "picon.png", 
+					PluginDescriptor.WHERE_PLUGINMENU,
+					PluginDescriptor.WHERE_EXTENSIONSMENU
+				],
+			icon = "picon.png",
 			fnc = main
 			)]
-
