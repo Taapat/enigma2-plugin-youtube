@@ -12,24 +12,16 @@ def main(session, **kwargs):
 def Plugins(**kwargs):
 	screenwidth = getDesktop(0).size().width()
 	if screenwidth and screenwidth == 1920:
-		return [PluginDescriptor(
-			name = _('YouTube'),
-			description = _('Watch YouTube videos'),
-			where = [
-					PluginDescriptor.WHERE_PLUGINMENU,
-					PluginDescriptor.WHERE_EXTENSIONSMENU
-				],
-			icon = "piconhd.png",
-			fnc = main
-			)]
+		icon = "piconhd.png"
 	else:
-		return [PluginDescriptor(
-			name = _('YouTube'),
-			description = _('Watch YouTube videos'),
-			where = [
-					PluginDescriptor.WHERE_PLUGINMENU,
-					PluginDescriptor.WHERE_EXTENSIONSMENU
-				],
-			icon = "picon.png",
-			fnc = main
-			)]
+		icon = "picon.png"
+	return [PluginDescriptor(
+		name = _('YouTube'),
+		description = _('Watch YouTube videos'),
+		where = [
+				PluginDescriptor.WHERE_PLUGINMENU,
+				PluginDescriptor.WHERE_EXTENSIONSMENU
+			],
+		icon = icon,
+		fnc = main
+		)]
