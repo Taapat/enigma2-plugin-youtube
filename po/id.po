@@ -1,0 +1,499 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Youtube\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-18 17:41+0100\n"
+"PO-Revision-Date: 2015-12-19 15:56+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.6.4\n"
+"Last-Translator: Budiarno\n"
+"Language: id\n"
+
+msgid "  (%d-%d of %d)"
+msgstr "  (%d-%d of %d)"
+
+msgid " dislikes"
+msgstr " tidak suka"
+
+msgid " likes"
+msgstr " suka"
+
+msgid " views"
+msgstr " Lihat"
+
+msgid "Active video downloads"
+msgstr "Unduh video aktif"
+
+msgid "Add to favorites"
+msgstr "Tambahkan ke favorit"
+
+msgid "Added!"
+msgstr "Ditambahkan!"
+
+msgid "All"
+msgstr "Semua"
+
+msgid "Ask user"
+msgstr "Tanya pengguna"
+
+msgid "Australia"
+msgstr "Australia"
+
+msgid "Brazil"
+msgstr "Brazil"
+
+msgid "Canada"
+msgstr "Kanada"
+
+msgid "Cancel"
+msgstr "Batal"
+
+msgid "Choose what you want to do"
+msgstr "Pilih apa yang ingin anda lakukan"
+
+msgid "Close YouTube"
+msgstr "Tutup Youtube"
+
+msgid "Created date"
+msgstr "Tanggal dibuat"
+
+msgid "Czech Republic"
+msgstr "Republik Ceko"
+
+msgid "Delete this entry"
+msgstr "Hapus entri ini"
+
+msgid "Disliked!"
+msgstr "Tidak disukai"
+
+msgid "Download directory:"
+msgstr "Direktori unduhan:"
+
+msgid "Download feed entries. Please wait..."
+msgstr "Mengunduh entri feed. Silakan tunggu..."
+
+msgid "Download search results. Please wait..."
+msgstr "Unduh hasil pencarian. Silakan tunggu..."
+
+msgid "Download video"
+msgstr "Unduh video"
+
+msgid "Downloading"
+msgstr "Mengunduh"
+
+msgid "Duration: "
+msgstr "Durasi: "
+
+msgid "Embedded in webpages"
+msgstr "Ditanamkan pada halaman web"
+
+msgid "Exclude restricted content:"
+msgstr "Jangan tampilkan konten yg dilarang:"
+
+msgid "Exit"
+msgstr "Keluar"
+
+msgid "Extract video url. Please wait..."
+msgstr "Mengurai alamat url video. Silakan tunggu..."
+
+msgid "Favorites"
+msgstr "Favorit"
+
+msgid "France"
+msgstr "Perancis"
+
+msgid "Germany"
+msgstr "Jerman"
+
+msgid ""
+"Go to %s\n"
+"And enter the code %s"
+msgstr ""
+"Menuju ke %s\n"
+"Dan masukkan kode %s"
+
+msgid "Great Britain"
+msgstr "Inggris Raya"
+
+msgid "HD videos"
+msgstr "Vídeo HD"
+
+msgid "History"
+msgstr "Sejarah"
+
+msgid "Holland"
+msgstr "Belanda"
+
+msgid "Hong Kong"
+msgstr "Hong Kong"
+
+msgid ""
+"How many search results will be returned.\n"
+"If greater value then longer time will be needed for thumbnail download."
+msgstr ""
+"Berapa jumlah hasil pencarian yg akan ditampilkan.\n"
+"Jika jumlahnya besar maka semakin lama waktu yg dibutuhkan untuk unduh thumbnail."
+
+msgid "I dislike this"
+msgstr "Saya tidak suka ini"
+
+msgid "I like this"
+msgstr "Saya suka ini"
+
+msgid "India"
+msgstr "India"
+
+msgid "Ireland"
+msgstr "Irlandia"
+
+msgid "Israel"
+msgstr "Israel"
+
+msgid "Italy"
+msgstr "Italia"
+
+msgid "Japan"
+msgstr "Jepang"
+
+msgid "Keyboard"
+msgstr "Keyboard"
+
+msgid "Latvia"
+msgstr "Latvia"
+
+msgid "Liked videos"
+msgstr "Vídeo yang disukai"
+
+msgid "Liked!"
+msgstr "Disukai!"
+
+msgid ""
+"Log in to your YouTube account when plugin starts.\n"
+"This needs to approve in the Google home page!"
+msgstr ""
+"Log in ke akun YouTube ketika plugin dimulai.\n"
+"Hal ini membutuhkan persetujuan di halaman depan Google!"
+
+msgid "Login on startup:"
+msgstr "Login saat mulai:"
+
+msgid "Maximum video resolution:"
+msgstr "Resolusi video maksimal:"
+
+msgid "Mexico"
+msgstr "Meksiko"
+
+msgid "Moderate"
+msgstr "Moderat"
+
+msgid "Most viewed"
+msgstr "Paling banyak dilihat"
+
+msgid "Movies"
+msgstr "Film"
+
+msgid "My Subscriptions"
+msgstr "Langganan saya"
+
+msgid "My feeds"
+msgstr "Feed saya"
+
+msgid "New Zealand"
+msgstr "Selandia Baru"
+
+msgid "Next %s entries"
+msgstr "Berikutnya %s entri"
+
+msgid "No"
+msgstr "Tidak"
+
+msgid "No, but play video again"
+msgstr "Tidak, tapi putar lagi videonya"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Open"
+msgstr "Buka"
+
+msgid "Order in which search results will be displayed."
+msgstr "Urutan dimana hasil pencarian akan ditampilkan."
+
+msgid "Play next"
+msgstr "Putar berikutnya"
+
+msgid "Play next video"
+msgstr "Putar video berikutnya"
+
+msgid "Play previous video"
+msgstr "Putar video sebelumnya"
+
+msgid "Play video again"
+msgstr "Putar lagi videonya"
+
+msgid "Playlists"
+msgstr "Daftar putar"
+
+msgid "Please select the download directory"
+msgstr "Silakan pilih direktori unduhan"
+
+msgid "Poland"
+msgstr "Polandia"
+
+msgid "Previous %s entries"
+msgstr "%s entri sebelumnya"
+
+msgid "Public feeds"
+msgstr "Feed publik"
+
+msgid "Published at: "
+msgstr "Diterbitkan pada: "
+
+msgid "Quit"
+msgstr "Keluar"
+
+msgid "Rate video"
+msgstr "Beri rating pada video"
+
+msgid "Rating"
+msgstr "Rating"
+
+msgid "Rating removed!"
+msgstr "Rating dibuang!"
+
+msgid "Recent"
+msgstr "Terbaru"
+
+msgid "Relevance"
+msgstr "Relevan"
+
+msgid "Remove from favorites"
+msgstr "Buang dari favorit"
+
+msgid "Remove my rating"
+msgstr "Buang rating saya"
+
+msgid "Removed!"
+msgstr "Dibuang!"
+
+msgid "Repeat"
+msgstr "Ulang"
+
+msgid "Return search results for the specified country."
+msgstr "Tampilkan hasil pencarian untuk negara yg ditentukan."
+
+msgid "Return search results that are most relevant to the specified language."
+msgstr "Tampilkan hasil pencarian yg paling relevan dgn bahasa yg ditentukan. "
+
+msgid "Return to list"
+msgstr "Kembali ke daftar"
+
+msgid "Russia"
+msgstr "Rusia"
+
+msgid "Save search result:"
+msgstr "Simpan hasil pencarian:"
+
+msgid "Save your search result in the history, when search completed."
+msgstr "Simpan hasil pencarian anda pada histori, ketika pencarian selesai."
+
+msgid "Search"
+msgstr "Cari"
+
+msgid "Search channels"
+msgstr "Cari kanal"
+
+msgid "Search for similar"
+msgstr "Cari yang sama"
+
+msgid "Search language:"
+msgstr "Cari bahasa:"
+
+msgid "Search live broadcasts"
+msgstr "Cari siaran langsung"
+
+msgid "Search playlists"
+msgstr "Cari daftar putar"
+
+msgid "Search region:"
+msgstr "Cari negara: "
+
+msgid "Search results:"
+msgstr "Hasil pencarian:"
+
+msgid "Search videos"
+msgstr "Cari video"
+
+msgid "Shows"
+msgstr "Tampilkan"
+
+msgid ""
+"Sorry, download directory not exist!\n"
+"Please specify in the settings existing directory."
+msgstr ""
+"Maaf, direktori unduhan tidak ada!\n"
+"Silakan atur di pengaturan direktori yg ada."
+
+msgid ""
+"Sorry, this file already exists:\n"
+"%s"
+msgstr ""
+"Maaf, file ini sudah ada:\n"
+"%s"
+
+msgid "Sort search results by:"
+msgstr "Sortir hasil pencarian berdasarkan:"
+
+msgid "South Korea"
+msgstr "Korea Selatan"
+
+msgid "Spain"
+msgstr "Spanyol"
+
+msgid "Specify the directory where save downloaded video files."
+msgstr "Atur direktori dimana menyimpan file yang telah diunduh."
+
+msgid "Stop playing this movie?"
+msgstr "Berhenti memutar film ini?"
+
+msgid "Subscribe"
+msgstr "Langgan"
+
+msgid "Subscribe this video channel"
+msgstr "Langgan kanal video ini"
+
+msgid "Subscribed!"
+msgstr "Berlangganan!"
+
+msgid "Sweden"
+msgstr "Swedia"
+
+msgid "Taiwan"
+msgstr "Taiwan"
+
+msgid "Thailand"
+msgstr "Thailand"
+
+msgid ""
+"There was an error in creating entry list!\n"
+"Maybe try other feeds..."
+msgstr ""
+"Terjadi kesalahan saat membuat daftar entri!\n"
+"Mungkin baiknya coba feed yg lain..."
+
+msgid ""
+"There was an error in extract video url:\n"
+"%s"
+msgstr ""
+"Terjadi kesalahan saat mengurai alamat url video:\n"
+"%s"
+
+msgid "There was an error!"
+msgstr "Terjadi kesalahan!"
+
+msgid "Title"
+msgstr "Judul"
+
+msgid ""
+"To perform authentication will need in a web browser open Google home page, "
+"and enter the code!\n"
+"Do you currently have Internet access on the other device and we can "
+"continue?"
+msgstr ""
+"Untuk melakukan otentikasi perlu browser web untuk membuka halaman depan Google "
+"dan memasukkan kode!\n"
+"Apakah saat ini anda punya akses internet pada perangkat lain dan kita bisa  "
+"melanjutkan?."
+
+msgid "Top rated"
+msgstr "Rating tertinggi"
+
+msgid "Try to exclude all restricted content from the search result."
+msgstr "Coba jangan tampilkan semua konten yg dilarang dari hasil pencarian."
+
+msgid "United States"
+msgstr "Amerika Serikat"
+
+msgid "Unsubscribe"
+msgstr "Hentikan langgan"
+
+msgid "Unsubscribed!"
+msgstr "Langganan dihentikan!"
+
+msgid "Uploads"
+msgstr "Unggah"
+
+msgid "Use"
+msgstr "Gunakan"
+
+msgid "Video download started!"
+msgstr "Unduh video dimulai"
+
+msgid "Videos from this video channel"
+msgstr "Video dari kanal video ini"
+
+msgid "View count"
+msgstr "Jumlah penayangan"
+
+msgid "Watch Later"
+msgstr "Tonton nanti"
+
+msgid "Watch YouTube videos"
+msgstr "Tonton video YouTube"
+
+msgid "What do you want to do?"
+msgstr "Apa yang ingin anda lakukan?"
+
+msgid ""
+"What maximum resolution used when playing video, if available.\n"
+"If you have a slow Internet connection, you can use a lower resolution."
+msgstr ""
+"Berapa resolusi maksimal yg digunakan ketika memutar video, jika tersedia.\n"
+"Jika koneksi internet anda lambat, anda bisa menggunakan resolusi lebih rendah."
+
+msgid "What to do when stop playback in videoplayer."
+msgstr "Apa yg akan dilakukan ketika berhenti memutar video di pemutar video."
+
+msgid "What to do when the video ends."
+msgstr "Apa yg akan dilakukan ketika video berakhir."
+
+msgid "When playback stop:"
+msgstr "Ketika berhenti memutar video:"
+
+msgid "When video ends:"
+msgstr "Ketika video berakhir:"
+
+msgid "Yes"
+msgstr "Ya"
+
+msgid "Yes, but play next video"
+msgstr "Ya, tapi putar video berikutnya"
+
+msgid "Yes, but play previous video"
+msgstr "Ya, tapi putar video sebelumnya"
+
+msgid ""
+"You already authorized access for this plugin to your YouTube account.\n"
+"Do you want to do it again to update access data?"
+msgstr ""
+"Anda telah diizinkan mengakses plugin ini pada akun YouTube anda.\n"
+"Anda ingin melakukannya lagi untuk memperbarui data akses?"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "YouTube info"
+msgstr "Informasi Youtube"
+
+msgid "YouTube search"
+msgstr "Pencarian Youtube"
+
+msgid "YouTube setup"
+msgstr "Atur YouTube"
+
+msgid "YouTube starting. Please wait..."
+msgstr "YouTube sedang mulai. Silakan tunggu..."
