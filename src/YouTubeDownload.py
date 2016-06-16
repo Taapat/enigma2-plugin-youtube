@@ -9,6 +9,8 @@ from Components.Task import Task, Job, job_manager
 from Screens.Screen import Screen
 from Tools.Downloader import downloadWithProgress
 
+from . import _
+
 
 class YouTubeDirBrowser(Screen):
 	def __init__(self, session, downloadDir):
@@ -115,13 +117,13 @@ class YouTubeDownloadList(Screen):
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [
-							MultiContentEntryText(pos=(10,1), size=(210,22), \
+							MultiContentEntryText(pos=(5,1), size=(270,22), \
 								font=0, flags=RT_HALIGN_LEFT, text=1), # Title
-							MultiContentEntryText(pos=(230,1), size=(150,22), \
+							MultiContentEntryText(pos=(280,1), size=(120,22), \
 								font=0, flags=RT_HALIGN_RIGHT, text=2), # State
-							MultiContentEntryProgress(pos=(390,4), size=(100,22), \
+							MultiContentEntryProgress(pos=(410,4), size=(100,22), \
 								percent=-3), # Progress
-							MultiContentEntryText(pos=(500,1), size=(80,22), \
+							MultiContentEntryText(pos=(520,1), size=(80,22), \
 								font=0, flags=RT_HALIGN_LEFT, text=4), # Percentage
 							],
 						"fonts": [gFont("Regular",20)],
@@ -161,7 +163,7 @@ class YouTubeDownloadList(Screen):
 		downloadList = []
 		for job in job_manager.getPendingJobs():
 			progress = job.progress / float(job.end) * 100
-			downloadList.append((job, job.name, job.getStatustext(),
+			downloadList.append((job, job.name + ' ...', job.getStatustext(),
 				int(progress), str(progress) + "%"))
 		self['list'].updateList(downloadList)
 		if downloadList:
