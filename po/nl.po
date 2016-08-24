@@ -3,25 +3,24 @@ msgstr ""
 "Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-11 19:04+0300\n"
-"PO-Revision-Date: 2015-07-31 21:53+0100\n"
+"PO-Revision-Date: 2016-08-24 15:28+0200\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
-"Language-Team:  <LL@li.org>\n"
-"Language: \n"
+"Language-Team: LL@li.org\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Dutch\n"
-"X-Poedit-Country: NETHERLANDS\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #, python-format
 msgid "  (%d-%d of %d)"
-msgstr ""
+msgstr "  (%d-%d van %d)"
 
 msgid " dislikes"
-msgstr ""
+msgstr "niet leuk"
 
 msgid " likes"
-msgstr ""
+msgstr " likes"
 
 msgid " views"
 msgstr "gezien"
@@ -29,12 +28,11 @@ msgstr "gezien"
 msgid "Active video downloads"
 msgstr "Actieve videodownloads"
 
-#, fuzzy
 msgid "Add to favorites"
-msgstr "Favorieten"
+msgstr "Voeg toe aan favorieten"
 
 msgid "Added!"
-msgstr ""
+msgstr "Toegevoegd!"
 
 msgid "All"
 msgstr "Alle"
@@ -70,7 +68,7 @@ msgid "Delete this entry"
 msgstr "Verwijder dit trefwoord "
 
 msgid "Disliked!"
-msgstr ""
+msgstr "Disliked!"
 
 msgid "Download directory:"
 msgstr "Download map:"
@@ -142,10 +140,10 @@ msgstr ""
 "Hoe groter het aantal, hoe langer het duurt voordat alle thumbnails geladen zijn."
 
 msgid "I dislike this"
-msgstr ""
+msgstr "Ik vind dit niet leuk"
 
 msgid "I like this"
-msgstr ""
+msgstr "Ik vind dit leuk"
 
 msgid "India"
 msgstr "India"
@@ -169,10 +167,10 @@ msgid "Latvia"
 msgstr "Letland"
 
 msgid "Liked videos"
-msgstr ""
+msgstr "Liked video's"
 
 msgid "Liked!"
-msgstr ""
+msgstr "Geliked!"
 
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"
@@ -277,14 +275,13 @@ msgid "Relevance"
 msgstr "Overeenkomst"
 
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Verwijder van facorieten"
 
 msgid "Remove my rating"
 msgstr "Verwijder mijn waardering"
 
-#, fuzzy
 msgid "Removed!"
-msgstr "Waardering verwijderd!"
+msgstr "Verwijderd!"
 
 msgid "Repeat"
 msgstr "Herhaal"
@@ -400,9 +397,8 @@ msgstr ""
 "Er is een fout opgetreden bij het extraheren van de video url:\n"
 "%s"
 
-#, fuzzy
 msgid "There was an error!"
-msgstr "Er is een fout opgetreden in de waardering!"
+msgstr "Er is een fout opgetreden!"
 
 msgid "Title"
 msgstr "Titel"
