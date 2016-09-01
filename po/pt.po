@@ -1,0 +1,502 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Youtube plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-24 17:53+0300\n"
+"PO-Revision-Date: 2016-09-01 00:39+0100\n"
+"Last-Translator: shimano\n"
+"Language-Team: \n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#, python-format
+msgid "  (%d-%d of %d)"
+msgstr "  (%d-%d of %d)"
+
+msgid " dislikes"
+msgstr "desgostos"
+
+msgid " likes"
+msgstr "gostos"
+
+msgid " views"
+msgstr "vistos"
+
+msgid "Active video downloads"
+msgstr "Descargas de vídeos activas"
+
+msgid "Add to favorites"
+msgstr "Adicionar aos favoritos"
+
+msgid "Added!"
+msgstr "Adicionado!"
+
+msgid "All"
+msgstr "Todos"
+
+msgid "Ask user"
+msgstr "Perguntar ao utilizador"
+
+msgid "Australia"
+msgstr "Austrália"
+
+msgid "Brazil"
+msgstr "Brasil"
+
+msgid "Canada"
+msgstr "Canadá"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Choose what you want to do"
+msgstr "Escolha o que pretende fazer"
+
+msgid "Close YouTube"
+msgstr "Fechar YouTube"
+
+msgid "Created date"
+msgstr "Data criada"
+
+msgid "Czech Republic"
+msgstr "República Checa"
+
+msgid "Delete this entry"
+msgstr "Apagar esta entrada"
+
+msgid "Disliked!"
+msgstr "Não gosto!"
+
+msgid "Download directory:"
+msgstr "Diretório de descarga:"
+
+msgid "Download feed entries. Please wait..."
+msgstr "Descarga feeds de entrada. P.F. espere..."
+
+msgid "Download search results. Please wait..."
+msgstr "Descarga dos resultados de pesquisa. Aguarde..."
+
+msgid "Download video"
+msgstr "Descarga de vídeo"
+
+msgid "Downloading"
+msgstr "Transferindo"
+
+msgid "Duration: "
+msgstr "Duração"
+
+msgid "Embedded in webpages"
+msgstr "Embebido em páginas Web"
+
+msgid "Exclude restricted content:"
+msgstr "Excluir conteúdo restrito"
+
+msgid "Exit"
+msgstr "Sair"
+
+msgid "Extract video url. Please wait..."
+msgstr "Extrair url do vídeo. P.F espere ..."
+
+msgid "Favorites"
+msgstr "Favoritos"
+
+msgid "France"
+msgstr "França"
+
+msgid "Germany"
+msgstr "Alemanha"
+
+#, python-format
+msgid ""
+"Go to %s\n"
+"And enter the code %s"
+msgstr ""
+"Vá para %s\n"
+"E introduza o código %s"
+
+msgid "Great Britain"
+msgstr "Grã-Bretanha"
+
+msgid "HD videos"
+msgstr "Vídeos HD"
+
+msgid "History"
+msgstr "Histórico"
+
+msgid "Holland"
+msgstr "Holanda"
+
+msgid "Hong Kong"
+msgstr "Hong Kong"
+
+msgid ""
+"How many search results will be returned.\n"
+"If greater value then longer time will be needed for thumbnail download."
+msgstr ""
+"Quantos resultados de pesquisa serão encontrados\n"
+"Se o valor for superior, mais tempo será necessário para os encontrar."
+
+msgid "I dislike this"
+msgstr "Eu não gosto disto"
+
+msgid "I like this"
+msgstr "Eu gosto disto"
+
+msgid "India"
+msgstr "Índia"
+
+msgid "Ireland"
+msgstr "Irlanda"
+
+msgid "Israel"
+msgstr "Israel"
+
+msgid "Italy"
+msgstr "Itália"
+
+msgid "Japan"
+msgstr "Japão"
+
+msgid "Keyboard"
+msgstr "Teclado"
+
+msgid "Latvia"
+msgstr "Letónia"
+
+msgid "Liked videos"
+msgstr "Vídeos que gostei"
+
+msgid "Liked!"
+msgstr "Gostei!"
+
+msgid ""
+"Log in to your YouTube account when plugin starts.\n"
+"This needs to approve in the Google home page!"
+msgstr ""
+"Faça logon na sua conta do YouTube quando iniciar o plugin.\n"
+"Obter autorização na página inicial do Google!"
+
+msgid "Login on startup:"
+msgstr "Logon no arranque:"
+
+msgid "Maximum video resolution:"
+msgstr "Máxima resolução do vídeo:"
+
+msgid "Mexico"
+msgstr "México"
+
+msgid "Moderate"
+msgstr "Moderado"
+
+msgid "Most viewed"
+msgstr "Mais vistos"
+
+msgid "Movies"
+msgstr "Filmes"
+
+msgid "My Subscriptions"
+msgstr "As minhas Subscrições"
+
+msgid "My feeds"
+msgstr "Os meus feeds"
+
+msgid "New Zealand"
+msgstr "Nova Zelândia"
+
+#, python-format
+msgid "Next %s entries"
+msgstr "Entradas %s seguintes"
+
+msgid "No"
+msgstr "Não"
+
+msgid "No, but play video again"
+msgstr "Não, mas reproduza o vídeo"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Open"
+msgstr "Abrir"
+
+msgid "Order in which search results will be displayed."
+msgstr "Ordene a forma como são vistos"
+
+msgid "Play next"
+msgstr "Reproduz o próximo"
+
+msgid "Play next video"
+msgstr "Reproduz o próximo vídeo"
+
+msgid "Play previous video"
+msgstr "Reproduz o vídeo anterior"
+
+msgid "Play video again"
+msgstr "Reproduzir novamente"
+
+msgid "Playlists"
+msgstr "Listas de reprodução"
+
+msgid "Please select the download directory"
+msgstr "Por favor, seleccione o directório de descarga"
+
+msgid "Poland"
+msgstr "Polónia"
+
+#, python-format
+msgid "Previous %s entries"
+msgstr "Entradas %s prévias"
+
+msgid "Public feeds"
+msgstr "Feeds públicos"
+
+msgid "Published at: "
+msgstr "Publicado em:"
+
+msgid "Quit"
+msgstr "Sair"
+
+msgid "Rate video"
+msgstr "Classificar vídeo"
+
+msgid "Rating"
+msgstr "Classificação"
+
+msgid "Rating removed!"
+msgstr "Classificação removida!"
+
+msgid "Recent"
+msgstr "Recente"
+
+msgid "Relevance"
+msgstr "Relevância"
+
+msgid "Remove from favorites"
+msgstr "Remover dos favoritos"
+
+msgid "Remove my rating"
+msgstr "Remover a minha classificação"
+
+msgid "Removed!"
+msgstr "Removida!"
+
+msgid "Repeat"
+msgstr "Repetir"
+
+msgid "Return search results for the specified country."
+msgstr "Devolve os resultados de pesquisa para o país especificado."
+
+msgid "Return search results that are most relevant to the specified language."
+msgstr "Devolve os resultados de pesquisa mais relevantes para o idioma especificado"
+
+msgid "Return to list"
+msgstr "Voltar à  lista "
+
+msgid "Russia"
+msgstr "Rússia"
+
+msgid "Save search result:"
+msgstr "Guardar a pesquisa:"
+
+msgid "Save your search result in the history, when search completed."
+msgstr "Guarde a busca no hostórico, quando estiver concluída."
+
+msgid "Search"
+msgstr "Busca"
+
+msgid "Search channels"
+msgstr "Buscar canais"
+
+msgid "Search for similar"
+msgstr "Buscar semelhantes"
+
+msgid "Search language:"
+msgstr "Idioma para Busca"
+
+msgid "Search live broadcasts"
+msgstr "Busca transmissões ao vivo"
+
+msgid "Search playlists"
+msgstr "Busca listas de reprodução"
+
+msgid "Search region:"
+msgstr "Buscar por região:"
+
+msgid "Search results:"
+msgstr "Resultados de busca:"
+
+msgid "Search videos"
+msgstr "Buscar vídeos"
+
+msgid "Shows"
+msgstr "Espetáculos"
+
+msgid ""
+"Sorry, download directory not exist!\n"
+"Please specify in the settings existing directory."
+msgstr ""
+"Desculpa, diretório de download não existe!\n"
+"Por favor especifica nas configurações um diretório existente."
+
+#, python-format
+msgid ""
+"Sorry, this file already exists:\n"
+"%s"
+msgstr ""
+"Desculpa, este ficheiro já existe:\n"
+"%s"
+
+msgid "Sort search results by:"
+msgstr "Ordene resultados de busca por:"
+
+msgid "South Korea"
+msgstr "Coreia do Sul"
+
+msgid "Spain"
+msgstr "Espanha"
+
+msgid "Specify the directory where save downloaded video files."
+msgstr "Especifique o diretório para salvar descargars de vídeos."
+
+msgid "Stop playing this movie?"
+msgstr "Parar a reprodução deste Vídeo?"
+
+msgid "Subscribe"
+msgstr "Subscreva"
+
+msgid "Subscribe this video channel"
+msgstr "Subscreva este canal de vídeo"
+
+msgid "Subscribed!"
+msgstr "Subscrito!"
+
+msgid "Sweden"
+msgstr "Suécia"
+
+msgid "Taiwan"
+msgstr "Taiwan"
+
+msgid "Thailand"
+msgstr "Tailândia"
+
+msgid ""
+"There was an error in creating entry list!\n"
+"Maybe try other feeds..."
+msgstr ""
+"Houve um erro na criação de lista de entrada!\n"
+"Tente talvez outros feeds..."
+
+#, python-format
+msgid ""
+"There was an error in extract video url:\n"
+"%s"
+msgstr ""
+"Houve um erro na url do vídeo extraído:\n"
+"%s"
+
+msgid "There was an error!"
+msgstr "Houve um erro!"
+
+msgid "Title"
+msgstr "Título"
+
+msgid ""
+"To perform authentication will need in a web browser open Google home page, and enter the code!\n"
+"Do you currently have Internet access on the other device and we can continue?"
+msgstr ""
+"Para executar a autenticação precisa no navegador da web abrir a página inicial do Google e digite o código!\n"
+"Atualmente tem acesso à Internet no outro dispositivo, para podemos continuar?"
+
+msgid "Top rated"
+msgstr "Classificação mais elevada"
+
+msgid "Try to exclude all restricted content from the search result."
+msgstr "Tente excluir todo o conteúdo restrito dos resultados de busca."
+
+msgid "United States"
+msgstr "Estados Unidos"
+
+msgid "Unsubscribe"
+msgstr "Anular subscrição"
+
+msgid "Unsubscribed!"
+msgstr "Não subscrito!"
+
+msgid "Uploads"
+msgstr "Envios"
+
+msgid "Use"
+msgstr "Utilize"
+
+msgid "Video download started!"
+msgstr "Descarga de vídeo iniciada!"
+
+msgid "Videos from this video channel"
+msgstr "Filmes deste canal de vídeo."
+
+msgid "View count"
+msgstr "Ver conteúdo"
+
+msgid "Watch Later"
+msgstr "Ver mais tarde"
+
+msgid "Watch YouTube videos"
+msgstr "Veja vídeos do Youtube"
+
+msgid "What do you want to do?"
+msgstr "O que deseja fazer?"
+
+msgid ""
+"What maximum resolution used when playing video, if available.\n"
+"If you have a slow Internet connection, you can use a lower resolution."
+msgstr ""
+"Qual é a resolução máxima usada durante a reprodução de vídeo, se disponível.\n"
+"Se você tiver uma conexão de Internet lenta, você pode usar uma resolução inferior."
+
+msgid "What to do when stop playback in videoplayer."
+msgstr "O que fazer quando parar a reprodução no videoplayer."
+
+msgid "What to do when the video ends."
+msgstr "O que fazer quando o vídeo acabar."
+
+msgid "When playback stop:"
+msgstr "Quando a reprodução parar:"
+
+msgid "When video ends:"
+msgstr "Quando o vídeo terminar:"
+
+msgid "Yes"
+msgstr "Sim"
+
+msgid "Yes, but play next video"
+msgstr "Sim, mas repdroduz o vídeo seguinte"
+
+msgid "Yes, but play previous video"
+msgstr "Sim, mas reproduz o vídeo anterior."
+
+msgid ""
+"You already authorized access for this plugin to your YouTube account.\n"
+"Do you want to do it again to update access data?"
+msgstr ""
+"Você já concedeu acesso para este plugin na sua conta do YouTube.\n"
+"Você quer fazê-lo novamente para atualizar os dados de acesso?"
+
+msgid "YouTube"
+msgstr "Youtube"
+
+msgid "YouTube info"
+msgstr "Informação do YouTube"
+
+msgid "YouTube search"
+msgstr "Busca do YouTube"
+
+msgid "YouTube setup"
+msgstr "Definição do YouTube"
+
+msgid "YouTube starting. Please wait..."
+msgstr "YouTube a iniciar. Por favor aguarde..."
