@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-11 19:04+0300\n"
+"POT-Creation-Date: 2016-10-16 12:37+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -124,9 +124,6 @@ msgstr "Lielbritānija"
 
 msgid "HD videos"
 msgstr "HD video"
-
-msgid "History"
-msgstr "Vēsture"
 
 msgid "Holland"
 msgstr "Holande"
@@ -441,9 +438,6 @@ msgstr "Citi video no šī video kanāla"
 
 msgid "View count"
 msgstr "Skatījumiem"
-
-msgid "Watch Later"
-msgstr "Skatīties vēlāk"
 
 msgid "Watch YouTube videos"
 msgstr "Atskaņot YouTube video"

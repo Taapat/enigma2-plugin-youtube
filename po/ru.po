@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-11 19:04+0300\n"
+"POT-Creation-Date: 2016-10-16 12:37+0300\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -123,9 +123,6 @@ msgstr "Англия"
 
 msgid "HD videos"
 msgstr "HD видео"
-
-msgid "History"
-msgstr "История"
 
 msgid "Holland"
 msgstr "Голландия"
@@ -440,9 +437,6 @@ msgstr "Другие видео от канала этого видео"
 
 msgid "View count"
 msgstr "Количество просмотров"
-
-msgid "Watch Later"
-msgstr "Посмотреть позже"
 
 msgid "Watch YouTube videos"
 msgstr "Просмотр видео с YouTube"
