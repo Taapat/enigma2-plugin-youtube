@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-11 19:04+0300\n"
+"POT-Creation-Date: 2016-10-16 12:37+0300\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: Vasiliks <vasiliks@yandex.ru>\n"
 "Language-Team: Vasiliks <vasiliks@yandex.ru>\n"
@@ -124,9 +124,6 @@ msgstr "Англія"
 
 msgid "HD videos"
 msgstr "HD відео"
-
-msgid "History"
-msgstr "Історія"
 
 msgid "Holland"
 msgstr "Голландія"
@@ -444,9 +441,6 @@ msgstr ""
 msgid "View count"
 msgstr "Кількість переглядів"
 
-msgid "Watch Later"
-msgstr "Переглянути пізніше"
-
 msgid "Watch YouTube videos"
 msgstr "Перегляд видео з YouTube"
 
@@ -502,9 +496,3 @@ msgstr "Налаштування YouTube"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube запускається. Зачекайте ..."
-
-#~ msgid "There was an error in subscribe!"
-#~ msgstr "Помилка в підписці!"
-
-#~ msgid "There was an error in unsubscribe!"
-#~ msgstr "Помилка в скасування підписки!"

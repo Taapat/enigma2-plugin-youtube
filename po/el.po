@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin greek translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-11 19:04+0300\n"
+"POT-Creation-Date: 2016-10-16 12:37+0300\n"
 "PO-Revision-Date: 2015-08-10 03:06+0200\n"
 "Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: MCelliot_g <mcelliot_g@hotmail.com>\n"
@@ -125,9 +125,6 @@ msgstr "Μεγάλη Βρετανία"
 
 msgid "HD videos"
 msgstr "HD βίντεο"
-
-msgid "History"
-msgstr "Ιστορικό"
 
 msgid "Holland"
 msgstr "Ολλανδία"
@@ -445,9 +442,6 @@ msgstr "Βίντεο από αυτό το κανάλι"
 msgid "View count"
 msgstr "Πλήθος προβολών"
 
-msgid "Watch Later"
-msgstr "Παρακολούθηση αργότερα"
-
 msgid "Watch YouTube videos"
 msgstr "Παρακολούθηση βίντεο YouTube"
 
@@ -503,9 +497,3 @@ msgstr "Ρυθμίσεις YouTube"
 
 msgid "YouTube starting. Please wait..."
 msgstr "Το YouTube ξεκινά. Παρακαλώ περιμένετε..."
-
-#~ msgid "There was an error in subscribe!"
-#~ msgstr "Υπήρξε σφάλμα στην εγγραφή!"
-
-#~ msgid "There was an error in unsubscribe!"
-#~ msgstr "Υπήρξε σφάλμα στην κατάργηση της εγγραφής!"
