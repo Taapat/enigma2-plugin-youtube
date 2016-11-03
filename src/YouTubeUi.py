@@ -415,6 +415,8 @@ class YouTubeMain(Screen):
 		self.text = _('My feeds')
 		self.createDefEntryList([
 				['my_subscriptions', _('My Subscriptions')],
+				['my_watch_later', _('Watch Later')],
+				['my_history', _('History')],
 				['my_liked_videos', _('Liked videos')],
 				['my_favorites', _('Favorites')],
 				['my_uploads', _('Uploads')],
@@ -778,6 +780,10 @@ class YouTubeMain(Screen):
 		elif self.action == 'OpenMyFeeds':
 			if not self.isAuth:
 				return None
+			elif self.value[0] == 'my_watch_later':
+				playlist = 'watchLater'
+			elif self.value[0] == 'my_history':
+				playlist = 'watchHistory'
 			elif self.value[0] == 'my_liked_videos':
 				playlist = 'likes'
 			elif self.value[0] == 'my_favorites':
