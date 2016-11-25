@@ -416,7 +416,7 @@ msgid "Try to exclude all restricted content from the search result."
 msgstr "Mēģinās izslēgt visu ierobežotu saturu no meklēšanas rezultātiem."
 
 msgid "Turkey"
-msgstr ""
+msgstr "Turku"
 
 msgid "United States"
 msgstr "ASV"
