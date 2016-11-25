@@ -1,9 +1,8 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "POT-Creation-Date: 2016-11-25 05:00+0200\n"
-"PO-Revision-Date: 2016-11-25 05:20+0200\n"
+"PO-Revision-Date: 2016-11-25 07:55+0200\n"
 "Last-Translator: TM2TURK | by thawtes <thawtes@gmail.com>\n"
 "Language-Team: TM2TURK | by thawtes <thawtes@gmail.com>\n"
 "Language: tr_TR\n"
@@ -24,7 +23,7 @@ msgid " likes"
 msgstr ""
 
 msgid " views"
-msgstr ""
+msgstr " Görüntüleme"
 
 msgid "Active video downloads"
 msgstr ""
@@ -36,34 +35,34 @@ msgid "Added!"
 msgstr ""
 
 msgid "All"
-msgstr ""
+msgstr "Tümü"
 
 msgid "Ask user"
-msgstr ""
+msgstr "Bana Sor"
 
 msgid "Australia"
-msgstr ""
+msgstr "Avustralya"
 
 msgid "Brazil"
-msgstr ""
+msgstr "Brezilya"
 
 msgid "Canada"
-msgstr ""
+msgstr "Kanada"
 
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 msgid "Choose what you want to do"
 msgstr ""
 
 msgid "Close YouTube"
-msgstr ""
+msgstr "YouTube 'yi Kapat"
 
 msgid "Created date"
 msgstr ""
 
 msgid "Czech Republic"
-msgstr ""
+msgstr "Çek Cumhuriyeti"
 
 msgid "Delete this entry"
 msgstr ""
@@ -72,7 +71,7 @@ msgid "Disliked!"
 msgstr ""
 
 msgid "Download directory:"
-msgstr ""
+msgstr "Yükleme Dizini"
 
 msgid "Download feed entries. Please wait..."
 msgstr ""
@@ -87,7 +86,7 @@ msgid "Downloading"
 msgstr ""
 
 msgid "Duration: "
-msgstr ""
+msgstr "Süre : "
 
 msgid "Embedded in webpages"
 msgstr ""
@@ -105,10 +104,10 @@ msgid "Favorites"
 msgstr ""
 
 msgid "France"
-msgstr ""
+msgstr "Fransa"
 
 msgid "Germany"
-msgstr ""
+msgstr "Almanya"
 
 msgid ""
 "Go to %s\n"
@@ -116,16 +115,16 @@ msgid ""
 msgstr ""
 
 msgid "Great Britain"
-msgstr ""
+msgstr "Büyük Britanya"
 
 msgid "HD videos"
 msgstr ""
 
 msgid "Holland"
-msgstr ""
+msgstr "Hollanda"
 
 msgid "Hong Kong"
-msgstr ""
+msgstr "Hong Kong"
 
 msgid ""
 "How many search results will be returned.\n"
@@ -133,31 +132,31 @@ msgid ""
 msgstr ""
 
 msgid "I dislike this"
-msgstr ""
+msgstr "Bunu Beğenmedim"
 
 msgid "I like this"
-msgstr ""
+msgstr "Bunu Beğendim"
 
 msgid "India"
-msgstr ""
+msgstr "Hindistan"
 
 msgid "Ireland"
-msgstr ""
+msgstr "İrlanda"
 
 msgid "Israel"
-msgstr ""
+msgstr "İsrail"
 
 msgid "Italy"
-msgstr ""
+msgstr "İtalya"
 
 msgid "Japan"
-msgstr ""
+msgstr "Japonya"
 
 msgid "Keyboard"
-msgstr ""
+msgstr "Klavye"
 
 msgid "Latvia"
-msgstr ""
+msgstr "Letonya"
 
 msgid "Liked videos"
 msgstr ""
@@ -171,13 +170,13 @@ msgid ""
 msgstr ""
 
 msgid "Login on startup:"
-msgstr ""
+msgstr "Başlangıçta Oturum Aç"
 
 msgid "Maximum video resolution:"
 msgstr ""
 
 msgid "Mexico"
-msgstr ""
+msgstr "Meksika"
 
 msgid "Moderate"
 msgstr ""
@@ -195,13 +194,13 @@ msgid "My feeds"
 msgstr ""
 
 msgid "New Zealand"
-msgstr ""
+msgstr "Yeni Zelanda"
 
 msgid "Next %s entries"
 msgstr ""
 
 msgid "No"
-msgstr ""
+msgstr "Hayır"
 
 msgid "No, but play video again"
 msgstr ""
@@ -216,7 +215,7 @@ msgid "Order in which search results will be displayed."
 msgstr ""
 
 msgid "Play next"
-msgstr ""
+msgstr "Sonrakini Oynat"
 
 msgid "Play next video"
 msgstr ""
@@ -234,7 +233,7 @@ msgid "Please select the download directory"
 msgstr ""
 
 msgid "Poland"
-msgstr ""
+msgstr "Polonya"
 
 msgid "Previous %s entries"
 msgstr ""
@@ -243,7 +242,7 @@ msgid "Public feeds"
 msgstr ""
 
 msgid "Published at: "
-msgstr ""
+msgstr "Yayınlanma Tarihi : "
 
 msgid "Quit"
 msgstr ""
@@ -273,7 +272,7 @@ msgid "Removed!"
 msgstr ""
 
 msgid "Repeat"
-msgstr ""
+msgstr "Tekrar Oynat"
 
 msgid "Return search results for the specified country."
 msgstr ""
@@ -282,13 +281,13 @@ msgid "Return search results that are most relevant to the specified language."
 msgstr ""
 
 msgid "Return to list"
-msgstr ""
+msgstr "Listeye Dön"
 
 msgid "Russia"
-msgstr ""
+msgstr "Rusya"
 
 msgid "Save search result:"
-msgstr ""
+msgstr "Arama Sonuçlarını Kaydet"
 
 msgid "Save your search result in the history, when search completed."
 msgstr ""
@@ -312,10 +311,10 @@ msgid "Search for similar"
 msgstr ""
 
 msgid "Search language:"
-msgstr ""
+msgstr "Arama Dili"
 
 msgid "Search region:"
-msgstr ""
+msgstr "Arama Konumu"
 
 msgid "Search results:"
 msgstr ""
@@ -334,13 +333,13 @@ msgid ""
 msgstr ""
 
 msgid "Sort search results by:"
-msgstr ""
+msgstr "Arama Sonuçlarını Sırala"
 
 msgid "South Korea"
-msgstr ""
+msgstr "Güney Kore"
 
 msgid "Spain"
-msgstr ""
+msgstr "İspanya"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr ""
@@ -358,13 +357,13 @@ msgid "Subscribed!"
 msgstr ""
 
 msgid "Sweden"
-msgstr ""
+msgstr "İsveç"
 
 msgid "Taiwan"
-msgstr ""
+msgstr "Tayvan"
 
 msgid "Thailand"
-msgstr ""
+msgstr "Tayland"
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -399,13 +398,13 @@ msgid "Turkey"
 msgstr "Türkiye"
 
 msgid "United States"
-msgstr ""
+msgstr "Amerika Birleşik Devletleri"
 
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Abonelikten Çık"
 
 msgid "Unsubscribed!"
-msgstr ""
+msgstr "Aboneliğiniz Silindi !"
 
 msgid "Uploads"
 msgstr ""
@@ -423,7 +422,7 @@ msgid "View count"
 msgstr ""
 
 msgid "Watch YouTube videos"
-msgstr ""
+msgstr "YouTube Videolarını Seyredin"
 
 msgid "What do you want to do?"
 msgstr ""
@@ -440,13 +439,13 @@ msgid "What to do when the video ends."
 msgstr ""
 
 msgid "When playback stop:"
-msgstr ""
+msgstr "Video Oynatımı Durdurulduğunda"
 
 msgid "When video ends:"
-msgstr ""
+msgstr "Video Oynatımı Bittiğinde"
 
 msgid "Yes"
-msgstr ""
+msgstr "Evet"
 
 msgid "Yes, but play next video"
 msgstr ""
@@ -463,13 +462,13 @@ msgid "YouTube"
 msgstr "YouTube"
 
 msgid "YouTube info"
-msgstr ""
+msgstr "Video Bilgisi"
 
 msgid "YouTube search"
-msgstr ""
+msgstr "YouTube 'de Ara"
 
 msgid "YouTube setup"
-msgstr ""
+msgstr "YouTube Ayarları"
 
 msgid "YouTube starting. Please wait..."
-msgstr ""
+msgstr "YouTube başlıyor, lütfen bekleyiniz..."
