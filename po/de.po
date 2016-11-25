@@ -2,17 +2,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-18 17:41+0100\n"
+"POT-Creation-Date: 2016-11-25 18:53+0200\n"
 "PO-Revision-Date: 2016-02-27 17:17+0100\n"
+"Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: OpenPlus <open-plus.es>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.5.4\n"
-"Last-Translator: Andihawke <reinerploner@gmail.com>\n"
-"Language: de\n"
 
+#, python-format
 msgid "  (%d-%d of %d)"
 msgstr "  (%d-%d von %d)"
 
@@ -109,6 +110,7 @@ msgstr "Frankreich"
 msgid "Germany"
 msgstr "Deutschland"
 
+#, python-format
 msgid ""
 "Go to %s\n"
 "And enter the code %s"
@@ -121,9 +123,6 @@ msgstr "Großbritannien"
 
 msgid "HD videos"
 msgstr "HD Videos"
-
-msgid "History"
-msgstr "Verlauf"
 
 msgid "Holland"
 msgstr "Holland"
@@ -205,6 +204,7 @@ msgstr "Meine Feeds"
 msgid "New Zealand"
 msgstr "Neuseeland"
 
+#, python-format
 msgid "Next %s entries"
 msgstr "Weitere %s Einträge"
 
@@ -244,6 +244,7 @@ msgstr "Downloadverzeichnis wählen"
 msgid "Poland"
 msgstr "Polen"
 
+#, python-format
 msgid "Previous %s entries"
 msgstr "Vorherige %s Einträge"
 
@@ -338,6 +339,7 @@ msgstr ""
 "Achtung: Download Verzeichnis existiert nicht!\n"
 "In den Einstellungen ein existierendes Verzeichnis wählen"
 
+#, python-format
 msgid ""
 "Sorry, this file already exists:\n"
 "%s"
@@ -385,6 +387,7 @@ msgstr ""
 "Fehler beim Erstellen der Liste!\n"
 "Versuchen Sie es später nochmal..."
 
+#, python-format
 msgid ""
 "There was an error in extract video url:\n"
 "%s"
@@ -399,21 +402,20 @@ msgid "Title"
 msgstr "Titel"
 
 msgid ""
-"To perform authentication will need in a web browser open Google home page, "
-"and enter the code!\n"
-"Do you currently have Internet access on the other device and we can "
-"continue?"
+"To perform authentication will need in a web browser open Google home page, and enter the code!\n"
+"Do you currently have Internet access on the other device and we can continue?"
 msgstr ""
-"Um die Authentifizierung zu bestätigen müssen Sie den Code auf der Google "
-"Home Page eingeben!\n"
-"Haben Sie aktuell einen Zugang zum Internet auf einem anderen Gerät? "
-"Authentifizierung fortsetzen?"
+"Um die Authentifizierung zu bestätigen müssen Sie den Code auf der Google Home Page eingeben!\n"
+"Haben Sie aktuell einen Zugang zum Internet auf einem anderen Gerät? Authentifizierung fortsetzen?"
 
 msgid "Top rated"
 msgstr "Positiv bewertete Videos"
 
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Versuche alle expliziten Inhalte vom Suchergebnis zu entfernen."
+
+msgid "Turkey"
+msgstr ""
 
 msgid "United States"
 msgstr "USA"
@@ -439,9 +441,6 @@ msgstr "Videos von diesem Kanal"
 msgid "View count"
 msgstr "Wie oft angezeigt"
 
-msgid "Watch Later"
-msgstr "Später ansehen"
-
 msgid "Watch YouTube videos"
 msgstr "YouTube Videos schauen"
 
@@ -453,8 +452,7 @@ msgid ""
 "If you have a slow Internet connection, you can use a lower resolution."
 msgstr ""
 "Maximale Auflösung wählen.\n"
-"Versuchen Sie eine geringere Auslösung bei einer langsamen "
-"Internetverbindung."
+"Versuchen Sie eine geringere Auslösung bei einer langsamen Internetverbindung."
 
 msgid "What to do when stop playback in videoplayer."
 msgstr "Was tun wenn Video Playback stoppt?"

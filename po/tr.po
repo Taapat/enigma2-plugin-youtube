@@ -1,7 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
-"POT-Creation-Date: 2016-11-25 05:00+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-25 18:53+0200\n"
 "PO-Revision-Date: 2016-11-25 07:55+0200\n"
 "Last-Translator: TM2TURK | by thawtes <thawtes@gmail.com>\n"
 "Language-Team: TM2TURK | by thawtes <thawtes@gmail.com>\n"
@@ -13,6 +14,7 @@ msgstr ""
 "X-Generator: Poedit 1.8.11\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#, python-format
 msgid "  (%d-%d of %d)"
 msgstr ""
 
@@ -109,6 +111,7 @@ msgstr "Fransa"
 msgid "Germany"
 msgstr "Almanya"
 
+#, python-format
 msgid ""
 "Go to %s\n"
 "And enter the code %s"
@@ -196,6 +199,7 @@ msgstr ""
 msgid "New Zealand"
 msgstr "Yeni Zelanda"
 
+#, python-format
 msgid "Next %s entries"
 msgstr ""
 
@@ -235,6 +239,7 @@ msgstr ""
 msgid "Poland"
 msgstr "Polonya"
 
+#, python-format
 msgid "Previous %s entries"
 msgstr ""
 
@@ -298,25 +303,25 @@ msgstr ""
 msgid "Search channels"
 msgstr ""
 
-msgid "Search live broadcasts"
-msgstr ""
-
-msgid "Search playlists"
-msgstr ""
-
-msgid "Search videos"
-msgstr ""
-
 msgid "Search for similar"
 msgstr ""
 
 msgid "Search language:"
 msgstr "Arama Dili"
 
+msgid "Search live broadcasts"
+msgstr ""
+
+msgid "Search playlists"
+msgstr ""
+
 msgid "Search region:"
 msgstr "Arama Konumu"
 
 msgid "Search results:"
+msgstr ""
+
+msgid "Search videos"
 msgstr ""
 
 msgid "Shows"
@@ -327,6 +332,7 @@ msgid ""
 "Please specify in the settings existing directory."
 msgstr ""
 
+#, python-format
 msgid ""
 "Sorry, this file already exists:\n"
 "%s"
@@ -370,6 +376,7 @@ msgid ""
 "Maybe try other feeds..."
 msgstr ""
 
+#, python-format
 msgid ""
 "There was an error in extract video url:\n"
 "%s"
@@ -382,10 +389,8 @@ msgid "Title"
 msgstr ""
 
 msgid ""
-"To perform authentication will need in a web browser open Google home page, "
-"and enter the code!\n"
-"Do you currently have Internet access on the other device and we can "
-"continue?"
+"To perform authentication will need in a web browser open Google home page, and enter the code!\n"
+"Do you currently have Internet access on the other device and we can continue?"
 msgstr ""
 
 msgid "Top rated"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-24 17:53+0300\n"
+"POT-Creation-Date: 2016-11-25 18:53+0200\n"
 "PO-Revision-Date: 2016-08-24 10:46+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: \n"
@@ -127,9 +127,6 @@ msgstr "Iso-Britannia"
 
 msgid "HD videos"
 msgstr "HD videot"
-
-msgid "History"
-msgstr "Historia"
 
 msgid "Holland"
 msgstr "Hollanti"
@@ -421,6 +418,9 @@ msgstr "Suosituimmat"
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Hylkää rajoitettu sisältö hakutuloksista."
 
+msgid "Turkey"
+msgstr ""
+
 msgid "United States"
 msgstr "Yhdysvallat"
 
@@ -444,9 +444,6 @@ msgstr "Videoita tältä kanavalta"
 
 msgid "View count"
 msgstr "Katsotuimmat"
-
-msgid "Watch Later"
-msgstr "Katso myöhemmin"
 
 msgid "Watch YouTube videos"
 msgstr "Katso YouTube-videoita"

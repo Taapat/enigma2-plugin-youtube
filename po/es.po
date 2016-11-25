@@ -2,17 +2,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-18 17:41+0100\n"
+"POT-Creation-Date: 2016-11-25 18:53+0200\n"
 "PO-Revision-Date: 2015-12-19 15:56+0100\n"
+"Last-Translator: VillaK\n"
 "Language-Team: OpenPlus <open-plus.es>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.6.4\n"
-"Last-Translator: VillaK\n"
-"Language: es\n"
 
+#, python-format
 msgid "  (%d-%d of %d)"
 msgstr "  (%d-%d of %d)"
 
@@ -109,6 +110,7 @@ msgstr "Francia"
 msgid "Germany"
 msgstr "Alemania"
 
+#, python-format
 msgid ""
 "Go to %s\n"
 "And enter the code %s"
@@ -121,9 +123,6 @@ msgstr "Reino Unido"
 
 msgid "HD videos"
 msgstr "Vídeos HD"
-
-msgid "History"
-msgstr "Historial"
 
 msgid "Holland"
 msgstr "Holanda"
@@ -205,6 +204,7 @@ msgstr "Mis fuentes"
 msgid "New Zealand"
 msgstr "Nueva Zelanda"
 
+#, python-format
 msgid "Next %s entries"
 msgstr "Siguientes %s entradas"
 
@@ -244,6 +244,7 @@ msgstr "Por favor seleccione el directorio de descarga"
 msgid "Poland"
 msgstr "Polonia"
 
+#, python-format
 msgid "Previous %s entries"
 msgstr "Entradas %s anteriores"
 
@@ -338,6 +339,7 @@ msgstr ""
 "Perdona, ¡la ruta de la descarga no existe!\n"
 "Especifica una ruta valida en los ajustes."
 
+#, python-format
 msgid ""
 "Sorry, this file already exists:\n"
 "%s"
@@ -385,6 +387,7 @@ msgstr ""
 "¡Hubo un error al crear la lista!\n"
 "Inténtelo con otras fuentes..."
 
+#, python-format
 msgid ""
 "There was an error in extract video url:\n"
 "%s"
@@ -399,21 +402,20 @@ msgid "Title"
 msgstr "Título"
 
 msgid ""
-"To perform authentication will need in a web browser open Google home page, "
-"and enter the code!\n"
-"Do you currently have Internet access on the other device and we can "
-"continue?"
+"To perform authentication will need in a web browser open Google home page, and enter the code!\n"
+"Do you currently have Internet access on the other device and we can continue?"
 msgstr ""
-"Para completar la autenticación es necesario que introduzca el código en su "
-"cuenta de Google\n"
-"Compruebe que tiene conexión a internet en su otro dispositivo antes de "
-"continuar."
+"Para completar la autenticación es necesario que introduzca el código en su cuenta de Google\n"
+"Compruebe que tiene conexión a internet en su otro dispositivo antes de continuar."
 
 msgid "Top rated"
 msgstr "Mejor valorados"
 
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Intenta excluir el contenido restringido en la búsqueda."
+
+msgid "Turkey"
+msgstr ""
 
 msgid "United States"
 msgstr "Estados Unidos"
@@ -438,9 +440,6 @@ msgstr "Vídeos de este canal"
 
 msgid "View count"
 msgstr "Contador visualizaciones"
-
-msgid "Watch Later"
-msgstr "Ver luego"
 
 msgid "Watch YouTube videos"
 msgstr "Ver YouTube vídeos"

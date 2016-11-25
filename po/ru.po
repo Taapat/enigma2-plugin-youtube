@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-16 12:37+0300\n"
+"POT-Creation-Date: 2016-11-25 18:53+0200\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -413,6 +413,9 @@ msgstr "Лучшие по рейтингу"
 
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Попробовать исключить всё ограниченное содержание из результатов поиска."
+
+msgid "Turkey"
+msgstr ""
 
 msgid "United States"
 msgstr "США"
