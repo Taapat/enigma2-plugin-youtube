@@ -1,0 +1,475 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: YouTube / enigma2\n"
+"POT-Creation-Date: 2016-11-25 05:00+0200\n"
+"PO-Revision-Date: 2016-11-25 05:20+0200\n"
+"Last-Translator: TM2TURK | by thawtes <thawtes@gmail.com>\n"
+"Language-Team: TM2TURK | by thawtes <thawtes@gmail.com>\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.8.11\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "  (%d-%d of %d)"
+msgstr ""
+
+msgid " dislikes"
+msgstr ""
+
+msgid " likes"
+msgstr ""
+
+msgid " views"
+msgstr ""
+
+msgid "Active video downloads"
+msgstr ""
+
+msgid "Add to favorites"
+msgstr ""
+
+msgid "Added!"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Ask user"
+msgstr ""
+
+msgid "Australia"
+msgstr ""
+
+msgid "Brazil"
+msgstr ""
+
+msgid "Canada"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Choose what you want to do"
+msgstr ""
+
+msgid "Close YouTube"
+msgstr ""
+
+msgid "Created date"
+msgstr ""
+
+msgid "Czech Republic"
+msgstr ""
+
+msgid "Delete this entry"
+msgstr ""
+
+msgid "Disliked!"
+msgstr ""
+
+msgid "Download directory:"
+msgstr ""
+
+msgid "Download feed entries. Please wait..."
+msgstr ""
+
+msgid "Download search results. Please wait..."
+msgstr ""
+
+msgid "Download video"
+msgstr ""
+
+msgid "Downloading"
+msgstr ""
+
+msgid "Duration: "
+msgstr ""
+
+msgid "Embedded in webpages"
+msgstr ""
+
+msgid "Exclude restricted content:"
+msgstr ""
+
+msgid "Exit"
+msgstr "Çıkış"
+
+msgid "Extract video url. Please wait..."
+msgstr ""
+
+msgid "Favorites"
+msgstr ""
+
+msgid "France"
+msgstr ""
+
+msgid "Germany"
+msgstr ""
+
+msgid ""
+"Go to %s\n"
+"And enter the code %s"
+msgstr ""
+
+msgid "Great Britain"
+msgstr ""
+
+msgid "HD videos"
+msgstr ""
+
+msgid "Holland"
+msgstr ""
+
+msgid "Hong Kong"
+msgstr ""
+
+msgid ""
+"How many search results will be returned.\n"
+"If greater value then longer time will be needed for thumbnail download."
+msgstr ""
+
+msgid "I dislike this"
+msgstr ""
+
+msgid "I like this"
+msgstr ""
+
+msgid "India"
+msgstr ""
+
+msgid "Ireland"
+msgstr ""
+
+msgid "Israel"
+msgstr ""
+
+msgid "Italy"
+msgstr ""
+
+msgid "Japan"
+msgstr ""
+
+msgid "Keyboard"
+msgstr ""
+
+msgid "Latvia"
+msgstr ""
+
+msgid "Liked videos"
+msgstr ""
+
+msgid "Liked!"
+msgstr ""
+
+msgid ""
+"Log in to your YouTube account when plugin starts.\n"
+"This needs to approve in the Google home page!"
+msgstr ""
+
+msgid "Login on startup:"
+msgstr ""
+
+msgid "Maximum video resolution:"
+msgstr ""
+
+msgid "Mexico"
+msgstr ""
+
+msgid "Moderate"
+msgstr ""
+
+msgid "Most viewed"
+msgstr ""
+
+msgid "Movies"
+msgstr ""
+
+msgid "My Subscriptions"
+msgstr ""
+
+msgid "My feeds"
+msgstr ""
+
+msgid "New Zealand"
+msgstr ""
+
+msgid "Next %s entries"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "No, but play video again"
+msgstr ""
+
+msgid "Ok"
+msgstr "Tamam"
+
+msgid "Open"
+msgstr ""
+
+msgid "Order in which search results will be displayed."
+msgstr ""
+
+msgid "Play next"
+msgstr ""
+
+msgid "Play next video"
+msgstr ""
+
+msgid "Play previous video"
+msgstr ""
+
+msgid "Play video again"
+msgstr ""
+
+msgid "Playlists"
+msgstr ""
+
+msgid "Please select the download directory"
+msgstr ""
+
+msgid "Poland"
+msgstr ""
+
+msgid "Previous %s entries"
+msgstr ""
+
+msgid "Public feeds"
+msgstr ""
+
+msgid "Published at: "
+msgstr ""
+
+msgid "Quit"
+msgstr ""
+
+msgid "Rate video"
+msgstr ""
+
+msgid "Rating"
+msgstr ""
+
+msgid "Rating removed!"
+msgstr ""
+
+msgid "Recent"
+msgstr ""
+
+msgid "Relevance"
+msgstr ""
+
+msgid "Remove from favorites"
+msgstr ""
+
+msgid "Remove my rating"
+msgstr ""
+
+msgid "Removed!"
+msgstr ""
+
+msgid "Repeat"
+msgstr ""
+
+msgid "Return search results for the specified country."
+msgstr ""
+
+msgid "Return search results that are most relevant to the specified language."
+msgstr ""
+
+msgid "Return to list"
+msgstr ""
+
+msgid "Russia"
+msgstr ""
+
+msgid "Save search result:"
+msgstr ""
+
+msgid "Save your search result in the history, when search completed."
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search channels"
+msgstr ""
+
+msgid "Search live broadcasts"
+msgstr ""
+
+msgid "Search playlists"
+msgstr ""
+
+msgid "Search videos"
+msgstr ""
+
+msgid "Search for similar"
+msgstr ""
+
+msgid "Search language:"
+msgstr ""
+
+msgid "Search region:"
+msgstr ""
+
+msgid "Search results:"
+msgstr ""
+
+msgid "Shows"
+msgstr ""
+
+msgid ""
+"Sorry, download directory not exist!\n"
+"Please specify in the settings existing directory."
+msgstr ""
+
+msgid ""
+"Sorry, this file already exists:\n"
+"%s"
+msgstr ""
+
+msgid "Sort search results by:"
+msgstr ""
+
+msgid "South Korea"
+msgstr ""
+
+msgid "Spain"
+msgstr ""
+
+msgid "Specify the directory where save downloaded video files."
+msgstr ""
+
+msgid "Stop playing this movie?"
+msgstr ""
+
+msgid "Subscribe"
+msgstr ""
+
+msgid "Subscribe this video channel"
+msgstr ""
+
+msgid "Subscribed!"
+msgstr ""
+
+msgid "Sweden"
+msgstr ""
+
+msgid "Taiwan"
+msgstr ""
+
+msgid "Thailand"
+msgstr ""
+
+msgid ""
+"There was an error in creating entry list!\n"
+"Maybe try other feeds..."
+msgstr ""
+
+msgid ""
+"There was an error in extract video url:\n"
+"%s"
+msgstr ""
+
+msgid "There was an error!"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid ""
+"To perform authentication will need in a web browser open Google home page, "
+"and enter the code!\n"
+"Do you currently have Internet access on the other device and we can "
+"continue?"
+msgstr ""
+
+msgid "Top rated"
+msgstr ""
+
+msgid "Try to exclude all restricted content from the search result."
+msgstr ""
+
+msgid "Turkey"
+msgstr "Türkiye"
+
+msgid "United States"
+msgstr ""
+
+msgid "Unsubscribe"
+msgstr ""
+
+msgid "Unsubscribed!"
+msgstr ""
+
+msgid "Uploads"
+msgstr ""
+
+msgid "Use"
+msgstr ""
+
+msgid "Video download started!"
+msgstr ""
+
+msgid "Videos from this video channel"
+msgstr ""
+
+msgid "View count"
+msgstr ""
+
+msgid "Watch YouTube videos"
+msgstr ""
+
+msgid "What do you want to do?"
+msgstr ""
+
+msgid ""
+"What maximum resolution used when playing video, if available.\n"
+"If you have a slow Internet connection, you can use a lower resolution."
+msgstr ""
+
+msgid "What to do when stop playback in videoplayer."
+msgstr ""
+
+msgid "What to do when the video ends."
+msgstr ""
+
+msgid "When playback stop:"
+msgstr ""
+
+msgid "When video ends:"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "Yes, but play next video"
+msgstr ""
+
+msgid "Yes, but play previous video"
+msgstr ""
+
+msgid ""
+"You already authorized access for this plugin to your YouTube account.\n"
+"Do you want to do it again to update access data?"
+msgstr ""
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "YouTube info"
+msgstr ""
+
+msgid "YouTube search"
+msgstr ""
+
+msgid "YouTube setup"
+msgstr ""
+
+msgid "YouTube starting. Please wait..."
+msgstr ""
