@@ -12,9 +12,9 @@ def main(session, **kwargs):
 def Plugins(**kwargs):
 	screenwidth = getDesktop(0).size().width()
 	if screenwidth and screenwidth == 1920:
-		icon = "piconhd.png"
+		icon = "YouTube_FHD.png"
 	else:
-		icon = "picon.png"
+		icon = "YouTube_HD.png"
 	return [PluginDescriptor(
 		name = _('YouTube'),
 		description = _('Watch YouTube videos'),
