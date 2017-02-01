@@ -7,6 +7,7 @@ import re
 
 from urllib import urlencode
 from urllib2 import urlopen, URLError
+from urlparse import urljoin
 
 from Components.config import config
 
@@ -142,15 +143,24 @@ class YouTubeVideoUrl():
 			raise Exception(e.reason)
 		return urlh.read()
 
-	def _search_regex(self, pattern, string):
+	def _search_regex(self, pattern, string, group=None):
 		"""
 		Perform a regex search on the given string, using a single or a list of
 		patterns returning the first matching group.
 		"""
-		mobj = re.search(pattern, string, 0)
+		if group is None:
+			mobj = re.search(pattern, string, 0)
+		else:
+			for p in pattern:
+				mobj = re.search(p, string, 0)
+				if mobj:
+					break
 		if mobj:
-			# return the first matching group
-			return next(g for g in mobj.groups() if g is not None)
+			if group is None:
+				# return the first matching group
+				return next(g for g in mobj.groups() if g is not None)
+			else:
+				return mobj.group(group)
 		else:
 			raise Exception('Unable extract pattern from string!')
 
@@ -162,6 +172,8 @@ class YouTubeVideoUrl():
 
 		if player_url[:2] == '//':
 			player_url = 'https:' + player_url
+		elif not re.match(r'https?://', player_url):
+			player_url = urljoin('https://www.youtube.com', player_url)
 		try:
 			func = self._extract_signature_function(player_url)
 			return func(s)
@@ -184,7 +196,10 @@ class YouTubeVideoUrl():
 			raise Exception('Invalid player type %r!' % player_type)
 
 	def _parse_sig_js(self, jscode):
-		funcname = self._search_regex(r'\.sig\|\|([a-zA-Z0-9$]+)\(', jscode)
+		funcname = self._search_regex(
+				(r'(["\'])signature\1\s*,\s*(?P<sig>[a-zA-Z0-9$]+)\(',
+				r'\.sig\|\|(?P<sig>[a-zA-Z0-9$]+)\('),
+				jscode, group='sig')
 		jsi = JSInterpreter(jscode)
 		initial_function = jsi.extract_function(funcname)
 		return lambda s: initial_function([s])
