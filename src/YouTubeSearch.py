@@ -150,17 +150,15 @@ class YouTubeSearch(Screen, ConfigListScreen):
 
 	def ok(self):
 		selected = self['list'].getCurrent()[0]
-		current = self['config'].getCurrent()[1]
 		if selected:
 			self['list'].setIndex(0)
 			self.searchValue.value = selected
 			self.setSearchEntry()
-			current.getSuggestions()
+			self['config'].getCurrent()[1].getSuggestions()
 		else:
 			searchValue = self.searchValue.value
 			print "[YouTube] Search:", searchValue
-			if current.help_window.instance is not None:
-				current.help_window.instance.hide()
+			self.hideHelpWindow()
 			if searchValue != '' and config.plugins.YouTube.saveHistory.value:
 				if searchValue in self.searchHistory:
 					self.searchHistory.remove(searchValue)
@@ -172,8 +170,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			self.close(searchValue)
 
 	def openMenu(self):
-		selected = self['list'].getCurrent()[0]
-		if selected:
+		self.hideHelpWindow()
+		if self['list'].getCurrent()[0]:
 			title = _('What do you want to do?')
 			sellist = ((_('YouTube setup'), 'setup'),
 					(_('Delete this entry'), 'delete'),)
@@ -183,7 +181,9 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			self.menuCallback('setup')
 
 	def menuCallback(self, answer):
-		if answer:
+		if not answer:
+			self.showHelpWindow()
+		else:
 			if answer[1] == 'delete':
 				self.searchHistory.remove(self['list'].getCurrent()[0])
 				searchList = []
@@ -192,30 +192,29 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				self['list'].updateList(searchList)
 				config.plugins.YouTube.searchHistory.value = ','.join(self.searchHistory)
 				config.plugins.YouTube.searchHistory.save()
+				self.showHelpWindow()
 			else:
 				from YouTubeUi import YouTubeSetup
-				current = self['config'].getCurrent()[1]
-				if current.help_window.instance is not None:
-					current.help_window.instance.hide()
-				self.session.openWithCallback(self.screenCallback, YouTubeSetup)
+				self.session.openWithCallback(self.showHelpWindow, YouTubeSetup)
 
-	def screenCallback(self, callback=None):
+	def showHelpWindow(self, callback=None):
 		current = self['config'].getCurrent()[1]
 		if current.help_window.instance is not None:
 			current.help_window.instance.show()
 
-	def openKeyboard(self):
-		from Screens.VirtualKeyBoard import VirtualKeyBoard
+	def hideHelpWindow(self):
 		current = self['config'].getCurrent()[1]
 		if current.help_window.instance is not None:
 			current.help_window.instance.hide()
+
+	def openKeyboard(self):
+		self.hideHelpWindow()
+		from Screens.VirtualKeyBoard import VirtualKeyBoard
 		self.session.openWithCallback(self.keyBoardCallback, VirtualKeyBoard,
 			title = _("Search"), text = self.searchValue.value)
 
 	def keyBoardCallback(self, name):
-		current = self['config'].getCurrent()[1]
-		if current.help_window.instance is not None:
-			current.help_window.instance.show()
+		self.showHelpWindow()
 		if name:
 			self.searchValue.value = name
 			current.getSuggestions()
