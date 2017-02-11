@@ -217,7 +217,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		self.showHelpWindow()
 		if name:
 			self.searchValue.value = name
-			current.getSuggestions()
+			self['config'].getCurrent()[1].getSuggestions()
 
 
 class SuggestionsQueryThread(Thread):
