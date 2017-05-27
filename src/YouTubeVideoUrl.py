@@ -269,10 +269,10 @@ class YouTubeVideoUrl():
 			url = 'https://www.youtube.com/embed/%s' % video_id
 			embed_webpage = self._download_webpage(url)
 			data = urlencode({
-				'video_id': video_id,
-				'eurl': 'https://youtube.googleapis.com/v/' + video_id,
-				'sts': self._search_regex(r'"sts"\s*:\s*(\d+)', embed_webpage),
-			})
+					'video_id': video_id,
+					'eurl': 'https://youtube.googleapis.com/v/' + video_id,
+					'sts': self._search_regex(r'"sts"\s*:\s*(\d+)', embed_webpage),
+				})
 			video_info_url = 'https://www.youtube.com/get_video_info?' + data
 			video_info_webpage = self._download_webpage(video_info_url)
 			video_info = compat_parse_qs(video_info_webpage)
@@ -303,7 +303,7 @@ class YouTubeVideoUrl():
 							'eurl': '',
 							'gl': 'US',
 							'hl': 'en',
-					}
+						}
 					if el:
 						query['el'] = el
 					if sts:
