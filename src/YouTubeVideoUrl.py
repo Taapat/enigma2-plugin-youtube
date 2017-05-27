@@ -132,7 +132,7 @@ def compat_parse_qs(qs, keep_blank_values=False, strict_parsing=False,
 
 class YouTubeVideoUrl():
 
-	def _download_webpage(self, url):
+	def _download_webpage(self, url, fatal=True):
 		""" Returns a tuple (page content as string, URL handle) """
 		try:
 			if sslContext:
@@ -140,7 +140,9 @@ class YouTubeVideoUrl():
 			else:
 				urlh = urlopen(url)
 		except URLError, e:
-			raise Exception(e.reason)
+			if fatal:
+				raise Exception(e.reason)
+			return False
 		return urlh.read()
 
 	def _search_regex(self, pattern, string, group=None):
@@ -277,6 +279,7 @@ class YouTubeVideoUrl():
 		else:
 			age_gate = False
 			video_info = None
+			sts = None
 			# Try looking directly into the video webpage
 			ytplayer_config = self._get_ytplayer_config(video_webpage)
 			if ytplayer_config:
@@ -284,6 +287,7 @@ class YouTubeVideoUrl():
 				if args.get('url_encoded_fmt_stream_map'):
 					# Convert to the same format returned by compat_parse_qs
 					video_info = dict((k, [v]) for k, v in args.items())
+				sts = ytplayer_config.get('sts')
 
 			if not video_info:
 				# We also try looking in get_video_info since it may contain different dashmpd
@@ -292,11 +296,24 @@ class YouTubeVideoUrl():
 				# manifest pointed by get_video_info's dashmpd).
 				# The general idea is to take a union of itags of both DASH manifests (for example
 				# video with such 'manifest behavior' see https://github.com/rg3/youtube-dl/issues/6093)
-				for el_type in ['&el=info', '&el=embedded', '&el=detailpage', '&el=vevo', '']:
-					video_info_url = (
-						'https://www.youtube.com/get_video_info?&video_id=%s%s&ps=default&eurl=&gl=US&hl=en'
-						% (video_id, el_type))
-					video_info_webpage = self._download_webpage(video_info_url)
+				for el in ('info', 'embedded', 'detailpage', 'vevo', ''):
+					query = {
+							'video_id': video_id,
+							'ps': 'default',
+							'eurl': '',
+							'gl': 'US',
+							'hl': 'en',
+					}
+					if el:
+						query['el'] = el
+					if sts:
+						query['sts'] = sts
+					data = urlencode(query)
+
+					video_info_url = 'https://www.youtube.com/get_video_info?' + data
+					video_info_webpage = self._download_webpage(video_info_url, fatal=False)
+					if not video_info_webpage:
+						continue
 					video_info = compat_parse_qs(video_info_webpage)
 					if 'token' in video_info:
 						break
