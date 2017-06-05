@@ -364,12 +364,9 @@ class YouTubeVideoUrl():
 
 			url_data = compat_parse_qs(url_map_str)
 			url = url_data['url'][0]
-			if 'sig' in url_data:
-				url += '&signature=' + url_data['sig'][0]
-			elif 's' in url_data:
-				encrypted_sig = url_data['s'][0]
-				ASSETS_RE = r'"assets":.+?"js":\s*("[^"]+")'
 
+			if 's' in url_data:
+				ASSETS_RE = r'"assets":.+?"js":\s*("[^"]+")'
 				jsplayer_url_json = self._search_regex(ASSETS_RE,
 					embed_webpage if age_gate else video_webpage)
 				if not jsplayer_url_json and not age_gate:
@@ -386,6 +383,10 @@ class YouTubeVideoUrl():
 						video_webpage)
 					player_url = json.loads(player_url_json)
 
+			if 'sig' in url_data:
+				url += '&signature=' + url_data['sig'][0]
+			elif 's' in url_data:
+				encrypted_sig = url_data['s'][0]
 				signature = self._decrypt_signature(encrypted_sig, player_url)
 				url += '&signature=' + signature
 			if 'ratebypass' not in url:
