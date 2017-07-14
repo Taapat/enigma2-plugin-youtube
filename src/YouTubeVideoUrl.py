@@ -22,12 +22,27 @@ PRIORITY_VIDEO_FORMAT = []
 def createPriorityFormats():
 	global PRIORITY_VIDEO_FORMAT
 	PRIORITY_VIDEO_FORMAT = []
-	use_format = False
-	for itag_value in ['38', '37', '96', '22', '95', '120',
-		'35', '94', '18', '93', '5', '92', '132', '17']:
-		if itag_value == config.plugins.YouTube.maxResolution.value:
-			use_format = True
-		if use_format:
+	maxResolution = config.plugins.YouTube.maxResolution.value
+	if maxResolution == '38':  # 4096x3072
+		PRIORITY_VIDEO_FORMAT = ['38']
+	elif maxResolution == '37':  # 1920x1080
+		PRIORITY_VIDEO_FORMAT = ['37', '137', '299', '96']
+	elif maxResolution == '22':  # 1280x720
+		PRIORITY_VIDEO_FORMAT = ['22', '136', '298', '95']
+	elif maxResolution == '35':  # 854x480
+		PRIORITY_VIDEO_FORMAT = ['35', '135', '94']
+	elif maxResolution == '18':  # 640x360
+		PRIORITY_VIDEO_FORMAT = ['18', '134', '93', '34']
+	elif maxResolution == '5':  # 400x240
+		PRIORITY_VIDEO_FORMAT = ['5', '36', '92', '132', '133']
+	elif maxResolution == '17':  # 176x144
+		PRIORITY_VIDEO_FORMAT = ['160', '17']
+	for itag_value in ['5', '22', '136', '298', '95',
+			'35', '135', '94', '18', '134', '93', '34',
+			'36', '92', '132', '133', '6', '13', '151',
+			'139', '140', '141', '160', '17', '37', '46',
+			'137', '299', '96', '38', '138', '264']:
+		if itag_value not in PRIORITY_VIDEO_FORMAT:
 			PRIORITY_VIDEO_FORMAT.append(itag_value)
 
 createPriorityFormats()
@@ -37,9 +52,35 @@ IGNORE_VIDEO_FORMAT = [
 		'44',  # webm
 		'45',  # webm
 		'46',  # webm
-		'100',  # webm
-		'101',  # webm
-		'102'  # webm
+		'82',  # 3D
+		'83',  # 3D
+		'84',  # 3D
+		'85',  # 3D
+		'100',  # 3D
+		'101',  # 3D
+		'102',  # 3D
+		'167',  # webm
+		'168',  # webm
+		'169',  # webm
+		'170',  # webm
+		'171',  # webm
+		'172',  # webm
+		'218',  # webm
+		'219',  # webm
+		'242',  # webm
+		'243',  # webm
+		'244',  # webm
+		'245',  # webm
+		'246',  # webm
+		'247',  # webm
+		'248',  # webm
+		'271',  # webm
+		'272',  # webm
+		'302',  # webm
+		'303',  # webm
+		'308',  # webm
+		'313',  # webm
+		'315',  # webm
 	]
 
 

@@ -102,8 +102,8 @@ config.plugins.YouTube.searchOrder = ConfigSelection(
 config.plugins.YouTube.safeSearch = ConfigSelection(default = 'moderate', choices = [
 	('moderate', _('Moderate')), ('none', _('No')), ('strict', _('Yes'))])
 config.plugins.YouTube.maxResolution = ConfigSelection(default = '22', choices = [
-	('38', '3072p'), ('37', '1080p'), ('22', '720p'), ('35', '480p'),
-	('18', '360p'), ('5', '240p'), ('17', '144p')])
+	('38', '4096x3072'), ('37', '1920x1080'), ('22', '1280x720'), ('35', '854x480'),
+	('18', '640x360'), ('5', '400x240'), ('17', '176x144')])
 config.plugins.YouTube.onMovieEof = ConfigSelection(default = 'quit', choices = [
 	('quit', _('Return to list')), ('ask', _('Ask user')),
 	('playnext', _('Play next')), ('repeat', _('Repeat'))])
