@@ -21,66 +21,43 @@ PRIORITY_VIDEO_FORMAT = []
 
 def createPriorityFormats():
 	global PRIORITY_VIDEO_FORMAT
-	PRIORITY_VIDEO_FORMAT = []
-	maxResolution = config.plugins.YouTube.maxResolution.value
-	if maxResolution == '38':  # 4096x3072
-		PRIORITY_VIDEO_FORMAT = ['38']
-	elif maxResolution == '37':  # 1920x1080
-		PRIORITY_VIDEO_FORMAT = ['37', '137', '299', '96']
-	elif maxResolution == '22':  # 1280x720
-		PRIORITY_VIDEO_FORMAT = ['22', '136', '298', '95']
-	elif maxResolution == '35':  # 854x480
-		PRIORITY_VIDEO_FORMAT = ['35', '135', '94']
-	elif maxResolution == '18':  # 640x360
-		PRIORITY_VIDEO_FORMAT = ['18', '134', '93', '34']
-	elif maxResolution == '5':  # 400x240
-		PRIORITY_VIDEO_FORMAT = ['5', '36', '92', '132', '133']
-	elif maxResolution == '17':  # 176x144
-		PRIORITY_VIDEO_FORMAT = ['160', '17']
+	video_format = {
+			'38':['38'],  # 4096x3072
+			'37':['37', '137', '299', '96'],  # 1920x1080
+			'22':['22', '136', '298', '95'],  # 1280x720
+			'35':['35', '135', '94'],  # 854x480
+			'18':['18', '134', '93', '34'],  # 640x360
+			'5':['5', '36', '92', '133', '132'],  # 400x240
+			'17':['17', '160']  # 176x144
+		}
+	PRIORITY_VIDEO_FORMAT = video_format[config.plugins.YouTube.maxResolution.value]
 	for itag_value in ['5', '22', '136', '298', '95',
 			'35', '135', '94', '18', '134', '93', '34',
 			'36', '92', '132', '133', '6', '13', '151',
-			'139', '140', '141', '160', '17', '37', '46',
-			'137', '299', '96', '38', '138', '264']:
+			'160', '17', '37', '46', '137', '299', '96',
+			'38', '138', '264', '266', '141', '140', '139']:
 		if itag_value not in PRIORITY_VIDEO_FORMAT:
 			PRIORITY_VIDEO_FORMAT.append(itag_value)
+	#PRIORITY_VIDEO_FORMAT.insert(0, '140')
 
 createPriorityFormats()
 
+DASHMP4_FORMAT = [
+		'133', '134', '135', '136', '137', '138',
+		'160', '264', '266', '298', '299'
+	]
+
 IGNORE_VIDEO_FORMAT = [
-		'43',  # webm
-		'44',  # webm
-		'45',  # webm
-		'46',  # webm
-		'82',  # 3D
-		'83',  # 3D
-		'84',  # 3D
-		'85',  # 3D
-		'100',  # 3D
-		'101',  # 3D
-		'102',  # 3D
-		'167',  # webm
-		'168',  # webm
-		'169',  # webm
-		'170',  # webm
-		'171',  # webm
-		'172',  # webm
-		'218',  # webm
-		'219',  # webm
-		'242',  # webm
-		'243',  # webm
-		'244',  # webm
-		'245',  # webm
-		'246',  # webm
-		'247',  # webm
-		'248',  # webm
-		'271',  # webm
-		'272',  # webm
-		'302',  # webm
-		'303',  # webm
-		'308',  # webm
-		'313',  # webm
-		'315',  # webm
+		'43', '44', '45', '46',  # webm
+		'82', '83', '84', '85',  # 3D
+		'100', '101', '102',  # 3D
+		'167', '168', '169',  # webm
+		'170', '171', '172',  # webm
+		'218', '219',  # webm
+		'242', '243', '244', '245', '246', '247', '248',  # webm
+		'271', '272',  # webm
+		'302', '303', '308',  # webm
+		'313', '315',  # webm
 	]
 
 
@@ -376,7 +353,7 @@ class YouTubeVideoUrl():
 
 			# Find the best format from our format priority map
 			encoded_url_map = encoded_url_map.split(',')
-			url_map_str = None
+			url_map_str = [None, '']
 			# If format changed in config, recreate priority list
 			if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.value:
 				createPriorityFormats()
@@ -384,54 +361,69 @@ class YouTubeVideoUrl():
 				our_format = 'itag=' + our_format
 				for encoded_url in encoded_url_map:
 					if our_format in encoded_url and 'url=' in encoded_url:
-						url_map_str = encoded_url
+						url_map_str[0] = encoded_url
 						break
-				if url_map_str:
+				if url_map_str[0]:
 					break
+			# If DASH MP4 video add link also on Dash MP4 Audio
+			if url_map_str[0] and our_format[5:] in DASHMP4_FORMAT:
+				for our_format in ['itag=141', 'itag=140', 'itag=139']:
+					for encoded_url in encoded_url_map:
+						if our_format in encoded_url and 'url=' in encoded_url:
+							url_map_str[1] = encoded_url
+							break
+					if url_map_str[1]:
+						break
 			# If anything not found, used first in the list if it not in ignore map
-			if not url_map_str:
+			if not url_map_str[0]:
 				for encoded_url in encoded_url_map:
 					if 'url=' in encoded_url:
 						url_map_str = encoded_url
 						for ignore_format in IGNORE_VIDEO_FORMAT:
 							ignore_format = 'itag=' + ignore_format
 							if ignore_format in encoded_url:
-								url_map_str = None
+								url_map_str[0] = None
 								break
-					if url_map_str:
+					if url_map_str[0]:
 						break
-			if not url_map_str:
-				url_map_str = encoded_url_map[0]
+			if not url_map_str[0]:
+				url_map_str[0] = encoded_url_map[0]
 
-			url_data = compat_parse_qs(url_map_str)
-			url = url_data['url'][0]
+			url = ''
+			for url_map in url_map_str:
+				if not url_map:
+					break
+				url_data = compat_parse_qs(url_map)
+				if url:
+					url += '&suburi='
+				url += url_data['url'][0]
 
-			if 's' in url_data:
-				ASSETS_RE = r'"assets":.+?"js":\s*("[^"]+")'
-				jsplayer_url_json = self._search_regex(ASSETS_RE,
-					embed_webpage if age_gate else video_webpage)
-				if not jsplayer_url_json and not age_gate:
-					# We need the embed website after all
-					if embed_webpage is None:
-						embed_url = 'https://www.youtube.com/embed/%s' % video_id
-						embed_webpage = self._download_webpage(embed_url)
-					jsplayer_url_json = self._search_regex(ASSETS_RE, embed_webpage)
+				if 's' in url_data:
+					ASSETS_RE = r'"assets":.+?"js":\s*("[^"]+")'
+					jsplayer_url_json = self._search_regex(ASSETS_RE,
+						embed_webpage if age_gate else video_webpage)
+					if not jsplayer_url_json and not age_gate:
+						# We need the embed website after all
+						if embed_webpage is None:
+							embed_url = 'https://www.youtube.com/embed/%s' % video_id
+							embed_webpage = self._download_webpage(embed_url)
+						jsplayer_url_json = self._search_regex(ASSETS_RE, embed_webpage)
 
-				player_url = json.loads(jsplayer_url_json)
-				if player_url is None:
-					player_url_json = self._search_regex(
-						r'ytplayer\.config.*?"url"\s*:\s*("[^"]+")',
-						video_webpage)
-					player_url = json.loads(player_url_json)
+					player_url = json.loads(jsplayer_url_json)
+					if player_url is None:
+						player_url_json = self._search_regex(
+							r'ytplayer\.config.*?"url"\s*:\s*("[^"]+")',
+							video_webpage)
+						player_url = json.loads(player_url_json)
 
-			if 'sig' in url_data:
-				url += '&signature=' + url_data['sig'][0]
-			elif 's' in url_data:
-				encrypted_sig = url_data['s'][0]
-				signature = self._decrypt_signature(encrypted_sig, player_url)
-				url += '&signature=' + signature
-			if 'ratebypass' not in url:
-				url += '&ratebypass=yes'
+				if 'sig' in url_data:
+					url += '&signature=' + url_data['sig'][0]
+				elif 's' in url_data:
+					encrypted_sig = url_data['s'][0]
+					signature = self._decrypt_signature(encrypted_sig, player_url)
+					url += '&signature=' + signature
+				if 'ratebypass' not in url:
+					url += '&ratebypass=yes'
 		elif video_info.get('hlsvp'):
 			url = None
 			manifest_url = video_info['hlsvp'][0]
