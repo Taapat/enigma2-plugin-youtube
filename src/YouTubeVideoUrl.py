@@ -38,7 +38,6 @@ def createPriorityFormats():
 			'38', '138', '264', '266', '141', '140', '139']:
 		if itag_value not in PRIORITY_VIDEO_FORMAT:
 			PRIORITY_VIDEO_FORMAT.append(itag_value)
-	#PRIORITY_VIDEO_FORMAT.insert(0, '140')
 
 createPriorityFormats()
 
