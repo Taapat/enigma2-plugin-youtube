@@ -352,7 +352,7 @@ class YouTubeVideoUrl():
 
 			# Find the best format from our format priority map
 			encoded_url_map = encoded_url_map.split(',')
-			url_map_str = [None, '']
+			url_map_str = [None, None]
 			# If format changed in config, recreate priority list
 			if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.value:
 				createPriorityFormats()
