@@ -25,10 +25,10 @@ def createPriorityFormats():
 			'38':['38'],  # 4096x3072
 			'37':['37', '137', '299', '96'],  # 1920x1080
 			'22':['22', '136', '298', '95'],  # 1280x720
-			'35':['35', '135', '94'],  # 854x480
-			'18':['18', '134', '93', '34'],  # 640x360
-			'5':['5', '36', '92', '133', '132'],  # 400x240
-			'17':['17', '160']  # 176x144
+			'35':['35', '135', '212', '94'],  # 854x480
+			'18':['18', '34', '134', '93'],  # 640x360
+			'5':['5', '36', '133', '132', '92'],  # 400x240
+			'17':['17', '160', '91']  # 176x144
 		}
 	PRIORITY_VIDEO_FORMAT = video_format[config.plugins.YouTube.maxResolution.value]
 	for itag_value in ['5', '22', '136', '298', '95',
@@ -43,7 +43,7 @@ createPriorityFormats()
 
 DASHMP4_FORMAT = [
 		'133', '134', '135', '136', '137', '138',
-		'160', '264', '266', '298', '299'
+		'160', '212', '264', '266', '298', '299'
 	]
 
 IGNORE_VIDEO_FORMAT = [
@@ -54,9 +54,10 @@ IGNORE_VIDEO_FORMAT = [
 		'170', '171', '172',  # webm
 		'218', '219',  # webm
 		'242', '243', '244', '245', '246', '247', '248',  # webm
+		'249', '250', '251',  # webm
 		'271', '272',  # webm
 		'302', '303', '308',  # webm
-		'313', '315',  # webm
+		'313', '315'  # webm
 	]
 
 
@@ -366,7 +367,8 @@ class YouTubeVideoUrl():
 					break
 			# If DASH MP4 video add link also on Dash MP4 Audio
 			if url_map_str[0] and our_format[5:] in DASHMP4_FORMAT:
-				for our_format in ['itag=141', 'itag=140', 'itag=139']:
+				for our_format in ['itag=141', 'itag=140', 'itag=139',
+						'itag=258', 'itag=265', 'itag=325', 'itag=328']:
 					for encoded_url in encoded_url_map:
 						if our_format in encoded_url and 'url=' in encoded_url:
 							url_map_str[1] = encoded_url
