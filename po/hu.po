@@ -1,0 +1,645 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Youtube plugin magyar fordítás\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-25 18:53+0200\n"
+"PO-Revision-Date: 2017-07-30 20:53+0100\n"
+"Last-Translator: chipcard\n"
+"Language-Team: cpteam\n"
+"Language: hu_HU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.6.4\n"
+
+#: YouTubeUi.py:1065
+#, python-format
+msgid "  (%d-%d of %d)"
+msgstr ""
+
+#: YouTubeUi.py:961
+msgid " dislikes"
+msgstr ""
+
+#: YouTubeUi.py:957
+msgid " likes"
+msgstr "kedvel"
+
+#: YouTubeUi.py:945
+msgid " views"
+msgstr "nézetek"
+
+#: YouTubeDownload.py:155 YouTubeUi.py:1108
+msgid "Active video downloads"
+msgstr "Aktív videó letöltések"
+
+#: YouTubeUi.py:1098
+msgid "Add to favorites"
+msgstr "Hozzáadás a kedvencekhez"
+
+#: YouTubeUi.py:1243
+msgid "Added!"
+msgstr "Hozzáadott!"
+
+#: YouTubeUi.py:38 YouTubeUi.py:67
+msgid "All"
+msgstr "összes"
+
+#: YouTubeUi.py:108 YouTubeUi.py:111
+msgid "Ask user"
+msgstr "Kérje a felhasználót"
+
+#: YouTubeUi.py:39 YouTubeUi.py:68
+msgid "Australia"
+msgstr "Australia"
+
+#: YouTubeUi.py:40 YouTubeUi.py:69
+msgid "Brazil"
+msgstr "Brazil"
+
+#: YouTubeUi.py:41 YouTubeUi.py:70
+msgid "Canada"
+msgstr "Canada"
+
+#: YouTubeDownload.py:19 YouTubeUi.py:1409
+msgid "Cancel"
+msgstr "töröl"
+
+#: YouTubeUi.py:377
+msgid "Choose what you want to do"
+msgstr "Válassza ki, mit szeretne"
+
+#: YouTubeUi.py:1109
+msgid "Close YouTube"
+msgstr "Zárd be a YouTube-ot"
+
+#: YouTubeUi.py:97
+msgid "Created date"
+msgstr "Létrehozás dátuma"
+
+#: YouTubeUi.py:42 YouTubeUi.py:71
+msgid "Czech Republic"
+msgstr "Czech Republic"
+
+#: YouTubeSearch.py:179
+msgid "Delete this entry"
+msgstr "Törölje ezt a bejegyzést"
+
+#: YouTubeUi.py:1251
+msgid "Disliked!"
+msgstr "Nem tetszett!"
+
+#: YouTubeUi.py:1455
+msgid "Download directory:"
+msgstr "Letöltési Könyvtár"
+
+#: YouTubeUi.py:435
+msgid "Download feed entries. Please wait..."
+msgstr "Feed bejegyzések letöltése. Kérlek várj..."
+
+#: YouTubeUi.py:431
+msgid "Download search results. Please wait..."
+msgstr "A keresési eredmények letöltése. Kérlek várj..."
+
+#: YouTubeUi.py:1106
+msgid "Download video"
+msgstr "Videó letöltése"
+
+#: YouTubeDownload.py:60
+msgid "Downloading"
+msgstr "Letöltés"
+
+#: YouTubeUi.py:949
+msgid "Duration: "
+msgstr "Időtartam:"
+
+#: YouTubeUi.py:408
+msgid "Embedded in webpages"
+msgstr "Beágyazva weboldalak"
+
+#: YouTubeUi.py:1440
+msgid "Exclude restricted content:"
+msgstr "Korlátozott tartalom kizárása:"
+
+#: YouTubeSearch.py:117 YouTubeDownload.py:141 YouTubeUi.py:522
+#: YouTubeUi.py:1356
+msgid "Exit"
+msgstr "Kilépés"
+
+#: YouTubeUi.py:433
+msgid "Extract video url. Please wait..."
+msgstr "Videó url kibontása. Kérem várjon ..."
+
+#: YouTubeUi.py:421
+msgid "Favorites"
+msgstr "Kedvencek"
+
+#: YouTubeUi.py:43 YouTubeUi.py:72
+msgid "France"
+msgstr "France"
+
+#: YouTubeUi.py:44 YouTubeUi.py:73
+msgid "Germany"
+msgstr "Germany"
+
+#: YouTubeUi.py:1508
+#, python-format
+msgid ""
+"Go to %s\n"
+"And enter the code %s"
+msgstr ""
+"Kérem %s\n"
+"írja be a kódot %s"
+
+#: YouTubeUi.py:45 YouTubeUi.py:74
+msgid "Great Britain"
+msgstr "Great Britain"
+
+#: YouTubeUi.py:407
+msgid "HD videos"
+msgstr "HD videók"
+
+#: YouTubeUi.py:46 YouTubeUi.py:75
+msgid "Holland"
+msgstr "Holland"
+
+#: YouTubeUi.py:47 YouTubeUi.py:76
+msgid "Hong Kong"
+msgstr "Hong Kong"
+
+#: YouTubeUi.py:1430
+msgid ""
+"How many search results will be returned.\n"
+"If greater value then longer time will be needed for thumbnail download."
+msgstr ""
+"Hány keresési eredményt kap vissza.\n"
+"Ha nagyobb értékre van szükség, akkor hosszabb időre van szükség a miniatűrök letöltéséhez."
+
+#: YouTubeUi.py:1125
+msgid "I dislike this"
+msgstr "Nem szeretem ezt"
+
+#: YouTubeUi.py:1124
+msgid "I like this"
+msgstr "Ez tetszik"
+
+#: YouTubeUi.py:48 YouTubeUi.py:77
+msgid "India"
+msgstr "India"
+
+#: YouTubeUi.py:49 YouTubeUi.py:78
+msgid "Ireland"
+msgstr "Ireland"
+
+#: YouTubeUi.py:50 YouTubeUi.py:79
+msgid "Israel"
+msgstr "Israel"
+
+#: YouTubeUi.py:51 YouTubeUi.py:80
+msgid "Italy"
+msgstr "Italy"
+
+#: YouTubeUi.py:52 YouTubeUi.py:81
+msgid "Japan"
+msgstr "Japan"
+
+#: YouTubeSearch.py:119
+msgid "Keyboard"
+msgstr "Billentyűzet"
+
+#: YouTubeUi.py:53 YouTubeUi.py:82
+msgid "Latvia"
+msgstr "Latvia"
+
+#: YouTubeUi.py:420
+msgid "Liked videos"
+msgstr "Tetszett videó"
+
+#: YouTubeUi.py:1250
+msgid "Liked!"
+msgstr "Tetszett!"
+
+#: YouTubeUi.py:1454
+msgid ""
+"Log in to your YouTube account when plugin starts.\n"
+"This needs to approve in the Google home page!"
+msgstr ""
+
+#: YouTubeUi.py:1452
+msgid "Login on startup:"
+msgstr "Bejelentkezés az indításkor:"
+
+#: YouTubeUi.py:1443
+msgid "Maximum video resolution:"
+msgstr "Maximális videó felbontás:"
+
+#: YouTubeUi.py:54 YouTubeUi.py:83
+msgid "Mexico"
+msgstr "Mexico"
+
+#: YouTubeUi.py:103
+msgid "Moderate"
+msgstr "Mérsékelt"
+
+#: YouTubeUi.py:405
+msgid "Most viewed"
+msgstr "Legnézettebb"
+
+#: YouTubeUi.py:410
+msgid "Movies"
+msgstr "Filmek"
+
+#: YouTubeUi.py:419
+msgid "My Subscriptions"
+msgstr "Saját előfizetések"
+
+#: YouTubeUi.py:384 YouTubeUi.py:417
+msgid "My feeds"
+msgstr "Saját feedek"
+
+#: YouTubeUi.py:55 YouTubeUi.py:84
+msgid "New Zealand"
+msgstr "New Zealand"
+
+#: YouTubeUi.py:1086
+#, python-format
+msgid "Next %s entries"
+msgstr "Következő %s bejegyzések"
+
+#: YouTubeUi.py:103 YouTubeUi.py:138
+msgid "No"
+msgstr "Nem"
+
+#: YouTubeUi.py:137
+msgid "No, but play video again"
+msgstr "Nem, de újra játssza le a videót"
+
+#: YouTubeSearch.py:118 YouTubeUi.py:1410
+msgid "Ok"
+msgstr "Ok"
+
+#: YouTubeUi.py:523
+msgid "Open"
+msgstr "Megnyitás"
+
+#: YouTubeUi.py:1439
+msgid "Order in which search results will be displayed."
+msgstr "A keresési eredmények megjelenítésének sorrendje."
+
+#: YouTubeUi.py:109
+msgid "Play next"
+msgstr "A következő lejátszása"
+
+#: YouTubeUi.py:643
+msgid "Play next video"
+msgstr "A következő videó lejátszása"
+
+#: YouTubeUi.py:644
+msgid "Play previous video"
+msgstr "Az előző videó lejátszása"
+
+#: YouTubeUi.py:645
+msgid "Play video again"
+msgstr "Videó lejátszása"
+
+#: YouTubeUi.py:423
+msgid "Playlists"
+msgstr "Lejátszási listák"
+
+#: YouTubeDownload.py:35
+msgid "Please select the download directory"
+msgstr "Válassza ki a letöltési könyvtárat"
+
+#: YouTubeUi.py:56 YouTubeUi.py:85
+msgid "Poland"
+msgstr "Poland"
+
+#: YouTubeUi.py:1089
+#, python-format
+msgid "Previous %s entries"
+msgstr "Előző %s bejegyzések"
+
+#: YouTubeUi.py:380 YouTubeUi.py:402
+msgid "Public feeds"
+msgstr "Nyilvános hírcsatornák"
+
+#: YouTubeUi.py:973
+msgid "Published at: "
+msgstr "Publikálva:"
+
+#: YouTubeUi.py:642
+msgid "Quit"
+msgstr "Kilép"
+
+#: YouTubeUi.py:1093
+msgid "Rate video"
+msgstr "Értékeld a videót"
+
+#: YouTubeUi.py:98
+msgid "Rating"
+msgstr "Értékelés"
+
+#: YouTubeUi.py:1252
+msgid "Rating removed!"
+msgstr "Értékelés eltávolítva!"
+
+#: YouTubeUi.py:406 YouTubeUi.py:822 YouTubeUi.py:1051
+msgid "Recent"
+msgstr "Friss"
+
+#: YouTubeUi.py:96
+msgid "Relevance"
+msgstr "fontosság"
+
+#: YouTubeUi.py:1096
+msgid "Remove from favorites"
+msgstr "Eltávolítás a kedvencekből"
+
+#: YouTubeUi.py:1126
+msgid "Remove my rating"
+msgstr "Távolítsa el a minősítésemet"
+
+#: YouTubeUi.py:1234
+msgid "Removed!"
+msgstr "Eltávolított!"
+
+#: YouTubeUi.py:109
+msgid "Repeat"
+msgstr "Ismétlés"
+
+#: YouTubeUi.py:1433
+msgid "Return search results for the specified country."
+msgstr "Adja meg a megadott ország keresési eredményeit."
+
+#: YouTubeUi.py:1436
+msgid "Return search results that are most relevant to the specified language."
+msgstr "A megadott nyelvhez leginkább megfelelő keresési eredményeket jeleníti meg."
+
+#: YouTubeUi.py:108 YouTubeUi.py:111
+msgid "Return to list"
+msgstr "Vissza a listához"
+
+#: YouTubeUi.py:57 YouTubeUi.py:86
+msgid "Russia"
+msgstr "Russia"
+
+#: YouTubeUi.py:1425
+msgid "Save search result:"
+msgstr "Keresés mentése:"
+
+#: YouTubeUi.py:1427
+msgid "Save your search result in the history, when search completed."
+msgstr "Mentse a keresési eredményt a történelemben, amikor a keresés befejeződött."
+
+#: YouTubeSearch.py:142 YouTubeSearch.py:213 YouTubeUi.py:379 YouTubeUi.py:390
+#: YouTubeUi.py:1105
+msgid "Search"
+msgstr "Keresés"
+
+#: YouTubeUi.py:393
+msgid "Search channels"
+msgstr "Keresési csatornák"
+
+#: YouTubeUi.py:1142
+msgid "Search for similar"
+msgstr "Hasonló keresése"
+
+#: YouTubeUi.py:1434
+msgid "Search language:"
+msgstr "Keresési nyelv:"
+
+#: YouTubeUi.py:395
+msgid "Search live broadcasts"
+msgstr "Élő közvetítések keresése"
+
+#: YouTubeUi.py:394
+msgid "Search playlists"
+msgstr "Lejátszási listák keresése"
+
+#: YouTubeUi.py:1431
+msgid "Search region:"
+msgstr "Keresési terület:"
+
+#: YouTubeUi.py:1428
+msgid "Search results:"
+msgstr "Keresési eredmények:"
+
+#: YouTubeUi.py:392
+msgid "Search videos"
+msgstr "Videók keresése"
+
+#: YouTubeUi.py:409
+msgid "Shows"
+msgstr "műsorok"
+
+#: YouTubeUi.py:1270
+msgid ""
+"Sorry, download directory not exist!\n"
+"Please specify in the settings existing directory."
+msgstr ""
+"Sajnálom, a könyvtár letöltése nem létezik!\n"
+"Kérjük, adja meg a létező könyvtár beállításait."
+
+#: YouTubeUi.py:1274
+#, python-format
+msgid ""
+"Sorry, this file already exists:\n"
+"%s"
+msgstr ""
+"Sajnáljuk, ez a fájl már létezik:"
+"%s"
+
+#: YouTubeUi.py:1437
+msgid "Sort search results by:"
+msgstr "A keresési eredmények rendezése:"
+
+#: YouTubeUi.py:58 YouTubeUi.py:87
+msgid "South Korea"
+msgstr "South Korea"
+
+#: YouTubeUi.py:59 YouTubeUi.py:88
+msgid "Spain"
+msgstr "Spain"
+
+#: YouTubeUi.py:1457
+msgid "Specify the directory where save downloaded video files."
+msgstr "Adja meg azt a könyvtárat, ahol a letöltött videofájlokat mentheti."
+
+#: YouTubeUi.py:132
+msgid "Stop playing this movie?"
+msgstr "Leállítani ezt a filmet?"
+
+#: YouTubeUi.py:1100
+msgid "Subscribe"
+msgstr "Iratkozz fel"
+
+#: YouTubeUi.py:1094
+msgid "Subscribe this video channel"
+msgstr "Feliratkozás a videócsatornára"
+
+#: YouTubeUi.py:1179
+msgid "Subscribed!"
+msgstr "Jegyzett!"
+
+#: YouTubeUi.py:60 YouTubeUi.py:89
+msgid "Sweden"
+msgstr "Sweden"
+
+#: YouTubeUi.py:61 YouTubeUi.py:90
+msgid "Taiwan"
+msgstr "Taiwan"
+
+#: YouTubeUi.py:62 YouTubeUi.py:91
+msgid "Thailand"
+msgstr "Thailand"
+
+#: YouTubeUi.py:506
+msgid ""
+"There was an error in creating entry list!\n"
+"Maybe try other feeds..."
+msgstr ""
+"Hiba történt a belépési listák létrehozásában!\n"
+"Talán megpróbálhat más feedeket ..."
+
+#: YouTubeUi.py:461
+#, python-format
+msgid ""
+"There was an error in extract video url:\n"
+"%s"
+msgstr ""
+"Hiba történt a videó kivonatának kivonásában:\n"
+"%s"
+
+#: YouTubeUi.py:1180 YouTubeUi.py:1193 YouTubeUi.py:1235 YouTubeUi.py:1244
+#: YouTubeUi.py:1256
+msgid "There was an error!"
+msgstr "Hiba történt!"
+
+#: YouTubeUi.py:99
+msgid "Title"
+msgstr "Cím"
+
+#: YouTubeUi.py:1497
+msgid ""
+"To perform authentication will need in a web browser open Google home page, and enter the code!\n"
+"Do you currently have Internet access on the other device and we can continue?"
+msgstr ""
+"A hitelesítés elvégzéséhez a webböngészőben meg kell nyitni a Google kezdőlapját, és be kell írnod a kódot!\n"
+"Jelenleg internetelérés van a másik eszközön, és folytathatjuk?"
+
+#: YouTubeUi.py:404
+msgid "Top rated"
+msgstr "Legjobbnak minősített"
+
+#: YouTubeUi.py:1442
+msgid "Try to exclude all restricted content from the search result."
+msgstr "Próbálja kizárni a korlátozott tartalmat a keresési eredményekből."
+
+#: YouTubeUi.py:63 YouTubeUi.py:92
+msgid "Turkey"
+msgstr "Turkey"
+
+#: YouTubeUi.py:64 YouTubeUi.py:93
+msgid "United States"
+msgstr "United States"
+
+#: YouTubeUi.py:1103
+msgid "Unsubscribe"
+msgstr "Leiratkozás"
+
+#: YouTubeUi.py:1192
+msgid "Unsubscribed!"
+msgstr "Leiratkozott!"
+
+#: YouTubeUi.py:422
+msgid "Uploads"
+msgstr "feltöltések"
+
+#: YouTubeDownload.py:20
+msgid "Use"
+msgstr "Használat"
+
+#: YouTubeUi.py:1279
+msgid "Video download started!"
+msgstr "Videolejátszás indult!"
+
+#: YouTubeUi.py:1143
+msgid "Videos from this video channel"
+msgstr "Videók a videócsatornából"
+
+#: YouTubeUi.py:100
+msgid "View count"
+msgstr "Megtekintések száma"
+
+#: plugin.py:20
+msgid "Watch YouTube videos"
+msgstr "YouTube-videók megtekintése"
+
+#: YouTubeSearch.py:177 YouTubeUi.py:640 YouTubeUi.py:1083 YouTubeUi.py:1168
+msgid "What do you want to do?"
+msgstr "Mit akarsz csinálni?"
+
+#: YouTubeUi.py:1445
+msgid ""
+"What maximum resolution used when playing video, if available.\n"
+"If you have a slow Internet connection, you can use a lower resolution."
+msgstr ""
+"Milyen maximális felbontást használ a videó lejátszásakor, ha rendelkezésre áll.\n"
+"Ha lassú internetkapcsolatod van, kisebb felbontást használhatsz."
+
+#: YouTubeUi.py:1451
+msgid "What to do when stop playback in videoplayer."
+msgstr "Mi a teendő, ha leállítja a lejátszást a videolejátszóban?"
+
+#: YouTubeUi.py:1448
+msgid "What to do when the video ends."
+msgstr "Mi a teendő, ha a videó véget ér."
+
+#: YouTubeUi.py:1449
+msgid "When playback stop:"
+msgstr "Amikor a lejátszás leáll:"
+
+#: YouTubeUi.py:1446
+msgid "When video ends:"
+msgstr "Amikor a videó befejeződik:"
+
+#: YouTubeUi.py:103 YouTubeUi.py:134
+msgid "Yes"
+msgstr "Igen"
+
+#: YouTubeUi.py:135
+msgid "Yes, but play next video"
+msgstr "Igen, de játssza le a következő videót"
+
+#: YouTubeUi.py:136
+msgid "Yes, but play previous video"
+msgstr "Igen, de az előző videó lejátszása"
+
+#: YouTubeUi.py:1490
+msgid ""
+"You already authorized access for this plugin to your YouTube account.\n"
+"Do you want to do it again to update access data?"
+msgstr ""
+"Már engedélyezte a plugin hozzáférését YouTube-fiókjához.\n"
+"Szeretné újra elvégezni a hozzáférési adatok frissítését?"
+
+#: plugin.py:19 YouTubeUi.py:156 YouTubeUi.py:284
+msgid "YouTube"
+msgstr "YouTube"
+
+#: YouTubeUi.py:1355
+msgid "YouTube info"
+msgstr "YouTube info"
+
+#: YouTubeSearch.py:116
+msgid "YouTube search"
+msgstr "YouTube keresés"
+
+#: YouTubeSearch.py:178 YouTubeUi.py:1084 YouTubeUi.py:1464
+msgid "YouTube setup"
+msgstr "YouTube beállítás"
+
+#: YouTubeUi.py:306
+msgid "YouTube starting. Please wait..."
+msgstr "A YouTube kezdődik. Kérlek várj..."
