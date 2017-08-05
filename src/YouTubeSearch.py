@@ -151,8 +151,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			}, -2)
 		searchList = []
 		ConfigListScreen.__init__(self, searchList, session)
-		self.searchValue = GoogleSuggestionsConfigText(default = '',
-			updateSuggestions = self.updateSuggestions)
+		self.searchValue = GoogleSuggestionsConfigText(default='',
+			updateSuggestions=self.updateSuggestions)
 		self.setSearchEntry()
 		self['list'] = List([])
 		self.searchHistory = config.plugins.YouTube.searchHistory.value.split(',')
@@ -198,7 +198,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			sellist = ((_('YouTube setup'), 'setup'),
 					(_('Delete this entry'), 'delete'),)
 			self.session.openWithCallback(self.menuCallback,
-				ChoiceBox, title = title, list = sellist)
+				ChoiceBox, title=title, list=sellist)
 		else:
 			self.menuCallback('setup')
 
