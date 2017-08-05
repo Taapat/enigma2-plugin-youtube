@@ -26,8 +26,8 @@ class YouTubeVirtualKeyBoard(VirtualKeyBoard):
 			title = _("Search")
 		VirtualKeyBoard.__init__(self, session, title=title, text=text)
 		self.skinName = ['YouTubeVirtualKeyBoard', 'VirtualKeyBoard']
-		self.searchValue = GoogleSuggestionsConfigText(default=text, fixed_size=False,
-			visible_width=False, updateSuggestions=self.updateSuggestions)
+		self.searchValue = GoogleSuggestionsConfigText(default=text,
+			updateSuggestions=self.updateSuggestions)
 
 	def okClicked(self):
 		VirtualKeyBoard.okClicked(self)
@@ -151,8 +151,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			}, -2)
 		searchList = []
 		ConfigListScreen.__init__(self, searchList, session)
-		self.searchValue = GoogleSuggestionsConfigText(default = '', fixed_size = False,
-			visible_width = False, updateSuggestions = self.updateSuggestions)
+		self.searchValue = GoogleSuggestionsConfigText(default = '',
+			updateSuggestions = self.updateSuggestions)
 		self.setSearchEntry()
 		self['list'] = List([])
 		self.searchHistory = config.plugins.YouTube.searchHistory.value.split(',')
@@ -273,8 +273,8 @@ class SuggestionsQueryThread(Thread):
 
 
 class GoogleSuggestionsConfigText(ConfigText):
-	def __init__(self, default, fixed_size, visible_width, updateSuggestions):
-		ConfigText.__init__(self, default, fixed_size, visible_width)
+	def __init__(self, default, updateSuggestions):
+		ConfigText.__init__(self, default, fixed_size=False, visible_width=False)
 		self.updateSuggestions = updateSuggestions
 		self.suggestions = GoogleSuggestions()
 		if config.plugins.YouTube.searchRegion.value:
