@@ -23,7 +23,7 @@ class YouTubeVirtualKeyBoard(VirtualKeyBoard):
 		if text:
 			title = text
 		else:
-			title = _("Search")
+			title = _('Search')
 		VirtualKeyBoard.__init__(self, session, title=title, text=text)
 		self.skinName = ['YouTubeVirtualKeyBoard', 'VirtualKeyBoard']
 		self.searchValue = GoogleSuggestionsConfigText(default=text,
@@ -31,12 +31,12 @@ class YouTubeVirtualKeyBoard(VirtualKeyBoard):
 
 	def okClicked(self):
 		VirtualKeyBoard.okClicked(self)
-		self.searchValue.value = self["text"].getText()
+		self.searchValue.value = self['text'].getText()
 		self.searchValue.getSuggestions()
 
 	def updateSuggestions(self, suggestions):
 		if len(suggestions) > 1:
-			self["header"].setText(', '.join(x[0] for x in suggestions[1:]))
+			self['header'].setText(', '.join(x[0] for x in suggestions[1:]))
 
 
 class YouTubeSearch(Screen, ConfigListScreen):
