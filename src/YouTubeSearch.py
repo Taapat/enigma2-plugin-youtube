@@ -259,8 +259,7 @@ class SuggestionsQueryThread(Thread):
 	def run(self):
 		if self.param:
 			try:
-				suggestions = self.query.getSuggestions(self.param)
-				self.messages.push((suggestions, self.callback))
+				self.messages.push((self.query(self.param), self.callback))
 				self.messagePump.send(0)
 			except Exception, ex:
 				self.messages.push((ex, self.errorback))
@@ -276,9 +275,8 @@ class GoogleSuggestionsConfigText(ConfigText):
 	def __init__(self, default, updateSuggestions):
 		ConfigText.__init__(self, default, fixed_size=False, visible_width=False)
 		self.updateSuggestions = updateSuggestions
-		self.suggestions = GoogleSuggestions()
-		self.suggestions.gl = config.plugins.YouTube.searchRegion.value
-		self.suggestions.hl = config.plugins.YouTube.searchLanguage.value
+		self.gl = config.plugins.YouTube.searchRegion.value
+		self.hl = config.plugins.YouTube.searchLanguage.value
 		self.suggestionsThread = None
 		self.suggestionsThreadRunning = False
 
@@ -309,7 +307,7 @@ class GoogleSuggestionsConfigText(ConfigText):
 		if self.suggestionsThreadRunning:
 			self.cancelSuggestionsThread()
 		self.suggestionsThreadRunning = True
-		self.suggestionsThread = SuggestionsQueryThread(self.suggestions,
+		self.suggestionsThread = SuggestionsQueryThread(self.getGoogleSuggestions,
 			self.value, self.propagateSuggestions, self.gotSuggestionsError)
 		self.suggestionsThread.start()
 
@@ -326,13 +324,7 @@ class GoogleSuggestionsConfigText(ConfigText):
 		self.cancelSuggestionsThread()
 		ConfigText.onDeselect(self, session)
 
-
-class GoogleSuggestions():
-	def __init__(self):
-		self.gl = None
-		self.hl = None
-
-	def getSuggestions(self, queryString):
+	def getGoogleSuggestions(self, queryString):
 		if not queryString:
 			return None
 		else:
