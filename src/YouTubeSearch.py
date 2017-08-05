@@ -6,6 +6,7 @@ from xml.etree.cElementTree import fromstring
 from enigma import ePythonMessagePump, getDesktop
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.config import config, ConfigText, getConfigListEntry
 from Components.config import KEY_DELETE, KEY_BACKSPACE, KEY_ASCII, KEY_TIMEOUT
 from Components.ActionMap import ActionMap
@@ -15,6 +16,27 @@ from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 
 from . import _
+
+
+class YouTubeVirtualKeyBoard(VirtualKeyBoard):
+	def __init__(self, session, text):
+		if text:
+			title = text
+		else:
+			title = _("Search")
+		VirtualKeyBoard.__init__(self, session, title=title, text=text)
+		self.skinName = ['YouTubeVirtualKeyBoard', 'VirtualKeyBoard']
+		self.searchValue = GoogleSuggestionsConfigText(default=text, fixed_size=False,
+			visible_width=False, updateSuggestions=self.updateSuggestions)
+
+	def okClicked(self):
+		VirtualKeyBoard.okClicked(self)
+		self.searchValue.value = self["text"].getText()
+		self.searchValue.getSuggestions()
+
+	def updateSuggestions(self, suggestions):
+		if len(suggestions) > 1:
+			self["header"].setText(', '.join(x[0] for x in suggestions[1:]))
 
 
 class YouTubeSearch(Screen, ConfigListScreen):
@@ -209,9 +231,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 
 	def openKeyboard(self):
 		self.hideHelpWindow()
-		from Screens.VirtualKeyBoard import VirtualKeyBoard
-		self.session.openWithCallback(self.keyBoardCallback, VirtualKeyBoard,
-			title = _("Search"), text = self.searchValue.value)
+		self.session.openWithCallback(self.keyBoardCallback, YouTubeVirtualKeyBoard,
+			text = self.searchValue.value)
 
 	def keyBoardCallback(self, name):
 		self.showHelpWindow()
