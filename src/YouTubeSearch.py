@@ -242,12 +242,11 @@ class YouTubeSearch(Screen, ConfigListScreen):
 
 
 class SuggestionsQueryThread(Thread):
-	def __init__(self, query, param, callback, errorback):
+	def __init__(self, query, param, callback):
 		Thread.__init__(self)
 		self.query = query
 		self.param = param
 		self.callback = callback
-		self.errorback = errorback
 		self.canceled = False
 		self.messages = ThreadQueue()
 		self.messagePump = ePythonMessagePump()
@@ -261,9 +260,8 @@ class SuggestionsQueryThread(Thread):
 			try:
 				self.messages.push((self.query(self.param), self.callback))
 				self.messagePump.send(0)
-			except Exception, ex:
-				self.messages.push((ex, self.errorback))
-				self.messagePump.send(0)
+			except Exception as e:
+				print "[YouTube] Error in get suggestions:", e
 
 	def finished(self, val):
 		if not self.canceled:
@@ -300,15 +298,12 @@ class GoogleSuggestionsConfigText(ConfigText):
 				if len(suggestions) > 1:
 					self.updateSuggestions(suggestions)
 
-	def gotSuggestionsError(self, val):
-		print "[YouTube] Error in get suggestions:", val
-
 	def getSuggestions(self):
 		if self.suggestionsThreadRunning:
 			self.cancelSuggestionsThread()
 		self.suggestionsThreadRunning = True
 		self.suggestionsThread = SuggestionsQueryThread(self.getGoogleSuggestions,
-			self.value, self.propagateSuggestions, self.gotSuggestionsError)
+			self.value, self.propagateSuggestions)
 		self.suggestionsThread.start()
 
 	def handleKey(self, key):
