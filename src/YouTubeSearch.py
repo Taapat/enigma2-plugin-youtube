@@ -186,7 +186,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				if searchValue in self.searchHistory:
 					self.searchHistory.remove(searchValue)
 				self.searchHistory.insert(1, searchValue)
-				if len(self.searchHistory) > 20:
+				if len(self.searchHistory) > 41:
 					self.searchHistory.pop()
 				config.plugins.YouTube.searchHistoryDict[self.curList].value = self.searchHistory
 				config.plugins.YouTube.searchHistoryDict.save()
