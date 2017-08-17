@@ -132,9 +132,10 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
 			</screen>"""
 
-	def __init__(self, session):
+	def __init__(self, session, curList):
 		Screen.__init__(self, session)
 		self.session = session
+		self.curList = curList
 		self.setTitle(_('YouTube search'))
 		self['key_red'] = StaticText(_('Exit'))
 		self['key_green'] = StaticText(_('Ok'))
@@ -155,7 +156,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			updateSuggestions=self.updateSuggestions)
 		self.setSearchEntry()
 		self['list'] = List([])
-		self.searchHistory = config.plugins.YouTube.searchHistory.value.split(',')
+		self.searchHistory = config.plugins.YouTube.searchHistoryDict[self.curList].value
 		for entry in self.searchHistory:
 			searchList.append((entry, None))
 		self['list'].setList(searchList)
@@ -187,8 +188,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				self.searchHistory.insert(1, searchValue)
 				if len(self.searchHistory) > 20:
 					self.searchHistory.pop()
-				config.plugins.YouTube.searchHistory.value = ','.join(self.searchHistory)
-				config.plugins.YouTube.searchHistory.save()
+				config.plugins.YouTube.searchHistoryDict[self.curList].value = self.searchHistory
+				config.plugins.YouTube.searchHistoryDict.save()
 			self.close(searchValue)
 
 	def openMenu(self):

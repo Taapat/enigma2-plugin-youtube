@@ -5,7 +5,8 @@ from enigma import ePicLoad, eServiceReference, eTimer, getDesktop
 from Components.ActionMap import ActionMap
 from Components.AVSwitch import AVSwitch
 from Components.config import config, ConfigDirectory, ConfigSelection, \
-	ConfigSubsection, ConfigText, ConfigYesNo, getConfigListEntry
+	ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, \
+	getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Pixmap import Pixmap
@@ -112,8 +113,14 @@ config.plugins.YouTube.onMovieStop = ConfigSelection(default = 'ask', choices = 
 config.plugins.YouTube.login = ConfigYesNo(default = False)
 config.plugins.YouTube.downloadDir = ConfigDirectory(default=resolveFilename(SCOPE_HDD))
 
-config.plugins.YouTube.searchHistory = ConfigText(default='')
-config.plugins.YouTube.refreshToken = ConfigText(default='')
+# Dublicate entry list in createSearchList
+config.plugins.YouTube.searchHistoryDict = ConfigSubDict()
+config.plugins.YouTube.searchHistoryDict['Searchvideo'] = ConfigSet(choices=[])
+config.plugins.YouTube.searchHistoryDict['Searchchannel'] = ConfigSet(choices=[])
+config.plugins.YouTube.searchHistoryDict['Searchplaylist'] = ConfigSet(choices=[])
+config.plugins.YouTube.searchHistoryDict['Searchbroadcasts'] = ConfigSet(choices=[])
+
+config.plugins.YouTube.refreshToken = ConfigText()
 
 API_KEY = 'AIzaSyCyIlbb0FIwoieEZ9RTShMVkRMisu-ZX0k'
 YOUTUBE_API_CLIENT_ID = '411447027255-vbgs05u1o3m8mpjs2vcd04afrg60drba.apps.googleusercontent.com'
@@ -691,7 +698,7 @@ class YouTubeMain(Screen):
 					self.createMyFeedList()
 				elif self.list == 'search':
 					from YouTubeSearch import YouTubeSearch
-					self.session.openWithCallback(self.searchScreenCallback, YouTubeSearch)
+					self.session.openWithCallback(self.searchScreenCallback, YouTubeSearch, current[0])
 				elif self.list == 'feeds':
 					self.screenCallback([current[0], current[3], self.value[2]], 'OpenFeeds')
 				elif self.list == 'myfeeds':
