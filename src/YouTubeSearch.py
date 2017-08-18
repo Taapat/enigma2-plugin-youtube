@@ -213,8 +213,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				for entry in self.searchHistory:
 					searchList.append((entry, None))
 				self['list'].updateList(searchList)
-				config.plugins.YouTube.searchHistory.value = ','.join(self.searchHistory)
-				config.plugins.YouTube.searchHistory.save()
+				config.plugins.YouTube.searchHistoryDict[self.curList].value = self.searchHistory
+				config.plugins.YouTube.searchHistoryDict.save()
 				self.showHelpWindow()
 			else:
 				from YouTubeUi import YouTubeSetup
