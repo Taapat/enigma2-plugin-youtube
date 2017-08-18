@@ -31,8 +31,10 @@ class YouTubeVirtualKeyBoard(VirtualKeyBoard):
 
 	def okClicked(self):
 		VirtualKeyBoard.okClicked(self)
-		self.searchValue.value = self['text'].getText()
-		self.searchValue.getSuggestions()
+		newSearchValue = self['text'].getText()
+		if self.searchValue.value != newSearchValue:
+			self.searchValue.value = newSearchValue
+			self.searchValue.getSuggestions()
 
 	def updateSuggestions(self, suggestions):
 		if len(suggestions) > 1:
