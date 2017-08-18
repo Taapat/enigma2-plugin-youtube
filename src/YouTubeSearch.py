@@ -159,6 +159,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		self.searchHistory = config.plugins.YouTube.searchHistoryDict[self.curList].value
 		for entry in self.searchHistory:
 			searchList.append((entry, None))
+		if not searchList:
+			searchList = [('', None)]
 		self['list'].setList(searchList)
 
 	def setSearchEntry(self):
@@ -185,7 +187,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			if searchValue != '' and config.plugins.YouTube.saveHistory.value:
 				if searchValue in self.searchHistory:
 					self.searchHistory.remove(searchValue)
-				self.searchHistory.insert(1, searchValue)
+				self.searchHistory.insert(0, searchValue)
 				if len(self.searchHistory) > 41:
 					self.searchHistory.pop()
 				config.plugins.YouTube.searchHistoryDict[self.curList].value = self.searchHistory
@@ -212,6 +214,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				searchList = []
 				for entry in self.searchHistory:
 					searchList.append((entry, None))
+				if not searchList:
+					searchList = [('', None)]
 				self['list'].updateList(searchList)
 				config.plugins.YouTube.searchHistoryDict[self.curList].value = self.searchHistory
 				config.plugins.YouTube.searchHistoryDict.save()
