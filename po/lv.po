@@ -446,7 +446,7 @@ msgid "View count"
 msgstr "Skatījumiem"
 
 msgid "Watch YouTube videos"
-msgstr "Atskaņot YouTube video"
+msgstr "Atskaņo YouTube video"
 
 msgid "What do you want to do?"
 msgstr "Ko vēlaties darīt?"
