@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-25 18:53+0200\n"
+"POT-Creation-Date: 2017-09-02 18:25+0300\n"
 "PO-Revision-Date: 2015-12-19 15:56+0100\n"
 "Last-Translator: Budiarno\n"
 "Language-Team: \n"
@@ -228,6 +228,10 @@ msgstr "Putar berikutnya"
 
 msgid "Play next video"
 msgstr "Putar video berikutnya"
+
+#, fuzzy
+msgid "Play previous"
+msgstr "Putar sebelumnya"
 
 msgid "Play previous video"
 msgstr "Putar video sebelumnya"

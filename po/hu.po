@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin magyar fordítás\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-30 18:47+0300\n"
+"POT-Creation-Date: 2017-09-02 18:25+0300\n"
 "PO-Revision-Date: 2017-07-30 20:53+0100\n"
 "Last-Translator: chipcard\n"
 "Language-Team: cpteam\n"
@@ -226,6 +226,10 @@ msgstr "A következő lejátszása"
 
 msgid "Play next video"
 msgstr "A következő videó lejátszása"
+
+#, fuzzy
+msgid "Play previous"
+msgstr "Az előző lejátszása"
 
 msgid "Play previous video"
 msgstr "Az előző videó lejátszása"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-25 18:53+0200\n"
+"POT-Creation-Date: 2017-09-02 18:25+0300\n"
 "PO-Revision-Date: 2016-02-27 17:17+0100\n"
 "Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: OpenPlus <open-plus.es>\n"
@@ -228,6 +228,10 @@ msgstr "Nächstes abspielen"
 
 msgid "Play next video"
 msgstr "Nächstes Video abspielen"
+
+#, fuzzy
+msgid "Play previous"
+msgstr "Vorheriges abspielen"
 
 msgid "Play previous video"
 msgstr "Vorheriges Video abspielen"

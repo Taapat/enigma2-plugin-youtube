@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-25 18:53+0200\n"
+"POT-Creation-Date: 2017-09-02 18:25+0300\n"
 "PO-Revision-Date: 2016-08-24 10:46+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: \n"
@@ -232,6 +232,10 @@ msgstr "Toista seuraava"
 
 msgid "Play next video"
 msgstr "Toista seuraava video"
+
+#, fuzzy
+msgid "Play previous"
+msgstr "Toista edellinen"
 
 msgid "Play previous video"
 msgstr "Toista edellinen video"

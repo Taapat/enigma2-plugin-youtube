@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-25 18:53+0200\n"
+"POT-Creation-Date: 2017-09-02 18:25+0300\n"
 "PO-Revision-Date: 2016-11-25 07:55+0200\n"
 "Last-Translator: TM2TURK | by thawtes <thawtes@gmail.com>\n"
 "Language-Team: TM2TURK | by thawtes <thawtes@gmail.com>\n"
@@ -222,6 +222,9 @@ msgid "Play next"
 msgstr "Sonrakini Oynat"
 
 msgid "Play next video"
+msgstr ""
+
+msgid "Play previous"
 msgstr ""
 
 msgid "Play previous video"

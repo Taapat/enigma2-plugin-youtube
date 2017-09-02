@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-25 18:53+0200\n"
+"POT-Creation-Date: 2017-09-02 18:25+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -229,6 +229,9 @@ msgstr "Atskaņot nākošo"
 
 msgid "Play next video"
 msgstr "Atskaņot nākošo video"
+
+msgid "Play previous"
+msgstr "Atskaņot iepriekšējo"
 
 msgid "Play previous video"
 msgstr "Atskaņot iepriekšējo video"
