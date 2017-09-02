@@ -107,7 +107,8 @@ config.plugins.YouTube.maxResolution = ConfigSelection(default = '22', choices =
 	('18', '640x360'), ('5', '400x240'), ('17', '176x144')])
 config.plugins.YouTube.onMovieEof = ConfigSelection(default = 'quit', choices = [
 	('quit', _('Return to list')), ('ask', _('Ask user')),
-	('playnext', _('Play next')), ('repeat', _('Repeat'))])
+	('playnext', _('Play next')), ('repeat', _('Repeat')),
+	('playprev', _('Play previous'))])
 config.plugins.YouTube.onMovieStop = ConfigSelection(default = 'ask', choices = [
 	('ask', _('Ask user')), ('quit', _('Return to list'))])
 config.plugins.YouTube.login = ConfigYesNo(default = False)
