@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin greek translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-25 18:53+0200\n"
+"POT-Creation-Date: 2017-09-02 18:25+0300\n"
 "PO-Revision-Date: 2015-08-10 03:06+0200\n"
 "Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: MCelliot_g <mcelliot_g@hotmail.com>\n"
@@ -230,6 +230,10 @@ msgstr "Αναπαραγωγή επόμενου"
 
 msgid "Play next video"
 msgstr "Αναπαραγωγή του επόμενου βίντεο"
+
+#, fuzzy
+msgid "Play previous"
+msgstr "Αναπαραγωγή προηγούμενου"
 
 msgid "Play previous video"
 msgstr "Αναπαραγωγή του προηγούμενου βίντεο"

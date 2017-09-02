@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-25 18:53+0200\n"
+"POT-Creation-Date: 2017-09-02 18:25+0300\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: Vasiliks <vasiliks@yandex.ru>\n"
 "Language-Team: Vasiliks <vasiliks@yandex.ru>\n"
@@ -229,6 +229,10 @@ msgstr "Відтворити наступне"
 
 msgid "Play next video"
 msgstr "Відтворити наступне відео"
+
+#, fuzzy
+msgid "Play previous"
+msgstr "Відтворити попереднє"
 
 msgid "Play previous video"
 msgstr "Відтворити попереднє відео"
