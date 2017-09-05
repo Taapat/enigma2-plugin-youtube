@@ -861,7 +861,10 @@ class YouTubeMain(Screen):
 				self.prevPageToken = searchResponse.get('prevPageToken')
 				self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
 				for result in searchResponse.get('items', []):
-					channel = result['contentDetails']['relatedPlaylists'][playlist]
+					try:
+						channel = result['contentDetails']['relatedPlaylists'][playlist]
+					except:
+						pass
 
 				videos = self.videoIdFromPlaylist(channel)
 				return self.extractVideoIdList(videos)
@@ -919,7 +922,10 @@ class YouTubeMain(Screen):
 			self.prevPageToken = searchResponse.get('prevPageToken')
 			self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
 			for result in searchResponse.get('items', []):
-				videos.append(result['id']['videoId'])
+				try:
+					videos.append(result['id']['videoId'])
+				except:
+					pass
 			return self.extractVideoIdList(videos)
 
 	def extractVideoIdList(self, videos):
