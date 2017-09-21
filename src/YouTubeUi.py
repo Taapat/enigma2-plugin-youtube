@@ -1288,6 +1288,8 @@ class YouTubeMain(Screen):
 				msg = _('Sorry, this file already exists:\n%s') % title
 			else:
 				from YouTubeDownload import downloadJob
+				if '&suburi=' in url:  # download only DASH MP4 video
+					url = url.split('&suburi=', 1)[0]
 				job_manager.AddJob(downloadJob(url, outputfile, title[:20], self.downloadStop))
 				self.activeDownloads += 1
 				msg = _('Video download started!')
