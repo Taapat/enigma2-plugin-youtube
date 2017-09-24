@@ -164,7 +164,6 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		searchEntry = [getConfigListEntry(_('Search'), self.searchValue)]
 		self['config'].list = searchEntry
 		self['config'].l.setList(searchEntry)
-		self['config'].getCurrent()[1].getSuggestions()
 
 	def updateSuggestions(self, suggestions):
 		self['list'].setList(suggestions)
@@ -283,18 +282,17 @@ class GoogleSuggestionsConfigText(ConfigText):
 
 	def propagateSuggestions(self, suggestionsList):
 		self.cancelSuggestionsThread()
+		suggestions = [('', None)]
 		if suggestionsList and len(suggestionsList) > 0:
 			suggestionsList = fromstring(suggestionsList)
 			if suggestionsList:
-				suggestions = [('', None)]
 				for suggestion in suggestionsList.findall('CompleteSuggestion'):
 					for element in suggestion:
 						if 'data' in element.attrib:
 							name = element.attrib['data'].encode('UTF-8')
 						if name:
 							suggestions.append((name, None))
-				if len(suggestions) > 1:
-					self.updateSuggestions(suggestions)
+		self.updateSuggestions(suggestions)
 
 	def getSuggestions(self):
 		if self.suggestionsThreadRunning:
