@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin magyar fordítás\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-02 18:25+0300\n"
+"POT-Creation-Date: 2017-12-30 13:18+0200\n"
 "PO-Revision-Date: 2017-07-30 20:53+0100\n"
 "Last-Translator: chipcard\n"
 "Language-Team: cpteam\n"
@@ -120,6 +120,9 @@ msgstr ""
 
 msgid "Great Britain"
 msgstr "Great Britain"
+
+msgid "Greece"
+msgstr ""
 
 msgid "HD videos"
 msgstr "HD videók"

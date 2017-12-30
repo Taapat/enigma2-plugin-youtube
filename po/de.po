@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-02 18:25+0300\n"
+"POT-Creation-Date: 2017-12-30 13:18+0200\n"
 "PO-Revision-Date: 2016-02-27 17:17+0100\n"
 "Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: OpenPlus <open-plus.es>\n"
@@ -120,6 +120,9 @@ msgstr ""
 
 msgid "Great Britain"
 msgstr "Großbritannien"
+
+msgid "Greece"
+msgstr ""
 
 msgid "HD videos"
 msgstr "HD Videos"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-02 18:25+0300\n"
+"POT-Creation-Date: 2017-12-30 13:18+0200\n"
 "PO-Revision-Date: 2016-11-25 07:55+0200\n"
 "Last-Translator: TM2TURK | by thawtes <thawtes@gmail.com>\n"
 "Language-Team: TM2TURK | by thawtes <thawtes@gmail.com>\n"
@@ -119,6 +119,9 @@ msgstr ""
 
 msgid "Great Britain"
 msgstr "Büyük Britanya"
+
+msgid "Greece"
+msgstr ""
 
 msgid "HD videos"
 msgstr ""

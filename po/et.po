@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-02 18:25+0300\n"
+"POT-Creation-Date: 2017-12-30 13:18+0200\n"
 "PO-Revision-Date: 2016-02-28 14:54+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: \n"
@@ -120,6 +120,9 @@ msgstr ""
 
 msgid "Great Britain"
 msgstr "Suurbritannia"
+
+msgid "Greece"
+msgstr ""
 
 msgid "HD videos"
 msgstr "HD videod"
