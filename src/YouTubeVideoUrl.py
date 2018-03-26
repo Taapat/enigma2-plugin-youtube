@@ -283,6 +283,8 @@ class YouTubeVideoUrl():
 		else:
 			player_url = None
 
+		is_live = None
+
 		# Get video info
 		embed_webpage = None
 		if re.search(r'player-age-gate-content">', video_webpage) is not None:
@@ -310,6 +312,8 @@ class YouTubeVideoUrl():
 				if args.get('url_encoded_fmt_stream_map'):
 					# Convert to the same format returned by compat_parse_qs
 					video_info = dict((k, [v]) for k, v in args.items())
+				if args.get('livestream') == '1' or args.get('live_playback') == 1:
+					is_live = True
 				sts = ytplayer_config.get('sts')
 
 			if not video_info:
@@ -349,8 +353,8 @@ class YouTubeVideoUrl():
 		# Start extracting information
 		if 'conn' in video_info and video_info['conn'][0][:4] == 'rtmp':
 			url = video_info['conn'][0]
-		elif len(video_info.get('url_encoded_fmt_stream_map', [''])[0]) >= 1 or \
-			len(video_info.get('adaptive_fmts', [''])[0]) >= 1:
+		elif not is_live and (len(video_info.get('url_encoded_fmt_stream_map', [''])[0]) >= 1 or \
+			len(video_info.get('adaptive_fmts', [''])[0]) >= 1):
 			encoded_url_map = video_info.get('url_encoded_fmt_stream_map', [''])[0] + \
 				',' + video_info.get('adaptive_fmts', [''])[0]
 			if 'rtmpe%3Dyes' in encoded_url_map:
