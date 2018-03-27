@@ -1,4 +1,4 @@
-from httplib import HTTPConnection, CannotSendRequest, BadStatusLine
+from httplib import HTTPConnection
 from threading import Lock, Thread
 from urllib import quote
 from xml.etree.cElementTree import fromstring
@@ -338,13 +338,13 @@ class GoogleSuggestionsConfigText(ConfigText):
 			try:
 				connection = HTTPConnection('google.com')
 				connection.request('GET', query, '', {'Accept-Encoding': 'UTF-8'})
-			except (CannotSendRequest, gaierror, error):
-				print "[YouTube] Can not send request for suggestions"
+			except Exception as e:
+				print "[YouTube] Can not send request for suggestions:", e
 			else:
 				try:
 					response = connection.getresponse()
-				except BadStatusLine:
-					print "[YouTube] Can not get a response from google"
+				except Exception as e:
+					print "[YouTube] Can not get a response from google:", e
 				else:
 					if response.status == 200:
 						data = response.read()
