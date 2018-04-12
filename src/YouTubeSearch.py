@@ -3,7 +3,7 @@ from threading import Lock, Thread
 from urllib import quote
 from xml.etree.cElementTree import fromstring
 
-from enigma import ePythonMessagePump, getDesktop
+from enigma import ePoint, ePythonMessagePump, getDesktop
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -166,6 +166,12 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		if not searchList:
 			searchList = [('', None)]
 		self['list'].setList(searchList)
+		self.onLayoutFinish.append(self.moveHelpWindow)
+
+	def moveHelpWindow(self):
+		helpwindowpos = self["HelpWindow"].getPosition()
+		self['config'].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],
+			helpwindowpos[1]))
 
 	def setSearchEntry(self):
 		searchEntry = [getConfigListEntry(_('Search'), self.searchValue)]
@@ -183,6 +189,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			self.searchValue.value = selected
 			self.setSearchEntry()
 			self['config'].getCurrent()[1].getSuggestions()
+			self.moveHelpWindow()
 		else:
 			searchValue = self.searchValue.value
 			print "[YouTube] Search:", searchValue
