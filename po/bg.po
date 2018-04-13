@@ -1,0 +1,497 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: enigma2.plugins.mytube\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-30 13:18+0200\n"
+"PO-Revision-Date: 2018-04-13 10:46+0300\n"
+"Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
+"Language-Team: Bulgarian\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.6\n"
+
+msgid "  (%d-%d of %d)"
+msgstr "  (%d-%d из %d)"
+
+msgid " dislikes"
+msgstr " нехаресвания"
+
+msgid " likes"
+msgstr " харесвания"
+
+msgid " views"
+msgstr " показвания"
+
+msgid "Active video downloads"
+msgstr "Активно изтегляне на видеоклипове"
+
+msgid "Add to favorites"
+msgstr "Добави към любими"
+
+msgid "Added!"
+msgstr "Добавен!"
+
+msgid "All"
+msgstr "Всички"
+
+msgid "Ask user"
+msgstr "Питай потребител"
+
+msgid "Australia"
+msgstr "Австралия"
+
+msgid "Brazil"
+msgstr "Бразилия"
+
+msgid "Canada"
+msgstr "Канада"
+
+msgid "Cancel"
+msgstr "Отказ"
+
+msgid "Choose what you want to do"
+msgstr "Изберете следваща стъпка"
+
+msgid "Close YouTube"
+msgstr "Затвори YouTube"
+
+msgid "Created date"
+msgstr "Дата на създаване"
+
+msgid "Czech Republic"
+msgstr "Чехия"
+
+msgid "Delete this entry"
+msgstr "Изтриване на този запис"
+
+msgid "Disliked!"
+msgstr "Отбелязан, че не ми харесва!"
+
+msgid "Download directory:"
+msgstr "Директория за изтеглянията:"
+
+msgid "Download feed entries. Please wait..."
+msgstr "Изтегляне на фийдове. Моля изчакайте..."
+
+msgid "Download search results. Please wait..."
+msgstr "Изтегляне на резултати от търсенето. Моля изчакайте..."
+
+msgid "Download video"
+msgstr "Изтегляне на видео"
+
+msgid "Downloading"
+msgstr "Изтегляне"
+
+msgid "Duration: "
+msgstr "Продължителност: "
+
+msgid "Embedded in webpages"
+msgstr "Видео на уеб-сайтове"
+
+msgid "Exclude restricted content:"
+msgstr "Изключване на ограниченото съдържание:"
+
+msgid "Exit"
+msgstr "Изход"
+
+msgid "Extract video url. Please wait..."
+msgstr "Извличане URL адреса на видеоклипа. Изчакайте..."
+
+msgid "Favorites"
+msgstr "Любими"
+
+msgid "France"
+msgstr "Франция"
+
+msgid "Germany"
+msgstr "Германия"
+
+msgid ""
+"Go to %s\n"
+"And enter the code %s"
+msgstr ""
+"Идете на %s\n"
+"И въведете код %s"
+
+msgid "Great Britain"
+msgstr "Англия"
+
+msgid "Greece"
+msgstr "Гърция"
+
+msgid "HD videos"
+msgstr "HD видео"
+
+msgid "Holland"
+msgstr "Холандия"
+
+msgid "Hong Kong"
+msgstr "Хонг Конг"
+
+msgid ""
+"How many search results will be returned.\n"
+"If greater value then longer time will be needed for thumbnail download."
+msgstr ""
+"Колко резултата от търсенето да бъдат показани.\n"
+"Колкото по-голям е броя, толкова повече време ще отнеме зареждането на миниатюри."
+
+msgid "I dislike this"
+msgstr "Това ми харесва"
+
+msgid "I like this"
+msgstr "Това не ми харесва"
+
+msgid "India"
+msgstr "Индия"
+
+msgid "Ireland"
+msgstr "Ирландия"
+
+msgid "Israel"
+msgstr "Израел"
+
+msgid "Italy"
+msgstr "Италия"
+
+msgid "Japan"
+msgstr "Япония"
+
+msgid "Keyboard"
+msgstr "Клавиатура"
+
+msgid "Latvia"
+msgstr "Латвия"
+
+msgid "Liked videos"
+msgstr "Харесани видеоклипове"
+
+msgid "Liked!"
+msgstr "Отбелязан, че ми харесва!"
+
+msgid ""
+"Log in to your YouTube account when plugin starts.\n"
+"This needs to approve in the Google home page!"
+msgstr ""
+"Използвайте вашия YouTube акаунт при старт на плъгина.\n"
+"Това трябва да се потвърди на началната Google страница!"
+
+msgid "Login on startup:"
+msgstr "Удостоверяване при стартиране:"
+
+msgid "Maximum video resolution:"
+msgstr "Максимална видео резолюция:"
+
+msgid "Mexico"
+msgstr "Мексико"
+
+msgid "Moderate"
+msgstr "Умерено"
+
+msgid "Most viewed"
+msgstr "Най-гледани"
+
+msgid "Movies"
+msgstr "Филми"
+
+msgid "My Subscriptions"
+msgstr "Абонаменти"
+
+msgid "My feeds"
+msgstr "Моиите фийдове"
+
+msgid "New Zealand"
+msgstr "Нова Зеландия"
+
+msgid "Next %s entries"
+msgstr "Следващи %s записи"
+
+msgid "No"
+msgstr "Не"
+
+msgid "No, but play video again"
+msgstr "Не, но възпроизведи клипа още веднъж"
+
+msgid "Ok"
+msgstr "Ок"
+
+msgid "Open"
+msgstr "Отвори"
+
+msgid "Order in which search results will be displayed."
+msgstr "Ред по който ще се показват резултатите от търсенето."
+
+msgid "Play next"
+msgstr "Възпроизвеждане на следващия"
+
+msgid "Play next video"
+msgstr "Възпроизвеждане на следващия клип"
+
+msgid "Play previous"
+msgstr "Възпроизвеждане на предишния"
+
+msgid "Play previous video"
+msgstr "Възпроизвеждане на предишния клип"
+
+msgid "Play video again"
+msgstr "Възпроизвеждане на клипа отново"
+
+msgid "Playlists"
+msgstr "Плейлисти"
+
+msgid "Please select the download directory"
+msgstr "Моля изберете директория за изтеглянията"
+
+msgid "Poland"
+msgstr "Полша"
+
+msgid "Previous %s entries"
+msgstr "Предишни %s записи"
+
+msgid "Public feeds"
+msgstr "Публични фийдове"
+
+msgid "Published at: "
+msgstr "Публикуван на: "
+
+msgid "Quit"
+msgstr "Изход"
+
+msgid "Rate video"
+msgstr "Оценка на клипа"
+
+msgid "Rating"
+msgstr "Рейтинг"
+
+msgid "Rating removed!"
+msgstr "Рейтинга е изтрит!"
+
+msgid "Recent"
+msgstr "Най-скорошни"
+
+msgid "Relevance"
+msgstr "Уместност"
+
+msgid "Remove from favorites"
+msgstr "Изтриване от любими"
+
+msgid "Remove my rating"
+msgstr "Изтриване на моя рейтинг"
+
+msgid "Removed!"
+msgstr "Изтрит!"
+
+msgid "Repeat"
+msgstr "Повтори"
+
+msgid "Return search results for the specified country."
+msgstr "Покажи резултатите от търсенето за конкретна държава."
+
+msgid "Return search results that are most relevant to the specified language."
+msgstr "Покажи резултатите от търсенето, които са най-уместни за указания език."
+
+msgid "Return to list"
+msgstr "Връщане към списъка"
+
+msgid "Russia"
+msgstr "Русия"
+
+msgid "Save search result:"
+msgstr "Запазване на резултатите от търсенето:"
+
+msgid "Save your search result in the history, when search completed."
+msgstr "Запази резултатите от търсенето в история, след завършване на търсенето."
+
+msgid "Search"
+msgstr "Търсене"
+
+msgid "Search channels"
+msgstr "Търсене на канали"
+
+msgid "Search for similar"
+msgstr "Търсене на подобни"
+
+msgid "Search language:"
+msgstr "Език за търсене:"
+
+msgid "Search live broadcasts"
+msgstr "Търсене потоци на живо"
+
+msgid "Search playlists"
+msgstr "Търсене на плейлисти"
+
+msgid "Search region:"
+msgstr "Регион за търсене:"
+
+msgid "Search results:"
+msgstr "Резултати от търсенето:"
+
+msgid "Search videos"
+msgstr "Търсене на клипове"
+
+msgid "Shows"
+msgstr "Шоу"
+
+msgid ""
+"Sorry, download directory not exist!\n"
+"Please specify in the settings existing directory."
+msgstr ""
+"За съжаление не съществува директория за изтеглянията!\n"
+"Моля укажете в настройките съществуваща директория."
+
+msgid ""
+"Sorry, this file already exists:\n"
+"%s"
+msgstr ""
+"За съжаление този файл вече съществува:\n"
+"%s"
+
+msgid "Sort search results by:"
+msgstr "Подреждане на резултатите от търсенето по:"
+
+msgid "South Korea"
+msgstr "Южна Корея"
+
+msgid "Spain"
+msgstr "Испания"
+
+msgid "Specify the directory where save downloaded video files."
+msgstr "Укажете директория където да се записват видео файловете."
+
+msgid "Stop playing this movie?"
+msgstr "Да спра този клип?"
+
+msgid "Subscribe"
+msgstr "Абонамент"
+
+msgid "Subscribe this video channel"
+msgstr "Абониране за този видео канал"
+
+msgid "Subscribed!"
+msgstr "Абониран!"
+
+msgid "Sweden"
+msgstr "Швеция"
+
+msgid "Taiwan"
+msgstr "Тайван"
+
+msgid "Thailand"
+msgstr "Тайланд"
+
+msgid ""
+"There was an error in creating entry list!\n"
+"Maybe try other feeds..."
+msgstr ""
+"Грешка при създаване на списъка!\n"
+"Може да опитате други фийдове..."
+
+msgid ""
+"There was an error in extract video url:\n"
+"%s"
+msgstr ""
+"Грешка при извличане на видео url:\n"
+"%s"
+
+msgid "There was an error!"
+msgstr "Имаше грешка!"
+
+msgid "Title"
+msgstr "Име"
+
+msgid ""
+"To perform authentication will need in a web browser open Google home page, and "
+"enter the code!\n"
+"Do you currently have Internet access on the other device and we can continue?"
+msgstr ""
+"За да се потвърди акаунта Ви, в уеб-браузъра трябва да отворите началната Google "
+"страница и да въведете код!\n"
+"Имате ли в момента интернет достъп на друго устройство за да можем да продължим?"
+
+msgid "Top rated"
+msgstr "С най-добър рейтинг"
+
+msgid "Try to exclude all restricted content from the search result."
+msgstr "Опитайте да изключите ограниченото съдържание от резултатите от търсенето."
+
+msgid "United States"
+msgstr "САЩ"
+
+msgid "Unsubscribe"
+msgstr "Отписване"
+
+msgid "Unsubscribed!"
+msgstr "Отписан!"
+
+msgid "Uploads"
+msgstr "Мои качвания"
+
+msgid "Use"
+msgstr "Използване"
+
+msgid "Video download started!"
+msgstr "Започна свалянето на клипа!"
+
+msgid "Videos from this video channel"
+msgstr "Други клипове от този видео канал"
+
+msgid "View count"
+msgstr "Количество показвания"
+
+msgid "Watch YouTube videos"
+msgstr "Гледайте YouTube клипове"
+
+msgid "What do you want to do?"
+msgstr "Какво искате да направите?"
+
+msgid ""
+"What maximum resolution used when playing video, if available.\n"
+"If you have a slow Internet connection, you can use a lower resolution."
+msgstr ""
+"Каква максимална резолюция да се използва при възпроизвеждане, ако е налична.\n"
+"Ако имате бавна Интернет връзка, можете да използвате по-ниска резолюция."
+
+msgid "What to do when stop playback in videoplayer."
+msgstr "Какво да се случи, когато възпроизвеждането е спряно."
+
+msgid "What to do when the video ends."
+msgstr "Какво да се случи, когато видеото завърши."
+
+msgid "When playback stop:"
+msgstr "Когато възпроизвеждането е спряно:"
+
+msgid "When video ends:"
+msgstr "Когато видеото завърши:"
+
+msgid "Yes"
+msgstr "Да"
+
+msgid "Yes, but play next video"
+msgstr "Да, но възпроизведи следващия клип"
+
+msgid "Yes, but play previous video"
+msgstr "Да, но възпроизведи предишния клип"
+
+msgid ""
+"You already authorized access for this plugin to your YouTube account.\n"
+"Do you want to do it again to update access data?"
+msgstr ""
+"Вие вече сте дали достъп на този плъгин до вашия YouTube акаунт.\n"
+"Искате ли да го направите отново, за да обновите данните за достъп?"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "YouTube info"
+msgstr "YouTube информация"
+
+msgid "YouTube search"
+msgstr "YouTube търсене"
+
+msgid "YouTube setup"
+msgstr "YouTube настройки"
+
+msgid "YouTube starting. Please wait..."
+msgstr "YouTube се стартира. Моля изчакайте..."
