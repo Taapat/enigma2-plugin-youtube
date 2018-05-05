@@ -37,10 +37,11 @@ class YouTubeVirtualKeyBoard(VirtualKeyBoard):
 			self.searchValue.getSuggestions()
 
 	def updateSuggestions(self, suggestions):
-		if len(suggestions) > 1:
-			self['header'].setText(', '.join(x[0] for x in suggestions[1:]))
-		else:
-			self['header'].setText('')
+		if 'header' in self:
+			if len(suggestions) > 1:
+				self['header'].setText(', '.join(x[0] for x in suggestions[1:]))
+			else:
+				self['header'].setText('')
 
 
 class YouTubeSearch(Screen, ConfigListScreen):
