@@ -21,7 +21,7 @@ msgstr ""
 #: YouTubeUi.py:1081
 #, python-format
 msgid "  (%d-%d of %d)"
-msgstr " (%d-%d di %d)"
+msgstr " (%d-%d of %d)"
 
 #: YouTubeUi.py:977
 msgid " dislikes"
