@@ -217,7 +217,8 @@ class YouTubeVideoUrl():
 				(r'(["\'])signature\1\s*,\s*(?P<sig>[a-zA-Z0-9$]+)\(',
 				r'\.sig\|\|(?P<sig>[a-zA-Z0-9$]+)\(',
 				r'yt\.akamaized\.net/\)\s*\|\|\s*.*?\s*c\s*&&\s*d\.set\([^,]+\s*,\s*(?P<sig>[a-zA-Z0-9$]+)\(',
-				r'\bc\s*&&\s*d\.set\([^,]+\s*,\s*(?P<sig>[a-zA-Z0-9$]+)\('),
+				r'\bc\s*&&\s*d\.set\([^,]+\s*,\s*(?P<sig>[a-zA-Z0-9$]+)\(',
+				r'\bc\s*&&\s*d\.set\([^,]+\s*,\s*\([^)]*\)\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\('),
 				jscode, group='sig')
 		jsi = JSInterpreter(jscode)
 		initial_function = jsi.extract_function(funcname)
