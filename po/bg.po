@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-30 13:18+0200\n"
+"POT-Creation-Date: 2018-11-14 19:23+0200\n"
 "PO-Revision-Date: 2018-04-13 10:46+0300\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -13,6 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 
+#, python-format
 msgid "  (%d-%d of %d)"
 msgstr "  (%d-%d из %d)"
 
@@ -100,6 +101,11 @@ msgstr "Изход"
 msgid "Extract video url. Please wait..."
 msgstr "Извличане URL адреса на видеоклипа. Изчакайте..."
 
+msgid ""
+"FFmpeg will be used to merge downloaded DASH video and audio files.\n"
+"FFmpeg will be installed if necessary."
+msgstr ""
+
 msgid "Favorites"
 msgstr "Любими"
 
@@ -109,6 +115,7 @@ msgstr "Франция"
 msgid "Germany"
 msgstr "Германия"
 
+#, python-format
 msgid ""
 "Go to %s\n"
 "And enter the code %s"
@@ -184,6 +191,9 @@ msgstr "Удостоверяване при стартиране:"
 msgid "Maximum video resolution:"
 msgstr "Максимална видео резолюция:"
 
+msgid "Merge downloaded files:"
+msgstr ""
+
 msgid "Mexico"
 msgstr "Мексико"
 
@@ -205,6 +215,7 @@ msgstr "Моиите фийдове"
 msgid "New Zealand"
 msgstr "Нова Зеландия"
 
+#, python-format
 msgid "Next %s entries"
 msgstr "Следващи %s записи"
 
@@ -247,6 +258,7 @@ msgstr "Моля изберете директория за изтегляния
 msgid "Poland"
 msgstr "Полша"
 
+#, python-format
 msgid "Previous %s entries"
 msgstr "Предишни %s записи"
 
@@ -341,6 +353,7 @@ msgstr ""
 "За съжаление не съществува директория за изтеглянията!\n"
 "Моля укажете в настройките съществуваща директория."
 
+#, python-format
 msgid ""
 "Sorry, this file already exists:\n"
 "%s"
@@ -388,6 +401,7 @@ msgstr ""
 "Грешка при създаване на списъка!\n"
 "Може да опитате други фийдове..."
 
+#, python-format
 msgid ""
 "There was an error in extract video url:\n"
 "%s"
@@ -402,12 +416,16 @@ msgid "Title"
 msgstr "Име"
 
 msgid ""
-"To perform authentication will need in a web browser open Google home page, and "
-"enter the code!\n"
+"To merge downloaded files FFmpeg will be installed.\n"
+"FFmpeg can take a lot of space!\n"
+"Do you want to continue?"
+msgstr ""
+
+msgid ""
+"To perform authentication will need in a web browser open Google home page, and enter the code!\n"
 "Do you currently have Internet access on the other device and we can continue?"
 msgstr ""
-"За да се потвърди акаунта Ви, в уеб-браузъра трябва да отворите началната Google "
-"страница и да въведете код!\n"
+"За да се потвърди акаунта Ви, в уеб-браузъра трябва да отворите началната Google страница и да въведете код!\n"
 "Имате ли в момента интернет достъп на друго устройство за да можем да продължим?"
 
 msgid "Top rated"
@@ -415,6 +433,9 @@ msgstr "С най-добър рейтинг"
 
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Опитайте да изключите ограниченото съдържание от резултатите от търсенето."
+
+msgid "Turkey"
+msgstr ""
 
 msgid "United States"
 msgstr "САЩ"
@@ -480,6 +501,12 @@ msgid ""
 msgstr ""
 "Вие вече сте дали достъп на този плъгин до вашия YouTube акаунт.\n"
 "Искате ли да го направите отново, за да обновите данните за достъп?"
+
+msgid ""
+"You have disabled downloaded file merge.\n"
+"Installed FFmpeg is no longer necessary.\n"
+"Do you want to remove FFmpeg?"
+msgstr ""
 
 msgid "YouTube"
 msgstr "YouTube"
