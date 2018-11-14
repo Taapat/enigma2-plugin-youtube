@@ -115,6 +115,7 @@ config.plugins.YouTube.onMovieStop = ConfigSelection(default = 'ask', choices = 
 	('ask', _('Ask user')), ('quit', _('Return to list'))])
 config.plugins.YouTube.login = ConfigYesNo(default = False)
 config.plugins.YouTube.downloadDir = ConfigDirectory(default=resolveFilename(SCOPE_HDD))
+config.plugins.YouTube.mergeFiles = ConfigYesNo(default = False)
 
 # Dublicate entry list in createSearchList
 config.plugins.YouTube.searchHistoryDict = ConfigSubDict()
@@ -180,7 +181,7 @@ class YouTubePlayer(MoviePlayer):
 		pass
 
 	def openServiceList(self):
-		if hasattr(self, "toggleShow"):
+		if hasattr(self, 'toggleShow'):
 			self.toggleShow()
 
 
@@ -1286,23 +1287,28 @@ class YouTubeMain(Screen):
 			msg = _('Sorry, download directory not exist!\nPlease specify in the settings existing directory.')
 		else:
 			outputfile = os.path.join(downloadDir, title.replace('/', '') + '.mp4')
-			if os.path.exists(outputfile):
+			if os.path.exists(outputfile) or \
+				os.path.exists('%s.m4a' % outputfile[:-4]) or \
+				os.path.exists('%s_suburi.mp4' % outputfile[:-4]) or \
+				os.path.exists('%s.mkv' % outputfile[:-4]):
 				msg = _('Sorry, this file already exists:\n%s') % title
 			else:
 				from YouTubeDownload import downloadJob
 				if '&suburi=' in url:  # download DASH MP4 video and audio
 					url = url.split('&suburi=', 1)
-					job_manager.AddJob(downloadJob(url[1], outputfile[:-4] + '.m4a', title[:20], self.downloadStop))
+					job_manager.AddJob(downloadJob(url[1], '%s.m4a' % outputfile[:-4],
+						'%s audio' % title[:20], self.downloadStop))
 					self.activeDownloads += 1
 					url = url[0]
-					outputfile = outputfile[:-4]+ '_suburi.mp4'
+					outputfile = outputfile[:-4] + '_suburi.mp4'
 				job_manager.AddJob(downloadJob(url, outputfile, title[:20], self.downloadStop))
 				self.activeDownloads += 1
 				msg = _('Video download started!')
 		self.session.open(MessageBox, msg, MessageBox.TYPE_INFO, timeout = 5)
 
 	def downloadStop(self):
-		self.activeDownloads -= 1
+		if hasattr(self, 'activeDownloads'):
+			self.activeDownloads -= 1
 
 	def setPrevEntries(self):
 		self.value[2] = self.prevPageToken
@@ -1440,6 +1446,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			}, -2)
 		self.mbox = None
 		self.login = config.plugins.YouTube.login.value
+		self.mergeFiles = config.plugins.YouTube.mergeFiles.value
 		configlist = []
 		ConfigListScreen.__init__(self, configlist, session=session,
 			on_change = self.checkLoginSatus)
@@ -1477,6 +1484,9 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		configlist.append(getConfigListEntry(_('Download directory:'),
 			config.plugins.YouTube.downloadDir,
 			_('Specify the directory where save downloaded video files.')))
+		configlist.append(getConfigListEntry(_('Merge downloaded files:'),
+			config.plugins.YouTube.mergeFiles,
+			_('FFmpeg will be used to merge downloaded DASH video and audio files.\nFFmpeg will be installed if necessary.')))
 
 		self['config'].list = configlist
 		self['config'].l.setList(configlist)
@@ -1493,8 +1503,29 @@ class YouTubeSetup(ConfigListScreen, Screen):
 				downloadDir = downloadDir[2:-2]
 			self.session.openWithCallback(self.downloadPath,
 				YouTubeDirBrowser, downloadDir)
+		elif self.mergeFiles != config.plugins.YouTube.mergeFiles.value:
+			if self.mergeFiles:
+				self.session.openWithCallback(self.removeCallback,
+					MessageBox, _('You have disabled downloaded file merge.\nInstalled FFmpeg is no longer necessary.\nDo you want to remove FFmpeg?'))
+			else:
+				self.session.openWithCallback(self.installCallback,
+					MessageBox, _('To merge downloaded files FFmpeg will be installed.\nFFmpeg can take a lot of space!\nDo you want to continue?'))
 		else:
 			self.keySave()
+
+	def removeCallback(self, answer):
+		if answer:
+			from Screens.Console import Console
+			self.session.open(Console, cmdlist = ['opkg remove --autoremove ffmpeg'])
+		self.keySave()
+
+	def installCallback(self, answer):
+		if answer:
+			from Screens.Console import Console
+			self.session.open(Console, cmdlist = ['opkg update && opkg install ffmpeg'])
+			self.keySave()
+		else:
+			config.plugins.YouTube.mergeFiles.value = False
 
 	def downloadPath(self, res):
 		if res:

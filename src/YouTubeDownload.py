@@ -1,6 +1,7 @@
 import os
 
 from enigma import eTimer, getDesktop
+from Components.config import config
 from Components.ActionMap import ActionMap
 from Components.FileList import FileList
 from Components.Sources.List import List
@@ -75,6 +76,21 @@ class downloadTask(Task):
 	def downloadFinished(self, result):
 		Task.processFinished(self, 0)
 		self.downloadStop()
+		if '_suburi.mp4' in self.outputfile and \
+			config.plugins.YouTube.mergeFiles.value and \
+			os.path.exists('%s.m4a' % self.outputfile[:-11]) and \
+			not os.path.exists('%s.mkv' % self.outputfile[:-11]):
+			from Components.Console import Console
+			Console().ePopen('ffmpeg -i "%s" -i "%s.m4a" -c copy "%s.mkv"' % (self.outputfile,
+				self.outputfile[:-11], self.outputfile[:-11]), self.mergeCompleted)
+
+	def mergeCompleted(self, result, retval, extra_args):
+		if os.path.exists('%s.mkv' % self.outputfile[:-11]):
+			try:
+				os.remove(self.outputfile)
+				os.remove('%s.m4a' % self.outputfile[:-11])
+			except Exception as e:
+				print '[YouTube] Error delete file:', e
 
 	def downloadFailed(self, failure_instance=None, error_message=''):
 		print '[YouTube] Video download failed'
