@@ -279,6 +279,7 @@ class YouTubeVideoUrl():
 			player_url = None
 
 		is_live = None
+		player_response = {}
 
 		# Get video info
 		embed_webpage = None
@@ -310,6 +311,13 @@ class YouTubeVideoUrl():
 				if args.get('livestream') == '1' or args.get('live_playback') == 1:
 					is_live = True
 				sts = ytplayer_config.get('sts')
+
+			if not player_response:
+				pl_response = args.get('player_response')
+				if pl_response:
+					pl_response = json.loads(pl_response)
+					if isinstance(pl_response, dict):
+						player_response = pl_response
 
 			if not video_info:
 				# We also try looking in get_video_info since it may contain different dashmpd
@@ -429,25 +437,30 @@ class YouTubeVideoUrl():
 					url += '&signature=' + signature
 				if 'ratebypass' not in url:
 					url += '&ratebypass=yes'
-		elif video_info.get('hlsvp'):
-			url = None
-			manifest_url = video_info['hlsvp'][0]
-			url_map = self._extract_from_m3u8(manifest_url)
-
-			# Find the best format from our format priority map
-			for our_format in PRIORITY_VIDEO_FORMAT:
-				if url_map.get(our_format):
-					url = url_map[our_format]
-					break
-			# If anything not found, used first in the list if it not in ignore map
-			if not url:
-				for url_map_key in url_map.keys():
-					if url_map_key not in IGNORE_VIDEO_FORMAT:
-						url = url_map[url_map_key]
-						break
-			if not url:
-				url = url_map.values()[0]
 		else:
-			raise Exception('No supported formats found in video info!')
+			manifest_url = player_response.get('streamingData')
+			if manifest_url:
+				manifest_url = manifest_url.get('hlsManifestUrl')
+			if not manifest_url and player_response.get('hlsvp'):
+				manifest_url = player_response['hlsvp'][0]
+			if manifest_url:
+				url = None
+				url_map = self._extract_from_m3u8(manifest_url)
+
+				# Find the best format from our format priority map
+				for our_format in PRIORITY_VIDEO_FORMAT:
+					if url_map.get(our_format):
+						url = url_map[our_format]
+						break
+				# If anything not found, used first in the list if it not in ignore map
+				if not url:
+					for url_map_key in url_map.keys():
+						if url_map_key not in IGNORE_VIDEO_FORMAT:
+							url = url_map[url_map_key]
+							break
+				if not url:
+					url = url_map.values()[0]
+			else:
+				raise Exception('No supported formats found in video info!')
 
 		return str(url)
