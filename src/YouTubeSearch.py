@@ -1,9 +1,8 @@
 from httplib import HTTPConnection
-from threading import Lock, Thread
-from urllib import quote
+from threading import Thread
 from xml.etree.cElementTree import fromstring
 
-from enigma import ePoint, ePythonMessagePump, getDesktop
+from enigma import ePoint, getDesktop
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -264,49 +263,47 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			config.getSuggestions()
 
 
-class SuggestionsQueryThread(Thread):
-	def __init__(self, query, callback):
-		Thread.__init__(self)
-		self.query = query
-		self.callback = callback
-		self.canceled = False
-		self.messages = ThreadQueue()
-		self.messagePump = ePythonMessagePump()
-		self.messagePump.recv_msg.get().append(self.finished)
-
-	def cancel(self):
-		self.canceled = True
-
-	def run(self):
-		try:
-			self.messages.push((self.query, self.callback))
-			self.messagePump.send(0)
-		except Exception as e:
-			print "[YouTube] Error in get suggestions:", e
-
-	def finished(self, val):
-		if not self.canceled:
-			message = self.messages.pop()
-			message[1](message[0])
-
-
 class GoogleSuggestionsConfigText(ConfigText):
 	def __init__(self, default, updateSuggestions):
 		ConfigText.__init__(self, default, fixed_size=False, visible_width=False)
 		self.updateSuggestions = updateSuggestions
-		self.gl = config.plugins.YouTube.searchRegion.value
-		self.hl = config.plugins.YouTube.searchLanguage.value
 		self.suggestionsThread = None
 		self.suggestionsThreadRunning = False
 
-	def cancelSuggestionsThread(self):
-		if self.suggestionsThread is not None:
-			self.suggestionsThread.cancel()
-		self.suggestionsThreadRunning = False
+		gl = config.plugins.YouTube.searchRegion.value
+		hl = config.plugins.YouTube.searchLanguage.value
+		self.queryString = '/complete/search?output=toolbar&client=youtube&xml=true&ds=yt'
+		if gl:
+			self.queryString += '&gl=' + gl
+		if hl:
+			self.queryString += '&hl=' + hl
+		self.queryString += '&jsonp=self.getSuggestions&q='
 
-	def propagateSuggestions(self, suggestionsList):
-		self.cancelSuggestionsThread()
+	def getGoogleSuggestions(self):
+		suggestionsList = None
 		suggestions = [('', None)]
+		try:
+			connection = HTTPConnection('google.com')
+			connection.request('GET', self.queryString+self.value, '', {'Accept-Encoding': 'UTF-8'})
+		except Exception as e:
+			print "[YouTube] Can not send request for suggestions:", e
+		else:
+			try:
+				response = connection.getresponse()
+			except Exception as e:
+				print "[YouTube] Can not get a response from google:", e
+			else:
+				if response.status == 200:
+					data = response.read()
+					try:
+						charset = response.getheader('Content-Type',
+							'text/xml; charset=ISO-8859-1').rsplit('=')[1]
+					except:
+						charset = 'ISO-8859-1'
+					suggestionsList = data.decode(charset).encode('utf-8')
+		if connection:
+			connection.close()
+
 		if suggestionsList and len(suggestionsList) > 0:
 			suggestionsList = fromstring(suggestionsList)
 			if suggestionsList:
@@ -316,15 +313,13 @@ class GoogleSuggestionsConfigText(ConfigText):
 							name = element.attrib['data'].encode('UTF-8')
 						if name:
 							suggestions.append((name, None))
+		self.suggestionsThreadRunning = False
 		self.updateSuggestions(suggestions)
 
 	def getSuggestions(self):
-		if self.suggestionsThreadRunning:
-			self.cancelSuggestionsThread()
-		if self.value:
+		if self.value and not self.suggestionsThreadRunning:
 			self.suggestionsThreadRunning = True
-			self.suggestionsThread = SuggestionsQueryThread(
-				self.getGoogleSuggestions(self.value), self.propagateSuggestions)
+			self.suggestionsThread = Thread(target=self.getGoogleSuggestions)
 			self.suggestionsThread.start()
 
 	def handleKey(self, key):
@@ -335,60 +330,3 @@ class GoogleSuggestionsConfigText(ConfigText):
 	def onSelect(self, session):
 		ConfigText.onSelect(self, session)
 		self.getSuggestions()
-
-	def onDeselect(self, session):
-		self.cancelSuggestionsThread()
-		ConfigText.onDeselect(self, session)
-
-	def getGoogleSuggestions(self, queryString):
-		if not queryString:
-			return None
-		else:
-			query = '/complete/search?output=toolbar&client=youtube&xml=true&ds=yt'
-			if self.gl:
-				query += '&gl=' + self.gl
-			if self.hl:
-				query += '&hl=' + self.hl
-			query += '&jsonp=self.getSuggestions&q=' + quote(queryString)
-			try:
-				connection = HTTPConnection('google.com')
-				connection.request('GET', query, '', {'Accept-Encoding': 'UTF-8'})
-			except Exception as e:
-				print "[YouTube] Can not send request for suggestions:", e
-			else:
-				try:
-					response = connection.getresponse()
-				except Exception as e:
-					print "[YouTube] Can not get a response from google:", e
-				else:
-					if response.status == 200:
-						data = response.read()
-						try:
-							charset = response.getheader('Content-Type',
-								'text/xml; charset=ISO-8859-1').rsplit('=')[1]
-						except:
-							charset = 'ISO-8859-1'
-						connection.close()
-						return data.decode(charset).encode('utf-8')
-			if connection:
-				connection.close()
-			return None
-
-
-class ThreadQueue:
-	def __init__(self):
-		self.__list = []
-		self.__lock = Lock()
-
-	def push(self, val):
-		lock = self.__lock
-		lock.acquire()
-		self.__list.append(val)
-		lock.release()
-
-	def pop(self):
-		lock = self.__lock
-		lock.acquire()
-		ret = self.__list.pop()
-		lock.release()
-		return ret
