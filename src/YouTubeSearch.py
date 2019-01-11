@@ -1,5 +1,6 @@
 from httplib import HTTPConnection
 from threading import Thread
+from urllib import quote
 from xml.etree.cElementTree import fromstring
 
 from enigma import ePoint, getDesktop
@@ -284,7 +285,7 @@ class GoogleSuggestionsConfigText(ConfigText):
 		suggestions = [('', None)]
 		try:
 			connection = HTTPConnection('google.com')
-			connection.request('GET', self.queryString+self.value, '', {'Accept-Encoding': 'UTF-8'})
+			connection.request('GET', self.queryString+quote(self.value), '', {'Accept-Encoding': 'UTF-8'})
 		except Exception as e:
 			print "[YouTube] Can not send request for suggestions:", e
 			self.suggestionsThreadRunning = False
