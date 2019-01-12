@@ -288,13 +288,11 @@ class GoogleSuggestionsConfigText(ConfigText):
 			connection.request('GET', self.queryString+quote(self.value), '', {'Accept-Encoding': 'UTF-8'})
 		except Exception as e:
 			print "[YouTube] Can not send request for suggestions:", e
-			self.suggestionsThreadRunning = False
 		else:
 			try:
 				response = connection.getresponse()
 			except Exception as e:
 				print "[YouTube] Can not get a response from google:", e
-				self.suggestionsThreadRunning = False
 			else:
 				if response.status == 200:
 					data = response.read()
