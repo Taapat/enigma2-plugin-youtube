@@ -269,7 +269,6 @@ class GoogleSuggestionsConfigText(ConfigText):
 		ConfigText.__init__(self, default, fixed_size=False, visible_width=False)
 		self.updateSuggestions = updateSuggestions
 		self.suggestionsThread = None
-		self.suggestionsThreadRunning = False
 
 		gl = config.plugins.YouTube.searchRegion.value
 		hl = config.plugins.YouTube.searchLanguage.value
@@ -320,11 +319,10 @@ class GoogleSuggestionsConfigText(ConfigText):
 		if queryValue != self.value:
 			self.getGoogleSuggestions()
 		else:
-			self.suggestionsThreadRunning = False
+			self.suggestionsThread = None
 
 	def getSuggestions(self):
-		if self.value and not self.suggestionsThreadRunning:
-			self.suggestionsThreadRunning = True
+		if self.value and self.suggestionsThread == None:
 			self.suggestionsThread = Thread(target=self.getGoogleSuggestions)
 			self.suggestionsThread.start()
 
