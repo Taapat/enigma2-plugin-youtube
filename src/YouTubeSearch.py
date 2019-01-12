@@ -283,9 +283,10 @@ class GoogleSuggestionsConfigText(ConfigText):
 	def getGoogleSuggestions(self):
 		suggestionsList = None
 		suggestions = [('', None)]
+		queryValue = self.value
 		try:
 			connection = HTTPConnection('google.com')
-			connection.request('GET', self.queryString+quote(self.value), '', {'Accept-Encoding': 'UTF-8'})
+			connection.request('GET', self.queryString+quote(queryValue), '', {'Accept-Encoding': 'UTF-8'})
 		except Exception as e:
 			print "[YouTube] Can not send request for suggestions:", e
 		else:
@@ -314,8 +315,11 @@ class GoogleSuggestionsConfigText(ConfigText):
 							name = element.attrib['data'].encode('UTF-8')
 						if name:
 							suggestions.append((name, None))
-		self.suggestionsThreadRunning = False
 		self.updateSuggestions(suggestions)
+		if queryValue != self.value:
+			self.getGoogleSuggestions()
+		else:
+			self.suggestionsThreadRunning = False
 
 	def getSuggestions(self):
 		if self.value and not self.suggestionsThreadRunning:
