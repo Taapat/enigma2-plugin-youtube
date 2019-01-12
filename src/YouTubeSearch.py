@@ -282,6 +282,7 @@ class GoogleSuggestionsConfigText(ConfigText):
 
 	def getGoogleSuggestions(self):
 		suggestionsList = None
+		connection = None
 		suggestions = [('', None)]
 		queryValue = self.value
 		try:
@@ -313,8 +314,8 @@ class GoogleSuggestionsConfigText(ConfigText):
 					for element in suggestion:
 						if 'data' in element.attrib:
 							name = element.attrib['data'].encode('UTF-8')
-						if name:
-							suggestions.append((name, None))
+							if name:
+								suggestions.append((name, None))
 		self.updateSuggestions(suggestions)
 		if queryValue != self.value:
 			self.getGoogleSuggestions()
