@@ -407,6 +407,12 @@ class YouTubeVideoUrl():
 				if not url_map:
 					break
 				url_data = compat_parse_qs(url_map)
+				if 'itag' not in url_data or 'url' not in url_data:
+					continue
+				stream_type = url_data.get('stream_type')
+				# Unsupported FORMAT_STREAM_TYPE_OTF
+				if stream_type and stream_type[0] == '3':
+					continue
 				if url:
 					url += '&suburi='
 				url += url_data['url'][0]
