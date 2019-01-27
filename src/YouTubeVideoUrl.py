@@ -354,6 +354,7 @@ class YouTubeVideoUrl():
 				print '[YouTubeVideoUrl] "token" parameter not in video info for unknown reason'
 
 		# Start extracting information
+		url = ''
 		if 'conn' in video_info and video_info['conn'][0][:4] == 'rtmp':
 			url = video_info['conn'][0]
 		elif not is_live and (len(video_info.get('url_encoded_fmt_stream_map', [''])[0]) >= 1 or \
@@ -402,7 +403,6 @@ class YouTubeVideoUrl():
 			if not url_map_str[0]:
 				url_map_str[0] = encoded_url_map[0]
 
-			url = ''
 			for url_map in url_map_str:
 				if not url_map:
 					break
@@ -450,7 +450,6 @@ class YouTubeVideoUrl():
 			if not manifest_url and player_response.get('hlsvp'):
 				manifest_url = player_response['hlsvp'][0]
 			if manifest_url:
-				url = None
 				url_map = self._extract_from_m3u8(manifest_url)
 
 				# Find the best format from our format priority map
