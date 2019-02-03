@@ -23,7 +23,7 @@ class OAuth:
 	def set_connection(self):
 		# HTTPConnection.debuglevel = 1
 		if sslContext:
-			self.conn = HTTPSConnection('accounts.google.com', context = sslContext)
+			self.conn = HTTPSConnection('accounts.google.com', context=sslContext)
 		else:
 			self.conn = HTTPSConnection('accounts.google.com')
 

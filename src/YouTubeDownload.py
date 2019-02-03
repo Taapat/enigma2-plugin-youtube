@@ -21,7 +21,7 @@ class YouTubeDirBrowser(Screen):
 		self['key_green'] = StaticText(_('Use'))
 		if not os.path.exists(downloadDir):
 			downloadDir = '/'
-		self.filelist = FileList(downloadDir, showFiles = False)
+		self.filelist = FileList(downloadDir, showFiles=False)
 		self['filelist'] = self.filelist
 		self['FilelistActions'] = ActionMap(['SetupActions', 'ColorActions'],
 			{

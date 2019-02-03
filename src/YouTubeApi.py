@@ -37,7 +37,7 @@ class YouTubeApi:
 		response = None
 		try:
 			if sslContext:
-				response = urlopen(url, context = sslContext)
+				response = urlopen(url, context=sslContext)
 			else:
 				response = urlopen(url)
 		except HTTPError as e:
@@ -60,7 +60,7 @@ class YouTubeApi:
 		if header:
 			headers.update(header)
 		if sslContext:
-			conn = HTTPSConnection('www.googleapis.com', context = sslContext)
+			conn = HTTPSConnection('www.googleapis.com', context=sslContext)
 		else:
 			conn = HTTPSConnection('www.googleapis.com')
 		conn.request(method, url, data, headers)

@@ -150,7 +150,7 @@ class YouTubeVideoUrl():
 		""" Returns a tuple (page content as string, URL handle) """
 		try:
 			if sslContext:
-				urlh = urlopen(url, context = sslContext)
+				urlh = urlopen(url, context=sslContext)
 			else:
 				urlh = urlopen(url)
 		except URLError, e:
