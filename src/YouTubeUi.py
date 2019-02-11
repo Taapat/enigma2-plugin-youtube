@@ -349,7 +349,7 @@ class YouTubeMain(Screen):
 		defThumbnail = resolveFilename(SCOPE_PLUGINS,
 			'Extensions/YouTube/icons/icon.png')
 		self.decodeThumbnail('default', defThumbnail)
-		self.splitTaimer.start(1)
+		self.splitTaimer.start(1, True)
 
 	def cleanVariables(self):
 		del self.splitTaimer
@@ -449,10 +449,9 @@ class YouTubeMain(Screen):
 		self['green'].hide()
 		self['menu'].hide()
 		self['info'].hide()
-		self.splitTaimer.start(1)
+		self.splitTaimer.start(1, True)
 
 	def splitTaimerStop(self):
-		self.splitTaimer.stop()
 		if self.action == 'startup':
 			from YouTubeVideoUrl import YouTubeVideoUrl
 			self.ytdl = YouTubeVideoUrl()
@@ -662,10 +661,9 @@ class YouTubeMain(Screen):
 					self.selectPrevious()
 				self.playTaimer = eTimer()
 				self.playTaimer.timeout.callback.append(self.playTaimerStop)
-				self.playTaimer.start(1)
+				self.playTaimer.start(1, True)
 
 	def playTaimerStop(self):
-		self.playTaimer.stop()
 		del self.playTaimer
 		self.ok()
 
@@ -1559,14 +1557,13 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			msg = _('Go to %s\nAnd enter the code %s') % (str(self.oauth.verification_url), userCode)
 			print "[YouTube] ", msg
 			self.mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
-			self.splitTaimer.start(9000)
+			self.splitTaimer.start(9000, True)
 
 	def splitTaimerStop(self):
-		self.splitTaimer.stop()
 		# Here we waiting until the user enter a code
 		refreshToken, retryInterval = self.oauth.get_new_token()
 		if not refreshToken:
-			self.splitTaimer.start(retryInterval * 1000)
+			self.splitTaimer.start(retryInterval*1000, True)
 		else:
 			print "[YouTube] Get refresh token"
 			if self.mbox:
