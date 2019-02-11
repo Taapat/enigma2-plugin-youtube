@@ -322,8 +322,6 @@ class YouTubeMain(Screen):
 		self['thumbnail'].hide()
 		self.splitTaimer = eTimer()
 		self.splitTaimer.timeout.callback.append(self.splitTaimerStop)
-		self.thumbnailTaimer = eTimer()
-		self.thumbnailTaimer.timeout.callback.append(self.updateThumbnails)
 		self.picloads = {}
 		self.thumbnails = {}
 		self.sc = AVSwitch().getFramebufferScale()
@@ -354,7 +352,6 @@ class YouTubeMain(Screen):
 		self.splitTaimer.start(1)
 
 	def cleanVariables(self):
-		del self.thumbnailTaimer
 		del self.splitTaimer
 		self.ytdl = None
 		self.youtube = None
@@ -567,7 +564,7 @@ class YouTubeMain(Screen):
 		if not image or not os.path.exists(image):
 			print "[YouTube] Thumbnail not exists, use default for", entryId
 			self.thumbnails[entryId] = True
-			self.thumbnailTaimer.start(1)
+			self.updateThumbnails()
 		else:
 			self.picloads[entryId] = ePicLoad()
 			self.picloads[entryId].PictureData.get()\
@@ -581,39 +578,40 @@ class YouTubeMain(Screen):
 		ptr = self.picloads[entryId].getData()
 		if ptr:
 			self.thumbnails[entryId] = ptr
-			del self.picloads[entryId]
+			self.updateThumbnails()
 			if image[:4] == '/tmp':
 				os.remove(image)
-			self.thumbnailTaimer.start(1)
+			self.delPicloadTimer = eTimer()
+			self.delPicloadTimer.callback.append(boundFunction(self.delPicload, entryId))
+			self.delPicloadTimer.start(1, True)
 
 	def updateThumbnails(self):
-		self.thumbnailTaimer.stop()
-		if len(self.picloads) != 0:
-			self.thumbnailTaimer.start(1)
-		else:
-			count = 0
-			for entry in self.entryList:
-				if not entry[2] and entry[0] in self.thumbnails:
-					thumbnail = self.thumbnails[entry[0]]
-					if thumbnail is True:
-						thumbnail = self.thumbnails['default']
-					self.entryList[count] = (
-							entry[0],  # Id
-							entry[1],  # Thumbnail url
-							thumbnail,  # Thumbnail
-							entry[3],  # Title
-							entry[4],  # Views
-							entry[5],  # Duration
-							entry[6],  # Video url
-							entry[7],  # Description
-							entry[8],  # Likes
-							entry[9],  # Dislikes
-							entry[10],  # Big thumbnail url
-							entry[11],  # Channel Id
-							entry[12],  # Published
-						)
-				count += 1
-			self['list'].updateList(self.entryList)
+		count = 0
+		for entry in self.entryList:
+			if not entry[2] and entry[0] in self.thumbnails:
+				thumbnail = self.thumbnails[entry[0]]
+				if thumbnail is True:
+					thumbnail = self.thumbnails['default']
+				self.entryList[count] = (
+						entry[0],  # Id
+						entry[1],  # Thumbnail url
+						thumbnail,  # Thumbnail
+						entry[3],  # Title
+						entry[4],  # Views
+						entry[5],  # Duration
+						entry[6],  # Video url
+						entry[7],  # Description
+						entry[8],  # Likes
+						entry[9],  # Dislikes
+						entry[10],  # Big thumbnail url
+						entry[11],  # Channel Id
+						entry[12],  # Published
+					)
+			count += 1
+		self['list'].updateList(self.entryList)
+
+	def delPicload(self, entryId):
+		del self.picloads[entryId]
 
 	def selectNext(self):
 		if self['list'].index + 1 < len(self.entryList):  # not last enrty in entry list
