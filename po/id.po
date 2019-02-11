@@ -374,7 +374,7 @@ msgid "Spain"
 msgstr "Spanyol"
 
 msgid "Specify the directory where save downloaded video files."
-msgstr "Atur direktori dimana menyimpan berkash yang telah diunduh."
+msgstr "Atur direktori dimana menyimpan berkas yang telah diunduh."
 
 msgid "Stop playing this movie?"
 msgstr "Berhenti memutar film ini?"
