@@ -28,40 +28,46 @@ class OAuth:
 			self.conn = HTTPSConnection('accounts.google.com')
 
 	def get_user_code(self):
-		self.conn.request(
-			"POST",
-			"/o/oauth2/device/code",
-			urlencode({
-				'client_id': self.client_id,
-				'scope'	: 'https://www.googleapis.com/auth/youtube'
-				}),
-			{"Content-type": "application/x-www-form-urlencoded"}
-			)
+		try:
+			self.conn.request(
+					"POST",
+					"/o/oauth2/device/code",
+					urlencode({
+						'client_id': self.client_id,
+						'scope'	: 'https://www.googleapis.com/auth/youtube'
+						}),
+					{"Content-type": "application/x-www-form-urlencoded"}
+				)
+		except:
+			return ''
 		response = self.conn.getresponse()
 		if (response.status == 200):
 			data = loads(response.read())
+			user_code = data['user_code']
 			self.device_code = data['device_code']
-			self.user_code = data['user_code']
 			self.verification_url = data['verification_url']
 			self.retry_interval = data['interval']
 		else:
 			print(response.status)
 			print(response.read())
-			return None
-		return self.user_code
+			return ''
+		return user_code
 
 	def get_new_token(self):
-		self.conn.request(
-				"POST",
-				"/o/oauth2/token",
-				urlencode({
-						'client_id': self.client_id,
-						'client_secret': self.client_secret,
-						'code': self.device_code,
-						'grant_type': 'http://oauth.net/grant_type/device/1.0'
-					}),
-				{"Content-type": "application/x-www-form-urlencoded"}
-			)
+		try:
+			self.conn.request(
+					"POST",
+					"/o/oauth2/token",
+					urlencode({
+							'client_id': self.client_id,
+							'client_secret': self.client_secret,
+							'code': self.device_code,
+							'grant_type': 'http://oauth.net/grant_type/device/1.0'
+						}),
+					{"Content-type": "application/x-www-form-urlencoded"}
+				)
+		except:
+			return None, self.retry_interval + 2
 
 		response = self.conn.getresponse()
 		if (response.status == 200):
@@ -73,17 +79,20 @@ class OAuth:
 				return None, self.retry_interval + 2
 
 	def get_access_token(self, refresh_token):
-		self.conn.request(
-				"POST",
-				"/o/oauth2/token",
-				urlencode({
-						'client_id': self.client_id,
-						'client_secret': self.client_secret,
-						'refresh_token': refresh_token,
-						'grant_type': 'refresh_token'
-					}),
-				{"Content-type": "application/x-www-form-urlencoded"}
-			)
+		try:
+			self.conn.request(
+					"POST",
+					"/o/oauth2/token",
+					urlencode({
+							'client_id': self.client_id,
+							'client_secret': self.client_secret,
+							'refresh_token': refresh_token,
+							'grant_type': 'refresh_token'
+						}),
+					{"Content-type": "application/x-www-form-urlencoded"}
+				)
+		except:
+			return None
 
 		response = self.conn.getresponse()
 		if (response.status == 200):
