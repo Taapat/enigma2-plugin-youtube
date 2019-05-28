@@ -446,7 +446,12 @@ class YouTubeVideoUrl():
 				elif 's' in url_data:
 					encrypted_sig = url_data['s'][0]
 					signature = self._decrypt_signature(encrypted_sig, player_url)
-					url += '&signature=' + signature
+					sp = url_data.get('sp')
+					if sp:
+						sp = sp[0]
+					else:
+						sp = 'signature'
+					url += '&%s=%s' % (sp, signature)
 				if 'ratebypass' not in url:
 					url += '&ratebypass=yes'
 		else:
