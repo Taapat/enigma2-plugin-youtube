@@ -278,6 +278,11 @@ class YouTubeVideoUrl():
 			player_url = None
 
 		is_live = None
+
+		def extract_token(v_info):
+			token = v_info.get('account_playback_token') or v_info.get('accountPlaybackToken') or v_info.get('token')
+			return token
+
 		player_response = {}
 
 		# Get video info
@@ -344,9 +349,11 @@ class YouTubeVideoUrl():
 					if not video_info_webpage:
 						continue
 					video_info = compat_parse_qs(video_info_webpage)
-					if 'token' in video_info:
+					token = extract_token(get_video_info)
+					if not token:
 						break
-		if 'token' not in video_info:
+		token = extract_token(video_info)
+		if not token:
 			if 'reason' in video_info:
 				print '[YouTubeVideoUrl] %s' % video_info['reason'][0]
 			else:
