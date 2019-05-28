@@ -349,7 +349,7 @@ class YouTubeVideoUrl():
 					if not video_info_webpage:
 						continue
 					video_info = compat_parse_qs(video_info_webpage)
-					token = extract_token(get_video_info)
+					token = extract_token(video_info)
 					if not token:
 						break
 		token = extract_token(video_info)
