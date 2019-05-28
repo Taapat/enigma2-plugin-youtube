@@ -330,7 +330,7 @@ class YouTubeVideoUrl():
 				# manifest pointed by get_video_info's dashmpd).
 				# The general idea is to take a union of itags of both DASH manifests (for example
 				# video with such 'manifest behavior' see https://github.com/rg3/youtube-dl/issues/6093)
-				for el in ('info', 'embedded', 'detailpage', 'vevo', ''):
+				for el in ('embedded', 'detailpage', 'vevo', ''):
 					query = {
 							'video_id': video_id,
 							'ps': 'default',
