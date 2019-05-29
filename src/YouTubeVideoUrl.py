@@ -464,11 +464,6 @@ class YouTubeVideoUrl():
 				if 'ratebypass' not in url:
 					url += '&ratebypass=yes'
 		else:
-			manifest_url = player_response.get('streamingData')
-			if manifest_url:
-				manifest_url = manifest_url.get('hlsManifestUrl')
-			if not manifest_url and player_response.get('hlsvp'):
-				manifest_url = player_response['hlsvp'][0]
 			manifest_url = try_get(
 					player_response,
 					lambda x: x['streamingData']['hlsManifestUrl'],
