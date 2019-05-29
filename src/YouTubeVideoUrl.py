@@ -65,6 +65,19 @@ def uppercase_escape(s):
 		s)
 
 
+def try_get(src, getter, expected_type=None):
+	if not isinstance(getter, (list, tuple)):
+		getter = [getter]
+	for get in getter:
+		try:
+			v = get(src)
+		except (AttributeError, KeyError, TypeError, IndexError):
+			pass
+		else:
+			if expected_type is None or isinstance(v, expected_type):
+				return v
+
+
 def compat_urllib_parse_unquote(string, encoding='utf-8', errors='replace'):
 	if string == '':
 		return string
@@ -446,11 +459,7 @@ class YouTubeVideoUrl():
 				elif 's' in url_data:
 					encrypted_sig = url_data['s'][0]
 					signature = self._decrypt_signature(encrypted_sig, player_url)
-					sp = url_data.get('sp')
-					if sp:
-						sp = sp[0]
-					else:
-						sp = 'signature'
+					sp = try_get(url_data, lambda x: x['sp'][0], unicode) or 'signature'
 					url += '&%s=%s' % (sp, signature)
 				if 'ratebypass' not in url:
 					url += '&ratebypass=yes'
@@ -460,6 +469,11 @@ class YouTubeVideoUrl():
 				manifest_url = manifest_url.get('hlsManifestUrl')
 			if not manifest_url and player_response.get('hlsvp'):
 				manifest_url = player_response['hlsvp'][0]
+			manifest_url = try_get(
+					player_response,
+					lambda x: x['streamingData']['hlsManifestUrl'],
+					unicode) or try_get(
+					video_info, lambda x: x['hlsvp'][0], unicode)
 			if manifest_url:
 				url_map = self._extract_from_m3u8(manifest_url)
 
