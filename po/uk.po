@@ -4,8 +4,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-14 19:23+0200\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
-"Last-Translator: Vasiliks <vasiliks@yandex.ru>\n"
-"Language-Team: Vasiliks <vasiliks@yandex.ru>\n"
+"Last-Translator: kvinto <kvinto@rambler.ru>\n"
+"Language-Team: <kvinto  sat-ukraine.info>\n"
 "Language: uk_UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,7 +15,7 @@ msgstr ""
 
 #, python-format
 msgid "  (%d-%d of %d)"
-msgstr ""
+msgstr "  (%d-%d з %d)"
 
 msgid " dislikes"
 msgstr " не сподобалося"
@@ -29,12 +29,11 @@ msgstr " переглядів"
 msgid "Active video downloads"
 msgstr "Активні відеозавантаження"
 
-#, fuzzy
 msgid "Add to favorites"
-msgstr "Фаворити"
+msgstr "Додати до фаворитів"
 
 msgid "Added!"
-msgstr ""
+msgstr "Додано"
 
 msgid "All"
 msgstr "Всі"
@@ -82,7 +81,7 @@ msgid "Download search results. Please wait..."
 msgstr "Завантаження результатів пошуку. Зачекайте ..."
 
 msgid "Download video"
-msgstr "Скачати відео"
+msgstr "Завантажити відео"
 
 msgid "Downloading"
 msgstr "Заванаження"
@@ -100,12 +99,14 @@ msgid "Exit"
 msgstr "Вихід"
 
 msgid "Extract video url. Please wait..."
-msgstr "Витяг відеопосилання. Подождите..."
+msgstr "Витяг відеопосилання. Почекайте..."
 
 msgid ""
 "FFmpeg will be used to merge downloaded DASH video and audio files.\n"
 "FFmpeg will be installed if necessary."
 msgstr ""
+"FFmpeg буде використовуватися для об'єднання завантажених відео та аудіо файлів DASH.\n"
+"FFmpeg буде встановлено, якщо необхідно."
 
 msgid "Favorites"
 msgstr "Фаворити"
@@ -128,7 +129,7 @@ msgid "Great Britain"
 msgstr "Англія"
 
 msgid "Greece"
-msgstr ""
+msgstr "Греція"
 
 msgid "HD videos"
 msgstr "HD відео"
@@ -183,7 +184,7 @@ msgid ""
 "Log in to your YouTube account when plugin starts.\n"
 "This needs to approve in the Google home page!"
 msgstr ""
-"Використовувати ваш аккаунт YouTube, при запуску плагіна.\n"
+"Використовувати Ваш аккаунт YouTube, при запуску плагіна.\n"
 "Це треба підтвердити на домашній сторінці Google!"
 
 msgid "Login on startup:"
@@ -193,7 +194,7 @@ msgid "Maximum video resolution:"
 msgstr "Максимальний дозвіл відео:"
 
 msgid "Merge downloaded files:"
-msgstr ""
+msgstr "Об'єднати завантажені файли:"
 
 msgid "Mexico"
 msgstr "Мексика"
@@ -218,7 +219,7 @@ msgstr "Нова Зеландія"
 
 #, python-format
 msgid "Next %s entries"
-msgstr ""
+msgstr "Наступні %s записи"
 
 msgid "No"
 msgstr "Ні"
@@ -241,7 +242,6 @@ msgstr "Відтворити наступне"
 msgid "Play next video"
 msgstr "Відтворити наступне відео"
 
-#, fuzzy
 msgid "Play previous"
 msgstr "Відтворити попереднє"
 
@@ -262,19 +262,19 @@ msgstr "Польща"
 
 #, python-format
 msgid "Previous %s entries"
-msgstr ""
+msgstr "Попередні записи %s"
 
 msgid "Public feeds"
 msgstr "Публічні фіди"
 
 msgid "Published at: "
-msgstr ""
+msgstr "Опубліковано: "
 
 msgid "Quit"
 msgstr "Вихід"
 
 msgid "Rate video"
-msgstr ""
+msgstr "Оцінити відео"
 
 msgid "Rating"
 msgstr "Рейтинг"
@@ -289,14 +289,13 @@ msgid "Relevance"
 msgstr "Актуальність"
 
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Видалити з фаворитів"
 
 msgid "Remove my rating"
 msgstr "Видалити мій рейтинг"
 
-#, fuzzy
 msgid "Removed!"
-msgstr "Рейтинг видалений!"
+msgstr "Видалено!"
 
 msgid "Repeat"
 msgstr "Повторення"
@@ -311,7 +310,7 @@ msgid "Return to list"
 msgstr "Повернутися до списку"
 
 msgid "Russia"
-msgstr "Россія"
+msgstr "Росія"
 
 msgid "Save search result:"
 msgstr "Зберегти результат пошуку:"
@@ -332,7 +331,7 @@ msgid "Search language:"
 msgstr "Мова пошуку:"
 
 msgid "Search live broadcasts"
-msgstr ""
+msgstr "Шукати прямі трансляції"
 
 msgid "Search playlists"
 msgstr "Пошук плейлистів"
@@ -368,7 +367,7 @@ msgid "Sort search results by:"
 msgstr "Сортувати результати пошуку по:"
 
 msgid "South Korea"
-msgstr "Южна Корея"
+msgstr "Південна Корея"
 
 msgid "Spain"
 msgstr "Іспанія"
@@ -383,7 +382,7 @@ msgid "Subscribe"
 msgstr "Підписатися"
 
 msgid "Subscribe this video channel"
-msgstr ""
+msgstr "Підписатися на цей відеоканал"
 
 msgid "Subscribed!"
 msgstr "Підписка оформлена!"
@@ -402,14 +401,14 @@ msgid ""
 "Maybe try other feeds..."
 msgstr ""
 "Помилка у створенні списку!\n"
-"Спробуйте інші канали ..."
+"Спробуйте інші канали..."
 
 #, python-format
 msgid ""
 "There was an error in extract video url:\n"
 "%s"
 msgstr ""
-"Помилка при витяганні відеоссилки:\n"
+"Помилка при витяганні відеопосилання:\n"
 "%s"
 
 #, fuzzy
@@ -424,6 +423,9 @@ msgid ""
 "FFmpeg can take a lot of space!\n"
 "Do you want to continue?"
 msgstr ""
+"Для об'єднання завантажених файлів буде встановлено FFmpeg.\n"
+"FFmpeg може зайняти багато місця!\n"
+"Хочете продовжити?"
 
 msgid ""
 "To perform authentication will need in a web browser open Google home page, and enter the code!\n"
@@ -439,7 +441,7 @@ msgid "Try to exclude all restricted content from the search result."
 msgstr "Спробувати виключити весь обмежений вміст з результатів пошуку."
 
 msgid "Turkey"
-msgstr ""
+msgstr "Турція"
 
 msgid "United States"
 msgstr "США"
@@ -457,16 +459,16 @@ msgid "Use"
 msgstr "Використати"
 
 msgid "Video download started!"
-msgstr "Завантаження відео розпочалась!"
+msgstr "Завантаження відео розпочалось!"
 
 msgid "Videos from this video channel"
-msgstr ""
+msgstr "Відео з цього відеоканалу"
 
 msgid "View count"
 msgstr "Кількість переглядів"
 
 msgid "Watch YouTube videos"
-msgstr "Перегляд видео з YouTube"
+msgstr "Перегляд відео з YouTube"
 
 msgid "What do you want to do?"
 msgstr "Що ви хочете зробити?"
@@ -475,8 +477,8 @@ msgid ""
 "What maximum resolution used when playing video, if available.\n"
 "If you have a slow Internet connection, you can use a lower resolution."
 msgstr ""
-"Який максимальний дозвіл використовувати при відтворенні відео, якщо такий є\n"
-"Якщо у вас повільне підключення до інтернету, ви можете використовувати більш низкий дозвіл."
+"Яка максимальна роздільність екрану має використовуватися при відтворенні відео, якщо така є\n"
+"Якщо у вас повільне підключення до інтернету, ви можете використовувати більш низьку роздільність."
 
 msgid "What to do when stop playback in videoplayer."
 msgstr "Що робити, якщо зупинити відтворення в відеоплеєрі."
@@ -491,7 +493,7 @@ msgid "When video ends:"
 msgstr "Коли відео закінчилося:"
 
 msgid "Yes"
-msgstr "Да"
+msgstr "Так"
 
 msgid "Yes, but play next video"
 msgstr "Так, але програти наступне відео"
@@ -511,6 +513,9 @@ msgid ""
 "Installed FFmpeg is no longer necessary.\n"
 "Do you want to remove FFmpeg?"
 msgstr ""
+"Ви відмінили злиття файлів.\n"
+"Встановлений FFmpeg більше не потрібний.\n"
+"Видалити FFmpeg?"
 
 msgid "YouTube"
 msgstr "YouTube"
@@ -525,4 +530,4 @@ msgid "YouTube setup"
 msgstr "Налаштування YouTube"
 
 msgid "YouTube starting. Please wait..."
-msgstr "YouTube запускається. Зачекайте ..."
+msgstr "YouTube запускається. Зачекайте..."
