@@ -1431,7 +1431,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		self.session = session
 		self.skinName = ['YouTubeSetup', 'Setup']
 		self['key_red'] = StaticText(_('Cancel'))
-		self['key_green'] = StaticText(_('Ok'))
+		self['key_green'] = StaticText(_('OK'))
 		self['description'] = Label('')
 		self['setupActions'] = ActionMap(['SetupActions', 'ColorActions'],
 			{
