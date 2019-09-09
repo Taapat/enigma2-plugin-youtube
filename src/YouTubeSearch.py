@@ -78,11 +78,11 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					transparent="1" alphatest="on" />
 				<ePixmap position="405,323" size="140,40" pixmap="skin_default/buttons/yellow.png" \
 					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="85,328" zPosition="2" size="140,30" \
+				<widget source="key_red" render="Label" position="85,323" zPosition="2" size="140,40" \
 					valign="center" halign="center" font="Regular;22" transparent="1" />
-				<widget source="key_green" render="Label" position="245,328" zPosition="2" size="140,30" \
+				<widget source="key_green" render="Label" position="245,323" zPosition="2" size="140,40" \
 					valign="center" halign="center" font="Regular;22" transparent="1" />
-				<widget source="key_yellow" render="Label" position="405,328" zPosition="2" size="140,30" \
+				<widget source="key_yellow" render="Label" position="405,323" zPosition="2" size="140,40" \
 					valign="center" halign="center" font="Regular;22" transparent="1" />
 				<ePixmap position="565,335" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
@@ -102,18 +102,18 @@ class YouTubeSearch(Screen, ConfigListScreen):
 						"itemHeight": 45}
 					</convert>
 				</widget>
-				<ePixmap position="127,484" size="210,60" pixmap="skin_default/buttons/red.png" \
+				<ePixmap position="127,484" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
-				<ePixmap position="367,484" size="210,60" pixmap="skin_default/buttons/green.png" \
+				<ePixmap position="367,484" size="140,40" pixmap="skin_default/buttons/green.png" \
 					transparent="1" alphatest="on" />
-				<ePixmap position="608,484" size="210,60" pixmap="skin_default/buttons/yellow.png" \
+				<ePixmap position="608,484" size="140,40" pixmap="skin_default/buttons/yellow.png" \
 					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="127,485" zPosition="2" size="210,60" \
-					valign="center" halign="center" font="Regular;33" transparent="1" />
-				<widget source="key_green" render="Label" position="367,485" zPosition="2" size="210,60" \
-					valign="center" halign="center" font="Regular;33" transparent="1" />
-				<widget source="key_yellow" render="Label" position="608,485" zPosition="2" size="210,60" \
-					valign="center" halign="center" font="Regular;33" transparent="1" />
+				<widget source="key_red" render="Label" position="127,484" zPosition="2" size="140,40" \
+					valign="center" halign="center" font="Regular;22" transparent="1" />
+				<widget source="key_green" render="Label" position="367,484" zPosition="2" size="140,40" \
+					valign="center" halign="center" font="Regular;22" transparent="1" />
+				<widget source="key_yellow" render="Label" position="608,484" zPosition="2" size="140,40" \
+					valign="center" halign="center" font="Regular;22" transparent="1" />
 				<ePixmap position="847,502" size="53,38" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="HelpWindow" position="600,810" size="1,1" zPosition="5" \
@@ -138,11 +138,11 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					transparent="1" alphatest="on" />
 				<ePixmap position="405,323" size="140,40" pixmap="skin_default/buttons/yellow.png" \
 					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="85,328" zPosition="2" size="140,30" \
+				<widget source="key_red" render="Label" position="85,323" zPosition="2" size="140,40" \
 					valign="center" halign="center" font="Regular;22" transparent="1" />
-				<widget source="key_green" render="Label" position="245,328" zPosition="2" size="140,30" \
+				<widget source="key_green" render="Label" position="245,323" zPosition="2" size="140,40" \
 					valign="center" halign="center" font="Regular;22" transparent="1" />
-				<widget source="key_yellow" render="Label" position="405,328" zPosition="2" size="140,30" \
+				<widget source="key_yellow" render="Label" position="405,323" zPosition="2" size="140,40" \
 					valign="center" halign="center" font="Regular;22" transparent="1" />
 				<ePixmap position="565,335" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />

@@ -122,10 +122,10 @@ class YouTubeDownloadList(Screen):
 						"itemHeight": 45}
 					</convert>
 				</widget>
-				<ePixmap position="center,484" size="210,60" pixmap="skin_default/buttons/red.png" \
+				<ePixmap position="center,484" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="center,485" zPosition="2" \
-					size="210,60" valign="center" halign="center" font="Regular;33" transparent="1" />
+				<widget source="key_red" render="Label" position="center,484" zPosition="2" \
+					size="140,40" valign="center" halign="center" font="Regular;22" transparent="1" />
 				</screen>"""
 	else:
 		skin = """<screen position="center,center" size="630,370">
@@ -148,8 +148,8 @@ class YouTubeDownloadList(Screen):
 				</widget>
 				<ePixmap position="center,323" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="center,328" zPosition="2" \
-					size="140,30" valign="center" halign="center" font="Regular;22" transparent="1" />
+				<widget source="key_red" render="Label" position="center,323" zPosition="2" \
+					size="140,40" valign="center" halign="center" font="Regular;22" transparent="1" />
 				</screen>"""
 
 	def __init__(self, session):
