@@ -1341,7 +1341,7 @@ class YouTubeInfo(Screen):
 				<ePixmap position="295,377" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
 				<widget source="key_red" render="Label" position="295,377" zPosition="2" size="140,40" \
-					valign="centre" halign="center" font="Regular;22" transparent="1" />
+					valign="center" halign="center" font="Regular;22" transparent="1" />
 			</screen>"""
 	elif screenWidth and screenWidth == 1920:
 		skin = """<screen position="center,center" size="1095,636">
