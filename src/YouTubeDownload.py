@@ -122,7 +122,7 @@ class YouTubeDownloadList(Screen):
 						"itemHeight": 45}
 					</convert>
 				</widget>
-				<ePixmap position="center,484" size="210,60" pixmap="skin_default/buttons/red.png" \
+				<ePixmap position="center,484" size="210,60" pixmap="skin_fallback_1080/buttons/red.png" \
 					transparent="1" alphatest="on" />
 				<widget source="key_red" render="Label" position="center,485" zPosition="2" \
 					size="210,60" valign="center" halign="center" font="Regular;33" transparent="1" />
