@@ -114,8 +114,6 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 				<widget source="key_yellow" render="Label" position="608,485" zPosition="2" size="210,60" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
-				<ePixmap position="847,502" size="53,38" pixmap="skin_fallback_1080/buttons/key_menu.png" \
-					transparent="1" alphatest="on" />
 				<widget name="HelpWindow" position="600,810" size="1,1" zPosition="5" \
 					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
 			</screen>"""
