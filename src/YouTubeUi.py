@@ -241,8 +241,6 @@ class YouTubeMain(Screen):
 						"itemHeight": 108}
 					</convert>
 				</widget>
-				<widget name="info" position="75,718" size="53,38" pixmap="skin_fallback_1080/buttons/key_info.png" \
-					transparent="1" alphatest="on" />
 				<widget name="red" position="322,707" size="210,60" pixmap="skin_fallback_1080/buttons/red.png" \
 					transparent="1" alphatest="on" />
 				<widget name="green" position="563,707" size="210,60" pixmap="skin_fallback_1080/buttons/green.png" \
@@ -251,8 +249,6 @@ class YouTubeMain(Screen):
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 				<widget source="key_green" render="Label" position="563,714" zPosition="2" size="210,45" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
-				<widget name="menu" position="968,718" size="53,38" pixmap="skin_fallback_1080/buttons/key_menu.png" \
-					transparent="1" alphatest="on" />
 				<widget name="thumbnail" position="0,0" size="150,108" /> # Thumbnail size in list
 			</screen>"""
 	else:
