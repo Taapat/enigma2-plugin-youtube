@@ -102,11 +102,11 @@ class YouTubeSearch(Screen, ConfigListScreen):
 						"itemHeight": 45}
 					</convert>
 				</widget>
-				<ePixmap position="127,484" size="210,60" pixmap="skin_default/buttons/red.png" \
+				<ePixmap position="127,484" size="210,60" pixmap="skin_fallback_1080/buttons/red.png" \
 					transparent="1" alphatest="on" />
-				<ePixmap position="367,484" size="210,60" pixmap="skin_default/buttons/green.png" \
+				<ePixmap position="367,484" size="210,60" pixmap="skin_fallback_1080/buttons/green.png" \
 					transparent="1" alphatest="on" />
-				<ePixmap position="608,484" size="210,60" pixmap="skin_default/buttons/yellow.png" \
+				<ePixmap position="608,484" size="210,60" pixmap="skin_fallback_1080/buttons/yellow.png" \
 					transparent="1" alphatest="on" />
 				<widget source="key_red" render="Label" position="127,485" zPosition="2" size="210,60" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
@@ -114,7 +114,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 				<widget source="key_yellow" render="Label" position="608,485" zPosition="2" size="210,60" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
-				<ePixmap position="847,502" size="53,38" pixmap="skin_default/buttons/key_menu.png" \
+				<ePixmap position="847,502" size="53,38" pixmap="skin_fallback_1080/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="HelpWindow" position="600,810" size="1,1" zPosition="5" \
 					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
