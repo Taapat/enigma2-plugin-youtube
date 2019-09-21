@@ -184,7 +184,7 @@ class YouTubeVideoUrl():
 		Perform a regex search on the given string, using a single or a list of
 		patterns returning the first matching group.
 		"""
-		if group is None:
+		if isinstance(pattern, (str, unicode, type(re.compile('')))):
 			mobj = re.search(pattern, string, 0)
 		else:
 			for p in pattern:
@@ -198,7 +198,8 @@ class YouTubeVideoUrl():
 			else:
 				return mobj.group(group)
 		else:
-			raise Exception('Unable extract pattern from string!')
+			print '[YouTubeVideoUrl] unable extract pattern from string!'
+			return ''
 
 	def _decrypt_signature(self, s, player_url):
 		"""Turn the encrypted s field into a working signature"""
