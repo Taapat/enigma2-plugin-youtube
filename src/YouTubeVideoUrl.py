@@ -313,6 +313,13 @@ class YouTubeVideoUrl():
 			token = v_info.get('account_playback_token') or v_info.get('accountPlaybackToken') or v_info.get('token')
 			return token
 
+		def extract_player_response(player_response):
+			if not player_response:
+				return
+			pl_response = json.loads(player_response)
+			if isinstance(pl_response, dict):
+				return pl_response
+
 		player_response = {}
 
 		# Get video info
@@ -331,10 +338,13 @@ class YouTubeVideoUrl():
 			video_info_url = 'https://www.youtube.com/get_video_info?' + data
 			video_info_webpage = self._download_webpage(video_info_url)
 			video_info = compat_parse_qs(video_info_webpage)
+			pl_response = video_info.get('player_response', [None])[0]
+			player_response = extract_player_response(pl_response)
 		else:
 			age_gate = False
 			video_info = None
 			sts = None
+			args = {}
 			# Try looking directly into the video webpage
 			ytplayer_config = self._get_ytplayer_config(video_webpage)
 			if ytplayer_config:
@@ -345,14 +355,8 @@ class YouTubeVideoUrl():
 				if args.get('livestream') == '1' or args.get('live_playback') == 1:
 					is_live = True
 				sts = ytplayer_config.get('sts')
-
-			if not player_response:
-				pl_response = args.get('player_response')
-				if pl_response:
-					pl_response = json.loads(pl_response)
-					if isinstance(pl_response, dict):
-						player_response = pl_response
-
+				if not player_response:
+					player_response = extract_player_response(args.get('player_response'))
 			if not video_info:
 				# We also try looking in get_video_info since it may contain different dashmpd
 				# URL that points to a DASH manifest with possibly different itag set (some itags
@@ -379,6 +383,9 @@ class YouTubeVideoUrl():
 					if not video_info_webpage:
 						continue
 					video_info = compat_parse_qs(video_info_webpage)
+					if not player_response:
+						pl_response = video_info.get('player_response', [None])[0]
+						player_response = extract_player_response(pl_response)
 					token = extract_token(video_info)
 					if not token:
 						break
