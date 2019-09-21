@@ -290,7 +290,10 @@ class YouTubeVideoUrl():
 				return json.loads(uppercase_escape(config))
 
 	def extract(self, video_id):
-		url = 'https://www.youtube.com/watch?v=%s&gl=US&hl=en&has_verified=1&bpctr=9999999999' % video_id
+		gl = config.plugins.YouTube.searchRegion.value
+		hl = config.plugins.YouTube.searchLanguage.value
+
+		url = 'https://www.youtube.com/watch?v=%s&gl=%s&hl=%s&has_verified=1&bpctr=9999999999' % (video_id, gl, hl)
 
 		# Get video webpage
 		video_webpage = self._download_webpage(url)
@@ -362,8 +365,8 @@ class YouTubeVideoUrl():
 							'video_id': video_id,
 							'ps': 'default',
 							'eurl': '',
-							'gl': 'US',
-							'hl': 'en',
+							'gl': gl,
+							'hl': hl,
 						}
 					if el:
 						query['el'] = el
