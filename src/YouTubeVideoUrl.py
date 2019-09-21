@@ -533,7 +533,16 @@ class YouTubeVideoUrl():
 							break
 				if not url:
 					url = url_map.values()[0]
-			else:
-				raise Exception('No supported formats found in video info!')
+		if not url:
+			error_message = try_get(
+					player_response,
+					lambda x: x['playabilityStatus']['reason'],
+					unicode)
+			if not error_message:
+				error_message = try_get(
+					video_info, lambda x: x['reason'][0], unicode)
+			if not error_message:
+				error_message = 'No supported formats found in video info!'
+			raise Exception(error_message)
 
 		return str(url)
