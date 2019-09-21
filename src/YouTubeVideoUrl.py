@@ -406,10 +406,6 @@ class YouTubeVideoUrl():
 			formats = []
 			url_map_str = []
 
-			# If format changed in config, recreate priority list
-			if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.value:
-				createPriorityFormats()
-
 			for fmt in streaming_formats:
 				url_map = {
 						'url': None,
@@ -444,6 +440,9 @@ class YouTubeVideoUrl():
 
 				formats.append(url_map)
 
+			# If priority format changed in config, recreate priority list
+			if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.value:
+				createPriorityFormats()
 			# Find the best format from our format priority map
 			for our_format in PRIORITY_VIDEO_FORMAT:
 				for url_map in formats:
@@ -465,14 +464,10 @@ class YouTubeVideoUrl():
 			# If anything not found, used first in the list if it not in ignore map
 			if not url_map_str:
 				for url_map in formats:
-					url_map_str.append(url_map)
-					for ignore_format in IGNORE_VIDEO_FORMAT:
-						if ignore_format == url_map['format_id']:
-							url_map_str = []
-							break
-					if url_map_str:
+					if url_map['format_id'] not in IGNORE_VIDEO_FORMAT:
+						url_map_str.append(url_map)
 						break
-			if not url_map_str:
+			if not url_map_str and formats:
 				url_map_str.append(formats[0])
 
 			for url_map in url_map_str:
