@@ -512,11 +512,13 @@ class YouTubeVideoUrl():
 				if 'ratebypass' not in url_map['url']:
 					url += '&ratebypass=yes'
 		else:
-			manifest_url = try_get(
+			manifest_url = (
+				url_or_none(try_get(
 					player_response,
 					lambda x: x['streamingData']['hlsManifestUrl'],
-					unicode) or try_get(
-					video_info, lambda x: x['hlsvp'][0], unicode)
+					unicode))
+				or url_or_none(try_get(
+					video_info, lambda x: x['hlsvp'][0], unicode)))
 			if manifest_url:
 				url_map = self._extract_from_m3u8(manifest_url)
 
