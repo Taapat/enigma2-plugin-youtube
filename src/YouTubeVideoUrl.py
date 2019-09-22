@@ -541,6 +541,11 @@ class YouTubeVideoUrl():
 			if not error_message:
 				error_message = try_get(
 					video_info, lambda x: x['reason'][0], unicode)
+			if not error_message and try_get(
+					player_response,
+					lambda x: x['streamingData']['licenseInfos'],
+					unicode):
+				error_message = 'This video is DRM protected!'
 			if not error_message:
 				error_message = 'No supported formats found in video info!'
 			raise Exception(error_message)
