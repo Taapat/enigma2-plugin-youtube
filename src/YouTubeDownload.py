@@ -11,6 +11,7 @@ from Screens.Screen import Screen
 from Tools.Downloader import downloadWithProgress
 
 from . import _
+from YouTubeUi import BUTTONS_FOLDER
 
 
 class YouTubeDirBrowser(Screen):
@@ -122,11 +123,11 @@ class YouTubeDownloadList(Screen):
 						"itemHeight": 45}
 					</convert>
 				</widget>
-				<ePixmap position="center,484" size="210,60" pixmap="skin_fallback_1080/buttons/red.png" \
+				<ePixmap position="center,484" size="210,60" pixmap="%s/buttons/red.png" \
 					transparent="1" alphatest="on" />
 				<widget source="key_red" render="Label" position="center,485" zPosition="2" \
 					size="210,60" valign="center" halign="center" font="Regular;33" transparent="1" />
-				</screen>"""
+				</screen>""" % BUTTONS_FOLDER
 	else:
 		skin = """<screen position="center,center" size="630,370">
 				<widget source="list" render="Listbox" position="center,30" size="600,270" \
