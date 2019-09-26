@@ -397,6 +397,12 @@ class YouTubeVideoUrl():
 			else:
 				print '[YouTubeVideoUrl] "token" parameter not in video info for unknown reason'
 
+		video_details = try_get(
+			player_response, lambda x: x['videoDetails'], dict) or {}
+
+		if is_live is None:
+			is_live = video_details.get('isLive')
+
 		# Start extracting information
 		url = ''
 		streaming_formats = try_get(player_response, lambda x: x['streamingData']['formats'], list) or []
