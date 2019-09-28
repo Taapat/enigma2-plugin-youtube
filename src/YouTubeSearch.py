@@ -16,7 +16,6 @@ from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 
 from . import _
-from YouTubeUi import BUTTONS_FOLDER
 
 
 class YouTubeVirtualKeyBoard(VirtualKeyBoard):
@@ -103,11 +102,11 @@ class YouTubeSearch(Screen, ConfigListScreen):
 						"itemHeight": 45}
 					</convert>
 				</widget>
-				<ePixmap position="127,484" size="210,60" pixmap="%s/buttons/red.png" \
+				<ePixmap position="127,484" size="210,60" pixmap="skin_fallback_1080/buttons/red.png" \
 					transparent="1" alphatest="on" />
-				<ePixmap position="367,484" size="210,60" pixmap="%s/buttons/green.png" \
+				<ePixmap position="367,484" size="210,60" pixmap="skin_fallback_1080/buttons/green.png" \
 					transparent="1" alphatest="on" />
-				<ePixmap position="608,484" size="210,60" pixmap="%s/buttons/yellow.png" \
+				<ePixmap position="608,484" size="210,60" pixmap="skin_fallback_1080/buttons/yellow.png" \
 					transparent="1" alphatest="on" />
 				<widget source="key_red" render="Label" position="127,485" zPosition="2" size="210,60" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
@@ -117,7 +116,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 				<widget name="HelpWindow" position="600,810" size="1,1" zPosition="5" \
 					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
-			</screen>""" % (BUTTONS_FOLDER, BUTTONS_FOLDER, BUTTONS_FOLDER)
+			</screen>"""
 	else:
 		skin = """<screen position="center,55" size="630,370">
 				<widget name="config" position="15,15" size="600,30" zPosition="2" \
