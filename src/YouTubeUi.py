@@ -203,10 +203,8 @@ class YouTubeMain(Screen):
 					</convert>
 				</widget>
 				<widget name="info" position="50,479" size="35,25" pixmap="skin_default/buttons/key_info.png" transparent="1" alphatest="on" />
-				<widget name="red" position="215,467" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-				<widget name="green" position="375,467" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="215,472" zPosition="2" size="140,30" valign="center" halign="center" font="Regular;22" transparent="1" />
-				<widget source="key_green" render="Label" position="375,472" zPosition="2" size="140,30" valign="center" halign="center" font="Regular;22" transparent="1" />
+				<widget source="key_red" render="Label" position="215,467" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;22" backgroundColor="red" foregroundColor="white" />
+				<widget source="key_green" render="Label" position="375,467" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;22" backgroundColor="green" foregroundColor="white" />				
 				<widget name="menu" position="645,479" size="35,25" pixmap="skin_default/buttons/key_menu.png" transparent="1" alphatest="on" />
 				<widget name="thumbnail" position="0,0" size="100,72" /> # Thumbnail size in list
 			</screen>"""
@@ -225,10 +223,8 @@ class YouTubeMain(Screen):
 						"itemHeight": 108}
 					</convert>
 				</widget>
-				<widget name="red" position="322,707" size="210,60" pixmap="skin_fallback_1080/buttons/red.png" transparent="1" alphatest="on" />
-				<widget name="green" position="563,707" size="210,60" pixmap="skin_fallback_1080/buttons/green.png" transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="322,714" zPosition="2" size="210,45" valign="center" halign="center" font="Regular;33" transparent="1" />
-				<widget source="key_green" render="Label" position="563,714" zPosition="2" size="210,45" valign="center" halign="center" font="Regular;33" transparent="1" />
+				<widget source="key_red" render="Label" position="322,707" zPosition="2" size="210,60" valign="center" halign="center" font="Regular;33" backgroundColor="red" foregroundColor="white" />
+				<widget source="key_green" render="Label" position="563,707" zPosition="2" size="210,60" valign="center" halign="center" font="Regular;33" backgroundColor="green" foregroundColor="white" />
 				<widget name="thumbnail" position="0,0" size="150,108" /> # Thumbnail size in list
 			</screen>"""
 	else:
@@ -247,10 +243,8 @@ class YouTubeMain(Screen):
 					</convert>
 				</widget>
 				<widget name="info" position="30,335" size="35,25" pixmap="skin_default/buttons/key_info.png" transparent="1" alphatest="on" />
-				<widget name="red" position="114,323" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-				<widget name="green" position="374,323" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="114,328" zPosition="2" size="140,30" valign="center" halign="center" font="Regular;22" transparent="1" />
-				<widget source="key_green" render="Label" position="374,328" zPosition="2" size="140,30" valign="center" halign="center" font="Regular;22" transparent="1" />
+				<widget source="key_red" render="Label" position="114,323" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;22" backgroundColor="red" foregroundColor="white" />
+				<widget source="key_green" render="Label" position="374,323" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;22" backgroundColor="green" foregroundColor="white" />
 				<widget name="menu" position="565,335" size="35,25" pixmap="skin_default/buttons/key_menu.png" transparent="1" alphatest="on" />
 				<widget name="thumbnail" position="0,0" size="100,72" /> # Thumbnail size in list
 			</screen>"""
@@ -1303,8 +1297,7 @@ class YouTubeInfo(Screen):
 				<widget name="likes" position="30,300" size="150,20" font="Regular;16" />
 				<widget name="dislikes" position="200,300" size="150,20" font="Regular;16" />
 				<widget name="published" position="30,330" size="300,20" font="Regular;16" />
-				<ePixmap position="295,377" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="center,382" zPosition="2" size="140,30" valign="295" halign="center" font="Regular;22" transparent="1" />
+				<widget source="key_red" render="Label" position="center,377" zPosition="2" size="140,40" valign="295" halign="center" font="Regular;22" backgroundColor="red" foregroundColor="white" />
 			</screen>"""
 	elif screenWidth and screenWidth == 1920:
 		skin = """<screen position="center,center" size="1095,636">
@@ -1316,8 +1309,7 @@ class YouTubeInfo(Screen):
 				<widget name="likes" position="45,405" size="225,30" font="Regular;24" />
 				<widget name="dislikes" position="45,455" size="225,30" font="Regular;24" />
 				<widget name="published" position="45,505" size="335,30" font="Regular;24" />
-				<ePixmap position="442,565" size="210,60" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="442,563" zPosition="2" size="210,60" valign="center" halign="center" font="Regular;33" transparent="1" />
+				<widget source="key_red" render="Label" position="442,563" zPosition="2" size="210,60" valign="center" halign="center" font="Regular;33" backgroundColor="red" foregroundColor="white" />
 			</screen>"""
 	else:
 		skin = """<screen position="center,center" size="630,370">
@@ -1329,8 +1321,7 @@ class YouTubeInfo(Screen):
 				<widget name="likes" position="30,300" size="150,20" font="Regular;16" />
 				<widget name="dislikes" position="200,300" size="150,20" font="Regular;16" />
 				<widget name="published" position="360,300" size="260,20" font="Regular;16" />
-				<ePixmap position="245,323" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="245,328" zPosition="2" size="140,30" valign="center" halign="center" font="Regular;22" transparent="1" />
+				<widget source="key_red" render="Label" position="245,323" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;22" backgroundColor="red" foregroundColor="white" />
 			</screen>"""
 
 	def __init__(self, session, current):
