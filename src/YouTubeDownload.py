@@ -105,51 +105,37 @@ class YouTubeDownloadList(Screen):
 	screenWidth = getDesktop(0).size().width()
 	if screenWidth and screenWidth == 1920:
 		skin = """<screen position="center,center" size="945,555">
-				<widget source="list" render="Listbox" position="center,45" size="900,405" \
-					scrollbarMode="showOnDemand" >
+				<widget source="list" render="Listbox" position="center,45" size="900,405" scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [
-							MultiContentEntryText(pos=(15,1), size=(465,33), \
-								font=0, flags=RT_HALIGN_LEFT, text=1), # Title
-							MultiContentEntryText(pos=(345,1), size=(225,33), \
-								font=0, flags=RT_HALIGN_RIGHT, text=2), # State
-							MultiContentEntryProgress(pos=(585,6), size=(150,33), \
-								percent=-3), # Progress
-							MultiContentEntryText(pos=(750,1), size=(120,33), \
-								font=0, flags=RT_HALIGN_LEFT, text=4), # Percentage
+							MultiContentEntryText(pos=(15,1), size=(465,33), font=0, flags=RT_HALIGN_LEFT, text=1), # Title
+							MultiContentEntryText(pos=(345,1), size=(225,33), font=0, flags=RT_HALIGN_RIGHT, text=2), # State
+							MultiContentEntryProgress(pos=(585,6), size=(150,33), percent=-3), # Progress
+							MultiContentEntryText(pos=(750,1), size=(120,33), font=0, flags=RT_HALIGN_LEFT, text=4), # Percentage
 							],
 						"fonts": [gFont("Regular",30)],
 						"itemHeight": 45}
 					</convert>
 				</widget>
-				<ePixmap position="center,484" size="210,60" pixmap="skin_fallback_1080/buttons/red.png" \
-					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="center,485" zPosition="2" \
-					size="210,60" valign="center" halign="center" font="Regular;33" transparent="1" />
+				<ePixmap position="center,484" size="210,60" pixmap="skin_fallback_1080/buttons/red.png" transparent="1" alphatest="on" />
+				<widget source="key_red" render="Label" position="center,485" zPosition="2" size="210,60" valign="center" halign="center" font="Regular;33" transparent="1" />
 				</screen>"""
 	else:
 		skin = """<screen position="center,center" size="630,370">
-				<widget source="list" render="Listbox" position="center,30" size="600,270" \
-					scrollbarMode="showOnDemand" >
+				<widget source="list" render="Listbox" position="center,30" size="600,270" scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [
-							MultiContentEntryText(pos=(5,1), size=(270,22), \
-								font=0, flags=RT_HALIGN_LEFT, text=1), # Title
-							MultiContentEntryText(pos=(280,1), size=(120,22), \
-								font=0, flags=RT_HALIGN_RIGHT, text=2), # State
-							MultiContentEntryProgress(pos=(410,4), size=(100,22), \
-								percent=-3), # Progress
-							MultiContentEntryText(pos=(520,1), size=(80,22), \
-								font=0, flags=RT_HALIGN_LEFT, text=4), # Percentage
+							MultiContentEntryText(pos=(5,1), size=(270,22), font=0, flags=RT_HALIGN_LEFT, text=1), # Title
+							MultiContentEntryText(pos=(280,1), size=(120,22), font=0, flags=RT_HALIGN_RIGHT, text=2), # State
+							MultiContentEntryProgress(pos=(410,4), size=(100,22), percent=-3), # Progress
+							MultiContentEntryText(pos=(520,1), size=(80,22), font=0, flags=RT_HALIGN_LEFT, text=4), # Percentage
 							],
 						"fonts": [gFont("Regular",20)],
 						"itemHeight": 30}
 					</convert>
 				</widget>
-				<ePixmap position="center,323" size="140,40" pixmap="skin_default/buttons/red.png" \
-					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="center,328" zPosition="2" \
-					size="140,30" valign="center" halign="center" font="Regular;22" transparent="1" />
+				<ePixmap position="center,323" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+				<widget source="key_red" render="Label" position="center,328" zPosition="2" size="140,30" valign="center" halign="center" font="Regular;22" transparent="1" />
 				</screen>"""
 
 	def __init__(self, session):

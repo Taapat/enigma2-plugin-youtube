@@ -190,99 +190,68 @@ class YouTubeMain(Screen):
 	if screenWidth and screenWidth == 1280:
 		skin = """<screen position="center,center" size="730,514">
 				<widget name="text" position="15,0" size="700,30" halign="center" font="Regular;24" />
-				<widget source="list" render="Listbox" position="15,32" size="700,432" \
-					scrollbarMode="showOnDemand" >
+				<widget source="list" render="Listbox" position="15,32" size="700,432" scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [
-							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(100,72), png=2), # Thumbnail
-							MultiContentEntryText(pos=(110,1), size=(575,52), \
-								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
-							MultiContentEntryText(pos=(120, 50), size=(200,22), \
-								font=1, flags=RT_HALIGN_LEFT, text=4), # Views
-							MultiContentEntryText(pos=(360,50), size=(200,22), \
-								font=1, flags=RT_HALIGN_LEFT, text=5), # Duration
+							MultiContentEntryPixmapAlphaTest(pos=(0,0), size=(100,72), png=2), # Thumbnail
+							MultiContentEntryText(pos=(110,1), size=(575,52), font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
+							MultiContentEntryText(pos=(120, 50), size=(200,22), font=1, flags=RT_HALIGN_LEFT, text=4), # Views
+							MultiContentEntryText(pos=(360,50), size=(200,22), font=1, flags=RT_HALIGN_LEFT, text=5), # Duration
 							],
 						"fonts": [gFont("Regular",20), gFont("Regular",16)],
 						"itemHeight": 72}
 					</convert>
 				</widget>
-				<widget name="info" position="50,479" size="35,25" pixmap="skin_default/buttons/key_info.png" \
-					transparent="1" alphatest="on" />
-				<widget name="red" position="215,467" size="140,40" pixmap="skin_default/buttons/red.png" \
-					transparent="1" alphatest="on" />
-				<widget name="green" position="375,467" size="140,40" pixmap="skin_default/buttons/green.png" \
-					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="215,472" zPosition="2" size="140,30" \
-					valign="center" halign="center" font="Regular;22" transparent="1" />
-				<widget source="key_green" render="Label" position="375,472" zPosition="2" size="140,30" \
-					valign="center" halign="center" font="Regular;22" transparent="1" />
-				<widget name="menu" position="645,479" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
-					transparent="1" alphatest="on" />
+				<widget name="info" position="50,479" size="35,25" pixmap="skin_default/buttons/key_info.png" transparent="1" alphatest="on" />
+				<widget name="red" position="215,467" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+				<widget name="green" position="375,467" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+				<widget source="key_red" render="Label" position="215,472" zPosition="2" size="140,30" valign="center" halign="center" font="Regular;22" transparent="1" />
+				<widget source="key_green" render="Label" position="375,472" zPosition="2" size="140,30" valign="center" halign="center" font="Regular;22" transparent="1" />
+				<widget name="menu" position="645,479" size="35,25" pixmap="skin_default/buttons/key_menu.png" transparent="1" alphatest="on" />
 				<widget name="thumbnail" position="0,0" size="100,72" /> # Thumbnail size in list
 			</screen>"""
 	elif screenWidth and screenWidth == 1920:
 		skin = """<screen position="center,center" size="1095,771">
 				<widget name="text" position="22,0" size="1050,45" halign="center" font="Regular;36" />
-				<widget source="list" render="Listbox" position="22,48" size="1050,648" \
-					scrollbarMode="showOnDemand" >
+				<widget source="list" render="Listbox" position="22,48" size="1050,648" scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [
-							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(150,108), png=2), # Thumbnail
-							MultiContentEntryText(pos=(165,1), size=(862,78), \
-								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
-							MultiContentEntryText(pos=(180, 75), size=(300,33), \
-								font=1, flags=RT_HALIGN_LEFT, text=4), # Views
-							MultiContentEntryText(pos=(540,75), size=(300,33), \
-								font=1, flags=RT_HALIGN_LEFT, text=5), # Duration
+							MultiContentEntryPixmapAlphaTest(pos=(0,0), size=(150,108), png=2), # Thumbnail
+							MultiContentEntryText(pos=(165,1), size=(862,78), font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
+							MultiContentEntryText(pos=(180, 75), size=(300,33), font=1, flags=RT_HALIGN_LEFT, text=4), # Views
+							MultiContentEntryText(pos=(540,75), size=(300,33), font=1, flags=RT_HALIGN_LEFT, text=5), # Duration
 							],
 						"fonts": [gFont("Regular",30), gFont("Regular",24)],
 						"itemHeight": 108}
 					</convert>
 				</widget>
-				<widget name="red" position="322,707" size="210,60" pixmap="skin_fallback_1080/buttons/red.png" \
-					transparent="1" alphatest="on" />
-				<widget name="green" position="563,707" size="210,60" pixmap="skin_fallback_1080/buttons/green.png" \
-					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="322,714" zPosition="2" size="210,45" \
-					valign="center" halign="center" font="Regular;33" transparent="1" />
-				<widget source="key_green" render="Label" position="563,714" zPosition="2" size="210,45" \
-					valign="center" halign="center" font="Regular;33" transparent="1" />
+				<widget name="red" position="322,707" size="210,60" pixmap="skin_fallback_1080/buttons/red.png" transparent="1" alphatest="on" />
+				<widget name="green" position="563,707" size="210,60" pixmap="skin_fallback_1080/buttons/green.png" transparent="1" alphatest="on" />
+				<widget source="key_red" render="Label" position="322,714" zPosition="2" size="210,45" valign="center" halign="center" font="Regular;33" transparent="1" />
+				<widget source="key_green" render="Label" position="563,714" zPosition="2" size="210,45" valign="center" halign="center" font="Regular;33" transparent="1" />
 				<widget name="thumbnail" position="0,0" size="150,108" /> # Thumbnail size in list
 			</screen>"""
 	else:
 		skin = """<screen position="center,center" size="630,370">
 				<widget name="text" position="15,0" size="600,30" halign="center" font="Regular;24" />
-				<widget source="list" render="Listbox" position="15,32" size="600,288" \
-					scrollbarMode="showOnDemand" >
+				<widget source="list" render="Listbox" position="15,32" size="600,288" scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [
-							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(100,72), png=2), # Thumbnail
-							MultiContentEntryText(pos=(110,1), size=(475,52), \
-								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
-							MultiContentEntryText(pos=(120, 50), size=(200,22), \
-								font=1, flags=RT_HALIGN_LEFT, text=4), # Views
-							MultiContentEntryText(pos=(360,50), size=(200,22), \
-								font=1, flags=RT_HALIGN_RIGHT, text=5), # Duration
+							MultiContentEntryPixmapAlphaTest(pos=(0,0), size=(100,72), png=2), # Thumbnail
+							MultiContentEntryText(pos=(110,1), size=(475,52), font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
+							MultiContentEntryText(pos=(120, 50), size=(200,22), font=1, flags=RT_HALIGN_LEFT, text=4), # Views
+							MultiContentEntryText(pos=(360,50), size=(200,22), font=1, flags=RT_HALIGN_RIGHT, text=5), # Duration
 							],
 						"fonts": [gFont("Regular",20), gFont("Regular",16)],
 						"itemHeight": 72}
 					</convert>
 				</widget>
-				<widget name="info" position="30,335" size="35,25" pixmap="skin_default/buttons/key_info.png" \
-					transparent="1" alphatest="on" />
-				<widget name="red" position="114,323" size="140,40" pixmap="skin_default/buttons/red.png" \
-					transparent="1" alphatest="on" />
-				<widget name="green" position="374,323" size="140,40" pixmap="skin_default/buttons/green.png" \
-					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="114,328" zPosition="2" size="140,30" \
-					valign="center" halign="center" font="Regular;22" transparent="1" />
-				<widget source="key_green" render="Label" position="374,328" zPosition="2" size="140,30" \
-					valign="center" halign="center" font="Regular;22" transparent="1" />
-				<widget name="menu" position="565,335" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
-					transparent="1" alphatest="on" />
+				<widget name="info" position="30,335" size="35,25" pixmap="skin_default/buttons/key_info.png" transparent="1" alphatest="on" />
+				<widget name="red" position="114,323" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+				<widget name="green" position="374,323" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+				<widget source="key_red" render="Label" position="114,328" zPosition="2" size="140,30" valign="center" halign="center" font="Regular;22" transparent="1" />
+				<widget source="key_green" render="Label" position="374,328" zPosition="2" size="140,30" valign="center" halign="center" font="Regular;22" transparent="1" />
+				<widget name="menu" position="565,335" size="35,25" pixmap="skin_default/buttons/key_menu.png" transparent="1" alphatest="on" />
 				<widget name="thumbnail" position="0,0" size="100,72" /> # Thumbnail size in list
 			</screen>"""
 
@@ -1334,10 +1303,8 @@ class YouTubeInfo(Screen):
 				<widget name="likes" position="30,300" size="150,20" font="Regular;16" />
 				<widget name="dislikes" position="200,300" size="150,20" font="Regular;16" />
 				<widget name="published" position="30,330" size="300,20" font="Regular;16" />
-				<ePixmap position="295,377" size="140,40" pixmap="skin_default/buttons/red.png" \
-					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="center,382" zPosition="2" size="140,30" \
-					valign="295" halign="center" font="Regular;22" transparent="1" />
+				<ePixmap position="295,377" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+				<widget source="key_red" render="Label" position="center,382" zPosition="2" size="140,30" valign="295" halign="center" font="Regular;22" transparent="1" />
 			</screen>"""
 	elif screenWidth and screenWidth == 1920:
 		skin = """<screen position="center,center" size="1095,636">
@@ -1349,10 +1316,8 @@ class YouTubeInfo(Screen):
 				<widget name="likes" position="45,405" size="225,30" font="Regular;24" />
 				<widget name="dislikes" position="45,455" size="225,30" font="Regular;24" />
 				<widget name="published" position="45,505" size="335,30" font="Regular;24" />
-				<ePixmap position="442,565" size="210,60" pixmap="skin_default/buttons/red.png" \
-					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="442,563" zPosition="2" size="210,60" \
-					valign="center" halign="center" font="Regular;33" transparent="1" />
+				<ePixmap position="442,565" size="210,60" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+				<widget source="key_red" render="Label" position="442,563" zPosition="2" size="210,60" valign="center" halign="center" font="Regular;33" transparent="1" />
 			</screen>"""
 	else:
 		skin = """<screen position="center,center" size="630,370">
@@ -1364,10 +1329,8 @@ class YouTubeInfo(Screen):
 				<widget name="likes" position="30,300" size="150,20" font="Regular;16" />
 				<widget name="dislikes" position="200,300" size="150,20" font="Regular;16" />
 				<widget name="published" position="360,300" size="260,20" font="Regular;16" />
-				<ePixmap position="245,323" size="140,40" pixmap="skin_default/buttons/red.png" \
-					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="245,328" zPosition="2" size="140,30" \
-					valign="center" halign="center" font="Regular;22" transparent="1" />
+				<ePixmap position="245,323" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+				<widget source="key_red" render="Label" position="245,328" zPosition="2" size="140,30" valign="center" halign="center" font="Regular;22" transparent="1" />
 			</screen>"""
 
 	def __init__(self, session, current):
