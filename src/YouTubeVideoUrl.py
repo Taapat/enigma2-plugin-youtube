@@ -164,6 +164,21 @@ def compat_parse_qs(qs, keep_blank_values=False, strict_parsing=False,
 	return parsed_result
 
 
+def clean_html(html):
+	"""Clean an HTML snippet into a readable string"""
+
+	if html is None:  # Convenience for sanitizing descriptions etc.
+		return html
+
+	# Newline vs <br />
+	html = html.replace('\n', ' ')
+	html = re.sub(r'(?u)\s*<\s*br\s*/?\s*>\s*', '\n', html)
+	html = re.sub(r'(?u)<\s*/\s*p\s*>\s*<\s*p[^>]*>', '\n', html)
+	# Strip html tags
+	html = re.sub('<.*?>', '', html)
+	return html.strip()
+
+
 class YouTubeVideoUrl():
 
 	def _download_webpage(self, url, fatal=True):
@@ -542,13 +557,13 @@ class YouTubeVideoUrl():
 				if not url:
 					url = url_map.values()[0]
 		if not url:
-			error_message = try_get(
+			error_message = clean_html(try_get(
 					player_response,
 					lambda x: x['playabilityStatus']['reason'],
-					unicode)
+					unicode))
 			if not error_message:
-				error_message = try_get(
-					video_info, lambda x: x['reason'][0], unicode)
+				error_message = clean_html(try_get(
+					video_info, lambda x: x['reason'][0], unicode))
 			if not error_message and try_get(
 					player_response,
 					lambda x: x['streamingData']['licenseInfos'],
