@@ -11,6 +11,10 @@ Download
 -------
 [enigma2-plugin-youtube](http://taapat.ho.ua/enigma2-plugin-youtube/)
 
+Privacy policy
+-------
+[Plugin privacy policy URL](http://taapat.ho.ua/license.html)
+
 Screenshots
 -------
 ![](https://cloud.githubusercontent.com/assets/1623947/8859883/d65e212c-3188-11e5-9d49-8bd584f9a01b.jpg)
