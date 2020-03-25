@@ -126,9 +126,26 @@ config.plugins.YouTube.searchHistoryDict['Searchbroadcasts'] = ConfigSet(choices
 
 config.plugins.YouTube.refreshToken = ConfigText()
 
+
 API_KEY = 'AIzaSyCyIlbb0FIwoieEZ9RTShMVkRMisu-ZX0k'
 YOUTUBE_API_CLIENT_ID = '411447027255-vbgs05u1o3m8mpjs2vcd04afrg60drba.apps.googleusercontent.com'
 YOUTUBE_API_CLIENT_SECRET = 'fYE-8T3qf4DrLPLv3NTgvjna'
+
+# Read API keys from key file
+if os.path.exists('/etc/enigma2/YouTube.key'):
+	try:
+		for line in open('/etc/enigma2/YouTube.key').readlines():
+			line = line.strip().replace(' ','').split('=',1)
+			if line[0][0] == '#':
+				continue
+			if 'API_KEY' in line[0]:
+				API_KEY = line[1]
+			elif 'API_CLIENT_ID' in line[0]:
+				YOUTUBE_API_CLIENT_ID = line[1]
+			elif 'API_CLIENT_SECRET' in line[0]:
+				YOUTUBE_API_CLIENT_SECRET = line[1]
+	except Exception as ex:
+		print '[YouTube] Error in read YouTube.key:', e
 
 
 #  Workoround to keep compatibility broken once again on OpenPLi develop
