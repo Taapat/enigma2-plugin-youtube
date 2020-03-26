@@ -146,7 +146,7 @@ if os.path.exists('/etc/enigma2/YouTube.key'):
 			elif 'API_CLIENT_SECRET' in line[0]:
 				YOUTUBE_API_CLIENT_SECRET = line[1]
 	except Exception as ex:
-		print '[YouTube] Error in read YouTube.key:', e
+		print '[YouTube] Error in read YouTube.key:', ex
 
 
 #  Workoround to keep compatibility broken once again on OpenPLi develop
