@@ -127,7 +127,7 @@ config.plugins.YouTube.searchHistoryDict['Searchbroadcasts'] = ConfigSet(choices
 config.plugins.YouTube.refreshToken = ConfigText()
 
 
-API_KEY = 'AIzaSyCyIlbb0FIwoieEZ9RTShMVkRMisu-ZX0k'
+API_KEY = 'AIzaSyAdQSszDK7HiOB35y11sXziipcQUVMOtsQ'
 YOUTUBE_API_CLIENT_ID = '411447027255-vbgs05u1o3m8mpjs2vcd04afrg60drba.apps.googleusercontent.com'
 YOUTUBE_API_CLIENT_SECRET = 'fYE-8T3qf4DrLPLv3NTgvjna'
 
