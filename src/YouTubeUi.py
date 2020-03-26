@@ -135,9 +135,10 @@ YOUTUBE_API_CLIENT_SECRET = 'fYE-8T3qf4DrLPLv3NTgvjna'
 if os.path.exists('/etc/enigma2/YouTube.key'):
 	try:
 		for line in open('/etc/enigma2/YouTube.key').readlines():
-			line = line.strip().replace(' ','').split('=',1)
-			if line[0][0] == '#':
+			line = line.strip().replace(' ','')
+			if len(line) < 20 or line[0] == '#' or '=' not in line:
 				continue
+			line = line.split('=',1)
 			if 'API_KEY' in line[0]:
 				API_KEY = line[1]
 			elif 'API_CLIENT_ID' in line[0]:
