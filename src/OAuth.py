@@ -13,8 +13,8 @@ class OAuth:
 	def __init__(self, client_id, client_secret):
 		self.client_id = client_id
 		self.client_secret = client_secret
-		self.device_code = None
-		self.verfication_url = None
+		self.device_code = ''
+		self.verification_url = ''
 		self.set_connection()
 
 	# this setup is isolated because it eventually generates a BadStatusLine
