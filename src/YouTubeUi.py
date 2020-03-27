@@ -136,7 +136,7 @@ if os.path.exists('/etc/enigma2/YouTube.key'):
 	try:
 		for line in open('/etc/enigma2/YouTube.key').readlines():
 			line = line.strip().replace(' ','')
-			if len(line) < 20 or line[0] == '#' or '=' not in line:
+			if len(line) < 30 or line[0] == '#' or '=' not in line:
 				continue
 			line = line.split('=',1)
 			if 'API_KEY' in line[0]:
