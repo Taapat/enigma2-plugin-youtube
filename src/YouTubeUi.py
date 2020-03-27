@@ -129,7 +129,7 @@ config.plugins.YouTube.refreshToken = ConfigText()
 
 API_KEY = 'AIzaSyAdQSszDK7HiOB35y11sXziipcQUVMOtsQ'
 YOUTUBE_API_CLIENT_ID = '411447027255-vbgs05u1o3m8mpjs2vcd04afrg60drba.apps.googleusercontent.com'
-YOUTUBE_API_CLIENT_SECRET = 'fYE-8T3qf4DrLPLv3NTgvjna'
+YOUTUBE_API_CLIENT_SECRET = 'zMFz_cFY0bZaOF8HX8oavPWv'
 
 # Read API keys from key file
 if os.path.exists('/etc/enigma2/YouTube.key'):
