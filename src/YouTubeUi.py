@@ -1586,10 +1586,14 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			self.splitTaimer.timeout.callback.append(self.splitTaimerStop)
 			self.oauth = OAuth(YOUTUBE_API_CLIENT_ID, YOUTUBE_API_CLIENT_SECRET)
 			userCode = str(self.oauth.get_user_code())
-			msg = _('Go to %s\nAnd enter the code %s') % (str(self.oauth.verification_url), userCode)
-			print "[YouTube] ", msg
-			self.mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
-			self.splitTaimer.start(9000, True)
+			if userCode:
+				msg = _('Go to %s\nAnd enter the code %s') % (str(self.oauth.verification_url), userCode)
+				print "[YouTube] ", msg
+				self.mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
+				self.splitTaimer.start(9000, True)
+			else:
+				print "[YouTube] Error in OAuth!"
+				self.session.open(MessageBox, 'There was an error!', MessageBox.TYPE_INFO, timeout=5)
 
 	def splitTaimerStop(self):
 		# Here we waiting until the user enter a code
