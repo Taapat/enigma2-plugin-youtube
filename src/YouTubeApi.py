@@ -6,6 +6,19 @@ from urllib2 import urlopen, URLError, HTTPError
 from . import sslContext
 
 
+def GetKey(x):
+	p = 3
+	while True:
+		if p > len(x):
+			break
+		pl = len(str(p))
+		x = x[:p] + x[p+pl:]
+		p += 12 - pl
+	x = x.replace('w_OizD', 'a')
+	x = x.replace('Xhi_Lo', 'A')
+	return x
+
+
 class YouTubeApi:
 	def __init__(self, client_id, client_secret, developer_key, refresh_token):
 		self.client_id = client_id
