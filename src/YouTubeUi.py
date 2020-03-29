@@ -139,11 +139,13 @@ if os.path.exists('/etc/enigma2/YouTube.key'):
 			if len(line) < 30 or line[0] == '#' or '=' not in line:
 				continue
 			line = line.split('=',1)
+			if 'GET_' in line[0]:
+				line[1] = GetKey(line[1])
 			if 'API_KEY' in line[0]:
 				API_KEY = line[1]
-			elif 'API_CLIENT_ID' in line[0]:
+			elif 'CLIENT_ID' in line[0]:
 				YOUTUBE_API_CLIENT_ID = line[1]
-			elif 'API_CLIENT_SECRET' in line[0]:
+			elif 'CLIENT_SECRET' in line[0]:
 				YOUTUBE_API_CLIENT_SECRET = line[1]
 	except Exception as ex:
 		print '[YouTube] Error in read YouTube.key:', ex
