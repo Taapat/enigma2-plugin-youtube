@@ -21,9 +21,9 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_PLUGINS
-from Tools.LoadPixmap import LoadPixmap
 
 from . import _
+from YouTubeApi import GetKey
 
 
 config.plugins.YouTube = ConfigSubsection()
@@ -127,9 +127,9 @@ config.plugins.YouTube.searchHistoryDict['Searchbroadcasts'] = ConfigSet(choices
 config.plugins.YouTube.refreshToken = ConfigText()
 
 
-API_KEY = 'AIzaSyAdQSszDK7HiOB35y11sXziipcQUVMOtsQ'
-YOUTUBE_API_CLIENT_ID = '411447027255-vbgs05u1o3m8mpjs2vcd04afrg60drba.apps.googleusercontent.com'
-YOUTUBE_API_CLIENT_SECRET = 'zMFz_cFY0bZaOF8HX8oavPWv'
+API_KEY = GetKey('Xhi3_LoIzw_OizD15SyCNReMvKL27nw_OizDWRR395T5uGWpvn451I2VYc78Gy463')
+YOUTUBE_API_CLIENT_ID = GetKey('4113447027255-v15bgs05u1o3m278mpjs2vcd0394w_OizDfrg5160drbw_Oiz63D.w_OizDpp75s.googleus87ercontent.99com')
+YOUTUBE_API_CLIENT_SECRET = GetKey('Zf93pqd2rxgY2ro159rK20BMxif27')
 
 # Read API keys from key file
 if os.path.exists('/etc/enigma2/YouTube.key'):
