@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 15:15+0300\n"
+"POT-Creation-Date: 2020-04-02 20:21+0300\n"
 "PO-Revision-Date: 2020-04-01 16:14+0300\n"
 "Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish\n"
@@ -18,494 +18,341 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: YouTubeDownload.py:21 YouTubeUi.py:1467
-msgid "Cancel"
-msgstr "İptal"
-
-#: YouTubeDownload.py:22
-msgid "Use"
-msgstr "Kullan"
-
-#: YouTubeDownload.py:37
-msgid "Please select the download directory"
-msgstr "Lütfen indirme dizinini seçin"
-
-#: YouTubeDownload.py:62
-msgid "Downloading"
-msgstr "İndiriliyor"
-
-#: YouTubeDownload.py:158 YouTubeSearch.py:157 YouTubeUi.py:551
-#: YouTubeUi.py:1414
-msgid "Exit"
-msgstr "Çıkış"
-
-#: YouTubeDownload.py:172 YouTubeUi.py:1155
-msgid "Active video downloads"
-msgstr "Aktif video indirme"
-
-#: YouTubeSearch.py:27 YouTubeSearch.py:190 YouTubeUi.py:409 YouTubeUi.py:420
-#: YouTubeUi.py:1152
-msgid "Search"
-msgstr "Ara"
-
-#: YouTubeSearch.py:156
-msgid "YouTube search"
-msgstr "YouTube arama"
-
-#: YouTubeSearch.py:158 YouTubeUi.py:1468
-msgid "Ok"
-msgstr "Tamam"
-
-#: YouTubeSearch.py:159
-msgid "Keyboard"
-msgstr "Klavye"
-
-#: YouTubeSearch.py:223 YouTubeUi.py:670 YouTubeUi.py:1130 YouTubeUi.py:1215
-msgid "What do you want to do?"
-msgstr "Ne yapmak istiyorsun?"
-
-#: YouTubeSearch.py:224 YouTubeUi.py:1131 YouTubeUi.py:1526
-msgid "YouTube setup"
-msgstr "YouTube kurulumu"
-
-#: YouTubeSearch.py:225
-msgid "Delete this entry"
-msgstr "Bu girişi sil"
-
-#: YouTubeUi.py:39 YouTubeUi.py:69
-msgid "All"
-msgstr "Tümü"
-
-#: YouTubeUi.py:40 YouTubeUi.py:70
-msgid "Australia"
-msgstr "Avustralya"
-
-#: YouTubeUi.py:41 YouTubeUi.py:71
-msgid "Brazil"
-msgstr "Brezilya"
-
-#: YouTubeUi.py:42 YouTubeUi.py:72
-msgid "Canada"
-msgstr "Kanada"
-
-#: YouTubeUi.py:43 YouTubeUi.py:73
-msgid "Czech Republic"
-msgstr "Çek Cumhuriyeti"
-
-#: YouTubeUi.py:44 YouTubeUi.py:74
-msgid "France"
-msgstr "Fransa"
-
-#: YouTubeUi.py:45 YouTubeUi.py:75
-msgid "Germany"
-msgstr "Almanya"
-
-#: YouTubeUi.py:46 YouTubeUi.py:76
-msgid "Great Britain"
-msgstr "Büyük Britanya"
-
-#: YouTubeUi.py:47 YouTubeUi.py:77
-msgid "Greece"
-msgstr "Yunanistan"
-
-#: YouTubeUi.py:48 YouTubeUi.py:78
-msgid "Holland"
-msgstr "Hollanda"
-
-#: YouTubeUi.py:49 YouTubeUi.py:79
-msgid "Hong Kong"
-msgstr "Hong Kong"
-
-#: YouTubeUi.py:50 YouTubeUi.py:80
-msgid "India"
-msgstr "Hindistan"
-
-#: YouTubeUi.py:51 YouTubeUi.py:81
-msgid "Ireland"
-msgstr "İrlanda"
-
-#: YouTubeUi.py:52 YouTubeUi.py:82
-msgid "Israel"
-msgstr "İsrail"
-
-#: YouTubeUi.py:53 YouTubeUi.py:83
-msgid "Italy"
-msgstr "İtalya"
-
-#: YouTubeUi.py:54 YouTubeUi.py:84
-msgid "Japan"
-msgstr "Japonya"
-
-#: YouTubeUi.py:55 YouTubeUi.py:85
-msgid "Latvia"
-msgstr "Letonya"
-
-#: YouTubeUi.py:56 YouTubeUi.py:86
-msgid "Mexico"
-msgstr "Meksika"
-
-#: YouTubeUi.py:57 YouTubeUi.py:87
-msgid "New Zealand"
-msgstr "Yeni Zelanda"
-
-#: YouTubeUi.py:58 YouTubeUi.py:88
-msgid "Poland"
-msgstr "Polonya"
-
-#: YouTubeUi.py:59 YouTubeUi.py:89
-msgid "Russia"
-msgstr "Rusya"
-
-#: YouTubeUi.py:60 YouTubeUi.py:90
-msgid "South Korea"
-msgstr "Güney Kore"
-
-#: YouTubeUi.py:61 YouTubeUi.py:91
-msgid "Spain"
-msgstr "İspanya"
-
-#: YouTubeUi.py:62 YouTubeUi.py:92
-msgid "Sweden"
-msgstr "İsveç"
-
-#: YouTubeUi.py:63 YouTubeUi.py:93
-msgid "Taiwan"
-msgstr "Tayvan"
-
-#: YouTubeUi.py:64 YouTubeUi.py:94
-msgid "Thailand"
-msgstr "Tayland"
-
-#: YouTubeUi.py:65 YouTubeUi.py:95
-msgid "Turkey"
-msgstr "Türkiye"
-
-#: YouTubeUi.py:66 YouTubeUi.py:96
-msgid "United States"
-msgstr "Amerika"
-
-#: YouTubeUi.py:99
-msgid "Relevance"
-msgstr "Uygunluk"
-
-#: YouTubeUi.py:100
-msgid "Created date"
-msgstr "Oluşturma tarihi"
-
-#: YouTubeUi.py:101
-msgid "Rating"
-msgstr "Puan"
-
-#: YouTubeUi.py:102
-msgid "Title"
-msgstr "Başlık"
-
-#: YouTubeUi.py:103
-msgid "View count"
-msgstr "Görüntüleme sayısı"
-
-#: YouTubeUi.py:106
-msgid "Moderate"
-msgstr "Orta"
-
-#: YouTubeUi.py:106 YouTubeUi.py:175
-msgid "No"
-msgstr "Hayır"
-
-#: YouTubeUi.py:106 YouTubeUi.py:171
-msgid "Yes"
-msgstr "Evet"
-
-#: YouTubeUi.py:111 YouTubeUi.py:115
-msgid "Ask user"
-msgstr "Kullanıcıya sor"
-
-#: YouTubeUi.py:111 YouTubeUi.py:115
-msgid "Return to list"
-msgstr "Listeye geri dön"
-
-#: YouTubeUi.py:112
-msgid "Play next"
-msgstr "Sonrakini oynat"
-
-#: YouTubeUi.py:112
-msgid "Repeat"
-msgstr "Tekrar et"
-
-#: YouTubeUi.py:113
-msgid "Play previous"
-msgstr "Öncekini oynat"
-
-#: YouTubeUi.py:169
-msgid "Stop playing this movie?"
-msgstr "Film durdurulsun mu?"
-
-#: YouTubeUi.py:172
-msgid "Yes, but play next video"
-msgstr "Evet, ama sonraki videoyu oynat"
-
-#: YouTubeUi.py:173
-msgid "Yes, but play previous video"
-msgstr "Evet, ama önceki videoyu oynat"
-
-#: YouTubeUi.py:174
-msgid "No, but play video again"
-msgstr "Hayır, ama videoyu yeniden oynat"
-
-#: YouTubeUi.py:193 YouTubeUi.py:317 plugin.py:19
-msgid "YouTube"
-msgstr "YouTube"
-
-#: YouTubeUi.py:339
-msgid "YouTube starting. Please wait..."
-msgstr "YouTube başlıyor. Lütfen bekleyin ..."
-
-#: YouTubeUi.py:407
-msgid "Choose what you want to do"
-msgstr "Ne yapmak istediğinizi seçin"
-
-#: YouTubeUi.py:410 YouTubeUi.py:432
-msgid "Public feeds"
-msgstr "Herkese açık yayınlar"
-
-#: YouTubeUi.py:414 YouTubeUi.py:447
-msgid "My feeds"
-msgstr "Özet Yayınlarım"
-
-#: YouTubeUi.py:422
-msgid "Search videos"
-msgstr "Video ara"
-
-#: YouTubeUi.py:423
-msgid "Search channels"
-msgstr "Kanal ara"
-
-#: YouTubeUi.py:424
-msgid "Search playlists"
-msgstr "Çalma listelerinde ara"
-
-#: YouTubeUi.py:425
-msgid "Search live broadcasts"
-msgstr "Canlı yayınlarda ara"
-
-#: YouTubeUi.py:434
-msgid "Top rated"
-msgstr "Yüksek oy alanlar"
-
-#: YouTubeUi.py:435
-msgid "Most viewed"
-msgstr "En çok izlenenler"
-
-#: YouTubeUi.py:436 YouTubeUi.py:851 YouTubeUi.py:1098
-msgid "Recent"
-msgstr "Son"
-
-#: YouTubeUi.py:437
-msgid "HD videos"
-msgstr "HD videolar"
-
-#: YouTubeUi.py:438
-msgid "Embedded in webpages"
-msgstr "Web sayfalarına gömülü"
-
-#: YouTubeUi.py:439
-msgid "Shows"
-msgstr "Gösteriler"
-
-#: YouTubeUi.py:440
-msgid "Movies"
-msgstr "Filmler"
-
-#: YouTubeUi.py:449
-msgid "My Subscriptions"
-msgstr "Aboneliklerim"
-
-#: YouTubeUi.py:450
-msgid "Liked videos"
-msgstr "Beğenilen videolar"
-
-#: YouTubeUi.py:451
-msgid "Favorites"
-msgstr "Favoriler"
-
-#: YouTubeUi.py:452
-msgid "Uploads"
-msgstr "Yüklemeler"
-
-#: YouTubeUi.py:453
-msgid "Playlists"
-msgstr "Oynatma Listeleri"
-
-#: YouTubeUi.py:461
-msgid "Download search results. Please wait..."
-msgstr "Arama sonuçlarını indir. Lütfen bekleyin ..."
-
-#: YouTubeUi.py:463
-msgid "Extract video url. Please wait..."
-msgstr "Video URL'sini ayıkla. Lütfen bekleyin ..."
-
-#: YouTubeUi.py:465
-msgid "Download feed entries. Please wait..."
-msgstr "Feed girişlerini indir. Lütfen bekleyin ..."
-
-#: YouTubeUi.py:490
-#, python-format
-msgid ""
-"There was an error in extract video url:\n"
-"%s"
-msgstr ""
-"Video çıkarma URL'sinde bir hata oluştu:\n"
-"%s"
-
-#: YouTubeUi.py:535
-msgid ""
-"There was an error in creating entry list!\n"
-"Maybe try other feeds..."
-msgstr ""
-"Giriş listesi oluşturulurken bir hata oluştu!\n"
-"Belki diğer yayınları dene ..."
-
-#: YouTubeUi.py:552
-msgid "Open"
-msgstr "Aç"
-
-#: YouTubeUi.py:672
-msgid "Quit"
-msgstr "Çık"
-
-#: YouTubeUi.py:673
-msgid "Play next video"
-msgstr "Sonraki videoyu oynat"
-
-#: YouTubeUi.py:674
-msgid "Play previous video"
-msgstr "Önceki videoyu oynat"
-
-#: YouTubeUi.py:675
-msgid "Play video again"
-msgstr "Videoyu yeniden oynat"
-
-#: YouTubeUi.py:992
-msgid " views"
-msgstr " görünümler"
-
-#: YouTubeUi.py:996
-msgid "Duration: "
-msgstr "Süre: "
-
-#: YouTubeUi.py:1004
-msgid " likes"
-msgstr " beğeniler"
-
-#: YouTubeUi.py:1008
-msgid " dislikes"
-msgstr " beğenmeme"
-
-#: YouTubeUi.py:1020
-msgid "Published at: "
-msgstr "Yayınlandığı yer: "
-
-#: YouTubeUi.py:1112
 #, python-format
 msgid "  (%d-%d of %d)"
 msgstr "  (%d-%d of %d)"
 
-#: YouTubeUi.py:1133
+msgid " dislikes"
+msgstr " beğenmeme"
+
+msgid " likes"
+msgstr " beğeniler"
+
+msgid " views"
+msgstr " görünümler"
+
+msgid "Active video downloads"
+msgstr "Aktif video indirme"
+
+msgid "Add to favorites"
+msgstr "Sık kullanılanlara ekle"
+
+msgid "Added!"
+msgstr "Eklendi!"
+
+msgid "All"
+msgstr "Tümü"
+
+msgid "Ask user"
+msgstr "Kullanıcıya sor"
+
+msgid "Australia"
+msgstr "Avustralya"
+
+msgid "Brazil"
+msgstr "Brezilya"
+
+msgid "Canada"
+msgstr "Kanada"
+
+msgid "Cancel"
+msgstr "İptal"
+
+msgid "Choose what you want to do"
+msgstr "Ne yapmak istediğinizi seçin"
+
+msgid "Close YouTube"
+msgstr "YouTube'u kapat"
+
+msgid "Created date"
+msgstr "Oluşturma tarihi"
+
+msgid "Czech Republic"
+msgstr "Çek Cumhuriyeti"
+
+msgid "Delete this entry"
+msgstr "Bu girişi sil"
+
+msgid "Disliked!"
+msgstr "Beğenmedim!"
+
+msgid "Download directory:"
+msgstr "İndirme dizini:"
+
+msgid "Download feed entries. Please wait..."
+msgstr "Feed girişlerini indir. Lütfen bekleyin ..."
+
+msgid "Download search results. Please wait..."
+msgstr "Arama sonuçlarını indir. Lütfen bekleyin ..."
+
+msgid "Download video"
+msgstr "Video indir"
+
+msgid "Downloading"
+msgstr "İndiriliyor"
+
+msgid "Duration: "
+msgstr "Süre: "
+
+msgid "Embedded in webpages"
+msgstr "Web sayfalarına gömülü"
+
+msgid "Exclude restricted content:"
+msgstr "Kısıtlanmış içeriği hariç tut:"
+
+msgid "Exit"
+msgstr "Çıkış"
+
+msgid "Extract video url. Please wait..."
+msgstr "Video URL'sini ayıkla. Lütfen bekleyin ..."
+
+msgid ""
+"FFmpeg will be used to merge downloaded DASH video and audio files.\n"
+"FFmpeg will be installed if necessary."
+msgstr ""
+"FFmpeg, indirilen DASH video ve ses dosyalarını birleştirmek için kullanılacak.\n"
+"Gerekirse FFmpeg kurulacaktır."
+
+msgid "Favorites"
+msgstr "Favoriler"
+
+msgid "France"
+msgstr "Fransa"
+
+msgid "Germany"
+msgstr "Almanya"
+
+#, python-format
+msgid ""
+"Go to %s\n"
+"And enter the code %s"
+msgstr ""
+"%s adresine git\n"
+"Ve %s kodunu girin"
+
+msgid "Great Britain"
+msgstr "Büyük Britanya"
+
+msgid "Greece"
+msgstr "Yunanistan"
+
+msgid "HD videos"
+msgstr "HD videolar"
+
+msgid "Holland"
+msgstr "Hollanda"
+
+msgid "Hong Kong"
+msgstr "Hong Kong"
+
+msgid ""
+"How many search results will be returned.\n"
+"If greater value then longer time will be needed for thumbnail download."
+msgstr ""
+"Kaç arama sonucu döndürülecek.\n"
+"Daha büyük bir değer varsa, küçük resim indirmek için daha uzun süre gerekecektir."
+
+msgid "I dislike this"
+msgstr "Bunu beğenmedim"
+
+msgid "I like this"
+msgstr "Bunu beğendim"
+
+msgid "India"
+msgstr "Hindistan"
+
+msgid "Ireland"
+msgstr "İrlanda"
+
+msgid "Israel"
+msgstr "İsrail"
+
+msgid "Italy"
+msgstr "İtalya"
+
+msgid "Japan"
+msgstr "Japonya"
+
+msgid "Keyboard"
+msgstr "Klavye"
+
+msgid "Latvia"
+msgstr "Letonya"
+
+msgid "Liked videos"
+msgstr "Beğenilen videolar"
+
+msgid "Liked!"
+msgstr "Beğendi!"
+
+msgid ""
+"Log in to your YouTube account when plugin starts.\n"
+"This needs to approve in the Google home page!"
+msgstr ""
+"Eklenti başladığında YouTube hesabınıza giriş yapın.\n"
+"Bunun Google ana sayfasında onaylanması gerekiyor!"
+
+msgid "Login on startup:"
+msgstr "Başlangıçta giriş:"
+
+msgid "Maximum video resolution:"
+msgstr "Maksimum video çözünürlüğü:"
+
+msgid "Merge downloaded files:"
+msgstr "İndirilen dosyaları birleştir:"
+
+msgid "Mexico"
+msgstr "Meksika"
+
+msgid "Moderate"
+msgstr "Orta"
+
+msgid "Most viewed"
+msgstr "En çok izlenenler"
+
+msgid "Movies"
+msgstr "Filmler"
+
+msgid "My Subscriptions"
+msgstr "Aboneliklerim"
+
+msgid "My feeds"
+msgstr "Özet Yayınlarım"
+
+msgid "New Zealand"
+msgstr "Yeni Zelanda"
+
 #, python-format
 msgid "Next %s entries"
 msgstr "Sonraki %s giriş"
 
-#: YouTubeUi.py:1136
+msgid "No"
+msgstr "Hayır"
+
+msgid "No, but play video again"
+msgstr "Hayır, ama videoyu yeniden oynat"
+
+msgid "Ok"
+msgstr "Tamam"
+
+msgid "Open"
+msgstr "Aç"
+
+msgid "Order in which search results will be displayed."
+msgstr "Arama sonuçlarının görüntüleneceği sıra."
+
+msgid "Play next"
+msgstr "Sonrakini oynat"
+
+msgid "Play next video"
+msgstr "Sonraki videoyu oynat"
+
+msgid "Play previous"
+msgstr "Öncekini oynat"
+
+msgid "Play previous video"
+msgstr "Önceki videoyu oynat"
+
+msgid "Play video again"
+msgstr "Videoyu yeniden oynat"
+
+msgid "Playlists"
+msgstr "Oynatma Listeleri"
+
+msgid "Please select the download directory"
+msgstr "Lütfen indirme dizinini seçin"
+
+msgid "Poland"
+msgstr "Polonya"
+
 #, python-format
 msgid "Previous %s entries"
 msgstr "Önceki %s girişler"
 
-#: YouTubeUi.py:1140
+msgid "Public feeds"
+msgstr "Herkese açık yayınlar"
+
+msgid "Published at: "
+msgstr "Yayınlandığı yer: "
+
+msgid "Quit"
+msgstr "Çık"
+
 msgid "Rate video"
 msgstr "Videoya oy ver"
 
-#: YouTubeUi.py:1141
-msgid "Subscribe this video channel"
-msgstr "Bu video kanalına abone ol"
+msgid "Rating"
+msgstr "Puan"
 
-#: YouTubeUi.py:1143
-msgid "Remove from favorites"
-msgstr "Sık kullanılanlardan kaldır"
-
-#: YouTubeUi.py:1145
-msgid "Add to favorites"
-msgstr "Sık kullanılanlara ekle"
-
-#: YouTubeUi.py:1147
-msgid "Subscribe"
-msgstr "Abone ol"
-
-#: YouTubeUi.py:1150
-msgid "Unsubscribe"
-msgstr "Aboneliği iptal et"
-
-#: YouTubeUi.py:1153
-msgid "Download video"
-msgstr "Video indir"
-
-#: YouTubeUi.py:1156
-msgid "Close YouTube"
-msgstr "YouTube'u kapat"
-
-#: YouTubeUi.py:1171
-msgid "I like this"
-msgstr "Bunu beğendim"
-
-#: YouTubeUi.py:1172
-msgid "I dislike this"
-msgstr "Bunu beğenmedim"
-
-#: YouTubeUi.py:1173
-msgid "Remove my rating"
-msgstr "Derecelendirmemi kaldır"
-
-#: YouTubeUi.py:1189
-msgid "Search for similar"
-msgstr "Benzerleri ara"
-
-#: YouTubeUi.py:1190
-msgid "Videos from this video channel"
-msgstr "Bu video kanalından videolar"
-
-#: YouTubeUi.py:1226
-msgid "Subscribed!"
-msgstr "Abone olun!"
-
-#: YouTubeUi.py:1227 YouTubeUi.py:1240 YouTubeUi.py:1282 YouTubeUi.py:1291
-#: YouTubeUi.py:1303
-msgid "There was an error!"
-msgstr "Bir hata oluştu!"
-
-#: YouTubeUi.py:1239
-msgid "Unsubscribed!"
-msgstr "Abonelikten kaldırıldı!"
-
-#: YouTubeUi.py:1281
-msgid "Removed!"
-msgstr "Kaldırıldı!"
-
-#: YouTubeUi.py:1290
-msgid "Added!"
-msgstr "Eklendi!"
-
-#: YouTubeUi.py:1297
-msgid "Liked!"
-msgstr "Beğendi!"
-
-#: YouTubeUi.py:1298
-msgid "Disliked!"
-msgstr "Beğenmedim!"
-
-#: YouTubeUi.py:1299
 msgid "Rating removed!"
 msgstr "Derecelendirme kaldırıldı!"
 
-#: YouTubeUi.py:1317
+msgid "Recent"
+msgstr "Son"
+
+msgid "Relevance"
+msgstr "Uygunluk"
+
+msgid "Remove from favorites"
+msgstr "Sık kullanılanlardan kaldır"
+
+msgid "Remove my rating"
+msgstr "Derecelendirmemi kaldır"
+
+msgid "Removed!"
+msgstr "Kaldırıldı!"
+
+msgid "Repeat"
+msgstr "Tekrar et"
+
+msgid "Return search results for the specified country."
+msgstr "Belirtilen ülke için arama sonuçlarını döndür."
+
+msgid "Return search results that are most relevant to the specified language."
+msgstr "Belirtilen dille en alakalı arama sonuçlarını döndür."
+
+msgid "Return to list"
+msgstr "Listeye geri dön"
+
+msgid "Russia"
+msgstr "Rusya"
+
+msgid "Save search result:"
+msgstr "Arama sonucunu kaydet:"
+
+msgid "Save your search result in the history, when search completed."
+msgstr "Arama tamamlandığında arama sonucunuzu geçmişe kaydedin."
+
+msgid "Search"
+msgstr "Ara"
+
+msgid "Search channels"
+msgstr "Kanal ara"
+
+msgid "Search for similar"
+msgstr "Benzerleri ara"
+
+msgid "Search language:"
+msgstr "Arama dili:"
+
+msgid "Search live broadcasts"
+msgstr "Canlı yayınlarda ara"
+
+msgid "Search playlists"
+msgstr "Çalma listelerinde ara"
+
+msgid "Search region:"
+msgstr "Arama bölgesi:"
+
+msgid "Search results:"
+msgstr "Arama sonuçları:"
+
+msgid "Search videos"
+msgstr "Video ara"
+
+msgid "Shows"
+msgstr "Gösteriler"
+
 msgid ""
 "Sorry, download directory not exist!\n"
 "Please specify in the settings existing directory."
@@ -513,7 +360,6 @@ msgstr ""
 "Maalesef, indirme dizini mevcut değil!\n"
 "Lütfen mevcut dizinde ayarları belirtin."
 
-#: YouTubeUi.py:1324
 #, python-format
 msgid ""
 "Sorry, this file already exists:\n"
@@ -522,137 +368,60 @@ msgstr ""
 "Üzgünüz, bu dosya zaten var:\n"
 "%s"
 
-#: YouTubeUi.py:1336
-msgid "Video download started!"
-msgstr "Video indirme başladı!"
-
-#: YouTubeUi.py:1413
-msgid "YouTube info"
-msgstr "YouTube bilgisi"
-
-#: YouTubeUi.py:1484
-msgid "Save search result:"
-msgstr "Arama sonucunu kaydet:"
-
-#: YouTubeUi.py:1486
-msgid "Save your search result in the history, when search completed."
-msgstr "Arama tamamlandığında arama sonucunuzu geçmişe kaydedin."
-
-#: YouTubeUi.py:1487
-msgid "Search results:"
-msgstr "Arama sonuçları:"
-
-#: YouTubeUi.py:1489
-msgid ""
-"How many search results will be returned.\n"
-"If greater value then longer time will be needed for thumbnail download."
-msgstr ""
-"Kaç arama sonucu döndürülecek.\n"
-"Daha büyük bir değer varsa, küçük resim indirmek için daha uzun süre gerekecektir."
-
-#: YouTubeUi.py:1490
-msgid "Search region:"
-msgstr "Arama bölgesi:"
-
-#: YouTubeUi.py:1492
-msgid "Return search results for the specified country."
-msgstr "Belirtilen ülke için arama sonuçlarını döndür."
-
-#: YouTubeUi.py:1493
-msgid "Search language:"
-msgstr "Arama dili:"
-
-#: YouTubeUi.py:1495
-msgid "Return search results that are most relevant to the specified language."
-msgstr "Belirtilen dille en alakalı arama sonuçlarını döndür."
-
-#: YouTubeUi.py:1496
 msgid "Sort search results by:"
 msgstr "Arama sonuçlarını sırala:"
 
-#: YouTubeUi.py:1498
-msgid "Order in which search results will be displayed."
-msgstr "Arama sonuçlarının görüntüleneceği sıra."
+msgid "South Korea"
+msgstr "Güney Kore"
 
-#: YouTubeUi.py:1499
-msgid "Exclude restricted content:"
-msgstr "Kısıtlanmış içeriği hariç tut:"
+msgid "Spain"
+msgstr "İspanya"
 
-#: YouTubeUi.py:1501
-msgid "Try to exclude all restricted content from the search result."
-msgstr "Kısıtlanan tüm içeriği arama sonucundan çıkarmaya çalışın."
-
-#: YouTubeUi.py:1502
-msgid "Maximum video resolution:"
-msgstr "Maksimum video çözünürlüğü:"
-
-#: YouTubeUi.py:1504
-msgid ""
-"What maximum resolution used when playing video, if available.\n"
-"If you have a slow Internet connection, you can use a lower resolution."
-msgstr ""
-"Varsa video oynatılırken hangi maksimum çözünürlük kullanılır?\n"
-"İnternet bağlantınız yavaşsa daha düşük bir çözünürlük kullanabilirsiniz."
-
-#: YouTubeUi.py:1505
-msgid "When video ends:"
-msgstr "Video bittiğinde:"
-
-#: YouTubeUi.py:1507
-msgid "What to do when the video ends."
-msgstr "Video bittiğinde ne yapmalı."
-
-#: YouTubeUi.py:1508
-msgid "When playback stop:"
-msgstr "Oynatma durduğunda:"
-
-#: YouTubeUi.py:1510
-msgid "What to do when stop playback in videoplayer."
-msgstr "Video oynatıcıda oynatmayı durdurduğunda ne yapmalı."
-
-#: YouTubeUi.py:1511
-msgid "Login on startup:"
-msgstr "Başlangıçta giriş:"
-
-#: YouTubeUi.py:1513
-msgid ""
-"Log in to your YouTube account when plugin starts.\n"
-"This needs to approve in the Google home page!"
-msgstr ""
-"Eklenti başladığında YouTube hesabınıza giriş yapın.\n"
-"Bunun Google ana sayfasında onaylanması gerekiyor!"
-
-#: YouTubeUi.py:1514
-msgid "Download directory:"
-msgstr "İndirme dizini:"
-
-#: YouTubeUi.py:1516
 msgid "Specify the directory where save downloaded video files."
 msgstr "İndirilen video dosyalarının kaydedileceği dizini belirtin."
 
-#: YouTubeUi.py:1517
-msgid "Merge downloaded files:"
-msgstr "İndirilen dosyaları birleştir:"
+msgid "Stop playing this movie?"
+msgstr "Film durdurulsun mu?"
 
-#: YouTubeUi.py:1519
+msgid "Subscribe"
+msgstr "Abone ol"
+
+msgid "Subscribe this video channel"
+msgstr "Bu video kanalına abone ol"
+
+msgid "Subscribed!"
+msgstr "Abone olun!"
+
+msgid "Sweden"
+msgstr "İsveç"
+
+msgid "Taiwan"
+msgstr "Tayvan"
+
+msgid "Thailand"
+msgstr "Tayland"
+
 msgid ""
-"FFmpeg will be used to merge downloaded DASH video and audio files.\n"
-"FFmpeg will be installed if necessary."
+"There was an error in creating entry list!\n"
+"Maybe try other feeds..."
 msgstr ""
-"FFmpeg, indirilen DASH video ve ses dosyalarını birleştirmek için kullanılacak.\n"
-"Gerekirse FFmpeg kurulacaktır."
+"Giriş listesi oluşturulurken bir hata oluştu!\n"
+"Belki diğer yayınları dene ..."
 
-#: YouTubeUi.py:1539
+#, python-format
 msgid ""
-"You have disabled downloaded file merge.\n"
-"Installed FFmpeg is no longer necessary.\n"
-"Do you want to remove FFmpeg?"
+"There was an error in extract video url:\n"
+"%s"
 msgstr ""
-"İndirilen dosya birleştirmeyi devre dışı bıraktınız.\n"
-"Yüklü FFmpeg artık gerekli değil.\n"
-"FFmpeg'i kaldırmak istiyor musunuz?"
+"Video çıkarma URL'sinde bir hata oluştu:\n"
+"%s"
 
-#: YouTubeUi.py:1542
+msgid "There was an error!"
+msgstr "Bir hata oluştu!"
+
+msgid "Title"
+msgstr "Başlık"
+
 msgid ""
 "To merge downloaded files FFmpeg will be installed.\n"
 "FFmpeg can take a lot of space!\n"
@@ -662,15 +431,6 @@ msgstr ""
 "FFmpeg çok yer kaplayabilir!\n"
 "Devam etmek istiyor musun?"
 
-#: YouTubeUi.py:1573
-msgid ""
-"You already authorized access for this plugin to your YouTube account.\n"
-"Do you want to do it again to update access data?"
-msgstr ""
-"Bu eklenti için YouTube hesabınıza erişim yetkiniz zaten var.\n"
-"Erişim verilerini güncellemek için tekrar yapmak ister misiniz?"
-
-#: YouTubeUi.py:1580
 msgid ""
 "To perform authentication will need in a web browser open Google home page, and enter the code!\n"
 "Do you currently have Internet access on the other device and we can continue?"
@@ -678,15 +438,100 @@ msgstr ""
 "Kimlik doğrulama yapmak için bir web tarayıcısında ihtiyacınız olacak Google ana sayfasını açın ve kodu girin!\n"
 "Şu anda diğer cihazda İnternet erişiminiz var mı ve devam edebilir miyiz?"
 
-#: YouTubeUi.py:1592
-#, python-format
-msgid ""
-"Go to %s\n"
-"And enter the code %s"
-msgstr ""
-"%s adresine git\n"
-"Ve %s kodunu girin"
+msgid "Top rated"
+msgstr "Yüksek oy alanlar"
 
-#: plugin.py:20
+msgid "Try to exclude all restricted content from the search result."
+msgstr "Kısıtlanan tüm içeriği arama sonucundan çıkarmaya çalışın."
+
+msgid "Turkey"
+msgstr "Türkiye"
+
+msgid "United States"
+msgstr "Amerika"
+
+msgid "Unsubscribe"
+msgstr "Aboneliği iptal et"
+
+msgid "Unsubscribed!"
+msgstr "Abonelikten kaldırıldı!"
+
+msgid "Uploads"
+msgstr "Yüklemeler"
+
+msgid "Use"
+msgstr "Kullan"
+
+msgid "Video download started!"
+msgstr "Video indirme başladı!"
+
+msgid "Videos from this video channel"
+msgstr "Bu video kanalından videolar"
+
+msgid "View count"
+msgstr "Görüntüleme sayısı"
+
 msgid "Watch YouTube videos"
 msgstr "YouTube videolarını izle"
+
+msgid "What do you want to do?"
+msgstr "Ne yapmak istiyorsun?"
+
+msgid ""
+"What maximum resolution used when playing video, if available.\n"
+"If you have a slow Internet connection, you can use a lower resolution."
+msgstr ""
+"Varsa video oynatılırken hangi maksimum çözünürlük kullanılır?\n"
+"İnternet bağlantınız yavaşsa daha düşük bir çözünürlük kullanabilirsiniz."
+
+msgid "What to do when stop playback in videoplayer."
+msgstr "Video oynatıcıda oynatmayı durdurduğunda ne yapmalı."
+
+msgid "What to do when the video ends."
+msgstr "Video bittiğinde ne yapmalı."
+
+msgid "When playback stop:"
+msgstr "Oynatma durduğunda:"
+
+msgid "When video ends:"
+msgstr "Video bittiğinde:"
+
+msgid "Yes"
+msgstr "Evet"
+
+msgid "Yes, but play next video"
+msgstr "Evet, ama sonraki videoyu oynat"
+
+msgid "Yes, but play previous video"
+msgstr "Evet, ama önceki videoyu oynat"
+
+msgid ""
+"You already authorized access for this plugin to your YouTube account.\n"
+"Do you want to do it again to update access data?"
+msgstr ""
+"Bu eklenti için YouTube hesabınıza erişim yetkiniz zaten var.\n"
+"Erişim verilerini güncellemek için tekrar yapmak ister misiniz?"
+
+msgid ""
+"You have disabled downloaded file merge.\n"
+"Installed FFmpeg is no longer necessary.\n"
+"Do you want to remove FFmpeg?"
+msgstr ""
+"İndirilen dosya birleştirmeyi devre dışı bıraktınız.\n"
+"Yüklü FFmpeg artık gerekli değil.\n"
+"FFmpeg'i kaldırmak istiyor musunuz?"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "YouTube info"
+msgstr "YouTube bilgisi"
+
+msgid "YouTube search"
+msgstr "YouTube arama"
+
+msgid "YouTube setup"
+msgstr "YouTube kurulumu"
+
+msgid "YouTube starting. Please wait..."
+msgstr "YouTube başlıyor. Lütfen bekleyin ..."
