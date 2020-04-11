@@ -75,8 +75,8 @@ class OAuth:
 			if 'access_token' in data:
 				self.conn.close()
 				return data['refresh_token'], 1
-			else:
-				return None, self.retry_interval + 2
+
+		return None, self.retry_interval + 2
 
 	def get_access_token(self, refresh_token):
 		try:
