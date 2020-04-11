@@ -353,10 +353,14 @@ class YouTubeVideoUrl():
 					'sts': self._search_regex(r'"sts"\s*:\s*(\d+)', embed_webpage),
 				})
 			video_info_url = 'https://www.youtube.com/get_video_info?' + data
-			video_info_webpage = self._download_webpage(video_info_url)
-			video_info = compat_parse_qs(video_info_webpage)
-			pl_response = video_info.get('player_response', [None])[0]
-			player_response = extract_player_response(pl_response)
+			try:
+				video_info_webpage = self._download_webpage(video_info_url)
+			except ExtractorError:
+				video_info_webpage = None
+			if video_info_webpage:
+				video_info = compat_parse_qs(video_info_webpage)
+				pl_response = video_info.get('player_response', [None])[0]
+				player_response = extract_player_response(pl_response)
 		else:
 			age_gate = False
 			video_info = None
