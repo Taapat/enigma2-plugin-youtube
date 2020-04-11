@@ -326,10 +326,6 @@ class YouTubeVideoUrl():
 
 		is_live = None
 
-		def extract_token(v_info):
-			token = v_info.get('account_playback_token') or v_info.get('accountPlaybackToken') or v_info.get('token')
-			return token
-
 		def extract_player_response(player_response):
 			if not player_response:
 				return
@@ -340,6 +336,7 @@ class YouTubeVideoUrl():
 		player_response = {}
 
 		# Get video info
+		video_info = {}
 		embed_webpage = None
 		if re.search(r'player-age-gate-content">', video_webpage) is not None:
 			age_gate = True
@@ -363,8 +360,6 @@ class YouTubeVideoUrl():
 				player_response = extract_player_response(pl_response)
 		else:
 			age_gate = False
-			video_info = None
-			sts = None
 			args = {}
 			# Try looking directly into the video webpage
 			ytplayer_config = self._get_ytplayer_config(video_webpage)
@@ -375,55 +370,8 @@ class YouTubeVideoUrl():
 					video_info = dict((k, [v]) for k, v in args.items())
 				if args.get('livestream') == '1' or args.get('live_playback') == 1:
 					is_live = True
-				sts = ytplayer_config.get('sts')
 				if not player_response:
 					player_response = extract_player_response(args.get('player_response'))
-			if not video_info:
-				# We also try looking in get_video_info since it may contain different dashmpd
-				# URL that points to a DASH manifest with possibly different itag set (some itags
-				# are missing from DASH manifest pointed by webpage's dashmpd, some - from DASH
-				# manifest pointed by get_video_info's dashmpd).
-				# The general idea is to take a union of itags of both DASH manifests (for example
-				# video with such 'manifest behavior' see https://github.com/rg3/youtube-dl/issues/6093)
-				for el in ('embedded', 'detailpage', 'vevo', ''):
-					query = {
-							'video_id': video_id,
-							'ps': 'default',
-							'eurl': '',
-							'gl': gl,
-							'hl': hl,
-						}
-					if el:
-						query['el'] = el
-					if sts:
-						query['sts'] = sts
-					data = urlencode(query)
-
-					video_info_url = 'https://www.youtube.com/get_video_info?' + data
-					try:
-						video_info_webpage = self._download_webpage(video_info_url, fatal=False)
-					except ExtractorError as e:
-						# Skip further retries if we get 429 since solving
-						# captcha only unblocks access to website but
-						# not get_video_info end point
-						if isinstance(e.cause, HTTPError) and e.cause.code == 429:
-							break
-						continue
-					if not video_info_webpage:
-						continue
-					video_info = compat_parse_qs(video_info_webpage)
-					if not player_response:
-						pl_response = video_info.get('player_response', [None])[0]
-						player_response = extract_player_response(pl_response)
-					token = extract_token(video_info)
-					if not token:
-						break
-		token = extract_token(video_info)
-		if not token:
-			if 'reason' in video_info:
-				print '[YouTubeVideoUrl] %s' % video_info['reason'][0]
-			else:
-				print '[YouTubeVideoUrl] "token" parameter not in video info for unknown reason'
 
 		video_details = try_get(
 			player_response, lambda x: x['videoDetails'], dict) or {}
