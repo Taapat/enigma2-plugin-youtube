@@ -6,7 +6,7 @@ import json
 import re
 
 from urllib import urlencode
-from urllib2 import urlopen, URLError
+from urllib2 import urlopen, URLError, HTTPError
 from urlparse import urljoin, urlparse
 
 from Components.config import config
@@ -396,7 +396,15 @@ class YouTubeVideoUrl():
 					data = urlencode(query)
 
 					video_info_url = 'https://www.youtube.com/get_video_info?' + data
-					video_info_webpage = self._download_webpage(video_info_url, fatal=False)
+					try:
+						video_info_webpage = self._download_webpage(video_info_url, fatal=False)
+					except ExtractorError as e:
+						# Skip further retries if we get 429 since solving
+						# captcha only unblocks access to website but
+						# not get_video_info end point
+						if isinstance(e.cause, HTTPError) and e.cause.code == 429:
+							break
+						continue
 					if not video_info_webpage:
 						continue
 					video_info = compat_parse_qs(video_info_webpage)
