@@ -38,20 +38,19 @@ class OAuth:
 						}),
 					{"Content-type": "application/x-www-form-urlencoded"}
 				)
+			response = self.conn.getresponse()
+			if (response.status == 200):
+				data = loads(response.read())
+				self.device_code = data['device_code']
+				self.verification_url = data['verification_url']
+				self.retry_interval = data['interval']
+				return data['user_code']
+			else:
+				print(response.status)
+				print(response.read())
 		except:
-			return ''
-		response = self.conn.getresponse()
-		if (response.status == 200):
-			data = loads(response.read())
-			user_code = data['user_code']
-			self.device_code = data['device_code']
-			self.verification_url = data['verification_url']
-			self.retry_interval = data['interval']
-		else:
-			print(response.status)
-			print(response.read())
-			return ''
-		return user_code
+			pass
+		return ''
 
 	def get_new_token(self):
 		try:
@@ -66,16 +65,14 @@ class OAuth:
 						}),
 					{"Content-type": "application/x-www-form-urlencoded"}
 				)
+			response = self.conn.getresponse()
+			if (response.status == 200):
+				data = loads(response.read())
+				if 'access_token' in data:
+					self.conn.close()
+					return data['refresh_token'], 1
 		except:
-			return None, self.retry_interval + 2
-
-		response = self.conn.getresponse()
-		if (response.status == 200):
-			data = loads(response.read())
-			if 'access_token' in data:
-				self.conn.close()
-				return data['refresh_token'], 1
-
+			pass
 		return None, self.retry_interval + 2
 
 	def get_access_token(self, refresh_token):
@@ -91,16 +88,15 @@ class OAuth:
 						}),
 					{"Content-type": "application/x-www-form-urlencoded"}
 				)
+			response = self.conn.getresponse()
+			if (response.status == 200):
+				data = loads(response.read())
+				self.conn.close()
+				return data['access_token']
+			else:
+				print("Unexpected response %d" % response.status)
+				print(response.read())
+				self.conn.close()
 		except:
-			return None
-
-		response = self.conn.getresponse()
-		if (response.status == 200):
-			data = loads(response.read())
-			self.conn.close()
-			return data['access_token']
-		else:
-			print("Unexpected response %d" % response.status)
-			print(response.read())
-			self.conn.close()
+			pass
 		return None
