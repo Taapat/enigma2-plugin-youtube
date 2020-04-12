@@ -62,7 +62,9 @@ class YouTubeSearch(Screen, ConfigListScreen):
 	screenWidth = getDesktop(0).size().width()
 	if screenWidth and screenWidth == 1280:
 		skin = """<screen position="center,150" size="630,370">
-				<widget name="config" position="15,15" size="600,30" zPosition="2" \
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
+					position="15,6" size="100,40" transparent="1" alphatest="on" />
+				<widget name="config" position="130,15" size="485,30" zPosition="2" \
 					scrollbarMode="showNever" />
 				<widget source="list" render="Listbox" position="15,48" size="600,273" \
 					scrollbarMode="showOnDemand" >
@@ -92,7 +94,9 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			</screen>"""
 	elif screenWidth and screenWidth == 1920:
 		skin = """<screen position="center,225" size="945,555">
-				<widget name="config" position="22,22" size="900,45" zPosition="2" \
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_FHD.png" \
+					position="22,15" size="150,60" transparent="1" alphatest="on" />
+				<widget name="config" position="182,22" size="740,45" zPosition="2" \
 					scrollbarMode="showNever" itemHeight="45" font="Regular;30" />
 				<widget source="list" render="Listbox" position="22,75" size="900,409" \
 					scrollbarMode="showOnDemand" >
@@ -119,8 +123,10 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
 			</screen>""" % (BUTTONS_FOLDER, BUTTONS_FOLDER, BUTTONS_FOLDER)
 	else:
-		skin = """<screen position="center,55" size="630,370">
-				<widget name="config" position="15,15" size="600,30" zPosition="2" \
+		skin = """<screen position="center,150" size="630,370">
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
+					position="15,6" size="100,40" transparent="1" alphatest="on" />
+				<widget name="config" position="130,15" size="485,30" zPosition="2" \
 					scrollbarMode="showNever" />
 				<widget source="list" render="Listbox" position="15,48" size="600,273" \
 					scrollbarMode="showOnDemand" >
@@ -153,7 +159,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.curList = curList
-		self.setTitle(_('YouTube search'))
+		self.setTitle(_('Search'))
 		self['key_red'] = StaticText(_('Exit'))
 		self['key_green'] = StaticText(_('Ok'))
 		self['key_yellow'] = StaticText(_('Keyboard'))

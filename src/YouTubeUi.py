@@ -160,7 +160,7 @@ if os.path.exists('/usr/share/enigma2/skin_fallback_1080/buttons/red.png'):
 class YouTubePlayer(MoviePlayer):
 	def __init__(self, session, service, current):
 		MoviePlayer.__init__(self, session, service)
-		self.skinName = 'MoviePlayer'
+		self.skinName = ['YouTubeMoviePlayer', 'MoviePlayer']
 		self.current = current
 		self.servicelist = InfoBar.instance and InfoBar.instance.servicelist
 
@@ -214,9 +214,11 @@ class YouTubePlayer(MoviePlayer):
 class YouTubeMain(Screen):
 	screenWidth = getDesktop(0).size().width()
 	if screenWidth and screenWidth == 1280:
-		skin = """<screen position="center,center" size="730,514">
-				<widget name="text" position="15,0" size="700,30" halign="center" font="Regular;24" />
-				<widget source="list" render="Listbox" position="15,32" size="700,432" \
+		skin = """<screen position="center,center" size="730,524">
+				<widget name="text" position="0,0" size="0,0" />  # Please use YouTube_HD.png instead of this
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
+					position="15,0" zPosition="2" size="100,40" alphatest="on" />
+				<widget source="list" render="Listbox" position="15,42" size="700,432" \
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [
@@ -233,24 +235,26 @@ class YouTubeMain(Screen):
 						"itemHeight": 72}
 					</convert>
 				</widget>
-				<widget name="info" position="50,479" size="35,25" pixmap="skin_default/buttons/key_info.png" \
+				<widget name="info" position="50,489" size="35,25" pixmap="skin_default/buttons/key_info.png" \
 					transparent="1" alphatest="on" />
-				<widget name="red" position="215,467" size="140,40" pixmap="skin_default/buttons/red.png" \
+				<widget name="red" position="215,477" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
-				<widget name="green" position="375,467" size="140,40" pixmap="skin_default/buttons/green.png" \
+				<widget name="green" position="375,477" size="140,40" pixmap="skin_default/buttons/green.png" \
 					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="215,472" zPosition="2" size="140,30" \
+				<widget source="key_red" render="Label" position="215,482" zPosition="2" size="140,30" \
 					valign="center" halign="center" font="Regular;22" transparent="1" />
-				<widget source="key_green" render="Label" position="375,472" zPosition="2" size="140,30" \
+				<widget source="key_green" render="Label" position="375,482" zPosition="2" size="140,30" \
 					valign="center" halign="center" font="Regular;22" transparent="1" />
-				<widget name="menu" position="645,479" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
+				<widget name="menu" position="645,489" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="thumbnail" position="0,0" size="100,72" /> # Thumbnail size in list
 			</screen>"""
 	elif screenWidth and screenWidth == 1920:
-		skin = """<screen position="center,center" size="1095,771">
-				<widget name="text" position="22,0" size="1050,45" halign="center" font="Regular;36" />
-				<widget source="list" render="Listbox" position="22,48" size="1050,648" \
+		skin = """<screen position="center,center" size="1095,786">
+				<widget name="text" position="0,0" size="0,0" />  # Please use YouTube_FHD.png instead of this
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_FHD.png" \
+					position="22,0" zPosition="2" size="150,60" transparent="1" alphatest="on" />
+				<widget source="list" render="Listbox" position="22,63" size="1050,648" \
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [
@@ -267,20 +271,22 @@ class YouTubeMain(Screen):
 						"itemHeight": 108}
 					</convert>
 				</widget>
-				<widget name="red" position="322,707" size="210,60" pixmap="%s/buttons/red.png" \
+				<widget name="red" position="322,722" size="210,60" pixmap="%s/buttons/red.png" \
 					transparent="1" alphatest="on" />
-				<widget name="green" position="563,707" size="210,60" pixmap="%s/buttons/green.png" \
+				<widget name="green" position="563,722" size="210,60" pixmap="%s/buttons/green.png" \
 					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="322,714" zPosition="2" size="210,45" \
+				<widget source="key_red" render="Label" position="322,729" zPosition="2" size="210,45" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
-				<widget source="key_green" render="Label" position="563,714" zPosition="2" size="210,45" \
+				<widget source="key_green" render="Label" position="563,729" zPosition="2" size="210,45" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 				<widget name="thumbnail" position="0,0" size="150,108" /> # Thumbnail size in list
 			</screen>""" % (BUTTONS_FOLDER, BUTTONS_FOLDER)
 	else:
-		skin = """<screen position="center,center" size="630,370">
-				<widget name="text" position="15,0" size="600,30" halign="center" font="Regular;24" />
-				<widget source="list" render="Listbox" position="15,32" size="600,288" \
+		skin = """<screen position="center,center" size="630,380">
+				<widget name="text" position="0,0" size="0,0" />  # Please use YouTube_HD.png instead of this
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
+					position="15,0" zPosition="2" size="100,40" transparent="1" alphatest="on" />
+				<widget source="list" render="Listbox" position="15,42" size="600,288" \
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [
@@ -297,24 +303,23 @@ class YouTubeMain(Screen):
 						"itemHeight": 72}
 					</convert>
 				</widget>
-				<widget name="info" position="30,335" size="35,25" pixmap="skin_default/buttons/key_info.png" \
+				<widget name="info" position="30,345" size="35,25" pixmap="skin_default/buttons/key_info.png" \
 					transparent="1" alphatest="on" />
-				<widget name="red" position="114,323" size="140,40" pixmap="skin_default/buttons/red.png" \
+				<widget name="red" position="114,333" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
-				<widget name="green" position="374,323" size="140,40" pixmap="skin_default/buttons/green.png" \
+				<widget name="green" position="374,333" size="140,40" pixmap="skin_default/buttons/green.png" \
 					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="114,328" zPosition="2" size="140,30" \
+				<widget source="key_red" render="Label" position="114,338" zPosition="2" size="140,30" \
 					valign="center" halign="center" font="Regular;22" transparent="1" />
-				<widget source="key_green" render="Label" position="374,328" zPosition="2" size="140,30" \
+				<widget source="key_green" render="Label" position="374,338" zPosition="2" size="140,30" \
 					valign="center" halign="center" font="Regular;22" transparent="1" />
-				<widget name="menu" position="565,335" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
+				<widget name="menu" position="565,345" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="thumbnail" position="0,0" size="100,72" /> # Thumbnail size in list
 			</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.setTitle(_('YouTube'))
 		self['info'] = Pixmap()
 		self['info'].hide()
 		self['red'] = Pixmap()
@@ -337,8 +342,9 @@ class YouTubeMain(Screen):
 				'showEventInfo': self.showEventInfo
 			}, -2)
 		text = _('YouTube starting. Please wait...')
-		self['text'] = Label()
-		self['text'].setText(text)
+		self.setTitle(text)
+		self['text'] = Label()  # For backward compatibility, removed after YouTube logo introduction
+		self['text'].setText(_('YouTube'))  # Please use YouTube logo in skin instead of this
 		self['list'] = List([])
 		self['thumbnail'] = Pixmap()
 		self['thumbnail'].hide()
@@ -463,7 +469,7 @@ class YouTubeMain(Screen):
 			text = _('Extract video url. Please wait...')
 		else:
 			text = _('Download feed entries. Please wait...')
-		self['text'].setText(text)
+		self.setTitle(text)
 		self['list'].setList([])
 		self['key_red'].setText('')
 		self['key_green'].setText('')
@@ -543,7 +549,7 @@ class YouTubeMain(Screen):
 				self.setEntryList()
 
 	def setEntryList(self):
-		self['text'].setText(self.text)
+		self.setTitle(self.text)
 		self['list'].setList(self.entryList)
 		self['red'].show()
 		self['green'].show()
@@ -696,7 +702,7 @@ class YouTubeMain(Screen):
 		self.text = lastInex[2]
 		self.nextPageToken = lastInex[3]
 		self.prevPageToken = lastInex[4]
-		self['text'].setText(self.text)
+		self.setTitle(self.text)
 		self.prevIndex.pop()
 
 	def rememberCurList(self):
@@ -1364,7 +1370,9 @@ class YouTubeInfo(Screen):
 	screenWidth = getDesktop(0).size().width()
 	if screenWidth and screenWidth == 1280:
 		skin = """<screen position="center,center" size="730,424">
-				<widget name="title" position="15,0" size="700,60" halign="center" font="Regular;24" />
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
+					position="15,0" size="100,40" transparent="1" alphatest="on" />
+				<widget name="title" position="115,0" size="600,60" halign="center" font="Regular;24" />
 				<widget name="pic" position="20,70" size="320,180" transparent="1" alphatest="on" />
 				<widget name="description" position="360,70" size="360,300" font="Regular;16" />
 				<widget name="views" position="30,270" size="150,20" font="Regular;16" />
@@ -1379,7 +1387,9 @@ class YouTubeInfo(Screen):
 			</screen>"""
 	elif screenWidth and screenWidth == 1920:
 		skin = """<screen position="center,center" size="1095,636">
-				<widget name="title" position="22,0" size="1050,90" halign="center" font="Regular;36" />
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_FHD.png" \
+					position="15,0" size="150,60" transparent="1" alphatest="on" />
+				<widget name="title" position="172,0" size="900,90" halign="center" font="Regular;36" />
 				<widget name="pic" position="30,105" size="320,180" transparent="1" alphatest="on" />
 				<widget name="description" position="380,105" size="670,453" font="Regular;24" />
 				<widget name="views" position="45,305" size="225,30" font="Regular;24" />
@@ -1394,7 +1404,9 @@ class YouTubeInfo(Screen):
 			</screen>"""
 	else:
 		skin = """<screen position="center,center" size="630,370">
-				<widget name="title" position="15,0" size="600,60" halign="center" font="Regular;24" />
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
+					position="15,0" size="100,40" transparent="1" alphatest="on" />
+				<widget name="title" position="115,0" size="500,60" halign="center" font="Regular;24" />
 				<widget name="pic" position="20,70" size="320,180" transparent="1" alphatest="on" />
 				<widget name="description" position="360,70" size="260,225" font="Regular;16" />
 				<widget name="views" position="30,270" size="150,20" font="Regular;16" />
@@ -1410,7 +1422,7 @@ class YouTubeInfo(Screen):
 
 	def __init__(self, session, current):
 		Screen.__init__(self, session)
-		self.setTitle(_('YouTube info'))
+		self.setTitle(_('Info'))
 		self['key_red'] = StaticText(_('Exit'))
 		self['title'] = Label(current[0])
 		self['pic'] = Pixmap()
