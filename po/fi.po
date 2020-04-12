@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-14 19:23+0200\n"
+"POT-Creation-Date: 2020-04-12 21:54+0300\n"
 "PO-Revision-Date: 2016-08-24 10:46+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: \n"
@@ -158,6 +158,9 @@ msgstr "Tykkään tästä"
 msgid "India"
 msgstr "Intia"
 
+msgid "Info"
+msgstr "Info"
+
 msgid "Ireland"
 msgstr "Irlanti"
 
@@ -244,7 +247,6 @@ msgstr "Toista seuraava"
 msgid "Play next video"
 msgstr "Toista seuraava video"
 
-#, fuzzy
 msgid "Play previous"
 msgstr "Toista edellinen"
 
@@ -515,12 +517,6 @@ msgstr ""
 
 msgid "YouTube"
 msgstr "YouTube"
-
-msgid "YouTube info"
-msgstr "YouTube info"
-
-msgid "YouTube search"
-msgstr "YouTube haku"
 
 msgid "YouTube setup"
 msgstr "YouTube asetukset"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-02 20:21+0300\n"
+"POT-Creation-Date: 2020-04-12 21:54+0300\n"
 "PO-Revision-Date: 2020-04-01 16:14+0300\n"
 "Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish\n"
@@ -160,6 +160,9 @@ msgstr "Bunu beğendim"
 
 msgid "India"
 msgstr "Hindistan"
+
+msgid "Info"
+msgstr "Bilgisi"
 
 msgid "Ireland"
 msgstr "İrlanda"
@@ -523,12 +526,6 @@ msgstr ""
 
 msgid "YouTube"
 msgstr "YouTube"
-
-msgid "YouTube info"
-msgstr "YouTube bilgisi"
-
-msgid "YouTube search"
-msgstr "YouTube arama"
 
 msgid "YouTube setup"
 msgstr "YouTube kurulumu"

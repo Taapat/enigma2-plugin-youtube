@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-14 19:23+0200\n"
+"POT-Creation-Date: 2020-04-12 21:54+0300\n"
 "PO-Revision-Date: 2018-05-26 13:10+0200\n"
 "Last-Translator: Massimo Bambi <maxbambi@libero.it>\n"
 "Language-Team: \n"
@@ -158,6 +158,9 @@ msgstr "Mi piace"
 
 msgid "India"
 msgstr "India"
+
+msgid "Info"
+msgstr "Info"
 
 msgid "Ireland"
 msgstr "Irlanda"
@@ -515,12 +518,6 @@ msgstr ""
 
 msgid "YouTube"
 msgstr "YouTube"
-
-msgid "YouTube info"
-msgstr "Info Youtube"
-
-msgid "YouTube search"
-msgstr "Ricerca YouTube"
 
 msgid "YouTube setup"
 msgstr "Setup YouTube"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-14 19:23+0200\n"
+"POT-Creation-Date: 2020-04-12 21:54+0300\n"
 "PO-Revision-Date: 2015-12-19 15:56+0100\n"
 "Last-Translator: Budiarno Pedode\n"
 "Language-Team: \n"
@@ -156,6 +156,9 @@ msgstr "Saya suka ini"
 msgid "India"
 msgstr "India"
 
+msgid "Info"
+msgstr "Informasi"
+
 msgid "Ireland"
 msgstr "Irlandia"
 
@@ -242,7 +245,6 @@ msgstr "Putar berikutnya"
 msgid "Play next video"
 msgstr "Putar video berikutnya"
 
-#, fuzzy
 msgid "Play previous"
 msgstr "Putar sebelumnya"
 
@@ -519,12 +521,6 @@ msgstr ""
 
 msgid "YouTube"
 msgstr "YouTube"
-
-msgid "YouTube info"
-msgstr "Informasi Youtube"
-
-msgid "YouTube search"
-msgstr "Pencarian Youtube"
 
 msgid "YouTube setup"
 msgstr "Pengaturan YouTube"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-14 19:23+0200\n"
+"POT-Creation-Date: 2020-04-12 21:54+0300\n"
 "PO-Revision-Date: 2018-04-13 10:46+0300\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -153,6 +153,9 @@ msgstr "Това не ми харесва"
 
 msgid "India"
 msgstr "Индия"
+
+msgid "Info"
+msgstr "Информация"
 
 msgid "Ireland"
 msgstr "Ирландия"
@@ -510,12 +513,6 @@ msgstr ""
 
 msgid "YouTube"
 msgstr "YouTube"
-
-msgid "YouTube info"
-msgstr "YouTube информация"
-
-msgid "YouTube search"
-msgstr "YouTube търсене"
 
 msgid "YouTube setup"
 msgstr "YouTube настройки"

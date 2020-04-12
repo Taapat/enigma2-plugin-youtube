@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-14 19:23+0200\n"
+"POT-Creation-Date: 2020-04-12 21:54+0300\n"
 "PO-Revision-Date: 2018-06-25 22:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -158,6 +158,9 @@ msgstr "J’aime ceci"
 
 msgid "India"
 msgstr "Inde"
+
+msgid "Info"
+msgstr "Infos"
 
 msgid "Ireland"
 msgstr "Irelande"
@@ -515,12 +518,6 @@ msgstr ""
 
 msgid "YouTube"
 msgstr "Youtube"
-
-msgid "YouTube info"
-msgstr "Infos sur YouTube"
-
-msgid "YouTube search"
-msgstr "Recherche YouTube"
 
 msgid "YouTube setup"
 msgstr "Configuration de YouTube"

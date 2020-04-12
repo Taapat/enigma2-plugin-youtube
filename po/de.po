@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-14 19:23+0200\n"
+"POT-Creation-Date: 2020-04-12 21:54+0300\n"
 "PO-Revision-Date: 2016-02-27 17:17+0100\n"
 "Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: OpenPlus <open-plus.es>\n"
@@ -154,6 +154,9 @@ msgstr "Gefällt mir"
 msgid "India"
 msgstr "Indien"
 
+msgid "Info"
+msgstr "Informationen"
+
 msgid "Ireland"
 msgstr "Irland"
 
@@ -240,7 +243,6 @@ msgstr "Nächstes abspielen"
 msgid "Play next video"
 msgstr "Nächstes Video abspielen"
 
-#, fuzzy
 msgid "Play previous"
 msgstr "Vorheriges abspielen"
 
@@ -511,12 +513,6 @@ msgstr ""
 
 msgid "YouTube"
 msgstr "YouTube"
-
-msgid "YouTube info"
-msgstr "YouTube Informationen"
-
-msgid "YouTube search"
-msgstr "YouTube Suche"
 
 msgid "YouTube setup"
 msgstr "YouTube Konfiguration"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin for Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-14 19:23+0200\n"
+"POT-Creation-Date: 2020-04-12 21:54+0300\n"
 "PO-Revision-Date: 2018-11-19 00:44+0000\n"
 "Last-Translator: nunigaia\n"
 "Language-Team: BH Team\n"
@@ -162,6 +162,9 @@ msgstr "Eu gosto disto"
 
 msgid "India"
 msgstr "Índia"
+
+msgid "Info"
+msgstr "Informação"
 
 msgid "Ireland"
 msgstr "Irlanda"
@@ -525,12 +528,6 @@ msgstr ""
 
 msgid "YouTube"
 msgstr "Youtube"
-
-msgid "YouTube info"
-msgstr "Informação do YouTube"
-
-msgid "YouTube search"
-msgstr "Busca do YouTube"
 
 msgid "YouTube setup"
 msgstr "Definição do YouTube"

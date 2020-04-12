@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-14 19:23+0200\n"
+"POT-Creation-Date: 2020-04-12 21:54+0300\n"
 "PO-Revision-Date: 2018-11-18 12:37+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: \n"
@@ -13,125 +13,94 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2\n"
 
-#: YouTubeUi.py:1082
 #, python-format
 msgid "  (%d-%d of %d)"
 msgstr "  (%d-%d of %d)"
 
-#: YouTubeUi.py:978
 msgid " dislikes"
 msgstr " - ei meeldi"
 
-#: YouTubeUi.py:974
 msgid " likes"
 msgstr " - meeldib"
 
-#: YouTubeUi.py:962
 msgid " views"
 msgstr " vaatamist"
 
-#: YouTubeDownload.py:171 YouTubeUi.py:1125
 msgid "Active video downloads"
 msgstr "Aktiivsed allalaadimised"
 
-#: YouTubeUi.py:1115
 msgid "Add to favorites"
 msgstr "Lisa lemmikuks"
 
-#: YouTubeUi.py:1260
 msgid "Added!"
 msgstr "Lisatud!"
 
-#: YouTubeUi.py:39 YouTubeUi.py:69
 msgid "All"
 msgstr "Kõik"
 
-#: YouTubeUi.py:111 YouTubeUi.py:115
 msgid "Ask user"
 msgstr "Küsitakse"
 
-#: YouTubeUi.py:40 YouTubeUi.py:70
 msgid "Australia"
 msgstr "Austraalia"
 
-#: YouTubeUi.py:41 YouTubeUi.py:71
 msgid "Brazil"
 msgstr "Brasiilia"
 
-#: YouTubeUi.py:42 YouTubeUi.py:72
 msgid "Canada"
 msgstr "Kanada"
 
-#: YouTubeDownload.py:20 YouTubeUi.py:1437
 msgid "Cancel"
 msgstr "Tühista"
 
-#: YouTubeUi.py:388
 msgid "Choose what you want to do"
 msgstr "Vali soovitud tegevus"
 
-#: YouTubeUi.py:1126
 msgid "Close YouTube"
 msgstr "Sulge YouTube"
 
-#: YouTubeUi.py:100
 msgid "Created date"
 msgstr "Loodud"
 
-#: YouTubeUi.py:43 YouTubeUi.py:73
 msgid "Czech Republic"
 msgstr "Tšehhi"
 
-#: YouTubeSearch.py:226
 msgid "Delete this entry"
 msgstr "Kustuta kirje"
 
-#: YouTubeUi.py:1268
 msgid "Disliked!"
 msgstr "Ei meeldi kirjas!"
 
-#: YouTubeUi.py:1484
 msgid "Download directory:"
 msgstr "Allalaadimised:"
 
-#: YouTubeUi.py:446
 msgid "Download feed entries. Please wait..."
 msgstr "Kanalite laadimine. Oota..."
 
-#: YouTubeUi.py:442
 msgid "Download search results. Please wait..."
 msgstr "Otsingu tulemuste laadimine. Oota..."
 
-#: YouTubeUi.py:1123
 msgid "Download video"
 msgstr "Laadi alla"
 
-#: YouTubeDownload.py:61
 msgid "Downloading"
 msgstr "Allalaadimine"
 
-#: YouTubeUi.py:966
 msgid "Duration: "
 msgstr "Kestus: "
 
-#: YouTubeUi.py:419
 msgid "Embedded in webpages"
 msgstr "Põimitud veebilehtedes"
 
-#: YouTubeUi.py:1469
 msgid "Exclude restricted content:"
 msgstr "Eemalda piiratud sisu:"
 
-#: YouTubeSearch.py:158 YouTubeDownload.py:157 YouTubeUi.py:533
-#: YouTubeUi.py:1384
 msgid "Exit"
 msgstr "Välju"
 
-#: YouTubeUi.py:444
 msgid "Extract video url. Please wait..."
 msgstr "Video aadressi eraldamine. Oota..."
 
-#: YouTubeUi.py:1489
 msgid ""
 "FFmpeg will be used to merge downloaded DASH video and audio files.\n"
 "FFmpeg will be installed if necessary."
@@ -139,19 +108,15 @@ msgstr ""
 "Allalaaditud DASH video ja helifailide liitmiseks on vajalik FFmpeg.\n"
 "Vajadusel FFmpeg paigaldatakse."
 
-#: YouTubeUi.py:432
 msgid "Favorites"
 msgstr "Lemmikud"
 
-#: YouTubeUi.py:44 YouTubeUi.py:74
 msgid "France"
 msgstr "Prantsusmaa"
 
-#: YouTubeUi.py:45 YouTubeUi.py:75
 msgid "Germany"
 msgstr "Saksamaa"
 
-#: YouTubeUi.py:1561
 #, python-format
 msgid ""
 "Go to %s\n"
@@ -160,27 +125,21 @@ msgstr ""
 "Mine aadressile %s\n"
 "ja sisesta kood %s"
 
-#: YouTubeUi.py:46 YouTubeUi.py:76
 msgid "Great Britain"
 msgstr "Suurbritannia"
 
-#: YouTubeUi.py:47 YouTubeUi.py:77
 msgid "Greece"
 msgstr "Kreeka"
 
-#: YouTubeUi.py:418
 msgid "HD videos"
 msgstr "HD videod"
 
-#: YouTubeUi.py:48 YouTubeUi.py:78
 msgid "Holland"
 msgstr "Holland"
 
-#: YouTubeUi.py:49 YouTubeUi.py:79
 msgid "Hong Kong"
 msgstr "Hong Kong"
 
-#: YouTubeUi.py:1459
 msgid ""
 "How many search results will be returned.\n"
 "If greater value then longer time will be needed for thumbnail download."
@@ -188,51 +147,42 @@ msgstr ""
 "Otsingu tulemuste arv.\n"
 "Mida suurem arv, seda kauem kulub pisipiltide laadimiseks."
 
-#: YouTubeUi.py:1142
 msgid "I dislike this"
 msgstr "Mulle ei meeldi"
 
-#: YouTubeUi.py:1141
 msgid "I like this"
 msgstr "Mulle meeldib"
 
-#: YouTubeUi.py:50 YouTubeUi.py:80
 msgid "India"
 msgstr "India"
 
-#: YouTubeUi.py:51 YouTubeUi.py:81
+msgid "Info"
+msgstr "Info"
+
 msgid "Ireland"
 msgstr "Iirimaa"
 
-#: YouTubeUi.py:52 YouTubeUi.py:82
 msgid "Israel"
 msgstr "Iisrael"
 
-#: YouTubeUi.py:53 YouTubeUi.py:83
 msgid "Italy"
 msgstr "Itaalia"
 
-#: YouTubeUi.py:54 YouTubeUi.py:84
 msgid "Japan"
 msgstr "Jaapan"
 
-#: YouTubeSearch.py:160
 msgid "Keyboard"
 msgstr "Klaviatuur"
 
-#: YouTubeUi.py:55 YouTubeUi.py:85
 msgid "Latvia"
 msgstr "Läti"
 
-#: YouTubeUi.py:431
 msgid "Liked videos"
 msgstr "Meeldinud videod"
 
-#: YouTubeUi.py:1267
 msgid "Liked!"
 msgstr "Meeldib kirjas!"
 
-#: YouTubeUi.py:1483
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"
 "This needs to approve in the Google home page!"
@@ -240,222 +190,167 @@ msgstr ""
 "Plugina käivitamisel logi sisse oma YouTube kontole.\n"
 "See tuleb kinnitada Google kodulehel!"
 
-#: YouTubeUi.py:1481
 msgid "Login on startup:"
 msgstr "Sisselogimine käivitamisel:"
 
-#: YouTubeUi.py:1472
 msgid "Maximum video resolution:"
 msgstr "Suurim videolahutus:"
 
-#: YouTubeUi.py:1487
 msgid "Merge downloaded files:"
 msgstr "Liida allalaaditud failid:"
 
-#: YouTubeUi.py:56 YouTubeUi.py:86
 msgid "Mexico"
 msgstr "Mehhiko"
 
-#: YouTubeUi.py:106
 msgid "Moderate"
 msgstr "Keskmine"
 
-#: YouTubeUi.py:416
 msgid "Most viewed"
 msgstr "Vaadatuimad"
 
-#: YouTubeUi.py:421
 msgid "Movies"
 msgstr "Filmid"
 
-#: YouTubeUi.py:430
 msgid "My Subscriptions"
 msgstr "Мinu tellimused"
 
-#: YouTubeUi.py:395 YouTubeUi.py:428
 msgid "My feeds"
 msgstr "Minu kanalid"
 
-#: YouTubeUi.py:57 YouTubeUi.py:87
 msgid "New Zealand"
 msgstr "Uus Meremaa"
 
-#: YouTubeUi.py:1103
 #, python-format
 msgid "Next %s entries"
 msgstr "Järgmised %s tulemust"
 
-#: YouTubeUi.py:106 YouTubeUi.py:149
 msgid "No"
 msgstr "Ei"
 
-#: YouTubeUi.py:148
 msgid "No, but play video again"
 msgstr "Ei, aga esita video uuesti"
 
-#: YouTubeSearch.py:159 YouTubeUi.py:1438
 msgid "Ok"
 msgstr "OK"
 
-#: YouTubeUi.py:534
 msgid "Open"
 msgstr "Ava"
 
-#: YouTubeUi.py:1468
 msgid "Order in which search results will be displayed."
 msgstr "Otsingu tulemuste kuvamise järjestus."
 
-#: YouTubeUi.py:112
 msgid "Play next"
 msgstr "Esita järgmine"
 
-#: YouTubeUi.py:654
 msgid "Play next video"
 msgstr "Esita järgmine video"
 
-#: YouTubeUi.py:113
 msgid "Play previous"
 msgstr "Esita eelmine"
 
-#: YouTubeUi.py:655
 msgid "Play previous video"
 msgstr "Esita eelmine video"
 
-#: YouTubeUi.py:656
 msgid "Play video again"
 msgstr "Esita video uuesti"
 
-#: YouTubeUi.py:434
 msgid "Playlists"
 msgstr "Pleilistid"
 
-#: YouTubeDownload.py:36
 msgid "Please select the download directory"
 msgstr "Vali allalaaditud videotele kataloog"
 
-#: YouTubeUi.py:58 YouTubeUi.py:88
 msgid "Poland"
 msgstr "Poola"
 
-#: YouTubeUi.py:1106
 #, python-format
 msgid "Previous %s entries"
 msgstr "Eelmised %s kirjet"
 
-#: YouTubeUi.py:391 YouTubeUi.py:413
 msgid "Public feeds"
 msgstr "Avalikud kanalid"
 
-#: YouTubeUi.py:990
 msgid "Published at: "
 msgstr "Avaldatud: "
 
-#: YouTubeUi.py:653
 msgid "Quit"
 msgstr "Välju"
 
-#: YouTubeUi.py:1110
 msgid "Rate video"
 msgstr "Hinda video"
 
-#: YouTubeUi.py:101
 msgid "Rating"
 msgstr "Hinnang"
 
-#: YouTubeUi.py:1269
 msgid "Rating removed!"
 msgstr "Hinnang eemaldati!"
 
-#: YouTubeUi.py:417 YouTubeUi.py:833 YouTubeUi.py:1068
 msgid "Recent"
 msgstr "Uusimad"
 
-#: YouTubeUi.py:99
 msgid "Relevance"
 msgstr "Tähtsus"
 
-#: YouTubeUi.py:1113
 msgid "Remove from favorites"
 msgstr "Eemalda lemmikutest"
 
-#: YouTubeUi.py:1143
 msgid "Remove my rating"
 msgstr "Eemalda minu hinnang"
 
-#: YouTubeUi.py:1251
 msgid "Removed!"
 msgstr "Eemaldatud!"
 
-#: YouTubeUi.py:112
 msgid "Repeat"
 msgstr "Korda"
 
-#: YouTubeUi.py:1462
 msgid "Return search results for the specified country."
 msgstr "Kuva otsingu tulemused konkreetse riigi jaoks."
 
-#: YouTubeUi.py:1465
 msgid "Return search results that are most relevant to the specified language."
 msgstr "Kuva tähtsaimad otsingu tulemused määratud keele järgi."
 
-#: YouTubeUi.py:111 YouTubeUi.py:115
 msgid "Return to list"
 msgstr "Tagasi nimekirja"
 
-#: YouTubeUi.py:59 YouTubeUi.py:89
 msgid "Russia"
 msgstr "Venemaa"
 
-#: YouTubeUi.py:1454
 msgid "Save search result:"
 msgstr "Salvesta otsingu tulemus:"
 
-#: YouTubeUi.py:1456
 msgid "Save your search result in the history, when search completed."
 msgstr "Jäta otsingu tulemus meelde."
 
-#: YouTubeSearch.py:26 YouTubeSearch.py:191 YouTubeUi.py:390 YouTubeUi.py:401
-#: YouTubeUi.py:1122
 msgid "Search"
 msgstr "Otsing"
 
-#: YouTubeUi.py:404
 msgid "Search channels"
 msgstr "Otsi kanaleid"
 
-#: YouTubeUi.py:1159
 msgid "Search for similar"
 msgstr "Otsi sarnaseid"
 
-#: YouTubeUi.py:1463
 msgid "Search language:"
 msgstr "Otsingu keel:"
 
-#: YouTubeUi.py:406
 msgid "Search live broadcasts"
 msgstr "Otsi otsesaateid"
 
-#: YouTubeUi.py:405
 msgid "Search playlists"
 msgstr "Otsi pleiliste"
 
-#: YouTubeUi.py:1460
 msgid "Search region:"
 msgstr "Otsingu piirkond:"
 
-#: YouTubeUi.py:1457
 msgid "Search results:"
 msgstr "Otsingu tulemusi:"
 
-#: YouTubeUi.py:403
 msgid "Search videos"
 msgstr "Otsi videoid"
 
-#: YouTubeUi.py:420
 msgid "Shows"
 msgstr "Saated"
 
-#: YouTubeUi.py:1287
 msgid ""
 "Sorry, download directory not exist!\n"
 "Please specify in the settings existing directory."
@@ -463,7 +358,6 @@ msgstr ""
 "Allalaadimiste kataloog puudub!\n"
 "Määra seadistustes olemasolev kataloog."
 
-#: YouTubeUi.py:1294
 #, python-format
 msgid ""
 "Sorry, this file already exists:\n"
@@ -472,51 +366,39 @@ msgstr ""
 "See fail on juba olemas.:\n"
 "%s"
 
-#: YouTubeUi.py:1466
 msgid "Sort search results by:"
 msgstr "Otsingu tulemuste järjestus:"
 
-#: YouTubeUi.py:60 YouTubeUi.py:90
 msgid "South Korea"
 msgstr "Lõuna-Korea"
 
-#: YouTubeUi.py:61 YouTubeUi.py:91
 msgid "Spain"
 msgstr "Hispaania"
 
-#: YouTubeUi.py:1486
 msgid "Specify the directory where save downloaded video files."
 msgstr "Määra kataloog, kuhu tõmmatud videod salvestada."
 
-#: YouTubeUi.py:143
 msgid "Stop playing this movie?"
 msgstr "Kas peatada video esitus?"
 
-#: YouTubeUi.py:1117
 msgid "Subscribe"
 msgstr "Telli"
 
-#: YouTubeUi.py:1111
 msgid "Subscribe this video channel"
 msgstr "Telli see kanal"
 
-#: YouTubeUi.py:1196
 msgid "Subscribed!"
 msgstr "Tellitud!"
 
-#: YouTubeUi.py:62 YouTubeUi.py:92
 msgid "Sweden"
 msgstr "Rootsi"
 
-#: YouTubeUi.py:63 YouTubeUi.py:93
 msgid "Taiwan"
 msgstr "Taiwan"
 
-#: YouTubeUi.py:64 YouTubeUi.py:94
 msgid "Thailand"
 msgstr "Tai"
 
-#: YouTubeUi.py:517
 msgid ""
 "There was an error in creating entry list!\n"
 "Maybe try other feeds..."
@@ -524,7 +406,6 @@ msgstr ""
 "Viga nimekirja loomisel!\n"
 "Ehk proovid teisi kanaleid..."
 
-#: YouTubeUi.py:472
 #, python-format
 msgid ""
 "There was an error in extract video url:\n"
@@ -533,16 +414,12 @@ msgstr ""
 "Viga video aadressi eraldamisel:\n"
 "%s"
 
-#: YouTubeUi.py:1197 YouTubeUi.py:1210 YouTubeUi.py:1252 YouTubeUi.py:1261
-#: YouTubeUi.py:1273
 msgid "There was an error!"
 msgstr "Toimus viga!"
 
-#: YouTubeUi.py:102
 msgid "Title"
 msgstr "Nimi"
 
-#: YouTubeUi.py:1512
 msgid ""
 "To merge downloaded files FFmpeg will be installed.\n"
 "FFmpeg can take a lot of space!\n"
@@ -552,70 +429,52 @@ msgstr ""
 "FFmpeg võib võtta palju ruumi!\n"
 "Kas soovid jätkata?"
 
-#: YouTubeUi.py:1550
 msgid ""
-"To perform authentication will need in a web browser open Google home page, "
-"and enter the code!\n"
-"Do you currently have Internet access on the other device and we can "
-"continue?"
+"To perform authentication will need in a web browser open Google home page, and enter the code!\n"
+"Do you currently have Internet access on the other device and we can continue?"
 msgstr ""
-"Autentimiseks tuleb avada veebilehitseja Google kodulehel ja sisestada "
-"kood!\n"
+"Autentimiseks tuleb avada veebilehitseja Google kodulehel ja sisestada kood!\n"
 "Kas omad teise seadmega ligipääsu internetile ja saame jätkata?"
 
-#: YouTubeUi.py:415
 msgid "Top rated"
 msgstr "Kõrgeima hinnanguga"
 
-#: YouTubeUi.py:1471
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Ürita piiratud sisu otsingu tulemustest eemaldada."
 
-#: YouTubeUi.py:65 YouTubeUi.py:95
 msgid "Turkey"
 msgstr "Türgi"
 
-#: YouTubeUi.py:66 YouTubeUi.py:96
 msgid "United States"
 msgstr "USA"
 
-#: YouTubeUi.py:1120
 msgid "Unsubscribe"
 msgstr "Loobu tellimusest"
 
-#: YouTubeUi.py:1209
 msgid "Unsubscribed!"
 msgstr "Tellimusest loobutud!"
 
-#: YouTubeUi.py:433
 msgid "Uploads"
 msgstr "Minu lisatud"
 
-#: YouTubeDownload.py:21
 msgid "Use"
 msgstr "Kasuta"
 
-#: YouTubeUi.py:1306
 msgid "Video download started!"
 msgstr "Alustati allalaadimist!"
 
-#: YouTubeUi.py:1160
 msgid "Videos from this video channel"
 msgstr "Videod sellelt kanalilt"
 
-#: YouTubeUi.py:103
 msgid "View count"
 msgstr "Vaatamisi"
 
-#: plugin.py:20
 msgid "Watch YouTube videos"
 msgstr "Vaata YouTube videoid"
 
-#: YouTubeSearch.py:224 YouTubeUi.py:651 YouTubeUi.py:1100 YouTubeUi.py:1185
 msgid "What do you want to do?"
 msgstr "Mida soovid teha?"
 
-#: YouTubeUi.py:1474
 msgid ""
 "What maximum resolution used when playing video, if available.\n"
 "If you have a slow Internet connection, you can use a lower resolution."
@@ -623,35 +482,27 @@ msgstr ""
 "Vali suurim kasutatav videolahutus.\n"
 "Omades aeglast netiühendust kasuta madalamat lahutust."
 
-#: YouTubeUi.py:1480
 msgid "What to do when stop playback in videoplayer."
 msgstr "Tegevus taasesituse peatamisel."
 
-#: YouTubeUi.py:1477
 msgid "What to do when the video ends."
 msgstr "Tegevus video lõppedes."
 
-#: YouTubeUi.py:1478
 msgid "When playback stop:"
 msgstr "Taasesituse lõppedes:"
 
-#: YouTubeUi.py:1475
 msgid "When video ends:"
 msgstr "Video lõppedes:"
 
-#: YouTubeUi.py:106 YouTubeUi.py:145
 msgid "Yes"
 msgstr "Jah"
 
-#: YouTubeUi.py:146
 msgid "Yes, but play next video"
 msgstr "Jah, aga esita järgmine video"
 
-#: YouTubeUi.py:147
 msgid "Yes, but play previous video"
 msgstr "Jah, aga esita eelmine video"
 
-#: YouTubeUi.py:1543
 msgid ""
 "You already authorized access for this plugin to your YouTube account.\n"
 "Do you want to do it again to update access data?"
@@ -659,7 +510,6 @@ msgstr ""
 "Oled selle plugina ligipääsu oma YouTube kontole juba autoriseerinud.\n"
 "Kas soovid seda teha uuesti, et uuendada ligipääsu andmeid?"
 
-#: YouTubeUi.py:1509
 msgid ""
 "You have disabled downloaded file merge.\n"
 "Installed FFmpeg is no longer necessary.\n"
@@ -669,28 +519,11 @@ msgstr ""
 "Paigaldatud FFmpeg ei ole enam vajalik.\n"
 "Kas eemaldada FFmpeg?"
 
-#: plugin.py:19 YouTubeUi.py:167 YouTubeUi.py:295
 msgid "YouTube"
 msgstr "YouTube"
 
-#: YouTubeUi.py:1383
-msgid "YouTube info"
-msgstr "YouTube info"
-
-#: YouTubeSearch.py:157
-msgid "YouTube search"
-msgstr "YouTube otsing"
-
-#: YouTubeSearch.py:225 YouTubeUi.py:1101 YouTubeUi.py:1496
 msgid "YouTube setup"
 msgstr "YouTube seadistamine"
 
-#: YouTubeUi.py:317
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube käivitub. Oota..."
-
-#~ msgid "History"
-#~ msgstr "Ajalugu"
-
-#~ msgid "Watch Later"
-#~ msgstr "Vaata hiljem"

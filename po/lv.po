@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-14 19:23+0200\n"
+"POT-Creation-Date: 2020-04-12 21:54+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -156,6 +156,9 @@ msgstr "Man patīk"
 
 msgid "India"
 msgstr "Indija"
+
+msgid "Info"
+msgstr "Informācija"
 
 msgid "Ireland"
 msgstr "Īrija"
@@ -519,12 +522,6 @@ msgstr ""
 
 msgid "YouTube"
 msgstr "YouTube"
-
-msgid "YouTube info"
-msgstr "YouTube informācija"
-
-msgid "YouTube search"
-msgstr "YouTube meklēšana"
 
 msgid "YouTube setup"
 msgstr "YouTube iestatījumi"
