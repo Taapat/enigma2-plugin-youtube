@@ -1,4 +1,4 @@
-YouTube
+![](https://user-images.githubusercontent.com/1623947/79113396-8004a100-7d89-11ea-9ff5-17ea7ce607a6.jpg)
 =========
 Enigma2 plugin to manage your youtube account and watch videos
 
@@ -17,14 +17,14 @@ Privacy policy
 
 Screenshots
 -------
-![](https://cloud.githubusercontent.com/assets/1623947/8859883/d65e212c-3188-11e5-9d49-8bd584f9a01b.jpg)
+![](https://user-images.githubusercontent.com/1623947/79112992-8f371f00-7d88-11ea-8858-480c5fe94faa.jpg)
 
-![](https://cloud.githubusercontent.com/assets/1623947/8859888/e11bd280-3188-11e5-8496-36fd6f455e88.jpg)
+![](https://user-images.githubusercontent.com/1623947/79112997-91997900-7d88-11ea-903e-1502e1dbbd9c.jpg)
 
-![](https://cloud.githubusercontent.com/assets/1623947/8859894/e5d5bf70-3188-11e5-80e6-0be037fae1a8.jpg)
+![](https://user-images.githubusercontent.com/1623947/79113003-978f5a00-7d88-11ea-8b18-60b04ec0e3c7.jpg)
 
-![](https://cloud.githubusercontent.com/assets/1623947/8893756/37848eae-33a6-11e5-97ba-4135e53d7662.jpg)
+![](https://user-images.githubusercontent.com/1623947/79113010-99f1b400-7d88-11ea-985f-c9a45628b4b6.jpg)
 
-![](https://cloud.githubusercontent.com/assets/1623947/8859884/dc063628-3188-11e5-991c-8965ca2d7277.jpg)
+![](https://user-images.githubusercontent.com/1623947/79113014-9c540e00-7d88-11ea-9281-e5788dac44ba.jpg)
 
 
