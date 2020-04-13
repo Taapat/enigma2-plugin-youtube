@@ -35,12 +35,10 @@ def remove_quotes(s):
 
 
 class JSInterpreter(object):
-    def __init__(self, code, objects=None):
-        if objects is None:
-            objects = {}
+    def __init__(self, code):
         self.code = code
         self._functions = {}
-        self._objects = objects
+        self._objects = {}
 
     def interpret_statement(self, stmt, local_vars, allow_recursion=100):
         if allow_recursion < 0:
@@ -257,10 +255,6 @@ class JSInterpreter(object):
         argnames = func_m.group('args').split(',')
 
         return self.build_function(argnames, func_m.group('code'))
-
-    def call_function(self, funcname, *args):
-        f = self.extract_function(funcname)
-        return f(args)
 
     def build_function(self, argnames, code):
         def resf(args):

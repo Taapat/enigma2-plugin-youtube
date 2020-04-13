@@ -175,9 +175,6 @@ undefined = _Undefined()
 
 class SWFInterpreter(object):
     def __init__(self, file_contents):
-        self._patched_functions = {
-            (TimerClass, 'addEventListener'): lambda params: undefined,
-        }
         code_tag = next(tag
                         for tag_code, tag in _extract_tags(file_contents)
                         if tag_code == 82)
@@ -410,17 +407,14 @@ class SWFInterpreter(object):
 
         assert p + code_reader.tell() == len(code_tag)
 
-    def patch_function(self, avm_class, func_name, f):
-        self._patched_functions[(avm_class, func_name)] = f
-
-    def extract_class(self, class_name, call_cinit=True):
+    def extract_class(self, class_name):
         try:
             res = self._classes_by_name[class_name]
         except KeyError:
             print '[SWFInterpreter] Class %r not found' % class_name
             return None
 
-        if call_cinit and hasattr(res, 'cinit_idx'):
+        if hasattr(res, 'cinit_idx'):
             res.register_methods({'$cinit': res.cinit_idx})
             res.methods['$cinit'] = self._all_methods[res.cinit_idx]
             cinit = self.extract_function(res, '$cinit')
@@ -429,9 +423,6 @@ class SWFInterpreter(object):
         return res
 
     def extract_function(self, avm_class, func_name):
-        p = self._patched_functions.get((avm_class, func_name))
-        if p:
-            return p
         if func_name in avm_class.method_pyfunctions:
             return avm_class.method_pyfunctions[func_name]
         if func_name in self._classes_by_name:
