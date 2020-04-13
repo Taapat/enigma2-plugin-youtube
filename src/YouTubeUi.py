@@ -215,7 +215,6 @@ class YouTubeMain(Screen):
 	screenWidth = getDesktop(0).size().width()
 	if screenWidth and screenWidth == 1280:
 		skin = """<screen position="center,center" size="730,524">
-				<widget name="text" position="0,0" size="0,0" />  # Please use YouTube_HD.png instead of this
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
 					position="15,0" zPosition="2" size="100,40" alphatest="on" />
 				<widget source="list" render="Listbox" position="15,42" size="700,432" \
@@ -251,7 +250,6 @@ class YouTubeMain(Screen):
 			</screen>"""
 	elif screenWidth and screenWidth == 1920:
 		skin = """<screen position="center,center" size="1095,786">
-				<widget name="text" position="0,0" size="0,0" />  # Please use YouTube_FHD.png instead of this
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_FHD.png" \
 					position="22,0" zPosition="2" size="150,60" transparent="1" alphatest="on" />
 				<widget source="list" render="Listbox" position="22,63" size="1050,648" \
@@ -283,7 +281,6 @@ class YouTubeMain(Screen):
 			</screen>""" % (BUTTONS_FOLDER, BUTTONS_FOLDER)
 	else:
 		skin = """<screen position="center,center" size="630,380">
-				<widget name="text" position="0,0" size="0,0" />  # Please use YouTube_HD.png instead of this
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
 					position="15,0" zPosition="2" size="100,40" transparent="1" alphatest="on" />
 				<widget source="list" render="Listbox" position="15,42" size="600,288" \
