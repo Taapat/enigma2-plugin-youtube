@@ -403,7 +403,7 @@ class YouTubeVideoUrl():
 						'cipher': None,
 						'url_data': None
 					}
-				if fmt.get('drm_families'):
+				if fmt.get('drmFamilies') or fmt.get('drm_families'):
 					continue
 				url_map['url'] = url_or_none(fmt.get('url'))
 
