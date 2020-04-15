@@ -317,8 +317,6 @@ class YouTubeVideoUrl():
 		if not video_webpage:
 			raise Exception('Video webpage not found!')
 
-		is_live = None
-
 		def extract_player_response(player_response):
 			if not player_response:
 				return
@@ -326,6 +324,7 @@ class YouTubeVideoUrl():
 			if isinstance(pl_response, dict):
 				return pl_response
 
+		is_live = None
 		player_response = {}
 
 		# Get video info
