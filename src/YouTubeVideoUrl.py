@@ -317,13 +317,6 @@ class YouTubeVideoUrl():
 		if not video_webpage:
 			raise Exception('Video webpage not found!')
 
-		# Attempt to extract SWF player URL
-		mobj = re.search(r'swfConfig.*?"(https?:\\/\\/.*?watch.*?-.*?\.swf)"', video_webpage)
-		if mobj is not None:
-			player_url = re.sub(r'\\(.)', r'\1', mobj.group(1))
-		else:
-			player_url = None
-
 		is_live = None
 
 		def extract_player_response(player_response):
