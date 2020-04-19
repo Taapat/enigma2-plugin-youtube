@@ -13,7 +13,6 @@ from Components.config import config
 
 from . import sslContext
 from jsinterp import JSInterpreter
-from swfinterp import SWFInterpreter
 
 
 PRIORITY_VIDEO_FORMAT = []
@@ -243,7 +242,7 @@ class YouTubeVideoUrl():
 		if player_type == 'js':
 			return self._parse_sig_js(code)
 		elif player_type == 'swf':
-			return self._parse_sig_swf(code)
+			raise Exception('Shockwave Flash player is no longer supported!')
 		else:
 			raise Exception('Invalid player type %r!' % player_type)
 
@@ -265,13 +264,6 @@ class YouTubeVideoUrl():
 				jscode, group='sig')
 		jsi = JSInterpreter(jscode)
 		initial_function = jsi.extract_function(funcname)
-		return lambda s: initial_function([s])
-
-	def _parse_sig_swf(self, file_contents):
-		swfi = SWFInterpreter(file_contents)
-		TARGET_CLASSNAME = 'SignatureDecipher'
-		searched_class = swfi.extract_class(TARGET_CLASSNAME)
-		initial_function = swfi.extract_function(searched_class, 'decipher')
 		return lambda s: initial_function([s])
 
 	def _extract_from_m3u8(self, manifest_url):
