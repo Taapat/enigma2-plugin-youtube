@@ -230,6 +230,7 @@ class YouTubeVideoUrl():
 			return func(s)
 		except Exception as e:
 			raise Exception('Signature extraction failed!\n%r' % str(e))
+
 	def _extract_signature_function(self, player_url):
 		id_m = re.match(
 			r'.*?[-.](?P<id>[a-zA-Z0-9_-]+)(?:/watch_as3|/html5player(?:-new)?|(?:/[a-z]{2}_[A-Z]{2})?/base)?\.(?P<ext>[a-z]+)$',
