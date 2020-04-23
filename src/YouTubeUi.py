@@ -113,6 +113,8 @@ config.plugins.YouTube.onMovieEof = ConfigSelection(default='quit', choices=[
 	('playprev', _('Play previous'))])
 config.plugins.YouTube.onMovieStop = ConfigSelection(default='ask', choices=[
 	('ask', _('Ask user')), ('quit', _('Return to list'))])
+config.plugins.YouTube.VirtualKeyBoard = ConfigSelection(default='YouTube', choices=[
+	('YouTube', _('YouTube VirtualKeyBoard')), ('Image', _('Image VirtualKeyBoard'))])
 config.plugins.YouTube.login = ConfigYesNo(default=False)
 config.plugins.YouTube.downloadDir = ConfigDirectory(default=resolveFilename(SCOPE_HDD))
 config.plugins.YouTube.mergeFiles = ConfigYesNo(default=False)
@@ -1530,6 +1532,9 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		configlist.append(getConfigListEntry(_('Merge downloaded files:'),
 			config.plugins.YouTube.mergeFiles,
 			_('FFmpeg will be used to merge downloaded DASH video and audio files.\nFFmpeg will be installed if necessary.')))
+		configlist.append(getConfigListEntry(_('Choose VirtualKeyBoard Style:'),
+			config.plugins.YouTube.VirtualKeyBoard,
+			_('You can choose what style of VirtualKeyBoard to use it.\nYouTube OR Image (VirtualKeyBoard).')))
 
 		self['config'].list = configlist
 		self['config'].l.setList(configlist)
