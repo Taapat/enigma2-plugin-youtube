@@ -258,8 +258,15 @@ class YouTubeSearch(Screen, ConfigListScreen):
 
 	def openKeyboard(self):
 		self['config'].getCurrent()[1].help_window.instance.hide()
-		self.session.openWithCallback(self.keyBoardCallback, YouTubeVirtualKeyBoard,
-			text = self.searchValue.value)
+		if self.VirtualKeyBoard == "YouTube":
+			self.session.openWithCallback(self.keyBoardCallback, YouTubeVirtualKeyBoard,
+				text = self.searchValue.value)
+		elif self.VirtualKeyBoard == "Image":
+			from Screens.VirtualKeyBoard import VirtualKeyBoard
+			self.session.openWithCallback(self.keyBoardCallback, VirtualKeyBoard, '')
+		else:
+			self.session.openWithCallback(self.keyBoardCallback, YouTubeVirtualKeyBoard,
+				text = self.searchValue.value)
 
 	def keyBoardCallback(self, name):
 		config = self['config'].getCurrent()[1]
