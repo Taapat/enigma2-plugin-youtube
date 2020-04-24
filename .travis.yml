@@ -1,15 +1,10 @@
 language: python
-
-dist: bionic
-
-addons:
-  apt:
-    packages: gettext
-
 python: 2.7
 
 git:
   depth: 1
+
+install: true
 
 script:
   - python -O -m compileall ./src/
