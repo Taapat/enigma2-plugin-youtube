@@ -4,23 +4,19 @@ dist: bionic
 
 addons:
   apt:
-    packages:
-    - gettext
+    packages: gettext
 
-python:
-  - "2.7"
+python: 2.7
 
 git:
   depth: 1
 
-install:
-
 script:
-- python -O -m compileall ./src/
-- find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
-- cp -f travis_init.py ./src/__init__.py
-- sed -i 's/from Components/#from Components/g' ./src/YouTubeVideoUrl.py
-- sed -i 's/config.plugins.YouTube.maxResolution.value/"22"/g' ./src/YouTubeVideoUrl.py
-- sed -i 's/config.plugins.YouTube.searchRegion.value/""/g' ./src/YouTubeVideoUrl.py
-- sed -i 's/config.plugins.YouTube.searchLanguage.value/""/g' ./src/YouTubeVideoUrl.py
-- pytest
+  - python -O -m compileall ./src/
+  - find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
+  - cp -f travis_init.py ./src/__init__.py
+  - sed -i 's/from Components/#from Components/g' ./src/YouTubeVideoUrl.py
+  - sed -i 's/config.plugins.YouTube.maxResolution.value/"22"/g' ./src/YouTubeVideoUrl.py
+  - sed -i 's/config.plugins.YouTube.searchRegion.value/""/g' ./src/YouTubeVideoUrl.py
+  - sed -i 's/config.plugins.YouTube.searchLanguage.value/""/g' ./src/YouTubeVideoUrl.py
+  - pytest
