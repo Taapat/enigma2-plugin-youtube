@@ -1,0 +1,18 @@
+language: python
+
+dist: bionic
+
+addons:
+  apt:
+    packages:
+    - gettext
+
+python:
+  - "2.7"
+
+git:
+  depth: 1
+
+script:
+- python -O -m compileall ./src/
+- find ./po -type f -name "*.po" -exec msgfmt {} -o {}.mo \;
