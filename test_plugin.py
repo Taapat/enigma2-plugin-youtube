@@ -1,9 +1,11 @@
-"""Test file to use on Travis CI to test some plugin functions"""
+"""Test file to use pytest on Travis CI to test some plugin functions"""
 
-from src.YouTubeApi import GetKey, YouTubeApi
+from urllib2 import urlopen
+from src.__init__ import sslContext
 
 
 def GetVideoId(q):
+	from src.YouTubeApi import GetKey, YouTubeApi
 	youtube = YouTubeApi(
 		client_id=GetKey('823351347975-bn15et5mgugmu127cw_OizDn7h39v5siv55vbp51blrtc.w_Oi63zDpps.goog75leusercont87ent.com'),
 		client_secret=GetKey('njp3Ep36VCkMQuw15_OizDcePvZ27qEqFE'),
@@ -25,29 +27,20 @@ def GetVideoId(q):
 		maxResults='3',
 		pageToken='')
 
+	videos = ''
 	for result in searchResponse.get('items', []):
 		videos = result['id']['videoId']
-
-	print 'YouTube Video ID', videos
 	return videos
 
-videos = GetVideoId('official video')
-
-from src.YouTubeVideoUrl import YouTubeVideoUrl
-
-
 def GetUrl(videos):
+	from src.YouTubeVideoUrl import YouTubeVideoUrl
 	ytdl = YouTubeVideoUrl()
 	videoUrl = ytdl.extract(videos)
 	videoUrl = videoUrl.split('&suburi=', 1)[0]
-	print 'YouTube Video Url', videoUrl
 	return videoUrl
 
-videoUrl = GetUrl(videos)
+def test_url():
+	videos = GetVideoId('official video')
+	videoUrl = GetUrl(videos)
+	response = urlopen(videoUrl, context=sslContext)
 
-from urllib2 import urlopen
-from src.__init__ import sslContext
-
-
-response = urlopen(videoUrl, context=sslContext)
-print 'YouTube Video Url exist'
