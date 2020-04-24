@@ -1,4 +1,6 @@
-![](https://user-images.githubusercontent.com/1623947/79113396-8004a100-7d89-11ea-9ff5-17ea7ce607a6.jpg)
+[![](https://travis-ci.com/Taapat/enigma2-plugin-youtube.svg?branch=master)](https://travis-ci.com/Taapat)
+-------
+[![](https://user-images.githubusercontent.com/1623947/79113396-8004a100-7d89-11ea-9ff5-17ea7ce607a6.jpg)](https://www.youtube.com/)
 =========
 Enigma2 plugin to manage your youtube account and watch videos
 
