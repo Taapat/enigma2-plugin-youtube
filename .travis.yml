@@ -14,17 +14,11 @@ git:
   depth: 1
 
 script:
-- echo compile python sources
 - python -O -m compileall ./src/
-- echo compile language files
 - find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
-- echo change files for test
-- find ./src -type f -name "__init__.*" -exec rm -f {} \;
-- cp travis_init.py ./src/__init__.py
+- cp -f travis_init.py ./src/__init__.py
 - sed -i 's/from Components/#from Components/g' ./src/YouTubeVideoUrl.py
 - sed -i 's/config.plugins.YouTube.maxResolution.value/"22"/g' ./src/YouTubeVideoUrl.py
 - sed -i 's/config.plugins.YouTube.searchRegion.value/""/g' ./src/YouTubeVideoUrl.py
 - sed -i 's/config.plugins.YouTube.searchLanguage.value/""/g' ./src/YouTubeVideoUrl.py
-- echo start test
 - python ./test.py
-- echo test done
