@@ -1,7 +1,7 @@
 """Test file to use pytest on Travis CI to test some plugin functions"""
 
 
-def GetVideoId(q, eventType='', order='relevance', s_type='video'):
+def GetVideoId(q, eventType, order, s_type):
 	from src.YouTubeApi import GetKey, YouTubeApi
 	youtube = YouTubeApi(
 		client_id=GetKey('823351347975-bn15et5mgugmu127cw_OizDn7h39v5siv55vbp51blrtc.w_Oi63zDpps.goog75leusercont87ent.com'),
@@ -45,6 +45,10 @@ def GetVideoId(q, eventType='', order='relevance', s_type='video'):
 		for result in searchResponse.get('items', []):
 			videos = result['id']['videoId']
 
+	print 'Video Id', videos
+	if not videos:
+		raise ValueError('Video Id not found')
+
 	searchResponse = youtube.videos_list(v_id=videos)
 	for result in searchResponse.get('items', []):
 		print 'Id', result['id']
@@ -59,9 +63,6 @@ def GetVideoId(q, eventType='', order='relevance', s_type='video'):
 		print 'ChannelId', result['snippet']['channelId']
 		print 'PublishedAt', result['snippet']['publishedAt']
 
-	print 'Video Id', videos
-	if not videos:
-		raise
 	return videos
 
 def GetUrl(videos):
