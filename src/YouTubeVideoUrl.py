@@ -117,7 +117,6 @@ def compat_urllib_parse_unquote(string):
 
 
 def _parse_qsl(qs):
-	encoding='utf-8'
 	qs, _coerce_result = qs, unicode
 	pairs = [s2 for s1 in qs.split('&') for s2 in s1.split(';')]
 	r = []
