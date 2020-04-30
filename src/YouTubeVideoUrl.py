@@ -84,16 +84,12 @@ def url_or_none(url):
 	return url if re.match(r'^(?:[a-zA-Z][\da-zA-Z.+-]*:)?//', url) else None
 
 
-def compat_urllib_parse_unquote(string, encoding='utf-8', errors='replace'):
+def compat_urllib_parse_unquote(string):
 	if string == '':
 		return string
 	res = string.split('%')
 	if len(res) == 1:
 		return string
-	if encoding is None:
-		encoding = 'utf-8'
-	if errors is None:
-		errors = 'replace'
 	# pct_sequence: contiguous sequence of percent-encoded bytes, decoded
 	pct_sequence = b''
 	string = res[0]
@@ -112,49 +108,40 @@ def compat_urllib_parse_unquote(string, encoding='utf-8', errors='replace'):
 			rest = '%' + item
 		# Encountered non-percent-encoded characters. Flush the current
 		# pct_sequence.
-		string += pct_sequence.decode(encoding, errors) + rest
+		string += pct_sequence.decode('utf-8', 'replace') + rest
 		pct_sequence = b''
 	if pct_sequence:
 		# Flush the final pct_sequence
-		string += pct_sequence.decode(encoding, errors)
+		string += pct_sequence.decode('utf-8', 'replace')
 	return string
 
 
-def _parse_qsl(qs, keep_blank_values=False, strict_parsing=False,
-			encoding='utf-8', errors='replace'):
+def _parse_qsl(qs):
+	encoding='utf-8'
 	qs, _coerce_result = qs, unicode
 	pairs = [s2 for s1 in qs.split('&') for s2 in s1.split(';')]
 	r = []
 	for name_value in pairs:
-		if not name_value and not strict_parsing:
+		if not name_value:
 			continue
 		nv = name_value.split('=', 1)
 		if len(nv) != 2:
-			if strict_parsing:
-				raise ValueError("bad query field: %r" % (name_value,))
 			# Handle case of a control-name with no equal sign
-			if keep_blank_values:
-				nv.append('')
-			else:
-				continue
-		if len(nv[1]) or keep_blank_values:
+			continue
+		if len(nv[1]):
 			name = nv[0].replace('+', ' ')
-			name = compat_urllib_parse_unquote(
-				name, encoding=encoding, errors=errors)
+			name = compat_urllib_parse_unquote(name)
 			name = _coerce_result(name)
 			value = nv[1].replace('+', ' ')
-			value = compat_urllib_parse_unquote(
-				value, encoding=encoding, errors=errors)
+			value = compat_urllib_parse_unquote(value)
 			value = _coerce_result(value)
 			r.append((name, value))
 	return r
 
 
-def compat_parse_qs(qs, keep_blank_values=False, strict_parsing=False,
-					encoding='utf-8', errors='replace'):
+def compat_parse_qs(qs):
 	parsed_result = {}
-	pairs = _parse_qsl(qs, keep_blank_values, strict_parsing,
-					encoding=encoding, errors=errors)
+	pairs = _parse_qsl(qs)
 	for name, value in pairs:
 		if name in parsed_result:
 			parsed_result[name].append(value)
@@ -180,7 +167,7 @@ def clean_html(html):
 
 class YouTubeVideoUrl():
 
-	def _download_webpage(self, url, fatal=True):
+	def _download_webpage(self, url):
 		""" Returns a tuple (page content as string, URL handle) """
 		try:
 			if sslContext:
@@ -188,9 +175,7 @@ class YouTubeVideoUrl():
 			else:
 				urlh = urlopen(url)
 		except URLError, e:
-			if fatal:
-				raise Exception(e.reason)
-			return False
+			raise Exception(e.reason)
 		return urlh.read()
 
 	def _download_webpage_handle(self, url_or_request):
