@@ -193,6 +193,24 @@ class YouTubeVideoUrl():
 			return False
 		return urlh.read()
 
+	def _download_webpage_handle(self, url_or_request):
+		""" Returns a tuple (page content as string, URL handle) """
+
+		# Strip hashes from the URL (#1038)
+		if isinstance(url_or_request, (unicode, str)):
+			url_or_request = url_or_request.partition('#')[0]
+
+		try:
+			if sslContext:
+				urlh = urlopen(url_or_request, context=sslContext)
+			else:
+				urlh = urlopen(url_or_request)
+		except URLError, e:
+			raise Exception(e.reason)
+
+		content = urlh.read()
+		return (content, urlh)
+
 	def _search_regex(self, pattern, string, group=None):
 		"""
 		Perform a regex search on the given string, using a single or a list of
@@ -305,7 +323,11 @@ class YouTubeVideoUrl():
 		url = 'https://www.youtube.com/watch?v=%s&gl=%s&hl=%s&has_verified=1&bpctr=9999999999' % (video_id, gl, hl)
 
 		# Get video webpage
-		video_webpage = self._download_webpage(url)
+		video_webpage, urlh = self._download_webpage_handle(url)
+
+		qs = compat_parse_qs(urlparse(urlh.geturl()).query)
+		video_id = qs.get('v', [None])[0] or video_id
+
 		if not video_webpage:
 			raise Exception('Video webpage not found!')
 
