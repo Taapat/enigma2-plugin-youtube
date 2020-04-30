@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-12 21:54+0300\n"
+"POT-Creation-Date: 2020-04-30 18:14+0300\n"
 "PO-Revision-Date: 2020-04-01 16:14+0300\n"
 "Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish\n"
@@ -33,12 +33,6 @@ msgstr " görünümler"
 
 msgid "Active video downloads"
 msgstr "Aktif video indirme"
-
-msgid "Add to favorites"
-msgstr "Sık kullanılanlara ekle"
-
-msgid "Added!"
-msgstr "Eklendi!"
 
 msgid "All"
 msgstr "Tümü"
@@ -112,9 +106,6 @@ msgid ""
 msgstr ""
 "FFmpeg, indirilen DASH video ve ses dosyalarını birleştirmek için kullanılacak.\n"
 "Gerekirse FFmpeg kurulacaktır."
-
-msgid "Favorites"
-msgstr "Favoriler"
 
 msgid "France"
 msgstr "Fransa"
@@ -296,14 +287,8 @@ msgstr "Son"
 msgid "Relevance"
 msgstr "Uygunluk"
 
-msgid "Remove from favorites"
-msgstr "Sık kullanılanlardan kaldır"
-
 msgid "Remove my rating"
 msgstr "Derecelendirmemi kaldır"
-
-msgid "Removed!"
-msgstr "Kaldırıldı!"
 
 msgid "Repeat"
 msgstr "Tekrar et"

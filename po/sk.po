@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube Plugin slovenský preklad\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-12 21:54+0300\n"
+"POT-Creation-Date: 2020-04-30 18:14+0300\n"
 "PO-Revision-Date: 2018-05-30 04:10+0200\n"
 "Last-Translator: S4iyan3lit3 <nsa@dontgathermailaddresses.fck>\n"
 "Language-Team: th4nks0url0rd1nh34v3n\n"
@@ -33,12 +33,6 @@ msgstr " Pohľady"
 
 msgid "Active video downloads"
 msgstr "Aktívne stihanutie videa"
-
-msgid "Add to favorites"
-msgstr "Pridať k obľúbeným"
-
-msgid "Added!"
-msgstr "Pridané!"
 
 msgid "All"
 msgstr "Vsetky"
@@ -110,9 +104,6 @@ msgid ""
 "FFmpeg will be used to merge downloaded DASH video and audio files.\n"
 "FFmpeg will be installed if necessary."
 msgstr ""
-
-msgid "Favorites"
-msgstr "Obľúbené"
 
 msgid "France"
 msgstr "Francúzsko"
@@ -294,14 +285,8 @@ msgstr "Nedávné"
 msgid "Relevance"
 msgstr "Dôležitosť"
 
-msgid "Remove from favorites"
-msgstr "Odstrániť z obľúbených položiek"
-
 msgid "Remove my rating"
 msgstr "Odstrániť moje hodnotenie"
-
-msgid "Removed!"
-msgstr "Vymazané!"
 
 msgid "Repeat"
 msgstr "Opakovať"

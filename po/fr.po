@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-12 21:54+0300\n"
+"POT-Creation-Date: 2020-04-30 18:14+0300\n"
 "PO-Revision-Date: 2018-06-25 22:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -33,12 +33,6 @@ msgstr " vues"
 
 msgid "Active video downloads"
 msgstr "Activer le téléchargement des vidéos"
-
-msgid "Add to favorites"
-msgstr "Ajouter aux favoris"
-
-msgid "Added!"
-msgstr "Ajoutés!"
 
 msgid "All"
 msgstr "Toutes"
@@ -110,9 +104,6 @@ msgid ""
 "FFmpeg will be used to merge downloaded DASH video and audio files.\n"
 "FFmpeg will be installed if necessary."
 msgstr ""
-
-msgid "Favorites"
-msgstr "Favoris"
 
 msgid "France"
 msgstr "France"
@@ -294,14 +285,8 @@ msgstr "Récent"
 msgid "Relevance"
 msgstr "Pertinence"
 
-msgid "Remove from favorites"
-msgstr "Retirer des favoris"
-
 msgid "Remove my rating"
 msgstr "Enlever mon évaluation"
-
-msgid "Removed!"
-msgstr "Supprimé !"
 
 msgid "Repeat"
 msgstr "Répéter"

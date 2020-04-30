@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-12 21:54+0300\n"
+"POT-Creation-Date: 2020-04-30 18:14+0300\n"
 "PO-Revision-Date: 2018-04-13 10:46+0300\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -28,12 +28,6 @@ msgstr " показвания"
 
 msgid "Active video downloads"
 msgstr "Активно изтегляне на видеоклипове"
-
-msgid "Add to favorites"
-msgstr "Добави към любими"
-
-msgid "Added!"
-msgstr "Добавен!"
 
 msgid "All"
 msgstr "Всички"
@@ -105,9 +99,6 @@ msgid ""
 "FFmpeg will be used to merge downloaded DASH video and audio files.\n"
 "FFmpeg will be installed if necessary."
 msgstr ""
-
-msgid "Favorites"
-msgstr "Любими"
 
 msgid "France"
 msgstr "Франция"
@@ -289,14 +280,8 @@ msgstr "Най-скорошни"
 msgid "Relevance"
 msgstr "Уместност"
 
-msgid "Remove from favorites"
-msgstr "Изтриване от любими"
-
 msgid "Remove my rating"
 msgstr "Изтриване на моя рейтинг"
-
-msgid "Removed!"
-msgstr "Изтрит!"
 
 msgid "Repeat"
 msgstr "Повтори"

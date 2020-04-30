@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-12 21:54+0300\n"
+"POT-Creation-Date: 2020-04-30 18:14+0300\n"
 "PO-Revision-Date: 2015-12-19 15:56+0100\n"
 "Last-Translator: Budiarno Pedode\n"
 "Language-Team: \n"
@@ -28,12 +28,6 @@ msgstr " Lihat"
 
 msgid "Active video downloads"
 msgstr "Unduh video aktif"
-
-msgid "Add to favorites"
-msgstr "Tambahkan ke favorit"
-
-msgid "Added!"
-msgstr "Ditambahkan!"
 
 msgid "All"
 msgstr "Semua"
@@ -107,9 +101,6 @@ msgid ""
 msgstr ""
 "FFmpeg akan digunakan untuk menyatukan berkas audio dan video DASH yg diunduh.\n"
 "FFmpeg akan dipasang jika diperlukan."
-
-msgid "Favorites"
-msgstr "Favorit"
 
 msgid "France"
 msgstr "Perancis"
@@ -291,14 +282,8 @@ msgstr "Terbaru"
 msgid "Relevance"
 msgstr "Relevan"
 
-msgid "Remove from favorites"
-msgstr "Buang dari favorit"
-
 msgid "Remove my rating"
 msgstr "Buang rating saya"
-
-msgid "Removed!"
-msgstr "Dibuang!"
 
 msgid "Repeat"
 msgstr "Ulang"

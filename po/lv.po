@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-12 21:54+0300\n"
+"POT-Creation-Date: 2020-04-30 18:14+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -29,12 +29,6 @@ msgstr " skatījumi"
 
 msgid "Active video downloads"
 msgstr "Aktīvās video lejupielādes"
-
-msgid "Add to favorites"
-msgstr "Pievienot favorītiem"
-
-msgid "Added!"
-msgstr "Pievienots!"
 
 msgid "All"
 msgstr "Visi"
@@ -108,9 +102,6 @@ msgid ""
 msgstr ""
 "Tiks lietots FFmpeg lai apvienotu lejupielādētos DASH video and audio failus.\n"
 "Ja nepieciešams, FFmpeg tiks uzstādīts."
-
-msgid "Favorites"
-msgstr "Favorīti"
 
 msgid "France"
 msgstr "Francija"
@@ -292,14 +283,8 @@ msgstr "Jaunākie"
 msgid "Relevance"
 msgstr "Atbilstības"
 
-msgid "Remove from favorites"
-msgstr "Noņemt no favorītiem"
-
 msgid "Remove my rating"
 msgstr "Dzēst manu vērtējumu"
-
-msgid "Removed!"
-msgstr "Noņemts!"
 
 msgid "Repeat"
 msgstr "Atkārtot"

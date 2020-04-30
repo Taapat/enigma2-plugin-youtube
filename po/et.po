@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-12 21:54+0300\n"
+"POT-Creation-Date: 2020-04-30 18:14+0300\n"
 "PO-Revision-Date: 2018-11-18 12:37+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: \n"
@@ -28,12 +28,6 @@ msgstr " vaatamist"
 
 msgid "Active video downloads"
 msgstr "Aktiivsed allalaadimised"
-
-msgid "Add to favorites"
-msgstr "Lisa lemmikuks"
-
-msgid "Added!"
-msgstr "Lisatud!"
 
 msgid "All"
 msgstr "Kõik"
@@ -107,9 +101,6 @@ msgid ""
 msgstr ""
 "Allalaaditud DASH video ja helifailide liitmiseks on vajalik FFmpeg.\n"
 "Vajadusel FFmpeg paigaldatakse."
-
-msgid "Favorites"
-msgstr "Lemmikud"
 
 msgid "France"
 msgstr "Prantsusmaa"
@@ -291,14 +282,8 @@ msgstr "Uusimad"
 msgid "Relevance"
 msgstr "Tähtsus"
 
-msgid "Remove from favorites"
-msgstr "Eemalda lemmikutest"
-
 msgid "Remove my rating"
 msgstr "Eemalda minu hinnang"
-
-msgid "Removed!"
-msgstr "Eemaldatud!"
 
 msgid "Repeat"
 msgstr "Korda"

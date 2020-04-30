@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-12 21:54+0300\n"
+"POT-Creation-Date: 2020-04-30 18:14+0300\n"
 "PO-Revision-Date: 2019-09-16 14:28+0200\n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: LL@li.org\n"
@@ -27,12 +27,6 @@ msgstr "gezien"
 
 msgid "Active video downloads"
 msgstr "Actieve videodownloads"
-
-msgid "Add to favorites"
-msgstr "Voeg toe aan favorieten"
-
-msgid "Added!"
-msgstr "Toegevoegd!"
 
 msgid "All"
 msgstr "Alle"
@@ -104,9 +98,6 @@ msgid ""
 "FFmpeg will be used to merge downloaded DASH video and audio files.\n"
 "FFmpeg will be installed if necessary."
 msgstr "Indien geactiveerd, dan zal FFmpeg worden gebruikt om gedownloade DASH video- en audiobestanden samen te voegen. Indien noodzakelijk, dan zal FFmpeg geïnstalleerd worden."
-
-msgid "Favorites"
-msgstr "Favorieten"
 
 msgid "France"
 msgstr "Frankrijk"
@@ -284,14 +275,8 @@ msgstr "Recent"
 msgid "Relevance"
 msgstr "Overeenkomst"
 
-msgid "Remove from favorites"
-msgstr "Verwijder van facorieten"
-
 msgid "Remove my rating"
 msgstr "Verwijder mijn waardering"
-
-msgid "Removed!"
-msgstr "Verwijderd!"
 
 msgid "Repeat"
 msgstr "Herhaal"

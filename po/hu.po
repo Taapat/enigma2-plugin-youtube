@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin magyar fordítás\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-12 21:54+0300\n"
+"POT-Creation-Date: 2020-04-30 18:14+0300\n"
 "PO-Revision-Date: 2019-02-19 12:57+0100\n"
 "Last-Translator: mcfly82\n"
 "Language-Team: cpteam\n"
@@ -28,12 +28,6 @@ msgstr " megtekintés"
 
 msgid "Active video downloads"
 msgstr "Aktív videó letöltések"
-
-msgid "Add to favorites"
-msgstr "Hozzáadás a kedvencekhez"
-
-msgid "Added!"
-msgstr "Hozzáadva!"
 
 msgid "All"
 msgstr "Összes"
@@ -107,9 +101,6 @@ msgid ""
 msgstr ""
 "A letöltött DASH videó- és hangfájlok összefűzése FFmpeg-el történik.\n"
 "Ha szükséges, az FFmpeg fel lesz telepítve."
-
-msgid "Favorites"
-msgstr "Kedvencek"
 
 msgid "France"
 msgstr "Franciaország"
@@ -291,14 +282,8 @@ msgstr "Friss"
 msgid "Relevance"
 msgstr "Fontosság"
 
-msgid "Remove from favorites"
-msgstr "Eltávolítás a kedvencekből"
-
 msgid "Remove my rating"
 msgstr "Távolítsa el a minősítésemet"
-
-msgid "Removed!"
-msgstr "Eltávolítva!"
 
 msgid "Repeat"
 msgstr "Ismétlés"

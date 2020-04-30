@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-12 21:54+0300\n"
+"POT-Creation-Date: 2020-04-30 18:14+0300\n"
 "PO-Revision-Date: 2016-08-24 10:46+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: \n"
@@ -32,12 +32,6 @@ msgstr " näyttökertaa"
 
 msgid "Active video downloads"
 msgstr "Aktiivisia videolatauksia"
-
-msgid "Add to favorites"
-msgstr "Lisää suosikkeihin"
-
-msgid "Added!"
-msgstr "Lisätty!"
 
 msgid "All"
 msgstr "Kaikki"
@@ -109,9 +103,6 @@ msgid ""
 "FFmpeg will be used to merge downloaded DASH video and audio files.\n"
 "FFmpeg will be installed if necessary."
 msgstr ""
-
-msgid "Favorites"
-msgstr "Suosikit"
 
 msgid "France"
 msgstr "Ranska"
@@ -293,14 +284,8 @@ msgstr "Viimeisimmät"
 msgid "Relevance"
 msgstr "Vastaavuus"
 
-msgid "Remove from favorites"
-msgstr "Poista suosikeista"
-
 msgid "Remove my rating"
 msgstr "Poista arvosteluni"
-
-msgid "Removed!"
-msgstr "Poistettu!"
 
 msgid "Repeat"
 msgstr "Toista uudelleen"

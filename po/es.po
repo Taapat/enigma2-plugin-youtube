@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-12 21:54+0300\n"
+"POT-Creation-Date: 2020-04-30 18:14+0300\n"
 "PO-Revision-Date: 2018-11-22 19:43+0100\n"
 "Last-Translator: VillaK <soporte@open-plus.es>\n"
 "Language-Team: OpenPlus <open-plus.es>\n"
@@ -28,12 +28,6 @@ msgstr " Vistas"
 
 msgid "Active video downloads"
 msgstr "Descargas activas"
-
-msgid "Add to favorites"
-msgstr "Añadir a favoritos"
-
-msgid "Added!"
-msgstr "¡Añadido!"
 
 msgid "All"
 msgstr "Todo"
@@ -107,9 +101,6 @@ msgid ""
 msgstr ""
 "FFmpeg se utilizará para combinar los archivos de audio y video DASH descargados.\n"
 "FFmpeg se instalará si es necesario."
-
-msgid "Favorites"
-msgstr "Favoritos"
 
 msgid "France"
 msgstr "Francia"
@@ -291,14 +282,8 @@ msgstr "Reciente"
 msgid "Relevance"
 msgstr "Relevante"
 
-msgid "Remove from favorites"
-msgstr "Eliminar de favoritos"
-
 msgid "Remove my rating"
 msgstr "Eliminar mi puntuación"
-
-msgid "Removed!"
-msgstr "¡Eliminado!"
 
 msgid "Repeat"
 msgstr "Repetir"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin for Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-12 21:54+0300\n"
+"POT-Creation-Date: 2020-04-30 18:14+0300\n"
 "PO-Revision-Date: 2018-11-19 00:44+0000\n"
 "Last-Translator: nunigaia\n"
 "Language-Team: BH Team\n"
@@ -35,12 +35,6 @@ msgstr " visto"
 
 msgid "Active video downloads"
 msgstr "Descargas de vídeos activas"
-
-msgid "Add to favorites"
-msgstr "Adicionar aos favoritos"
-
-msgid "Added!"
-msgstr "Adicionado!"
 
 msgid "All"
 msgstr "Tudo"
@@ -114,9 +108,6 @@ msgid ""
 msgstr ""
 "FFmpeg será usado para misturar arquivos de vídeo e áudio DASH descarregados.\n"
 "Se for necessário FFmpeg será instalado."
-
-msgid "Favorites"
-msgstr "Favoritos"
 
 msgid "France"
 msgstr "França"
@@ -298,14 +289,8 @@ msgstr "Recente"
 msgid "Relevance"
 msgstr "Relevância"
 
-msgid "Remove from favorites"
-msgstr "Remover dos favoritos"
-
 msgid "Remove my rating"
 msgstr "Remover a minha classificação"
-
-msgid "Removed!"
-msgstr "Removida!"
 
 msgid "Repeat"
 msgstr "Repetir"

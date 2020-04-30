@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin greek translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-12 21:54+0300\n"
+"POT-Creation-Date: 2020-04-30 18:14+0300\n"
 "PO-Revision-Date: 2019-11-19 01:16+0200\n"
 "Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: MCelliot_g <mcelliot_g@hotmail.com>\n"
@@ -29,12 +29,6 @@ msgstr " προβολές"
 
 msgid "Active video downloads"
 msgstr "Ενεργές μεταφορτώσεις βίντεο"
-
-msgid "Add to favorites"
-msgstr "Προσθήκη στα αγαπημένα"
-
-msgid "Added!"
-msgstr "Προστέθηκε!"
 
 msgid "All"
 msgstr "Όλες"
@@ -106,9 +100,6 @@ msgid ""
 "FFmpeg will be used to merge downloaded DASH video and audio files.\n"
 "FFmpeg will be installed if necessary."
 msgstr "Το FFmpeg χρησιμοποιείται για τη συγχώνευση των αρχείων βίντεο και ήχου DASH. Θα γίνει εγκατάσταση του FFmpeg όταν κριθεί απαραίτητο."
-
-msgid "Favorites"
-msgstr "Αγαπημένα"
 
 msgid "France"
 msgstr "Γαλλία"
@@ -284,14 +275,8 @@ msgstr "Πρόσφατα"
 msgid "Relevance"
 msgstr "Συνάφεια"
 
-msgid "Remove from favorites"
-msgstr "Αφαίρεση από τα αγαπημένα"
-
 msgid "Remove my rating"
 msgstr "Αφαίρεση της αξιολόγησής μου"
-
-msgid "Removed!"
-msgstr "Αφαιρέθηκε!"
 
 msgid "Repeat"
 msgstr "Επανάληψη"
