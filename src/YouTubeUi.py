@@ -455,7 +455,6 @@ class YouTubeMain(Screen):
 		self.createDefEntryList([
 				['my_subscriptions', _('My Subscriptions')],
 				['my_liked_videos', _('Liked videos')],
-				['my_favorites', _('Favorites')],
 				['my_uploads', _('Uploads')],
 				['my_playlists', _('Playlists')]
 			], False)
@@ -818,8 +817,6 @@ class YouTubeMain(Screen):
 				return None
 			elif self.value[0] == 'my_liked_videos':
 				playlist = 'likes'
-			elif self.value[0] == 'my_favorites':
-				playlist = 'favorites'
 			elif self.value[0] == 'my_uploads':
 				playlist = 'uploads'
 
@@ -1146,10 +1143,6 @@ class YouTubeMain(Screen):
 				if self.list == 'videolist':
 					clist += ((_('Rate video'), 'rate'),
 							(_('Subscribe this video channel'), 'subscribe_video'),)
-					if self.value[0] == 'my_favorites':
-						clist += ((_('Remove from favorites'), 'rem_favorite'),)
-					else:
-						clist += ((_('Add to favorites'), 'add_favorite'),)
 				elif self.list == 'channel' and self.prevIndex[1][1] != 'myfeeds':
 					clist += ((_('Subscribe'), 'subscribe'),)
 				elif self.list == 'playlist' and self.prevIndex[1][1] == 'myfeeds' and \
@@ -1184,12 +1177,6 @@ class YouTubeMain(Screen):
 			elif answer[1] == 'subscribe_video':
 				current = self['list'].getCurrent()[11]
 				msg = self.subscribeChannel(current)
-			elif answer[1] == 'rem_favorite':
-				current = self['list'].getCurrent()[0]
-				msg = self.removeFromFavorites(current)
-			elif answer[1] == 'add_favorite':
-				current = self['list'].getCurrent()[0]
-				msg = self.addToFavorites(current)
 			elif answer[1] == 'unsubscribe':
 				msg = self.unsubscribeChannel()
 			elif answer[1] == 'search':
@@ -1244,57 +1231,6 @@ class YouTubeMain(Screen):
 			self.entryList = newEntryList
 			self['list'].updateList(self.entryList)
 			return _('Unsubscribed!')
-		return _('There was an error!')
-
-	def myFavoritesId(self):
-		playlistId = ''
-		searchResponse = self.youtube.playlists_list(
-				maxResults='50',
-				pageToken=''
-			)
-		for result in searchResponse.get('items', []):
-			try:
-				if result['snippet']['title'] == 'Favorites':
-					playlistId = str(result['id'])
-					break
-			except:
-				pass
-		return playlistId
-
-	def removeFromFavorites(self, videoId):
-		tmpId = self.myFavoritesId()
-		if tmpId:
-			searchResponse = self.youtube.playlistItems_list(
-					maxResults='50',
-					playlistId=tmpId,
-					pageToken=''
-				)
-			tmpId = None
-			for result in searchResponse.get('items', []):
-				try:
-					if videoId == result['snippet']['resourceId']['videoId']:
-						tmpId = result['id']
-						break
-				except:
-					pass
-			if tmpId and self.youtube.playlistItems_delete(videoId=tmpId):
-				# update favorites list
-				newEntryList = []
-				for entry in self.entryList:
-					if entry[0] != videoId:
-						newEntryList.append(entry)
-				self.entryList = newEntryList
-				self['list'].updateList(self.entryList)
-				return _('Removed!')
-		return _('There was an error!')
-
-	def addToFavorites(self, videoId):
-		playlistId = self.myFavoritesId()
-		if playlistId and self.youtube.playlistItems_insert(
-				playlistId=playlistId,
-				videoId=videoId
-			):
-			return _('Added!')
 		return _('There was an error!')
 
 	def rateVideo(self, rating):
