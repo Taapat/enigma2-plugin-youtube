@@ -171,26 +171,3 @@ class YouTubeApi:
 		header = {'content-length': '0'}
 		status = 204
 		return self.get_aut_response(method, url, '', header, status, True)
-
-	def playlistItems_delete(self, videoId):
-		method = 'DELETE'
-		url = 'playlistItems?id=' + videoId
-		status = 204
-		return self.get_aut_response(method, url, '', None, status, True)
-
-	def playlistItems_insert(self, playlistId, videoId):
-		method = 'POST'
-		url = 'playlistItems?part=snippet'
-		data = dumps({
-				'kind': 'youtube#playlistItem',
-				'snippet': {
-					'playlistId': playlistId,
-					'resourceId': {
-						'kind': 'youtube#video',
-						'videoId': videoId
-					}
-				}
-			})
-		header = {'content-type': 'application/json'}
-		status = 200
-		return self.get_aut_response(method, url, data, header, status, True)
