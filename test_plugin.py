@@ -1,4 +1,5 @@
 """Test file to use pytest on Travis CI to test some plugin functions"""
+import pytest
 
 
 def GetVideoId(q, eventType, order, s_type):
@@ -73,11 +74,12 @@ def GetUrl(videos):
 	print 'Video Url', videoUrl
 	return videoUrl
 
-def CheckExample(q, eventType='', order='relevance', s_type='video'):
+def CheckExample(q, eventType='', order='relevance', s_type='video', descr=''):
 	videos = GetVideoId(q=q, eventType=eventType, order=order, s_type=s_type)
-	CheckVideoUrl(videos)
+	CheckVideoUrl(videos, descr=descr)
 
-def CheckVideoUrl(videos):
+def CheckVideoUrl(videos, descr):
+	print 'Test', descr
 	videoUrl = GetUrl(videos)
 	from urllib2 import urlopen
 	from src.__init__ import sslContext
@@ -87,44 +89,42 @@ def CheckVideoUrl(videos):
 		response = urlopen(videoUrl)
 	info = response.info()
 	print 'Video Url info:'
-	print info
+	print info, descr, 'Video Url exist'
 
 def test_searchUrl():
-	CheckExample(q='official video')
-	print 'Video Url exist'
+	CheckExample(q='official video', descr='Search')
 
 def test_searchLive():
-	CheckExample(q='112', eventType='live')
-	print 'Live Video Url exist'
+	CheckExample(q='112', eventType='live', descr='Search Live')
 
 def test_mostViewedFeeds():
-	CheckExample(q='', eventType='', order='viewCount')
-	print 'Most Viewed Video Url exist'
+	CheckExample(q='', eventType='', order='viewCount', descr='Most Viewed')
 
 def test_playlist():
-	CheckExample(q='ello', eventType='', order='relevance', s_type='playlist')
-	print 'Playlist Video Url exist'
+	CheckExample(q='ello', eventType='', order='relevance', s_type='playlist', descr='Playlist')
+
 
 _TESTS = [
-		['UxxajLWwzqY', 'Test generic use_cipher_signature video'],
-		['BaW_jenozKc', 'Test use the first video ID in the URL'],
-		['a9LDPn-MO4I', 'Test 256k DASH audio (format 141) via DASH manifest'],
-		['IB3lcPjvWLA', 'Test DASH manifest with encrypted signature'],
-		['nfWlot6h_JM', 'Test JS player signature function name containing $'],
-		['T4XJQO3qol8', 'Test controversy video'],
-		['__2ABJjxzNo', 'Test YouTube Red ad is not captured for creator'],
-		['lqQg6PlCWgI', 'Test Olympics'],
-		['FIl7x6_3R5Y', 'Test extraction from multiple DASH manifests'],
-		['lsguqyKfVQg', 'Test Title with JS-like syntax'],
-		['M4gD1WSo5mA', 'Test Video licensed under Creative Commons'],
-		['eQcmzGIKrzg', 'Test Channel-like uploader_url'],
-		['uGpuVWrhIzE', 'Test Rental video preview'],
-		['iqKdEhx-dD4', 'Test YouTube Red video with episode data'],
-		['MgNrAu2pzNs', 'Test Youtube Music Auto-generated description'],
+		{'Id': 'UxxajLWwzqY', 'Description': 'Generic use_cipher_signature video'},
+		{'Id': 'BaW_jenozKc', 'Description': 'Ue the first video ID in the URL'},
+		{'Id': 'a9LDPn-MO4I', 'Description': '256k DASH audio (format 141) via DASH manifest'},
+		{'Id': 'IB3lcPjvWLA', 'Description': 'DASH manifest with encrypted signature'},
+		{'Id': 'nfWlot6h_JM', 'Description': 'JS player signature function name containing $'},
+		{'Id': 'T4XJQO3qol8', 'Description': 'Controversy video'},
+		{'Id': '__2ABJjxzNo', 'Description': 'YouTube Red ad is not captured for creator'},
+		{'Id': 'lqQg6PlCWgI', 'Description': 'Olympics'},
+		{'Id': 'FIl7x6_3R5Y', 'Description': 'Extraction from multiple DASH manifests'},
+		{'Id': 'lsguqyKfVQg', 'Description': 'Title with JS-like syntax'},
+		{'Id': 'M4gD1WSo5mA', 'Description': 'Video licensed under Creative Commons'},
+		{'Id': 'eQcmzGIKrzg', 'Description': 'Channel-like uploader_url'},
+		{'Id': 'uGpuVWrhIzE', 'Description': 'Rental video preview'},
+		{'Id': 'iqKdEhx-dD4', 'Description': 'YouTube Red video with episode data'},
+		{'Id': 'MgNrAu2pzNs', 'Description': 'Youtube Music Auto-generated description'},
 	]
 
-def test_videoUrls():
-	for url in _TESTS:
-		print url[1]
-		CheckVideoUrl(url[0])
-		print 'Video Url exist'
+@pytest.fixture(params=_TESTS)
+def video_data(request):
+	return request.param
+
+def test_videoUrls(video_data):
+	CheckVideoUrl(videos=video_data['Id'], descr=video_data['Description'])
