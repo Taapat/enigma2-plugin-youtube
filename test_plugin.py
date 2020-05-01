@@ -75,10 +75,19 @@ def GetUrl(videos):
 
 def CheckExample(q, eventType='', order='relevance', s_type='video'):
 	videos = GetVideoId(q=q, eventType=eventType, order=order, s_type=s_type)
+	CheckVideoUrl(videos)
+
+def CheckVideoUrl(videos):
 	videoUrl = GetUrl(videos)
 	from urllib2 import urlopen
 	from src.__init__ import sslContext
-	response = urlopen(videoUrl, context=sslContext)
+	if sslContext:
+		response = urlopen(videoUrl, context=sslContext)
+	else:
+		response = urlopen(videoUrl)
+	info = response.info()
+	print 'Video Url info:'
+	print info
 
 def test_searchUrl():
 	CheckExample(q='official video')
