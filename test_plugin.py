@@ -105,3 +105,26 @@ def test_playlist():
 	CheckExample(q='ello', eventType='', order='relevance', s_type='playlist')
 	print 'Playlist Video Url exist'
 
+_TESTS = [
+		['UxxajLWwzqY', 'Test generic use_cipher_signature video'],
+		['BaW_jenozKc', 'Test use the first video ID in the URL'],
+		['a9LDPn-MO4I', 'Test 256k DASH audio (format 141) via DASH manifest'],
+		['IB3lcPjvWLA', 'Test DASH manifest with encrypted signature'],
+		['nfWlot6h_JM', 'Test JS player signature function name containing $'],
+		['T4XJQO3qol8', 'Test controversy video'],
+		['__2ABJjxzNo', 'Test YouTube Red ad is not captured for creator'],
+		['lqQg6PlCWgI', 'Test Olympics'],
+		['FIl7x6_3R5Y', 'Test extraction from multiple DASH manifests'],
+		['lsguqyKfVQg', 'Test Title with JS-like syntax'],
+		['M4gD1WSo5mA', 'Test Video licensed under Creative Commons'],
+		['eQcmzGIKrzg', 'Test Channel-like uploader_url'],
+		['uGpuVWrhIzE', 'Test Rental video preview'],
+		['iqKdEhx-dD4', 'Test YouTube Red video with episode data'],
+		['MgNrAu2pzNs', 'Test Youtube Music Auto-generated description'],
+	]
+
+def test_videoUrls():
+	for url in _TESTS:
+		print url[1]
+		CheckVideoUrl(url[0])
+		print 'Video Url exist'
