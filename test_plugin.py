@@ -25,7 +25,6 @@ def GetVideoId(q, eventType, order, s_type):
 		maxResults='3',
 		pageToken='')
 
-	videos = None
 	if s_type != 'video':
 		for result in searchResponse.get('items', []):
 			kind = result['id']['kind'].split('#')[1]
@@ -47,8 +46,6 @@ def GetVideoId(q, eventType, order, s_type):
 			videos = result['id']['videoId']
 
 	print 'Video Id', videos
-	if not videos:
-		raise ValueError('Video Id not found')
 
 	searchResponse = youtube.videos_list(v_id=videos)
 	for result in searchResponse.get('items', []):
@@ -75,12 +72,24 @@ def GetUrl(videos):
 	return videoUrl
 
 def CheckExample(q, eventType='', order='relevance', s_type='video', descr=''):
-	videos = GetVideoId(q=q, eventType=eventType, order=order, s_type=s_type)
+	try:
+		videos = GetVideoId(q=q, eventType=eventType, order=order, s_type=s_type)
+	except:
+		print 'Error in GetVideoId, try second time'
+		from time import sleep
+		sleep(10)
+		videos = GetVideoId(q=q, eventType=eventType, order=order, s_type=s_type)
 	CheckVideoUrl(videos, descr=descr)
 
 def CheckVideoUrl(videos, descr):
 	print 'Test', descr
-	videoUrl = GetUrl(videos)
+	try:
+		videoUrl = GetUrl(videos)
+	except:
+		print 'Error in GetUrl, try second time'
+		from time import sleep
+		sleep(10)
+		videoUrl = GetUrl(videos)
 	from urllib2 import urlopen
 	from src.__init__ import sslContext
 	if sslContext:
