@@ -233,13 +233,22 @@ class YouTubeVideoUrl():
 		except Exception as e:
 			raise Exception('Signature extraction failed!\n%s' % str(e))
 
+	def _extract_player_info(self, player_url):
+		_PLAYER_INFO_RE = (
+			r'/(?P<id>[a-zA-Z0-9_-]{8,})/player_ias\.vflset(?:/[a-zA-Z]{2,3}_[a-zA-Z]{2,3})?/base\.(?P<ext>[a-z]+)$',
+			r'\b(?P<id>vfl[a-zA-Z0-9_-]+)\b.*?\.(?P<ext>[a-z]+)$',
+		)
+
+		for player_re in _PLAYER_INFO_RE:
+			id_m = re.search(player_re, player_url)
+			if id_m:
+				break
+		else:
+			raise Exception('Cannot identify player %r' % player_url)
+		return id_m.group('ext')
+
 	def _extract_signature_function(self, player_url):
-		id_m = re.match(
-			r'.*?[-.](?P<id>[a-zA-Z0-9_-]+)(?:/watch_as3|/html5player(?:-new)?|(?:/[a-z]{2}_[A-Z]{2})?/base)?\.(?P<ext>[a-z]+)$',
-			player_url)
-		if not id_m:
-			raise Exception('Cannot identify player %r!' % player_url)
-		player_type = id_m.group('ext')
+		player_type = self._extract_player_info(player_url)
 		code = self._download_webpage(player_url)
 		if player_type == 'js':
 			return self._parse_sig_js(code)
