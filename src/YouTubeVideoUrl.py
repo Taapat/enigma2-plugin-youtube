@@ -407,7 +407,7 @@ class YouTubeVideoUrl():
 				url_map['url'] = url_or_none(fmt.get('url'))
 
 				if not url_map['url']:
-					url_map['cipher'] = fmt.get('cipher')
+					url_map['cipher'] = fmt.get('cipher') or fmt.get('signatureCipher')
 					if not url_map['cipher']:
 						continue
 					url_map['url_data'] = compat_parse_qs(url_map['cipher'])
