@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 from twisted.web.client import downloadPage
 
@@ -135,10 +136,10 @@ YOUTUBE_API_CLIENT_SECRET = GetKey('Zf93pqd2rxgY2ro159rK20BMxif27')
 if os.path.exists('/etc/enigma2/YouTube.key'):
 	try:
 		for line in open('/etc/enigma2/YouTube.key').readlines():
-			line = line.strip().replace(' ','')
+			line = line.strip().replace(' ', '')
 			if len(line) < 30 or line[0] == '#' or '=' not in line:
 				continue
-			line = line.split('=',1)
+			line = line.split('=', 1)
 			if line[1][:1] == '"' or line[1][:1] == "'":
 				line[1] = line[1][1:]
 			if line[1][-1:] == '"' or line[1][-1:] == "'":
@@ -152,7 +153,7 @@ if os.path.exists('/etc/enigma2/YouTube.key'):
 			elif 'CLIENT_SECRET' in line[0]:
 				YOUTUBE_API_CLIENT_SECRET = line[1]
 	except Exception as ex:
-		print '[YouTube] Error in read YouTube.key:', ex
+		print('[YouTube] Error in read YouTube.key:', ex)
 
 
 #  Workoround to keep compatibility broken once again on OpenPLi develop
@@ -522,7 +523,7 @@ class YouTubeMain(Screen):
 					service.setName(self.value[3])
 					current = [self.value[3], self.value[4], self.value[5], self.value[7],
 						self.value[8], self.value[9], self.value[10], self.value[12]]
-					print "[YouTube] Play:", videoUrl
+					print("[YouTube] Play:", videoUrl)
 					self.session.openWithCallback(self.playCallback,
 						YouTubePlayer, service=service, current=current)
 				else:
@@ -584,12 +585,12 @@ class YouTubeMain(Screen):
 		self.decodeThumbnail(entryId, image)
 
 	def downloadFailed(self, entryId, result):
-		print "[YouTube] Thumbnail download failed, use default for", entryId
+		print("[YouTube] Thumbnail download failed, use default for", entryId)
 		self.decodeThumbnail(entryId)
 
 	def decodeThumbnail(self, entryId, image=None):
 		if not image or not os.path.exists(image):
-			print "[YouTube] Thumbnail not exists, use default for", entryId
+			print("[YouTube] Thumbnail not exists, use default for", entryId)
 			self.thumbnails[entryId] = True
 			self.updateThumbnails()
 		else:
@@ -712,7 +713,7 @@ class YouTubeMain(Screen):
 	def ok(self):
 		current = self['list'].getCurrent()
 		if current and current[0]:
-			print "[YouTube] Selected:", current[0]
+			print("[YouTube] Selected:", current[0])
 			self.rememberCurList()
 			if self.list == 'videolist':
 				self.screenCallback(current, 'playVideo')
@@ -747,11 +748,11 @@ class YouTubeMain(Screen):
 		try:
 			videoUrl = self.ytdl.extract(self.value[0])
 		except Exception as e:
-			print '[YouTube] Error in extract info:', e
+			print('[YouTube] Error in extract info:', e)
 			return None, e
 		if videoUrl:
 			return videoUrl, None
-		print '[YouTube] Video url not found'
+		print('[YouTube] Video url not found')
 		return None, 'Video url not found!'
 
 	def convertDate(self, duration):
@@ -1539,11 +1540,11 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			userCode = str(self.oauth.get_user_code())
 			if userCode:
 				msg = _('Go to %s\nAnd enter the code %s') % (str(self.oauth.verification_url), userCode)
-				print "[YouTube] ", msg
+				print("[YouTube] ", msg)
 				self.mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 				self.splitTaimer.start(9000, True)
 			else:
-				print "[YouTube] Error in OAuth!"
+				print("[YouTube] Error in OAuth!")
 				self.session.open(MessageBox, 'There was an error!', MessageBox.TYPE_INFO, timeout=5)
 
 	def splitTaimerStop(self):
@@ -1552,7 +1553,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		if not refreshToken:
 			self.splitTaimer.start(retryInterval*1000, True)
 		else:
-			print "[YouTube] Get refresh token"
+			print("[YouTube] Get refresh token")
 			if self.mbox:
 				self.mbox.close()
 			config.plugins.YouTube.refreshToken.value = refreshToken

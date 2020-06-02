@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 
 from enigma import eTimer, getDesktop
@@ -91,13 +92,13 @@ class downloadTask(Task):
 				os.remove(self.outputfile)
 				os.remove('%s.m4a' % self.outputfile[:-11])
 			except Exception as e:
-				print '[YouTube] Error delete file:', e
+				print('[YouTube] Error delete file:', e)
 
 	def downloadFailed(self, failure_instance=None, error_message=''):
-		print '[YouTube] Video download failed'
+		print('[YouTube] Video download failed')
 		if error_message == '' and failure_instance is not None:
 			error_message = failure_instance.getErrorMessage()
-			print '[YouTube]', str(error_message)
+			print('[YouTube]', str(error_message))
 		Task.processFinished(self, 1)
 		self.downloadStop()
 
