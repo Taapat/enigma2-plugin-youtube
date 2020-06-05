@@ -1,4 +1,5 @@
 """Test file to use pytest on Travis CI to test some plugin functions"""
+from __future__ import print_function
 import pytest
 
 
@@ -29,10 +30,10 @@ def GetVideoId(q, eventType, order, s_type):
 		for result in searchResponse.get('items', []):
 			kind = result['id']['kind'].split('#')[1]
 			playlistId = result['id'][kind+'Id']
-		print 'playlistId', playlistId
-		print 'kind', kind
-		print 'Thumbnail', result['snippet']['thumbnails']['default']['url']
-		print 'Title', result['snippet']['title']
+		print('playlistId', playlistId)
+		print('kind', kind)
+		print('Thumbnail', result['snippet']['thumbnails']['default']['url'])
+		print('Title', result['snippet']['title'])
 
 		searchResponse = youtube.playlistItems_list(
 			maxResults='3',
@@ -45,21 +46,21 @@ def GetVideoId(q, eventType, order, s_type):
 		for result in searchResponse.get('items', []):
 			videos = result['id']['videoId']
 
-	print 'Video Id', videos
+	print('Video Id', videos)
 
 	searchResponse = youtube.videos_list(v_id=videos)
 	for result in searchResponse.get('items', []):
-		print 'Id', result['id']
-		print 'Thumbnail', result['snippet']['thumbnails']['default']['url']
-		print 'Title', result['snippet']['title']
-		print 'Views', result['statistics']['viewCount']
-		print 'Duration', result['contentDetails']['duration']
-		print 'Description', result['snippet']['description']
-		print 'Likes', result['statistics']['likeCount']
-		print 'Dislikes', result['statistics']['dislikeCount']
-		print 'ThumbnailUrl', result['snippet']['thumbnails']['medium']['url']
-		print 'ChannelId', result['snippet']['channelId']
-		print 'PublishedAt', result['snippet']['publishedAt']
+		print('Id', result['id'])
+		print('Thumbnail', result['snippet']['thumbnails']['default']['url'])
+		print('Title', result['snippet']['title'])
+		print('Views', result['statistics']['viewCount'])
+		print('Duration', result['contentDetails']['duration'])
+		print('Description', result['snippet']['description'])
+		print('Likes', result['statistics']['likeCount'])
+		print('Dislikes', result['statistics']['dislikeCount'])
+		print('ThumbnailUrl', result['snippet']['thumbnails']['medium']['url'])
+		print('ChannelId', result['snippet']['channelId'])
+		print('PublishedAt', result['snippet']['publishedAt'])
 
 	return videos
 
@@ -68,25 +69,25 @@ def GetUrl(videos):
 	ytdl = YouTubeVideoUrl()
 	videoUrl = ytdl.extract(videos)
 	videoUrl = videoUrl.split('&suburi=', 1)[0]
-	print 'Video Url', videoUrl
+	print('Video Url', videoUrl)
 	return videoUrl
 
 def CheckExample(q, eventType='', order='relevance', s_type='video', descr=''):
 	try:
 		videos = GetVideoId(q=q, eventType=eventType, order=order, s_type=s_type)
 	except:
-		print 'Error in GetVideoId, try second time'
+		print('Error in GetVideoId, try second time')
 		from time import sleep
 		sleep(10)
 		videos = GetVideoId(q=q, eventType=eventType, order=order, s_type=s_type)
 	CheckVideoUrl(videos, descr=descr)
 
 def CheckVideoUrl(videos, descr):
-	print 'Test', descr
+	print('Test', descr)
 	try:
 		videoUrl = GetUrl(videos)
 	except:
-		print 'Error in GetUrl, try second time'
+		print('Error in GetUrl, try second time')
 		from time import sleep
 		sleep(10)
 		videoUrl = GetUrl(videos)
@@ -97,8 +98,8 @@ def CheckVideoUrl(videos, descr):
 	else:
 		response = urlopen(videoUrl)
 	info = response.info()
-	print 'Video Url info:'
-	print info, descr, 'Video Url exist'
+	print('Video Url info:')
+	print(info, descr, 'Video Url exist')
 
 def test_searchUrl():
 	CheckExample(q='official video', descr='Search')

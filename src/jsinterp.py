@@ -1,6 +1,7 @@
 # This code comes from youtube-dl: https://github.com/rg3/youtube-dl/blob/master/youtube_dl/jsinterp.py
 
 from __future__ import unicode_literals
+from __future__ import print_function
 
 import json
 import operator
@@ -42,7 +43,7 @@ class JSInterpreter(object):
 
 	def interpret_statement(self, stmt, local_vars, allow_recursion=100):
 		if allow_recursion < 0:
-			print '[JSInterpreter] Recursion limit reached'
+			print('[JSInterpreter] Recursion limit reached')
 			return None
 
 		should_abort = False
@@ -85,7 +86,7 @@ class JSInterpreter(object):
 							expr = json.dumps(sub_result) + remaining_expr
 						break
 			else:
-				print '[JSInterpreter] Premature end of parens in %r' % expr
+				print('[JSInterpreter] Premature end of parens in %r' % expr)
 				return None
 
 		for op, opfunc in _ASSIGN_OPERATORS:
@@ -195,12 +196,12 @@ class JSInterpreter(object):
 			x, abort = self.interpret_statement(
 				m.group('x'), local_vars, allow_recursion - 1)
 			if abort:
-				print '[JSInterpreter] Premature left-side return of %s in %r' % (op, expr)
+				print('[JSInterpreter] Premature left-side return of %s in %r' % (op, expr))
 				return None
 			y, abort = self.interpret_statement(
 				m.group('y'), local_vars, allow_recursion - 1)
 			if abort:
-				print '[JSInterpreter] Premature right-side return of %s in %r' % (op, expr)
+				print('[JSInterpreter] Premature right-side return of %s in %r' % (op, expr))
 				return None
 			return opfunc(x, y)
 
@@ -215,7 +216,7 @@ class JSInterpreter(object):
 				self._functions[fname] = self.extract_function(fname)
 			return self._functions[fname](argvals)
 
-		print '[JSInterpreter] Unsupported JS expression %r' % expr
+		print('[JSInterpreter] Unsupported JS expression %r' % expr)
 		return None
 
 	def extract_object(self, objname):
@@ -250,7 +251,7 @@ class JSInterpreter(object):
 				re.escape(funcname), re.escape(funcname), re.escape(funcname)),
 			self.code)
 		if func_m is None:
-			print '[JSInterpreter] Could not find JS function %r' % funcname
+			print('[JSInterpreter] Could not find JS function %r' % funcname)
 			return None
 		argnames = func_m.group('args').split(',')
 

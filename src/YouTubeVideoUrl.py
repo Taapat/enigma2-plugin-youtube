@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 # This video extraction code based on youtube-dl: https://github.com/rg3/youtube-dl
 
+from __future__ import print_function
 import codecs
 import json
 import re
@@ -173,7 +174,7 @@ class YouTubeVideoUrl():
 				urlh = urlopen(url, context=sslContext)
 			else:
 				urlh = urlopen(url)
-		except URLError, e:
+		except URLError as e:
 			raise Exception(e.reason)
 		return urlh.read()
 
@@ -189,7 +190,7 @@ class YouTubeVideoUrl():
 				urlh = urlopen(url_or_request, context=sslContext)
 			else:
 				urlh = urlopen(url_or_request)
-		except URLError, e:
+		except URLError as e:
 			raise Exception(e.reason)
 
 		content = urlh.read()
@@ -214,7 +215,7 @@ class YouTubeVideoUrl():
 			else:
 				return mobj.group(group)
 		else:
-			print '[YouTubeVideoUrl] unable extract pattern from string!'
+			print('[YouTubeVideoUrl] unable extract pattern from string!')
 			return ''
 
 	def _decrypt_signature(self, s, player_url):

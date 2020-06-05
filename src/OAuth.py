@@ -1,3 +1,4 @@
+from __future__ import print_function
 # This autentification code based on: https://github.com/guyc/py-gaugette/blob/master/gaugette/oauth.py
 # https://developers.google.com/accounts/docs/OAuth2ForDevices
 

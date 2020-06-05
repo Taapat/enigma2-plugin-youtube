@@ -1,3 +1,4 @@
+from __future__ import print_function
 from httplib import HTTPConnection
 from threading import Thread
 from urllib import quote
@@ -211,7 +212,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			self.moveHelpWindow()
 		else:
 			searchValue = self.searchValue.value
-			print "[YouTube] Search:", searchValue
+			print("[YouTube] Search:", searchValue)
 			self['config'].getCurrent()[1].help_window.instance.hide()
 			if searchValue != '' and config.plugins.YouTube.saveHistory.value:
 				if searchValue in self.searchHistory:
@@ -293,12 +294,12 @@ class GoogleSuggestionsConfigText(ConfigText):
 			connection = HTTPConnection('google.com')
 			connection.request('GET', self.queryString+quote(queryValue), '', {'Accept-Encoding': 'UTF-8'})
 		except Exception as e:
-			print "[YouTube] Can not send request for suggestions:", e
+			print("[YouTube] Can not send request for suggestions:", e)
 		else:
 			try:
 				response = connection.getresponse()
 			except Exception as e:
-				print "[YouTube] Can not get a response from google:", e
+				print("[YouTube] Can not get a response from google:", e)
 			else:
 				if response.status == 200:
 					data = response.read()

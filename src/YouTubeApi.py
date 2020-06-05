@@ -1,3 +1,4 @@
+from __future__ import print_function
 from httplib import HTTPSConnection
 from json import dumps, load
 from urllib import quote
@@ -38,7 +39,7 @@ class YouTubeApi:
 		return oauth.get_access_token(self.refresh_token)
 
 	def renew_access_token(self):
-		print '[YouTubeApi] Unauthorized, try get new access token'
+		print('[YouTubeApi] Unauthorized, try get new access token')
 		self.key = self.key.split('&access_token=')[0]
 		self.access_token = self.get_access_token()
 		if self.access_token:
@@ -61,7 +62,7 @@ class YouTubeApi:
 				print ('[YouTubeApi] error in response %d' % e.code)
 				return {}
 		except URLError as e:
-			print '[YouTubeApi] failed to reach a server:', e.reason
+			print('[YouTubeApi] failed to reach a server:', e.reason)
 			return {}
 		if response:
 			return load(response)
@@ -85,7 +86,7 @@ class YouTubeApi:
 			self.renew_access_token()
 			self.get_aut_response(self, method, url, data, header, status, False)
 		else:
-			print '[YouTubeApi] error in response', response.status
+			print('[YouTubeApi] error in response', response.status)
 			return None
 
 	def subscriptions_list(self, maxResults, pageToken):
