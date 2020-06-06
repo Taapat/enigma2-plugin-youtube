@@ -1,4 +1,5 @@
 from __future__ import print_function
+
 import os
 from twisted.web.client import downloadPage
 
@@ -11,6 +12,7 @@ from Components.config import config, ConfigDirectory, ConfigSelection, \
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Pixmap import Pixmap
+from Components.PluginComponent import plugins
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
@@ -117,6 +119,8 @@ config.plugins.YouTube.onMovieStop = ConfigSelection(default='ask', choices=[
 config.plugins.YouTube.login = ConfigYesNo(default=False)
 config.plugins.YouTube.downloadDir = ConfigDirectory(default=resolveFilename(SCOPE_HDD))
 config.plugins.YouTube.mergeFiles = ConfigYesNo(default=False)
+config.plugins.YouTube.player = ConfigSelection(default='4097', choices=[
+	('4097', _('Default')), ('5002', _('Exteplayer')), ('5001', _('Gstplayer'))])
 
 # Dublicate entry list in createSearchList
 config.plugins.YouTube.searchHistoryDict = ConfigSubDict()
@@ -192,7 +196,6 @@ class YouTubePlayer(MoviePlayer):
 		self.close([None, config.plugins.YouTube.onMovieEof.value])
 
 	def getPluginList(self):
-		from Components.PluginComponent import plugins
 		list = []
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_EXTENSIONSMENU):
 			if p.name != _('YouTube'):
@@ -372,6 +375,11 @@ class YouTubeMain(Screen):
 		self.pageEndIndex = int(self.searchResult)
 		self.onLayoutFinish.append(self.layoutFinish)
 		self.onClose.append(self.cleanVariables)
+		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
+			if p.name == _("ServiceApp"):
+				break
+		else:
+			config.plugins.YouTube.player.setValue('4097')
 
 	def layoutFinish(self):
 		self.thumbSize = [self['thumbnail'].instance.size().width(),
@@ -519,7 +527,7 @@ class YouTubeMain(Screen):
 						count += 1
 			if videoUrl:
 				if self.action == 'playVideo':
-					service = eServiceReference(4097, 0, videoUrl)
+					service = eServiceReference(int(config.plugins.YouTube.player.value), 0, videoUrl)
 					service.setName(self.value[3])
 					current = [self.value[3], self.value[4], self.value[5], self.value[7],
 						self.value[8], self.value[9], self.value[10], self.value[12]]
@@ -1467,6 +1475,12 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		configlist.append(getConfigListEntry(_('Merge downloaded files:'),
 			config.plugins.YouTube.mergeFiles,
 			_('FFmpeg will be used to merge downloaded DASH video and audio files.\nFFmpeg will be installed if necessary.')))
+		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
+			if p.name == _("ServiceApp"):
+				configlist.append(getConfigListEntry(_('Media player:'),
+					config.plugins.YouTube.player,
+					_('Specify the player which will be used for YouTube media playback.')))
+				break
 
 		self['config'].list = configlist
 		self['config'].l.setList(configlist)
