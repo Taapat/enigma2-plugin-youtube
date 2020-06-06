@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 18:14+0300\n"
+"POT-Creation-Date: 2020-06-06 13:38+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -60,6 +60,9 @@ msgstr "Izveidošanas datuma"
 msgid "Czech Republic"
 msgstr "Čehija"
 
+msgid "Default"
+msgstr "Noklusētais"
+
 msgid "Delete this entry"
 msgstr "Dzēst šo ierakstu"
 
@@ -93,6 +96,9 @@ msgstr "Nemeklēt ierobežotu saturu:"
 msgid "Exit"
 msgstr "Iziet"
 
+msgid "Exteplayer"
+msgstr "Exteplayer"
+
 msgid "Extract video url. Please wait..."
 msgstr "Meklē video saiti. Lūdzu uzgaidiet..."
 
@@ -122,6 +128,9 @@ msgstr "Lielbritānija"
 
 msgid "Greece"
 msgstr "Grieķija"
+
+msgid "Gstplayer"
+msgstr "Gstplayer"
 
 msgid "HD videos"
 msgstr "HD video"
@@ -187,6 +196,9 @@ msgstr "Startējot ielogoties:"
 
 msgid "Maximum video resolution:"
 msgstr "Мaksimālā video izšķirtspēja:"
+
+msgid "Media player:"
+msgstr "Media atskaņotājs:"
 
 msgid "Merge downloaded files:"
 msgstr "Apvienot lejupielādētos failus:"
@@ -334,6 +346,10 @@ msgstr "Meklēšnas rezultāti:"
 msgid "Search videos"
 msgstr "Meklēt video"
 
+#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
+msgid "ServiceApp"
+msgstr ""
+
 msgid "Shows"
 msgstr "Pārraides"
 
@@ -363,6 +379,9 @@ msgstr "Spānija"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Norādiet mapi kurā saglabāt lejupielādētos video failus."
+
+msgid "Specify the player which will be used for YouTube media playback."
+msgstr "Norādiet atskaņotāju kuru izmantot YouTube media atskaņošanai."
 
 msgid "Stop playing this movie?"
 msgstr "Apturēt atskaņot šo filmu?"

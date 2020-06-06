@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 18:14+0300\n"
+"POT-Creation-Date: 2020-06-06 13:38+0300\n"
 "PO-Revision-Date: 2018-05-26 13:10+0200\n"
 "Last-Translator: Massimo Bambi <maxbambi@libero.it>\n"
 "Language-Team: \n"
@@ -64,6 +64,9 @@ msgstr "data di creazione"
 msgid "Czech Republic"
 msgstr "Repubblica Ceca"
 
+msgid "Default"
+msgstr ""
+
 msgid "Delete this entry"
 msgstr "Cancella questa voce"
 
@@ -97,6 +100,9 @@ msgstr "Escludi contenuti vietati"
 msgid "Exit"
 msgstr "Esci"
 
+msgid "Exteplayer"
+msgstr ""
+
 msgid "Extract video url. Please wait..."
 msgstr "Estrazione dell'URL del video. Attendi..."
 
@@ -124,6 +130,9 @@ msgstr "Gran Bretagna"
 
 msgid "Greece"
 msgstr "Grecia"
+
+msgid "Gstplayer"
+msgstr ""
 
 msgid "HD videos"
 msgstr "Video HD"
@@ -189,6 +198,9 @@ msgstr "Accedi all'avvio:"
 
 msgid "Maximum video resolution:"
 msgstr "Risoluzione video massima:"
+
+msgid "Media player:"
+msgstr ""
 
 msgid "Merge downloaded files:"
 msgstr ""
@@ -336,6 +348,10 @@ msgstr "Risultati della ricerca:"
 msgid "Search videos"
 msgstr "Ricerca video"
 
+#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
+msgid "ServiceApp"
+msgstr ""
+
 msgid "Shows"
 msgstr "Mostra"
 
@@ -365,6 +381,9 @@ msgstr "Spagna"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Specifica la cartella dove salvare i video scaricati. "
+
+msgid "Specify the player which will be used for YouTube media playback."
+msgstr ""
 
 msgid "Stop playing this movie?"
 msgstr "Arrestare la riproduzione?"

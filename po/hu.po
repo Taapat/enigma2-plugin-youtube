@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin magyar fordítás\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 18:14+0300\n"
+"POT-Creation-Date: 2020-06-06 13:38+0300\n"
 "PO-Revision-Date: 2019-02-19 12:57+0100\n"
 "Last-Translator: mcfly82\n"
 "Language-Team: cpteam\n"
@@ -59,6 +59,9 @@ msgstr "Létrehozás dátuma"
 msgid "Czech Republic"
 msgstr "Csehország"
 
+msgid "Default"
+msgstr ""
+
 msgid "Delete this entry"
 msgstr "Törölje ezt a bejegyzést"
 
@@ -92,6 +95,9 @@ msgstr "Korlátozott tartalom kizárása:"
 msgid "Exit"
 msgstr "Kilépés"
 
+msgid "Exteplayer"
+msgstr ""
+
 msgid "Extract video url. Please wait..."
 msgstr "Videó url kibontása. Kérem, várjon..."
 
@@ -121,6 +127,9 @@ msgstr "Nagy-Britannia"
 
 msgid "Greece"
 msgstr "Görögország"
+
+msgid "Gstplayer"
+msgstr ""
 
 msgid "HD videos"
 msgstr "HD videók"
@@ -186,6 +195,9 @@ msgstr "Bejelentkezés az indításkor:"
 
 msgid "Maximum video resolution:"
 msgstr "Maximális videó felbontás:"
+
+msgid "Media player:"
+msgstr ""
 
 msgid "Merge downloaded files:"
 msgstr "Letöltött fájlok összefűzése:"
@@ -333,6 +345,10 @@ msgstr "Keresési eredmények:"
 msgid "Search videos"
 msgstr "Videók keresése"
 
+#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
+msgid "ServiceApp"
+msgstr ""
+
 msgid "Shows"
 msgstr "Műsorok"
 
@@ -362,6 +378,9 @@ msgstr "Spanyolország"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Adja meg a könyvtárat, ahova a letöltött videofájlokat elmenthetjük."
+
+msgid "Specify the player which will be used for YouTube media playback."
+msgstr ""
 
 msgid "Stop playing this movie?"
 msgstr "Leállítja ezt a filmet?"

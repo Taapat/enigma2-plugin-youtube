@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 18:14+0300\n"
+"POT-Creation-Date: 2020-06-06 13:38+0300\n"
 "PO-Revision-Date: 2018-11-22 19:43+0100\n"
 "Last-Translator: VillaK <soporte@open-plus.es>\n"
 "Language-Team: OpenPlus <open-plus.es>\n"
@@ -59,6 +59,9 @@ msgstr "Fecha de creación"
 msgid "Czech Republic"
 msgstr "República Checa"
 
+msgid "Default"
+msgstr ""
+
 msgid "Delete this entry"
 msgstr "Eliminar esta entrada"
 
@@ -92,6 +95,9 @@ msgstr "Excluir el contenido restringido:"
 msgid "Exit"
 msgstr "Salir"
 
+msgid "Exteplayer"
+msgstr ""
+
 msgid "Extract video url. Please wait..."
 msgstr "Extrayendo vídeo. Por favor espere..."
 
@@ -121,6 +127,9 @@ msgstr "Reino Unido"
 
 msgid "Greece"
 msgstr "Griego"
+
+msgid "Gstplayer"
+msgstr ""
 
 msgid "HD videos"
 msgstr "Vídeos HD"
@@ -186,6 +195,9 @@ msgstr "Iniciar sesión al abrir plugin:"
 
 msgid "Maximum video resolution:"
 msgstr "Resolución máxima:"
+
+msgid "Media player:"
+msgstr ""
 
 msgid "Merge downloaded files:"
 msgstr "Combinar archivos descargados:"
@@ -333,6 +345,10 @@ msgstr "Mostrar resultados:"
 msgid "Search videos"
 msgstr "Buscar vídeos"
 
+#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
+msgid "ServiceApp"
+msgstr ""
+
 msgid "Shows"
 msgstr "Espectáculos"
 
@@ -362,6 +378,9 @@ msgstr "España"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Especifique donde guardar los videos descargados."
+
+msgid "Specify the player which will be used for YouTube media playback."
+msgstr ""
 
 msgid "Stop playing this movie?"
 msgstr "¿Parar la reproducción?"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin for Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 18:14+0300\n"
+"POT-Creation-Date: 2020-06-06 13:38+0300\n"
 "PO-Revision-Date: 2018-11-19 00:44+0000\n"
 "Last-Translator: nunigaia\n"
 "Language-Team: BH Team\n"
@@ -66,6 +66,9 @@ msgstr "Data criada"
 msgid "Czech Republic"
 msgstr "República Checa"
 
+msgid "Default"
+msgstr ""
+
 msgid "Delete this entry"
 msgstr "Apagar esta entrada"
 
@@ -99,6 +102,9 @@ msgstr "Excluir conteúdo restrito:"
 msgid "Exit"
 msgstr "Sair"
 
+msgid "Exteplayer"
+msgstr ""
+
 msgid "Extract video url. Please wait..."
 msgstr "Extrair url do vídeo. P.F espere ..."
 
@@ -128,6 +134,9 @@ msgstr "Grã Bretanha"
 
 msgid "Greece"
 msgstr "Grécia"
+
+msgid "Gstplayer"
+msgstr ""
 
 msgid "HD videos"
 msgstr "Vídeos HD"
@@ -193,6 +202,9 @@ msgstr "Logon no arranque:"
 
 msgid "Maximum video resolution:"
 msgstr "Máxima resolução do vídeo:"
+
+msgid "Media player:"
+msgstr ""
 
 msgid "Merge downloaded files:"
 msgstr "Misturar arquivos descarregados:"
@@ -340,6 +352,10 @@ msgstr "Resultados de busca:"
 msgid "Search videos"
 msgstr "Procurar vídeos"
 
+#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
+msgid "ServiceApp"
+msgstr ""
+
 msgid "Shows"
 msgstr "Espetáculos"
 
@@ -369,6 +385,9 @@ msgstr "Espanha"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Especifiar o diretório para salvar descargars de vídeos."
+
+msgid "Specify the player which will be used for YouTube media playback."
+msgstr ""
 
 msgid "Stop playing this movie?"
 msgstr "Parar a reprodução deste filme?"

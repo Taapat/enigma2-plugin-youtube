@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 18:14+0300\n"
+"POT-Creation-Date: 2020-06-06 13:38+0300\n"
 "PO-Revision-Date: 2015-12-19 15:56+0100\n"
 "Last-Translator: Budiarno Pedode\n"
 "Language-Team: \n"
@@ -59,6 +59,9 @@ msgstr "Tanggal dibuat"
 msgid "Czech Republic"
 msgstr "Republik Ceko"
 
+msgid "Default"
+msgstr ""
+
 msgid "Delete this entry"
 msgstr "Hapus entri ini"
 
@@ -92,6 +95,9 @@ msgstr "Jangan tampilkan konten yg dilarang:"
 msgid "Exit"
 msgstr "Keluar"
 
+msgid "Exteplayer"
+msgstr ""
+
 msgid "Extract video url. Please wait..."
 msgstr "Mengurai alamat url video. Silakan tunggu..."
 
@@ -121,6 +127,9 @@ msgstr "Inggris Raya"
 
 msgid "Greece"
 msgstr "Yunani"
+
+msgid "Gstplayer"
+msgstr ""
 
 msgid "HD videos"
 msgstr "Vídeo HD"
@@ -186,6 +195,9 @@ msgstr "Login saat mulai:"
 
 msgid "Maximum video resolution:"
 msgstr "Resolusi video maksimal:"
+
+msgid "Media player:"
+msgstr ""
 
 msgid "Merge downloaded files:"
 msgstr "Satukan berkas yg diunduh:"
@@ -333,6 +345,10 @@ msgstr "Hasil pencarian:"
 msgid "Search videos"
 msgstr "Cari video"
 
+#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
+msgid "ServiceApp"
+msgstr ""
+
 msgid "Shows"
 msgstr "Tampilkan"
 
@@ -362,6 +378,9 @@ msgstr "Spanyol"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Atur direktori dimana menyimpan berkas yang telah diunduh."
+
+msgid "Specify the player which will be used for YouTube media playback."
+msgstr ""
 
 msgid "Stop playing this movie?"
 msgstr "Berhenti memutar film ini?"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 18:14+0300\n"
+"POT-Creation-Date: 2020-06-06 13:38+0300\n"
 "PO-Revision-Date: 2019-09-16 14:28+0200\n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: LL@li.org\n"
@@ -58,6 +58,9 @@ msgstr "Gemaakt op"
 msgid "Czech Republic"
 msgstr "Czechische Republiek"
 
+msgid "Default"
+msgstr ""
+
 msgid "Delete this entry"
 msgstr "Verwijder dit trefwoord "
 
@@ -91,6 +94,9 @@ msgstr "Sluit vertrouwelijke inhoud uit"
 msgid "Exit"
 msgstr "Sluit af"
 
+msgid "Exteplayer"
+msgstr ""
+
 msgid "Extract video url. Please wait..."
 msgstr "Bezig video-url te extraheren. Even wachten..."
 
@@ -118,6 +124,9 @@ msgstr "Groot-Brittannië"
 
 msgid "Greece"
 msgstr "Griekenland"
+
+msgid "Gstplayer"
+msgstr ""
 
 msgid "HD videos"
 msgstr "HD video's"
@@ -179,6 +188,9 @@ msgstr "Wilt u online inloggen in Youtube"
 
 msgid "Maximum video resolution:"
 msgstr "Maximale videoresolutie"
+
+msgid "Media player:"
+msgstr ""
 
 msgid "Merge downloaded files:"
 msgstr "Voeg gedownloade bestanden samen"
@@ -326,6 +338,10 @@ msgstr "Max. aantal zoekresultaten"
 msgid "Search videos"
 msgstr "Zoek video's"
 
+#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
+msgid "ServiceApp"
+msgstr ""
+
 msgid "Shows"
 msgstr "voorstellingen"
 
@@ -355,6 +371,9 @@ msgstr "Spanje"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Met deze optie geeft u aan waar de gedownloade video's opgeslagen moeten worden."
+
+msgid "Specify the player which will be used for YouTube media playback."
+msgstr ""
 
 msgid "Stop playing this movie?"
 msgstr "Stoppen met afspelen?"

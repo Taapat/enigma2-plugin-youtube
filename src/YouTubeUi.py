@@ -376,6 +376,7 @@ class YouTubeMain(Screen):
 		self.onLayoutFinish.append(self.layoutFinish)
 		self.onClose.append(self.cleanVariables)
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
+			# TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 			if p.name == _("ServiceApp"):
 				break
 		else:
@@ -1476,6 +1477,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			config.plugins.YouTube.mergeFiles,
 			_('FFmpeg will be used to merge downloaded DASH video and audio files.\nFFmpeg will be installed if necessary.')))
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
+			# TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 			if p.name == _("ServiceApp"):
 				configlist.append(getConfigListEntry(_('Media player:'),
 					config.plugins.YouTube.player,

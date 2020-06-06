@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 18:14+0300\n"
+"POT-Creation-Date: 2020-06-06 13:38+0300\n"
 "PO-Revision-Date: 2020-04-01 16:14+0300\n"
 "Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish\n"
@@ -64,6 +64,9 @@ msgstr "Oluşturma tarihi"
 msgid "Czech Republic"
 msgstr "Çek Cumhuriyeti"
 
+msgid "Default"
+msgstr ""
+
 msgid "Delete this entry"
 msgstr "Bu girişi sil"
 
@@ -97,6 +100,9 @@ msgstr "Kısıtlanmış içeriği hariç tut:"
 msgid "Exit"
 msgstr "Çıkış"
 
+msgid "Exteplayer"
+msgstr ""
+
 msgid "Extract video url. Please wait..."
 msgstr "Video URL'sini ayıkla. Lütfen bekleyin ..."
 
@@ -126,6 +132,9 @@ msgstr "Büyük Britanya"
 
 msgid "Greece"
 msgstr "Yunanistan"
+
+msgid "Gstplayer"
+msgstr ""
 
 msgid "HD videos"
 msgstr "HD videolar"
@@ -191,6 +200,9 @@ msgstr "Başlangıçta giriş:"
 
 msgid "Maximum video resolution:"
 msgstr "Maksimum video çözünürlüğü:"
+
+msgid "Media player:"
+msgstr ""
 
 msgid "Merge downloaded files:"
 msgstr "İndirilen dosyaları birleştir:"
@@ -338,6 +350,10 @@ msgstr "Arama sonuçları:"
 msgid "Search videos"
 msgstr "Video ara"
 
+#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
+msgid "ServiceApp"
+msgstr ""
+
 msgid "Shows"
 msgstr "Gösteriler"
 
@@ -367,6 +383,9 @@ msgstr "İspanya"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "İndirilen video dosyalarının kaydedileceği dizini belirtin."
+
+msgid "Specify the player which will be used for YouTube media playback."
+msgstr ""
 
 msgid "Stop playing this movie?"
 msgstr "Film durdurulsun mu?"

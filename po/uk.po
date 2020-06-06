@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 18:14+0300\n"
+"POT-Creation-Date: 2020-06-06 13:38+0300\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: kvinto <kvinto@rambler.ru>\n"
 "Language-Team: <kvinto  sat-ukraine.info>\n"
@@ -59,6 +59,9 @@ msgstr "Дата створення"
 msgid "Czech Republic"
 msgstr "Чехія"
 
+msgid "Default"
+msgstr ""
+
 msgid "Delete this entry"
 msgstr "Видалити цей запис"
 
@@ -92,6 +95,9 @@ msgstr "Виключити закритий контент:"
 msgid "Exit"
 msgstr "Вихід"
 
+msgid "Exteplayer"
+msgstr ""
+
 msgid "Extract video url. Please wait..."
 msgstr "Витяг відеопосилання. Почекайте..."
 
@@ -121,6 +127,9 @@ msgstr "Англія"
 
 msgid "Greece"
 msgstr "Греція"
+
+msgid "Gstplayer"
+msgstr ""
 
 msgid "HD videos"
 msgstr "HD відео"
@@ -186,6 +195,9 @@ msgstr "Авторизація при запуску:"
 
 msgid "Maximum video resolution:"
 msgstr "Максимальний дозвіл відео:"
+
+msgid "Media player:"
+msgstr ""
 
 msgid "Merge downloaded files:"
 msgstr "Об'єднати завантажені файли:"
@@ -333,6 +345,10 @@ msgstr "Результати пошуку:"
 msgid "Search videos"
 msgstr "Пошук відео"
 
+#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
+msgid "ServiceApp"
+msgstr ""
+
 msgid "Shows"
 msgstr "Шоу"
 
@@ -362,6 +378,9 @@ msgstr "Іспанія"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Вкажіть каталог, для збереження відеофайлів."
+
+msgid "Specify the player which will be used for YouTube media playback."
+msgstr ""
 
 msgid "Stop playing this movie?"
 msgstr "Вийти з цього відео?"

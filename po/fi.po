@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 18:14+0300\n"
+"POT-Creation-Date: 2020-06-06 13:38+0300\n"
 "PO-Revision-Date: 2016-08-24 10:46+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: \n"
@@ -63,6 +63,9 @@ msgstr "Luontipäivä"
 msgid "Czech Republic"
 msgstr "Tsekin tasavalta"
 
+msgid "Default"
+msgstr ""
+
 msgid "Delete this entry"
 msgstr "Poista tämä valinta"
 
@@ -96,6 +99,9 @@ msgstr "Sisällön rajoitus"
 msgid "Exit"
 msgstr "Poistu"
 
+msgid "Exteplayer"
+msgstr ""
+
 msgid "Extract video url. Please wait..."
 msgstr "Haetaan videon url-osoitetta. Odota..."
 
@@ -122,6 +128,9 @@ msgid "Great Britain"
 msgstr "Iso-Britannia"
 
 msgid "Greece"
+msgstr ""
+
+msgid "Gstplayer"
 msgstr ""
 
 msgid "HD videos"
@@ -188,6 +197,9 @@ msgstr "Kirjaudu käynnistettäessä"
 
 msgid "Maximum video resolution:"
 msgstr "Maksimi video resoluutio"
+
+msgid "Media player:"
+msgstr ""
 
 msgid "Merge downloaded files:"
 msgstr ""
@@ -335,6 +347,10 @@ msgstr "Hakutulokset:"
 msgid "Search videos"
 msgstr "Hae videoita"
 
+#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
+msgid "ServiceApp"
+msgstr ""
+
 msgid "Shows"
 msgstr "Show:t"
 
@@ -364,6 +380,9 @@ msgstr "Espanja"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Määritä kansio jonne videot tallennetaan."
+
+msgid "Specify the player which will be used for YouTube media playback."
+msgstr ""
 
 msgid "Stop playing this movie?"
 msgstr "Pysäytä tämän videon toisto?"

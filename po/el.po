@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin greek translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 18:14+0300\n"
+"POT-Creation-Date: 2020-06-06 13:38+0300\n"
 "PO-Revision-Date: 2019-11-19 01:16+0200\n"
 "Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: MCelliot_g <mcelliot_g@hotmail.com>\n"
@@ -60,6 +60,9 @@ msgstr "Ημερομηνία δημιουργίας"
 msgid "Czech Republic"
 msgstr "Δημοκρατία της Τσεχίας"
 
+msgid "Default"
+msgstr ""
+
 msgid "Delete this entry"
 msgstr "Διαγραφή αυτού του στοιχείου"
 
@@ -93,6 +96,9 @@ msgstr "Εξαίρεση περιορισμένου περιεχομένου"
 msgid "Exit"
 msgstr "Έξοδος"
 
+msgid "Exteplayer"
+msgstr ""
+
 msgid "Extract video url. Please wait..."
 msgstr "Εξαγωγή διεύθυνσης βίντεο. Παρακαλώ περιμένετε..."
 
@@ -118,6 +124,9 @@ msgstr "Μεγάλη Βρετανία"
 
 msgid "Greece"
 msgstr "Ελλάδα"
+
+msgid "Gstplayer"
+msgstr ""
 
 msgid "HD videos"
 msgstr "HD βίντεο"
@@ -179,6 +188,9 @@ msgstr "Σύνδεση κατά την εκκίνηση"
 
 msgid "Maximum video resolution:"
 msgstr "Μέγιστη ανάλυση βίντεο"
+
+msgid "Media player:"
+msgstr ""
 
 msgid "Merge downloaded files:"
 msgstr "Συγχώνευση ληφθέντων αρχείων"
@@ -326,6 +338,10 @@ msgstr "Αποτελέσματα αναζήτησης"
 msgid "Search videos"
 msgstr "Αναζήτηση βίντεο"
 
+#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
+msgid "ServiceApp"
+msgstr ""
+
 msgid "Shows"
 msgstr "Σόου"
 
@@ -353,6 +369,9 @@ msgstr "Ισπανία"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Ορίστε τον φάκελο στον οποίο θα αποθηκεύονται τα ληφθέντα αρχεία βίντεο."
+
+msgid "Specify the player which will be used for YouTube media playback."
+msgstr ""
 
 msgid "Stop playing this movie?"
 msgstr "Διακοπή αναπαραγωγής;"
