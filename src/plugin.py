@@ -5,7 +5,7 @@ from . import _
 
 
 def main(session, **kwargs):
-	from YouTubeUi import YouTubeMain
+	from .YouTubeUi import YouTubeMain
 	session.open(YouTubeMain)
 
 

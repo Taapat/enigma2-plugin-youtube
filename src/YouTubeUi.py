@@ -26,7 +26,7 @@ from Tools.BoundFunction import boundFunction
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_PLUGINS
 
 from . import _
-from YouTubeApi import GetKey
+from .YouTubeApi import GetKey
 
 
 config.plugins.YouTube = ConfigSubsection()
@@ -491,7 +491,7 @@ class YouTubeMain(Screen):
 
 	def splitTaimerStop(self):
 		if self.action == 'startup':
-			from YouTubeVideoUrl import YouTubeVideoUrl
+			from .YouTubeVideoUrl import YouTubeVideoUrl
 			self.ytdl = YouTubeVideoUrl()
 			self.createBuild()
 			self.createMainList()
@@ -735,7 +735,7 @@ class YouTubeMain(Screen):
 				elif current[0] == 'MyFeeds':
 					self.createMyFeedList()
 				elif self.list == 'search':
-					from YouTubeSearch import YouTubeSearch
+					from .YouTubeSearch import YouTubeSearch
 					self.session.openWithCallback(self.searchScreenCallback, YouTubeSearch, current[0])
 				elif self.list == 'feeds':
 					self.screenCallback([current[0], current[3], self.value[2]], 'OpenFeeds')
@@ -782,7 +782,7 @@ class YouTubeMain(Screen):
 		refreshToken = config.plugins.YouTube.refreshToken.value
 		if not self.youtube or (not self.isAuth and
 			refreshToken and config.plugins.YouTube.login.value):
-			from YouTubeApi import YouTubeApi
+			from .YouTubeApi import YouTubeApi
 			self.youtube = YouTubeApi(
 				client_id=YOUTUBE_API_CLIENT_ID,
 				client_secret=YOUTUBE_API_CLIENT_SECRET,
@@ -1207,7 +1207,7 @@ class YouTubeMain(Screen):
 					self.rememberCurList()
 					self.screenCallback(current, 'downloadVideo')
 			elif answer[1] == 'download_list':
-				from YouTubeDownload import YouTubeDownloadList
+				from .YouTubeDownload import YouTubeDownloadList
 				self.session.open(YouTubeDownloadList)
 			elif answer[1] == 'close':
 				self.close()
@@ -1276,7 +1276,7 @@ class YouTubeMain(Screen):
 				os.path.exists('%s.mkv' % outputfile[:-4]):
 				msg = _('Sorry, this file already exists:\n%s') % title
 			else:
-				from YouTubeDownload import downloadJob
+				from .YouTubeDownload import downloadJob
 				if '&suburi=' in url:  # download DASH MP4 video and audio
 					url = url.split('&suburi=', 1)
 					job_manager.AddJob(downloadJob(url[1], '%s.m4a' % outputfile[:-4],
@@ -1493,7 +1493,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 
 	def ok(self):
 		if self["config"].getCurrent()[1] == config.plugins.YouTube.downloadDir:
-			from YouTubeDownload import YouTubeDirBrowser
+			from .YouTubeDownload import YouTubeDirBrowser
 			downloadDir = config.plugins.YouTube.downloadDir.value
 			if downloadDir[0] == "'":
 				downloadDir = downloadDir[2:-2]
@@ -1549,7 +1549,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		if not answer:
 			self.login = config.plugins.YouTube.login.value = False
 		else:
-			from OAuth import OAuth
+			from .OAuth import OAuth
 			self.splitTaimer = eTimer()
 			self.splitTaimer.timeout.callback.append(self.splitTaimerStop)
 			self.oauth = OAuth(YOUTUBE_API_CLIENT_ID, YOUTUBE_API_CLIENT_SECRET)

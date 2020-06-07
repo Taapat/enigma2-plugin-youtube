@@ -1,4 +1,5 @@
 from __future__ import print_function
+
 import os
 
 from enigma import eTimer, getDesktop
@@ -12,7 +13,7 @@ from Screens.Screen import Screen
 from Tools.Downloader import downloadWithProgress
 
 from . import _
-from YouTubeUi import BUTTONS_FOLDER
+from .YouTubeUi import BUTTONS_FOLDER
 
 
 class YouTubeDirBrowser(Screen):

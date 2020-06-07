@@ -1,4 +1,5 @@
 from __future__ import print_function
+
 from httplib import HTTPSConnection
 from json import dumps, load
 from urllib import quote
@@ -34,7 +35,7 @@ class YouTubeApi:
 			self.key = self.key + '&access_token=' + self.access_token
 
 	def get_access_token(self):
-		from OAuth import OAuth
+		from .OAuth import OAuth
 		oauth = OAuth(self.client_id, self.client_secret)
 		return oauth.get_access_token(self.refresh_token)
 

@@ -1,4 +1,5 @@
 from __future__ import print_function
+
 from httplib import HTTPConnection
 from threading import Thread
 from urllib import quote
@@ -17,7 +18,7 @@ from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 
 from . import _
-from YouTubeUi import BUTTONS_FOLDER
+from .YouTubeUi import BUTTONS_FOLDER
 
 
 class YouTubeVirtualKeyBoard(VirtualKeyBoard):
@@ -251,7 +252,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				config.plugins.YouTube.searchHistoryDict.save()
 				self['config'].getCurrent()[1].help_window.instance.show()
 			else:
-				from YouTubeUi import YouTubeSetup
+				from .YouTubeUi import YouTubeSetup
 				self.session.openWithCallback(self.setupCallback, YouTubeSetup)
 
 	def setupCallback(self, callback=None):

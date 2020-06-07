@@ -2,6 +2,7 @@
 # This video extraction code based on youtube-dl: https://github.com/rg3/youtube-dl
 
 from __future__ import print_function
+
 import codecs
 import json
 import re
@@ -13,7 +14,7 @@ from urlparse import urljoin, urlparse
 from Components.config import config
 
 from . import sslContext
-from jsinterp import JSInterpreter
+from .jsinterp import JSInterpreter
 
 
 PRIORITY_VIDEO_FORMAT = []
