@@ -284,7 +284,7 @@ class YouTubeVideoUrl():
 
 		def _get_urls(_manifest):
 			lines = _manifest.split('\n')
-			urls = filter(lambda l: l and not l.startswith('#'), lines)
+			urls = [l for l in lines if l and not l.startswith('#')]
 			return urls
 
 		manifest = self._download_webpage(manifest_url)
@@ -368,7 +368,7 @@ class YouTubeVideoUrl():
 				args = ytplayer_config['args']
 				if args.get('url_encoded_fmt_stream_map'):
 					# Convert to the same format returned by compat_parse_qs
-					video_info = dict((k, [v]) for k, v in args.items())
+					video_info = dict((k, [v]) for k, v in list(args.items()))
 				if args.get('livestream') == '1' or args.get('live_playback') == 1:
 					is_live = True
 				if not player_response:
@@ -512,12 +512,12 @@ class YouTubeVideoUrl():
 						break
 				# If anything not found, used first in the list if it not in ignore map
 				if not url:
-					for url_map_key in url_map.keys():
+					for url_map_key in list(url_map.keys()):
 						if url_map_key not in IGNORE_VIDEO_FORMAT:
 							url = url_map[url_map_key]
 							break
 				if not url:
-					url = url_map.values()[0]
+					url = list(url_map.values())[0]
 		if not url:
 			error_message = clean_html(try_get(
 					player_response,
