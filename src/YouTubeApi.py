@@ -1,9 +1,8 @@
 from __future__ import print_function
 
-from httplib import HTTPSConnection
 from json import dumps, load
 from urllib import quote
-from urllib2 import urlopen, URLError, HTTPError
+from urllib2 import urlopen, Request
 
 from . import sslContext
 
@@ -49,45 +48,46 @@ class YouTubeApi:
 	def get_response(self, url, count):
 		if count:
 			url = 'https://www.googleapis.com/youtube/v3/' + url
-		response = None
+		status_code = 'Unknown'
 		try:
 			if sslContext:
 				response = urlopen(url, context=sslContext)
 			else:
 				response = urlopen(url)
-		except HTTPError as e:
-			if e.code == 401 and self.access_token and count:
-				self.renew_access_token()
-				self.get_response(url, False)
-			else:
-				print ('[YouTubeApi] error in response %d' % e.code)
-				return {}
-		except URLError as e:
-			print('[YouTubeApi] failed to reach a server:', e.reason)
-			return {}
-		if response:
+			status_code = response.getcode()
+		except:
+			print ('[YouTubeApi] error in get response')
+		if status_code == 200:
 			return load(response)
+		elif status_code == 401 and self.access_token and count:
+			self.renew_access_token()
+			self.get_response(url, False)
+		else:
+			print ('[YouTubeApi] error in get response, errorcode', status_code)
 		return {}
 
 	def get_aut_response(self, method, url, data, header, status, count):
-		url = '/youtube/v3/' + url + self.key
+		url = 'https://www.googleapis.com/youtube/v3/' + url + self.key
 		headers = {'Authorization': 'Bearer %s' % self.access_token}
+		status_code = 'Unknown'
 		if header:
 			headers.update(header)
-		if sslContext:
-			conn = HTTPSConnection('www.googleapis.com', context=sslContext)
-		else:
-			conn = HTTPSConnection('www.googleapis.com')
-		conn.request(method, url, data, headers)
-		response = conn.getresponse()
-		conn.close()
-		if response.status == status:
+		try:
+			request = Request(url, data=data, headers=headers)
+			request.get_method = lambda: method
+			response = urlopen(request)
+			status_code = response.getcode()
+			response.close()
+		except:
+			print ('[YouTubeApi] error in aut response')
+			return None
+		if status_code == status:
 			return True
-		elif response.status == 401 and self.access_token and count:
+		elif status_code == 401 and self.access_token and count:
 			self.renew_access_token()
 			self.get_aut_response(self, method, url, data, header, status, False)
 		else:
-			print('[YouTubeApi] error in response', response.status)
+			print('[YouTubeApi] error in aut response, errorcode', status_code)
 			return None
 
 	def subscriptions_list(self, maxResults, pageToken):

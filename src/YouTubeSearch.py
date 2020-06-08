@@ -1,9 +1,9 @@
 from __future__ import print_function
 
-from httplib import HTTPConnection
 from threading import Thread
 from urllib import quote
-from xml.etree.cElementTree import fromstring
+from urllib2 import urlopen
+from json import loads
 
 from enigma import ePoint, getDesktop
 from Screens.ChoiceBox import ChoiceBox
@@ -18,6 +18,7 @@ from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 
 from . import _
+from . import sslContext
 from .YouTubeUi import BUTTONS_FOLDER
 
 
@@ -279,49 +280,32 @@ class GoogleSuggestionsConfigText(ConfigText):
 
 		gl = config.plugins.YouTube.searchRegion.value
 		hl = config.plugins.YouTube.searchLanguage.value
-		self.queryString = '/complete/search?output=toolbar&client=youtube&xml=true&ds=yt'
+		self.queryString = 'https://www.google.com/complete/search?output=toolbar&client=youtube&json=true&ds=yt'
 		if gl:
 			self.queryString += '&gl=' + gl
 		if hl:
 			self.queryString += '&hl=' + hl
-		self.queryString += '&jsonp=self.getSuggestions&q='
+		self.queryString += '&q='
 
 	def getGoogleSuggestions(self):
 		suggestionsList = None
-		connection = None
 		suggestions = [('', None)]
 		queryValue = self.value
+		charset = 'ISO-8859-1'
 		try:
-			connection = HTTPConnection('google.com')
-			connection.request('GET', self.queryString+quote(queryValue), '', {'Accept-Encoding': 'UTF-8'})
-		except Exception as e:
-			print("[YouTube] Can not send request for suggestions:", e)
-		else:
-			try:
-				response = connection.getresponse()
-			except Exception as e:
-				print("[YouTube] Can not get a response from google:", e)
-			else:
-				if response.status == 200:
-					data = response.read()
-					try:
-						charset = response.getheader('Content-Type',
-							'text/xml; charset=ISO-8859-1').rsplit('=')[1]
-					except:
-						charset = 'ISO-8859-1'
-					suggestionsList = data.decode(charset).encode('utf-8')
-		if connection:
-			connection.close()
-
-		if suggestionsList and len(suggestionsList) > 0:
-			suggestionsList = fromstring(suggestionsList)
-			if suggestionsList:
-				for suggestion in suggestionsList.findall('CompleteSuggestion'):
-					for element in suggestion:
-						if 'data' in element.attrib:
-							name = element.attrib['data'].encode('UTF-8')
-							if name:
-								suggestions.append((name, None))
+			response = urlopen(self.queryString+quote(queryValue), context=sslContext)
+			for header in response.info().headers:
+				if 'charset' in header:
+					charset = header.split('charset=', 1)[1]
+					break
+			suggestionsList = loads(response.read().decode(charset).encode('utf-8'))
+			response.close()
+		except:
+			print("[YouTube] Error in get suggestions from google")
+		if suggestionsList:
+			for suggestion in suggestionsList[1]:
+				if suggestion:
+					suggestions.append((str(suggestion), None))
 		self.updateSuggestions(suggestions)
 		if queryValue != self.value:
 			self.getGoogleSuggestions()
