@@ -1,0 +1,32 @@
+from sys import version_info
+
+# Disable certificate verification on python 2.7.9
+sslContext = None
+if version_info >= (2, 7, 9):
+	try:
+		import ssl
+		sslContext = ssl._create_unverified_context()
+	except:
+		pass
+
+if version_info[0] == 2:
+	# Python 2
+	compat_str = unicode
+	from urllib import urlencode as compat_urlencode
+	from urllib import quote as compat_quote
+	from urllib2 import urlopen as compat_urlopen
+	from urllib2 import Request as compat_Request
+	from urllib2 import URLError as compat_URLError
+	from urlparse import urljoin as compat_urljoin
+	from urlparse import urlparse as compat_urlparse
+else:
+	# Python 3
+	compat_str = str
+	from urllib.parse import urlencode as compat_urlencode
+	from urllib.parse import quote as compat_quote
+	from urllib.request import urlopen as compat_urlopen
+	from urllib.request import Request as compat_Request
+	from urllib.error import URLError as compat_URLError
+	from urllib.parse import urljoin as compat_urljoin
+	from urllib.parse import urlparse as compat_urlparse
+

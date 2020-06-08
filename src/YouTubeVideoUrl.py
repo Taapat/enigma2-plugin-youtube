@@ -7,13 +7,15 @@ import codecs
 import json
 import re
 
-from urllib import urlencode
-from urllib2 import urlopen, URLError, HTTPError
-from urlparse import urljoin, urlparse
-
 from Components.config import config
 
-from . import sslContext
+from .compat import compat_str
+from .compat import compat_urlencode
+from .compat import compat_urlopen
+from .compat import compat_URLError
+from .compat import compat_urljoin
+from .compat import compat_urlparse
+from .compat import sslContext
 from .jsinterp import JSInterpreter
 
 
@@ -80,7 +82,7 @@ def try_get(src, getter, expected_type=None):
 
 
 def url_or_none(url):
-	if not url or not isinstance(url, unicode):
+	if not url or not isinstance(url, compat_str):
 		return None
 	url = url.strip()
 	return url if re.match(r'^(?:[a-zA-Z][\da-zA-Z.+-]*:)?//', url) else None
@@ -119,7 +121,7 @@ def compat_urllib_parse_unquote(string):
 
 
 def _parse_qsl(qs):
-	qs, _coerce_result = qs, unicode
+	qs, _coerce_result = qs, compat_str
 	pairs = [s2 for s1 in qs.split('&') for s2 in s1.split(';')]
 	r = []
 	for name_value in pairs:
@@ -172,10 +174,10 @@ class YouTubeVideoUrl():
 		""" Returns a tuple (page content as string, URL handle) """
 		try:
 			if sslContext:
-				urlh = urlopen(url, context=sslContext)
+				urlh = compat_urlopen(url, context=sslContext)
 			else:
-				urlh = urlopen(url)
-		except URLError as e:
+				urlh = compat_urlopen(url)
+		except compat_URLError as e:
 			raise Exception(e.reason)
 		return urlh.read()
 
@@ -183,15 +185,15 @@ class YouTubeVideoUrl():
 		""" Returns a tuple (page content as string, URL handle) """
 
 		# Strip hashes from the URL (#1038)
-		if isinstance(url_or_request, (unicode, str)):
+		if isinstance(url_or_request, (compat_str, str)):
 			url_or_request = url_or_request.partition('#')[0]
 
 		try:
 			if sslContext:
-				urlh = urlopen(url_or_request, context=sslContext)
+				urlh = compat_urlopen(url_or_request, context=sslContext)
 			else:
-				urlh = urlopen(url_or_request)
-		except URLError as e:
+				urlh = compat_urlopen(url_or_request)
+		except compat_URLError as e:
 			raise Exception(e.reason)
 
 		content = urlh.read()
@@ -202,7 +204,7 @@ class YouTubeVideoUrl():
 		Perform a regex search on the given string, using a single or a list of
 		patterns returning the first matching group.
 		"""
-		if isinstance(pattern, (str, unicode, type(re.compile('')))):
+		if isinstance(pattern, (str, compat_str, type(re.compile('')))):
 			mobj = re.search(pattern, string, 0)
 		else:
 			for p in pattern:
@@ -228,7 +230,7 @@ class YouTubeVideoUrl():
 		if player_url[:2] == '//':
 			player_url = 'https:' + player_url
 		elif not re.match(r'https?://', player_url):
-			player_url = urljoin('https://www.youtube.com', player_url)
+			player_url = compat_urljoin('https://www.youtube.com', player_url)
 		try:
 			func = self._extract_signature_function(player_url)
 			return func(s)
@@ -320,7 +322,7 @@ class YouTubeVideoUrl():
 		# Get video webpage
 		video_webpage, urlh = self._download_webpage_handle(url)
 
-		qs = compat_parse_qs(urlparse(urlh.geturl()).query)
+		qs = compat_parse_qs(compat_urlparse(urlh.geturl()).query)
 		video_id = qs.get('v', [None])[0] or video_id
 
 		if not video_webpage:
@@ -345,7 +347,7 @@ class YouTubeVideoUrl():
 			# this can be viewed without login into Youtube
 			url = 'https://www.youtube.com/embed/%s' % video_id
 			embed_webpage = self._download_webpage(url)
-			data = urlencode({
+			data = compat_urlencode({
 					'video_id': video_id,
 					'eurl': 'https://youtube.googleapis.com/v/' + video_id,
 					'sts': self._search_regex(r'"sts"\s*:\s*(\d+)', embed_webpage),
@@ -413,11 +415,11 @@ class YouTubeVideoUrl():
 					if not url_map['cipher']:
 						continue
 					url_map['url_data'] = compat_parse_qs(url_map['cipher'])
-					url_map['url'] = url_or_none(try_get(url_map['url_data'], lambda x: x['url'][0], unicode))
+					url_map['url'] = url_or_none(try_get(url_map['url_data'], lambda x: x['url'][0], compat_str))
 					if not url_map['url']:
 						continue
 				else:
-					url_map['url_data'] = compat_parse_qs(urlparse(url_map['url']).query)
+					url_map['url_data'] = compat_parse_qs(compat_urlparse(url_map['url']).query)
 
 				stream_type = try_get(url_map['url_data'], lambda x: x['stream_type'][0])
 				# Unsupported FORMAT_STREAM_TYPE_OTF
@@ -427,7 +429,7 @@ class YouTubeVideoUrl():
 				url_map['format_id'] = fmt.get('itag') or url_map['url_data']['itag'][0]
 				if not url_map['format_id']:
 					continue
-				url_map['format_id'] = unicode(url_map['format_id'])
+				url_map['format_id'] = compat_str(url_map['format_id'])
 
 				formats.append(url_map)
 
@@ -490,7 +492,7 @@ class YouTubeVideoUrl():
 					elif 's' in url_map['url_data']:
 						encrypted_sig = url_map['url_data']['s'][0]
 						signature = self._decrypt_signature(encrypted_sig, player_url)
-						sp = try_get(url_map['url_data'], lambda x: x['sp'][0], unicode) or 'signature'
+						sp = try_get(url_map['url_data'], lambda x: x['sp'][0], compat_str) or 'signature'
 						url += '&%s=%s' % (sp, signature)
 				if 'ratebypass' not in url_map['url']:
 					url += '&ratebypass=yes'
@@ -499,9 +501,9 @@ class YouTubeVideoUrl():
 				url_or_none(try_get(
 					player_response,
 					lambda x: x['streamingData']['hlsManifestUrl'],
-					unicode))
+					compat_str))
 				or url_or_none(try_get(
-					video_info, lambda x: x['hlsvp'][0], unicode)))
+					video_info, lambda x: x['hlsvp'][0], compat_str)))
 			if manifest_url:
 				url_map = self._extract_from_m3u8(manifest_url)
 
@@ -522,14 +524,14 @@ class YouTubeVideoUrl():
 			error_message = clean_html(try_get(
 					player_response,
 					lambda x: x['playabilityStatus']['reason'],
-					unicode))
+					compat_str))
 			if not error_message:
 				error_message = clean_html(try_get(
-					video_info, lambda x: x['reason'][0], unicode))
+					video_info, lambda x: x['reason'][0], compat_str))
 			if not error_message and try_get(
 					player_response,
 					lambda x: x['streamingData']['licenseInfos'],
-					unicode):
+					compat_str):
 				error_message = 'This video is DRM protected!'
 			if not error_message:
 				error_message = 'No supported formats found in video info!'

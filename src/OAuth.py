@@ -1,9 +1,11 @@
 from __future__ import print_function
 
-from urllib import urlencode
-from urllib2 import urlopen, Request
 from json import loads
 from time import sleep
+
+from .compat import compat_urlencode
+from .compat import compat_urlopen
+from .compat import compat_Request
 
 
 class OAuth:
@@ -16,9 +18,9 @@ class OAuth:
 	def get_oauth_response(self, url, data):
 		headers = {"Content-type": "application/x-www-form-urlencoded"}
 		try:
-			request = Request(url, data=data, headers=headers)
+			request = compat_Request(url, data=data, headers=headers)
 			request.get_method = lambda: 'POST'
-			response = urlopen(request)
+			response = compat_urlopen(request)
 			status_code = response.getcode()
 			if status_code == 200:
 				return loads(response.read())
@@ -31,7 +33,7 @@ class OAuth:
 
 	def get_user_code(self):
 		url = 'https://accounts.google.com/o/oauth2/device/code'
-		data = urlencode({
+		data = compat_urlencode({
 				'client_id': self.client_id,
 				'scope'	: 'https://www.googleapis.com/auth/youtube'
 				})
@@ -49,7 +51,7 @@ class OAuth:
 
 	def get_new_token(self):
 		url = 'https://accounts.google.com/o/oauth2/token'
-		data = urlencode({
+		data = compat_urlencode({
 				'client_id': self.client_id,
 				'client_secret': self.client_secret,
 				'code': self.device_code,
@@ -62,7 +64,7 @@ class OAuth:
 
 	def get_access_token(self, refresh_token):
 		url = 'https://accounts.google.com/o/oauth2/token'
-		data = urlencode({
+		data = compat_urlencode({
 				'client_id': self.client_id,
 				'client_secret': self.client_secret,
 				'refresh_token': refresh_token,

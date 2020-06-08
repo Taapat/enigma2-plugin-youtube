@@ -91,8 +91,8 @@ def CheckVideoUrl(videos, descr):
 		from time import sleep
 		sleep(10)
 		videoUrl = GetUrl(videos)
-	from urllib2 import urlopen
-	from src.__init__ import sslContext
+	from src.compat import compat_urlopen
+	from src.compat import sslContext
 	if sslContext:
 		response = urlopen(videoUrl, context=sslContext)
 	else:

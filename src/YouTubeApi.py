@@ -1,10 +1,11 @@
 from __future__ import print_function
 
 from json import dumps, load
-from urllib import quote
-from urllib2 import urlopen, Request
 
-from . import sslContext
+from .compat import compat_quote
+from .compat import compat_urlopen
+from .compat import compat_Request
+from .compat import sslContext
 
 
 def GetKey(x):
@@ -51,9 +52,9 @@ class YouTubeApi:
 		status_code = 'Unknown'
 		try:
 			if sslContext:
-				response = urlopen(url, context=sslContext)
+				response = compat_urlopen(url, context=sslContext)
 			else:
-				response = urlopen(url)
+				response = compat_urlopen(url)
 			status_code = response.getcode()
 		except:
 			print ('[YouTubeApi] error in get response')
@@ -73,9 +74,9 @@ class YouTubeApi:
 		if header:
 			headers.update(header)
 		try:
-			request = Request(url, data=data, headers=headers)
+			request = compat_Request(url, data=data, headers=headers)
 			request.get_method = lambda: method
-			response = urlopen(request)
+			response = compat_urlopen(request)
 			status_code = response.getcode()
 			response.close()
 		except:
@@ -119,7 +120,7 @@ class YouTubeApi:
 		relevanceLanguage = relevanceLanguage and '&relevanceLanguage=' + relevanceLanguage
 		regionCode = regionCode and '&regionCode=' + regionCode
 		pageToken = pageToken and '&pageToken=' + pageToken
-		q = quote(q)
+		q = compat_quote(q)
 
 		url = 'search?' + videoEmbeddable + 'safeSearch=' + safeSearch + eventType + videoType + \
 			videoDefinition + '&order=' + order + '&part=' + part.replace(',', '%2C') + \

@@ -1,8 +1,6 @@
 from __future__ import print_function
 
 from threading import Thread
-from urllib import quote
-from urllib2 import urlopen
 from json import loads
 
 from enigma import ePoint, getDesktop
@@ -18,7 +16,9 @@ from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 
 from . import _
-from . import sslContext
+from .compat import compat_quote
+from .compat import compat_urlopen
+from .compat import sslContext
 from .YouTubeUi import BUTTONS_FOLDER
 
 
@@ -293,7 +293,7 @@ class GoogleSuggestionsConfigText(ConfigText):
 		queryValue = self.value
 		charset = 'ISO-8859-1'
 		try:
-			response = urlopen(self.queryString+quote(queryValue), context=sslContext)
+			response = compat_urlopen(self.queryString+compat_quote(queryValue), context=sslContext)
 			for header in response.info().headers:
 				if 'charset' in header:
 					charset = header.split('charset=', 1)[1]
