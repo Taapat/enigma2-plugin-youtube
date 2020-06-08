@@ -94,9 +94,9 @@ def CheckVideoUrl(videos, descr):
 	from src.compat import compat_urlopen
 	from src.compat import sslContext
 	if sslContext:
-		response = urlopen(videoUrl, context=sslContext)
+		response = compat_urlopen(videoUrl, context=sslContext)
 	else:
-		response = urlopen(videoUrl)
+		response = compat_urlopen(videoUrl)
 	info = response.info()
 	print('Video Url info:')
 	print(info, descr, 'Video Url exist')
