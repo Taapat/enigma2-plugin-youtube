@@ -15,6 +15,7 @@ from .compat import compat_urlopen
 from .compat import compat_URLError
 from .compat import compat_urljoin
 from .compat import compat_urlparse
+from .compat import compat_unquote_to_bytes
 from .compat import sslContext
 from .jsinterp import JSInterpreter
 
@@ -89,35 +90,16 @@ def url_or_none(url):
 
 
 def compat_urllib_parse_unquote(string):
-	if string == '':
+	if '%' not in string:
+		string.split
 		return string
-	res = string.split('%')
-	if len(res) == 1:
-		return string
-	# pct_sequence: contiguous sequence of percent-encoded bytes, decoded
-	pct_sequence = b''
-	string = res[0]
-	for item in res[1:]:
-		try:
-			if not item:
-				raise ValueError
-			pct_sequence += item[:2].decode('hex')
-			rest = item[2:]
-			if not rest:
-				# This segment was just a single percent-encoded character.
-				# May be part of a sequence of code units, so delay decoding.
-				# (Stored in pct_sequence).
-				continue
-		except ValueError:
-			rest = '%' + item
-		# Encountered non-percent-encoded characters. Flush the current
-		# pct_sequence.
-		string += pct_sequence.decode('utf-8', 'replace') + rest
-		pct_sequence = b''
-	if pct_sequence:
-		# Flush the final pct_sequence
-		string += pct_sequence.decode('utf-8', 'replace')
-	return string
+	bits = re.compile(r'([\x00-\x7f]+)').split(string)
+	res = [bits[0]]
+	append = res.append
+	for i in range(1, len(bits), 2):
+		append(compat_unquote_to_bytes(bits[i]).decode('utf-8', 'replace'))
+		append(bits[i + 1])
+	return ''.join(res)
 
 
 def _parse_qsl(qs):
@@ -171,15 +153,26 @@ def clean_html(html):
 class YouTubeVideoUrl():
 
 	def _download_webpage(self, url):
-		""" Returns a tuple (page content as string, URL handle) """
-		try:
-			if sslContext:
-				urlh = compat_urlopen(url, context=sslContext)
+		""" Return the data of the page as a string """
+		content, urlh = self._download_webpage_handle(url)
+		return content
+
+	@staticmethod
+	def _guess_encoding_from_content(content_type, webpage_bytes):
+		m = re.match(r'[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+\s*;\s*charset=(.+)', content_type)
+		if m:
+			encoding = m.group(1)
+		else:
+			m = re.search(br'<meta[^>]+charset=[\'"]?([^\'")]+)[ /\'">]',
+					webpage_bytes[:1024])
+			if m:
+				encoding = m.group(1).decode('ascii')
+			elif webpage_bytes.startswith(b'\xff\xfe'):
+				encoding = 'utf-16'
 			else:
-				urlh = compat_urlopen(url)
-		except compat_URLError as e:
-			raise Exception(e.reason)
-		return urlh.read()
+				encoding = 'utf-8'
+
+		return encoding
 
 	def _download_webpage_handle(self, url_or_request):
 		""" Returns a tuple (page content as string, URL handle) """
@@ -196,7 +189,15 @@ class YouTubeVideoUrl():
 		except compat_URLError as e:
 			raise Exception(e.reason)
 
-		content = urlh.read()
+		content_type = urlh.headers.get('Content-Type', '')
+		webpage_bytes = urlh.read()
+		encoding = self._guess_encoding_from_content(content_type, webpage_bytes)
+
+		try:
+			content = webpage_bytes.decode(encoding, 'replace')
+		except:
+			content = webpage_bytes.decode('utf-8', 'replace')
+
 		return (content, urlh)
 
 	def _search_regex(self, pattern, string, group=None):
