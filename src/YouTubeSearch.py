@@ -291,13 +291,13 @@ class GoogleSuggestionsConfigText(ConfigText):
 		suggestionsList = None
 		suggestions = [('', None)]
 		queryValue = self.value
-		charset = 'ISO-8859-1'
 		try:
 			response = compat_urlopen(self.queryString+compat_quote(queryValue), context=sslContext)
-			for header in response.info().headers:
-				if 'charset' in header:
-					charset = header.split('charset=', 1)[1]
-					break
+			content_type = response.headers.get('Content-Type', '')
+			if 'charset=' in content_type:
+				charset = content_type.split('charset=', 1)[1]
+			else:
+				charset = 'ISO-8859-1'
 			suggestionsList = loads(response.read().decode(charset).encode('utf-8'))
 			response.close()
 		except:
