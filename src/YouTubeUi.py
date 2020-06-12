@@ -73,7 +73,7 @@ config.plugins.YouTube.searchLanguage = ConfigSelection(
 	('au', _('Australia')),
 	('br', _('Brazil')),
 	('ca', _('Canada')),
-	('cz', _('Czech Republic')),
+	('cs', _('Czech Republic')),
 	('fr', _('France')),
 	('de', _('Germany')),
 	('gb', _('Great Britain')),
