@@ -9,14 +9,13 @@ import re
 
 from Components.config import config
 
+from .compat import compat_ssl_urlopen
 from .compat import compat_str
 from .compat import compat_urlencode
-from .compat import compat_urlopen
 from .compat import compat_URLError
 from .compat import compat_urljoin
 from .compat import compat_urlparse
 from .compat import compat_unquote_to_bytes
-from .compat import sslContext
 from .jsinterp import JSInterpreter
 
 
@@ -182,10 +181,7 @@ class YouTubeVideoUrl():
 			url_or_request = url_or_request.partition('#')[0]
 
 		try:
-			if sslContext:
-				urlh = compat_urlopen(url_or_request, context=sslContext)
-			else:
-				urlh = compat_urlopen(url_or_request)
+			urlh = compat_ssl_urlopen(url_or_request)
 		except compat_URLError as e:
 			raise Exception(e.reason)
 

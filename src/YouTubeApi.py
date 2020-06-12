@@ -2,10 +2,10 @@ from __future__ import print_function
 
 from json import dumps, load
 
+from .compat import compat_ssl_urlopen
 from .compat import compat_quote
 from .compat import compat_urlopen
 from .compat import compat_Request
-from .compat import sslContext
 
 
 def GetKey(x):
@@ -51,10 +51,7 @@ class YouTubeApi:
 			url = 'https://www.googleapis.com/youtube/v3/' + url
 		status_code = 'Unknown'
 		try:
-			if sslContext:
-				response = compat_urlopen(url, context=sslContext)
-			else:
-				response = compat_urlopen(url)
+			response = compat_ssl_urlopen(url)
 			status_code = response.getcode()
 		except:
 			print ('[YouTubeApi] error in get response')

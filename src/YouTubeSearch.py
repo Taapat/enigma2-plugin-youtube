@@ -17,8 +17,7 @@ from Components.Sources.StaticText import StaticText
 
 from . import _
 from .compat import compat_quote
-from .compat import compat_urlopen
-from .compat import sslContext
+from .compat import compat_ssl_urlopen
 from .YouTubeUi import BUTTONS_FOLDER
 
 
@@ -292,7 +291,7 @@ class GoogleSuggestionsConfigText(ConfigText):
 		suggestions = [('', None)]
 		queryValue = self.value
 		try:
-			response = compat_urlopen(self.queryString+compat_quote(queryValue), context=sslContext)
+			response = compat_ssl_urlopen(self.queryString+compat_quote(queryValue))
 			content_type = response.headers.get('Content-Type', '')
 			if 'charset=' in content_type:
 				charset = content_type.split('charset=', 1)[1]
