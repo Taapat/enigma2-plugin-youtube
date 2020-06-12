@@ -404,7 +404,7 @@ class YouTubeMain(Screen):
 		for Id, Title in entry_list:
 			self.entryList.append((
 					Id,     # Id
-					None,   # Thumbnail url
+					'',     # Thumbnail url
 					None,   # Thumbnail
 					Title,  # Title
 					'',     # Views
@@ -413,7 +413,7 @@ class YouTubeMain(Screen):
 					None,   # Description
 					None,   # Likes
 					None,   # Dislikes
-					None,   # Big thumbnail url
+					'',     # Big thumbnail url
 					None,   # Channel Id
 					'',     # Published
 				))
@@ -764,7 +764,8 @@ class YouTubeMain(Screen):
 		print('[YouTube] Video url not found')
 		return None, 'Video url not found!'
 
-	def convertDate(self, duration):
+	@staticmethod
+	def _convertDate(duration):
 		time = ':' + duration.replace('P', '')\
 			.replace('W', '-').replace('D', ' ').replace('T', '')\
 			.replace('H', ':').replace('M', ':').replace('S', '')
@@ -777,6 +778,34 @@ class YouTubeMain(Screen):
 		elif time[-5] == ':':
 			time = time[:-4] + '0' + time[-4:]
 		return time[1:]
+
+	@staticmethod
+	def _tryList(result, getter):
+		for get in [getter]:
+			try:
+				v = get(result)
+			except:
+				pass
+			else:
+				return v
+		return None
+
+	@staticmethod
+	def _tryStr(result, getter):
+		for get in [getter]:
+			try:
+				v = str(get(result))
+			except:
+				pass
+			else:
+				return v
+		return ''
+
+	def _tryComplStr(self, before, result, getter, after):
+		v = self._tryStr(result, getter)
+		if v:
+			return before + v + after
+		return ''
 
 	def createBuild(self):
 		refreshToken = config.plugins.YouTube.refreshToken.value
@@ -843,26 +872,18 @@ class YouTubeMain(Screen):
 				self.prevPageToken = searchResponse.get('prevPageToken')
 				self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
 				for result in searchResponse.get('items', []):
-					try:
-						Id = 'UU' + result['snippet']['resourceId']['channelId'][2:]
-					except:
-						Id = None
-					try:
-						Thumbnail = str(result['snippet']['thumbnails']['high']['url'])
-					except:
-						Thumbnail = None
-					try:
-						Title = str(result['snippet']['title'])
-					except:
-						Title = ''
-					try:
-						Subscription = result['id']
-					except:
-						Subscription = ''
-					videos.append((Id, Thumbnail, None, Title, '', '', Subscription,
+					Id = self._tryList(result, lambda x: x['snippet']['resourceId']['channelId'])
+					Id = 'UU' + Id[2:] if Id else None
+					videos.append((
+						Id,
+						self._tryStr(result, lambda x: x['snippet']['thumbnails']['high']['url']),  # Thumbnail url
+						None,
+						self._tryStr(result, lambda x: x['snippet']['title']),  # Title
+						'', '',
+						self._tryList(result, lambda x: x['id']),  # Subscription
 						None, None, None, None, None, ''))
 				if len(videos) > 1:
-					videos.insert(0, ('recent_subscr', None, None, _('Recent'), '', '',
+					videos.insert(0, ('recent_subscr', '', None, _('Recent'), '', '',
 						None, None, None, None, None, None, ''))
 				return videos
 
@@ -876,20 +897,12 @@ class YouTubeMain(Screen):
 				self.prevPageToken = searchResponse.get('prevPageToken')
 				self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
 				for result in searchResponse.get('items', []):
-					try:
-						Id = result['id']
-					except:
-						Id = None
-					try:
-						Thumbnail = str(result['snippet']['thumbnails']['default']['url'])
-					except:
-						Thumbnail = None
-					try:
-						Title = str(result['snippet']['title'])
-					except:
-						Title = ''
-					videos.append((Id, Thumbnail, None, Title, '', '', None,
-						None, None, None, None, None, ''))
+					videos.append((
+						self._tryList(result, lambda x: x['id']),  # Id
+						self._tryStr(result, lambda x: x['snippet']['thumbnails']['default']['url']),  # Thumbnail url
+						None,
+						self._tryStr(result, lambda x: x['snippet']['title']),  # Title
+						'', '', None, None, None, None, None, None, ''))
 				return videos
 
 			else:  # all other my data
@@ -990,62 +1003,30 @@ class YouTubeMain(Screen):
 		searchResponse = self.youtube.videos_list(v_id=','.join(videos))
 		videos = []
 		for result in searchResponse.get('items', []):
-			try:
-				Id = result['id']
-			except:
-				Id = None
-			try:
-				Thumbnail = str(result['snippet']['thumbnails']['default']['url'])
-			except:
-				Thumbnail = None
-			try:
-				Title = str(result['snippet']['title'])
-			except:
-				Title = ''
-			try:
-				Views = str(result['statistics']['viewCount']) + _(' views')
-			except:
-				Views = ''
-			try:
-				Duration = _('Duration: ') + self.convertDate(str(result['contentDetails']['duration']))
-			except:
-				Duration = ''
-			try:
-				Description = str(result['snippet']['description'])
-			except:
-				Description = ''
-			try:
-				Likes = str(result['statistics']['likeCount']) + _(' likes')
-			except:
-				Likes = ''
-			try:
-				Dislikes = str(result['statistics']['dislikeCount']) + _(' dislikes')
-			except:
-				Dislikes = ''
-			try:
-				ThumbnailUrl = str(result['snippet']['thumbnails']['medium']['url'])
-			except:
-				ThumbnailUrl = None
-			try:
-				ChannelId = result['snippet']['channelId']
-			except:
-				ChannelId = None
-			try:
-				PublishedAt = _('Published at: ') + str(result['snippet']['publishedAt'])\
-					.replace('T', ' ').split('.')[0]
-			except:
-				PublishedAt = ''
-			try:
-				liveBroadcast = result['snippet']['liveBroadcastContent']
-			except:
-				liveBroadcast = None
+			Duration = self._tryStr(result, lambda x: x['contentDetails']['duration'])
+			Duration = _('Duration: ') + self._convertDate(Duration) if Duration else ''
+			PublishedAt = self._tryStr(result, lambda x: x['snippet']['publishedAt'])
+			PublishedAt = _('Published at: ') + PublishedAt.replace('T', ' ')\
+					.split('.')[0] if PublishedAt else ''
+			videosInfo = (
+				self._tryList(result, lambda x: x['id']),  # Id
+				self._tryStr(result, lambda x: x['snippet']['thumbnails']['default']['url']),  # Thumbnail url
+				None,
+				self._tryStr(result, lambda x: x['snippet']['title']),  # Title
+				self._tryComplStr('', result, lambda x: x['statistics']['viewCount'], _(' views')),  # Views
+				Duration,
+				None,
+				self._tryStr(result, lambda x: x['snippet']['description']),  # Description
+				self._tryComplStr('', result, lambda x: x['statistics']['likeCount'], _(' likes')),  # Likes
+				self._tryComplStr('', result, lambda x: x['statistics']['dislikeCount'], _(' dislikes')),  # Dislikes
+				self._tryStr(result, lambda x: x['snippet']['thumbnails']['medium']['url']),  # Big thumbnail url
+				self._tryList(result, lambda x: x['snippet']['channelId']),  # Channel id
+				PublishedAt)
 
-			if liveBroadcast == 'live':  # if live broadcast insert in top of list
-				videos.insert(0, (Id, Thumbnail, None, Title, Views, Duration, None,
-					Description, Likes, Dislikes, ThumbnailUrl, ChannelId, PublishedAt))
+			if self._tryList(result, lambda x: x['snippet']['liveBroadcastContent']) == 'live':
+				videos.insert(0, videosInfo)  # if live broadcast insert in top of list
 			else:
-				videos.append((Id, Thumbnail, None, Title, Views, Duration, None,
-					Description, Likes, Dislikes, ThumbnailUrl, ChannelId, PublishedAt))
+				videos.append(videosInfo)
 		return videos
 
 	def videoIdFromPlaylist(self, channel):
@@ -1094,20 +1075,12 @@ class YouTubeMain(Screen):
 				kind = result['id']['kind'].split('#')[1]
 			except:
 				kind = self.list
-			try:
-				Id = result['id'][kind+'Id']
-			except:
-				Id = None
-			try:
-				Thumbnail = str(result['snippet']['thumbnails']['default']['url'])
-			except:
-				Thumbnail = None
-			try:
-				Title = str(result['snippet']['title'])
-			except:
-				Title = ''
-			videos.append((Id, Thumbnail, None, Title, '', '', None,
-				None, None, None, None, None, ''))
+			videos.append((
+				self._tryList(result, lambda x: x['id'][kind+'Id']),  # Id
+				self._tryStr(result, lambda x: x['snippet']['thumbnails']['default']['url']),  # Thumbnail url
+				None,
+				self._tryStr(result, lambda x: x['snippet']['title']),  # Title
+				'', '', None, None, None, None, None, None, ''))
 		if subscription and len(videos) > 1:
 			videos.insert(0, ('recent_subscr', None, None, _('Recent'), '', '',
 				None, None, None, None, None, None, ''))
