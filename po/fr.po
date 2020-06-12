@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 13:38+0300\n"
+"POT-Creation-Date: 2020-06-12 21:59+0300\n"
 "PO-Revision-Date: 2018-06-25 22:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -52,6 +52,9 @@ msgstr "Canada"
 msgid "Cancel"
 msgstr "Annuler"
 
+msgid "Chinese"
+msgstr ""
+
 msgid "Choose what you want to do"
 msgstr "Choisissez ce que vous voulez faire"
 
@@ -60,6 +63,9 @@ msgstr "Fermer YouTube"
 
 msgid "Created date"
 msgstr "Date de création"
+
+msgid "Czech"
+msgstr ""
 
 msgid "Czech Republic"
 msgstr "République tchèque"
@@ -91,6 +97,9 @@ msgstr "Téléchargement"
 msgid "Duration: "
 msgstr "Durée :"
 
+msgid "Dutch"
+msgstr ""
+
 msgid "Embedded in webpages"
 msgstr "Intégré dans les pages Web"
 
@@ -114,6 +123,13 @@ msgstr ""
 msgid "France"
 msgstr "France"
 
+msgid "French"
+msgstr ""
+
+#, fuzzy
+msgid "German"
+msgstr "Allemagne"
+
 msgid "Germany"
 msgstr "Allemagne"
 
@@ -125,10 +141,11 @@ msgstr ""
 "Allez sur %s\n"
 "Et entrez le code %s"
 
-msgid "Great Britain"
-msgstr "Grande-Bretagne"
-
 msgid "Greece"
+msgstr "Grèce"
+
+#, fuzzy
+msgid "Greek"
 msgstr "Grèce"
 
 msgid "Gstplayer"
@@ -137,8 +154,11 @@ msgstr ""
 msgid "HD videos"
 msgstr "Vidéos HD"
 
-msgid "Holland"
-msgstr "Pays-Bas"
+msgid "Hebrew"
+msgstr ""
+
+msgid "Hindi"
+msgstr ""
 
 msgid "Hong Kong"
 msgstr "Hong Kong"
@@ -168,16 +188,31 @@ msgstr "Irelande"
 msgid "Israel"
 msgstr "Israël"
 
+#, fuzzy
+msgid "Italian"
+msgstr "Italie"
+
 msgid "Italy"
 msgstr "Italie"
 
 msgid "Japan"
 msgstr "Japon"
 
+#, fuzzy
+msgid "Japanese"
+msgstr "Japon"
+
 msgid "Keyboard"
 msgstr "Clavier"
 
+msgid "Korean"
+msgstr ""
+
 msgid "Latvia"
+msgstr "Lettonie"
+
+#, fuzzy
+msgid "Latvian"
 msgstr "Lettonie"
 
 msgid "Liked videos"
@@ -268,6 +303,12 @@ msgstr "Veuillez sélectionner le répertoire de téléchargement"
 
 msgid "Poland"
 msgstr "Pologne"
+
+msgid "Polish"
+msgstr ""
+
+msgid "Portuguese"
+msgstr ""
 
 #, python-format
 msgid "Previous %s entries"
@@ -379,6 +420,9 @@ msgstr "Corée du Sud"
 msgid "Spain"
 msgstr "Espagne"
 
+msgid "Spanish"
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Spécifie le répertoire où enregistrer les fichiers vidéo téléchargés."
 
@@ -400,11 +444,22 @@ msgstr "Abonné(e) !"
 msgid "Sweden"
 msgstr "Suède"
 
+#, fuzzy
+msgid "Swedish"
+msgstr "Suède"
+
 msgid "Taiwan"
 msgstr "Taiwan"
 
+#, fuzzy
+msgid "Thai"
+msgstr "Thailand"
+
 msgid "Thailand"
 msgstr "Thailand"
+
+msgid "The Netherlands"
+msgstr ""
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -448,6 +503,13 @@ msgstr "Essayez d’exclure tout contenu à accès restreint du résultat de la 
 
 msgid "Turkey"
 msgstr "Turquie"
+
+#, fuzzy
+msgid "Turkish"
+msgstr "Turquie"
+
+msgid "United Kingdom"
+msgstr ""
 
 msgid "United States"
 msgstr "États-Unis d'Amérique"

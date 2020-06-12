@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 13:38+0300\n"
+"POT-Creation-Date: 2020-06-12 21:59+0300\n"
 "PO-Revision-Date: 2018-11-18 12:37+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: \n"
@@ -47,6 +47,9 @@ msgstr "Kanada"
 msgid "Cancel"
 msgstr "Tühista"
 
+msgid "Chinese"
+msgstr ""
+
 msgid "Choose what you want to do"
 msgstr "Vali soovitud tegevus"
 
@@ -55,6 +58,9 @@ msgstr "Sulge YouTube"
 
 msgid "Created date"
 msgstr "Loodud"
+
+msgid "Czech"
+msgstr ""
 
 msgid "Czech Republic"
 msgstr "Tšehhi"
@@ -86,6 +92,9 @@ msgstr "Allalaadimine"
 msgid "Duration: "
 msgstr "Kestus: "
 
+msgid "Dutch"
+msgstr ""
+
 msgid "Embedded in webpages"
 msgstr "Põimitud veebilehtedes"
 
@@ -111,6 +120,13 @@ msgstr ""
 msgid "France"
 msgstr "Prantsusmaa"
 
+msgid "French"
+msgstr ""
+
+#, fuzzy
+msgid "German"
+msgstr "Saksamaa"
+
 msgid "Germany"
 msgstr "Saksamaa"
 
@@ -122,10 +138,11 @@ msgstr ""
 "Mine aadressile %s\n"
 "ja sisesta kood %s"
 
-msgid "Great Britain"
-msgstr "Suurbritannia"
-
 msgid "Greece"
+msgstr "Kreeka"
+
+#, fuzzy
+msgid "Greek"
 msgstr "Kreeka"
 
 msgid "Gstplayer"
@@ -134,8 +151,11 @@ msgstr ""
 msgid "HD videos"
 msgstr "HD videod"
 
-msgid "Holland"
-msgstr "Holland"
+msgid "Hebrew"
+msgstr ""
+
+msgid "Hindi"
+msgstr ""
 
 msgid "Hong Kong"
 msgstr "Hong Kong"
@@ -165,16 +185,31 @@ msgstr "Iirimaa"
 msgid "Israel"
 msgstr "Iisrael"
 
+#, fuzzy
+msgid "Italian"
+msgstr "Itaalia"
+
 msgid "Italy"
 msgstr "Itaalia"
 
 msgid "Japan"
 msgstr "Jaapan"
 
+#, fuzzy
+msgid "Japanese"
+msgstr "Jaapan"
+
 msgid "Keyboard"
 msgstr "Klaviatuur"
 
+msgid "Korean"
+msgstr ""
+
 msgid "Latvia"
+msgstr "Läti"
+
+#, fuzzy
+msgid "Latvian"
 msgstr "Läti"
 
 msgid "Liked videos"
@@ -265,6 +300,12 @@ msgstr "Vali allalaaditud videotele kataloog"
 
 msgid "Poland"
 msgstr "Poola"
+
+msgid "Polish"
+msgstr ""
+
+msgid "Portuguese"
+msgstr ""
 
 #, python-format
 msgid "Previous %s entries"
@@ -376,6 +417,9 @@ msgstr "Lõuna-Korea"
 msgid "Spain"
 msgstr "Hispaania"
 
+msgid "Spanish"
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Määra kataloog, kuhu tõmmatud videod salvestada."
 
@@ -397,11 +441,22 @@ msgstr "Tellitud!"
 msgid "Sweden"
 msgstr "Rootsi"
 
+#, fuzzy
+msgid "Swedish"
+msgstr "Rootsi"
+
 msgid "Taiwan"
 msgstr "Taiwan"
 
+#, fuzzy
+msgid "Thai"
+msgstr "Tai"
+
 msgid "Thailand"
 msgstr "Tai"
+
+msgid "The Netherlands"
+msgstr ""
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -448,6 +503,13 @@ msgstr "Ürita piiratud sisu otsingu tulemustest eemaldada."
 
 msgid "Turkey"
 msgstr "Türgi"
+
+#, fuzzy
+msgid "Turkish"
+msgstr "Türgi"
+
+msgid "United Kingdom"
+msgstr ""
 
 msgid "United States"
 msgstr "USA"

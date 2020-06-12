@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 13:38+0300\n"
+"POT-Creation-Date: 2020-06-12 21:59+0300\n"
 "PO-Revision-Date: 2018-11-22 19:43+0100\n"
 "Last-Translator: VillaK <soporte@open-plus.es>\n"
 "Language-Team: OpenPlus <open-plus.es>\n"
@@ -47,6 +47,9 @@ msgstr "Canada"
 msgid "Cancel"
 msgstr "Cancelar"
 
+msgid "Chinese"
+msgstr ""
+
 msgid "Choose what you want to do"
 msgstr "Elige qué quieres hacer"
 
@@ -55,6 +58,9 @@ msgstr "Cerrar Youtube"
 
 msgid "Created date"
 msgstr "Fecha de creación"
+
+msgid "Czech"
+msgstr ""
 
 msgid "Czech Republic"
 msgstr "República Checa"
@@ -86,6 +92,9 @@ msgstr "Descargando"
 msgid "Duration: "
 msgstr "Duración: "
 
+msgid "Dutch"
+msgstr ""
+
 msgid "Embedded in webpages"
 msgstr "Incrustado en páginas web"
 
@@ -111,6 +120,13 @@ msgstr ""
 msgid "France"
 msgstr "Francia"
 
+msgid "French"
+msgstr ""
+
+#, fuzzy
+msgid "German"
+msgstr "Alemania"
+
 msgid "Germany"
 msgstr "Alemania"
 
@@ -122,10 +138,11 @@ msgstr ""
 "Ir a %s\n"
 "e introducir el código %s"
 
-msgid "Great Britain"
-msgstr "Reino Unido"
-
 msgid "Greece"
+msgstr "Griego"
+
+#, fuzzy
+msgid "Greek"
 msgstr "Griego"
 
 msgid "Gstplayer"
@@ -134,8 +151,11 @@ msgstr ""
 msgid "HD videos"
 msgstr "Vídeos HD"
 
-msgid "Holland"
-msgstr "Holanda"
+msgid "Hebrew"
+msgstr ""
+
+msgid "Hindi"
+msgstr ""
 
 msgid "Hong Kong"
 msgstr "Hong Kong"
@@ -165,16 +185,31 @@ msgstr "Irlanda"
 msgid "Israel"
 msgstr "Israel"
 
+#, fuzzy
+msgid "Italian"
+msgstr "Italia"
+
 msgid "Italy"
 msgstr "Italia"
 
 msgid "Japan"
 msgstr "Japón"
 
+#, fuzzy
+msgid "Japanese"
+msgstr "Japón"
+
 msgid "Keyboard"
 msgstr "Teclado"
 
+msgid "Korean"
+msgstr ""
+
 msgid "Latvia"
+msgstr "Letonia"
+
+#, fuzzy
+msgid "Latvian"
 msgstr "Letonia"
 
 msgid "Liked videos"
@@ -265,6 +300,12 @@ msgstr "Por favor seleccione el directorio de descarga"
 
 msgid "Poland"
 msgstr "Polonia"
+
+msgid "Polish"
+msgstr ""
+
+msgid "Portuguese"
+msgstr ""
 
 #, python-format
 msgid "Previous %s entries"
@@ -376,6 +417,9 @@ msgstr "Korea del Sur"
 msgid "Spain"
 msgstr "España"
 
+msgid "Spanish"
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Especifique donde guardar los videos descargados."
 
@@ -397,11 +441,22 @@ msgstr "¡Suscrito!"
 msgid "Sweden"
 msgstr "Suecia"
 
+#, fuzzy
+msgid "Swedish"
+msgstr "Suecia"
+
 msgid "Taiwan"
 msgstr "Taiwan"
 
+#, fuzzy
+msgid "Thai"
+msgstr "Thailandia"
+
 msgid "Thailand"
 msgstr "Thailandia"
+
+msgid "The Netherlands"
+msgstr ""
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -448,6 +503,13 @@ msgstr "Intenta excluir el contenido restringido en la búsqueda."
 
 msgid "Turkey"
 msgstr "Turco"
+
+#, fuzzy
+msgid "Turkish"
+msgstr "Turco"
+
+msgid "United Kingdom"
+msgstr ""
 
 msgid "United States"
 msgstr "Estados Unidos"

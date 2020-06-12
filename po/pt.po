@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin for Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 13:38+0300\n"
+"POT-Creation-Date: 2020-06-12 21:59+0300\n"
 "PO-Revision-Date: 2018-11-19 00:44+0000\n"
 "Last-Translator: nunigaia\n"
 "Language-Team: BH Team\n"
@@ -54,6 +54,9 @@ msgstr "Canadá"
 msgid "Cancel"
 msgstr "Cancelar"
 
+msgid "Chinese"
+msgstr ""
+
 msgid "Choose what you want to do"
 msgstr "Escolha o que pretende fazer"
 
@@ -62,6 +65,9 @@ msgstr "Fechar YouTube"
 
 msgid "Created date"
 msgstr "Data criada"
+
+msgid "Czech"
+msgstr ""
 
 msgid "Czech Republic"
 msgstr "República Checa"
@@ -93,6 +99,9 @@ msgstr "Descarga em curso"
 msgid "Duration: "
 msgstr "Duração:  "
 
+msgid "Dutch"
+msgstr ""
+
 msgid "Embedded in webpages"
 msgstr "Embebido em páginas Web"
 
@@ -118,6 +127,13 @@ msgstr ""
 msgid "France"
 msgstr "França"
 
+msgid "French"
+msgstr ""
+
+#, fuzzy
+msgid "German"
+msgstr "Alemanha"
+
 msgid "Germany"
 msgstr "Alemanha"
 
@@ -129,10 +145,11 @@ msgstr ""
 "Vá para %s\n"
 "E introduza o código %s"
 
-msgid "Great Britain"
-msgstr "Grã Bretanha"
-
 msgid "Greece"
+msgstr "Grécia"
+
+#, fuzzy
+msgid "Greek"
 msgstr "Grécia"
 
 msgid "Gstplayer"
@@ -141,8 +158,11 @@ msgstr ""
 msgid "HD videos"
 msgstr "Vídeos HD"
 
-msgid "Holland"
-msgstr "Holanda"
+msgid "Hebrew"
+msgstr ""
+
+msgid "Hindi"
+msgstr ""
 
 msgid "Hong Kong"
 msgstr "Hong Kong"
@@ -172,16 +192,31 @@ msgstr "Irlanda"
 msgid "Israel"
 msgstr "Israel"
 
+#, fuzzy
+msgid "Italian"
+msgstr "Itália"
+
 msgid "Italy"
 msgstr "Itália"
 
 msgid "Japan"
 msgstr "Japão"
 
+#, fuzzy
+msgid "Japanese"
+msgstr "Japão"
+
 msgid "Keyboard"
 msgstr "Teclado"
 
+msgid "Korean"
+msgstr ""
+
 msgid "Latvia"
+msgstr "Letónia"
+
+#, fuzzy
+msgid "Latvian"
 msgstr "Letónia"
 
 msgid "Liked videos"
@@ -272,6 +307,12 @@ msgstr "Por favor, seleccione o directório de descarga"
 
 msgid "Poland"
 msgstr "Polónia"
+
+msgid "Polish"
+msgstr ""
+
+msgid "Portuguese"
+msgstr ""
 
 #, python-format
 msgid "Previous %s entries"
@@ -383,6 +424,9 @@ msgstr "Coreia do Sul"
 msgid "Spain"
 msgstr "Espanha"
 
+msgid "Spanish"
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Especifiar o diretório para salvar descargars de vídeos."
 
@@ -404,11 +448,22 @@ msgstr "Subscrito!"
 msgid "Sweden"
 msgstr "Suécia"
 
+#, fuzzy
+msgid "Swedish"
+msgstr "Suécia"
+
 msgid "Taiwan"
 msgstr "Taiwan"
 
+#, fuzzy
+msgid "Thai"
+msgstr "Tailândia"
+
 msgid "Thailand"
 msgstr "Tailândia"
+
+msgid "The Netherlands"
+msgstr ""
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -455,6 +510,13 @@ msgstr "Tente excluir todo o conteúdo restrito dos resultados de busca."
 
 msgid "Turkey"
 msgstr "Turquia"
+
+#, fuzzy
+msgid "Turkish"
+msgstr "Turquia"
+
+msgid "United Kingdom"
+msgstr ""
 
 msgid "United States"
 msgstr "Estados Unidos"

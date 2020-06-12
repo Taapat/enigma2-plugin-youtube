@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 13:38+0300\n"
+"POT-Creation-Date: 2020-06-12 21:59+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -48,6 +48,9 @@ msgstr "Kanāda"
 msgid "Cancel"
 msgstr "Atcelt"
 
+msgid "Chinese"
+msgstr ""
+
 msgid "Choose what you want to do"
 msgstr "Izvēlieties ko vēlaties darīt"
 
@@ -56,6 +59,9 @@ msgstr "Aizvērt YouTube"
 
 msgid "Created date"
 msgstr "Izveidošanas datuma"
+
+msgid "Czech"
+msgstr ""
 
 msgid "Czech Republic"
 msgstr "Čehija"
@@ -87,6 +93,9 @@ msgstr "Lejuplādē"
 msgid "Duration: "
 msgstr "Ilgums: "
 
+msgid "Dutch"
+msgstr ""
+
 msgid "Embedded in webpages"
 msgstr "Video no web lapām"
 
@@ -112,6 +121,13 @@ msgstr ""
 msgid "France"
 msgstr "Francija"
 
+msgid "French"
+msgstr ""
+
+#, fuzzy
+msgid "German"
+msgstr "Vācija"
+
 msgid "Germany"
 msgstr "Vācija"
 
@@ -123,10 +139,11 @@ msgstr ""
 "Ejiet uz %s\n"
 "Un ievadiet kodu %s"
 
-msgid "Great Britain"
-msgstr "Lielbritānija"
-
 msgid "Greece"
+msgstr "Grieķija"
+
+#, fuzzy
+msgid "Greek"
 msgstr "Grieķija"
 
 msgid "Gstplayer"
@@ -135,8 +152,11 @@ msgstr "Gstplayer"
 msgid "HD videos"
 msgstr "HD video"
 
-msgid "Holland"
-msgstr "Holande"
+msgid "Hebrew"
+msgstr ""
+
+msgid "Hindi"
+msgstr ""
 
 msgid "Hong Kong"
 msgstr "Honkonga"
@@ -166,16 +186,31 @@ msgstr "Īrija"
 msgid "Israel"
 msgstr "Izrēla"
 
+#, fuzzy
+msgid "Italian"
+msgstr "Itālija"
+
 msgid "Italy"
 msgstr "Itālija"
 
 msgid "Japan"
 msgstr "Japāna"
 
+#, fuzzy
+msgid "Japanese"
+msgstr "Japāna"
+
 msgid "Keyboard"
 msgstr "Tastatūra"
 
+msgid "Korean"
+msgstr ""
+
 msgid "Latvia"
+msgstr "Latvija"
+
+#, fuzzy
+msgid "Latvian"
 msgstr "Latvija"
 
 msgid "Liked videos"
@@ -266,6 +301,12 @@ msgstr "Lūdzu izvēlieties lejupielādes mapi"
 
 msgid "Poland"
 msgstr "Polija"
+
+msgid "Polish"
+msgstr ""
+
+msgid "Portuguese"
+msgstr ""
 
 #, python-format
 msgid "Previous %s entries"
@@ -377,6 +418,9 @@ msgstr "Dienvidkoreja"
 msgid "Spain"
 msgstr "Spānija"
 
+msgid "Spanish"
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Norādiet mapi kurā saglabāt lejupielādētos video failus."
 
@@ -398,11 +442,22 @@ msgstr "Abonēts!"
 msgid "Sweden"
 msgstr "Zviedrija"
 
+#, fuzzy
+msgid "Swedish"
+msgstr "Zviedrija"
+
 msgid "Taiwan"
 msgstr "Taivāna"
 
+#, fuzzy
+msgid "Thai"
+msgstr "Taizeme"
+
 msgid "Thailand"
 msgstr "Taizeme"
+
+msgid "The Netherlands"
+msgstr ""
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -449,6 +504,13 @@ msgstr "Mēģinās izslēgt visu ierobežotu saturu no meklēšanas rezultātiem
 
 msgid "Turkey"
 msgstr "Turku"
+
+#, fuzzy
+msgid "Turkish"
+msgstr "Turku"
+
+msgid "United Kingdom"
+msgstr ""
 
 msgid "United States"
 msgstr "ASV"

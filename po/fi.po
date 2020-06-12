@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 13:38+0300\n"
+"POT-Creation-Date: 2020-06-12 21:59+0300\n"
 "PO-Revision-Date: 2016-08-24 10:46+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: \n"
@@ -51,6 +51,9 @@ msgstr "Kanada"
 msgid "Cancel"
 msgstr "Peruuta"
 
+msgid "Chinese"
+msgstr ""
+
 msgid "Choose what you want to do"
 msgstr "Valitse mitä haluat tehdä"
 
@@ -59,6 +62,9 @@ msgstr "Sulje YouTube"
 
 msgid "Created date"
 msgstr "Luontipäivä"
+
+msgid "Czech"
+msgstr ""
 
 msgid "Czech Republic"
 msgstr "Tsekin tasavalta"
@@ -90,6 +96,9 @@ msgstr "Ladataan"
 msgid "Duration: "
 msgstr "Kesto:"
 
+msgid "Dutch"
+msgstr ""
+
 msgid "Embedded in webpages"
 msgstr "Internetsivujen videot"
 
@@ -113,6 +122,13 @@ msgstr ""
 msgid "France"
 msgstr "Ranska"
 
+msgid "French"
+msgstr ""
+
+#, fuzzy
+msgid "German"
+msgstr "Saksa"
+
 msgid "Germany"
 msgstr "Saksa"
 
@@ -124,10 +140,10 @@ msgstr ""
 "Mene %s\n"
 "Ja syötä koodi %s"
 
-msgid "Great Britain"
-msgstr "Iso-Britannia"
-
 msgid "Greece"
+msgstr ""
+
+msgid "Greek"
 msgstr ""
 
 msgid "Gstplayer"
@@ -136,8 +152,11 @@ msgstr ""
 msgid "HD videos"
 msgstr "HD videot"
 
-msgid "Holland"
-msgstr "Hollanti"
+msgid "Hebrew"
+msgstr ""
+
+msgid "Hindi"
+msgstr ""
 
 msgid "Hong Kong"
 msgstr "Hong Kong"
@@ -167,16 +186,31 @@ msgstr "Irlanti"
 msgid "Israel"
 msgstr "Israel"
 
+#, fuzzy
+msgid "Italian"
+msgstr "Italia"
+
 msgid "Italy"
 msgstr "Italia"
 
 msgid "Japan"
 msgstr "Japani"
 
+#, fuzzy
+msgid "Japanese"
+msgstr "Japani"
+
 msgid "Keyboard"
 msgstr "Näppäimistö"
 
+msgid "Korean"
+msgstr ""
+
 msgid "Latvia"
+msgstr "Latvia"
+
+#, fuzzy
+msgid "Latvian"
 msgstr "Latvia"
 
 msgid "Liked videos"
@@ -267,6 +301,12 @@ msgstr "Valitse latauskansio"
 
 msgid "Poland"
 msgstr "Puola"
+
+msgid "Polish"
+msgstr ""
+
+msgid "Portuguese"
+msgstr ""
 
 #, python-format
 msgid "Previous %s entries"
@@ -378,6 +418,9 @@ msgstr "Etelä-Korea"
 msgid "Spain"
 msgstr "Espanja"
 
+msgid "Spanish"
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Määritä kansio jonne videot tallennetaan."
 
@@ -399,11 +442,22 @@ msgstr "Seurattu!"
 msgid "Sweden"
 msgstr "Ruotsi"
 
+#, fuzzy
+msgid "Swedish"
+msgstr "Ruotsi"
+
 msgid "Taiwan"
 msgstr "Taiwan"
 
+#, fuzzy
+msgid "Thai"
+msgstr "Thaimaa"
+
 msgid "Thailand"
 msgstr "Thaimaa"
+
+msgid "The Netherlands"
+msgstr ""
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -446,6 +500,12 @@ msgid "Try to exclude all restricted content from the search result."
 msgstr "Hylkää rajoitettu sisältö hakutuloksista."
 
 msgid "Turkey"
+msgstr ""
+
+msgid "Turkish"
+msgstr ""
+
+msgid "United Kingdom"
 msgstr ""
 
 msgid "United States"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin magyar fordítás\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 13:38+0300\n"
+"POT-Creation-Date: 2020-06-12 21:59+0300\n"
 "PO-Revision-Date: 2019-02-19 12:57+0100\n"
 "Last-Translator: mcfly82\n"
 "Language-Team: cpteam\n"
@@ -47,6 +47,9 @@ msgstr "Kanada"
 msgid "Cancel"
 msgstr "Mégsem"
 
+msgid "Chinese"
+msgstr ""
+
 msgid "Choose what you want to do"
 msgstr "Válassza ki, mit szeretne"
 
@@ -55,6 +58,9 @@ msgstr "YouTube bezárása"
 
 msgid "Created date"
 msgstr "Létrehozás dátuma"
+
+msgid "Czech"
+msgstr ""
 
 msgid "Czech Republic"
 msgstr "Csehország"
@@ -86,6 +92,9 @@ msgstr "Letöltés"
 msgid "Duration: "
 msgstr "Időtartam: "
 
+msgid "Dutch"
+msgstr ""
+
 msgid "Embedded in webpages"
 msgstr "Beágyazva a weboldalakba"
 
@@ -111,6 +120,13 @@ msgstr ""
 msgid "France"
 msgstr "Franciaország"
 
+msgid "French"
+msgstr ""
+
+#, fuzzy
+msgid "German"
+msgstr "Németország"
+
 msgid "Germany"
 msgstr "Németország"
 
@@ -122,10 +138,11 @@ msgstr ""
 "Lépjen ide %s\n"
 "És írja be a kódot %s"
 
-msgid "Great Britain"
-msgstr "Nagy-Britannia"
-
 msgid "Greece"
+msgstr "Görögország"
+
+#, fuzzy
+msgid "Greek"
 msgstr "Görögország"
 
 msgid "Gstplayer"
@@ -134,8 +151,11 @@ msgstr ""
 msgid "HD videos"
 msgstr "HD videók"
 
-msgid "Holland"
-msgstr "Hollandia"
+msgid "Hebrew"
+msgstr ""
+
+msgid "Hindi"
+msgstr ""
 
 msgid "Hong Kong"
 msgstr "Hong Kong"
@@ -165,16 +185,31 @@ msgstr "Írország"
 msgid "Israel"
 msgstr "Izrael"
 
+#, fuzzy
+msgid "Italian"
+msgstr "Olaszország"
+
 msgid "Italy"
 msgstr "Olaszország"
 
 msgid "Japan"
 msgstr "Japán"
 
+#, fuzzy
+msgid "Japanese"
+msgstr "Japán"
+
 msgid "Keyboard"
 msgstr "Billentyűzet"
 
+msgid "Korean"
+msgstr ""
+
 msgid "Latvia"
+msgstr "Lettország"
+
+#, fuzzy
+msgid "Latvian"
 msgstr "Lettország"
 
 msgid "Liked videos"
@@ -265,6 +300,12 @@ msgstr "Válassza ki a letöltési könyvtárat"
 
 msgid "Poland"
 msgstr "Lengyelország"
+
+msgid "Polish"
+msgstr ""
+
+msgid "Portuguese"
+msgstr ""
 
 #, python-format
 msgid "Previous %s entries"
@@ -376,6 +417,9 @@ msgstr "Dél_korea"
 msgid "Spain"
 msgstr "Spanyolország"
 
+msgid "Spanish"
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Adja meg a könyvtárat, ahova a letöltött videofájlokat elmenthetjük."
 
@@ -397,11 +441,22 @@ msgstr "Feliratkozva!"
 msgid "Sweden"
 msgstr "Svédország"
 
+#, fuzzy
+msgid "Swedish"
+msgstr "Svédország"
+
 msgid "Taiwan"
 msgstr "Tajvan"
 
+#, fuzzy
+msgid "Thai"
+msgstr "Thaiföld"
+
 msgid "Thailand"
 msgstr "Thaiföld"
+
+msgid "The Netherlands"
+msgstr ""
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -448,6 +503,13 @@ msgstr "Megpróbál kizárni minden korlátozott tartalmat a keresési eredmény
 
 msgid "Turkey"
 msgstr "Törökország"
+
+#, fuzzy
+msgid "Turkish"
+msgstr "Törökország"
+
+msgid "United Kingdom"
+msgstr ""
 
 msgid "United States"
 msgstr "Egybesült Államok"

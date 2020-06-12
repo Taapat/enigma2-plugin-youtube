@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 13:38+0300\n"
+"POT-Creation-Date: 2020-06-12 21:59+0300\n"
 "PO-Revision-Date: 2019-09-16 14:28+0200\n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: LL@li.org\n"
@@ -46,6 +46,9 @@ msgstr "Canada"
 msgid "Cancel"
 msgstr "Annuleer"
 
+msgid "Chinese"
+msgstr ""
+
 msgid "Choose what you want to do"
 msgstr "Kies wat u wilt doen"
 
@@ -54,6 +57,9 @@ msgstr "Sluit YouTube af"
 
 msgid "Created date"
 msgstr "Gemaakt op"
+
+msgid "Czech"
+msgstr ""
 
 msgid "Czech Republic"
 msgstr "Czechische Republiek"
@@ -85,6 +91,9 @@ msgstr "Bezig met downloaden"
 msgid "Duration: "
 msgstr "Duur:"
 
+msgid "Dutch"
+msgstr ""
+
 msgid "Embedded in webpages"
 msgstr "Opgenomen in webpagina's"
 
@@ -108,6 +117,13 @@ msgstr "Indien geactiveerd, dan zal FFmpeg worden gebruikt om gedownloade DASH v
 msgid "France"
 msgstr "Frankrijk"
 
+msgid "French"
+msgstr ""
+
+#, fuzzy
+msgid "German"
+msgstr "Duitsland"
+
 msgid "Germany"
 msgstr "Duitsland"
 
@@ -119,10 +135,11 @@ msgstr ""
 "Ga naar %s\n"
 "En voer de code in %s"
 
-msgid "Great Britain"
-msgstr "Groot-Brittannië"
-
 msgid "Greece"
+msgstr "Griekenland"
+
+#, fuzzy
+msgid "Greek"
 msgstr "Griekenland"
 
 msgid "Gstplayer"
@@ -131,8 +148,11 @@ msgstr ""
 msgid "HD videos"
 msgstr "HD video's"
 
-msgid "Holland"
-msgstr "Nederland"
+msgid "Hebrew"
+msgstr ""
+
+msgid "Hindi"
+msgstr ""
 
 msgid "Hong Kong"
 msgstr "Hong Kong"
@@ -160,16 +180,31 @@ msgstr "Ierland"
 msgid "Israel"
 msgstr "Israël"
 
+#, fuzzy
+msgid "Italian"
+msgstr "Italië"
+
 msgid "Italy"
 msgstr "Italië"
 
 msgid "Japan"
 msgstr "Japan"
 
+#, fuzzy
+msgid "Japanese"
+msgstr "Japan"
+
 msgid "Keyboard"
 msgstr "Toetsenbord"
 
+msgid "Korean"
+msgstr ""
+
 msgid "Latvia"
+msgstr "Letland"
+
+#, fuzzy
+msgid "Latvian"
 msgstr "Letland"
 
 msgid "Liked videos"
@@ -258,6 +293,12 @@ msgstr "Kies de downloadmap"
 
 msgid "Poland"
 msgstr "Polen"
+
+msgid "Polish"
+msgstr ""
+
+msgid "Portuguese"
+msgstr ""
 
 #, python-format
 msgid "Previous %s entries"
@@ -369,6 +410,9 @@ msgstr "Zuid-Korea"
 msgid "Spain"
 msgstr "Spanje"
 
+msgid "Spanish"
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Met deze optie geeft u aan waar de gedownloade video's opgeslagen moeten worden."
 
@@ -390,11 +434,22 @@ msgstr "Ingeschreven!"
 msgid "Sweden"
 msgstr "Zweden"
 
+#, fuzzy
+msgid "Swedish"
+msgstr "Zweden"
+
 msgid "Taiwan"
 msgstr "Taiwan"
 
+#, fuzzy
+msgid "Thai"
+msgstr "Thailand"
+
 msgid "Thailand"
 msgstr "Thailand"
+
+msgid "The Netherlands"
+msgstr ""
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -439,6 +494,13 @@ msgstr "Met deze optie zal geprobeerd worden om vertrouwelijke informatie te ver
 
 msgid "Turkey"
 msgstr "Turkije"
+
+#, fuzzy
+msgid "Turkish"
+msgstr "Turkije"
+
+msgid "United Kingdom"
+msgstr ""
 
 msgid "United States"
 msgstr "Verenigde Staten"

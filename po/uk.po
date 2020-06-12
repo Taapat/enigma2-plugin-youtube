@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-06 13:38+0300\n"
+"POT-Creation-Date: 2020-06-12 21:59+0300\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: kvinto <kvinto@rambler.ru>\n"
 "Language-Team: <kvinto  sat-ukraine.info>\n"
@@ -47,6 +47,9 @@ msgstr "Канада"
 msgid "Cancel"
 msgstr "Скасувати"
 
+msgid "Chinese"
+msgstr ""
+
 msgid "Choose what you want to do"
 msgstr "Виберіть, що будете робити"
 
@@ -55,6 +58,9 @@ msgstr "Закрити YouTube"
 
 msgid "Created date"
 msgstr "Дата створення"
+
+msgid "Czech"
+msgstr ""
 
 msgid "Czech Republic"
 msgstr "Чехія"
@@ -86,6 +92,9 @@ msgstr "Заванаження"
 msgid "Duration: "
 msgstr "Тривалість: "
 
+msgid "Dutch"
+msgstr ""
+
 msgid "Embedded in webpages"
 msgstr "Відео на веб-сайтах"
 
@@ -111,6 +120,13 @@ msgstr ""
 msgid "France"
 msgstr "Франція"
 
+msgid "French"
+msgstr ""
+
+#, fuzzy
+msgid "German"
+msgstr "Німеччина"
+
 msgid "Germany"
 msgstr "Німеччина"
 
@@ -122,10 +138,11 @@ msgstr ""
 "Ідіть на %s\n"
 "Та введіть код %s"
 
-msgid "Great Britain"
-msgstr "Англія"
-
 msgid "Greece"
+msgstr "Греція"
+
+#, fuzzy
+msgid "Greek"
 msgstr "Греція"
 
 msgid "Gstplayer"
@@ -134,8 +151,11 @@ msgstr ""
 msgid "HD videos"
 msgstr "HD відео"
 
-msgid "Holland"
-msgstr "Голландія"
+msgid "Hebrew"
+msgstr ""
+
+msgid "Hindi"
+msgstr ""
 
 msgid "Hong Kong"
 msgstr "Гонконг"
@@ -165,16 +185,31 @@ msgstr "Ірландія"
 msgid "Israel"
 msgstr "Ізраїль"
 
+#, fuzzy
+msgid "Italian"
+msgstr "Італія"
+
 msgid "Italy"
 msgstr "Італія"
 
 msgid "Japan"
 msgstr "Японія"
 
+#, fuzzy
+msgid "Japanese"
+msgstr "Японія"
+
 msgid "Keyboard"
 msgstr "Клавіатура"
 
+msgid "Korean"
+msgstr ""
+
 msgid "Latvia"
+msgstr "Латвія"
+
+#, fuzzy
+msgid "Latvian"
 msgstr "Латвія"
 
 msgid "Liked videos"
@@ -265,6 +300,12 @@ msgstr "Пожалуйста, выберите каталог для загру�
 
 msgid "Poland"
 msgstr "Польща"
+
+msgid "Polish"
+msgstr ""
+
+msgid "Portuguese"
+msgstr ""
 
 #, python-format
 msgid "Previous %s entries"
@@ -376,6 +417,9 @@ msgstr "Південна Корея"
 msgid "Spain"
 msgstr "Іспанія"
 
+msgid "Spanish"
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Вкажіть каталог, для збереження відеофайлів."
 
@@ -397,11 +441,22 @@ msgstr "Підписка оформлена!"
 msgid "Sweden"
 msgstr "Швеція"
 
+#, fuzzy
+msgid "Swedish"
+msgstr "Швеція"
+
 msgid "Taiwan"
 msgstr "Тайвань"
 
+#, fuzzy
+msgid "Thai"
+msgstr "Таїланд"
+
 msgid "Thailand"
 msgstr "Таїланд"
+
+msgid "The Netherlands"
+msgstr ""
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -449,6 +504,13 @@ msgstr "Спробувати виключити весь обмежений вм
 
 msgid "Turkey"
 msgstr "Турція"
+
+#, fuzzy
+msgid "Turkish"
+msgstr "Турція"
+
+msgid "United Kingdom"
+msgstr ""
 
 msgid "United States"
 msgstr "США"
