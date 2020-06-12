@@ -49,7 +49,7 @@ msgid "Cancel"
 msgstr "Atcelt"
 
 msgid "Chinese"
-msgstr ""
+msgstr "Ķīniešu"
 
 msgid "Choose what you want to do"
 msgstr "Izvēlieties ko vēlaties darīt"
@@ -61,7 +61,7 @@ msgid "Created date"
 msgstr "Izveidošanas datuma"
 
 msgid "Czech"
-msgstr ""
+msgstr "Čehu"
 
 msgid "Czech Republic"
 msgstr "Čehija"
@@ -94,7 +94,7 @@ msgid "Duration: "
 msgstr "Ilgums: "
 
 msgid "Dutch"
-msgstr ""
+msgstr "Holandiešu"
 
 msgid "Embedded in webpages"
 msgstr "Video no web lapām"
@@ -122,11 +122,10 @@ msgid "France"
 msgstr "Francija"
 
 msgid "French"
-msgstr ""
+msgstr "Franču"
 
-#, fuzzy
 msgid "German"
-msgstr "Vācija"
+msgstr "Vācu"
 
 msgid "Germany"
 msgstr "Vācija"
@@ -142,9 +141,8 @@ msgstr ""
 msgid "Greece"
 msgstr "Grieķija"
 
-#, fuzzy
 msgid "Greek"
-msgstr "Grieķija"
+msgstr "Grieķu"
 
 msgid "Gstplayer"
 msgstr "Gstplayer"
@@ -153,10 +151,10 @@ msgid "HD videos"
 msgstr "HD video"
 
 msgid "Hebrew"
-msgstr ""
+msgstr "Ungāru"
 
 msgid "Hindi"
-msgstr ""
+msgstr "Hindu"
 
 msgid "Hong Kong"
 msgstr "Honkonga"
@@ -186,9 +184,8 @@ msgstr "Īrija"
 msgid "Israel"
 msgstr "Izrēla"
 
-#, fuzzy
 msgid "Italian"
-msgstr "Itālija"
+msgstr "Itāļu"
 
 msgid "Italy"
 msgstr "Itālija"
@@ -196,22 +193,20 @@ msgstr "Itālija"
 msgid "Japan"
 msgstr "Japāna"
 
-#, fuzzy
 msgid "Japanese"
-msgstr "Japāna"
+msgstr "Japāņu"
 
 msgid "Keyboard"
 msgstr "Tastatūra"
 
 msgid "Korean"
-msgstr ""
+msgstr "Korejiešu"
 
 msgid "Latvia"
 msgstr "Latvija"
 
-#, fuzzy
 msgid "Latvian"
-msgstr "Latvija"
+msgstr "Latviešu"
 
 msgid "Liked videos"
 msgstr "Patīk"
@@ -303,10 +298,10 @@ msgid "Poland"
 msgstr "Polija"
 
 msgid "Polish"
-msgstr ""
+msgstr "Poļu"
 
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugāļu"
 
 #, python-format
 msgid "Previous %s entries"
@@ -419,7 +414,7 @@ msgid "Spain"
 msgstr "Spānija"
 
 msgid "Spanish"
-msgstr ""
+msgstr "Spāņu"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Norādiet mapi kurā saglabāt lejupielādētos video failus."
@@ -442,22 +437,20 @@ msgstr "Abonēts!"
 msgid "Sweden"
 msgstr "Zviedrija"
 
-#, fuzzy
 msgid "Swedish"
-msgstr "Zviedrija"
+msgstr "Zviedru"
 
 msgid "Taiwan"
 msgstr "Taivāna"
 
-#, fuzzy
 msgid "Thai"
-msgstr "Taizeme"
+msgstr "Taiešu"
 
 msgid "Thailand"
 msgstr "Taizeme"
 
 msgid "The Netherlands"
-msgstr ""
+msgstr "Holande"
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -503,14 +496,13 @@ msgid "Try to exclude all restricted content from the search result."
 msgstr "Mēģinās izslēgt visu ierobežotu saturu no meklēšanas rezultātiem."
 
 msgid "Turkey"
-msgstr "Turku"
+msgstr "Turcija"
 
-#, fuzzy
 msgid "Turkish"
 msgstr "Turku"
 
 msgid "United Kingdom"
-msgstr ""
+msgstr "Anglija"
 
 msgid "United States"
 msgstr "ASV"
