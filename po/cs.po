@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 21:59+0300\n"
+"POT-Creation-Date: 2020-06-13 11:14+0300\n"
 "PO-Revision-Date: 2020-06-13 08:28+0200\n"
 "Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: Ims\n"
@@ -13,137 +13,103 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: YouTubeUi.py:1091
 #, python-format
 msgid "  (%d-%d of %d)"
 msgstr "  (%d-%d z %d)"
 
-#: YouTubeUi.py:1013
 msgid " dislikes"
 msgstr " nelíbí se"
 
-#: YouTubeUi.py:1012
 msgid " likes"
 msgstr " líbí se"
 
-#: YouTubeUi.py:1008
 msgid " views"
 msgstr " zhlédnutí"
 
-#: YouTubeDownload.py:174 YouTubeUi.py:1130
 msgid "Active video downloads"
 msgstr "Aktivní stahování videa"
 
-#: YouTubeUi.py:42 YouTubeUi.py:72
 msgid "All"
 msgstr "Vše"
 
-#: YouTubeUi.py:106 YouTubeUi.py:110
 msgid "Ask user"
 msgstr "Zeptat se uživatele"
 
-#: YouTubeUi.py:43
 msgid "Australia"
 msgstr "Austrálie"
 
-#: YouTubeUi.py:44
 msgid "Brazil"
 msgstr "Brazílie"
 
-#: YouTubeUi.py:45
 msgid "Canada"
 msgstr "Kanada"
 
-#: YouTubeDownload.py:23 YouTubeUi.py:1391
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: YouTubeUi.py:73
 msgid "Chinese"
 msgstr ""
 
-#: YouTubeUi.py:416
 msgid "Choose what you want to do"
 msgstr "Zvolte, co chcete udělat"
 
-#: YouTubeUi.py:1131
 msgid "Close YouTube"
 msgstr "Zavřít YouTube"
 
-#: YouTubeUi.py:95
 msgid "Created date"
 msgstr "Data vytvoření"
 
-#: YouTubeUi.py:74
 msgid "Czech"
 msgstr "Česky"
 
-#: YouTubeUi.py:46
 msgid "Czech Republic"
 msgstr "Česká republika"
 
-#: YouTubeUi.py:115
 msgid "Default"
 msgstr "Výchozí"
 
-#: YouTubeSearch.py:233
 msgid "Delete this entry"
 msgstr "Smazat tuto položku"
 
-#: YouTubeUi.py:1216
 msgid "Disliked!"
 msgstr "Nelíbí se!"
 
-#: YouTubeUi.py:1438
 msgid "Download directory:"
 msgstr "Adresář pro ukládání:"
 
-#: YouTubeUi.py:473
 msgid "Download feed entries. Please wait..."
 msgstr "Stáhují se položky zdrojů. Prosím, čekejte..."
 
-#: YouTubeUi.py:469
 msgid "Download search results. Please wait..."
 msgstr "Stahují se výsledky vyhledávání. Prosím, čekejte..."
 
-#: YouTubeUi.py:1128
 msgid "Download video"
 msgstr "Stáhnout video"
 
-#: YouTubeDownload.py:64
 msgid "Downloading"
 msgstr "Stahování"
 
-#: YouTubeUi.py:999
 msgid "Duration: "
 msgstr "Délka: "
 
-#: YouTubeUi.py:75
 msgid "Dutch"
 msgstr ""
 
-#: YouTubeUi.py:447
 msgid "Embedded in webpages"
 msgstr "Vloženo na webových stránkách"
 
-#: YouTubeUi.py:1423
 msgid "Exclude restricted content:"
 msgstr "Kromě vyloučeného obsahu:"
 
-#: YouTubeSearch.py:165 YouTubeDownload.py:160 YouTubeUi.py:559
-#: YouTubeUi.py:1338
 msgid "Exit"
 msgstr "Zavřít"
 
-#: YouTubeUi.py:115
 msgid "Exteplayer"
 msgstr ""
 
-#: YouTubeUi.py:471
 msgid "Extract video url. Please wait..."
 msgstr "Extrahuje se URL videa. Prosím, čekejte..."
 
-#: YouTubeUi.py:1443
 msgid ""
 "FFmpeg will be used to merge downloaded DASH video and audio files.\n"
 "FFmpeg will be installed if necessary."
@@ -151,23 +117,18 @@ msgstr ""
 "FFmpeg bude použit ke sloučení stažených DASH video a zvukových souborů.\n"
 "V případě potřeby bude nainstalován soubor FFmpeg."
 
-#: YouTubeUi.py:47
 msgid "France"
 msgstr "Francie"
 
-#: YouTubeUi.py:76
 msgid "French"
 msgstr ""
 
-#: YouTubeUi.py:77
 msgid "German"
 msgstr ""
 
-#: YouTubeUi.py:48
 msgid "Germany"
 msgstr "Německo"
 
-#: YouTubeUi.py:1523
 #, python-format
 msgid ""
 "Go to %s\n"
@@ -176,35 +137,27 @@ msgstr ""
 "Běžte do %s\n"
 "a zadejte kód %s"
 
-#: YouTubeUi.py:49
 msgid "Greece"
 msgstr "Řecko"
 
-#: YouTubeUi.py:78
 msgid "Greek"
 msgstr ""
 
-#: YouTubeUi.py:115
 msgid "Gstplayer"
 msgstr ""
 
-#: YouTubeUi.py:446
 msgid "HD videos"
 msgstr "HD videa"
 
-#: YouTubeUi.py:80
 msgid "Hebrew"
 msgstr ""
 
-#: YouTubeUi.py:79
 msgid "Hindi"
 msgstr ""
 
-#: YouTubeUi.py:50
 msgid "Hong Kong"
 msgstr ""
 
-#: YouTubeUi.py:1413
 msgid ""
 "How many search results will be returned.\n"
 "If greater value then longer time will be needed for thumbnail download."
@@ -212,71 +165,54 @@ msgstr ""
 "Kolik se vrácí výsledků vyhledávání.\n"
 "Při větší hodnotě bude zapotřebí pro stahování náhledů delší čas."
 
-#: YouTubeUi.py:1147
 msgid "I dislike this"
 msgstr "Nelíbí se mi to"
 
-#: YouTubeUi.py:1146
 msgid "I like this"
 msgstr "Líbí se mi to"
 
-#: YouTubeUi.py:51
 msgid "India"
 msgstr "Indie"
 
-#: YouTubeUi.py:1337
 msgid "Info"
 msgstr "Informace"
 
-#: YouTubeUi.py:52
 msgid "Ireland"
 msgstr "Irsko"
 
-#: YouTubeUi.py:53
 msgid "Israel"
 msgstr "Izreal"
 
-#: YouTubeUi.py:81
 msgid "Italian"
 msgstr ""
 
-#: YouTubeUi.py:54
 msgid "Italy"
 msgstr "Itálie"
 
-#: YouTubeUi.py:55
 msgid "Japan"
 msgstr "Japonsko"
 
-#: YouTubeUi.py:82
 msgid "Japanese"
 msgstr ""
 
-#: YouTubeSearch.py:167
 msgid "Keyboard"
 msgstr "Klávesnice"
 
-#: YouTubeUi.py:83
 msgid "Korean"
 msgstr ""
 
-#: YouTubeUi.py:56
 msgid "Latvia"
 msgstr "Lotyšsko"
 
-#: YouTubeUi.py:84
 msgid "Latvian"
 msgstr ""
 
-#: YouTubeUi.py:459
 msgid "Liked videos"
 msgstr "Oblíbená videa"
 
-#: YouTubeUi.py:1215
 msgid "Liked!"
 msgstr "Líbí se!"
 
-#: YouTubeUi.py:1437
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"
 "This needs to approve in the Google home page!"
@@ -284,233 +220,174 @@ msgstr ""
 "Při spuštění pluginu se přihlaste k účtu YouTube.\n"
 "To je potřeba schválit na domovské stránce Google!"
 
-#: YouTubeUi.py:1435
 msgid "Login on startup:"
 msgstr "Přihlásit se při startu:"
 
-#: YouTubeUi.py:1426
 msgid "Maximum video resolution:"
 msgstr "Maximální rozlišení videa:"
 
-#: YouTubeUi.py:1447
 msgid "Media player:"
 msgstr ""
 
-#: YouTubeUi.py:1441
 msgid "Merge downloaded files:"
 msgstr "Sloučit stažená videa:"
 
-#: YouTubeUi.py:57
 msgid "Mexico"
 msgstr "Mexiko"
 
-#: YouTubeUi.py:101
 msgid "Moderate"
 msgstr "Mírně"
 
-#: YouTubeUi.py:444
 msgid "Most viewed"
 msgstr "Nejvíce zhlédnutí"
 
-#: YouTubeUi.py:449
 msgid "Movies"
 msgstr "Filmy"
 
-#: YouTubeUi.py:458
 msgid "My Subscriptions"
 msgstr "Moje odebírané"
 
-#: YouTubeUi.py:423 YouTubeUi.py:456
 msgid "My feeds"
 msgstr "Moje zdroje"
 
-#: YouTubeUi.py:58
 msgid "New Zealand"
 msgstr "Nový Zéland"
 
-#: YouTubeUi.py:1112
 #, python-format
 msgid "Next %s entries"
 msgstr "Další %s položky"
 
-#: YouTubeUi.py:101 YouTubeUi.py:176
 msgid "No"
 msgstr "Ne"
 
-#: YouTubeUi.py:175
 msgid "No, but play video again"
 msgstr "Ne, ale přehrát video znovu"
 
-#: YouTubeSearch.py:166 YouTubeUi.py:1392
 msgid "Ok"
 msgstr "OK"
 
-#: YouTubeUi.py:560
 msgid "Open"
 msgstr "Otevřít"
 
-#: YouTubeUi.py:1422
 msgid "Order in which search results will be displayed."
 msgstr "Pořadí, ve kterém se zobrazí výsledky vyhledávání."
 
-#: YouTubeUi.py:107
 msgid "Play next"
 msgstr "Přehrát další"
 
-#: YouTubeUi.py:681
 msgid "Play next video"
 msgstr "Přehrát následující video"
 
-#: YouTubeUi.py:108
 msgid "Play previous"
 msgstr "Přehrát předchozí"
 
-#: YouTubeUi.py:682
 msgid "Play previous video"
 msgstr "Přehrát předchozí video"
 
-#: YouTubeUi.py:683
 msgid "Play video again"
 msgstr "Přehrát video znovu"
 
-#: YouTubeUi.py:461
 msgid "Playlists"
 msgstr "Playlisty"
 
-#: YouTubeDownload.py:39
 msgid "Please select the download directory"
 msgstr "Vyberte adresář pro stahování"
 
-#: YouTubeUi.py:59
 msgid "Poland"
 msgstr "Polsko"
 
-#: YouTubeUi.py:85
 msgid "Polish"
 msgstr ""
 
-#: YouTubeUi.py:86
 msgid "Portuguese"
 msgstr ""
 
-#: YouTubeUi.py:1115
 #, python-format
 msgid "Previous %s entries"
 msgstr "Předchozí %s položky"
 
-#: YouTubeUi.py:419 YouTubeUi.py:441
 msgid "Public feeds"
 msgstr "Veřejné zdroje"
 
-#: YouTubeUi.py:1001
 msgid "Published at: "
 msgstr "Zveřejněno na: "
 
-#: YouTubeUi.py:680
 msgid "Quit"
 msgstr "Odejít"
 
-#: YouTubeUi.py:1119
 msgid "Rate video"
 msgstr "Ohodnotit video"
 
-#: YouTubeUi.py:96
 msgid "Rating"
 msgstr "Hodnocení"
 
-#: YouTubeUi.py:1217
 msgid "Rating removed!"
 msgstr "Hodnocení odstraněno!"
 
-#: YouTubeUi.py:445 YouTubeUi.py:878 YouTubeUi.py:1077
 msgid "Recent"
 msgstr "Nedávno přidané"
 
-#: YouTubeUi.py:94
 msgid "Relevance"
 msgstr "Relevance"
 
-#: YouTubeUi.py:1148
 msgid "Remove my rating"
 msgstr "Odstranit moje hodnocení"
 
-#: YouTubeUi.py:107
 msgid "Repeat"
 msgstr "Opakovat"
 
-#: YouTubeUi.py:1416
 msgid "Return search results for the specified country."
 msgstr "Vrací výsledky vyhledávání pro zadanou zemi."
 
-#: YouTubeUi.py:1419
 msgid "Return search results that are most relevant to the specified language."
-msgstr ""
-"Vrací výsledky vyhledávání, které jsou pro daný jazyk nejvíce odpovídající."
+msgstr "Vrací výsledky vyhledávání, které jsou pro daný jazyk nejvíce odpovídající."
 
-#: YouTubeUi.py:106 YouTubeUi.py:110
 msgid "Return to list"
 msgstr "Návrat do seznamu"
 
-#: YouTubeUi.py:60 YouTubeUi.py:87
 msgid "Russia"
 msgstr "Rusko"
 
-#: YouTubeUi.py:1408
 msgid "Save search result:"
 msgstr "Ukládat výsledky vyhledávání:"
 
-#: YouTubeUi.py:1410
 msgid "Save your search result in the history, when search completed."
-msgstr ""
-"Po skončení vyhledávání se budou výsledky vyhledávání ukládat do historie."
+msgstr "Po skončení vyhledávání se budou výsledky vyhledávání ukládat do historie."
 
-#: YouTubeSearch.py:29 YouTubeSearch.py:164 YouTubeSearch.py:198
-#: YouTubeUi.py:418 YouTubeUi.py:429 YouTubeUi.py:1127
 msgid "Search"
 msgstr "Hledat"
 
-#: YouTubeUi.py:432
 msgid "Search channels"
 msgstr "Hledat kanály"
 
-#: YouTubeUi.py:1158
 msgid "Search for similar"
 msgstr "Hledat podobné"
 
-#: YouTubeUi.py:1417
 msgid "Search language:"
 msgstr "Hledat jazyk:"
 
-#: YouTubeUi.py:434
 msgid "Search live broadcasts"
 msgstr "Hledat živá vysílání"
 
-#: YouTubeUi.py:433
 msgid "Search playlists"
 msgstr "Hledat playlisty"
 
-#: YouTubeUi.py:1414
 msgid "Search region:"
 msgstr "Prohledávaný region:"
 
-#: YouTubeUi.py:1411
 msgid "Search results:"
 msgstr "Výsledky vyhledávání:"
 
-#: YouTubeUi.py:431
 msgid "Search videos"
 msgstr "Hledat videa"
 
 #. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
-#: YouTubeUi.py:372 YouTubeUi.py:1446
 msgid "ServiceApp"
 msgstr ""
 
-#: YouTubeUi.py:448
 msgid "Shows"
 msgstr "Ukázky"
 
-#: YouTubeUi.py:1235
 msgid ""
 "Sorry, download directory not exist!\n"
 "Please specify in the settings existing directory."
@@ -518,7 +395,6 @@ msgstr ""
 "Adresář pro stahování neexistuje!\n"
 "Zadejte ho v nastavení programu."
 
-#: YouTubeUi.py:1242
 #, python-format
 msgid ""
 "Sorry, this file already exists:\n"
@@ -527,71 +403,54 @@ msgstr ""
 "Tento soubor jiz existuje:\n"
 "%s"
 
-#: YouTubeUi.py:1420
 msgid "Sort search results by:"
 msgstr "Třídit výsledky vyhledávání podle:"
 
-#: YouTubeUi.py:61
 msgid "South Korea"
 msgstr "Jižní Korea"
 
-#: YouTubeUi.py:62
 msgid "Spain"
 msgstr "Španělsko"
 
-#: YouTubeUi.py:88
 msgid "Spanish"
 msgstr ""
 
-#: YouTubeUi.py:1440
 msgid "Specify the directory where save downloaded video files."
 msgstr "Určete adresář do kterého se ukládají stažené video soubory."
 
-#: YouTubeUi.py:1449
 msgid "Specify the player which will be used for YouTube media playback."
 msgstr "Určete přehrávač, který bude použitý pro přehrávání médií z YouTube."
 
-#: YouTubeUi.py:170
 msgid "Stop playing this movie?"
 msgstr "Zastavit přehrávání?"
 
-#: YouTubeUi.py:1122
 msgid "Subscribe"
 msgstr "Odebírat"
 
-#: YouTubeUi.py:1120
 msgid "Subscribe this video channel"
 msgstr "Odebírat tento video kanál"
 
-#: YouTubeUi.py:1195
 msgid "Subscribed!"
 msgstr "Odběr nastaven!"
 
-#: YouTubeUi.py:63
 msgid "Sweden"
 msgstr "Svédsko"
 
-#: YouTubeUi.py:89
 msgid "Swedish"
 msgstr ""
 
-#: YouTubeUi.py:64
 msgid "Taiwan"
 msgstr "Taiwan"
 
-#: YouTubeUi.py:90
 msgid "Thai"
 msgstr ""
 
-#: YouTubeUi.py:65
 msgid "Thailand"
 msgstr "Thajsko"
 
-#: YouTubeUi.py:66
 msgid "The Netherlands"
 msgstr "Nizozemí"
 
-#: YouTubeUi.py:543
 msgid ""
 "There was an error in creating entry list!\n"
 "Maybe try other feeds..."
@@ -599,7 +458,6 @@ msgstr ""
 "Při vytváření seznamu položek došlo k chybě!\n"
 "Možná zkuste další zdroje..."
 
-#: YouTubeUi.py:498
 #, python-format
 msgid ""
 "There was an error in extract video url:\n"
@@ -608,15 +466,12 @@ msgstr ""
 "Při extrahování URL adresy videa došlo k chybě:\n"
 "%s"
 
-#: YouTubeUi.py:1196 YouTubeUi.py:1209 YouTubeUi.py:1221
 msgid "There was an error!"
 msgstr "Došlo k chybě!"
 
-#: YouTubeUi.py:97
 msgid "Title"
 msgstr "Názvu"
 
-#: YouTubeUi.py:1473
 msgid ""
 "To merge downloaded files FFmpeg will be installed.\n"
 "FFmpeg can take a lot of space!\n"
@@ -626,79 +481,58 @@ msgstr ""
 "FFmpeg muže zabrat hodně místa!\n"
 "Chcete pokračovat?"
 
-#: YouTubeUi.py:1511
 msgid ""
-"To perform authentication will need in a web browser open Google home page, "
-"and enter the code!\n"
-"Do you currently have Internet access on the other device and we can "
-"continue?"
+"To perform authentication will need in a web browser open Google home page, and enter the code!\n"
+"Do you currently have Internet access on the other device and we can continue?"
 msgstr ""
-"Chcete-li provést ověření, bude potřeba ve webovém prohlížeči otevřít "
-"domovskou stránku Google a zadat kód!\n"
-"Máte v současné době přístup k internetu na druhém zařízení a můžeme tedy "
-"pokračovat?"
+"Chcete-li provést ověření, bude potřeba ve webovém prohlížeči otevřít domovskou stránku Google a zadat kód!\n"
+"Máte v současné době přístup k internetu na druhém zařízení a můžeme tedy pokračovat?"
 
-#: YouTubeUi.py:443
 msgid "Top rated"
 msgstr "Nejvýše hodnocené"
 
-#: YouTubeUi.py:1425
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Pokusí se z výsledků vyhledávání odstranit veškerý vyloučený obsah."
 
-#: YouTubeUi.py:67
 msgid "Turkey"
 msgstr "Turecko"
 
-#: YouTubeUi.py:91
 msgid "Turkish"
 msgstr ""
 
-#: YouTubeUi.py:68
 msgid "United Kingdom"
 msgstr "Velká Británie"
 
-#: YouTubeUi.py:69
 msgid "United States"
 msgstr "USA"
 
-#: YouTubeUi.py:1125
 msgid "Unsubscribe"
 msgstr "Odhlásit odběr"
 
-#: YouTubeUi.py:1208
 msgid "Unsubscribed!"
 msgstr "Odběr odhlášen!"
 
-#: YouTubeUi.py:460
 msgid "Uploads"
 msgstr "Nahrávání"
 
-#: YouTubeDownload.py:24
 msgid "Use"
 msgstr "Použít"
 
-#: YouTubeUi.py:1254
 msgid "Video download started!"
 msgstr "Začalo stahování videa!"
 
-#: YouTubeUi.py:1159
 msgid "Videos from this video channel"
 msgstr "Videa z tohoto video kanálu"
 
-#: YouTubeUi.py:98
 msgid "View count"
 msgstr "Počtu zhlédnutí"
 
-#: plugin.py:20
 msgid "Watch YouTube videos"
 msgstr "Sledování YouTube videí"
 
-#: YouTubeSearch.py:231 YouTubeUi.py:678 YouTubeUi.py:1109 YouTubeUi.py:1184
 msgid "What do you want to do?"
 msgstr "Co chcete dělat?"
 
-#: YouTubeUi.py:1428
 msgid ""
 "What maximum resolution used when playing video, if available.\n"
 "If you have a slow Internet connection, you can use a lower resolution."
@@ -706,35 +540,27 @@ msgstr ""
 "Maximální použité rozlišení při přehrávání videa, pokud je k dispozici.\n"
 "Pokud máte pomalé připojení k internetu, můžete použít nižší rozlišení."
 
-#: YouTubeUi.py:1434
 msgid "What to do when stop playback in videoplayer."
 msgstr "Co se provede při zastavení přehrávače."
 
-#: YouTubeUi.py:1431
 msgid "What to do when the video ends."
 msgstr "Co se provede při skončení videa."
 
-#: YouTubeUi.py:1432
 msgid "When playback stop:"
 msgstr "Při zastavení přehrávání:"
 
-#: YouTubeUi.py:1429
 msgid "When video ends:"
 msgstr "Při skončení videa:"
 
-#: YouTubeUi.py:101 YouTubeUi.py:172
 msgid "Yes"
 msgstr "Ano"
 
-#: YouTubeUi.py:173
 msgid "Yes, but play next video"
 msgstr "Ano, ale přehrát následující video"
 
-#: YouTubeUi.py:174
 msgid "Yes, but play previous video"
 msgstr "Ano, ale přehrát předchozí video"
 
-#: YouTubeUi.py:1504
 msgid ""
 "You already authorized access for this plugin to your YouTube account.\n"
 "Do you want to do it again to update access data?"
@@ -742,7 +568,6 @@ msgstr ""
 "Již jste autorizovali přístup pro tento plugin do svého YouTube účtu.\n"
 "Chcete to udělat znovu a aktualizovat přístupová data?"
 
-#: YouTubeUi.py:1470
 msgid ""
 "You have disabled downloaded file merge.\n"
 "Installed FFmpeg is no longer necessary.\n"
@@ -752,20 +577,11 @@ msgstr ""
 "Nainstalovaný FFmpeg již není nutný.\n"
 "Chcete odstranit FFmpeg?"
 
-#: plugin.py:19 YouTubeUi.py:193 YouTubeUi.py:344
 msgid "YouTube"
 msgstr ""
 
-#: YouTubeSearch.py:232 YouTubeUi.py:1110 YouTubeUi.py:1457
 msgid "YouTube setup"
 msgstr "Nastavení YouTube"
 
-#: YouTubeUi.py:341
 msgid "YouTube starting. Please wait..."
 msgstr "Spouští se YouTube. Prosím, čekejte..."
-
-#~ msgid "Great Britain"
-#~ msgstr "Velká Británie"
-
-#~ msgid "Holland"
-#~ msgstr "Nizozemsko"
