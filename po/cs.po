@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-13 13:48+0300\n"
-"PO-Revision-Date: 2020-06-13 08:28+0200\n"
+"PO-Revision-Date: 2020-06-13 12:57+0200\n"
 "Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: Ims\n"
 "Language: cs\n"
@@ -253,12 +253,12 @@ msgstr "Moje zdroje"
 msgid "New Zealand"
 msgstr "Nový Zéland"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Next %s entry"
 msgid_plural "Next %s entries"
-msgstr[0] "Další %s položky"
+msgstr[0] "Další %s položka"
 msgstr[1] "Další %s položky"
-msgstr[2] "Další %s položky"
+msgstr[2] "Dalších %s položek"
 
 msgid "No"
 msgstr "Ne"
@@ -305,12 +305,12 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Previous %s entry"
 msgid_plural "Previous %s entries"
-msgstr[0] "Předchozí %s položky"
+msgstr[0] "Předchozí %s položka"
 msgstr[1] "Předchozí %s položky"
-msgstr[2] "Předchozí %s položky"
+msgstr[2] "Předchozích %s položek"
 
 msgid "Public feeds"
 msgstr "Veřejné zdroje"
