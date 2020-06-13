@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-12 21:59+0300\n"
-"PO-Revision-Date: 2020-06-12 22:24+0200\n"
+"PO-Revision-Date: 2020-06-13 08:28+0200\n"
 "Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: Ims\n"
 "Language: cs\n"
@@ -20,15 +20,15 @@ msgstr "  (%d-%d z %d)"
 
 #: YouTubeUi.py:1013
 msgid " dislikes"
-msgstr ""
+msgstr " nelíbí se"
 
 #: YouTubeUi.py:1012
 msgid " likes"
-msgstr ""
+msgstr " líbí se"
 
 #: YouTubeUi.py:1008
 msgid " views"
-msgstr " zobrazení"
+msgstr " zhlédnutí"
 
 #: YouTubeDownload.py:174 YouTubeUi.py:1130
 msgid "Active video downloads"
@@ -92,7 +92,7 @@ msgstr "Smazat tuto položku"
 
 #: YouTubeUi.py:1216
 msgid "Disliked!"
-msgstr ""
+msgstr "Nelíbí se!"
 
 #: YouTubeUi.py:1438
 msgid "Download directory:"
@@ -116,7 +116,7 @@ msgstr "Stahování"
 
 #: YouTubeUi.py:999
 msgid "Duration: "
-msgstr "Délka:"
+msgstr "Délka: "
 
 #: YouTubeUi.py:75
 msgid "Dutch"
@@ -565,7 +565,7 @@ msgstr "Odebírat tento video kanál"
 
 #: YouTubeUi.py:1195
 msgid "Subscribed!"
-msgstr "Odebírání nastaveno!"
+msgstr "Odběr nastaven!"
 
 #: YouTubeUi.py:63
 msgid "Sweden"
