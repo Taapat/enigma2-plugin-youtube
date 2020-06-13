@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 21:59+0300\n"
-"PO-Revision-Date: 2020-04-01 16:14+0300\n"
+"POT-Creation-Date: 2020-04-12 16:57+0300\n"
+"PO-Revision-Date: 2020-06-12 23:54+0300\n"
 "Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish\n"
 "Language: tr\n"
@@ -44,7 +44,7 @@ msgid "Australia"
 msgstr "Avustralya"
 
 msgid "Brazil"
-msgstr "Brezilya"
+msgstr "Brazilya"
 
 msgid "Canada"
 msgstr "Kanada"
@@ -53,7 +53,7 @@ msgid "Cancel"
 msgstr "İptal"
 
 msgid "Chinese"
-msgstr ""
+msgstr "Çince"
 
 msgid "Choose what you want to do"
 msgstr "Ne yapmak istediğinizi seçin"
@@ -65,13 +65,13 @@ msgid "Created date"
 msgstr "Oluşturma tarihi"
 
 msgid "Czech"
-msgstr ""
+msgstr "Çek"
 
 msgid "Czech Republic"
 msgstr "Çek Cumhuriyeti"
 
 msgid "Default"
-msgstr ""
+msgstr "Varsayılan"
 
 msgid "Delete this entry"
 msgstr "Bu girişi sil"
@@ -98,7 +98,7 @@ msgid "Duration: "
 msgstr "Süre: "
 
 msgid "Dutch"
-msgstr ""
+msgstr "Flemenkçe"
 
 msgid "Embedded in webpages"
 msgstr "Web sayfalarına gömülü"
@@ -110,7 +110,7 @@ msgid "Exit"
 msgstr "Çıkış"
 
 msgid "Exteplayer"
-msgstr ""
+msgstr "Exteplayer"
 
 msgid "Extract video url. Please wait..."
 msgstr "Video URL'sini ayıkla. Lütfen bekleyin ..."
@@ -126,11 +126,10 @@ msgid "France"
 msgstr "Fransa"
 
 msgid "French"
-msgstr ""
+msgstr "Fransızca"
 
-#, fuzzy
 msgid "German"
-msgstr "Almanya"
+msgstr "Almanca"
 
 msgid "Germany"
 msgstr "Almanya"
@@ -146,21 +145,20 @@ msgstr ""
 msgid "Greece"
 msgstr "Yunanistan"
 
-#, fuzzy
 msgid "Greek"
-msgstr "Yunanistan"
+msgstr "Yunan"
 
 msgid "Gstplayer"
-msgstr ""
+msgstr "Gstplayer"
 
 msgid "HD videos"
 msgstr "HD videolar"
 
 msgid "Hebrew"
-msgstr ""
+msgstr "İbranice"
 
 msgid "Hindi"
-msgstr ""
+msgstr "Hindu"
 
 msgid "Hong Kong"
 msgstr "Hong Kong"
@@ -182,7 +180,7 @@ msgid "India"
 msgstr "Hindistan"
 
 msgid "Info"
-msgstr "Bilgisi"
+msgstr "Hakkında"
 
 msgid "Ireland"
 msgstr "İrlanda"
@@ -190,9 +188,8 @@ msgstr "İrlanda"
 msgid "Israel"
 msgstr "İsrail"
 
-#, fuzzy
 msgid "Italian"
-msgstr "İtalya"
+msgstr "İtalyanca"
 
 msgid "Italy"
 msgstr "İtalya"
@@ -200,22 +197,20 @@ msgstr "İtalya"
 msgid "Japan"
 msgstr "Japonya"
 
-#, fuzzy
 msgid "Japanese"
-msgstr "Japonya"
+msgstr "Japonca"
 
 msgid "Keyboard"
 msgstr "Klavye"
 
 msgid "Korean"
-msgstr ""
+msgstr "Koreli"
 
 msgid "Latvia"
 msgstr "Letonya"
 
-#, fuzzy
 msgid "Latvian"
-msgstr "Letonya"
+msgstr "Letonyalı"
 
 msgid "Liked videos"
 msgstr "Beğenilen videolar"
@@ -237,7 +232,7 @@ msgid "Maximum video resolution:"
 msgstr "Maksimum video çözünürlüğü:"
 
 msgid "Media player:"
-msgstr ""
+msgstr "Media player:"
 
 msgid "Merge downloaded files:"
 msgstr "İndirilen dosyaları birleştir:"
@@ -307,10 +302,10 @@ msgid "Poland"
 msgstr "Polonya"
 
 msgid "Polish"
-msgstr ""
+msgstr "Lehçe"
 
 msgid "Portuguese"
-msgstr ""
+msgstr "Portekizce"
 
 #, python-format
 msgid "Previous %s entries"
@@ -365,7 +360,7 @@ msgid "Save your search result in the history, when search completed."
 msgstr "Arama tamamlandığında arama sonucunuzu geçmişe kaydedin."
 
 msgid "Search"
-msgstr "Ara"
+msgstr "Arama"
 
 msgid "Search channels"
 msgstr "Kanal ara"
@@ -393,7 +388,7 @@ msgstr "Video ara"
 
 #. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 msgid "ServiceApp"
-msgstr ""
+msgstr "ServiceApp"
 
 msgid "Shows"
 msgstr "Gösteriler"
@@ -423,13 +418,13 @@ msgid "Spain"
 msgstr "İspanya"
 
 msgid "Spanish"
-msgstr ""
+msgstr "İspanyolca"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "İndirilen video dosyalarının kaydedileceği dizini belirtin."
 
 msgid "Specify the player which will be used for YouTube media playback."
-msgstr ""
+msgstr "YouTube medya oynatımı için kullanılacak oynatıcıyı belirtin."
 
 msgid "Stop playing this movie?"
 msgstr "Film durdurulsun mu?"
@@ -446,14 +441,12 @@ msgstr "Abone olun!"
 msgid "Sweden"
 msgstr "İsveç"
 
-#, fuzzy
 msgid "Swedish"
-msgstr "İsveç"
+msgstr "İsveççe"
 
 msgid "Taiwan"
 msgstr "Tayvan"
 
-#, fuzzy
 msgid "Thai"
 msgstr "Tayland"
 
@@ -461,7 +454,7 @@ msgid "Thailand"
 msgstr "Tayland"
 
 msgid "The Netherlands"
-msgstr ""
+msgstr "Hollanda"
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -509,12 +502,11 @@ msgstr "Kısıtlanan tüm içeriği arama sonucundan çıkarmaya çalışın."
 msgid "Turkey"
 msgstr "Türkiye"
 
-#, fuzzy
 msgid "Turkish"
-msgstr "Türkiye"
+msgstr "Türkçe"
 
 msgid "United Kingdom"
-msgstr ""
+msgstr "Birleşik Krallık"
 
 msgid "United States"
 msgstr "Amerika"
