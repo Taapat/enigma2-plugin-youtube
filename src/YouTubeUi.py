@@ -25,7 +25,7 @@ from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_PLUGINS
 
-from . import _
+from . import _, ngettext
 from .YouTubeApi import GetKey
 
 
@@ -1109,11 +1109,11 @@ class YouTubeMain(Screen):
 			title = _('What do you want to do?')
 			clist = ((_('YouTube setup'), 'setup'),)
 			if self.nextPageToken:
-				clist += ((_('Next %s entries') % self.searchResult,
-					'next'),)
+				clist += ((ngettext('Next %s entry' ,'Next %s entries',
+					int(self.searchResult)) % self.searchResult, 'next'),)
 			if self.prevPageToken:
-				clist += ((_('Previous %s entries') % self.searchResult,
-					'prev'),)
+				clist += ((ngettext('Previous %s entry' ,'Previous %s entries',
+					int(self.searchResult)) % self.searchResult, 'prev'),)
 			if self.isAuth:
 				if self.list == 'videolist':
 					clist += ((_('Rate video'), 'rate'),
