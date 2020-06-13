@@ -254,10 +254,10 @@ msgstr "Manas saites"
 msgid "New Zealand"
 msgstr "Jaunzēlande"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Next %s entry"
 msgid_plural "Next %s entries"
-msgstr[0] "Nākošie %s ieraksti"
+msgstr[0] "Nākošais %s ieraksts"
 msgstr[1] "Nākošie %s ieraksti"
 msgstr[2] "Nākošie %s ieraksti"
 
@@ -306,10 +306,10 @@ msgstr "Poļu"
 msgid "Portuguese"
 msgstr "Portugāļu"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Previous %s entry"
 msgid_plural "Previous %s entries"
-msgstr[0] "Iepriekšējie %s ieraksti"
+msgstr[0] "Iepriekšējais %s ieraksts"
 msgstr[1] "Iepriekšējie %s ieraksti"
 msgstr[2] "Iepriekšējie %s ieraksti"
 
