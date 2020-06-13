@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin for Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 21:59+0300\n"
+"POT-Creation-Date: 2020-06-13 13:48+0300\n"
 "PO-Revision-Date: 2018-11-19 00:44+0000\n"
 "Last-Translator: nunigaia\n"
 "Language-Team: BH Team\n"
@@ -265,9 +265,11 @@ msgstr "Os meus feeds"
 msgid "New Zealand"
 msgstr "Nova Zelândia"
 
-#, python-format
-msgid "Next %s entries"
-msgstr "Próximas %s entradas"
+#, fuzzy, python-format
+msgid "Next %s entry"
+msgid_plural "Next %s entries"
+msgstr[0] "Próximas %s entradas"
+msgstr[1] "Próximas %s entradas"
 
 msgid "No"
 msgstr "Não"
@@ -314,9 +316,11 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
-#, python-format
-msgid "Previous %s entries"
-msgstr "Entradas %s prévias"
+#, fuzzy, python-format
+msgid "Previous %s entry"
+msgid_plural "Previous %s entries"
+msgstr[0] "Entradas %s prévias"
+msgstr[1] "Entradas %s prévias"
 
 msgid "Public feeds"
 msgstr "Feeds públicos"

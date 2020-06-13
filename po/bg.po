@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 21:59+0300\n"
+"POT-Creation-Date: 2020-06-13 13:48+0300\n"
 "PO-Revision-Date: 2018-04-13 10:46+0300\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -256,9 +256,11 @@ msgstr "Моиите фийдове"
 msgid "New Zealand"
 msgstr "Нова Зеландия"
 
-#, python-format
-msgid "Next %s entries"
-msgstr "Следващи %s записи"
+#, fuzzy, python-format
+msgid "Next %s entry"
+msgid_plural "Next %s entries"
+msgstr[0] "Следващи %s записи"
+msgstr[1] "Следващи %s записи"
 
 msgid "No"
 msgstr "Не"
@@ -305,9 +307,11 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
-#, python-format
-msgid "Previous %s entries"
-msgstr "Предишни %s записи"
+#, fuzzy, python-format
+msgid "Previous %s entry"
+msgid_plural "Previous %s entries"
+msgstr[0] "Предишни %s записи"
+msgstr[1] "Предишни %s записи"
 
 msgid "Public feeds"
 msgstr "Публични фийдове"

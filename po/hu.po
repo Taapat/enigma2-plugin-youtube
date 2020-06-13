@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin magyar fordítás\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 21:59+0300\n"
+"POT-Creation-Date: 2020-06-13 13:48+0300\n"
 "PO-Revision-Date: 2019-02-19 12:57+0100\n"
 "Last-Translator: mcfly82\n"
 "Language-Team: cpteam\n"
@@ -258,9 +258,11 @@ msgstr "Saját feedek"
 msgid "New Zealand"
 msgstr "Új-Zéland"
 
-#, python-format
-msgid "Next %s entries"
-msgstr "Következő %s bejegyzés"
+#, fuzzy, python-format
+msgid "Next %s entry"
+msgid_plural "Next %s entries"
+msgstr[0] "Következő %s bejegyzés"
+msgstr[1] "Következő %s bejegyzés"
 
 msgid "No"
 msgstr "Nem"
@@ -307,9 +309,11 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
-#, python-format
-msgid "Previous %s entries"
-msgstr "Előző %s bejegyzés"
+#, fuzzy, python-format
+msgid "Previous %s entry"
+msgid_plural "Previous %s entries"
+msgstr[0] "Előző %s bejegyzés"
+msgstr[1] "Előző %s bejegyzés"
 
 msgid "Public feeds"
 msgstr "Nyilvános csatornák"

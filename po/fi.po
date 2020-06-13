@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 21:59+0300\n"
+"POT-Creation-Date: 2020-06-13 13:48+0300\n"
 "PO-Revision-Date: 2016-08-24 10:46+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: \n"
@@ -259,9 +259,11 @@ msgstr "Minun syötteet"
 msgid "New Zealand"
 msgstr "Uusi-Seelanti"
 
-#, python-format
-msgid "Next %s entries"
-msgstr "Seuraavat %s sisällöt"
+#, fuzzy, python-format
+msgid "Next %s entry"
+msgid_plural "Next %s entries"
+msgstr[0] "Seuraavat %s sisällöt"
+msgstr[1] "Seuraavat %s sisällöt"
 
 msgid "No"
 msgstr "Ei"
@@ -308,9 +310,11 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
-#, python-format
-msgid "Previous %s entries"
-msgstr "Edelliset %s sisällöt"
+#, fuzzy, python-format
+msgid "Previous %s entry"
+msgid_plural "Previous %s entries"
+msgstr[0] "Edelliset %s sisällöt"
+msgstr[1] "Edelliset %s sisällöt"
 
 msgid "Public feeds"
 msgstr "Luokitellut videot"

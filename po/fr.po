@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 21:59+0300\n"
+"POT-Creation-Date: 2020-06-13 13:48+0300\n"
 "PO-Revision-Date: 2018-06-25 22:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -261,9 +261,11 @@ msgstr "Mes flux"
 msgid "New Zealand"
 msgstr "Nouvelle Zélande"
 
-#, python-format
-msgid "Next %s entries"
-msgstr "Prochaines %s entrées"
+#, fuzzy, python-format
+msgid "Next %s entry"
+msgid_plural "Next %s entries"
+msgstr[0] "Prochaines %s entrées"
+msgstr[1] "Prochaines %s entrées"
 
 msgid "No"
 msgstr "Non"
@@ -310,9 +312,11 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
-#, python-format
-msgid "Previous %s entries"
-msgstr "Précédentes %s entrées"
+#, fuzzy, python-format
+msgid "Previous %s entry"
+msgid_plural "Previous %s entries"
+msgstr[0] "Précédentes %s entrées"
+msgstr[1] "Précédentes %s entrées"
 
 msgid "Public feeds"
 msgstr "Flux publiques"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 21:59+0300\n"
+"POT-Creation-Date: 2020-06-13 13:48+0300\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: kvinto <kvinto@rambler.ru>\n"
 "Language-Team: <kvinto  sat-ukraine.info>\n"
@@ -258,9 +258,11 @@ msgstr "Мої фіди"
 msgid "New Zealand"
 msgstr "Нова Зеландія"
 
-#, python-format
-msgid "Next %s entries"
-msgstr "Наступні %s записи"
+#, fuzzy, python-format
+msgid "Next %s entry"
+msgid_plural "Next %s entries"
+msgstr[0] "Наступні %s записи"
+msgstr[1] "Наступні %s записи"
 
 msgid "No"
 msgstr "Ні"
@@ -307,9 +309,11 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
-#, python-format
-msgid "Previous %s entries"
-msgstr "Попередні записи %s"
+#, fuzzy, python-format
+msgid "Previous %s entry"
+msgid_plural "Previous %s entries"
+msgstr[0] "Попередні записи %s"
+msgstr[1] "Попередні записи %s"
 
 msgid "Public feeds"
 msgstr "Публічні фіди"

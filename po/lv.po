@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 21:59+0300\n"
+"POT-Creation-Date: 2020-06-13 13:48+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -254,9 +254,12 @@ msgstr "Manas saites"
 msgid "New Zealand"
 msgstr "Jaunzēlande"
 
-#, python-format
-msgid "Next %s entries"
-msgstr "Nākošie %s ieraksti"
+#, fuzzy, python-format
+msgid "Next %s entry"
+msgid_plural "Next %s entries"
+msgstr[0] "Nākošie %s ieraksti"
+msgstr[1] "Nākošie %s ieraksti"
+msgstr[2] "Nākošie %s ieraksti"
 
 msgid "No"
 msgstr "Nē"
@@ -303,9 +306,12 @@ msgstr "Poļu"
 msgid "Portuguese"
 msgstr "Portugāļu"
 
-#, python-format
-msgid "Previous %s entries"
-msgstr "Iepriekšējie %s ieraksti"
+#, fuzzy, python-format
+msgid "Previous %s entry"
+msgid_plural "Previous %s entries"
+msgstr[0] "Iepriekšējie %s ieraksti"
+msgstr[1] "Iepriekšējie %s ieraksti"
+msgstr[2] "Iepriekšējie %s ieraksti"
 
 msgid "Public feeds"
 msgstr "Publiskās saites"

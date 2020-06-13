@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 21:59+0300\n"
+"POT-Creation-Date: 2020-06-13 13:48+0300\n"
 "PO-Revision-Date: 2015-12-19 15:56+0100\n"
 "Last-Translator: Budiarno Pedode\n"
 "Language-Team: \n"
@@ -258,9 +258,11 @@ msgstr "Feed saya"
 msgid "New Zealand"
 msgstr "Selandia Baru"
 
-#, python-format
-msgid "Next %s entries"
-msgstr "Berikutnya %s entri"
+#, fuzzy, python-format
+msgid "Next %s entry"
+msgid_plural "Next %s entries"
+msgstr[0] "Berikutnya %s entri"
+msgstr[1] "Berikutnya %s entri"
 
 msgid "No"
 msgstr "Tidak"
@@ -307,9 +309,11 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
-#, python-format
-msgid "Previous %s entries"
-msgstr "%s entri sebelumnya"
+#, fuzzy, python-format
+msgid "Previous %s entry"
+msgid_plural "Previous %s entries"
+msgstr[0] "%s entri sebelumnya"
+msgstr[1] "%s entri sebelumnya"
 
 msgid "Public feeds"
 msgstr "Feed publik"

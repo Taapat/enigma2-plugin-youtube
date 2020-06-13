@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 21:59+0300\n"
+"POT-Creation-Date: 2020-06-13 13:48+0300\n"
 "PO-Revision-Date: 2019-09-16 14:28+0200\n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: LL@li.org\n"
@@ -251,9 +251,11 @@ msgstr "Mijn feeds"
 msgid "New Zealand"
 msgstr "Nieuw-Zeeland"
 
-#, python-format
-msgid "Next %s entries"
-msgstr "Volgende %s resultaten"
+#, fuzzy, python-format
+msgid "Next %s entry"
+msgid_plural "Next %s entries"
+msgstr[0] "Volgende %s resultaten"
+msgstr[1] "Volgende %s resultaten"
 
 msgid "No"
 msgstr "Nee"
@@ -300,9 +302,11 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
-#, python-format
-msgid "Previous %s entries"
-msgstr "Vorige %s resultaten"
+#, fuzzy, python-format
+msgid "Previous %s entry"
+msgid_plural "Previous %s entries"
+msgstr[0] "Vorige %s resultaten"
+msgstr[1] "Vorige %s resultaten"
 
 msgid "Public feeds"
 msgstr "Openbare feeds"

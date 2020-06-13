@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 21:59+0300\n"
+"POT-Creation-Date: 2020-06-13 13:48+0300\n"
 "PO-Revision-Date: 2018-11-18 12:37+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: \n"
@@ -258,9 +258,11 @@ msgstr "Minu kanalid"
 msgid "New Zealand"
 msgstr "Uus Meremaa"
 
-#, python-format
-msgid "Next %s entries"
-msgstr "Järgmised %s tulemust"
+#, fuzzy, python-format
+msgid "Next %s entry"
+msgid_plural "Next %s entries"
+msgstr[0] "Järgmised %s tulemust"
+msgstr[1] "Järgmised %s tulemust"
 
 msgid "No"
 msgstr "Ei"
@@ -307,9 +309,11 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
-#, python-format
-msgid "Previous %s entries"
-msgstr "Eelmised %s kirjet"
+#, fuzzy, python-format
+msgid "Previous %s entry"
+msgid_plural "Previous %s entries"
+msgstr[0] "Eelmised %s kirjet"
+msgstr[1] "Eelmised %s kirjet"
 
 msgid "Public feeds"
 msgstr "Avalikud kanalid"

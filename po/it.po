@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 21:59+0300\n"
+"POT-Creation-Date: 2020-06-13 13:48+0300\n"
 "PO-Revision-Date: 2018-05-26 13:10+0200\n"
 "Last-Translator: Massimo Bambi <maxbambi@libero.it>\n"
 "Language-Team: \n"
@@ -261,9 +261,11 @@ msgstr "I miei canali"
 msgid "New Zealand"
 msgstr "Nuova Zelanda"
 
-#, python-format
-msgid "Next %s entries"
-msgstr "%s voci seguenti"
+#, fuzzy, python-format
+msgid "Next %s entry"
+msgid_plural "Next %s entries"
+msgstr[0] "%s voci seguenti"
+msgstr[1] "%s voci seguenti"
 
 msgid "No"
 msgstr "No"
@@ -310,9 +312,11 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
-#, python-format
-msgid "Previous %s entries"
-msgstr "%s voci precedenti"
+#, fuzzy, python-format
+msgid "Previous %s entry"
+msgid_plural "Previous %s entries"
+msgstr[0] "%s voci precedenti"
+msgstr[1] "%s voci precedenti"
 
 msgid "Public feeds"
 msgstr "Canali pubblici"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 21:59+0300\n"
+"POT-Creation-Date: 2020-06-13 13:48+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: YouTubeUi.py:1091
 #, python-format
@@ -326,8 +327,10 @@ msgstr ""
 
 #: YouTubeUi.py:1112
 #, python-format
-msgid "Next %s entries"
-msgstr ""
+msgid "Next %s entry"
+msgid_plural "Next %s entries"
+msgstr[0] ""
+msgstr[1] ""
 
 #: YouTubeUi.py:101 YouTubeUi.py:176
 msgid "No"
@@ -391,8 +394,10 @@ msgstr ""
 
 #: YouTubeUi.py:1115
 #, python-format
-msgid "Previous %s entries"
-msgstr ""
+msgid "Previous %s entry"
+msgid_plural "Previous %s entries"
+msgstr[0] ""
+msgstr[1] ""
 
 #: YouTubeUi.py:419 YouTubeUi.py:441
 msgid "Public feeds"

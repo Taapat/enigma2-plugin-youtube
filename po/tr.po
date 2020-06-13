@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-12 16:57+0300\n"
+"POT-Creation-Date: 2020-06-13 13:48+0300\n"
 "PO-Revision-Date: 2020-06-12 23:54+0300\n"
 "Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish\n"
@@ -258,9 +258,11 @@ msgstr "Özet Yayınlarım"
 msgid "New Zealand"
 msgstr "Yeni Zelanda"
 
-#, python-format
-msgid "Next %s entries"
-msgstr "Sonraki %s giriş"
+#, fuzzy, python-format
+msgid "Next %s entry"
+msgid_plural "Next %s entries"
+msgstr[0] "Sonraki %s giriş"
+msgstr[1] "Sonraki %s giriş"
 
 msgid "No"
 msgstr "Hayır"
@@ -307,9 +309,11 @@ msgstr "Lehçe"
 msgid "Portuguese"
 msgstr "Portekizce"
 
-#, python-format
-msgid "Previous %s entries"
-msgstr "Önceki %s girişler"
+#, fuzzy, python-format
+msgid "Previous %s entry"
+msgid_plural "Previous %s entries"
+msgstr[0] "Önceki %s girişler"
+msgstr[1] "Önceki %s girişler"
 
 msgid "Public feeds"
 msgstr "Herkese açık yayınlar"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube Plugin slovenský preklad\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 21:59+0300\n"
+"POT-Creation-Date: 2020-06-13 13:48+0300\n"
 "PO-Revision-Date: 2018-05-30 04:10+0200\n"
 "Last-Translator: S4iyan3lit3 <nsa@dontgathermailaddresses.fck>\n"
 "Language-Team: th4nks0url0rd1nh34v3n\n"
@@ -261,9 +261,11 @@ msgstr "Moje informačné kanály"
 msgid "New Zealand"
 msgstr "Nový Zéland"
 
-#, python-format
-msgid "Next %s entries"
-msgstr "Ďalšie %s položky"
+#, fuzzy, python-format
+msgid "Next %s entry"
+msgid_plural "Next %s entries"
+msgstr[0] "Ďalšie %s položky"
+msgstr[1] "Ďalšie %s položky"
 
 msgid "No"
 msgstr "Nie"
@@ -310,9 +312,11 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
-#, python-format
-msgid "Previous %s entries"
-msgstr "Predchádzajúce %s položky"
+#, fuzzy, python-format
+msgid "Previous %s entry"
+msgid_plural "Previous %s entries"
+msgstr[0] "Predchádzajúce %s položky"
+msgstr[1] "Predchádzajúce %s položky"
 
 msgid "Public feeds"
 msgstr "Verejné kanály"
