@@ -1130,7 +1130,7 @@ class YouTubeMain(Screen):
 				clist += ((_('Active video downloads'), 'download_list'),)
 			clist += ((_('Close YouTube'), 'close'),)
 			self.session.openWithCallback(self.menuCallback,
-				ChoiceBox, title=title, list=clist)
+				ChoiceBox, title=title, list=clist, keys=['menu'])
 
 	def menuCallback(self, answer):
 		if answer:
