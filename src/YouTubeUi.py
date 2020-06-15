@@ -793,10 +793,10 @@ class YouTubeMain(Screen):
 				return v
 		return ''
 
-	def _tryComplStr(self, before, result, getter, after):
+	def _tryComplStr(self, result, getter, after):
 		v = self._tryStr(result, getter)
 		if v:
-			return before + v + after
+			return v + after
 		return ''
 
 	def createBuild(self):
@@ -1005,12 +1005,12 @@ class YouTubeMain(Screen):
 				self._tryStr(result, lambda x: x['snippet']['thumbnails']['default']['url']),  # Thumbnail url
 				None,
 				self._tryStr(result, lambda x: x['snippet']['title']),  # Title
-				self._tryComplStr('', result, lambda x: x['statistics']['viewCount'], _(' views')),  # Views
+				self._tryComplStr(result, lambda x: x['statistics']['viewCount'], _(' views')),  # Views
 				Duration,
 				None,
 				self._tryStr(result, lambda x: x['snippet']['description']),  # Description
-				self._tryComplStr('', result, lambda x: x['statistics']['likeCount'], _(' likes')),  # Likes
-				self._tryComplStr('', result, lambda x: x['statistics']['dislikeCount'], _(' dislikes')),  # Dislikes
+				self._tryComplStr(result, lambda x: x['statistics']['likeCount'], _(' likes')),  # Likes
+				self._tryComplStr(result, lambda x: x['statistics']['dislikeCount'], _(' dislikes')),  # Dislikes
 				self._tryStr(result, lambda x: x['snippet']['thumbnails']['medium']['url']),  # Big thumbnail url
 				self._tryList(result, lambda x: x['snippet']['channelId']),  # Channel id
 				PublishedAt)
