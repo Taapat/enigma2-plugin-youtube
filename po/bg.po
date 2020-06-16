@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-13 13:48+0300\n"
+"POT-Creation-Date: 2020-06-16 21:38+0300\n"
 "PO-Revision-Date: 2018-04-13 10:46+0300\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -215,6 +215,10 @@ msgstr "Харесани видеоклипове"
 
 msgid "Liked!"
 msgstr "Отбелязан, че ми харесва!"
+
+#, fuzzy
+msgid "Live broadcast"
+msgstr "Търсене потоци на живо"
 
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"

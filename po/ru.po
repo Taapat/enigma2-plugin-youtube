@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-13 13:48+0300\n"
+"POT-Creation-Date: 2020-06-16 21:38+0300\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -217,6 +217,10 @@ msgstr "Понравившиеся видео"
 
 msgid "Liked!"
 msgstr "Отмечен, что понравилось!"
+
+#, fuzzy
+msgid "Live broadcast"
+msgstr "Поиск прямых трансляций"
 
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"

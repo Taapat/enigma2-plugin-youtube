@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin for Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-13 13:48+0300\n"
+"POT-Creation-Date: 2020-06-16 21:38+0300\n"
 "PO-Revision-Date: 2018-11-19 00:44+0000\n"
 "Last-Translator: nunigaia\n"
 "Language-Team: BH Team\n"
@@ -224,6 +224,10 @@ msgstr "Vídeos que gostei"
 
 msgid "Liked!"
 msgstr "Gostei!"
+
+#, fuzzy
+msgid "Live broadcast"
+msgstr "Busca transmissões ao vivo"
 
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"

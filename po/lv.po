@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-13 13:48+0300\n"
+"POT-Creation-Date: 2020-06-16 21:38+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -213,6 +213,10 @@ msgstr "Patīk"
 
 msgid "Liked!"
 msgstr "Atzīmēts, ka patīk!"
+
+#, fuzzy
+msgid "Live broadcast"
+msgstr "Meklēt tiešraides"
 
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"

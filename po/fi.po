@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-13 13:48+0300\n"
+"POT-Creation-Date: 2020-06-16 21:38+0300\n"
 "PO-Revision-Date: 2016-08-24 10:46+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: \n"
@@ -218,6 +218,10 @@ msgstr "Tykätyt videot"
 
 msgid "Liked!"
 msgstr "Tykätty!"
+
+#, fuzzy
+msgid "Live broadcast"
+msgstr "Hae suoria lähetyksiä"
 
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"

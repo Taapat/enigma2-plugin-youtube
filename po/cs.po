@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-13 13:48+0300\n"
+"POT-Creation-Date: 2020-06-16 21:38+0300\n"
 "PO-Revision-Date: 2020-06-13 12:57+0200\n"
 "Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: Ims\n"
@@ -212,6 +212,10 @@ msgstr "Oblíbená videa"
 
 msgid "Liked!"
 msgstr "Líbí se!"
+
+#, fuzzy
+msgid "Live broadcast"
+msgstr "Hledat živá vysílání"
 
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"

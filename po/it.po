@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-13 13:48+0300\n"
+"POT-Creation-Date: 2020-06-16 21:38+0300\n"
 "PO-Revision-Date: 2018-05-26 13:10+0200\n"
 "Last-Translator: Massimo Bambi <maxbambi@libero.it>\n"
 "Language-Team: \n"
@@ -220,6 +220,10 @@ msgstr "Video che ti piacciono"
 
 msgid "Liked!"
 msgstr "Hai messo Mi piace!"
+
+#, fuzzy
+msgid "Live broadcast"
+msgstr "Ricerca dirette live"
 
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"

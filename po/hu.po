@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin magyar fordítás\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-13 13:48+0300\n"
+"POT-Creation-Date: 2020-06-16 21:38+0300\n"
 "PO-Revision-Date: 2019-02-19 12:57+0100\n"
 "Last-Translator: mcfly82\n"
 "Language-Team: cpteam\n"
@@ -217,6 +217,10 @@ msgstr "Kedvelt videók"
 
 msgid "Liked!"
 msgstr "Tetszett!"
+
+#, fuzzy
+msgid "Live broadcast"
+msgstr "Élő közvetítések keresése"
 
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"
