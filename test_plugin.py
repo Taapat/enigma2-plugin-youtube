@@ -56,8 +56,6 @@ def GetVideoId(q, eventType, order, s_type):
 		print('Views', result['statistics']['viewCount'])
 		print('Duration', result['contentDetails']['duration'])
 		print('Description', result['snippet']['description'])
-		print('Likes', result['statistics']['likeCount'])
-		print('Dislikes', result['statistics']['dislikeCount'])
 		print('ThumbnailUrl', result['snippet']['thumbnails']['medium']['url'])
 		print('ChannelId', result['snippet']['channelId'])
 		print('PublishedAt', result['snippet']['publishedAt'])
