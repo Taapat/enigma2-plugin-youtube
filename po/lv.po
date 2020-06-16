@@ -214,9 +214,8 @@ msgstr "Patīk"
 msgid "Liked!"
 msgstr "Atzīmēts, ka patīk!"
 
-#, fuzzy
 msgid "Live broadcast"
-msgstr "Meklēt tiešraides"
+msgstr "Tiešraide"
 
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"
