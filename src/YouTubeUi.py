@@ -996,7 +996,8 @@ class YouTubeMain(Screen):
 		videos = []
 		for result in searchResponse.get('items', []):
 			Duration = self._tryStr(result, lambda x: x['contentDetails']['duration'])
-			Duration = _('Duration: ') + self._convertDate(Duration) if Duration else ''
+			if Duration:
+				Duration = _('Duration: ') + self._convertDate(Duration) if Duration != 'P0D' else _('Live broadcast')
 			PublishedAt = self._tryStr(result, lambda x: x['snippet']['publishedAt'])
 			PublishedAt = _('Published at: ') + PublishedAt.replace('T', ' ')\
 					.split('.')[0] if PublishedAt else ''
