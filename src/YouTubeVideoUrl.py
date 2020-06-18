@@ -3,9 +3,10 @@
 
 from __future__ import print_function
 
-import codecs
-import json
 import re
+
+from codecs import getdecoder
+from json import loads
 
 from Components.config import config
 
@@ -61,7 +62,7 @@ IGNORE_VIDEO_FORMAT = [
 
 
 def uppercase_escape(s):
-	unicode_escape = codecs.getdecoder('unicode_escape')
+	unicode_escape = getdecoder('unicode_escape')
 	return re.sub(
 		r'\\U[0-9a-fA-F]{8}',
 		lambda m: unicode_escape(m.group(0))[0],
@@ -264,7 +265,7 @@ class YouTubeVideoUrl():
 		for pattern in patterns:
 			config = self._search_regex(pattern, webpage)
 			if config:
-				return json.loads(uppercase_escape(config))
+				return loads(uppercase_escape(config))
 
 	def extract(self, video_id):
 		gl = config.plugins.YouTube.searchRegion.value
@@ -284,7 +285,7 @@ class YouTubeVideoUrl():
 		def extract_player_response(player_response):
 			if not player_response:
 				return
-			pl_response = json.loads(player_response)
+			pl_response = loads(player_response)
 			if isinstance(pl_response, dict):
 				return pl_response
 
@@ -433,12 +434,12 @@ class YouTubeVideoUrl():
 								embed_webpage = self._download_webpage(embed_url)
 							jsplayer_url_json = self._search_regex(ASSETS_RE, embed_webpage)
 
-						player_url = json.loads(jsplayer_url_json)
+						player_url = loads(jsplayer_url_json)
 						if player_url is None:
 							player_url_json = self._search_regex(
 								r'ytplayer\.config.*?"url"\s*:\s*("[^"]+")',
 								video_webpage)
-							player_url = json.loads(player_url_json)
+							player_url = loads(player_url_json)
 
 					if 'sig' in url_map['url_data']:
 						url += '&signature=' + url_map['url_data']['sig'][0]
