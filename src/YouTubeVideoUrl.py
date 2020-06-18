@@ -9,13 +9,13 @@ import re
 
 from Components.config import config
 
+from .compat import compat_parse_qs
 from .compat import compat_ssl_urlopen
 from .compat import compat_str
 from .compat import compat_urlencode
 from .compat import compat_URLError
 from .compat import compat_urljoin
 from .compat import compat_urlparse
-from .compat import compat_unquote_to_bytes
 from .jsinterp import JSInterpreter
 
 
@@ -86,52 +86,6 @@ def url_or_none(url):
 		return None
 	url = url.strip()
 	return url if re.match(r'^(?:[a-zA-Z][\da-zA-Z.+-]*:)?//', url) else None
-
-
-def compat_urllib_parse_unquote(string):
-	if '%' not in string:
-		string.split
-		return string
-	bits = re.compile(r'([\x00-\x7f]+)').split(string)
-	res = [bits[0]]
-	append = res.append
-	for i in range(1, len(bits), 2):
-		append(compat_unquote_to_bytes(bits[i]).decode('utf-8', 'replace'))
-		append(bits[i + 1])
-	return ''.join(res)
-
-
-def _parse_qsl(qs):
-	qs, _coerce_result = qs, compat_str
-	pairs = [s2 for s1 in qs.split('&') for s2 in s1.split(';')]
-	r = []
-	for name_value in pairs:
-		if not name_value:
-			continue
-		nv = name_value.split('=', 1)
-		if len(nv) != 2:
-			# Handle case of a control-name with no equal sign
-			continue
-		if len(nv[1]):
-			name = nv[0].replace('+', ' ')
-			name = compat_urllib_parse_unquote(name)
-			name = _coerce_result(name)
-			value = nv[1].replace('+', ' ')
-			value = compat_urllib_parse_unquote(value)
-			value = _coerce_result(value)
-			r.append((name, value))
-	return r
-
-
-def compat_parse_qs(qs):
-	parsed_result = {}
-	pairs = _parse_qsl(qs)
-	for name, value in pairs:
-		if name in parsed_result:
-			parsed_result[name].append(value)
-		else:
-			parsed_result[name] = [value]
-	return parsed_result
 
 
 def clean_html(html):
