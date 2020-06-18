@@ -150,7 +150,8 @@ class YouTubeVideoUrl():
 
 		return (content, urlh)
 
-	def _search_regex(self, pattern, string, group=None):
+	@staticmethod
+	def _search_regex(pattern, string, group=None):
 		"""
 		Perform a regex search on the given string, using a single or a list of
 		patterns returning the first matching group.
@@ -188,7 +189,8 @@ class YouTubeVideoUrl():
 		except Exception as e:
 			raise Exception('Signature extraction failed!\n%s' % str(e))
 
-	def _extract_player_info(self, player_url):
+	@staticmethod
+	def _extract_player_info(player_url):
 		_PLAYER_INFO_RE = (
 			r'/(?P<id>[a-zA-Z0-9_-]{8,})/player_ias\.vflset(?:/[a-zA-Z]{2,3}_[a-zA-Z]{2,3})?/base\.(?P<ext>[a-z]+)$',
 			r'\b(?P<id>vfl[a-zA-Z0-9_-]+)\b.*?\.(?P<ext>[a-z]+)$',
