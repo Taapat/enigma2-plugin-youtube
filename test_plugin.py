@@ -105,7 +105,7 @@ def test_mostViewedFeeds():
 	CheckExample(q='', eventType='', order='viewCount', descr='Most Viewed')
 
 def test_playlist():
-	CheckExample(q='youtube', eventType='', order='relevance', s_type='playlist', descr='Playlist')
+	CheckExample(q='vevo', eventType='', order='relevance', s_type='playlist', descr='Playlist')
 
 
 _TESTS = [
