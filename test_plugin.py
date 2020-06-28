@@ -53,7 +53,6 @@ def GetVideoId(q, eventType, order, s_type):
 		print('Id', result['id'])
 		print('Thumbnail', result['snippet']['thumbnails']['default']['url'])
 		print('Title', result['snippet']['title'])
-		print('Views', result['statistics']['viewCount'])
 		print('Duration', result['contentDetails']['duration'])
 		print('Description', result['snippet']['description'])
 		print('ThumbnailUrl', result['snippet']['thumbnails']['medium']['url'])
@@ -84,16 +83,17 @@ def CheckVideoUrl(videos, descr):
 	print('Test', descr)
 	try:
 		videoUrl = GetUrl(videos)
-	except:
-		print('Error in GetUrl, try second time')
-		from time import sleep
-		sleep(10)
-		videoUrl = GetUrl(videos)
-	from src.compat import compat_ssl_urlopen
-	response = compat_ssl_urlopen(videoUrl)
-	info = response.info()
-	print('Video Url info:')
-	print(info, descr, 'Video Url exist')
+	except Exception as ex:
+		if 'Too Many Requests' in ex:
+			pytest.xfail('Error in GetUrl, Too Many Requests')
+		else:
+			raise Exception(ex)
+	else:
+		from src.compat import compat_ssl_urlopen
+		response = compat_ssl_urlopen(videoUrl)
+		info = response.info()
+		print('Video Url info:')
+		print(info, descr, 'Video Url exist')
 
 def test_searchUrl():
 	CheckExample(q='official video', descr='Search')
