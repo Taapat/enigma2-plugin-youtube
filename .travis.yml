@@ -12,4 +12,4 @@ script:
   - python -O -m compileall ./src/
   - find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
   - bash ./travis_fix.sh
-  - pytest
+  - pytest -v
