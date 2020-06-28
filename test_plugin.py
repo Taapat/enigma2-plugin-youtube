@@ -84,7 +84,7 @@ def CheckVideoUrl(videos, descr):
 	try:
 		videoUrl = GetUrl(videos)
 	except Exception as ex:
-		if 'Too Many Requests' in ex:
+		if str(ex) == 'Too Many Requests':
 			pytest.xfail('Error in GetUrl, Too Many Requests')
 		else:
 			raise Exception(ex)
