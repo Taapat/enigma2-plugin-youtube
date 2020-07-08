@@ -208,7 +208,7 @@ class YouTubePlayer(MoviePlayer):
 			self.session.openWithCallback(self.leavePlayerConfirmed,
 				ChoiceBox, title=title, list=list)
 		else:
-			self.close()
+			self.leavePlayerConfirmed([None, 'quit'])
 
 	def leavePlayerConfirmed(self, answer):
 		if answer and answer[1] != 'continue':
