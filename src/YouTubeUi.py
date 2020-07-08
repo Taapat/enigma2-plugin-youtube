@@ -3,7 +3,7 @@ from __future__ import print_function
 import os
 from twisted.web.client import downloadPage
 
-from enigma import ePicLoad, eServiceReference, eTimer, getDesktop
+from enigma import ePicLoad, eServiceReference, eTimer, getDesktop, iPlayableService
 from Components.ActionMap import ActionMap
 from Components.AVSwitch import AVSwitch
 from Components.config import config, ConfigDirectory, ConfigSelection, \
@@ -14,6 +14,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
 from Components.ScrollLabel import ScrollLabel
+from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.Task import job_manager
@@ -122,6 +123,7 @@ config.plugins.YouTube.searchHistoryDict['Searchplaylist'] = ConfigSet(choices=[
 config.plugins.YouTube.searchHistoryDict['Searchbroadcasts'] = ConfigSet(choices=[])
 
 config.plugins.YouTube.refreshToken = ConfigText()
+config.plugins.YouTube.lastPosition = ConfigText(default='[]')
 
 
 API_KEY = GetKey('Xhi3_LoIzw_OizD15SyCNReMvKL27nw_OizDWRR395T5uGWpvn451I2VYc78Gy463')
@@ -163,7 +165,35 @@ class YouTubePlayer(MoviePlayer):
 		MoviePlayer.__init__(self, session, service)
 		self.skinName = ['YouTubeMoviePlayer', 'MoviePlayer']
 		self.current = current
+		self.__youtube_event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evStart: self.__serviceStart,
+				iPlayableService.evVideoSizeChanged: self.__serviceStart  # On exteplayer evStart not working
+			})
 		self.servicelist = InfoBar.instance and InfoBar.instance.servicelist
+		self.started = False
+
+	def __serviceStart(self):
+		if not self.started:
+			self.started = True
+			self.lastPosition = eval(config.plugins.YouTube.lastPosition.value)
+			if self.current[0] in self.lastPosition:
+				idx = self.lastPosition.index(self.current[0])
+				self.seekPosition = self.lastPosition[idx+1]
+				self.lastPosition.pop(idx)
+				self.lastPosition.pop(idx)
+				config.plugins.YouTube.lastPosition.value = str(self.lastPosition)
+				config.plugins.YouTube.lastPosition.save()
+				if '&suburi=' not in self.current[6] or \
+						config.plugins.YouTube.player.value == '5002':
+					self.session.openWithCallback(self.messageBoxCallback, MessageBox,
+							text=_('Resume playback from the previous position?'), timeout=5)
+
+	def messageBoxCallback(self, answer):
+		if answer:
+			seek = self.session.nav.getCurrentService().seek()
+			if seek:
+				seek.seekTo(self.seekPosition)
 
 	def leavePlayer(self):
 		if config.plugins.YouTube.onMovieStop.value == 'ask':
@@ -182,6 +212,15 @@ class YouTubePlayer(MoviePlayer):
 
 	def leavePlayerConfirmed(self, answer):
 		if answer and answer[1] != 'continue':
+			seek = self.session.nav.getCurrentService().seek()
+			if seek:
+				if len(self.lastPosition) > 20:
+					self.lastPosition.pop(0)
+					self.lastPosition.pop(0)
+				self.lastPosition.append(self.current[0])
+				self.lastPosition.append(seek.getPlayPosition()[1])
+				config.plugins.YouTube.lastPosition.value = str(self.lastPosition)
+				config.plugins.YouTube.lastPosition.save()
 			self.close(answer)
 
 	def doEofInternal(self, playing):
@@ -516,17 +555,16 @@ class YouTubeMain(Screen):
 									entry[11],  # Channel Id
 									entry[12],  # Published
 								)
+							self.value = self.entryList[count]
 							break
 						count += 1
 			if videoUrl:
 				if self.action == 'playVideo':
 					service = eServiceReference(int(config.plugins.YouTube.player.value), 0, videoUrl)
 					service.setName(self.value[3])
-					current = [self.value[3], self.value[4], self.value[5], self.value[7],
-						self.value[8], self.value[9], self.value[10], self.value[12]]
 					print("[YouTube] Play:", videoUrl)
 					self.session.openWithCallback(self.playCallback,
-						YouTubePlayer, service=service, current=current)
+						YouTubePlayer, service=service, current=self.value)
 				else:
 					self.videoDownload(videoUrl, self.value[3])
 					self.setEntryList()
@@ -1224,8 +1262,6 @@ class YouTubeMain(Screen):
 	def showEventInfo(self):
 		if self.list == 'videolist':
 			current = self['list'].getCurrent()
-			current = [current[3], current[4], current[5], current[7],
-				current[8], current[9], current[10], current[12]]
 			self.session.open(YouTubeInfo, current=current)
 
 	def videoDownload(self, url, title):
@@ -1337,14 +1373,14 @@ class YouTubeInfo(Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_('Info'))
 		self['key_red'] = StaticText(_('Exit'))
-		self['title'] = Label(current[0])
+		self['title'] = Label(current[3])
 		self['pic'] = Pixmap()
-		self['description'] = ScrollLabel(current[3])
-		self['views'] = Label(current[1])
-		self['duration'] = Label(current[2])
-		self['likes'] = Label(current[4])
-		self['dislikes'] = Label(current[5])
-		self['published'] = Label(current[7])
+		self['description'] = ScrollLabel(current[7])
+		self['views'] = Label(current[4])
+		self['duration'] = Label(current[5])
+		self['likes'] = Label(current[8])
+		self['dislikes'] = Label(current[9])
+		self['published'] = Label(current[12])
 		self['actions'] = ActionMap(['ColorActions',
 			'InfobarShowHideActions', 'DirectionActions'],
 			{
@@ -1356,7 +1392,7 @@ class YouTubeInfo(Screen):
 				'down': self['description'].pageDown
 			}, -2)
 		self.picloads = None
-		self.ThumbnailUrl = current[6]
+		self.ThumbnailUrl = current[10]
 		self.onLayoutFinish.append(self.LayoutFinish)
 
 	def LayoutFinish(self):
