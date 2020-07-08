@@ -179,8 +179,8 @@ class YouTubePlayer(MoviePlayer):
 			self.lastPosition = eval(config.plugins.YouTube.lastPosition.value)
 			if self.current[0] in self.lastPosition:
 				idx = self.lastPosition.index(self.current[0])
-				self.seekPosition = self.lastPosition[idx+1]
 				self.lastPosition.pop(idx)
+				self.seekPosition = self.lastPosition[idx]
 				self.lastPosition.pop(idx)
 				config.plugins.YouTube.lastPosition.value = str(self.lastPosition)
 				config.plugins.YouTube.lastPosition.save()
