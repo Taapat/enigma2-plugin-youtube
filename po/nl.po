@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-16 21:38+0300\n"
+"POT-Creation-Date: 2020-07-08 22:23+0300\n"
 "PO-Revision-Date: 2019-09-16 14:28+0200\n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: LL@li.org\n"
@@ -341,6 +341,9 @@ msgstr "Verwijder mijn waardering"
 
 msgid "Repeat"
 msgstr "Herhaal"
+
+msgid "Resume playback from the previous position?"
+msgstr ""
 
 msgid "Return search results for the specified country."
 msgstr "Met deze optie worden de zoekresultaten getoond die het meest relevant zijn voor de opgegeven regio."

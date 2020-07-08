@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin greek translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-16 21:38+0300\n"
+"POT-Creation-Date: 2020-07-08 22:23+0300\n"
 "PO-Revision-Date: 2019-11-19 01:16+0200\n"
 "Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: MCelliot_g <mcelliot_g@hotmail.com>\n"
@@ -341,6 +341,9 @@ msgstr "Αφαίρεση της αξιολόγησής μου"
 
 msgid "Repeat"
 msgstr "Επανάληψη"
+
+msgid "Resume playback from the previous position?"
+msgstr ""
 
 msgid "Return search results for the specified country."
 msgstr "Προβολή αποτελεσμάτων αναζήτησης για την επιλεγμένη χώρα."

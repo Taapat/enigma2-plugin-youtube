@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-16 21:38+0300\n"
+"POT-Creation-Date: 2020-07-08 22:23+0300\n"
 "PO-Revision-Date: 2020-06-13 12:57+0200\n"
 "Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: Ims\n"
@@ -345,6 +345,9 @@ msgstr "Odstranit moje hodnocení"
 
 msgid "Repeat"
 msgstr "Opakovat"
+
+msgid "Resume playback from the previous position?"
+msgstr ""
 
 msgid "Return search results for the specified country."
 msgstr "Vrací výsledky vyhledávání pro zadanou zemi."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-16 21:38+0300\n"
+"POT-Creation-Date: 2020-07-08 22:23+0300\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: kvinto <kvinto@rambler.ru>\n"
 "Language-Team: <kvinto  sat-ukraine.info>\n"
@@ -348,6 +348,9 @@ msgstr "Видалити мій рейтинг"
 
 msgid "Repeat"
 msgstr "Повторення"
+
+msgid "Resume playback from the previous position?"
+msgstr ""
 
 msgid "Return search results for the specified country."
 msgstr "Повернути результати пошуку для конкретної країни."

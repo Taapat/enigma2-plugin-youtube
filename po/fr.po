@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-16 21:38+0300\n"
+"POT-Creation-Date: 2020-07-08 22:23+0300\n"
 "PO-Revision-Date: 2018-06-25 22:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -351,6 +351,9 @@ msgstr "Enlever mon évaluation"
 
 msgid "Repeat"
 msgstr "Répéter"
+
+msgid "Resume playback from the previous position?"
+msgstr ""
 
 msgid "Return search results for the specified country."
 msgstr "Retourner les résultats de recherche pour le pays spécifié."

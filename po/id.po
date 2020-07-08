@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-16 21:38+0300\n"
+"POT-Creation-Date: 2020-07-08 22:23+0300\n"
 "PO-Revision-Date: 2015-12-19 15:56+0100\n"
 "Last-Translator: Budiarno Pedode\n"
 "Language-Team: \n"
@@ -348,6 +348,9 @@ msgstr "Buang rating saya"
 
 msgid "Repeat"
 msgstr "Ulang"
+
+msgid "Resume playback from the previous position?"
+msgstr ""
 
 msgid "Return search results for the specified country."
 msgstr "Tampilkan hasil pencarian untuk negara yg ditentukan."

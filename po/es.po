@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-16 21:38+0300\n"
+"POT-Creation-Date: 2020-07-08 22:23+0300\n"
 "PO-Revision-Date: 2018-11-22 19:43+0100\n"
 "Last-Translator: VillaK <soporte@open-plus.es>\n"
 "Language-Team: OpenPlus <open-plus.es>\n"
@@ -348,6 +348,9 @@ msgstr "Eliminar mi puntuación"
 
 msgid "Repeat"
 msgstr "Repetir"
+
+msgid "Resume playback from the previous position?"
+msgstr ""
 
 msgid "Return search results for the specified country."
 msgstr "Filtrar resultados para el país especificado."
