@@ -347,7 +347,7 @@ msgid "Repeat"
 msgstr "Atkārtot"
 
 msgid "Resume playback from the previous position?"
-msgstr ""
+msgstr "Turpināt atskaņošanu no iepriekšējās pozīcijas?"
 
 msgid "Return search results for the specified country."
 msgstr "Izmantot meklēšanas rezultātus norādītajai valstij."
