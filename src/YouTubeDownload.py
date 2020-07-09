@@ -99,7 +99,7 @@ class downloadTask(Task):
 				print('[YouTube] Error delete file:', e)
 
 	def downloadFailed(self, reason, status):
-		print('[YouTube] Video download failed', str(error_message))
+		print('[YouTube] Video download failed', str(reason))
 		Task.processFinished(self, 1)
 		self.downloadStop()
 
