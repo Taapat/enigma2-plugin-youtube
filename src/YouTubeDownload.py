@@ -65,6 +65,7 @@ class downloadTask(Task):
 		self.url = url
 		self.outputfile = outputfile
 		self.downloadStop = downloadStop
+		self.totalSize = 0
 
 	def run(self, callback):
 		self.callback = callback
@@ -75,6 +76,7 @@ class downloadTask(Task):
 
 	def downloadProgress(self, currentbytes, totalbytes):
 		self.progress = int(currentbytes / float(totalbytes) * 100)
+		self.totalSize = totalbytes
 
 	def downloadFinished(self, result):
 		Task.processFinished(self, 0)
@@ -131,19 +133,21 @@ class YouTubeDownloadList(Screen):
 					size="210,60" valign="center" halign="center" font="Regular;33" transparent="1" />
 				</screen>""" % BUTTONS_FOLDER
 	else:
-		skin = """<screen position="center,center" size="630,370">
-				<widget source="list" render="Listbox" position="center,30" size="600,270" \
+		skin = """<screen position="center,center" size="720,370">
+				<widget source="list" render="Listbox" position="center,30" size="690,270" \
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [
 							MultiContentEntryText(pos=(5,1), size=(270,22), \
-								font=0, flags=RT_HALIGN_LEFT, text=1), # Title
+								font=0, flags=RT_HALIGN_LEFT, text=1),  # Title
 							MultiContentEntryText(pos=(280,1), size=(120,22), \
-								font=0, flags=RT_HALIGN_RIGHT, text=2), # State
+								font=0, flags=RT_HALIGN_RIGHT, text=2),  # State
 							MultiContentEntryProgress(pos=(410,4), size=(100,22), \
 								percent=-3), # Progress
 							MultiContentEntryText(pos=(520,1), size=(80,22), \
-								font=0, flags=RT_HALIGN_LEFT, text=4), # Percentage
+								font=0, flags=RT_HALIGN_LEFT, text=4),  # Percentage
+							MultiContentEntryText(pos=(600,1), size=(86,22), \
+								font=0, flags=RT_HALIGN_RIGHT, text=5),  # Size
 							],
 						"fonts": [gFont("Regular",20)],
 						"itemHeight": 30}
@@ -182,11 +186,15 @@ class YouTubeDownloadList(Screen):
 		downloadList = []
 		for job in job_manager.getPendingJobs():
 			progress = job.progress / float(job.end) * 100
-			downloadList.append((job, job.name + ' ...', job.getStatustext(),
-				int(progress), str(progress) + "%"))
+			task = job.tasks[job.current_task]
+			totalSize = ''
+			if hasattr(task, 'totalSize') and task.totalSize > 0:
+				totalSize = _('%.1fMB') % (task.totalSize / 1000000.0)
+			downloadList.append((job, '%s ...' % job.name, job.getStatustext(),
+				int(progress), '%s%%' % progress, totalSize))
 		self['list'].updateList(downloadList)
 		if downloadList:
-			self.progressTimer.startLongTimer(2)
+			self.progressTimer.startLongTimer(1)
 
 	def ok(self):
 		current = self['list'].getCurrent()
