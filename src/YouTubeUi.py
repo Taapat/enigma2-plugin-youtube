@@ -172,6 +172,7 @@ class YouTubePlayer(MoviePlayer):
 			})
 		self.servicelist = InfoBar.instance and InfoBar.instance.servicelist
 		self.started = False
+		self.lastPosition = []
 
 	def __serviceStart(self):
 		if not self.started:
