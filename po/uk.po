@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-08 22:23+0300\n"
+"POT-Creation-Date: 2020-07-12 18:51+0300\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: kvinto <kvinto@rambler.ru>\n"
 "Language-Team: <kvinto  sat-ukraine.info>\n"
@@ -25,6 +25,10 @@ msgstr " сподобалося"
 
 msgid " views"
 msgstr " переглядів"
+
+#, python-format
+msgid "%.1fMB"
+msgstr ""
 
 msgid "Active video downloads"
 msgstr "Активні відеозавантаження"
