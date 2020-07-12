@@ -71,15 +71,14 @@ class downloadTask(Task):
 		self.callback = callback
 		self.download = downloadWithProgress(self.url, self.outputfile)
 		self.download.addProgress(self.downloadProgress)
-		self.download.addEnd(self.downloadFinished)
-		self.download.addError(self.downloadFailed)
-		self.download.start()
+		self.download.start().addCallback(self.downloadFinished)\
+			.addErrback(self.downloadFailed)
 
 	def downloadProgress(self, currentbytes, totalbytes):
 		self.progress = int(currentbytes / float(totalbytes) * 100)
 		self.totalSize = totalbytes
 
-	def downloadFinished(self):
+	def downloadFinished(self, result):
 		Task.processFinished(self, 0)
 		self.downloadStop()
 		if '_suburi.mp4' in self.outputfile and \
@@ -98,8 +97,11 @@ class downloadTask(Task):
 			except Exception as e:
 				print('[YouTube] Error delete file:', e)
 
-	def downloadFailed(self, reason, status):
-		print('[YouTube] Video download failed', str(reason))
+	def downloadFailed(self, failure_instance=None, error_message=''):
+		print('[YouTube] Video download failed')
+		if error_message == '' and failure_instance is not None:
+			error_message = failure_instance.getErrorMessage()
+			print('[YouTube]', str(error_message))
 		Task.processFinished(self, 1)
 		self.downloadStop()
 
