@@ -1060,7 +1060,7 @@ class YouTubeMain(Screen):
 				Duration = _('Duration: ') + self._convertDate(Duration) if Duration != 'P0D' else _('Live broadcast')
 			PublishedAt = self._tryStr(result, lambda x: x['snippet']['publishedAt'])
 			PublishedAt = _('Published at: ') + PublishedAt.replace('T', ' ')\
-					.split('.')[0] if PublishedAt else ''
+					.replace('Z', '').split('.')[0] if PublishedAt else ''
 			videosInfo = (
 				self._tryList(result, lambda x: x['id']),  # Id
 				self._tryStr(result, lambda x: x['snippet']['thumbnails']['default']['url']),  # Thumbnail url
