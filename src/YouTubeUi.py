@@ -962,7 +962,7 @@ class YouTubeMain(Screen):
 						videos += self.videoIdFromPlaylist(subscription[0], False)
 				if self.nextPageToken:
 					for subscription in self.getAllSubscriptions():
-						videos += self.videoIdFromPlaylist(subscription)
+						videos += self.videoIdFromPlaylist(subscription, False)
 				if videos:
 					videos = sorted(self.extractVideoIdList(videos), key=lambda k: k[12], reverse=True)  # sort by date
 					del videos[int(self.searchResult):]  # leaves only searchResult long list
