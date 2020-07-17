@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from __future__ import print_function
 
 from json import loads
@@ -36,7 +37,7 @@ class OAuth:
 		data = compat_urlencode({
 				'client_id': self.client_id,
 				'scope'	: 'https://www.googleapis.com/auth/youtube'
-				})
+				}).encode()
 		data = self.get_oauth_response(url, data)
 		if data:
 			try:
@@ -56,7 +57,7 @@ class OAuth:
 				'client_secret': self.client_secret,
 				'code': self.device_code,
 				'grant_type': 'http://oauth.net/grant_type/device/1.0'
-				})
+				}).encode()
 		data = self.get_oauth_response(url, data)
 		if data and 'access_token' in data and 'refresh_token' in data:
 			return data['refresh_token'], 1
@@ -69,7 +70,7 @@ class OAuth:
 				'client_secret': self.client_secret,
 				'refresh_token': refresh_token,
 				'grant_type': 'refresh_token'
-				})
+				}).encode()
 		data = self.get_oauth_response(url, data)
 		if data and 'access_token' in data:
 			return data['access_token']
