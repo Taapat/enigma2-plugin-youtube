@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from __future__ import print_function
 
 import os
@@ -616,7 +617,7 @@ class YouTubeMain(Screen):
 					self.decodeThumbnail(entryId, image)
 				else:
 					image = os.path.join('/tmp/', str(entryId)+'.jpg')
-					downloadPage(url, image)\
+					downloadPage(url.encode(), image)\
 						.addCallback(boundFunction(self.downloadFinished, entryId))\
 						.addErrback(boundFunction(self.downloadFailed, entryId))
 
@@ -1420,7 +1421,7 @@ class YouTubeInfo(Screen):
 
 	def LayoutFinish(self):
 		if self.ThumbnailUrl:
-			downloadPage(self.ThumbnailUrl, '/tmp/hqdefault.jpg')\
+			downloadPage(self.ThumbnailUrl.encode(), '/tmp/hqdefault.jpg')\
 				.addCallback(self.downloadFinished)
 
 	def downloadFinished(self, result):
