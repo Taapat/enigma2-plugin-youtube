@@ -175,13 +175,13 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				'yellow': self.openKeyboard,
 				'menu': self.openMenu
 			}, -2)
-		searchList = [('', None)]
-		ConfigListScreen.__init__(self, searchList, session)
+		ConfigListScreen.__init__(self, [], session)
 		self.searchValue = GoogleSuggestionsConfigText(default='',
 			updateSuggestions=self.updateSuggestions)
 		self.setSearchEntry()
 		self['list'] = List([])
 		self.searchHistory = config.plugins.YouTube.searchHistoryDict[self.curList].value
+		searchList = [('', None)]
 		for entry in self.searchHistory:
 			searchList.append((entry, None))
 		self['list'].setList(searchList)
