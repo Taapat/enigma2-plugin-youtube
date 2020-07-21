@@ -28,7 +28,7 @@ msgstr " переглядів"
 
 #, python-format
 msgid "%.1fMB"
-msgstr ""
+msgstr "%.1fМБ"
 
 msgid "Active video downloads"
 msgstr "Активні відеозавантаження"
@@ -52,7 +52,7 @@ msgid "Cancel"
 msgstr "Скасувати"
 
 msgid "Chinese"
-msgstr ""
+msgstr "Китайська"
 
 msgid "Choose what you want to do"
 msgstr "Виберіть, що будете робити"
@@ -64,13 +64,13 @@ msgid "Created date"
 msgstr "Дата створення"
 
 msgid "Czech"
-msgstr ""
+msgstr "Чеська"
 
 msgid "Czech Republic"
 msgstr "Чехія"
 
 msgid "Default"
-msgstr ""
+msgstr "Типово"
 
 msgid "Delete this entry"
 msgstr "Видалити цей запис"
@@ -79,13 +79,13 @@ msgid "Disliked!"
 msgstr "Не сподобалося!"
 
 msgid "Download directory:"
-msgstr "Каталог для завантаження"
+msgstr "Каталог для завантаження:"
 
 msgid "Download feed entries. Please wait..."
-msgstr "Відбувається завантаження фідів. Зачекайте ..."
+msgstr "Відбувається завантаження фідів. Зачекайте..."
 
 msgid "Download search results. Please wait..."
-msgstr "Завантаження результатів пошуку. Зачекайте ..."
+msgstr "Завантаження результатів пошуку. Зачекайте..."
 
 msgid "Download video"
 msgstr "Завантажити відео"
@@ -97,7 +97,7 @@ msgid "Duration: "
 msgstr "Тривалість: "
 
 msgid "Dutch"
-msgstr ""
+msgstr "Нідерландська"
 
 msgid "Embedded in webpages"
 msgstr "Відео на веб-сайтах"
@@ -109,10 +109,10 @@ msgid "Exit"
 msgstr "Вихід"
 
 msgid "Exteplayer"
-msgstr ""
+msgstr "Exteplayer"
 
 msgid "Extract video url. Please wait..."
-msgstr "Витяг відеопосилання. Почекайте..."
+msgstr "Витяг відеопосилання. Зачекайте..."
 
 msgid ""
 "FFmpeg will be used to merge downloaded DASH video and audio files.\n"
@@ -125,11 +125,11 @@ msgid "France"
 msgstr "Франція"
 
 msgid "French"
-msgstr ""
+msgstr "Французька"
 
 #, fuzzy
 msgid "German"
-msgstr "Німеччина"
+msgstr "Німецька"
 
 msgid "Germany"
 msgstr "Німеччина"
@@ -147,7 +147,7 @@ msgstr "Греція"
 
 #, fuzzy
 msgid "Greek"
-msgstr "Греція"
+msgstr "Грецька"
 
 msgid "Gstplayer"
 msgstr ""
@@ -156,10 +156,10 @@ msgid "HD videos"
 msgstr "HD відео"
 
 msgid "Hebrew"
-msgstr ""
+msgstr "Іврит"
 
 msgid "Hindi"
-msgstr ""
+msgstr "Гінді"
 
 msgid "Hong Kong"
 msgstr "Гонконг"
@@ -191,7 +191,7 @@ msgstr "Ізраїль"
 
 #, fuzzy
 msgid "Italian"
-msgstr "Італія"
+msgstr "Італійська"
 
 msgid "Italy"
 msgstr "Італія"
@@ -201,20 +201,20 @@ msgstr "Японія"
 
 #, fuzzy
 msgid "Japanese"
-msgstr "Японія"
+msgstr "Японська"
 
 msgid "Keyboard"
 msgstr "Клавіатура"
 
 msgid "Korean"
-msgstr ""
+msgstr "Корейська"
 
 msgid "Latvia"
 msgstr "Латвія"
 
 #, fuzzy
 msgid "Latvian"
-msgstr "Латвія"
+msgstr "Латвійська"
 
 msgid "Liked videos"
 msgstr "Відео сподобалося"
@@ -240,7 +240,7 @@ msgid "Maximum video resolution:"
 msgstr "Максимальний дозвіл відео:"
 
 msgid "Media player:"
-msgstr ""
+msgstr "Медіаплеєр:"
 
 msgid "Merge downloaded files:"
 msgstr "Об'єднати завантажені файли:"
@@ -269,7 +269,7 @@ msgstr "Нова Зеландія"
 #, fuzzy, python-format
 msgid "Next %s entry"
 msgid_plural "Next %s entries"
-msgstr[0] "Наступні %s записи"
+msgstr[0] "Наступний %s запис"
 msgstr[1] "Наступні %s записи"
 
 msgid "No"
@@ -279,7 +279,7 @@ msgid "No, but play video again"
 msgstr "Ні, програти це відео ще раз"
 
 msgid "Ok"
-msgstr "Ок"
+msgstr "ОК"
 
 msgid "Open"
 msgstr "Відкрити"
@@ -312,15 +312,15 @@ msgid "Poland"
 msgstr "Польща"
 
 msgid "Polish"
-msgstr ""
+msgstr "Польська"
 
 msgid "Portuguese"
-msgstr ""
+msgstr "Португальська"
 
 #, fuzzy, python-format
 msgid "Previous %s entry"
 msgid_plural "Previous %s entries"
-msgstr[0] "Попередні записи %s"
+msgstr[0] "Попередній запис %s"
 msgstr[1] "Попередні записи %s"
 
 msgid "Public feeds"
@@ -354,7 +354,7 @@ msgid "Repeat"
 msgstr "Повторення"
 
 msgid "Resume playback from the previous position?"
-msgstr ""
+msgstr "Відновити з попередньої позиції?"
 
 msgid "Return search results for the specified country."
 msgstr "Повернути результати пошуку для конкретної країни."
@@ -420,7 +420,7 @@ msgid ""
 "Sorry, this file already exists:\n"
 "%s"
 msgstr ""
-"На жаль, цей файл уже існує:\n"
+"На жаль, цей файл вже існує:\n"
 "%s"
 
 msgid "Sort search results by:"
@@ -433,13 +433,13 @@ msgid "Spain"
 msgstr "Іспанія"
 
 msgid "Spanish"
-msgstr ""
+msgstr "Іспанська"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Вкажіть каталог, для збереження відеофайлів."
 
 msgid "Specify the player which will be used for YouTube media playback."
-msgstr ""
+msgstr "Вкажіть програвач, який використовуватиметься для відтворення YouTube."
 
 msgid "Stop playing this movie?"
 msgstr "Вийти з цього відео?"
@@ -458,20 +458,20 @@ msgstr "Швеція"
 
 #, fuzzy
 msgid "Swedish"
-msgstr "Швеція"
+msgstr "Шведська"
 
 msgid "Taiwan"
 msgstr "Тайвань"
 
 #, fuzzy
 msgid "Thai"
-msgstr "Таїланд"
+msgstr "Тайська"
 
 msgid "Thailand"
 msgstr "Таїланд"
 
 msgid "The Netherlands"
-msgstr ""
+msgstr "Нідерланди"
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -522,10 +522,10 @@ msgstr "Турція"
 
 #, fuzzy
 msgid "Turkish"
-msgstr "Турція"
+msgstr "Турецька"
 
 msgid "United Kingdom"
-msgstr ""
+msgstr "Велика Британія"
 
 msgid "United States"
 msgstr "США"
@@ -561,7 +561,7 @@ msgid ""
 "What maximum resolution used when playing video, if available.\n"
 "If you have a slow Internet connection, you can use a lower resolution."
 msgstr ""
-"Яка максимальна роздільність екрану має використовуватися при відтворенні відео, якщо така є\n"
+"Яка максимальна роздільність екрану має використовуватися при відтворенні відео, якщо така є.\n"
 "Якщо у вас повільне підключення до інтернету, ви можете використовувати більш низьку роздільність."
 
 msgid "What to do when stop playback in videoplayer."
