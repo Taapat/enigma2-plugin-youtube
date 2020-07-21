@@ -28,7 +28,7 @@ msgstr " просмотров"
 
 #, python-format
 msgid "%.1fMB"
-msgstr ""
+msgstr "%.1fМб"
 
 msgid "Active video downloads"
 msgstr "Активные загрузки видео"
@@ -52,7 +52,7 @@ msgid "Cancel"
 msgstr "Отменить"
 
 msgid "Chinese"
-msgstr ""
+msgstr "Китайский"
 
 msgid "Choose what you want to do"
 msgstr "Выберите, что будете делать"
@@ -64,19 +64,19 @@ msgid "Created date"
 msgstr "Дата создания"
 
 msgid "Czech"
-msgstr ""
+msgstr "Чешский"
 
 msgid "Czech Republic"
 msgstr "Чехия"
 
 msgid "Default"
-msgstr ""
+msgstr "По умолчанию"
 
 msgid "Delete this entry"
 msgstr "Удалить эту запись"
 
 msgid "Disliked!"
-msgstr "Отмечен, что не нравилось!"
+msgstr "Отмечен, что не понравилось!"
 
 msgid "Download directory:"
 msgstr "Каталог для загрузки"
@@ -97,7 +97,7 @@ msgid "Duration: "
 msgstr "Длительность: "
 
 msgid "Dutch"
-msgstr ""
+msgstr "Нидерландский"
 
 msgid "Embedded in webpages"
 msgstr "Видео на веб-сайтах"
@@ -109,7 +109,7 @@ msgid "Exit"
 msgstr "Выход"
 
 msgid "Exteplayer"
-msgstr ""
+msgstr "Exteplayer"
 
 msgid "Extract video url. Please wait..."
 msgstr "Извлечение видеоссылки. Подождите..."
@@ -125,11 +125,11 @@ msgid "France"
 msgstr "Франция"
 
 msgid "French"
-msgstr ""
+msgstr "Французский"
 
 #, fuzzy
 msgid "German"
-msgstr "Германия"
+msgstr "Немецкий"
 
 msgid "Germany"
 msgstr "Германия"
@@ -147,19 +147,19 @@ msgstr "Греция"
 
 #, fuzzy
 msgid "Greek"
-msgstr "Греция"
+msgstr "Греческий"
 
 msgid "Gstplayer"
-msgstr ""
+msgstr "Gstplayer"
 
 msgid "HD videos"
 msgstr "HD видео"
 
 msgid "Hebrew"
-msgstr ""
+msgstr "Иврит"
 
 msgid "Hindi"
-msgstr ""
+msgstr "Хинди"
 
 msgid "Hong Kong"
 msgstr "Гонконг"
@@ -191,7 +191,7 @@ msgstr "Израиль"
 
 #, fuzzy
 msgid "Italian"
-msgstr "Италия"
+msgstr "Итальянский"
 
 msgid "Italy"
 msgstr "Италия"
@@ -201,20 +201,20 @@ msgstr "Япония"
 
 #, fuzzy
 msgid "Japanese"
-msgstr "Япония"
+msgstr "Японский"
 
 msgid "Keyboard"
 msgstr "Клавиатура"
 
 msgid "Korean"
-msgstr ""
+msgstr "Корейский"
 
 msgid "Latvia"
 msgstr "Латвия"
 
 #, fuzzy
 msgid "Latvian"
-msgstr "Латвия"
+msgstr "Латвийский"
 
 msgid "Liked videos"
 msgstr "Понравившиеся видео"
@@ -240,7 +240,7 @@ msgid "Maximum video resolution:"
 msgstr "Максимальное разрешение видео:"
 
 msgid "Media player:"
-msgstr ""
+msgstr "Медиаплеер:"
 
 msgid "Merge downloaded files:"
 msgstr "Объединить загруженные файлы:"
@@ -269,7 +269,7 @@ msgstr "Новая Зеландия"
 #, fuzzy, python-format
 msgid "Next %s entry"
 msgid_plural "Next %s entries"
-msgstr[0] "Следующие %s записи"
+msgstr[0] "Следующая %s запись"
 msgstr[1] "Следующие %s записи"
 
 msgid "No"
@@ -279,7 +279,7 @@ msgid "No, but play video again"
 msgstr "Нет, но проиграть это видео еще раз"
 
 msgid "Ok"
-msgstr "Ок"
+msgstr "OK"
 
 msgid "Open"
 msgstr "Открыть"
@@ -312,15 +312,15 @@ msgid "Poland"
 msgstr "Польша"
 
 msgid "Polish"
-msgstr ""
+msgstr "Польский"
 
 msgid "Portuguese"
-msgstr ""
+msgstr "Португальский"
 
 #, fuzzy, python-format
 msgid "Previous %s entry"
 msgid_plural "Previous %s entries"
-msgstr[0] "Предыдущие %s записи"
+msgstr[0] "Предыдущая %s запись"
 msgstr[1] "Предыдущие %s записи"
 
 msgid "Public feeds"
@@ -354,7 +354,7 @@ msgid "Repeat"
 msgstr "Повторить"
 
 msgid "Resume playback from the previous position?"
-msgstr ""
+msgstr "Возобновить воспроизведение с предыдущей позиции?"
 
 msgid "Return search results for the specified country."
 msgstr "Вернуть результаты поиска для конкретной страны."
@@ -433,13 +433,13 @@ msgid "Spain"
 msgstr "Испания"
 
 msgid "Spanish"
-msgstr ""
+msgstr "Испанский"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Укажите каталог, где сохранить видео файлы."
 
 msgid "Specify the player which will be used for YouTube media playback."
-msgstr ""
+msgstr "Укажите плеер, который будет использоваться для воспроизведения на YouTube."
 
 msgid "Stop playing this movie?"
 msgstr "Выйти из этого видео?"
@@ -458,20 +458,20 @@ msgstr "Швеция"
 
 #, fuzzy
 msgid "Swedish"
-msgstr "Швеция"
+msgstr "Шведский"
 
 msgid "Taiwan"
 msgstr "Тайвань"
 
 #, fuzzy
 msgid "Thai"
-msgstr "Таиланд"
+msgstr "Тайский"
 
 msgid "Thailand"
 msgstr "Таиланд"
 
 msgid "The Netherlands"
-msgstr ""
+msgstr "Нидерланды"
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -517,13 +517,13 @@ msgid "Try to exclude all restricted content from the search result."
 msgstr "Попробовать исключить всё ограниченное содержание из результатов поиска."
 
 msgid "Turkey"
-msgstr ""
+msgstr "Турция"
 
 msgid "Turkish"
-msgstr ""
+msgstr "Турецкий"
 
 msgid "United Kingdom"
-msgstr ""
+msgstr "Великобритания"
 
 msgid "United States"
 msgstr "США"
@@ -559,7 +559,7 @@ msgid ""
 "What maximum resolution used when playing video, if available.\n"
 "If you have a slow Internet connection, you can use a lower resolution."
 msgstr ""
-"Какое максимальное разрешение использовать при воспроизведении видео, если такая доступна.\n"
+"Какое максимальное разрешение используется при воспроизведении видео, если доступно.\n"
 "Если у вас медленное подключение к интернету, вы можете использовать более низкое разрешение."
 
 msgid "What to do when stop playback in videoplayer."
@@ -588,7 +588,7 @@ msgid ""
 "Do you want to do it again to update access data?"
 msgstr ""
 "Вы уже авторизовали доступ этому плагину к вашей учетной записи YouTube.\n"
-"Вы хотите это сделать снова, чтобы обновить данные доступа?"
+"Вы хотите сделать это снова, чтобы обновить данные доступа?"
 
 msgid ""
 "You have disabled downloaded file merge.\n"
