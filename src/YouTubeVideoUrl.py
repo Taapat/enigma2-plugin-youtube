@@ -174,6 +174,29 @@ class YouTubeVideoUrl():
 			print('[YouTubeVideoUrl] unable extract pattern from string!')
 			return ''
 
+	def _html_search_regex(self, pattern, string, group=None):
+		"""
+		Like _search_regex, but strips HTML tags and unescapes entities.
+		"""
+		res = self._search_regex(pattern, string, group)
+		if res:
+			return clean_html(res).strip()
+		else:
+			return res
+
+	def _html_search_meta(self, name, html):
+		if not isinstance(name, (list, tuple)):
+			name = [name]
+		return self._html_search_regex(
+			[self._meta_regex(n) for n in name],
+			html, group='content')
+
+	@staticmethod
+	def _meta_regex(prop):
+		return r'''(?isx)<meta
+				(?=[^>]+(?:itemprop|name|property|id|http-equiv)=(["\']?)%s\1)
+				[^>]+?content=(["\'])(?P<content>.*?)\2''' % re.escape(prop)
+
 	def _decrypt_signature(self, s, player_url):
 		"""Turn the encrypted s field into a working signature"""
 
@@ -295,7 +318,7 @@ class YouTubeVideoUrl():
 		# Get video info
 		video_info = {}
 		embed_webpage = None
-		if re.search(r'player-age-gate-content">', video_webpage) is not None:
+		if re.search(r'player-age-gate-content">', video_webpage) is not None or self._html_search_meta('og:restrictions:age', video_webpage) == "18+":
 			age_gate = True
 			# We simulate the access to the video from www.youtube.com/v/{video_id}
 			# this can be viewed without login into Youtube
