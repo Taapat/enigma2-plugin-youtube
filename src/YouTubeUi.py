@@ -12,6 +12,7 @@ from Components.config import config, ConfigDirectory, ConfigSelection, \
 	getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
+from Components.Language import language
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
 from Components.ScrollLabel import ScrollLabel
@@ -25,6 +26,7 @@ from Screens.InfoBar import InfoBar, MoviePlayer
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
+from Tools.CountryCodes import ISO3166
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_PLUGINS
 
 from . import _, ngettext
@@ -41,57 +43,11 @@ config.plugins.YouTube.searchResult = ConfigSelection(
 	('50', '50')
 	], '24')
 config.plugins.YouTube.searchRegion = ConfigSelection(
-	[('', _('All')),
-	('AU', _('Australia')),
-	('BR', _('Brazil')),
-	('CA', _('Canada')),
-	('CZ', _('Czech Republic')),
-	('FR', _('France')),
-	('DE', _('Germany')),
-	('GR', _('Greece')),
-	('HK', _('Hong Kong')),
-	('IN', _('India')),
-	('IE', _('Ireland')),
-	('IL', _('Israel')),
-	('IT', _('Italy')),
-	('JP', _('Japan')),
-	('LV', _('Latvia')),
-	('MX', _('Mexico')),
-	('NZ', _('New Zealand')),
-	('PL', _('Poland')),
-	('RU', _('Russia')),
-	('KR', _('South Korea')),
-	('ES', _('Spain')),
-	('SE', _('Sweden')),
-	('TW', _('Taiwan')),
-	('TH', _('Thailand')),
-	('NL', _('The Netherlands')),
-	('TR', _('Turkey')),
-	('GB', _('United Kingdom')),
-	('US', _('United States'))
-	], '')
+	default='',
+	choices=[('', _('All'))]+[(x[1], x[0]) for x in ISO3166])
 config.plugins.YouTube.searchLanguage = ConfigSelection(
-	[('', _('All')),
-	('zh', _('Chinese')),
-	('cs', _('Czech')),
-	('nl', _('Dutch')),
-	('fr', _('French')),
-	('de', _('German')),
-	('el', _('Greek')),
-	('hi', _('Hindi')),
-	('he', _('Hebrew')),
-	('it', _('Italian')),
-	('ja', _('Japanese')),
-	('ko', _('Korean')),
-	('lv', _('Latvian')),
-	('pl', _('Polish')),
-	('pt', _('Portuguese')),
-	('ru', _('Russian')),
-	('es', _('Spanish')),
-	('sv', _('Swedish')),
-	('th', _('Thai')),
-	('tr', _('Turkish')),
-	], '')
+	default='',
+	choices=[('', _('All'))]+[(x[1][1], x[1][0]) for x in language.getLanguageList()])
 config.plugins.YouTube.searchOrder = ConfigSelection(
 	[('relevance', _('Relevance')),
 	('date', _('Created date')),
