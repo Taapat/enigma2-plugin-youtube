@@ -86,7 +86,7 @@ config.plugins.YouTube.searchLanguage = ConfigSelection(
 	('lv', _('Latvian')),
 	('pl', _('Polish')),
 	('pt', _('Portuguese')),
-	('ru', _('Russia')),
+	('ru', _('Russian')),
 	('es', _('Spanish')),
 	('sv', _('Swedish')),
 	('th', _('Thai')),
