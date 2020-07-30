@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-12 18:51+0300\n"
+"POT-Creation-Date: 2020-07-30 23:02+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -40,20 +40,8 @@ msgstr "Visi"
 msgid "Ask user"
 msgstr "Jautāt"
 
-msgid "Australia"
-msgstr "Austrālija"
-
-msgid "Brazil"
-msgstr "Brazīlija"
-
-msgid "Canada"
-msgstr "Kanāda"
-
 msgid "Cancel"
 msgstr "Atcelt"
-
-msgid "Chinese"
-msgstr "Ķīniešu"
 
 msgid "Choose what you want to do"
 msgstr "Izvēlieties ko vēlaties darīt"
@@ -63,12 +51,6 @@ msgstr "Aizvērt YouTube"
 
 msgid "Created date"
 msgstr "Izveidošanas datuma"
-
-msgid "Czech"
-msgstr "Čehu"
-
-msgid "Czech Republic"
-msgstr "Čehija"
 
 msgid "Default"
 msgstr "Noklusētais"
@@ -97,9 +79,6 @@ msgstr "Lejuplādē"
 msgid "Duration: "
 msgstr "Ilgums: "
 
-msgid "Dutch"
-msgstr "Holandiešu"
-
 msgid "Embedded in webpages"
 msgstr "Video no web lapām"
 
@@ -122,18 +101,6 @@ msgstr ""
 "Tiks lietots FFmpeg lai apvienotu lejupielādētos DASH video and audio failus.\n"
 "Ja nepieciešams, FFmpeg tiks uzstādīts."
 
-msgid "France"
-msgstr "Francija"
-
-msgid "French"
-msgstr "Franču"
-
-msgid "German"
-msgstr "Vācu"
-
-msgid "Germany"
-msgstr "Vācija"
-
 #, python-format
 msgid ""
 "Go to %s\n"
@@ -142,26 +109,11 @@ msgstr ""
 "Ejiet uz %s\n"
 "Un ievadiet kodu %s"
 
-msgid "Greece"
-msgstr "Grieķija"
-
-msgid "Greek"
-msgstr "Grieķu"
-
 msgid "Gstplayer"
 msgstr "Gstplayer"
 
 msgid "HD videos"
 msgstr "HD video"
-
-msgid "Hebrew"
-msgstr "Ungāru"
-
-msgid "Hindi"
-msgstr "Hindu"
-
-msgid "Hong Kong"
-msgstr "Honkonga"
 
 msgid ""
 "How many search results will be returned.\n"
@@ -176,41 +128,11 @@ msgstr "Man nepatīk"
 msgid "I like this"
 msgstr "Man patīk"
 
-msgid "India"
-msgstr "Indija"
-
 msgid "Info"
 msgstr "Informācija"
 
-msgid "Ireland"
-msgstr "Īrija"
-
-msgid "Israel"
-msgstr "Izrēla"
-
-msgid "Italian"
-msgstr "Itāļu"
-
-msgid "Italy"
-msgstr "Itālija"
-
-msgid "Japan"
-msgstr "Japāna"
-
-msgid "Japanese"
-msgstr "Japāņu"
-
 msgid "Keyboard"
 msgstr "Tastatūra"
-
-msgid "Korean"
-msgstr "Korejiešu"
-
-msgid "Latvia"
-msgstr "Latvija"
-
-msgid "Latvian"
-msgstr "Latviešu"
 
 msgid "Liked videos"
 msgstr "Patīk"
@@ -240,9 +162,6 @@ msgstr "Media atskaņotājs:"
 msgid "Merge downloaded files:"
 msgstr "Apvienot lejupielādētos failus:"
 
-msgid "Mexico"
-msgstr "Meksika"
-
 msgid "Moderate"
 msgstr "Mēreni"
 
@@ -257,9 +176,6 @@ msgstr "Mani abonementi"
 
 msgid "My feeds"
 msgstr "Manas saites"
-
-msgid "New Zealand"
-msgstr "Jaunzēlande"
 
 #, python-format
 msgid "Next %s entry"
@@ -303,15 +219,6 @@ msgstr "Atskaņošanas saraksti"
 
 msgid "Please select the download directory"
 msgstr "Lūdzu izvēlieties lejupielādes mapi"
-
-msgid "Poland"
-msgstr "Polija"
-
-msgid "Polish"
-msgstr "Poļu"
-
-msgid "Portuguese"
-msgstr "Portugāļu"
 
 #, python-format
 msgid "Previous %s entry"
@@ -361,9 +268,6 @@ msgstr "Izmantot meklēšanas rezultātus kuri visvairāk atbilst norādītajai 
 
 msgid "Return to list"
 msgstr "Atgriesties sarakstā"
-
-msgid "Russia"
-msgstr "Krievija"
 
 msgid "Save search result:"
 msgstr "Saglabāt meklēšnas rezultātu:"
@@ -423,15 +327,6 @@ msgstr ""
 msgid "Sort search results by:"
 msgstr "Kārtot meklēšnas rezultātus pēc:"
 
-msgid "South Korea"
-msgstr "Dienvidkoreja"
-
-msgid "Spain"
-msgstr "Spānija"
-
-msgid "Spanish"
-msgstr "Spāņu"
-
 msgid "Specify the directory where save downloaded video files."
 msgstr "Norādiet mapi kurā saglabāt lejupielādētos video failus."
 
@@ -449,24 +344,6 @@ msgstr "Abonēt šī video kanālu"
 
 msgid "Subscribed!"
 msgstr "Abonēts!"
-
-msgid "Sweden"
-msgstr "Zviedrija"
-
-msgid "Swedish"
-msgstr "Zviedru"
-
-msgid "Taiwan"
-msgstr "Taivāna"
-
-msgid "Thai"
-msgstr "Taiešu"
-
-msgid "Thailand"
-msgstr "Taizeme"
-
-msgid "The Netherlands"
-msgstr "Holande"
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -510,18 +387,6 @@ msgstr "Novērtētākie"
 
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Mēģinās izslēgt visu ierobežotu saturu no meklēšanas rezultātiem."
-
-msgid "Turkey"
-msgstr "Turcija"
-
-msgid "Turkish"
-msgstr "Turku"
-
-msgid "United Kingdom"
-msgstr "Anglija"
-
-msgid "United States"
-msgstr "ASV"
 
 msgid "Unsubscribe"
 msgstr "Anulēt abonementu"
@@ -602,3 +467,138 @@ msgstr "YouTube iestatījumi"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube startējas. Lūdzu uzgaidiet..."
+
+#~ msgid "Australia"
+#~ msgstr "Austrālija"
+
+#~ msgid "Brazil"
+#~ msgstr "Brazīlija"
+
+#~ msgid "Canada"
+#~ msgstr "Kanāda"
+
+#~ msgid "Chinese"
+#~ msgstr "Ķīniešu"
+
+#~ msgid "Czech"
+#~ msgstr "Čehu"
+
+#~ msgid "Czech Republic"
+#~ msgstr "Čehija"
+
+#~ msgid "Dutch"
+#~ msgstr "Holandiešu"
+
+#~ msgid "France"
+#~ msgstr "Francija"
+
+#~ msgid "French"
+#~ msgstr "Franču"
+
+#~ msgid "German"
+#~ msgstr "Vācu"
+
+#~ msgid "Germany"
+#~ msgstr "Vācija"
+
+#~ msgid "Greece"
+#~ msgstr "Grieķija"
+
+#~ msgid "Greek"
+#~ msgstr "Grieķu"
+
+#~ msgid "Hebrew"
+#~ msgstr "Ungāru"
+
+#~ msgid "Hindi"
+#~ msgstr "Hindu"
+
+#~ msgid "Hong Kong"
+#~ msgstr "Honkonga"
+
+#~ msgid "India"
+#~ msgstr "Indija"
+
+#~ msgid "Ireland"
+#~ msgstr "Īrija"
+
+#~ msgid "Israel"
+#~ msgstr "Izrēla"
+
+#~ msgid "Italian"
+#~ msgstr "Itāļu"
+
+#~ msgid "Italy"
+#~ msgstr "Itālija"
+
+#~ msgid "Japan"
+#~ msgstr "Japāna"
+
+#~ msgid "Japanese"
+#~ msgstr "Japāņu"
+
+#~ msgid "Korean"
+#~ msgstr "Korejiešu"
+
+#~ msgid "Latvia"
+#~ msgstr "Latvija"
+
+#~ msgid "Latvian"
+#~ msgstr "Latviešu"
+
+#~ msgid "Mexico"
+#~ msgstr "Meksika"
+
+#~ msgid "New Zealand"
+#~ msgstr "Jaunzēlande"
+
+#~ msgid "Poland"
+#~ msgstr "Polija"
+
+#~ msgid "Polish"
+#~ msgstr "Poļu"
+
+#~ msgid "Portuguese"
+#~ msgstr "Portugāļu"
+
+#~ msgid "Russia"
+#~ msgstr "Krievija"
+
+#~ msgid "South Korea"
+#~ msgstr "Dienvidkoreja"
+
+#~ msgid "Spain"
+#~ msgstr "Spānija"
+
+#~ msgid "Spanish"
+#~ msgstr "Spāņu"
+
+#~ msgid "Sweden"
+#~ msgstr "Zviedrija"
+
+#~ msgid "Swedish"
+#~ msgstr "Zviedru"
+
+#~ msgid "Taiwan"
+#~ msgstr "Taivāna"
+
+#~ msgid "Thai"
+#~ msgstr "Taiešu"
+
+#~ msgid "Thailand"
+#~ msgstr "Taizeme"
+
+#~ msgid "The Netherlands"
+#~ msgstr "Holande"
+
+#~ msgid "Turkey"
+#~ msgstr "Turcija"
+
+#~ msgid "Turkish"
+#~ msgstr "Turku"
+
+#~ msgid "United Kingdom"
+#~ msgstr "Anglija"
+
+#~ msgid "United States"
+#~ msgstr "ASV"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-12 18:51+0300\n"
+"POT-Creation-Date: 2020-07-30 23:02+0300\n"
 "PO-Revision-Date: 2020-06-12 23:54+0300\n"
 "Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish\n"
@@ -44,20 +44,8 @@ msgstr "Tümü"
 msgid "Ask user"
 msgstr "Kullanıcıya sor"
 
-msgid "Australia"
-msgstr "Avustralya"
-
-msgid "Brazil"
-msgstr "Brazilya"
-
-msgid "Canada"
-msgstr "Kanada"
-
 msgid "Cancel"
 msgstr "İptal"
-
-msgid "Chinese"
-msgstr "Çince"
 
 msgid "Choose what you want to do"
 msgstr "Ne yapmak istediğinizi seçin"
@@ -67,12 +55,6 @@ msgstr "YouTube'u kapat"
 
 msgid "Created date"
 msgstr "Oluşturma tarihi"
-
-msgid "Czech"
-msgstr "Çek"
-
-msgid "Czech Republic"
-msgstr "Çek Cumhuriyeti"
 
 msgid "Default"
 msgstr "Varsayılan"
@@ -101,9 +83,6 @@ msgstr "İndiriliyor"
 msgid "Duration: "
 msgstr "Süre: "
 
-msgid "Dutch"
-msgstr "Flemenkçe"
-
 msgid "Embedded in webpages"
 msgstr "Web sayfalarına gömülü"
 
@@ -126,18 +105,6 @@ msgstr ""
 "FFmpeg, indirilen DASH video ve ses dosyalarını birleştirmek için kullanılacak.\n"
 "Gerekirse FFmpeg kurulacaktır."
 
-msgid "France"
-msgstr "Fransa"
-
-msgid "French"
-msgstr "Fransızca"
-
-msgid "German"
-msgstr "Almanca"
-
-msgid "Germany"
-msgstr "Almanya"
-
 #, python-format
 msgid ""
 "Go to %s\n"
@@ -146,26 +113,11 @@ msgstr ""
 "%s adresine git\n"
 "Ve %s kodunu girin"
 
-msgid "Greece"
-msgstr "Yunanistan"
-
-msgid "Greek"
-msgstr "Yunan"
-
 msgid "Gstplayer"
 msgstr "Gstplayer"
 
 msgid "HD videos"
 msgstr "HD videolar"
-
-msgid "Hebrew"
-msgstr "İbranice"
-
-msgid "Hindi"
-msgstr "Hindu"
-
-msgid "Hong Kong"
-msgstr "Hong Kong"
 
 msgid ""
 "How many search results will be returned.\n"
@@ -180,41 +132,11 @@ msgstr "Bunu beğenmedim"
 msgid "I like this"
 msgstr "Bunu beğendim"
 
-msgid "India"
-msgstr "Hindistan"
-
 msgid "Info"
 msgstr "Hakkında"
 
-msgid "Ireland"
-msgstr "İrlanda"
-
-msgid "Israel"
-msgstr "İsrail"
-
-msgid "Italian"
-msgstr "İtalyanca"
-
-msgid "Italy"
-msgstr "İtalya"
-
-msgid "Japan"
-msgstr "Japonya"
-
-msgid "Japanese"
-msgstr "Japonca"
-
 msgid "Keyboard"
 msgstr "Klavye"
-
-msgid "Korean"
-msgstr "Koreli"
-
-msgid "Latvia"
-msgstr "Letonya"
-
-msgid "Latvian"
-msgstr "Letonyalı"
 
 msgid "Liked videos"
 msgstr "Beğenilen videolar"
@@ -245,9 +167,6 @@ msgstr "Media player:"
 msgid "Merge downloaded files:"
 msgstr "İndirilen dosyaları birleştir:"
 
-msgid "Mexico"
-msgstr "Meksika"
-
 msgid "Moderate"
 msgstr "Orta"
 
@@ -262,9 +181,6 @@ msgstr "Aboneliklerim"
 
 msgid "My feeds"
 msgstr "Özet Yayınlarım"
-
-msgid "New Zealand"
-msgstr "Yeni Zelanda"
 
 #, fuzzy, python-format
 msgid "Next %s entry"
@@ -307,15 +223,6 @@ msgstr "Oynatma Listeleri"
 
 msgid "Please select the download directory"
 msgstr "Lütfen indirme dizinini seçin"
-
-msgid "Poland"
-msgstr "Polonya"
-
-msgid "Polish"
-msgstr "Lehçe"
-
-msgid "Portuguese"
-msgstr "Portekizce"
 
 #, fuzzy, python-format
 msgid "Previous %s entry"
@@ -364,9 +271,6 @@ msgstr "Belirtilen dille en alakalı arama sonuçlarını döndür."
 
 msgid "Return to list"
 msgstr "Listeye geri dön"
-
-msgid "Russia"
-msgstr "Rusya"
 
 msgid "Save search result:"
 msgstr "Arama sonucunu kaydet:"
@@ -426,15 +330,6 @@ msgstr ""
 msgid "Sort search results by:"
 msgstr "Arama sonuçlarını sırala:"
 
-msgid "South Korea"
-msgstr "Güney Kore"
-
-msgid "Spain"
-msgstr "İspanya"
-
-msgid "Spanish"
-msgstr "İspanyolca"
-
 msgid "Specify the directory where save downloaded video files."
 msgstr "İndirilen video dosyalarının kaydedileceği dizini belirtin."
 
@@ -452,24 +347,6 @@ msgstr "Bu video kanalına abone ol"
 
 msgid "Subscribed!"
 msgstr "Abone olun!"
-
-msgid "Sweden"
-msgstr "İsveç"
-
-msgid "Swedish"
-msgstr "İsveççe"
-
-msgid "Taiwan"
-msgstr "Tayvan"
-
-msgid "Thai"
-msgstr "Tayland"
-
-msgid "Thailand"
-msgstr "Tayland"
-
-msgid "The Netherlands"
-msgstr "Hollanda"
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -513,18 +390,6 @@ msgstr "Yüksek oy alanlar"
 
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Kısıtlanan tüm içeriği arama sonucundan çıkarmaya çalışın."
-
-msgid "Turkey"
-msgstr "Türkiye"
-
-msgid "Turkish"
-msgstr "Türkçe"
-
-msgid "United Kingdom"
-msgstr "Birleşik Krallık"
-
-msgid "United States"
-msgstr "Amerika"
 
 msgid "Unsubscribe"
 msgstr "Aboneliği iptal et"
@@ -605,3 +470,138 @@ msgstr "YouTube kurulumu"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube başlıyor. Lütfen bekleyin ..."
+
+#~ msgid "Australia"
+#~ msgstr "Avustralya"
+
+#~ msgid "Brazil"
+#~ msgstr "Brazilya"
+
+#~ msgid "Canada"
+#~ msgstr "Kanada"
+
+#~ msgid "Chinese"
+#~ msgstr "Çince"
+
+#~ msgid "Czech"
+#~ msgstr "Çek"
+
+#~ msgid "Czech Republic"
+#~ msgstr "Çek Cumhuriyeti"
+
+#~ msgid "Dutch"
+#~ msgstr "Flemenkçe"
+
+#~ msgid "France"
+#~ msgstr "Fransa"
+
+#~ msgid "French"
+#~ msgstr "Fransızca"
+
+#~ msgid "German"
+#~ msgstr "Almanca"
+
+#~ msgid "Germany"
+#~ msgstr "Almanya"
+
+#~ msgid "Greece"
+#~ msgstr "Yunanistan"
+
+#~ msgid "Greek"
+#~ msgstr "Yunan"
+
+#~ msgid "Hebrew"
+#~ msgstr "İbranice"
+
+#~ msgid "Hindi"
+#~ msgstr "Hindu"
+
+#~ msgid "Hong Kong"
+#~ msgstr "Hong Kong"
+
+#~ msgid "India"
+#~ msgstr "Hindistan"
+
+#~ msgid "Ireland"
+#~ msgstr "İrlanda"
+
+#~ msgid "Israel"
+#~ msgstr "İsrail"
+
+#~ msgid "Italian"
+#~ msgstr "İtalyanca"
+
+#~ msgid "Italy"
+#~ msgstr "İtalya"
+
+#~ msgid "Japan"
+#~ msgstr "Japonya"
+
+#~ msgid "Japanese"
+#~ msgstr "Japonca"
+
+#~ msgid "Korean"
+#~ msgstr "Koreli"
+
+#~ msgid "Latvia"
+#~ msgstr "Letonya"
+
+#~ msgid "Latvian"
+#~ msgstr "Letonyalı"
+
+#~ msgid "Mexico"
+#~ msgstr "Meksika"
+
+#~ msgid "New Zealand"
+#~ msgstr "Yeni Zelanda"
+
+#~ msgid "Poland"
+#~ msgstr "Polonya"
+
+#~ msgid "Polish"
+#~ msgstr "Lehçe"
+
+#~ msgid "Portuguese"
+#~ msgstr "Portekizce"
+
+#~ msgid "Russia"
+#~ msgstr "Rusya"
+
+#~ msgid "South Korea"
+#~ msgstr "Güney Kore"
+
+#~ msgid "Spain"
+#~ msgstr "İspanya"
+
+#~ msgid "Spanish"
+#~ msgstr "İspanyolca"
+
+#~ msgid "Sweden"
+#~ msgstr "İsveç"
+
+#~ msgid "Swedish"
+#~ msgstr "İsveççe"
+
+#~ msgid "Taiwan"
+#~ msgstr "Tayvan"
+
+#~ msgid "Thai"
+#~ msgstr "Tayland"
+
+#~ msgid "Thailand"
+#~ msgstr "Tayland"
+
+#~ msgid "The Netherlands"
+#~ msgstr "Hollanda"
+
+#~ msgid "Turkey"
+#~ msgstr "Türkiye"
+
+#~ msgid "Turkish"
+#~ msgstr "Türkçe"
+
+#~ msgid "United Kingdom"
+#~ msgstr "Birleşik Krallık"
+
+#~ msgid "United States"
+#~ msgstr "Amerika"

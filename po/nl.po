@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-12 18:51+0300\n"
+"POT-Creation-Date: 2020-07-30 23:02+0300\n"
 "PO-Revision-Date: 2019-09-16 14:28+0200\n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: LL@li.org\n"
@@ -38,20 +38,8 @@ msgstr "Alle"
 msgid "Ask user"
 msgstr "Vraag gebruiker"
 
-msgid "Australia"
-msgstr "Australië"
-
-msgid "Brazil"
-msgstr "Brazilië"
-
-msgid "Canada"
-msgstr "Canada"
-
 msgid "Cancel"
 msgstr "Annuleer"
-
-msgid "Chinese"
-msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Kies wat u wilt doen"
@@ -61,12 +49,6 @@ msgstr "Sluit YouTube af"
 
 msgid "Created date"
 msgstr "Gemaakt op"
-
-msgid "Czech"
-msgstr ""
-
-msgid "Czech Republic"
-msgstr "Czechische Republiek"
 
 msgid "Default"
 msgstr ""
@@ -95,9 +77,6 @@ msgstr "Bezig met downloaden"
 msgid "Duration: "
 msgstr "Duur:"
 
-msgid "Dutch"
-msgstr ""
-
 msgid "Embedded in webpages"
 msgstr "Opgenomen in webpagina's"
 
@@ -118,19 +97,6 @@ msgid ""
 "FFmpeg will be installed if necessary."
 msgstr "Indien geactiveerd, dan zal FFmpeg worden gebruikt om gedownloade DASH video- en audiobestanden samen te voegen. Indien noodzakelijk, dan zal FFmpeg geïnstalleerd worden."
 
-msgid "France"
-msgstr "Frankrijk"
-
-msgid "French"
-msgstr ""
-
-#, fuzzy
-msgid "German"
-msgstr "Duitsland"
-
-msgid "Germany"
-msgstr "Duitsland"
-
 #, python-format
 msgid ""
 "Go to %s\n"
@@ -139,27 +105,11 @@ msgstr ""
 "Ga naar %s\n"
 "En voer de code in %s"
 
-msgid "Greece"
-msgstr "Griekenland"
-
-#, fuzzy
-msgid "Greek"
-msgstr "Griekenland"
-
 msgid "Gstplayer"
 msgstr ""
 
 msgid "HD videos"
 msgstr "HD video's"
-
-msgid "Hebrew"
-msgstr ""
-
-msgid "Hindi"
-msgstr ""
-
-msgid "Hong Kong"
-msgstr "Hong Kong"
 
 msgid ""
 "How many search results will be returned.\n"
@@ -172,44 +122,11 @@ msgstr "Ik vind dit niet leuk"
 msgid "I like this"
 msgstr "Ik vind dit leuk"
 
-msgid "India"
-msgstr "India"
-
 msgid "Info"
 msgstr "Info"
 
-msgid "Ireland"
-msgstr "Ierland"
-
-msgid "Israel"
-msgstr "Israël"
-
-#, fuzzy
-msgid "Italian"
-msgstr "Italië"
-
-msgid "Italy"
-msgstr "Italië"
-
-msgid "Japan"
-msgstr "Japan"
-
-#, fuzzy
-msgid "Japanese"
-msgstr "Japan"
-
 msgid "Keyboard"
 msgstr "Toetsenbord"
-
-msgid "Korean"
-msgstr ""
-
-msgid "Latvia"
-msgstr "Letland"
-
-#, fuzzy
-msgid "Latvian"
-msgstr "Letland"
 
 msgid "Liked videos"
 msgstr "Liked video's"
@@ -238,9 +155,6 @@ msgstr ""
 msgid "Merge downloaded files:"
 msgstr "Voeg gedownloade bestanden samen"
 
-msgid "Mexico"
-msgstr "Mexico"
-
 msgid "Moderate"
 msgstr "Gematigd"
 
@@ -255,9 +169,6 @@ msgstr "Mijn inschrijvingen"
 
 msgid "My feeds"
 msgstr "Mijn feeds"
-
-msgid "New Zealand"
-msgstr "Nieuw-Zeeland"
 
 #, fuzzy, python-format
 msgid "Next %s entry"
@@ -300,15 +211,6 @@ msgstr "Afspeellijst "
 
 msgid "Please select the download directory"
 msgstr "Kies de downloadmap"
-
-msgid "Poland"
-msgstr "Polen"
-
-msgid "Polish"
-msgstr ""
-
-msgid "Portuguese"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Previous %s entry"
@@ -357,9 +259,6 @@ msgstr "Met deze optie worden de zoekresultaten getoond die het meest relevant z
 
 msgid "Return to list"
 msgstr "Ga terug naar de lijst"
-
-msgid "Russia"
-msgstr "Rusland"
 
 msgid "Save search result:"
 msgstr "Zoekresultaten opslaan"
@@ -419,15 +318,6 @@ msgstr ""
 msgid "Sort search results by:"
 msgstr "Sorteer zoekresultaten op"
 
-msgid "South Korea"
-msgstr "Zuid-Korea"
-
-msgid "Spain"
-msgstr "Spanje"
-
-msgid "Spanish"
-msgstr ""
-
 msgid "Specify the directory where save downloaded video files."
 msgstr "Met deze optie geeft u aan waar de gedownloade video's opgeslagen moeten worden."
 
@@ -445,26 +335,6 @@ msgstr "Schrijf in op dit videokanaal"
 
 msgid "Subscribed!"
 msgstr "Ingeschreven!"
-
-msgid "Sweden"
-msgstr "Zweden"
-
-#, fuzzy
-msgid "Swedish"
-msgstr "Zweden"
-
-msgid "Taiwan"
-msgstr "Taiwan"
-
-#, fuzzy
-msgid "Thai"
-msgstr "Thailand"
-
-msgid "Thailand"
-msgstr "Thailand"
-
-msgid "The Netherlands"
-msgstr ""
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -506,19 +376,6 @@ msgstr "Hoogste waarderingen"
 
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Met deze optie zal geprobeerd worden om vertrouwelijke informatie te verbergen in de zoekresultaten."
-
-msgid "Turkey"
-msgstr "Turkije"
-
-#, fuzzy
-msgid "Turkish"
-msgstr "Turkije"
-
-msgid "United Kingdom"
-msgstr ""
-
-msgid "United States"
-msgstr "Verenigde Staten"
 
 msgid "Unsubscribe"
 msgstr "Uitschrijven"
@@ -597,3 +454,110 @@ msgstr "YouTube instellingen"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube is aan het starten. Even wachten..."
+
+#~ msgid "Australia"
+#~ msgstr "Australië"
+
+#~ msgid "Brazil"
+#~ msgstr "Brazilië"
+
+#~ msgid "Canada"
+#~ msgstr "Canada"
+
+#~ msgid "Czech Republic"
+#~ msgstr "Czechische Republiek"
+
+#~ msgid "France"
+#~ msgstr "Frankrijk"
+
+#, fuzzy
+#~ msgid "German"
+#~ msgstr "Duitsland"
+
+#~ msgid "Germany"
+#~ msgstr "Duitsland"
+
+#~ msgid "Greece"
+#~ msgstr "Griekenland"
+
+#, fuzzy
+#~ msgid "Greek"
+#~ msgstr "Griekenland"
+
+#~ msgid "Hong Kong"
+#~ msgstr "Hong Kong"
+
+#~ msgid "India"
+#~ msgstr "India"
+
+#~ msgid "Ireland"
+#~ msgstr "Ierland"
+
+#~ msgid "Israel"
+#~ msgstr "Israël"
+
+#, fuzzy
+#~ msgid "Italian"
+#~ msgstr "Italië"
+
+#~ msgid "Italy"
+#~ msgstr "Italië"
+
+#~ msgid "Japan"
+#~ msgstr "Japan"
+
+#, fuzzy
+#~ msgid "Japanese"
+#~ msgstr "Japan"
+
+#~ msgid "Latvia"
+#~ msgstr "Letland"
+
+#, fuzzy
+#~ msgid "Latvian"
+#~ msgstr "Letland"
+
+#~ msgid "Mexico"
+#~ msgstr "Mexico"
+
+#~ msgid "New Zealand"
+#~ msgstr "Nieuw-Zeeland"
+
+#~ msgid "Poland"
+#~ msgstr "Polen"
+
+#~ msgid "Russia"
+#~ msgstr "Rusland"
+
+#~ msgid "South Korea"
+#~ msgstr "Zuid-Korea"
+
+#~ msgid "Spain"
+#~ msgstr "Spanje"
+
+#~ msgid "Sweden"
+#~ msgstr "Zweden"
+
+#, fuzzy
+#~ msgid "Swedish"
+#~ msgstr "Zweden"
+
+#~ msgid "Taiwan"
+#~ msgstr "Taiwan"
+
+#, fuzzy
+#~ msgid "Thai"
+#~ msgstr "Thailand"
+
+#~ msgid "Thailand"
+#~ msgstr "Thailand"
+
+#~ msgid "Turkey"
+#~ msgstr "Turkije"
+
+#, fuzzy
+#~ msgid "Turkish"
+#~ msgstr "Turkije"
+
+#~ msgid "United States"
+#~ msgstr "Verenigde Staten"

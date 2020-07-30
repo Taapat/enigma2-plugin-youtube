@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-12 18:51+0300\n"
+"POT-Creation-Date: 2020-07-30 23:02+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,20 +18,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: YouTubeUi.py:1131
+#: YouTubeUi.py:1110
 #, python-format
 msgid "  (%d-%d of %d)"
 msgstr ""
 
-#: YouTubeUi.py:1053
+#: YouTubeUi.py:1031
 msgid " dislikes"
 msgstr ""
 
-#: YouTubeUi.py:1052
+#: YouTubeUi.py:1030
 msgid " likes"
 msgstr ""
 
-#: YouTubeUi.py:1048
+#: YouTubeUi.py:1026
 msgid " views"
 msgstr ""
 
@@ -40,59 +40,35 @@ msgstr ""
 msgid "%.1fMB"
 msgstr ""
 
-#: YouTubeDownload.py:178 YouTubeUi.py:1170
+#: YouTubeDownload.py:178 YouTubeUi.py:1149
 msgid "Active video downloads"
 msgstr ""
 
-#: YouTubeUi.py:43 YouTubeUi.py:73
+#: YouTubeUi.py:47 YouTubeUi.py:50
 msgid "All"
 msgstr ""
 
-#: YouTubeUi.py:107 YouTubeUi.py:111
+#: YouTubeUi.py:64 YouTubeUi.py:68
 msgid "Ask user"
 msgstr ""
 
-#: YouTubeUi.py:44
-msgid "Australia"
-msgstr ""
-
-#: YouTubeUi.py:45
-msgid "Brazil"
-msgstr ""
-
-#: YouTubeUi.py:46
-msgid "Canada"
-msgstr ""
-
-#: YouTubeDownload.py:23 YouTubeUi.py:1429
+#: YouTubeDownload.py:23 YouTubeUi.py:1408
 msgid "Cancel"
 msgstr ""
 
-#: YouTubeUi.py:74
-msgid "Chinese"
-msgstr ""
-
-#: YouTubeUi.py:456
+#: YouTubeUi.py:413
 msgid "Choose what you want to do"
 msgstr ""
 
-#: YouTubeUi.py:1171
+#: YouTubeUi.py:1150
 msgid "Close YouTube"
 msgstr ""
 
-#: YouTubeUi.py:96
+#: YouTubeUi.py:53
 msgid "Created date"
 msgstr ""
 
-#: YouTubeUi.py:75
-msgid "Czech"
-msgstr ""
-
-#: YouTubeUi.py:47
-msgid "Czech Republic"
-msgstr ""
-
-#: YouTubeUi.py:116
+#: YouTubeUi.py:73
 msgid "Default"
 msgstr ""
 
@@ -100,23 +76,23 @@ msgstr ""
 msgid "Delete this entry"
 msgstr ""
 
-#: YouTubeUi.py:1256
+#: YouTubeUi.py:1235
 msgid "Disliked!"
 msgstr ""
 
-#: YouTubeUi.py:1476
+#: YouTubeUi.py:1455
 msgid "Download directory:"
 msgstr ""
 
-#: YouTubeUi.py:513
+#: YouTubeUi.py:470
 msgid "Download feed entries. Please wait..."
 msgstr ""
 
-#: YouTubeUi.py:509
+#: YouTubeUi.py:466
 msgid "Download search results. Please wait..."
 msgstr ""
 
-#: YouTubeUi.py:1168
+#: YouTubeUi.py:1147
 msgid "Download video"
 msgstr ""
 
@@ -124,264 +100,176 @@ msgstr ""
 msgid "Downloading"
 msgstr ""
 
-#: YouTubeUi.py:1039
+#: YouTubeUi.py:1017
 msgid "Duration: "
 msgstr ""
 
-#: YouTubeUi.py:76
-msgid "Dutch"
-msgstr ""
-
-#: YouTubeUi.py:487
+#: YouTubeUi.py:444
 msgid "Embedded in webpages"
 msgstr ""
 
-#: YouTubeUi.py:1461
+#: YouTubeUi.py:1440
 msgid "Exclude restricted content:"
 msgstr ""
 
-#: YouTubeSearch.py:165 YouTubeDownload.py:164 YouTubeUi.py:598
-#: YouTubeUi.py:1376
+#: YouTubeSearch.py:165 YouTubeDownload.py:164 YouTubeUi.py:555
+#: YouTubeUi.py:1355
 msgid "Exit"
 msgstr ""
 
-#: YouTubeUi.py:116
+#: YouTubeUi.py:73
 msgid "Exteplayer"
 msgstr ""
 
-#: YouTubeUi.py:511
+#: YouTubeUi.py:468
 msgid "Extract video url. Please wait..."
 msgstr ""
 
-#: YouTubeUi.py:1481
+#: YouTubeUi.py:1460
 msgid ""
 "FFmpeg will be used to merge downloaded DASH video and audio files.\n"
 "FFmpeg will be installed if necessary."
 msgstr ""
 
-#: YouTubeUi.py:48
-msgid "France"
-msgstr ""
-
-#: YouTubeUi.py:77
-msgid "French"
-msgstr ""
-
-#: YouTubeUi.py:78
-msgid "German"
-msgstr ""
-
-#: YouTubeUi.py:49
-msgid "Germany"
-msgstr ""
-
-#: YouTubeUi.py:1561
+#: YouTubeUi.py:1540
 #, python-format
 msgid ""
 "Go to %s\n"
 "And enter the code %s"
 msgstr ""
 
-#: YouTubeUi.py:50
-msgid "Greece"
-msgstr ""
-
-#: YouTubeUi.py:79
-msgid "Greek"
-msgstr ""
-
-#: YouTubeUi.py:116
+#: YouTubeUi.py:73
 msgid "Gstplayer"
 msgstr ""
 
-#: YouTubeUi.py:486
+#: YouTubeUi.py:443
 msgid "HD videos"
 msgstr ""
 
-#: YouTubeUi.py:81
-msgid "Hebrew"
-msgstr ""
-
-#: YouTubeUi.py:80
-msgid "Hindi"
-msgstr ""
-
-#: YouTubeUi.py:51
-msgid "Hong Kong"
-msgstr ""
-
-#: YouTubeUi.py:1451
+#: YouTubeUi.py:1430
 msgid ""
 "How many search results will be returned.\n"
 "If greater value then longer time will be needed for thumbnail download."
 msgstr ""
 
-#: YouTubeUi.py:1187
+#: YouTubeUi.py:1166
 msgid "I dislike this"
 msgstr ""
 
-#: YouTubeUi.py:1186
+#: YouTubeUi.py:1165
 msgid "I like this"
 msgstr ""
 
-#: YouTubeUi.py:52
-msgid "India"
-msgstr ""
-
-#: YouTubeUi.py:1375
+#: YouTubeUi.py:1354
 msgid "Info"
-msgstr ""
-
-#: YouTubeUi.py:53
-msgid "Ireland"
-msgstr ""
-
-#: YouTubeUi.py:54
-msgid "Israel"
-msgstr ""
-
-#: YouTubeUi.py:82
-msgid "Italian"
-msgstr ""
-
-#: YouTubeUi.py:55
-msgid "Italy"
-msgstr ""
-
-#: YouTubeUi.py:56
-msgid "Japan"
-msgstr ""
-
-#: YouTubeUi.py:83
-msgid "Japanese"
 msgstr ""
 
 #: YouTubeSearch.py:167
 msgid "Keyboard"
 msgstr ""
 
-#: YouTubeUi.py:84
-msgid "Korean"
-msgstr ""
-
-#: YouTubeUi.py:57
-msgid "Latvia"
-msgstr ""
-
-#: YouTubeUi.py:85
-msgid "Latvian"
-msgstr ""
-
-#: YouTubeUi.py:499
+#: YouTubeUi.py:456
 msgid "Liked videos"
 msgstr ""
 
-#: YouTubeUi.py:1255
+#: YouTubeUi.py:1234
 msgid "Liked!"
 msgstr ""
 
-#: YouTubeUi.py:1039
+#: YouTubeUi.py:1017
 msgid "Live broadcast"
 msgstr ""
 
-#: YouTubeUi.py:1475
+#: YouTubeUi.py:1454
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"
 "This needs to approve in the Google home page!"
 msgstr ""
 
-#: YouTubeUi.py:1473
+#: YouTubeUi.py:1452
 msgid "Login on startup:"
 msgstr ""
 
-#: YouTubeUi.py:1464
+#: YouTubeUi.py:1443
 msgid "Maximum video resolution:"
 msgstr ""
 
-#: YouTubeUi.py:1485
+#: YouTubeUi.py:1464
 msgid "Media player:"
 msgstr ""
 
-#: YouTubeUi.py:1479
+#: YouTubeUi.py:1458
 msgid "Merge downloaded files:"
 msgstr ""
 
-#: YouTubeUi.py:58
-msgid "Mexico"
-msgstr ""
-
-#: YouTubeUi.py:102
+#: YouTubeUi.py:59
 msgid "Moderate"
 msgstr ""
 
-#: YouTubeUi.py:484
+#: YouTubeUi.py:441
 msgid "Most viewed"
 msgstr ""
 
-#: YouTubeUi.py:489
+#: YouTubeUi.py:446
 msgid "Movies"
 msgstr ""
 
-#: YouTubeUi.py:498
+#: YouTubeUi.py:455
 msgid "My Subscriptions"
 msgstr ""
 
-#: YouTubeUi.py:463 YouTubeUi.py:496
+#: YouTubeUi.py:420 YouTubeUi.py:453
 msgid "My feeds"
 msgstr ""
 
-#: YouTubeUi.py:59
-msgid "New Zealand"
-msgstr ""
-
-#: YouTubeUi.py:1152
+#: YouTubeUi.py:1131
 #, python-format
 msgid "Next %s entry"
 msgid_plural "Next %s entries"
 msgstr[0] ""
 msgstr[1] ""
 
-#: YouTubeUi.py:102 YouTubeUi.py:207
+#: YouTubeUi.py:59 YouTubeUi.py:164
 msgid "No"
 msgstr ""
 
-#: YouTubeUi.py:206
+#: YouTubeUi.py:163
 msgid "No, but play video again"
 msgstr ""
 
-#: YouTubeSearch.py:166 YouTubeUi.py:1430
+#: YouTubeSearch.py:166 YouTubeUi.py:1409
 msgid "Ok"
 msgstr ""
 
-#: YouTubeUi.py:599
+#: YouTubeUi.py:556
 msgid "Open"
 msgstr ""
 
-#: YouTubeUi.py:1460
+#: YouTubeUi.py:1439
 msgid "Order in which search results will be displayed."
 msgstr ""
 
-#: YouTubeUi.py:108
+#: YouTubeUi.py:65
 msgid "Play next"
 msgstr ""
 
-#: YouTubeUi.py:720
+#: YouTubeUi.py:677
 msgid "Play next video"
 msgstr ""
 
-#: YouTubeUi.py:109
+#: YouTubeUi.py:66
 msgid "Play previous"
 msgstr ""
 
-#: YouTubeUi.py:721
+#: YouTubeUi.py:678
 msgid "Play previous video"
 msgstr ""
 
-#: YouTubeUi.py:722
+#: YouTubeUi.py:679
 msgid "Play video again"
 msgstr ""
 
-#: YouTubeUi.py:501
+#: YouTubeUi.py:458
 msgid "Playlists"
 msgstr ""
 
@@ -389,283 +277,215 @@ msgstr ""
 msgid "Please select the download directory"
 msgstr ""
 
-#: YouTubeUi.py:60
-msgid "Poland"
-msgstr ""
-
-#: YouTubeUi.py:86
-msgid "Polish"
-msgstr ""
-
-#: YouTubeUi.py:87
-msgid "Portuguese"
-msgstr ""
-
-#: YouTubeUi.py:1155
+#: YouTubeUi.py:1134
 #, python-format
 msgid "Previous %s entry"
 msgid_plural "Previous %s entries"
 msgstr[0] ""
 msgstr[1] ""
 
-#: YouTubeUi.py:459 YouTubeUi.py:481
+#: YouTubeUi.py:416 YouTubeUi.py:438
 msgid "Public feeds"
 msgstr ""
 
-#: YouTubeUi.py:1041
+#: YouTubeUi.py:1019
 msgid "Published at: "
 msgstr ""
 
-#: YouTubeUi.py:719
+#: YouTubeUi.py:676
 msgid "Quit"
 msgstr ""
 
-#: YouTubeUi.py:1159
+#: YouTubeUi.py:1138
 msgid "Rate video"
 msgstr ""
 
-#: YouTubeUi.py:97
+#: YouTubeUi.py:54
 msgid "Rating"
 msgstr ""
 
-#: YouTubeUi.py:1257
+#: YouTubeUi.py:1236
 msgid "Rating removed!"
 msgstr ""
 
-#: YouTubeUi.py:485 YouTubeUi.py:917 YouTubeUi.py:1117
+#: YouTubeUi.py:442 YouTubeUi.py:874 YouTubeUi.py:1096
 msgid "Recent"
 msgstr ""
 
-#: YouTubeUi.py:95
+#: YouTubeUi.py:52
 msgid "Relevance"
 msgstr ""
 
-#: YouTubeUi.py:1188
+#: YouTubeUi.py:1167
 msgid "Remove my rating"
 msgstr ""
 
-#: YouTubeUi.py:108
+#: YouTubeUi.py:65
 msgid "Repeat"
 msgstr ""
 
-#: YouTubeUi.py:191
+#: YouTubeUi.py:148
 msgid "Resume playback from the previous position?"
 msgstr ""
 
-#: YouTubeUi.py:1454
+#: YouTubeUi.py:1433
 msgid "Return search results for the specified country."
 msgstr ""
 
-#: YouTubeUi.py:1457
+#: YouTubeUi.py:1436
 msgid "Return search results that are most relevant to the specified language."
 msgstr ""
 
-#: YouTubeUi.py:107 YouTubeUi.py:111
+#: YouTubeUi.py:64 YouTubeUi.py:68
 msgid "Return to list"
 msgstr ""
 
-#: YouTubeUi.py:61 YouTubeUi.py:88
-msgid "Russia"
-msgstr ""
-
-#: YouTubeUi.py:1446
+#: YouTubeUi.py:1425
 msgid "Save search result:"
 msgstr ""
 
-#: YouTubeUi.py:1448
+#: YouTubeUi.py:1427
 msgid "Save your search result in the history, when search completed."
 msgstr ""
 
 #: YouTubeSearch.py:29 YouTubeSearch.py:164 YouTubeSearch.py:196
-#: YouTubeUi.py:458 YouTubeUi.py:469 YouTubeUi.py:1167
+#: YouTubeUi.py:415 YouTubeUi.py:426 YouTubeUi.py:1146
 msgid "Search"
 msgstr ""
 
-#: YouTubeUi.py:472
+#: YouTubeUi.py:429
 msgid "Search channels"
 msgstr ""
 
-#: YouTubeUi.py:1198
+#: YouTubeUi.py:1177
 msgid "Search for similar"
 msgstr ""
 
-#: YouTubeUi.py:1455
+#: YouTubeUi.py:1434
 msgid "Search language:"
 msgstr ""
 
-#: YouTubeUi.py:474
+#: YouTubeUi.py:431
 msgid "Search live broadcasts"
 msgstr ""
 
-#: YouTubeUi.py:473
+#: YouTubeUi.py:430
 msgid "Search playlists"
 msgstr ""
 
-#: YouTubeUi.py:1452
+#: YouTubeUi.py:1431
 msgid "Search region:"
 msgstr ""
 
-#: YouTubeUi.py:1449
+#: YouTubeUi.py:1428
 msgid "Search results:"
 msgstr ""
 
-#: YouTubeUi.py:471
+#: YouTubeUi.py:428
 msgid "Search videos"
 msgstr ""
 
 #. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
-#: YouTubeUi.py:412 YouTubeUi.py:1484
+#: YouTubeUi.py:369 YouTubeUi.py:1463
 msgid "ServiceApp"
 msgstr ""
 
-#: YouTubeUi.py:488
+#: YouTubeUi.py:445
 msgid "Shows"
 msgstr ""
 
-#: YouTubeUi.py:1273
+#: YouTubeUi.py:1252
 msgid ""
 "Sorry, download directory not exist!\n"
 "Please specify in the settings existing directory."
 msgstr ""
 
-#: YouTubeUi.py:1280
+#: YouTubeUi.py:1259
 #, python-format
 msgid ""
 "Sorry, this file already exists:\n"
 "%s"
 msgstr ""
 
-#: YouTubeUi.py:1458
+#: YouTubeUi.py:1437
 msgid "Sort search results by:"
 msgstr ""
 
-#: YouTubeUi.py:62
-msgid "South Korea"
-msgstr ""
-
-#: YouTubeUi.py:63
-msgid "Spain"
-msgstr ""
-
-#: YouTubeUi.py:89
-msgid "Spanish"
-msgstr ""
-
-#: YouTubeUi.py:1478
+#: YouTubeUi.py:1457
 msgid "Specify the directory where save downloaded video files."
 msgstr ""
 
-#: YouTubeUi.py:1487
+#: YouTubeUi.py:1466
 msgid "Specify the player which will be used for YouTube media playback."
 msgstr ""
 
-#: YouTubeUi.py:201
+#: YouTubeUi.py:158
 msgid "Stop playing this movie?"
 msgstr ""
 
-#: YouTubeUi.py:1162
+#: YouTubeUi.py:1141
 msgid "Subscribe"
 msgstr ""
 
-#: YouTubeUi.py:1160
+#: YouTubeUi.py:1139
 msgid "Subscribe this video channel"
 msgstr ""
 
-#: YouTubeUi.py:1235
+#: YouTubeUi.py:1214
 msgid "Subscribed!"
 msgstr ""
 
-#: YouTubeUi.py:64
-msgid "Sweden"
-msgstr ""
-
-#: YouTubeUi.py:90
-msgid "Swedish"
-msgstr ""
-
-#: YouTubeUi.py:65
-msgid "Taiwan"
-msgstr ""
-
-#: YouTubeUi.py:91
-msgid "Thai"
-msgstr ""
-
-#: YouTubeUi.py:66
-msgid "Thailand"
-msgstr ""
-
-#: YouTubeUi.py:67
-msgid "The Netherlands"
-msgstr ""
-
-#: YouTubeUi.py:582
+#: YouTubeUi.py:539
 msgid ""
 "There was an error in creating entry list!\n"
 "Maybe try other feeds..."
 msgstr ""
 
-#: YouTubeUi.py:538
+#: YouTubeUi.py:495
 #, python-format
 msgid ""
 "There was an error in extract video url:\n"
 "%s"
 msgstr ""
 
-#: YouTubeUi.py:1236 YouTubeUi.py:1249 YouTubeUi.py:1261
+#: YouTubeUi.py:1215 YouTubeUi.py:1228 YouTubeUi.py:1240
 msgid "There was an error!"
 msgstr ""
 
-#: YouTubeUi.py:98
+#: YouTubeUi.py:55
 msgid "Title"
 msgstr ""
 
-#: YouTubeUi.py:1511
+#: YouTubeUi.py:1490
 msgid ""
 "To merge downloaded files FFmpeg will be installed.\n"
 "FFmpeg can take a lot of space!\n"
 "Do you want to continue?"
 msgstr ""
 
-#: YouTubeUi.py:1549
+#: YouTubeUi.py:1528
 msgid ""
 "To perform authentication will need in a web browser open Google home page, and enter the code!\n"
 "Do you currently have Internet access on the other device and we can continue?"
 msgstr ""
 
-#: YouTubeUi.py:483
+#: YouTubeUi.py:440
 msgid "Top rated"
 msgstr ""
 
-#: YouTubeUi.py:1463
+#: YouTubeUi.py:1442
 msgid "Try to exclude all restricted content from the search result."
 msgstr ""
 
-#: YouTubeUi.py:68
-msgid "Turkey"
-msgstr ""
-
-#: YouTubeUi.py:92
-msgid "Turkish"
-msgstr ""
-
-#: YouTubeUi.py:69
-msgid "United Kingdom"
-msgstr ""
-
-#: YouTubeUi.py:70
-msgid "United States"
-msgstr ""
-
-#: YouTubeUi.py:1165
+#: YouTubeUi.py:1144
 msgid "Unsubscribe"
 msgstr ""
 
-#: YouTubeUi.py:1248
+#: YouTubeUi.py:1227
 msgid "Unsubscribed!"
 msgstr ""
 
-#: YouTubeUi.py:500
+#: YouTubeUi.py:457
 msgid "Uploads"
 msgstr ""
 
@@ -673,15 +493,15 @@ msgstr ""
 msgid "Use"
 msgstr ""
 
-#: YouTubeUi.py:1292
+#: YouTubeUi.py:1271
 msgid "Video download started!"
 msgstr ""
 
-#: YouTubeUi.py:1199
+#: YouTubeUi.py:1178
 msgid "Videos from this video channel"
 msgstr ""
 
-#: YouTubeUi.py:99
+#: YouTubeUi.py:56
 msgid "View count"
 msgstr ""
 
@@ -689,65 +509,65 @@ msgstr ""
 msgid "Watch YouTube videos"
 msgstr ""
 
-#: YouTubeSearch.py:229 YouTubeUi.py:717 YouTubeUi.py:1149 YouTubeUi.py:1224
+#: YouTubeSearch.py:229 YouTubeUi.py:674 YouTubeUi.py:1128 YouTubeUi.py:1203
 msgid "What do you want to do?"
 msgstr ""
 
-#: YouTubeUi.py:1466
+#: YouTubeUi.py:1445
 msgid ""
 "What maximum resolution used when playing video, if available.\n"
 "If you have a slow Internet connection, you can use a lower resolution."
 msgstr ""
 
-#: YouTubeUi.py:1472
+#: YouTubeUi.py:1451
 msgid "What to do when stop playback in videoplayer."
 msgstr ""
 
-#: YouTubeUi.py:1469
+#: YouTubeUi.py:1448
 msgid "What to do when the video ends."
 msgstr ""
 
-#: YouTubeUi.py:1470
+#: YouTubeUi.py:1449
 msgid "When playback stop:"
 msgstr ""
 
-#: YouTubeUi.py:1467
+#: YouTubeUi.py:1446
 msgid "When video ends:"
 msgstr ""
 
-#: YouTubeUi.py:102 YouTubeUi.py:203
+#: YouTubeUi.py:59 YouTubeUi.py:160
 msgid "Yes"
 msgstr ""
 
-#: YouTubeUi.py:204
+#: YouTubeUi.py:161
 msgid "Yes, but play next video"
 msgstr ""
 
-#: YouTubeUi.py:205
+#: YouTubeUi.py:162
 msgid "Yes, but play previous video"
 msgstr ""
 
-#: YouTubeUi.py:1542
+#: YouTubeUi.py:1521
 msgid ""
 "You already authorized access for this plugin to your YouTube account.\n"
 "Do you want to do it again to update access data?"
 msgstr ""
 
-#: YouTubeUi.py:1508
+#: YouTubeUi.py:1487
 msgid ""
 "You have disabled downloaded file merge.\n"
 "Installed FFmpeg is no longer necessary.\n"
 "Do you want to remove FFmpeg?"
 msgstr ""
 
-#: plugin.py:19 YouTubeUi.py:233 YouTubeUi.py:384
+#: plugin.py:19 YouTubeUi.py:190 YouTubeUi.py:341
 msgid "YouTube"
 msgstr ""
 
-#: YouTubeSearch.py:230 YouTubeUi.py:1150 YouTubeUi.py:1495
+#: YouTubeSearch.py:230 YouTubeUi.py:1129 YouTubeUi.py:1474
 msgid "YouTube setup"
 msgstr ""
 
-#: YouTubeUi.py:381
+#: YouTubeUi.py:338
 msgid "YouTube starting. Please wait..."
 msgstr ""

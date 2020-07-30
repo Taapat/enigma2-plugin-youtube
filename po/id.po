@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-12 18:51+0300\n"
+"POT-Creation-Date: 2020-07-30 23:02+0300\n"
 "PO-Revision-Date: 2015-12-19 15:56+0100\n"
 "Last-Translator: Budiarno Pedode\n"
 "Language-Team: \n"
@@ -39,20 +39,8 @@ msgstr "Semua"
 msgid "Ask user"
 msgstr "Tanya pengguna"
 
-msgid "Australia"
-msgstr "Australia"
-
-msgid "Brazil"
-msgstr "Brazil"
-
-msgid "Canada"
-msgstr "Kanada"
-
 msgid "Cancel"
 msgstr "Batal"
-
-msgid "Chinese"
-msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Pilih apa yang ingin anda lakukan"
@@ -62,12 +50,6 @@ msgstr "Tutup Youtube"
 
 msgid "Created date"
 msgstr "Tanggal dibuat"
-
-msgid "Czech"
-msgstr ""
-
-msgid "Czech Republic"
-msgstr "Republik Ceko"
 
 msgid "Default"
 msgstr ""
@@ -96,9 +78,6 @@ msgstr "Mengunduh"
 msgid "Duration: "
 msgstr "Durasi: "
 
-msgid "Dutch"
-msgstr ""
-
 msgid "Embedded in webpages"
 msgstr "Ditanamkan pada halaman web"
 
@@ -121,19 +100,6 @@ msgstr ""
 "FFmpeg akan digunakan untuk menyatukan berkas audio dan video DASH yg diunduh.\n"
 "FFmpeg akan dipasang jika diperlukan."
 
-msgid "France"
-msgstr "Perancis"
-
-msgid "French"
-msgstr ""
-
-#, fuzzy
-msgid "German"
-msgstr "Jerman"
-
-msgid "Germany"
-msgstr "Jerman"
-
 #, python-format
 msgid ""
 "Go to %s\n"
@@ -142,27 +108,11 @@ msgstr ""
 "Menuju ke %s\n"
 "Dan masukkan kode %s"
 
-msgid "Greece"
-msgstr "Yunani"
-
-#, fuzzy
-msgid "Greek"
-msgstr "Yunani"
-
 msgid "Gstplayer"
 msgstr ""
 
 msgid "HD videos"
 msgstr "Vídeo HD"
-
-msgid "Hebrew"
-msgstr ""
-
-msgid "Hindi"
-msgstr ""
-
-msgid "Hong Kong"
-msgstr "Hong Kong"
 
 msgid ""
 "How many search results will be returned.\n"
@@ -177,44 +127,11 @@ msgstr "Saya tidak suka ini"
 msgid "I like this"
 msgstr "Saya suka ini"
 
-msgid "India"
-msgstr "India"
-
 msgid "Info"
 msgstr "Informasi"
 
-msgid "Ireland"
-msgstr "Irlandia"
-
-msgid "Israel"
-msgstr "Israel"
-
-#, fuzzy
-msgid "Italian"
-msgstr "Italia"
-
-msgid "Italy"
-msgstr "Italia"
-
-msgid "Japan"
-msgstr "Jepang"
-
-#, fuzzy
-msgid "Japanese"
-msgstr "Jepang"
-
 msgid "Keyboard"
 msgstr "Keyboard"
-
-msgid "Korean"
-msgstr ""
-
-msgid "Latvia"
-msgstr "Latvia"
-
-#, fuzzy
-msgid "Latvian"
-msgstr "Latvia"
 
 msgid "Liked videos"
 msgstr "Vídeo yang disukai"
@@ -245,9 +162,6 @@ msgstr ""
 msgid "Merge downloaded files:"
 msgstr "Satukan berkas yg diunduh:"
 
-msgid "Mexico"
-msgstr "Meksiko"
-
 msgid "Moderate"
 msgstr "Moderat"
 
@@ -262,9 +176,6 @@ msgstr "Langganan saya"
 
 msgid "My feeds"
 msgstr "Feed saya"
-
-msgid "New Zealand"
-msgstr "Selandia Baru"
 
 #, fuzzy, python-format
 msgid "Next %s entry"
@@ -307,15 +218,6 @@ msgstr "Daftar putar"
 
 msgid "Please select the download directory"
 msgstr "Silakan pilih direktori unduhan"
-
-msgid "Poland"
-msgstr "Polandia"
-
-msgid "Polish"
-msgstr ""
-
-msgid "Portuguese"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Previous %s entry"
@@ -364,9 +266,6 @@ msgstr "Tampilkan hasil pencarian yg paling relevan dgn bahasa yg ditentukan. "
 
 msgid "Return to list"
 msgstr "Kembali ke daftar"
-
-msgid "Russia"
-msgstr "Rusia"
 
 msgid "Save search result:"
 msgstr "Simpan hasil pencarian:"
@@ -426,15 +325,6 @@ msgstr ""
 msgid "Sort search results by:"
 msgstr "Pilah hasil pencarian berdasarkan:"
 
-msgid "South Korea"
-msgstr "Korea Selatan"
-
-msgid "Spain"
-msgstr "Spanyol"
-
-msgid "Spanish"
-msgstr ""
-
 msgid "Specify the directory where save downloaded video files."
 msgstr "Atur direktori dimana menyimpan berkas yang telah diunduh."
 
@@ -452,26 +342,6 @@ msgstr "Langgan kanal video ini"
 
 msgid "Subscribed!"
 msgstr "Berlangganan!"
-
-msgid "Sweden"
-msgstr "Swedia"
-
-#, fuzzy
-msgid "Swedish"
-msgstr "Swedia"
-
-msgid "Taiwan"
-msgstr "Taiwan"
-
-#, fuzzy
-msgid "Thai"
-msgstr "Thailand"
-
-msgid "Thailand"
-msgstr "Thailand"
-
-msgid "The Netherlands"
-msgstr ""
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -515,19 +385,6 @@ msgstr "Rating tertinggi"
 
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Coba jangan tampilkan semua konten yg dilarang dari hasil pencarian."
-
-msgid "Turkey"
-msgstr "Turki"
-
-#, fuzzy
-msgid "Turkish"
-msgstr "Turki"
-
-msgid "United Kingdom"
-msgstr ""
-
-msgid "United States"
-msgstr "Amerika Serikat"
 
 msgid "Unsubscribe"
 msgstr "Hentikan langgan"
@@ -608,3 +465,110 @@ msgstr "Pengaturan YouTube"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube sedang mulai. Silakan tunggu..."
+
+#~ msgid "Australia"
+#~ msgstr "Australia"
+
+#~ msgid "Brazil"
+#~ msgstr "Brazil"
+
+#~ msgid "Canada"
+#~ msgstr "Kanada"
+
+#~ msgid "Czech Republic"
+#~ msgstr "Republik Ceko"
+
+#~ msgid "France"
+#~ msgstr "Perancis"
+
+#, fuzzy
+#~ msgid "German"
+#~ msgstr "Jerman"
+
+#~ msgid "Germany"
+#~ msgstr "Jerman"
+
+#~ msgid "Greece"
+#~ msgstr "Yunani"
+
+#, fuzzy
+#~ msgid "Greek"
+#~ msgstr "Yunani"
+
+#~ msgid "Hong Kong"
+#~ msgstr "Hong Kong"
+
+#~ msgid "India"
+#~ msgstr "India"
+
+#~ msgid "Ireland"
+#~ msgstr "Irlandia"
+
+#~ msgid "Israel"
+#~ msgstr "Israel"
+
+#, fuzzy
+#~ msgid "Italian"
+#~ msgstr "Italia"
+
+#~ msgid "Italy"
+#~ msgstr "Italia"
+
+#~ msgid "Japan"
+#~ msgstr "Jepang"
+
+#, fuzzy
+#~ msgid "Japanese"
+#~ msgstr "Jepang"
+
+#~ msgid "Latvia"
+#~ msgstr "Latvia"
+
+#, fuzzy
+#~ msgid "Latvian"
+#~ msgstr "Latvia"
+
+#~ msgid "Mexico"
+#~ msgstr "Meksiko"
+
+#~ msgid "New Zealand"
+#~ msgstr "Selandia Baru"
+
+#~ msgid "Poland"
+#~ msgstr "Polandia"
+
+#~ msgid "Russia"
+#~ msgstr "Rusia"
+
+#~ msgid "South Korea"
+#~ msgstr "Korea Selatan"
+
+#~ msgid "Spain"
+#~ msgstr "Spanyol"
+
+#~ msgid "Sweden"
+#~ msgstr "Swedia"
+
+#, fuzzy
+#~ msgid "Swedish"
+#~ msgstr "Swedia"
+
+#~ msgid "Taiwan"
+#~ msgstr "Taiwan"
+
+#, fuzzy
+#~ msgid "Thai"
+#~ msgstr "Thailand"
+
+#~ msgid "Thailand"
+#~ msgstr "Thailand"
+
+#~ msgid "Turkey"
+#~ msgstr "Turki"
+
+#, fuzzy
+#~ msgid "Turkish"
+#~ msgstr "Turki"
+
+#~ msgid "United States"
+#~ msgstr "Amerika Serikat"

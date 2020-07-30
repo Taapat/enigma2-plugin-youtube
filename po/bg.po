@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-12 18:51+0300\n"
+"POT-Creation-Date: 2020-07-30 23:02+0300\n"
 "PO-Revision-Date: 2018-04-13 10:46+0300\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -39,20 +39,8 @@ msgstr "Всички"
 msgid "Ask user"
 msgstr "Питай потребител"
 
-msgid "Australia"
-msgstr "Австралия"
-
-msgid "Brazil"
-msgstr "Бразилия"
-
-msgid "Canada"
-msgstr "Канада"
-
 msgid "Cancel"
 msgstr "Отказ"
-
-msgid "Chinese"
-msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Изберете следваща стъпка"
@@ -62,12 +50,6 @@ msgstr "Затвори YouTube"
 
 msgid "Created date"
 msgstr "Дата на създаване"
-
-msgid "Czech"
-msgstr ""
-
-msgid "Czech Republic"
-msgstr "Чехия"
 
 msgid "Default"
 msgstr ""
@@ -96,9 +78,6 @@ msgstr "Изтегляне"
 msgid "Duration: "
 msgstr "Продължителност: "
 
-msgid "Dutch"
-msgstr ""
-
 msgid "Embedded in webpages"
 msgstr "Видео на уеб-сайтове"
 
@@ -119,19 +98,6 @@ msgid ""
 "FFmpeg will be installed if necessary."
 msgstr ""
 
-msgid "France"
-msgstr "Франция"
-
-msgid "French"
-msgstr ""
-
-#, fuzzy
-msgid "German"
-msgstr "Германия"
-
-msgid "Germany"
-msgstr "Германия"
-
 #, python-format
 msgid ""
 "Go to %s\n"
@@ -140,27 +106,11 @@ msgstr ""
 "Идете на %s\n"
 "И въведете код %s"
 
-msgid "Greece"
-msgstr "Гърция"
-
-#, fuzzy
-msgid "Greek"
-msgstr "Гърция"
-
 msgid "Gstplayer"
 msgstr ""
 
 msgid "HD videos"
 msgstr "HD видео"
-
-msgid "Hebrew"
-msgstr ""
-
-msgid "Hindi"
-msgstr ""
-
-msgid "Hong Kong"
-msgstr "Хонг Конг"
 
 msgid ""
 "How many search results will be returned.\n"
@@ -175,44 +125,11 @@ msgstr "Това ми харесва"
 msgid "I like this"
 msgstr "Това не ми харесва"
 
-msgid "India"
-msgstr "Индия"
-
 msgid "Info"
 msgstr "Информация"
 
-msgid "Ireland"
-msgstr "Ирландия"
-
-msgid "Israel"
-msgstr "Израел"
-
-#, fuzzy
-msgid "Italian"
-msgstr "Италия"
-
-msgid "Italy"
-msgstr "Италия"
-
-msgid "Japan"
-msgstr "Япония"
-
-#, fuzzy
-msgid "Japanese"
-msgstr "Япония"
-
 msgid "Keyboard"
 msgstr "Клавиатура"
-
-msgid "Korean"
-msgstr ""
-
-msgid "Latvia"
-msgstr "Латвия"
-
-#, fuzzy
-msgid "Latvian"
-msgstr "Латвия"
 
 msgid "Liked videos"
 msgstr "Харесани видеоклипове"
@@ -243,9 +160,6 @@ msgstr ""
 msgid "Merge downloaded files:"
 msgstr ""
 
-msgid "Mexico"
-msgstr "Мексико"
-
 msgid "Moderate"
 msgstr "Умерено"
 
@@ -260,9 +174,6 @@ msgstr "Абонаменти"
 
 msgid "My feeds"
 msgstr "Моиите фийдове"
-
-msgid "New Zealand"
-msgstr "Нова Зеландия"
 
 #, fuzzy, python-format
 msgid "Next %s entry"
@@ -305,15 +216,6 @@ msgstr "Плейлисти"
 
 msgid "Please select the download directory"
 msgstr "Моля изберете директория за изтеглянията"
-
-msgid "Poland"
-msgstr "Полша"
-
-msgid "Polish"
-msgstr ""
-
-msgid "Portuguese"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Previous %s entry"
@@ -362,9 +264,6 @@ msgstr "Покажи резултатите от търсенето, които 
 
 msgid "Return to list"
 msgstr "Връщане към списъка"
-
-msgid "Russia"
-msgstr "Русия"
 
 msgid "Save search result:"
 msgstr "Запазване на резултатите от търсенето:"
@@ -424,15 +323,6 @@ msgstr ""
 msgid "Sort search results by:"
 msgstr "Подреждане на резултатите от търсенето по:"
 
-msgid "South Korea"
-msgstr "Южна Корея"
-
-msgid "Spain"
-msgstr "Испания"
-
-msgid "Spanish"
-msgstr ""
-
 msgid "Specify the directory where save downloaded video files."
 msgstr "Укажете директория където да се записват видео файловете."
 
@@ -450,26 +340,6 @@ msgstr "Абониране за този видео канал"
 
 msgid "Subscribed!"
 msgstr "Абониран!"
-
-msgid "Sweden"
-msgstr "Швеция"
-
-#, fuzzy
-msgid "Swedish"
-msgstr "Швеция"
-
-msgid "Taiwan"
-msgstr "Тайван"
-
-#, fuzzy
-msgid "Thai"
-msgstr "Тайланд"
-
-msgid "Thailand"
-msgstr "Тайланд"
-
-msgid "The Netherlands"
-msgstr ""
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -510,18 +380,6 @@ msgstr "С най-добър рейтинг"
 
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Опитайте да изключите ограниченото съдържание от резултатите от търсенето."
-
-msgid "Turkey"
-msgstr ""
-
-msgid "Turkish"
-msgstr ""
-
-msgid "United Kingdom"
-msgstr ""
-
-msgid "United States"
-msgstr "САЩ"
 
 msgid "Unsubscribe"
 msgstr "Отписване"
@@ -599,3 +457,103 @@ msgstr "YouTube настройки"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube се стартира. Моля изчакайте..."
+
+#~ msgid "Australia"
+#~ msgstr "Австралия"
+
+#~ msgid "Brazil"
+#~ msgstr "Бразилия"
+
+#~ msgid "Canada"
+#~ msgstr "Канада"
+
+#~ msgid "Czech Republic"
+#~ msgstr "Чехия"
+
+#~ msgid "France"
+#~ msgstr "Франция"
+
+#, fuzzy
+#~ msgid "German"
+#~ msgstr "Германия"
+
+#~ msgid "Germany"
+#~ msgstr "Германия"
+
+#~ msgid "Greece"
+#~ msgstr "Гърция"
+
+#, fuzzy
+#~ msgid "Greek"
+#~ msgstr "Гърция"
+
+#~ msgid "Hong Kong"
+#~ msgstr "Хонг Конг"
+
+#~ msgid "India"
+#~ msgstr "Индия"
+
+#~ msgid "Ireland"
+#~ msgstr "Ирландия"
+
+#~ msgid "Israel"
+#~ msgstr "Израел"
+
+#, fuzzy
+#~ msgid "Italian"
+#~ msgstr "Италия"
+
+#~ msgid "Italy"
+#~ msgstr "Италия"
+
+#~ msgid "Japan"
+#~ msgstr "Япония"
+
+#, fuzzy
+#~ msgid "Japanese"
+#~ msgstr "Япония"
+
+#~ msgid "Latvia"
+#~ msgstr "Латвия"
+
+#, fuzzy
+#~ msgid "Latvian"
+#~ msgstr "Латвия"
+
+#~ msgid "Mexico"
+#~ msgstr "Мексико"
+
+#~ msgid "New Zealand"
+#~ msgstr "Нова Зеландия"
+
+#~ msgid "Poland"
+#~ msgstr "Полша"
+
+#~ msgid "Russia"
+#~ msgstr "Русия"
+
+#~ msgid "South Korea"
+#~ msgstr "Южна Корея"
+
+#~ msgid "Spain"
+#~ msgstr "Испания"
+
+#~ msgid "Sweden"
+#~ msgstr "Швеция"
+
+#, fuzzy
+#~ msgid "Swedish"
+#~ msgstr "Швеция"
+
+#~ msgid "Taiwan"
+#~ msgstr "Тайван"
+
+#, fuzzy
+#~ msgid "Thai"
+#~ msgstr "Тайланд"
+
+#~ msgid "Thailand"
+#~ msgstr "Тайланд"
+
+#~ msgid "United States"
+#~ msgstr "САЩ"

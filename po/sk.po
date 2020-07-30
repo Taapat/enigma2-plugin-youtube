@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube Plugin slovenský preklad\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-12 18:51+0300\n"
+"POT-Creation-Date: 2020-07-30 23:02+0300\n"
 "PO-Revision-Date: 2018-05-30 04:10+0200\n"
 "Last-Translator: S4iyan3lit3 <nsa@dontgathermailaddresses.fck>\n"
 "Language-Team: th4nks0url0rd1nh34v3n\n"
@@ -44,20 +44,8 @@ msgstr "Vsetky"
 msgid "Ask user"
 msgstr "Opýtajte sa používateľa"
 
-msgid "Australia"
-msgstr "Austrália"
-
-msgid "Brazil"
-msgstr "Brazília"
-
-msgid "Canada"
-msgstr "Kanada"
-
 msgid "Cancel"
 msgstr "Zrušiť"
-
-msgid "Chinese"
-msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Vyberte si, čo chcete robiť"
@@ -67,12 +55,6 @@ msgstr "Zavrieť YouTube"
 
 msgid "Created date"
 msgstr "Dátum vytvorenia"
-
-msgid "Czech"
-msgstr ""
-
-msgid "Czech Republic"
-msgstr "Česká Republika"
 
 msgid "Default"
 msgstr ""
@@ -101,9 +83,6 @@ msgstr "Sťahovanie"
 msgid "Duration: "
 msgstr "Trvanie: "
 
-msgid "Dutch"
-msgstr ""
-
 msgid "Embedded in webpages"
 msgstr "Integrované vo webových stránkach"
 
@@ -124,19 +103,6 @@ msgid ""
 "FFmpeg will be installed if necessary."
 msgstr ""
 
-msgid "France"
-msgstr "Francúzsko"
-
-msgid "French"
-msgstr ""
-
-#, fuzzy
-msgid "German"
-msgstr "Nemecko"
-
-msgid "Germany"
-msgstr "Nemecko"
-
 #, python-format
 msgid ""
 "Go to %s\n"
@@ -145,27 +111,11 @@ msgstr ""
 "Chodťe na %s\n"
 "A prosím zadajte kód %s"
 
-msgid "Greece"
-msgstr "Grécko"
-
-#, fuzzy
-msgid "Greek"
-msgstr "Grécko"
-
 msgid "Gstplayer"
 msgstr ""
 
 msgid "HD videos"
 msgstr "Videá vo formáte HD"
-
-msgid "Hebrew"
-msgstr ""
-
-msgid "Hindi"
-msgstr ""
-
-msgid "Hong Kong"
-msgstr "Hong Kong"
 
 msgid ""
 "How many search results will be returned.\n"
@@ -180,44 +130,11 @@ msgstr "Nepáči sa mi to"
 msgid "I like this"
 msgstr "Páči sa mi to"
 
-msgid "India"
-msgstr "India"
-
 msgid "Info"
 msgstr "Informácie"
 
-msgid "Ireland"
-msgstr "Írsko"
-
-msgid "Israel"
-msgstr "Izrael"
-
-#, fuzzy
-msgid "Italian"
-msgstr "Taliansko"
-
-msgid "Italy"
-msgstr "Taliansko"
-
-msgid "Japan"
-msgstr "Japonsko"
-
-#, fuzzy
-msgid "Japanese"
-msgstr "Japonsko"
-
 msgid "Keyboard"
 msgstr "Klávesnica"
-
-msgid "Korean"
-msgstr ""
-
-msgid "Latvia"
-msgstr "Lotyšsko"
-
-#, fuzzy
-msgid "Latvian"
-msgstr "Lotyšsko"
 
 msgid "Liked videos"
 msgstr "Obľúbené videá"
@@ -248,9 +165,6 @@ msgstr ""
 msgid "Merge downloaded files:"
 msgstr ""
 
-msgid "Mexico"
-msgstr "Mexiko"
-
 msgid "Moderate"
 msgstr "Umiernený"
 
@@ -265,9 +179,6 @@ msgstr "Moje odbery "
 
 msgid "My feeds"
 msgstr "Moje informačné kanály"
-
-msgid "New Zealand"
-msgstr "Nový Zéland"
 
 #, fuzzy, python-format
 msgid "Next %s entry"
@@ -310,15 +221,6 @@ msgstr "Prehrávacia Lista"
 
 msgid "Please select the download directory"
 msgstr "Vyberte adresár na sťahovanie"
-
-msgid "Poland"
-msgstr "Poľsko"
-
-msgid "Polish"
-msgstr ""
-
-msgid "Portuguese"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Previous %s entry"
@@ -367,9 +269,6 @@ msgstr "Vráťte výsledky vyhľadávania, ktoré sú najviac dôležité pre da
 
 msgid "Return to list"
 msgstr "Vrátiť sa do zoznamu"
-
-msgid "Russia"
-msgstr "Rusko"
 
 msgid "Save search result:"
 msgstr "Uložiť výsledok vyhľadávania:"
@@ -429,15 +328,6 @@ msgstr ""
 msgid "Sort search results by:"
 msgstr "Zoradiť výsledky vyhľadávania podľa:"
 
-msgid "South Korea"
-msgstr "Južná Kórea"
-
-msgid "Spain"
-msgstr "Španielsko"
-
-msgid "Spanish"
-msgstr ""
-
 msgid "Specify the directory where save downloaded video files."
 msgstr "Zadajte adresár, kam ukladáte stiahnuté video súbory. "
 
@@ -455,26 +345,6 @@ msgstr "Odoberajte tento kanál videa"
 
 msgid "Subscribed!"
 msgstr "Prihlásené k odberu!"
-
-msgid "Sweden"
-msgstr "Švédsko"
-
-#, fuzzy
-msgid "Swedish"
-msgstr "Švédsko"
-
-msgid "Taiwan"
-msgstr "Taiwan"
-
-#, fuzzy
-msgid "Thai"
-msgstr "Thajsko"
-
-msgid "Thailand"
-msgstr "Thajsko"
-
-msgid "The Netherlands"
-msgstr ""
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -515,19 +385,6 @@ msgstr "Najlepšie hodnotené"
 
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Pokúste sa vylúčiť všetok zakázaný obsah z výsledku vyhľadávania."
-
-msgid "Turkey"
-msgstr "Turecko"
-
-#, fuzzy
-msgid "Turkish"
-msgstr "Turecko"
-
-msgid "United Kingdom"
-msgstr ""
-
-msgid "United States"
-msgstr "Spojené Štáty"
 
 msgid "Unsubscribe"
 msgstr "Odhlásiť"
@@ -605,3 +462,110 @@ msgstr "YouTube Nastavenie"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube sa spustí. Prosím Čakajte..."
+
+#~ msgid "Australia"
+#~ msgstr "Austrália"
+
+#~ msgid "Brazil"
+#~ msgstr "Brazília"
+
+#~ msgid "Canada"
+#~ msgstr "Kanada"
+
+#~ msgid "Czech Republic"
+#~ msgstr "Česká Republika"
+
+#~ msgid "France"
+#~ msgstr "Francúzsko"
+
+#, fuzzy
+#~ msgid "German"
+#~ msgstr "Nemecko"
+
+#~ msgid "Germany"
+#~ msgstr "Nemecko"
+
+#~ msgid "Greece"
+#~ msgstr "Grécko"
+
+#, fuzzy
+#~ msgid "Greek"
+#~ msgstr "Grécko"
+
+#~ msgid "Hong Kong"
+#~ msgstr "Hong Kong"
+
+#~ msgid "India"
+#~ msgstr "India"
+
+#~ msgid "Ireland"
+#~ msgstr "Írsko"
+
+#~ msgid "Israel"
+#~ msgstr "Izrael"
+
+#, fuzzy
+#~ msgid "Italian"
+#~ msgstr "Taliansko"
+
+#~ msgid "Italy"
+#~ msgstr "Taliansko"
+
+#~ msgid "Japan"
+#~ msgstr "Japonsko"
+
+#, fuzzy
+#~ msgid "Japanese"
+#~ msgstr "Japonsko"
+
+#~ msgid "Latvia"
+#~ msgstr "Lotyšsko"
+
+#, fuzzy
+#~ msgid "Latvian"
+#~ msgstr "Lotyšsko"
+
+#~ msgid "Mexico"
+#~ msgstr "Mexiko"
+
+#~ msgid "New Zealand"
+#~ msgstr "Nový Zéland"
+
+#~ msgid "Poland"
+#~ msgstr "Poľsko"
+
+#~ msgid "Russia"
+#~ msgstr "Rusko"
+
+#~ msgid "South Korea"
+#~ msgstr "Južná Kórea"
+
+#~ msgid "Spain"
+#~ msgstr "Španielsko"
+
+#~ msgid "Sweden"
+#~ msgstr "Švédsko"
+
+#, fuzzy
+#~ msgid "Swedish"
+#~ msgstr "Švédsko"
+
+#~ msgid "Taiwan"
+#~ msgstr "Taiwan"
+
+#, fuzzy
+#~ msgid "Thai"
+#~ msgstr "Thajsko"
+
+#~ msgid "Thailand"
+#~ msgstr "Thajsko"
+
+#~ msgid "Turkey"
+#~ msgstr "Turecko"
+
+#, fuzzy
+#~ msgid "Turkish"
+#~ msgstr "Turecko"
+
+#~ msgid "United States"
+#~ msgstr "Spojené Štáty"

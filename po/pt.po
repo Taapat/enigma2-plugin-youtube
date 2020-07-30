@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin for Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-12 18:51+0300\n"
+"POT-Creation-Date: 2020-07-30 23:02+0300\n"
 "PO-Revision-Date: 2018-11-19 00:44+0000\n"
 "Last-Translator: nunigaia\n"
 "Language-Team: BH Team\n"
@@ -46,20 +46,8 @@ msgstr "Tudo"
 msgid "Ask user"
 msgstr "Perguntar ao utilizador"
 
-msgid "Australia"
-msgstr "Austrália"
-
-msgid "Brazil"
-msgstr "Brasil"
-
-msgid "Canada"
-msgstr "Canadá"
-
 msgid "Cancel"
 msgstr "Cancelar"
-
-msgid "Chinese"
-msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Escolha o que pretende fazer"
@@ -69,12 +57,6 @@ msgstr "Fechar YouTube"
 
 msgid "Created date"
 msgstr "Data criada"
-
-msgid "Czech"
-msgstr ""
-
-msgid "Czech Republic"
-msgstr "República Checa"
 
 msgid "Default"
 msgstr ""
@@ -103,9 +85,6 @@ msgstr "Descarga em curso"
 msgid "Duration: "
 msgstr "Duração:  "
 
-msgid "Dutch"
-msgstr ""
-
 msgid "Embedded in webpages"
 msgstr "Embebido em páginas Web"
 
@@ -128,19 +107,6 @@ msgstr ""
 "FFmpeg será usado para misturar arquivos de vídeo e áudio DASH descarregados.\n"
 "Se for necessário FFmpeg será instalado."
 
-msgid "France"
-msgstr "França"
-
-msgid "French"
-msgstr ""
-
-#, fuzzy
-msgid "German"
-msgstr "Alemanha"
-
-msgid "Germany"
-msgstr "Alemanha"
-
 #, python-format
 msgid ""
 "Go to %s\n"
@@ -149,27 +115,11 @@ msgstr ""
 "Vá para %s\n"
 "E introduza o código %s"
 
-msgid "Greece"
-msgstr "Grécia"
-
-#, fuzzy
-msgid "Greek"
-msgstr "Grécia"
-
 msgid "Gstplayer"
 msgstr ""
 
 msgid "HD videos"
 msgstr "Vídeos HD"
-
-msgid "Hebrew"
-msgstr ""
-
-msgid "Hindi"
-msgstr ""
-
-msgid "Hong Kong"
-msgstr "Hong Kong"
 
 msgid ""
 "How many search results will be returned.\n"
@@ -184,44 +134,11 @@ msgstr "Eu não gosto disto"
 msgid "I like this"
 msgstr "Eu gosto disto"
 
-msgid "India"
-msgstr "Índia"
-
 msgid "Info"
 msgstr "Informação"
 
-msgid "Ireland"
-msgstr "Irlanda"
-
-msgid "Israel"
-msgstr "Israel"
-
-#, fuzzy
-msgid "Italian"
-msgstr "Itália"
-
-msgid "Italy"
-msgstr "Itália"
-
-msgid "Japan"
-msgstr "Japão"
-
-#, fuzzy
-msgid "Japanese"
-msgstr "Japão"
-
 msgid "Keyboard"
 msgstr "Teclado"
-
-msgid "Korean"
-msgstr ""
-
-msgid "Latvia"
-msgstr "Letónia"
-
-#, fuzzy
-msgid "Latvian"
-msgstr "Letónia"
 
 msgid "Liked videos"
 msgstr "Vídeos que gostei"
@@ -252,9 +169,6 @@ msgstr ""
 msgid "Merge downloaded files:"
 msgstr "Misturar arquivos descarregados:"
 
-msgid "Mexico"
-msgstr "México"
-
 msgid "Moderate"
 msgstr "Moderado"
 
@@ -269,9 +183,6 @@ msgstr "As minhas Subscrições"
 
 msgid "My feeds"
 msgstr "Os meus feeds"
-
-msgid "New Zealand"
-msgstr "Nova Zelândia"
 
 #, fuzzy, python-format
 msgid "Next %s entry"
@@ -314,15 +225,6 @@ msgstr "Listas de Reprodução"
 
 msgid "Please select the download directory"
 msgstr "Por favor, seleccione o directório de descarga"
-
-msgid "Poland"
-msgstr "Polónia"
-
-msgid "Polish"
-msgstr ""
-
-msgid "Portuguese"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Previous %s entry"
@@ -371,9 +273,6 @@ msgstr "Devolve os resultados de pesquisa mais relevantes para o idioma especifi
 
 msgid "Return to list"
 msgstr "Voltar à lista"
-
-msgid "Russia"
-msgstr "Rússia"
 
 msgid "Save search result:"
 msgstr "Guardar os resultados da pesquisa:"
@@ -433,15 +332,6 @@ msgstr ""
 msgid "Sort search results by:"
 msgstr "Ordene resultados de procura por:"
 
-msgid "South Korea"
-msgstr "Coreia do Sul"
-
-msgid "Spain"
-msgstr "Espanha"
-
-msgid "Spanish"
-msgstr ""
-
 msgid "Specify the directory where save downloaded video files."
 msgstr "Especifiar o diretório para salvar descargars de vídeos."
 
@@ -459,26 +349,6 @@ msgstr "Subscreva este canal de vídeo"
 
 msgid "Subscribed!"
 msgstr "Subscrito!"
-
-msgid "Sweden"
-msgstr "Suécia"
-
-#, fuzzy
-msgid "Swedish"
-msgstr "Suécia"
-
-msgid "Taiwan"
-msgstr "Taiwan"
-
-#, fuzzy
-msgid "Thai"
-msgstr "Tailândia"
-
-msgid "Thailand"
-msgstr "Tailândia"
-
-msgid "The Netherlands"
-msgstr ""
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -522,19 +392,6 @@ msgstr "Classificação mais elevada"
 
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Tente excluir todo o conteúdo restrito dos resultados de busca."
-
-msgid "Turkey"
-msgstr "Turquia"
-
-#, fuzzy
-msgid "Turkish"
-msgstr "Turquia"
-
-msgid "United Kingdom"
-msgstr ""
-
-msgid "United States"
-msgstr "Estados Unidos"
 
 msgid "Unsubscribe"
 msgstr "Anular subscrição"
@@ -615,3 +472,110 @@ msgstr "Definição do YouTube"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube a iniciar. Por favor aguarde..."
+
+#~ msgid "Australia"
+#~ msgstr "Austrália"
+
+#~ msgid "Brazil"
+#~ msgstr "Brasil"
+
+#~ msgid "Canada"
+#~ msgstr "Canadá"
+
+#~ msgid "Czech Republic"
+#~ msgstr "República Checa"
+
+#~ msgid "France"
+#~ msgstr "França"
+
+#, fuzzy
+#~ msgid "German"
+#~ msgstr "Alemanha"
+
+#~ msgid "Germany"
+#~ msgstr "Alemanha"
+
+#~ msgid "Greece"
+#~ msgstr "Grécia"
+
+#, fuzzy
+#~ msgid "Greek"
+#~ msgstr "Grécia"
+
+#~ msgid "Hong Kong"
+#~ msgstr "Hong Kong"
+
+#~ msgid "India"
+#~ msgstr "Índia"
+
+#~ msgid "Ireland"
+#~ msgstr "Irlanda"
+
+#~ msgid "Israel"
+#~ msgstr "Israel"
+
+#, fuzzy
+#~ msgid "Italian"
+#~ msgstr "Itália"
+
+#~ msgid "Italy"
+#~ msgstr "Itália"
+
+#~ msgid "Japan"
+#~ msgstr "Japão"
+
+#, fuzzy
+#~ msgid "Japanese"
+#~ msgstr "Japão"
+
+#~ msgid "Latvia"
+#~ msgstr "Letónia"
+
+#, fuzzy
+#~ msgid "Latvian"
+#~ msgstr "Letónia"
+
+#~ msgid "Mexico"
+#~ msgstr "México"
+
+#~ msgid "New Zealand"
+#~ msgstr "Nova Zelândia"
+
+#~ msgid "Poland"
+#~ msgstr "Polónia"
+
+#~ msgid "Russia"
+#~ msgstr "Rússia"
+
+#~ msgid "South Korea"
+#~ msgstr "Coreia do Sul"
+
+#~ msgid "Spain"
+#~ msgstr "Espanha"
+
+#~ msgid "Sweden"
+#~ msgstr "Suécia"
+
+#, fuzzy
+#~ msgid "Swedish"
+#~ msgstr "Suécia"
+
+#~ msgid "Taiwan"
+#~ msgstr "Taiwan"
+
+#, fuzzy
+#~ msgid "Thai"
+#~ msgstr "Tailândia"
+
+#~ msgid "Thailand"
+#~ msgstr "Tailândia"
+
+#~ msgid "Turkey"
+#~ msgstr "Turquia"
+
+#, fuzzy
+#~ msgid "Turkish"
+#~ msgstr "Turquia"
+
+#~ msgid "United States"
+#~ msgstr "Estados Unidos"

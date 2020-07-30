@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-12 18:51+0300\n"
+"POT-Creation-Date: 2020-07-30 23:02+0300\n"
 "PO-Revision-Date: 2016-02-27 17:17+0100\n"
 "Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: OpenPlus <open-plus.es>\n"
@@ -39,20 +39,8 @@ msgstr "Alle"
 msgid "Ask user"
 msgstr "User fragen"
 
-msgid "Australia"
-msgstr "Australien"
-
-msgid "Brazil"
-msgstr "Brasilien"
-
-msgid "Canada"
-msgstr "Canada"
-
 msgid "Cancel"
 msgstr "Abbrechen"
-
-msgid "Chinese"
-msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Bitte wählen Sie..."
@@ -62,12 +50,6 @@ msgstr "YouTube schließen"
 
 msgid "Created date"
 msgstr "Erstelldatum"
-
-msgid "Czech"
-msgstr ""
-
-msgid "Czech Republic"
-msgstr "Tschechische Republik"
 
 msgid "Default"
 msgstr ""
@@ -96,9 +78,6 @@ msgstr "Herunterladen"
 msgid "Duration: "
 msgstr "Dauer: "
 
-msgid "Dutch"
-msgstr ""
-
 msgid "Embedded in webpages"
 msgstr "Eingebettet in Website"
 
@@ -119,19 +98,6 @@ msgid ""
 "FFmpeg will be installed if necessary."
 msgstr ""
 
-msgid "France"
-msgstr "Frankreich"
-
-msgid "French"
-msgstr ""
-
-#, fuzzy
-msgid "German"
-msgstr "Deutschland"
-
-msgid "Germany"
-msgstr "Deutschland"
-
 #, python-format
 msgid ""
 "Go to %s\n"
@@ -140,26 +106,11 @@ msgstr ""
 "Gehe zu %s\n"
 "und geben sie folgenden Code ein %s"
 
-msgid "Greece"
-msgstr ""
-
-msgid "Greek"
-msgstr ""
-
 msgid "Gstplayer"
 msgstr ""
 
 msgid "HD videos"
 msgstr "HD Videos"
-
-msgid "Hebrew"
-msgstr ""
-
-msgid "Hindi"
-msgstr ""
-
-msgid "Hong Kong"
-msgstr "Hong Kong"
 
 msgid ""
 "How many search results will be returned.\n"
@@ -174,44 +125,11 @@ msgstr "Gefällt mir nicht"
 msgid "I like this"
 msgstr "Gefällt mir"
 
-msgid "India"
-msgstr "Indien"
-
 msgid "Info"
 msgstr "Informationen"
 
-msgid "Ireland"
-msgstr "Irland"
-
-msgid "Israel"
-msgstr "Israel"
-
-#, fuzzy
-msgid "Italian"
-msgstr "Italien"
-
-msgid "Italy"
-msgstr "Italien"
-
-msgid "Japan"
-msgstr "Japan"
-
-#, fuzzy
-msgid "Japanese"
-msgstr "Japan"
-
 msgid "Keyboard"
 msgstr "Tastatur"
-
-msgid "Korean"
-msgstr ""
-
-msgid "Latvia"
-msgstr "Lettland"
-
-#, fuzzy
-msgid "Latvian"
-msgstr "Lettland"
 
 msgid "Liked videos"
 msgstr "Positiv bewertet"
@@ -242,9 +160,6 @@ msgstr ""
 msgid "Merge downloaded files:"
 msgstr ""
 
-msgid "Mexico"
-msgstr "Mexiko"
-
 msgid "Moderate"
 msgstr "Moderat"
 
@@ -259,9 +174,6 @@ msgstr "Meine Abos"
 
 msgid "My feeds"
 msgstr "Meine Feeds"
-
-msgid "New Zealand"
-msgstr "Neuseeland"
 
 #, fuzzy, python-format
 msgid "Next %s entry"
@@ -304,15 +216,6 @@ msgstr "Playlists"
 
 msgid "Please select the download directory"
 msgstr "Downloadverzeichnis wählen"
-
-msgid "Poland"
-msgstr "Polen"
-
-msgid "Polish"
-msgstr ""
-
-msgid "Portuguese"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Previous %s entry"
@@ -361,9 +264,6 @@ msgstr "Zeige die wichtigsten Suchergebnisse für die gewählte Sprache"
 
 msgid "Return to list"
 msgstr "Zurück zur Liste"
-
-msgid "Russia"
-msgstr "Russland"
 
 msgid "Save search result:"
 msgstr "Suchergebnis speichern:"
@@ -423,15 +323,6 @@ msgstr ""
 msgid "Sort search results by:"
 msgstr "Suchergebnisse filtern nach:"
 
-msgid "South Korea"
-msgstr "Südkorea"
-
-msgid "Spain"
-msgstr "Spanien"
-
-msgid "Spanish"
-msgstr ""
-
 msgid "Specify the directory where save downloaded video files."
 msgstr "Verzeichnis für gespeicherte Videos wählen."
 
@@ -449,26 +340,6 @@ msgstr "Kanal abonnieren"
 
 msgid "Subscribed!"
 msgstr "Abonniert!"
-
-msgid "Sweden"
-msgstr "Schweden"
-
-#, fuzzy
-msgid "Swedish"
-msgstr "Schweden"
-
-msgid "Taiwan"
-msgstr "Taiwan"
-
-#, fuzzy
-msgid "Thai"
-msgstr "Thailand"
-
-msgid "Thailand"
-msgstr "Thailand"
-
-msgid "The Netherlands"
-msgstr ""
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -509,18 +380,6 @@ msgstr "Positiv bewertete Videos"
 
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Versuche alle expliziten Inhalte vom Suchergebnis zu entfernen."
-
-msgid "Turkey"
-msgstr ""
-
-msgid "Turkish"
-msgstr ""
-
-msgid "United Kingdom"
-msgstr ""
-
-msgid "United States"
-msgstr "USA"
 
 msgid "Unsubscribe"
 msgstr "Abonnement abmelden"
@@ -598,3 +457,96 @@ msgstr "YouTube Konfiguration"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube startet, Bitte warten..."
+
+#~ msgid "Australia"
+#~ msgstr "Australien"
+
+#~ msgid "Brazil"
+#~ msgstr "Brasilien"
+
+#~ msgid "Canada"
+#~ msgstr "Canada"
+
+#~ msgid "Czech Republic"
+#~ msgstr "Tschechische Republik"
+
+#~ msgid "France"
+#~ msgstr "Frankreich"
+
+#, fuzzy
+#~ msgid "German"
+#~ msgstr "Deutschland"
+
+#~ msgid "Germany"
+#~ msgstr "Deutschland"
+
+#~ msgid "Hong Kong"
+#~ msgstr "Hong Kong"
+
+#~ msgid "India"
+#~ msgstr "Indien"
+
+#~ msgid "Ireland"
+#~ msgstr "Irland"
+
+#~ msgid "Israel"
+#~ msgstr "Israel"
+
+#, fuzzy
+#~ msgid "Italian"
+#~ msgstr "Italien"
+
+#~ msgid "Italy"
+#~ msgstr "Italien"
+
+#~ msgid "Japan"
+#~ msgstr "Japan"
+
+#, fuzzy
+#~ msgid "Japanese"
+#~ msgstr "Japan"
+
+#~ msgid "Latvia"
+#~ msgstr "Lettland"
+
+#, fuzzy
+#~ msgid "Latvian"
+#~ msgstr "Lettland"
+
+#~ msgid "Mexico"
+#~ msgstr "Mexiko"
+
+#~ msgid "New Zealand"
+#~ msgstr "Neuseeland"
+
+#~ msgid "Poland"
+#~ msgstr "Polen"
+
+#~ msgid "Russia"
+#~ msgstr "Russland"
+
+#~ msgid "South Korea"
+#~ msgstr "Südkorea"
+
+#~ msgid "Spain"
+#~ msgstr "Spanien"
+
+#~ msgid "Sweden"
+#~ msgstr "Schweden"
+
+#, fuzzy
+#~ msgid "Swedish"
+#~ msgstr "Schweden"
+
+#~ msgid "Taiwan"
+#~ msgstr "Taiwan"
+
+#, fuzzy
+#~ msgid "Thai"
+#~ msgstr "Thailand"
+
+#~ msgid "Thailand"
+#~ msgstr "Thailand"
+
+#~ msgid "United States"
+#~ msgstr "USA"

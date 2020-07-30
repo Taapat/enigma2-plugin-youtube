@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin greek translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-12 18:51+0300\n"
+"POT-Creation-Date: 2020-07-30 23:02+0300\n"
 "PO-Revision-Date: 2019-11-19 01:16+0200\n"
 "Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: MCelliot_g <mcelliot_g@hotmail.com>\n"
@@ -40,20 +40,8 @@ msgstr "Όλες"
 msgid "Ask user"
 msgstr "Ερώτηση χρήστη"
 
-msgid "Australia"
-msgstr "Αυστραλία"
-
-msgid "Brazil"
-msgstr "Βραζιλία"
-
-msgid "Canada"
-msgstr "Καναδάς"
-
 msgid "Cancel"
 msgstr "Ακύρωση"
-
-msgid "Chinese"
-msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Επιλέξτε τι θέλετε να κάνετε..."
@@ -63,12 +51,6 @@ msgstr "Κλείσιμο YouTube"
 
 msgid "Created date"
 msgstr "Ημερομηνία δημιουργίας"
-
-msgid "Czech"
-msgstr ""
-
-msgid "Czech Republic"
-msgstr "Δημοκρατία της Τσεχίας"
 
 msgid "Default"
 msgstr ""
@@ -97,9 +79,6 @@ msgstr "Γίνεται λήψη..."
 msgid "Duration: "
 msgstr "Διάρκεια: "
 
-msgid "Dutch"
-msgstr ""
-
 msgid "Embedded in webpages"
 msgstr "Ενσωματωμένα σε ιστοσελίδες"
 
@@ -120,46 +99,17 @@ msgid ""
 "FFmpeg will be installed if necessary."
 msgstr "Το FFmpeg χρησιμοποιείται για τη συγχώνευση των αρχείων βίντεο και ήχου DASH. Θα γίνει εγκατάσταση του FFmpeg όταν κριθεί απαραίτητο."
 
-msgid "France"
-msgstr "Γαλλία"
-
-msgid "French"
-msgstr ""
-
-#, fuzzy
-msgid "German"
-msgstr "Γερμανία"
-
-msgid "Germany"
-msgstr "Γερμανία"
-
 #, python-format
 msgid ""
 "Go to %s\n"
 "And enter the code %s"
 msgstr "Μεταβείτε στη διεύθυνση %s και εισάγετε τον κωδικό %s"
 
-msgid "Greece"
-msgstr "Ελλάδα"
-
-#, fuzzy
-msgid "Greek"
-msgstr "Ελλάδα"
-
 msgid "Gstplayer"
 msgstr ""
 
 msgid "HD videos"
 msgstr "HD βίντεο"
-
-msgid "Hebrew"
-msgstr ""
-
-msgid "Hindi"
-msgstr ""
-
-msgid "Hong Kong"
-msgstr "Χονγκ Κονγκ"
 
 msgid ""
 "How many search results will be returned.\n"
@@ -172,44 +122,11 @@ msgstr "Δεν μου αρέσει"
 msgid "I like this"
 msgstr "Μου αρέσει"
 
-msgid "India"
-msgstr "Ινδία"
-
 msgid "Info"
 msgstr "Πληροφορίες"
 
-msgid "Ireland"
-msgstr "Ιρλανδία"
-
-msgid "Israel"
-msgstr "Ισραήλ"
-
-#, fuzzy
-msgid "Italian"
-msgstr "Ιταλία"
-
-msgid "Italy"
-msgstr "Ιταλία"
-
-msgid "Japan"
-msgstr "Ιαπωνία"
-
-#, fuzzy
-msgid "Japanese"
-msgstr "Ιαπωνία"
-
 msgid "Keyboard"
 msgstr "Πληκτρολόγιο"
-
-msgid "Korean"
-msgstr ""
-
-msgid "Latvia"
-msgstr "Λετονία"
-
-#, fuzzy
-msgid "Latvian"
-msgstr "Λετονία"
 
 msgid "Liked videos"
 msgstr "Βίντεο που σας αρέσουν"
@@ -238,9 +155,6 @@ msgstr ""
 msgid "Merge downloaded files:"
 msgstr "Συγχώνευση ληφθέντων αρχείων"
 
-msgid "Mexico"
-msgstr "Μεξικό"
-
 msgid "Moderate"
 msgstr "Μέτριο"
 
@@ -255,9 +169,6 @@ msgstr "Οι συνδρομές μου"
 
 msgid "My feeds"
 msgstr "Οι πηγές μου"
-
-msgid "New Zealand"
-msgstr "Νέα Ζηλανδία"
 
 #, fuzzy, python-format
 msgid "Next %s entry"
@@ -300,15 +211,6 @@ msgstr "Λίστες αναπαραγωγής"
 
 msgid "Please select the download directory"
 msgstr "Επιλέξτε τον φάκελο λήψεων"
-
-msgid "Poland"
-msgstr "Πολωνία"
-
-msgid "Polish"
-msgstr ""
-
-msgid "Portuguese"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Previous %s entry"
@@ -357,9 +259,6 @@ msgstr "Προβολή των αποτελεσμάτων αναζήτησης π
 
 msgid "Return to list"
 msgstr "Επιστροφή στη λίστα"
-
-msgid "Russia"
-msgstr "Ρωσία"
 
 msgid "Save search result:"
 msgstr "Αποθήκευση αποτελεσμάτων αναζήτησης"
@@ -417,15 +316,6 @@ msgstr ""
 msgid "Sort search results by:"
 msgstr "Εμφάνιση αποτελεσμάτων αναζήτησης κατά"
 
-msgid "South Korea"
-msgstr "Νότια Κορέα"
-
-msgid "Spain"
-msgstr "Ισπανία"
-
-msgid "Spanish"
-msgstr ""
-
 msgid "Specify the directory where save downloaded video files."
 msgstr "Ορίστε τον φάκελο στον οποίο θα αποθηκεύονται τα ληφθέντα αρχεία βίντεο."
 
@@ -443,26 +333,6 @@ msgstr "Εγγραφή σε αυτό το κανάλι"
 
 msgid "Subscribed!"
 msgstr "Εγγεγραμένος!"
-
-msgid "Sweden"
-msgstr "Σουηδία"
-
-#, fuzzy
-msgid "Swedish"
-msgstr "Σουηδία"
-
-msgid "Taiwan"
-msgstr "Ταϊβάν"
-
-#, fuzzy
-msgid "Thai"
-msgstr "Ταϊλάνδη"
-
-msgid "Thailand"
-msgstr "Ταϊλάνδη"
-
-msgid "The Netherlands"
-msgstr ""
 
 msgid ""
 "There was an error in creating entry list!\n"
@@ -499,19 +369,6 @@ msgstr "Κορυφαίας βαθμολογίας"
 
 msgid "Try to exclude all restricted content from the search result."
 msgstr "Προσπάθεια εξαίρεσης του περιορισμένου περιεχομένου από τα αποτελέσματα αναζήτησης."
-
-msgid "Turkey"
-msgstr "Τουρκία"
-
-#, fuzzy
-msgid "Turkish"
-msgstr "Τουρκία"
-
-msgid "United Kingdom"
-msgstr ""
-
-msgid "United States"
-msgstr "Ηνωμένες Πολιτείες"
 
 msgid "Unsubscribe"
 msgstr "Κατάργηση εγγραφής"
@@ -585,3 +442,110 @@ msgstr "Ρυθμίσεις YouTube"
 
 msgid "YouTube starting. Please wait..."
 msgstr "Το YouTube ξεκινά. Παρακαλώ περιμένετε..."
+
+#~ msgid "Australia"
+#~ msgstr "Αυστραλία"
+
+#~ msgid "Brazil"
+#~ msgstr "Βραζιλία"
+
+#~ msgid "Canada"
+#~ msgstr "Καναδάς"
+
+#~ msgid "Czech Republic"
+#~ msgstr "Δημοκρατία της Τσεχίας"
+
+#~ msgid "France"
+#~ msgstr "Γαλλία"
+
+#, fuzzy
+#~ msgid "German"
+#~ msgstr "Γερμανία"
+
+#~ msgid "Germany"
+#~ msgstr "Γερμανία"
+
+#~ msgid "Greece"
+#~ msgstr "Ελλάδα"
+
+#, fuzzy
+#~ msgid "Greek"
+#~ msgstr "Ελλάδα"
+
+#~ msgid "Hong Kong"
+#~ msgstr "Χονγκ Κονγκ"
+
+#~ msgid "India"
+#~ msgstr "Ινδία"
+
+#~ msgid "Ireland"
+#~ msgstr "Ιρλανδία"
+
+#~ msgid "Israel"
+#~ msgstr "Ισραήλ"
+
+#, fuzzy
+#~ msgid "Italian"
+#~ msgstr "Ιταλία"
+
+#~ msgid "Italy"
+#~ msgstr "Ιταλία"
+
+#~ msgid "Japan"
+#~ msgstr "Ιαπωνία"
+
+#, fuzzy
+#~ msgid "Japanese"
+#~ msgstr "Ιαπωνία"
+
+#~ msgid "Latvia"
+#~ msgstr "Λετονία"
+
+#, fuzzy
+#~ msgid "Latvian"
+#~ msgstr "Λετονία"
+
+#~ msgid "Mexico"
+#~ msgstr "Μεξικό"
+
+#~ msgid "New Zealand"
+#~ msgstr "Νέα Ζηλανδία"
+
+#~ msgid "Poland"
+#~ msgstr "Πολωνία"
+
+#~ msgid "Russia"
+#~ msgstr "Ρωσία"
+
+#~ msgid "South Korea"
+#~ msgstr "Νότια Κορέα"
+
+#~ msgid "Spain"
+#~ msgstr "Ισπανία"
+
+#~ msgid "Sweden"
+#~ msgstr "Σουηδία"
+
+#, fuzzy
+#~ msgid "Swedish"
+#~ msgstr "Σουηδία"
+
+#~ msgid "Taiwan"
+#~ msgstr "Ταϊβάν"
+
+#, fuzzy
+#~ msgid "Thai"
+#~ msgstr "Ταϊλάνδη"
+
+#~ msgid "Thailand"
+#~ msgstr "Ταϊλάνδη"
+
+#~ msgid "Turkey"
+#~ msgstr "Τουρκία"
+
+#, fuzzy
+#~ msgid "Turkish"
+#~ msgstr "Τουρκία"
+
+#~ msgid "United States"
+#~ msgstr "Ηνωμένες Πολιτείες"
