@@ -26,12 +26,17 @@ from Screens.InfoBar import InfoBar, MoviePlayer
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
-from Tools.CountryCodes import ISO3166
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_PLUGINS
 
 from . import _, ngettext
 from .YouTubeApi import GetKey
 
+
+try:
+	from Tools.CountryCodes import ISO3166
+except:
+	# Workoround if CountryCodes not exist (BH)
+	ISO3166 = [(x[1][0], x[1][2]) for x in language.getLanguageList()]
 
 config.plugins.YouTube = ConfigSubsection()
 config.plugins.YouTube.saveHistory = ConfigYesNo(default=True)
