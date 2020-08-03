@@ -29,7 +29,7 @@ from Tools.BoundFunction import boundFunction
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_PLUGINS
 
 from . import _
-from . ngettext
+from . import ngettext
 from .YouTubeApi import GetKey
 
 
