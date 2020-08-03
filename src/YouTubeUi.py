@@ -28,7 +28,8 @@ from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_PLUGINS
 
-from . import _, ngettext
+from . import _
+from . ngettext
 from .YouTubeApi import GetKey
 
 
@@ -38,10 +39,11 @@ except:
 	# Workaround if CountryCodes not exist (BH)
 	ISO3166 = [(x[1][0], x[1][2]) for x in language.getLanguageList()]
 
+
 config.plugins.YouTube = ConfigSubsection()
 config.plugins.YouTube.saveHistory = ConfigYesNo(default=True)
 config.plugins.YouTube.searchResult = ConfigSelection(default='24',
-	[('4', '4'),
+	choices=[('4', '4'),
 	('8', '8'),
 	('16', '16'),
 	('24', '24'),
@@ -54,7 +56,7 @@ config.plugins.YouTube.searchLanguage = ConfigSelection(
 	default=language.getLanguage().split('_')[0],
 	choices=[('', _('All'))]+[(x[1][1], x[1][0]) for x in language.getLanguageList()])
 config.plugins.YouTube.searchOrder = ConfigSelection(default='relevance',
-	[('relevance', _('Relevance')),
+	choices=[('relevance', _('Relevance')),
 	('date', _('Created date')),
 	('rating', _('Rating')),
 	('title', _('Title')),
@@ -92,7 +94,6 @@ API_KEY = GetKey('Xhi3_LoIzw_OizD15SyCNReMvKL27nw_OizDWRR395T5uGWpvn451I2VYc78Gy
 YOUTUBE_API_CLIENT_ID = GetKey('4113447027255-v15bgs05u1o3m278mpjs2vcd0394w_OizDfrg5160drbw_Oiz63D.w_OizDpp75s.googleus87ercontent.99com')
 YOUTUBE_API_CLIENT_SECRET = GetKey('Zf93pqd2rxgY2ro159rK20BMxif27')
 
-# Read API keys from key file
 if os.path.exists('/etc/enigma2/YouTube.key'):
 	try:
 		for line in open('/etc/enigma2/YouTube.key').readlines():
@@ -116,7 +117,7 @@ if os.path.exists('/etc/enigma2/YouTube.key'):
 		print('[YouTube] Error in read YouTube.key:', ex)
 
 
-#  Workoround to keep compatibility broken once again on OpenPLi develop
+#  Workaround to keep compatibility broken once again on OpenPLi develop
 BUTTONS_FOLDER = 'skin_default'
 if os.path.exists('/usr/share/enigma2/skin_fallback_1080/buttons/red.png'):
 	BUTTONS_FOLDER = 'skin_fallback_1080'
