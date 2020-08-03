@@ -35,31 +35,31 @@ from .YouTubeApi import GetKey
 try:
 	from Tools.CountryCodes import ISO3166
 except:
-	# Workoround if CountryCodes not exist (BH)
+	# Workaround if CountryCodes not exist (BH)
 	ISO3166 = [(x[1][0], x[1][2]) for x in language.getLanguageList()]
 
 config.plugins.YouTube = ConfigSubsection()
 config.plugins.YouTube.saveHistory = ConfigYesNo(default=True)
-config.plugins.YouTube.searchResult = ConfigSelection(
+config.plugins.YouTube.searchResult = ConfigSelection(default='24',
 	[('4', '4'),
 	('8', '8'),
 	('16', '16'),
 	('24', '24'),
 	('50', '50')
-	], '24')
+	])
 config.plugins.YouTube.searchRegion = ConfigSelection(
 	default=language.getLanguage().split('_')[1],
 	choices=[('', _('All'))]+[(x[1], x[0]) for x in ISO3166])
 config.plugins.YouTube.searchLanguage = ConfigSelection(
 	default=language.getLanguage().split('_')[0],
 	choices=[('', _('All'))]+[(x[1][1], x[1][0]) for x in language.getLanguageList()])
-config.plugins.YouTube.searchOrder = ConfigSelection(
+config.plugins.YouTube.searchOrder = ConfigSelection(default='relevance',
 	[('relevance', _('Relevance')),
 	('date', _('Created date')),
 	('rating', _('Rating')),
 	('title', _('Title')),
 	('viewCount', _('View count'))
-	], 'relevance')
+	])
 config.plugins.YouTube.safeSearch = ConfigSelection(default='moderate', choices=[
 	('moderate', _('Moderate')), ('none', _('No')), ('strict', _('Yes'))])
 config.plugins.YouTube.maxResolution = ConfigSelection(default='22', choices=[
