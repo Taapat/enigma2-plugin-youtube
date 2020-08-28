@@ -77,6 +77,10 @@ class YouTubeSearch(Screen, ConfigListScreen):
 						"itemHeight": 30}
 					</convert>
 				</widget>
+				<widget source="VKeyIcon" conditional="VKeyIcon" render="Pixmap" pixmap="skin_default/buttons/key_text.png" position="30,335" size="35,25" \
+					transparent="1" alphatest="on">
+					<convert type="ConditionalShowHide"/>
+				</widget>
 				<ePixmap position="85,323" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
 				<ePixmap position="245,323" size="140,40" pixmap="skin_default/buttons/green.png" \
@@ -109,6 +113,10 @@ class YouTubeSearch(Screen, ConfigListScreen):
 						"itemHeight": 45}
 					</convert>
 				</widget>
+				<widget source="VKeyIcon" conditional="VKeyIcon" render="Pixmap" pixmap="skin_fallback_1080/buttons/key_text.png" position="43,507" size="53,38" \
+					transparent="1" alphatest="on">
+					<convert type="ConditionalShowHide"/>
+				</widget>
 				<ePixmap position="127,484" size="210,60" pixmap="%s/buttons/red.png" \
 					transparent="1" alphatest="on" />
 				<ePixmap position="367,484" size="210,60" pixmap="%s/buttons/green.png" \
@@ -121,6 +129,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 				<widget source="key_yellow" render="Label" position="608,485" zPosition="2" size="210,60" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
+				<ePixmap position="849,507" size="53,38" pixmap="skin_fallback_1080/buttons/key_menu.png" \
+					transparent="1" alphatest="on" />
 				<widget name="HelpWindow" position="600,810" size="1,1" zPosition="5" \
 					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
 			</screen>""" % (BUTTONS_FOLDER, BUTTONS_FOLDER, BUTTONS_FOLDER)
@@ -138,6 +148,10 @@ class YouTubeSearch(Screen, ConfigListScreen):
 						"fonts": [gFont("Regular",20)],
 						"itemHeight": 30}
 					</convert>
+				</widget>
+				<widget source="VKeyIcon" conditional="VKeyIcon" render="Pixmap" pixmap="skin_default/buttons/key_text.png" position="30,335" size="35,25" \
+					transparent="1" alphatest="on">
+					<convert type="ConditionalShowHide"/>
 				</widget>
 				<ePixmap position="85,323" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
@@ -166,12 +180,11 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		self['key_green'] = StaticText(_('Ok'))
 		self['key_yellow'] = StaticText(_('Keyboard'))
 		self['HelpWindow'] = Pixmap()
-		self['searchactions'] = ActionMap(['SetupActions', 'ColorActions', 'MenuActions'],
+		self['searchactions'] = ActionMap(['SetupActions', 'ColorActions'],
 			{
 				'cancel': self.close,
+				'save': self.ok,
 				'ok': self.ok,
-				'red': self.close,
-				'green': self.ok,
 				'yellow': self.openKeyboard,
 				'menu': self.openMenu
 			}, -2)
@@ -222,6 +235,37 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				config.plugins.YouTube.searchHistoryDict[self.curList].value = self.searchHistory
 				config.plugins.YouTube.searchHistoryDict.save()
 			self.close(searchValue)
+
+	def noNativeKeys(self):
+		ConfigListScreen.noNativeKeys(self)
+		renderer = self['list']
+		while renderer.master:
+			renderer = renderer.master
+		try:
+			renderer.instance.allowNativeKeys(False)
+		except AttributeError:
+			pass
+
+	def keyText(self):
+		self.openKeyboard()
+
+	def keyTop(self):
+		self['list'].setIndex(0)
+
+	def keyPageUp(self):
+		self['list'].pageUp()
+
+	def keyUp(self):
+		self['list'].up()
+
+	def keyDown(self):
+		self['list'].down()
+
+	def keyPageDown(self):
+		self['list'].pageDown()
+
+	def keyBottom(self):
+		self['list'].setIndex(max(0, self['list'].count() - 1))
 
 	def openMenu(self):
 		self['config'].getCurrent()[1].help_window.instance.hide()
