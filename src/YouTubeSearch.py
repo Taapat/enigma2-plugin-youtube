@@ -31,6 +31,10 @@ class YouTubeVirtualKeyBoard(VirtualKeyBoard):
 		self.skinName = ['YouTubeVirtualKeyBoard', 'VirtualKeyBoard']
 		self.searchValue = GoogleSuggestionsConfigText(default=text,
 			updateSuggestions=self.updateSuggestions)
+		if text:
+			# Force a search by setting the old search value to ""
+			self.searchValue.value = ""
+			self.tryGetSuggestions()
 
 	#  Replace okClicked on OpenPLi develop
 	def processSelect(self):
@@ -39,6 +43,18 @@ class YouTubeVirtualKeyBoard(VirtualKeyBoard):
 
 	def okClicked(self):
 		VirtualKeyBoard.okClicked(self)
+		self.tryGetSuggestions()
+
+	def backSelected(self):
+		VirtualKeyBoard.backSelected(self)
+		self.tryGetSuggestions()
+
+	def forwardSelected(self):
+		VirtualKeyBoard.forwardSelected(self)
+		self.tryGetSuggestions()
+
+	def eraseAll(self):
+		VirtualKeyBoard.eraseAll(self)
 		self.tryGetSuggestions()
 
 	def tryGetSuggestions(self):
