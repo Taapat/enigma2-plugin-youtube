@@ -129,7 +129,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 						"itemHeight": 45}
 					</convert>
 				</widget>
-				<widget source="VKeyIcon" conditional="VKeyIcon" render="Pixmap" pixmap="skin_fallback_1080/buttons/key_text.png" position="43,507" size="53,38" \
+				<widget source="VKeyIcon" conditional="VKeyIcon" render="Pixmap" \
+					pixmap="%s/buttons/key_text.png" position="43,507" size="53,38" \
 					transparent="1" alphatest="on">
 					<convert type="ConditionalShowHide"/>
 				</widget>
@@ -145,11 +146,11 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 				<widget source="key_yellow" render="Label" position="608,485" zPosition="2" size="210,60" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
-				<ePixmap position="849,507" size="53,38" pixmap="skin_fallback_1080/buttons/key_menu.png" \
+				<ePixmap position="849,507" size="53,38" pixmap="%s/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="HelpWindow" position="600,810" size="1,1" zPosition="5" \
 					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
-			</screen>""" % (BUTTONS_FOLDER, BUTTONS_FOLDER, BUTTONS_FOLDER)
+			</screen>""" % (BUTTONS_FOLDER, BUTTONS_FOLDER, BUTTONS_FOLDER, BUTTONS_FOLDER, BUTTONS_FOLDER)
 	else:
 		skin = """<screen position="center,150" size="630,370">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
