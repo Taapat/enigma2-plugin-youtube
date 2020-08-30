@@ -196,7 +196,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		self['key_green'] = StaticText(_('Ok'))
 		self['key_yellow'] = StaticText(_('Keyboard'))
 		self['HelpWindow'] = Pixmap()
-		self['searchactions'] = ActionMap(['SetupActions', 'ColorActions'],
+		self['searchactions'] = ActionMap(['SetupActions', 'ColorActions', 'MenuActions'],
 			{
 				'cancel': self.close,
 				'save': self.ok,
