@@ -93,8 +93,9 @@ class YouTubeSearch(Screen, ConfigListScreen):
 						"itemHeight": 30}
 					</convert>
 				</widget>
-				<widget source="VKeyIcon" conditional="VKeyIcon" render="Pixmap" pixmap="skin_default/buttons/key_text.png" position="30,335" size="35,25" \
-					transparent="1" alphatest="on">
+				<widget source="VKeyIcon" conditional="VKeyIcon" render="Pixmap" \
+					pixmap="skin_default/buttons/key_text.png" \
+					position="30,335" size="35,25" transparent="1" alphatest="on">
 					<convert type="ConditionalShowHide"/>
 				</widget>
 				<ePixmap position="85,323" size="140,40" pixmap="skin_default/buttons/red.png" \
@@ -166,8 +167,9 @@ class YouTubeSearch(Screen, ConfigListScreen):
 						"itemHeight": 30}
 					</convert>
 				</widget>
-				<widget source="VKeyIcon" conditional="VKeyIcon" render="Pixmap" pixmap="skin_default/buttons/key_text.png" position="30,335" size="35,25" \
-					transparent="1" alphatest="on">
+				<widget source="VKeyIcon" conditional="VKeyIcon" render="Pixmap" \
+					pixmap="skin_default/buttons/key_text.png" \
+					position="30,335" size="35,25"transparent="1" alphatest="on">
 					<convert type="ConditionalShowHide"/>
 				</widget>
 				<ePixmap position="85,323" size="140,40" pixmap="skin_default/buttons/red.png" \
@@ -215,6 +217,9 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		for entry in self.searchHistory:
 			searchList.append((entry, None))
 		self['list'].setList(searchList)
+		if 'VKeyIcon' not in self:
+			from Components.Sources.Boolean import Boolean
+			self['VKeyIcon'] = Boolean(False)
 		self.onLayoutFinish.append(self.moveHelpWindow)
 
 	def moveHelpWindow(self):
