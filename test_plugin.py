@@ -116,7 +116,6 @@ _TESTS = [
 		{'Id': 'nfWlot6h_JM', 'Description': 'JS player signature function name containing $'},
 		{'Id': 'T4XJQO3qol8', 'Description': 'Controversy video'},
 		{'Id': '__2ABJjxzNo', 'Description': 'YouTube Red ad is not captured for creator'},
-		{'Id': 'lqQg6PlCWgI', 'Description': 'Olympics'},
 		{'Id': 'FIl7x6_3R5Y', 'Description': 'Extraction from multiple DASH manifests'},
 		{'Id': 'lsguqyKfVQg', 'Description': 'Title with JS-like syntax'},
 		{'Id': 'M4gD1WSo5mA', 'Description': 'Video licensed under Creative Commons'},
