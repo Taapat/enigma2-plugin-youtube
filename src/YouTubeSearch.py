@@ -94,11 +94,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 						"itemHeight": 30}
 					</convert>
 				</widget>
-				<widget source="VKeyIcon" conditional="VKeyIcon" render="Pixmap" \
-					pixmap="skin_default/buttons/key_text.png" \
-					position="30,335" size="35,25" transparent="1" alphatest="on">
-					<convert type="ConditionalShowHide"/>
-				</widget>
+				<ePixmap position="30,335" size="35,25" pixmap="skin_default/buttons/key_text.png" \
+					transparent="1" alphatest="on" />
 				<ePixmap position="85,323" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
 				<ePixmap position="245,323" size="140,40" pixmap="skin_default/buttons/green.png" \
@@ -131,11 +128,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 						"itemHeight": 45}
 					</convert>
 				</widget>
-				<widget source="VKeyIcon" conditional="VKeyIcon" render="Pixmap" \
-					pixmap="%s/buttons/key_text.png" position="43,507" size="53,38" \
-					transparent="1" alphatest="on">
-					<convert type="ConditionalShowHide"/>
-				</widget>
+				<ePixmap position="43,507" size="53,38" pixmap="%s/buttons/key_text.png" \
+					transparent="1" alphatest="on" />
 				<ePixmap position="127,484" size="210,60" pixmap="%s/buttons/red.png" \
 					transparent="1" alphatest="on" />
 				<ePixmap position="367,484" size="210,60" pixmap="%s/buttons/green.png" \
@@ -168,11 +162,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 						"itemHeight": 30}
 					</convert>
 				</widget>
-				<widget source="VKeyIcon" conditional="VKeyIcon" render="Pixmap" \
-					pixmap="skin_default/buttons/key_text.png" \
-					position="30,335" size="35,25"transparent="1" alphatest="on">
-					<convert type="ConditionalShowHide"/>
-				</widget>
+				<ePixmap position="30,335" size="35,25" pixmap="skin_default/buttons/key_text.png" \
+					transparent="1" alphatest="on" />
 				<ePixmap position="85,323" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
 				<ePixmap position="245,323" size="140,40" pixmap="skin_default/buttons/green.png" \
