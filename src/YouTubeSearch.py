@@ -12,6 +12,7 @@ from Components.config import KEY_DELETE, KEY_BACKSPACE, KEY_ASCII, KEY_TIMEOUT
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.Pixmap import Pixmap
+from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 
@@ -199,6 +200,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		self['key_green'] = StaticText(_('Ok'))
 		self['key_yellow'] = StaticText(_('Keyboard'))
 		self['HelpWindow'] = Pixmap()
+		self['VKeyIcon'] = Boolean(False)
 		self['searchactions'] = ActionMap(['SetupActions', 'ColorActions', 'MenuActions'],
 			{
 				'cancel': self.close,
@@ -217,9 +219,6 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		for entry in self.searchHistory:
 			searchList.append((entry, None))
 		self['list'].setList(searchList)
-		if 'VKeyIcon' not in self:
-			from Components.Sources.Boolean import Boolean
-			self['VKeyIcon'] = Boolean(False)
 		self.onLayoutFinish.append(self.moveHelpWindow)
 
 	def moveHelpWindow(self):
