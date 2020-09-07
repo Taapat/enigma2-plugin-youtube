@@ -1,0 +1,466 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-30 23:02+0300\n"
+"PO-Revision-Date: 2020-09-05 23:02+0300\n"
+"Last-Translator: jac555\n"
+"Language-Team: \n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 2.4.1\n"
+
+#, python-format
+msgid "  (%d-%d of %d)"
+msgstr "(%d-%d of %d)"
+
+msgid " dislikes"
+msgstr " nie lubię"
+
+msgid " likes"
+msgstr " lubię"
+
+msgid " views"
+msgstr " Wyświetlenia"
+
+#, python-format
+msgid "%.1fMB"
+msgstr "%.1fMB"
+
+msgid "Active video downloads"
+msgstr "Aktywne pobieranie wideo"
+
+msgid "All"
+msgstr "Wszystko"
+
+msgid "Ask user"
+msgstr "Zapytaj użytkownika"
+
+msgid "Cancel"
+msgstr "Anuluj"
+
+msgid "Choose what you want to do"
+msgstr "Wybierz, co chcesz zrobić"
+
+msgid "Close YouTube"
+msgstr "Zamknij YouTube"
+
+msgid "Created date"
+msgstr "Data utworzenia"
+
+msgid "Default"
+msgstr "Domyślny"
+
+msgid "Delete this entry"
+msgstr "Usuń ten wpis"
+
+msgid "Disliked!"
+msgstr "Nie podoba się!"
+
+msgid "Download directory:"
+msgstr "Katalog pobierania:"
+
+msgid "Download feed entries. Please wait..."
+msgstr "Pobieranie wpisów kanałów. Proszę czekać..."
+
+msgid "Download search results. Please wait..."
+msgstr "Pobieranie wyników wyszukiwania. Proszę czekać..."
+
+msgid "Download video"
+msgstr "Ściągnij wideo"
+
+msgid "Downloading"
+msgstr "Ściąganie"
+
+msgid "Duration: "
+msgstr "Trwanie: "
+
+msgid "Embedded in webpages"
+msgstr "Osadzone na stronach internetowych"
+
+msgid "Exclude restricted content:"
+msgstr "Wyklucz ograniczone treści:"
+
+msgid "Exit"
+msgstr "Wyjście"
+
+msgid "Exteplayer"
+msgstr "Exteplayer"
+
+msgid "Extract video url. Please wait..."
+msgstr "Wyodrębnianie adresu URL filmu. Proszę czekać..."
+
+msgid ""
+"FFmpeg will be used to merge downloaded DASH video and audio files.\n"
+"FFmpeg will be installed if necessary."
+msgstr ""
+"FFmpeg zostanie użyty do scalenia pobranych plików wideo i audio DASH.\n"
+"W razie potrzeby FFmpeg zostanie zainstalowany."
+
+#, python-format
+msgid ""
+"Go to %s\n"
+"And enter the code %s"
+msgstr ""
+"Idź do %s\n"
+"I wprowadź kod %s"
+
+msgid "Gstplayer"
+msgstr "Gstplayer"
+
+msgid "HD videos"
+msgstr "Filmy HD"
+
+msgid ""
+"How many search results will be returned.\n"
+"If greater value then longer time will be needed for thumbnail download."
+msgstr ""
+"Ile wyników wyszukiwania zostanie zwróconych.\n"
+"Im większa wartość, tym dłuższy czas będzie potrzebny na pobranie miniatury."
+
+msgid "I dislike this"
+msgstr "Nie lubię tego"
+
+msgid "I like this"
+msgstr "Lubię to"
+
+msgid "Info"
+msgstr "Informacje"
+
+msgid "Keyboard"
+msgstr "Klawiatura"
+
+msgid "Liked videos"
+msgstr "Lubiane wideo"
+
+msgid "Liked!"
+msgstr "Podobało się!"
+
+msgid "Live broadcast"
+msgstr "Transmisja na żywo"
+
+msgid ""
+"Log in to your YouTube account when plugin starts.\n"
+"This needs to approve in the Google home page!"
+msgstr ""
+"Zaloguj się na swoje konto YouTube po uruchomieniu wtyczki.\n"
+"To musi zostać zatwierdzone na stronie głównej Google!"
+
+msgid "Login on startup:"
+msgstr "Zaloguj się przy uruchomieniu:"
+
+msgid "Maximum video resolution:"
+msgstr "Maksymalna rozdzielczość wideo:"
+
+msgid "Media player:"
+msgstr "Odtwarzacz multimedialny:"
+
+msgid "Merge downloaded files:"
+msgstr "Scal pobrane pliki:"
+
+msgid "Moderate"
+msgstr "Umiarkowany"
+
+msgid "Most viewed"
+msgstr "Najczęściej oglądane"
+
+msgid "Movies"
+msgstr "Kino"
+
+msgid "My Subscriptions"
+msgstr "Moje subskrypcje"
+
+msgid "My feeds"
+msgstr "Moje kanały"
+
+#, python-format
+msgid "Next %s entry"
+msgid_plural "Next %s entries"
+msgstr[0] "Następny %s wpis"
+msgstr[1] "Następne %s wpisy"
+
+msgid "No"
+msgstr "Nie"
+
+msgid "No, but play video again"
+msgstr "Nie, ale ponownie odtwórz wideo"
+
+msgid "Ok"
+msgstr "OK"
+
+msgid "Open"
+msgstr "Otwórz"
+
+msgid "Order in which search results will be displayed."
+msgstr "Kolejność, w jakiej będą wyświetlane wyniki wyszukiwania."
+
+msgid "Play next"
+msgstr "Odtwórz kolejny"
+
+msgid "Play next video"
+msgstr "Odtwórz następny film"
+
+msgid "Play previous"
+msgstr "Odtwórz poprzednie"
+
+msgid "Play previous video"
+msgstr "Odtwórz poprzedni film"
+
+msgid "Play video again"
+msgstr "Odtwórz wideo ponownie"
+
+msgid "Playlists"
+msgstr "Playlisty"
+
+msgid "Please select the download directory"
+msgstr "Wybierz katalog pobierania"
+
+#, python-format
+msgid "Previous %s entry"
+msgid_plural "Previous %s entries"
+msgstr[0] "Poprzedni %s wpis"
+msgstr[1] "Poprzednie %s wpisy"
+
+msgid "Public feeds"
+msgstr "Kanały publiczne"
+
+msgid "Published at: "
+msgstr "Opublikowano w: "
+
+msgid "Quit"
+msgstr "Zakończ"
+
+msgid "Rate video"
+msgstr "Oceń film"
+
+msgid "Rating"
+msgstr "Ocena"
+
+msgid "Rating removed!"
+msgstr "Ocena została usunięta!"
+
+msgid "Recent"
+msgstr "Najnowsze"
+
+msgid "Relevance"
+msgstr "Trafność"
+
+msgid "Remove my rating"
+msgstr "Usuń moją ocenę"
+
+msgid "Repeat"
+msgstr "Powtórz"
+
+msgid "Resume playback from the previous position?"
+msgstr "Wznowić odtwarzanie od poprzedniej pozycji?"
+
+msgid "Return search results for the specified country."
+msgstr "Pokaż wyniki wyszukiwania dla określonego kraju."
+
+msgid "Return search results that are most relevant to the specified language."
+msgstr "Wyświetl wyniki wyszukiwania, które są najbardziej odpowiednie dla określonego języka."
+
+msgid "Return to list"
+msgstr "Wróć do listy"
+
+msgid "Save search result:"
+msgstr "Zapisz wynik wyszukiwania:"
+
+msgid "Save your search result in the history, when search completed."
+msgstr "Zapisz wynik wyszukiwania w historii po zakończeniu wyszukiwania."
+
+msgid "Search"
+msgstr "Szukaj"
+
+msgid "Search channels"
+msgstr "Wyszukaj kanał"
+
+msgid "Search for similar"
+msgstr "Wyszukaj podobne"
+
+msgid "Search language:"
+msgstr "Język wyszukiwania:"
+
+msgid "Search live broadcasts"
+msgstr "Wyszukaj transmisje na żywo"
+
+msgid "Search playlists"
+msgstr "Wyszukaj playlisty"
+
+msgid "Search region:"
+msgstr "Region wyszukiwania:"
+
+msgid "Search results:"
+msgstr "Wyniki wyszukiwania:"
+
+msgid "Search videos"
+msgstr "Wyszukaj wideo"
+
+#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
+msgid "ServiceApp"
+msgstr ""
+
+msgid "Shows"
+msgstr "Programy telewizyjne"
+
+msgid ""
+"Sorry, download directory not exist!\n"
+"Please specify in the settings existing directory."
+msgstr ""
+"Przepraszamy, katalog pobierania nie istnieje!\n"
+"Proszę określićw ustawieniach istniejący katalog."
+
+#, python-format
+msgid ""
+"Sorry, this file already exists:\n"
+"%s"
+msgstr ""
+"Przepraszamy, ten plik już istnieje:\n"
+"%s"
+
+msgid "Sort search results by:"
+msgstr "Sortuj wyniki wyszukiwania według:"
+
+msgid "Specify the directory where save downloaded video files."
+msgstr "Określ katalog, w którym zapisywane są pobrane pliki wideo."
+
+msgid "Specify the player which will be used for YouTube media playback."
+msgstr "Określ odtwarzacz, który będzie używany do odtwarzania multimediów w serwisie YouTube."
+
+msgid "Stop playing this movie?"
+msgstr "Przestać odtwarzać ten film?"
+
+msgid "Subscribe"
+msgstr "Subskrybuj"
+
+msgid "Subscribe this video channel"
+msgstr "Zasubskrybuj ten kanał wideo"
+
+msgid "Subscribed!"
+msgstr "Zasubskrybowano!"
+
+msgid ""
+"There was an error in creating entry list!\n"
+"Maybe try other feeds..."
+msgstr ""
+"Wystąpił błąd podczas tworzenia listy wpisów!\n"
+"Może spróbuj inny kanał ..."
+
+#, python-format
+msgid ""
+"There was an error in extract video url:\n"
+"%s"
+msgstr ""
+"Wystąpił błąd w wyodrębnianiu adresu URL pliku wideo:\n"
+"%s"
+
+msgid "There was an error!"
+msgstr "Wystąpił błąd!"
+
+msgid "Title"
+msgstr "Tytuł"
+
+msgid ""
+"To merge downloaded files FFmpeg will be installed.\n"
+"FFmpeg can take a lot of space!\n"
+"Do you want to continue?"
+msgstr ""
+"Aby scalić pobrane pliki, zostanie zainstalowany FFmpeg.\n"
+"FFmpeg może zająć dużo miejsca!\n"
+"Czy chcesz kontynuować?"
+
+msgid ""
+"To perform authentication will need in a web browser open Google home page, and enter the code!\n"
+"Do you currently have Internet access on the other device and we can continue?"
+msgstr ""
+"Aby przeprowadzić uwierzytelnianie będzie potrzebna przeglądarka internetowa. Otwórz stronę główną Google i wprowadź kod!\n"
+"Czy masz obecnie dostęp do Internetu na innym urządzeniu i możemy kontynuować?"
+
+msgid "Top rated"
+msgstr "Najwyżej oceniane"
+
+msgid "Try to exclude all restricted content from the search result."
+msgstr "Spróbuj wykluczyć z wyników wyszukiwania wszystkie treści objęte ograniczeniami."
+
+msgid "Unsubscribe"
+msgstr "Anuluj subskrypcję"
+
+msgid "Unsubscribed!"
+msgstr "Anulowano subskrypcję!"
+
+msgid "Uploads"
+msgstr "Przesłane"
+
+msgid "Use"
+msgstr "Urzyj"
+
+msgid "Video download started!"
+msgstr "Rozpoczęto pobieranie wideo!"
+
+msgid "Videos from this video channel"
+msgstr "Filmy z tego kanału wideo"
+
+msgid "View count"
+msgstr "Licznik wyświetleń"
+
+msgid "Watch YouTube videos"
+msgstr "Oglądaj filmy z YouTube"
+
+msgid "What do you want to do?"
+msgstr "Co chcesz zrobić?"
+
+msgid ""
+"What maximum resolution used when playing video, if available.\n"
+"If you have a slow Internet connection, you can use a lower resolution."
+msgstr ""
+"Jaka maksymalna rozdzielczość używana podczas odtwarzania wideo, jeśli jest dostępna.\n"
+"Jeśli masz wolne połączenie internetowe, możesz użyć niższej rozdzielczości."
+
+msgid "What to do when stop playback in videoplayer."
+msgstr "Co zrobić, gdy zatrzymasz odtwarzanie w odtwarzaczu wideo."
+
+msgid "What to do when the video ends."
+msgstr "Co zrobić, gdy wideo się kończy."
+
+msgid "When playback stop:"
+msgstr "Po zatrzymaniu odtwarzania:"
+
+msgid "When video ends:"
+msgstr "Kiedy wideo się skończy:"
+
+msgid "Yes"
+msgstr "Tak"
+
+msgid "Yes, but play next video"
+msgstr "Tak, ale odtwórz następny film"
+
+msgid "Yes, but play previous video"
+msgstr "Tak, ale odtwórz poprzedni film"
+
+msgid ""
+"You already authorized access for this plugin to your YouTube account.\n"
+"Do you want to do it again to update access data?"
+msgstr ""
+"Masz już autoryzację dostępu dla tej wtyczki do swojego konta YouTube.\n"
+"Czy chcesz to zrobić ponownie, aby zaktualizować dane dostępowe?"
+
+msgid ""
+"You have disabled downloaded file merge.\n"
+"Installed FFmpeg is no longer necessary.\n"
+"Do you want to remove FFmpeg?"
+msgstr ""
+"Wyłączyłeś scalanie pobranych plików.\n"
+"Zainstalowany FFmpeg nie jest już potrzebny.\n"
+"Czy chcesz usunąć FFmpeg?"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "YouTube setup"
+msgstr "Konfiguracja YouTube"
+
+msgid "YouTube starting. Please wait..."
+msgstr "YouTube startuje. Proszę czekać..."
