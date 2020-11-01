@@ -447,7 +447,7 @@ class YouTubeVideoUrl():
 
 				if url_map['cipher']:
 					if 's' in url_map['url_data']:
-						ASSETS_RE = r'"assets":.+?"js":\s*("[^"]+")'
+						ASSETS_RE = r'(?:"assets":.+?"js":\s*("[^"]+"))|(?:"jsUrl":\s*("[^"]+"))'
 						jsplayer_url_json = self._search_regex(ASSETS_RE,
 							embed_webpage if age_gate else video_webpage)
 						if not jsplayer_url_json and not age_gate:
