@@ -86,6 +86,8 @@ def CheckVideoUrl(videos, descr):
 	except Exception as ex:
 		if str(ex) == 'Too Many Requests':
 			pytest.xfail('Error in GetUrl, Too Many Requests')
+		elif str(ex) == 'No supported formats found in video info!':
+			pytest.xfail('Error in GetUrl, No supported formats found in video info!')
 		else:
 			raise Exception(ex)
 	else:
