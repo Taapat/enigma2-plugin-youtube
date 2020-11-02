@@ -6,9 +6,9 @@ import pytest
 def GetVideoId(q, eventType, order, s_type):
 	from src.YouTubeApi import GetKey, YouTubeApi
 	youtube = YouTubeApi(
-		client_id=GetKey('8903927018292-d15j8smibbw_O27izD924tqkh3991qtw_OizD5193bbw_OizD63uoq10s.w_O75izDpps.goo87gleusercon99tent.com'),
-		client_secret=GetKey('Xhi3_Lo1EdTlsyO15H2BQrBpDeN27WFGIC'),
-		developer_key=GetKey('Xhi3_LoIzw_OizD15SyBgGWigQZ27mpjHNu3eN239fWv5GQXscX51NUe3E'),
+		client_id=GetKey('4113447027255-v15bgs05u1o3m278mpjs2vcd0394w_OizDfrg5160drbw_Oiz63D.w_OizDpp75s.googleus87ercontent.99com'),
+		client_secret=GetKey('Zf93pqd2rxgY2ro159rK20BMxif27'),
+		developer_key=GetKey('Xhi3_LoIzw_OizD15SyCNReMvKL27nw_OizDWRR395T5uGWpvn451I2VYc78Gy463'),
 		refresh_token='')
 
 	searchResponse = youtube.search_list_full(
