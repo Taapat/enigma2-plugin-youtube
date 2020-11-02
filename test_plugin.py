@@ -111,11 +111,8 @@ def test_playlist():
 
 
 _TESTS = [
-		{'Id': 'UxxajLWwzqY', 'Description': 'Generic use_cipher_signature video'},
 		{'Id': 'BaW_jenozKc', 'Description': 'Ue the first video ID in the URL'},
 		{'Id': 'a9LDPn-MO4I', 'Description': '256k DASH audio (format 141) via DASH manifest'},
-		{'Id': 'IB3lcPjvWLA', 'Description': 'DASH manifest with encrypted signature'},
-		{'Id': 'nfWlot6h_JM', 'Description': 'JS player signature function name containing $'},
 		{'Id': 'T4XJQO3qol8', 'Description': 'Controversy video'},
 		{'Id': '__2ABJjxzNo', 'Description': 'YouTube Red ad is not captured for creator'},
 		{'Id': 'FIl7x6_3R5Y', 'Description': 'Extraction from multiple DASH manifests'},
