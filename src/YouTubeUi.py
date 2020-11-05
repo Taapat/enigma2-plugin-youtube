@@ -1024,15 +1024,19 @@ class YouTubeMain(Screen):
 			PublishedAt = self._tryStr(result, lambda x: x['snippet']['publishedAt'])
 			PublishedAt = _('Published at: ') + PublishedAt.replace('T', ' ')\
 					.replace('Z', '').split('.')[0] if PublishedAt else ''
+			Title = self._tryStr(result, lambda x: x['snippet']['title'])  # Title
+			if Title == '': Title = result['snippet']['title'].encode('utf-8', 'ignore') # If title is empty try getting it this way
+			Description = self._tryStr(result, lambda x: x['snippet']['description'])  # Description
+			if Description == '': Description = result['snippet']['title'].encode('utf-8', 'ignore') # If description is empty try getting it this way
 			videosInfo = (
 				self._tryList(result, lambda x: x['id']),  # Id
 				self._tryStr(result, lambda x: x['snippet']['thumbnails']['default']['url']),  # Thumbnail url
 				None,
-				self._tryStr(result, lambda x: x['snippet']['title']),  # Title
+				Title,
 				self._tryComplStr(result, lambda x: x['statistics']['viewCount'], _(' views')),  # Views
 				Duration,
 				None,
-				self._tryStr(result, lambda x: x['snippet']['description']),  # Description
+				Description,
 				self._tryComplStr(result, lambda x: x['statistics']['likeCount'], _(' likes')),  # Likes
 				self._tryComplStr(result, lambda x: x['statistics']['dislikeCount'], _(' dislikes')),  # Dislikes
 				self._tryStr(result, lambda x: x['snippet']['thumbnails']['medium']['url']),  # Big thumbnail url
