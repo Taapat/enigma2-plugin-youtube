@@ -1027,7 +1027,7 @@ class YouTubeMain(Screen):
 			Title = self._tryStr(result, lambda x: x['snippet']['title'])  # Title
 			if Title == '': Title = result['snippet']['title'].encode('utf-8', 'ignore') # If title is empty try getting it this way
 			Description = self._tryStr(result, lambda x: x['snippet']['description'])  # Description
-			if Description == '': Description = result['snippet']['title'].encode('utf-8', 'ignore') # If description is empty try getting it this way
+			if Description == '': Description = result['snippet']['description'].encode('utf-8', 'ignore') # If description is empty try getting it this way
 			videosInfo = (
 				self._tryList(result, lambda x: x['id']),  # Id
 				self._tryStr(result, lambda x: x['snippet']['thumbnails']['default']['url']),  # Thumbnail url
