@@ -788,7 +788,7 @@ class YouTubeMain(Screen):
 	def _tryStr(result, getter):
 		for get in [getter]:
 			try:
-				v = str(get(result))
+				v = str(get(result)).encode()
 			except:
 				pass
 			else:
