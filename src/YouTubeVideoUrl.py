@@ -344,14 +344,17 @@ class YouTubeVideoUrl():
 			# Try looking directly into the video webpage
 			ytplayer_config = self._get_ytplayer_config(video_webpage)
 			if ytplayer_config:
-				args = ytplayer_config['args']
-				if args.get('url_encoded_fmt_stream_map'):
-					# Convert to the same format returned by compat_parse_qs
-					video_info = dict((k, [v]) for k, v in list(args.items()))
-				if args.get('livestream') == '1' or args.get('live_playback') == 1:
-					is_live = True
-				if not player_response:
-					player_response = extract_player_response(args.get('player_response'))
+				args = ytplayer_config.get("args")
+				if args is not None:
+					if args.get('url_encoded_fmt_stream_map') or args.get('hlsvp'):
+						# Convert to the same format returned by compat_parse_qs
+						video_info = dict((k, [v]) for k, v in list(args.items()))
+					if args.get('livestream') == '1' or args.get('live_playback') == 1:
+						is_live = True
+					if not player_response:
+						player_response = extract_player_response(args.get('player_response'))
+				elif not player_response:
+					player_response = ytplayer_config
 
 		video_details = try_get(
 			player_response, lambda x: x['videoDetails'], dict) or {}
