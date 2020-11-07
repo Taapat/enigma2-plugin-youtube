@@ -312,39 +312,52 @@ class YouTubeVideoUrl():
 			if isinstance(pl_response, dict):
 				return pl_response
 
+		def extract_embedded_config(embed_webpage, video_id):
+			embedded_config = self._search_regex(
+					r'setConfig\(({.*})\);',
+					embed_webpage)
+			if embedded_config:
+				return embedded_config
+
 		is_live = None
 		player_response = {}
 
 		# Get video info
 		video_info = {}
 		embed_webpage = None
+		age_gate = False
 		if re.search(r'player-age-gate-content">', video_webpage) is not None or self._html_search_meta('og:restrictions:age', video_webpage) == "18+":
-			age_gate = True
 			# We simulate the access to the video from www.youtube.com/v/{video_id}
 			# this can be viewed without login into Youtube
 			url = 'https://www.youtube.com/embed/%s' % video_id
 			embed_webpage = self._download_webpage(url)
-			data = compat_urlencode({
-					'video_id': video_id,
-					'eurl': 'https://youtube.googleapis.com/v/' + video_id,
-					'sts': self._search_regex(r'"sts"\s*:\s*(\d+)', embed_webpage),
-				})
-			video_info_url = 'https://www.youtube.com/get_video_info?' + data
-			try:
-				video_info_webpage = self._download_webpage(video_info_url)
-			except ExtractorError:
-				video_info_webpage = None
-			if video_info_webpage:
-				video_info = compat_parse_qs(video_info_webpage)
-				pl_response = video_info.get('player_response', [None])[0]
-				player_response = extract_player_response(pl_response)
-		else:
-			age_gate = False
-			args = {}
+			ext = extract_embedded_config(embed_webpage, video_id)
+			playable_in_embed = re.search(r'{\\\"playableInEmbed\\\":(?P<playableinEmbed>[^\,]+)', ext)
+			if playable_in_embed:
+				playable_in_embed = playable_in_embed.group('playableinEmbed')
+			# check if video is only playable on youtube in other words not playable in embed - if so it requires auth (cookies)
+			if playable_in_embed != 'false':
+				age_gate = True
+				data = compat_urlencode({
+						'video_id': video_id,
+						'eurl': 'https://youtube.googleapis.com/v/' + video_id,
+						'sts': self._search_regex(r'"sts"\s*:\s*(\d+)', embed_webpage),
+					})
+				video_info_url = 'https://www.youtube.com/get_video_info?' + data
+				try:
+					video_info_webpage = self._download_webpage(video_info_url)
+				except ExtractorError:
+					video_info_webpage = None
+				if video_info_webpage:
+					video_info = compat_parse_qs(video_info_webpage)
+					pl_response = video_info.get('player_response', [None])[0]
+					player_response = extract_player_response(pl_response)
+
+		if not player_response:
 			# Try looking directly into the video webpage
 			ytplayer_config = self._get_ytplayer_config(video_webpage)
 			if ytplayer_config:
-				args = ytplayer_config.get("args")
+				args = ytplayer_config.get('args')
 				if args is not None:
 					if args.get('url_encoded_fmt_stream_map') or args.get('hlsvp'):
 						# Convert to the same format returned by compat_parse_qs
