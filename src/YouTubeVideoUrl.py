@@ -312,13 +312,6 @@ class YouTubeVideoUrl():
 			if isinstance(pl_response, dict):
 				return pl_response
 
-		def extract_embedded_config(embed_webpage, video_id):
-			embedded_config = self._search_regex(
-					r'setConfig\(({.*})\);',
-					embed_webpage)
-			if embedded_config:
-				return embedded_config
-
 		is_live = None
 		player_response = {}
 
@@ -331,7 +324,7 @@ class YouTubeVideoUrl():
 			# this can be viewed without login into Youtube
 			url = 'https://www.youtube.com/embed/%s' % video_id
 			embed_webpage = self._download_webpage(url)
-			ext = extract_embedded_config(embed_webpage, video_id)
+			ext = self._search_regex(r'setConfig\(({.*})\);', embed_webpage)
 			playable_in_embed = re.search(r'{\\\"playableInEmbed\\\":(?P<playableinEmbed>[^\,]+)', ext)
 			if playable_in_embed:
 				playable_in_embed = playable_in_embed.group('playableinEmbed')
