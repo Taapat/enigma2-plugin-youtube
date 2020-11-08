@@ -515,7 +515,8 @@ class YouTubeVideoUrl():
 				if not url:
 					url = list(url_map.values())[0]
 		if url:
-			return str(url)
+			returnUrl = str(url)
+			return returnUrl
 		else:
 			error_message = clean_html(try_get(
 					player_response,
