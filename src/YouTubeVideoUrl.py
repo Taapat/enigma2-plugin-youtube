@@ -290,7 +290,7 @@ class YouTubeVideoUrl():
 			if config:
 				return loads(uppercase_escape(config))
 
-	def extract(self, video_id, retry=0):
+	def extract_url(self, video_id):
 		gl = config.plugins.YouTube.searchRegion.value
 		hl = config.plugins.YouTube.searchLanguage.value
 
@@ -514,10 +514,7 @@ class YouTubeVideoUrl():
 							break
 				if not url:
 					url = list(url_map.values())[0]
-		if url:
-			returnUrl = str(url)
-			return returnUrl
-		else:
+		if not url:
 			error_message = clean_html(try_get(
 					player_response,
 					lambda x: x['playabilityStatus']['reason'],
@@ -530,12 +527,20 @@ class YouTubeVideoUrl():
 					lambda x: x['streamingData']['licenseInfos'],
 					compat_str):
 				error_message = 'This video is DRM protected!'
-			if not error_message:
-				if retry < 3:
-					print('[YouTubeVideoUrl] No supported formats found, trying again!')
-					retry += 1
-					self.extract(video_id, retry)
+			raise Exception(error_message)
+
+		return str(url)
+
+	def extract(self, video_id):
+		error_message = 'None'
+		for retry in range(3):
+			try:
+				return self.extract_url(video_id)
+			except Exception as error_message:
+				if str(error_message) == 'None':
+					print('No supported formats found, trying again!')
 				else:
-					error_message = 'No supported formats found in video info!'
-			if error_message:
-				raise Exception(error_message)
+					break
+		if str(error_message) == 'None':
+			error_message = 'No supported formats found in video info!'
+		raise Exception(error_message)
