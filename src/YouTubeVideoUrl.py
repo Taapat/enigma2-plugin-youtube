@@ -320,6 +320,7 @@ class YouTubeVideoUrl():
 		embed_webpage = None
 		age_gate = False
 		if re.search(r'player-age-gate-content">', video_webpage) is not None or self._html_search_meta('og:restrictions:age', video_webpage) == "18+":
+			print('[YouTubeVideoUrl] Age gate content')
 			# We simulate the access to the video from www.youtube.com/v/{video_id}
 			# this can be viewed without login into Youtube
 			url = 'https://www.youtube.com/embed/%s' % video_id
@@ -347,6 +348,7 @@ class YouTubeVideoUrl():
 					player_response = extract_player_response(pl_response)
 
 		if not player_response:
+			print('[YouTubeVideoUrl] Try video webpage')
 			# Try looking directly into the video webpage
 			ytplayer_config = self._get_ytplayer_config(video_webpage)
 			if ytplayer_config:
@@ -374,9 +376,11 @@ class YouTubeVideoUrl():
 		streaming_formats.extend(try_get(player_response, lambda x: x['streamingData']['adaptiveFormats'], list) or [])
 
 		if 'conn' in video_info and video_info['conn'][0][:4] == 'rtmp':
+			print('[YouTubeVideoUrl] Try rtmp url')
 			url = video_info['conn'][0]
 		elif not is_live and (streaming_formats or len(video_info.get('url_encoded_fmt_stream_map', [''])[0]) >= 1 or \
 			len(video_info.get('adaptive_fmts', [''])[0]) >= 1):
+			print('[YouTubeVideoUrl] Try fmt url')
 			encoded_url_map = video_info.get('url_encoded_fmt_stream_map', [''])[0] + \
 				',' + video_info.get('adaptive_fmts', [''])[0]
 			if 'rtmpe%3Dyes' in encoded_url_map:
@@ -494,6 +498,7 @@ class YouTubeVideoUrl():
 				or url_or_none(try_get(
 					video_info, lambda x: x['hlsvp'][0], compat_str)))
 			if manifest_url:
+				print('[YouTubeVideoUrl] Try manifest url')
 				url_map = self._extract_from_m3u8(manifest_url)
 
 				# Find the best format from our format priority map
