@@ -515,13 +515,25 @@ class YouTubeVideoUrl():
 				if not url:
 					url = list(url_map.values())[0]
 		if not url:
-			error_message = clean_html(try_get(
-					player_response,
-					lambda x: x['playabilityStatus']['reason'],
-					compat_str))
+			error_message = []
+			for tag, kind in (('h1', 'message'), ('div', 'submessage')):
+				msg = self._html_search_regex(
+						r'(?s)<{tag}[^>]+id=["\']unavailable-{kind}["\'][^>]*>(.+?)</{tag}>'.format(tag=tag, kind=kind),
+						video_webpage)
+				if msg:
+					error_message.append(msg)
+			if error_message:
+				error_message = '\n'.join(error_message)
+			else:
+				error_message = None
 			if not error_message:
 				error_message = clean_html(try_get(
-					video_info, lambda x: x['reason'][0], compat_str))
+						player_response,
+						lambda x: x['playabilityStatus']['reason'],
+						compat_str))
+			if not error_message:
+				error_message = clean_html(try_get(
+						video_info, lambda x: x['reason'][0], compat_str))
 			if not error_message and try_get(
 					player_response,
 					lambda x: x['streamingData']['licenseInfos'],
