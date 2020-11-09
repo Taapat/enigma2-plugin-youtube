@@ -548,11 +548,12 @@ class YouTubeVideoUrl():
 		for retry in range(3):
 			try:
 				return self.extract_url(video_id)
-			except Exception as error_message:
-				if str(error_message) == 'None':
+			except Exception as ex:
+				if str(ex) == 'None':
 					print('No supported formats found, trying again!')
 				else:
+					error_message = str(ex)
 					break
-		if str(error_message) == 'None':
+		if error_message == 'None':
 			error_message = 'No supported formats found in video info!'
 		raise Exception(error_message)
