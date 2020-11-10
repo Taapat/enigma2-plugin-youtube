@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-30 23:02+0300\n"
+"POT-Creation-Date: 2020-11-10 17:31+0200\n"
 "PO-Revision-Date: 2018-06-25 22:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -37,9 +37,6 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Activer le téléchargement des vidéos"
-
-msgid "All"
-msgstr "Toutes"
 
 msgid "Ask user"
 msgstr "Demander à l'utilisateur"
@@ -462,110 +459,3 @@ msgstr "Configuration de YouTube"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube démarre. Merci de patienter…"
-
-#~ msgid "Australia"
-#~ msgstr "Australie"
-
-#~ msgid "Brazil"
-#~ msgstr "Brésil"
-
-#~ msgid "Canada"
-#~ msgstr "Canada"
-
-#~ msgid "Czech Republic"
-#~ msgstr "République tchèque"
-
-#~ msgid "France"
-#~ msgstr "France"
-
-#, fuzzy
-#~ msgid "German"
-#~ msgstr "Allemagne"
-
-#~ msgid "Germany"
-#~ msgstr "Allemagne"
-
-#~ msgid "Greece"
-#~ msgstr "Grèce"
-
-#, fuzzy
-#~ msgid "Greek"
-#~ msgstr "Grèce"
-
-#~ msgid "Hong Kong"
-#~ msgstr "Hong Kong"
-
-#~ msgid "India"
-#~ msgstr "Inde"
-
-#~ msgid "Ireland"
-#~ msgstr "Irelande"
-
-#~ msgid "Israel"
-#~ msgstr "Israël"
-
-#, fuzzy
-#~ msgid "Italian"
-#~ msgstr "Italie"
-
-#~ msgid "Italy"
-#~ msgstr "Italie"
-
-#~ msgid "Japan"
-#~ msgstr "Japon"
-
-#, fuzzy
-#~ msgid "Japanese"
-#~ msgstr "Japon"
-
-#~ msgid "Latvia"
-#~ msgstr "Lettonie"
-
-#, fuzzy
-#~ msgid "Latvian"
-#~ msgstr "Lettonie"
-
-#~ msgid "Mexico"
-#~ msgstr "Mexique"
-
-#~ msgid "New Zealand"
-#~ msgstr "Nouvelle Zélande"
-
-#~ msgid "Poland"
-#~ msgstr "Pologne"
-
-#~ msgid "Russia"
-#~ msgstr "Russie"
-
-#~ msgid "South Korea"
-#~ msgstr "Corée du Sud"
-
-#~ msgid "Spain"
-#~ msgstr "Espagne"
-
-#~ msgid "Sweden"
-#~ msgstr "Suède"
-
-#, fuzzy
-#~ msgid "Swedish"
-#~ msgstr "Suède"
-
-#~ msgid "Taiwan"
-#~ msgstr "Taiwan"
-
-#, fuzzy
-#~ msgid "Thai"
-#~ msgstr "Thailand"
-
-#~ msgid "Thailand"
-#~ msgstr "Thailand"
-
-#~ msgid "Turkey"
-#~ msgstr "Turquie"
-
-#, fuzzy
-#~ msgid "Turkish"
-#~ msgstr "Turquie"
-
-#~ msgid "United States"
-#~ msgstr "États-Unis d'Amérique"

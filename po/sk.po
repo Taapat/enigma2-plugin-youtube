@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube Plugin slovenský preklad\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-30 23:02+0300\n"
+"POT-Creation-Date: 2020-11-10 17:31+0200\n"
 "PO-Revision-Date: 2018-05-30 04:10+0200\n"
 "Last-Translator: S4iyan3lit3 <nsa@dontgathermailaddresses.fck>\n"
 "Language-Team: th4nks0url0rd1nh34v3n\n"
@@ -37,9 +37,6 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Aktívne stihanutie videa"
-
-msgid "All"
-msgstr "Vsetky"
 
 msgid "Ask user"
 msgstr "Opýtajte sa používateľa"
@@ -462,110 +459,3 @@ msgstr "YouTube Nastavenie"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube sa spustí. Prosím Čakajte..."
-
-#~ msgid "Australia"
-#~ msgstr "Austrália"
-
-#~ msgid "Brazil"
-#~ msgstr "Brazília"
-
-#~ msgid "Canada"
-#~ msgstr "Kanada"
-
-#~ msgid "Czech Republic"
-#~ msgstr "Česká Republika"
-
-#~ msgid "France"
-#~ msgstr "Francúzsko"
-
-#, fuzzy
-#~ msgid "German"
-#~ msgstr "Nemecko"
-
-#~ msgid "Germany"
-#~ msgstr "Nemecko"
-
-#~ msgid "Greece"
-#~ msgstr "Grécko"
-
-#, fuzzy
-#~ msgid "Greek"
-#~ msgstr "Grécko"
-
-#~ msgid "Hong Kong"
-#~ msgstr "Hong Kong"
-
-#~ msgid "India"
-#~ msgstr "India"
-
-#~ msgid "Ireland"
-#~ msgstr "Írsko"
-
-#~ msgid "Israel"
-#~ msgstr "Izrael"
-
-#, fuzzy
-#~ msgid "Italian"
-#~ msgstr "Taliansko"
-
-#~ msgid "Italy"
-#~ msgstr "Taliansko"
-
-#~ msgid "Japan"
-#~ msgstr "Japonsko"
-
-#, fuzzy
-#~ msgid "Japanese"
-#~ msgstr "Japonsko"
-
-#~ msgid "Latvia"
-#~ msgstr "Lotyšsko"
-
-#, fuzzy
-#~ msgid "Latvian"
-#~ msgstr "Lotyšsko"
-
-#~ msgid "Mexico"
-#~ msgstr "Mexiko"
-
-#~ msgid "New Zealand"
-#~ msgstr "Nový Zéland"
-
-#~ msgid "Poland"
-#~ msgstr "Poľsko"
-
-#~ msgid "Russia"
-#~ msgstr "Rusko"
-
-#~ msgid "South Korea"
-#~ msgstr "Južná Kórea"
-
-#~ msgid "Spain"
-#~ msgstr "Španielsko"
-
-#~ msgid "Sweden"
-#~ msgstr "Švédsko"
-
-#, fuzzy
-#~ msgid "Swedish"
-#~ msgstr "Švédsko"
-
-#~ msgid "Taiwan"
-#~ msgstr "Taiwan"
-
-#, fuzzy
-#~ msgid "Thai"
-#~ msgstr "Thajsko"
-
-#~ msgid "Thailand"
-#~ msgstr "Thajsko"
-
-#~ msgid "Turkey"
-#~ msgstr "Turecko"
-
-#, fuzzy
-#~ msgid "Turkish"
-#~ msgstr "Turecko"
-
-#~ msgid "United States"
-#~ msgstr "Spojené Štáty"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-07 12:52+0200\n"
+"POT-Creation-Date: 2020-11-10 17:31+0200\n"
 "PO-Revision-Date: 2020-11-03 23:02+0300\n"
 "Last-Translator: Lishoo\n"
 "Language-Team: \n"
@@ -31,9 +31,6 @@ msgstr "%.1fMB"
 
 msgid "Active video downloads"
 msgstr "Aktualnie pobierane filmy"
-
-msgid "All"
-msgstr "Wszystko"
 
 msgid "Ask user"
 msgstr "Zapytaj użytkownika"

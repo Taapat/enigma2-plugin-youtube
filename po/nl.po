@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-30 23:02+0300\n"
+"POT-Creation-Date: 2020-11-10 17:31+0200\n"
 "PO-Revision-Date: 2019-09-16 14:28+0200\n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: LL@li.org\n"
@@ -31,9 +31,6 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Actieve videodownloads"
-
-msgid "All"
-msgstr "Alle"
 
 msgid "Ask user"
 msgstr "Vraag gebruiker"
@@ -454,110 +451,3 @@ msgstr "YouTube instellingen"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube is aan het starten. Even wachten..."
-
-#~ msgid "Australia"
-#~ msgstr "Australië"
-
-#~ msgid "Brazil"
-#~ msgstr "Brazilië"
-
-#~ msgid "Canada"
-#~ msgstr "Canada"
-
-#~ msgid "Czech Republic"
-#~ msgstr "Czechische Republiek"
-
-#~ msgid "France"
-#~ msgstr "Frankrijk"
-
-#, fuzzy
-#~ msgid "German"
-#~ msgstr "Duitsland"
-
-#~ msgid "Germany"
-#~ msgstr "Duitsland"
-
-#~ msgid "Greece"
-#~ msgstr "Griekenland"
-
-#, fuzzy
-#~ msgid "Greek"
-#~ msgstr "Griekenland"
-
-#~ msgid "Hong Kong"
-#~ msgstr "Hong Kong"
-
-#~ msgid "India"
-#~ msgstr "India"
-
-#~ msgid "Ireland"
-#~ msgstr "Ierland"
-
-#~ msgid "Israel"
-#~ msgstr "Israël"
-
-#, fuzzy
-#~ msgid "Italian"
-#~ msgstr "Italië"
-
-#~ msgid "Italy"
-#~ msgstr "Italië"
-
-#~ msgid "Japan"
-#~ msgstr "Japan"
-
-#, fuzzy
-#~ msgid "Japanese"
-#~ msgstr "Japan"
-
-#~ msgid "Latvia"
-#~ msgstr "Letland"
-
-#, fuzzy
-#~ msgid "Latvian"
-#~ msgstr "Letland"
-
-#~ msgid "Mexico"
-#~ msgstr "Mexico"
-
-#~ msgid "New Zealand"
-#~ msgstr "Nieuw-Zeeland"
-
-#~ msgid "Poland"
-#~ msgstr "Polen"
-
-#~ msgid "Russia"
-#~ msgstr "Rusland"
-
-#~ msgid "South Korea"
-#~ msgstr "Zuid-Korea"
-
-#~ msgid "Spain"
-#~ msgstr "Spanje"
-
-#~ msgid "Sweden"
-#~ msgstr "Zweden"
-
-#, fuzzy
-#~ msgid "Swedish"
-#~ msgstr "Zweden"
-
-#~ msgid "Taiwan"
-#~ msgstr "Taiwan"
-
-#, fuzzy
-#~ msgid "Thai"
-#~ msgstr "Thailand"
-
-#~ msgid "Thailand"
-#~ msgstr "Thailand"
-
-#~ msgid "Turkey"
-#~ msgstr "Turkije"
-
-#, fuzzy
-#~ msgid "Turkish"
-#~ msgstr "Turkije"
-
-#~ msgid "United States"
-#~ msgstr "Verenigde Staten"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-30 23:02+0300\n"
+"POT-Creation-Date: 2020-11-10 17:31+0200\n"
 "PO-Revision-Date: 2020-06-12 23:54+0300\n"
 "Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish\n"
@@ -37,9 +37,6 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Aktif video indirme"
-
-msgid "All"
-msgstr "Tümü"
 
 msgid "Ask user"
 msgstr "Kullanıcıya sor"
@@ -470,138 +467,3 @@ msgstr "YouTube kurulumu"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube başlıyor. Lütfen bekleyin ..."
-
-#~ msgid "Australia"
-#~ msgstr "Avustralya"
-
-#~ msgid "Brazil"
-#~ msgstr "Brazilya"
-
-#~ msgid "Canada"
-#~ msgstr "Kanada"
-
-#~ msgid "Chinese"
-#~ msgstr "Çince"
-
-#~ msgid "Czech"
-#~ msgstr "Çek"
-
-#~ msgid "Czech Republic"
-#~ msgstr "Çek Cumhuriyeti"
-
-#~ msgid "Dutch"
-#~ msgstr "Flemenkçe"
-
-#~ msgid "France"
-#~ msgstr "Fransa"
-
-#~ msgid "French"
-#~ msgstr "Fransızca"
-
-#~ msgid "German"
-#~ msgstr "Almanca"
-
-#~ msgid "Germany"
-#~ msgstr "Almanya"
-
-#~ msgid "Greece"
-#~ msgstr "Yunanistan"
-
-#~ msgid "Greek"
-#~ msgstr "Yunan"
-
-#~ msgid "Hebrew"
-#~ msgstr "İbranice"
-
-#~ msgid "Hindi"
-#~ msgstr "Hindu"
-
-#~ msgid "Hong Kong"
-#~ msgstr "Hong Kong"
-
-#~ msgid "India"
-#~ msgstr "Hindistan"
-
-#~ msgid "Ireland"
-#~ msgstr "İrlanda"
-
-#~ msgid "Israel"
-#~ msgstr "İsrail"
-
-#~ msgid "Italian"
-#~ msgstr "İtalyanca"
-
-#~ msgid "Italy"
-#~ msgstr "İtalya"
-
-#~ msgid "Japan"
-#~ msgstr "Japonya"
-
-#~ msgid "Japanese"
-#~ msgstr "Japonca"
-
-#~ msgid "Korean"
-#~ msgstr "Koreli"
-
-#~ msgid "Latvia"
-#~ msgstr "Letonya"
-
-#~ msgid "Latvian"
-#~ msgstr "Letonyalı"
-
-#~ msgid "Mexico"
-#~ msgstr "Meksika"
-
-#~ msgid "New Zealand"
-#~ msgstr "Yeni Zelanda"
-
-#~ msgid "Poland"
-#~ msgstr "Polonya"
-
-#~ msgid "Polish"
-#~ msgstr "Lehçe"
-
-#~ msgid "Portuguese"
-#~ msgstr "Portekizce"
-
-#~ msgid "Russia"
-#~ msgstr "Rusya"
-
-#~ msgid "South Korea"
-#~ msgstr "Güney Kore"
-
-#~ msgid "Spain"
-#~ msgstr "İspanya"
-
-#~ msgid "Spanish"
-#~ msgstr "İspanyolca"
-
-#~ msgid "Sweden"
-#~ msgstr "İsveç"
-
-#~ msgid "Swedish"
-#~ msgstr "İsveççe"
-
-#~ msgid "Taiwan"
-#~ msgstr "Tayvan"
-
-#~ msgid "Thai"
-#~ msgstr "Tayland"
-
-#~ msgid "Thailand"
-#~ msgstr "Tayland"
-
-#~ msgid "The Netherlands"
-#~ msgstr "Hollanda"
-
-#~ msgid "Turkey"
-#~ msgstr "Türkiye"
-
-#~ msgid "Turkish"
-#~ msgstr "Türkçe"
-
-#~ msgid "United Kingdom"
-#~ msgstr "Birleşik Krallık"
-
-#~ msgid "United States"
-#~ msgstr "Amerika"

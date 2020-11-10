@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-30 23:02+0300\n"
+"POT-Creation-Date: 2020-11-10 17:31+0200\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -32,9 +32,6 @@ msgstr "%.1fМб"
 
 msgid "Active video downloads"
 msgstr "Активные загрузки видео"
-
-msgid "All"
-msgstr "Все"
 
 msgid "Ask user"
 msgstr "Спросить пользователя"
@@ -467,145 +464,3 @@ msgstr "Настройки YouTube"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube запускается. Подождите..."
-
-#~ msgid "Australia"
-#~ msgstr "Австралия"
-
-#~ msgid "Brazil"
-#~ msgstr "Бразилия"
-
-#~ msgid "Canada"
-#~ msgstr "Канада"
-
-#~ msgid "Chinese"
-#~ msgstr "Китайский"
-
-#~ msgid "Czech"
-#~ msgstr "Чешский"
-
-#~ msgid "Czech Republic"
-#~ msgstr "Чехия"
-
-#~ msgid "Dutch"
-#~ msgstr "Нидерландский"
-
-#~ msgid "France"
-#~ msgstr "Франция"
-
-#~ msgid "French"
-#~ msgstr "Французский"
-
-#, fuzzy
-#~ msgid "German"
-#~ msgstr "Немецкий"
-
-#~ msgid "Germany"
-#~ msgstr "Германия"
-
-#~ msgid "Greece"
-#~ msgstr "Греция"
-
-#, fuzzy
-#~ msgid "Greek"
-#~ msgstr "Греческий"
-
-#~ msgid "Hebrew"
-#~ msgstr "Иврит"
-
-#~ msgid "Hindi"
-#~ msgstr "Хинди"
-
-#~ msgid "Hong Kong"
-#~ msgstr "Гонконг"
-
-#~ msgid "India"
-#~ msgstr "Индия"
-
-#~ msgid "Ireland"
-#~ msgstr "Ирландия"
-
-#~ msgid "Israel"
-#~ msgstr "Израиль"
-
-#, fuzzy
-#~ msgid "Italian"
-#~ msgstr "Итальянский"
-
-#~ msgid "Italy"
-#~ msgstr "Италия"
-
-#~ msgid "Japan"
-#~ msgstr "Япония"
-
-#, fuzzy
-#~ msgid "Japanese"
-#~ msgstr "Японский"
-
-#~ msgid "Korean"
-#~ msgstr "Корейский"
-
-#~ msgid "Latvia"
-#~ msgstr "Латвия"
-
-#, fuzzy
-#~ msgid "Latvian"
-#~ msgstr "Латвийский"
-
-#~ msgid "Mexico"
-#~ msgstr "Мексика"
-
-#~ msgid "New Zealand"
-#~ msgstr "Новая Зеландия"
-
-#~ msgid "Poland"
-#~ msgstr "Польша"
-
-#~ msgid "Polish"
-#~ msgstr "Польский"
-
-#~ msgid "Portuguese"
-#~ msgstr "Португальский"
-
-#~ msgid "Russia"
-#~ msgstr "Россия"
-
-#~ msgid "South Korea"
-#~ msgstr "Южная Корея"
-
-#~ msgid "Spain"
-#~ msgstr "Испания"
-
-#~ msgid "Spanish"
-#~ msgstr "Испанский"
-
-#~ msgid "Sweden"
-#~ msgstr "Швеция"
-
-#, fuzzy
-#~ msgid "Swedish"
-#~ msgstr "Шведский"
-
-#~ msgid "Taiwan"
-#~ msgstr "Тайвань"
-
-#, fuzzy
-#~ msgid "Thai"
-#~ msgstr "Тайский"
-
-#~ msgid "Thailand"
-#~ msgstr "Таиланд"
-
-#~ msgid "The Netherlands"
-#~ msgstr "Нидерланды"
-
-#~ msgid "Turkey"
-#~ msgstr "Турция"
-
-#~ msgid "Turkish"
-#~ msgstr "Турецкий"
-
-#~ msgid "United Kingdom"
-#~ msgstr "Великобритания"
-
-#~ msgid "United States"
-#~ msgstr "США"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin for Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-30 23:02+0300\n"
+"POT-Creation-Date: 2020-11-10 17:31+0200\n"
 "PO-Revision-Date: 2018-11-19 00:44+0000\n"
 "Last-Translator: nunigaia\n"
 "Language-Team: BH Team\n"
@@ -39,9 +39,6 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Descargas de vídeos activas"
-
-msgid "All"
-msgstr "Tudo"
 
 msgid "Ask user"
 msgstr "Perguntar ao utilizador"
@@ -472,110 +469,3 @@ msgstr "Definição do YouTube"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube a iniciar. Por favor aguarde..."
-
-#~ msgid "Australia"
-#~ msgstr "Austrália"
-
-#~ msgid "Brazil"
-#~ msgstr "Brasil"
-
-#~ msgid "Canada"
-#~ msgstr "Canadá"
-
-#~ msgid "Czech Republic"
-#~ msgstr "República Checa"
-
-#~ msgid "France"
-#~ msgstr "França"
-
-#, fuzzy
-#~ msgid "German"
-#~ msgstr "Alemanha"
-
-#~ msgid "Germany"
-#~ msgstr "Alemanha"
-
-#~ msgid "Greece"
-#~ msgstr "Grécia"
-
-#, fuzzy
-#~ msgid "Greek"
-#~ msgstr "Grécia"
-
-#~ msgid "Hong Kong"
-#~ msgstr "Hong Kong"
-
-#~ msgid "India"
-#~ msgstr "Índia"
-
-#~ msgid "Ireland"
-#~ msgstr "Irlanda"
-
-#~ msgid "Israel"
-#~ msgstr "Israel"
-
-#, fuzzy
-#~ msgid "Italian"
-#~ msgstr "Itália"
-
-#~ msgid "Italy"
-#~ msgstr "Itália"
-
-#~ msgid "Japan"
-#~ msgstr "Japão"
-
-#, fuzzy
-#~ msgid "Japanese"
-#~ msgstr "Japão"
-
-#~ msgid "Latvia"
-#~ msgstr "Letónia"
-
-#, fuzzy
-#~ msgid "Latvian"
-#~ msgstr "Letónia"
-
-#~ msgid "Mexico"
-#~ msgstr "México"
-
-#~ msgid "New Zealand"
-#~ msgstr "Nova Zelândia"
-
-#~ msgid "Poland"
-#~ msgstr "Polónia"
-
-#~ msgid "Russia"
-#~ msgstr "Rússia"
-
-#~ msgid "South Korea"
-#~ msgstr "Coreia do Sul"
-
-#~ msgid "Spain"
-#~ msgstr "Espanha"
-
-#~ msgid "Sweden"
-#~ msgstr "Suécia"
-
-#, fuzzy
-#~ msgid "Swedish"
-#~ msgstr "Suécia"
-
-#~ msgid "Taiwan"
-#~ msgstr "Taiwan"
-
-#, fuzzy
-#~ msgid "Thai"
-#~ msgstr "Tailândia"
-
-#~ msgid "Thailand"
-#~ msgstr "Tailândia"
-
-#~ msgid "Turkey"
-#~ msgstr "Turquia"
-
-#, fuzzy
-#~ msgid "Turkish"
-#~ msgstr "Turquia"
-
-#~ msgid "United States"
-#~ msgstr "Estados Unidos"

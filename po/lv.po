@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-30 23:02+0300\n"
+"POT-Creation-Date: 2020-11-10 17:31+0200\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -33,9 +33,6 @@ msgstr "%.1fMB"
 
 msgid "Active video downloads"
 msgstr "Aktīvās video lejupielādes"
-
-msgid "All"
-msgstr "Visi"
 
 msgid "Ask user"
 msgstr "Jautāt"
@@ -467,138 +464,3 @@ msgstr "YouTube iestatījumi"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube startējas. Lūdzu uzgaidiet..."
-
-#~ msgid "Australia"
-#~ msgstr "Austrālija"
-
-#~ msgid "Brazil"
-#~ msgstr "Brazīlija"
-
-#~ msgid "Canada"
-#~ msgstr "Kanāda"
-
-#~ msgid "Chinese"
-#~ msgstr "Ķīniešu"
-
-#~ msgid "Czech"
-#~ msgstr "Čehu"
-
-#~ msgid "Czech Republic"
-#~ msgstr "Čehija"
-
-#~ msgid "Dutch"
-#~ msgstr "Holandiešu"
-
-#~ msgid "France"
-#~ msgstr "Francija"
-
-#~ msgid "French"
-#~ msgstr "Franču"
-
-#~ msgid "German"
-#~ msgstr "Vācu"
-
-#~ msgid "Germany"
-#~ msgstr "Vācija"
-
-#~ msgid "Greece"
-#~ msgstr "Grieķija"
-
-#~ msgid "Greek"
-#~ msgstr "Grieķu"
-
-#~ msgid "Hebrew"
-#~ msgstr "Ungāru"
-
-#~ msgid "Hindi"
-#~ msgstr "Hindu"
-
-#~ msgid "Hong Kong"
-#~ msgstr "Honkonga"
-
-#~ msgid "India"
-#~ msgstr "Indija"
-
-#~ msgid "Ireland"
-#~ msgstr "Īrija"
-
-#~ msgid "Israel"
-#~ msgstr "Izrēla"
-
-#~ msgid "Italian"
-#~ msgstr "Itāļu"
-
-#~ msgid "Italy"
-#~ msgstr "Itālija"
-
-#~ msgid "Japan"
-#~ msgstr "Japāna"
-
-#~ msgid "Japanese"
-#~ msgstr "Japāņu"
-
-#~ msgid "Korean"
-#~ msgstr "Korejiešu"
-
-#~ msgid "Latvia"
-#~ msgstr "Latvija"
-
-#~ msgid "Latvian"
-#~ msgstr "Latviešu"
-
-#~ msgid "Mexico"
-#~ msgstr "Meksika"
-
-#~ msgid "New Zealand"
-#~ msgstr "Jaunzēlande"
-
-#~ msgid "Poland"
-#~ msgstr "Polija"
-
-#~ msgid "Polish"
-#~ msgstr "Poļu"
-
-#~ msgid "Portuguese"
-#~ msgstr "Portugāļu"
-
-#~ msgid "Russia"
-#~ msgstr "Krievija"
-
-#~ msgid "South Korea"
-#~ msgstr "Dienvidkoreja"
-
-#~ msgid "Spain"
-#~ msgstr "Spānija"
-
-#~ msgid "Spanish"
-#~ msgstr "Spāņu"
-
-#~ msgid "Sweden"
-#~ msgstr "Zviedrija"
-
-#~ msgid "Swedish"
-#~ msgstr "Zviedru"
-
-#~ msgid "Taiwan"
-#~ msgstr "Taivāna"
-
-#~ msgid "Thai"
-#~ msgstr "Taiešu"
-
-#~ msgid "Thailand"
-#~ msgstr "Taizeme"
-
-#~ msgid "The Netherlands"
-#~ msgstr "Holande"
-
-#~ msgid "Turkey"
-#~ msgstr "Turcija"
-
-#~ msgid "Turkish"
-#~ msgstr "Turku"
-
-#~ msgid "United Kingdom"
-#~ msgstr "Anglija"
-
-#~ msgid "United States"
-#~ msgstr "ASV"

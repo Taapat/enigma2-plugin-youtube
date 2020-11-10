@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin magyar fordítás\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-30 23:02+0300\n"
+"POT-Creation-Date: 2020-11-10 17:31+0200\n"
 "PO-Revision-Date: 2019-02-19 12:57+0100\n"
 "Last-Translator: cp-teamhun\n"
 "Language-Team: cp-teamhun\n"
@@ -32,9 +32,6 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Aktív videó letöltések"
-
-msgid "All"
-msgstr "Összes"
 
 msgid "Ask user"
 msgstr "Kérdezze a felhasználót"
@@ -465,110 +462,3 @@ msgstr "YouTube beállítás"
 
 msgid "YouTube starting. Please wait..."
 msgstr "A YouTube elindult. Kérem, várjon..."
-
-#~ msgid "Australia"
-#~ msgstr "Ausztrália"
-
-#~ msgid "Brazil"
-#~ msgstr "Brazília"
-
-#~ msgid "Canada"
-#~ msgstr "Kanada"
-
-#~ msgid "Czech Republic"
-#~ msgstr "Csehország"
-
-#~ msgid "France"
-#~ msgstr "Franciaország"
-
-#, fuzzy
-#~ msgid "German"
-#~ msgstr "Németország"
-
-#~ msgid "Germany"
-#~ msgstr "Németország"
-
-#~ msgid "Greece"
-#~ msgstr "Görögország"
-
-#, fuzzy
-#~ msgid "Greek"
-#~ msgstr "Görögország"
-
-#~ msgid "Hong Kong"
-#~ msgstr "Hong Kong"
-
-#~ msgid "India"
-#~ msgstr "India"
-
-#~ msgid "Ireland"
-#~ msgstr "Írország"
-
-#~ msgid "Israel"
-#~ msgstr "Izrael"
-
-#, fuzzy
-#~ msgid "Italian"
-#~ msgstr "Olaszország"
-
-#~ msgid "Italy"
-#~ msgstr "Olaszország"
-
-#~ msgid "Japan"
-#~ msgstr "Japán"
-
-#, fuzzy
-#~ msgid "Japanese"
-#~ msgstr "Japán"
-
-#~ msgid "Latvia"
-#~ msgstr "Lettország"
-
-#, fuzzy
-#~ msgid "Latvian"
-#~ msgstr "Lettország"
-
-#~ msgid "Mexico"
-#~ msgstr "Mexikó"
-
-#~ msgid "New Zealand"
-#~ msgstr "Új-Zéland"
-
-#~ msgid "Poland"
-#~ msgstr "Lengyelország"
-
-#~ msgid "Russia"
-#~ msgstr "Oroszország"
-
-#~ msgid "South Korea"
-#~ msgstr "Dél_korea"
-
-#~ msgid "Spain"
-#~ msgstr "Spanyolország"
-
-#~ msgid "Sweden"
-#~ msgstr "Svédország"
-
-#, fuzzy
-#~ msgid "Swedish"
-#~ msgstr "Svédország"
-
-#~ msgid "Taiwan"
-#~ msgstr "Tajvan"
-
-#, fuzzy
-#~ msgid "Thai"
-#~ msgstr "Thaiföld"
-
-#~ msgid "Thailand"
-#~ msgstr "Thaiföld"
-
-#~ msgid "Turkey"
-#~ msgstr "Törökország"
-
-#, fuzzy
-#~ msgid "Turkish"
-#~ msgstr "Törökország"
-
-#~ msgid "United States"
-#~ msgstr "Egybesült Államok"

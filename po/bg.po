@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-30 23:02+0300\n"
+"POT-Creation-Date: 2020-11-10 17:31+0200\n"
 "PO-Revision-Date: 2018-04-13 10:46+0300\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -32,9 +32,6 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Активно изтегляне на видеоклипове"
-
-msgid "All"
-msgstr "Всички"
 
 msgid "Ask user"
 msgstr "Питай потребител"
@@ -457,103 +454,3 @@ msgstr "YouTube настройки"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube се стартира. Моля изчакайте..."
-
-#~ msgid "Australia"
-#~ msgstr "Австралия"
-
-#~ msgid "Brazil"
-#~ msgstr "Бразилия"
-
-#~ msgid "Canada"
-#~ msgstr "Канада"
-
-#~ msgid "Czech Republic"
-#~ msgstr "Чехия"
-
-#~ msgid "France"
-#~ msgstr "Франция"
-
-#, fuzzy
-#~ msgid "German"
-#~ msgstr "Германия"
-
-#~ msgid "Germany"
-#~ msgstr "Германия"
-
-#~ msgid "Greece"
-#~ msgstr "Гърция"
-
-#, fuzzy
-#~ msgid "Greek"
-#~ msgstr "Гърция"
-
-#~ msgid "Hong Kong"
-#~ msgstr "Хонг Конг"
-
-#~ msgid "India"
-#~ msgstr "Индия"
-
-#~ msgid "Ireland"
-#~ msgstr "Ирландия"
-
-#~ msgid "Israel"
-#~ msgstr "Израел"
-
-#, fuzzy
-#~ msgid "Italian"
-#~ msgstr "Италия"
-
-#~ msgid "Italy"
-#~ msgstr "Италия"
-
-#~ msgid "Japan"
-#~ msgstr "Япония"
-
-#, fuzzy
-#~ msgid "Japanese"
-#~ msgstr "Япония"
-
-#~ msgid "Latvia"
-#~ msgstr "Латвия"
-
-#, fuzzy
-#~ msgid "Latvian"
-#~ msgstr "Латвия"
-
-#~ msgid "Mexico"
-#~ msgstr "Мексико"
-
-#~ msgid "New Zealand"
-#~ msgstr "Нова Зеландия"
-
-#~ msgid "Poland"
-#~ msgstr "Полша"
-
-#~ msgid "Russia"
-#~ msgstr "Русия"
-
-#~ msgid "South Korea"
-#~ msgstr "Южна Корея"
-
-#~ msgid "Spain"
-#~ msgstr "Испания"
-
-#~ msgid "Sweden"
-#~ msgstr "Швеция"
-
-#, fuzzy
-#~ msgid "Swedish"
-#~ msgstr "Швеция"
-
-#~ msgid "Taiwan"
-#~ msgstr "Тайван"
-
-#, fuzzy
-#~ msgid "Thai"
-#~ msgstr "Тайланд"
-
-#~ msgid "Thailand"
-#~ msgstr "Тайланд"
-
-#~ msgid "United States"
-#~ msgstr "САЩ"

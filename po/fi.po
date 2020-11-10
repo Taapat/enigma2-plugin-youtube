@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-30 23:02+0300\n"
+"POT-Creation-Date: 2020-11-10 17:31+0200\n"
 "PO-Revision-Date: 2016-08-24 10:46+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: \n"
@@ -36,9 +36,6 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Aktiivisia videolatauksia"
-
-msgid "All"
-msgstr "Kaikki"
 
 msgid "Ask user"
 msgstr "Kysytään mitä tehdään"
@@ -461,96 +458,3 @@ msgstr "YouTube asetukset"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube käynnistyy. Odota..."
-
-#~ msgid "Australia"
-#~ msgstr "Australia"
-
-#~ msgid "Brazil"
-#~ msgstr "Brasilia"
-
-#~ msgid "Canada"
-#~ msgstr "Kanada"
-
-#~ msgid "Czech Republic"
-#~ msgstr "Tsekin tasavalta"
-
-#~ msgid "France"
-#~ msgstr "Ranska"
-
-#, fuzzy
-#~ msgid "German"
-#~ msgstr "Saksa"
-
-#~ msgid "Germany"
-#~ msgstr "Saksa"
-
-#~ msgid "Hong Kong"
-#~ msgstr "Hong Kong"
-
-#~ msgid "India"
-#~ msgstr "Intia"
-
-#~ msgid "Ireland"
-#~ msgstr "Irlanti"
-
-#~ msgid "Israel"
-#~ msgstr "Israel"
-
-#, fuzzy
-#~ msgid "Italian"
-#~ msgstr "Italia"
-
-#~ msgid "Italy"
-#~ msgstr "Italia"
-
-#~ msgid "Japan"
-#~ msgstr "Japani"
-
-#, fuzzy
-#~ msgid "Japanese"
-#~ msgstr "Japani"
-
-#~ msgid "Latvia"
-#~ msgstr "Latvia"
-
-#, fuzzy
-#~ msgid "Latvian"
-#~ msgstr "Latvia"
-
-#~ msgid "Mexico"
-#~ msgstr "Meksiko"
-
-#~ msgid "New Zealand"
-#~ msgstr "Uusi-Seelanti"
-
-#~ msgid "Poland"
-#~ msgstr "Puola"
-
-#~ msgid "Russia"
-#~ msgstr "Venäjä"
-
-#~ msgid "South Korea"
-#~ msgstr "Etelä-Korea"
-
-#~ msgid "Spain"
-#~ msgstr "Espanja"
-
-#~ msgid "Sweden"
-#~ msgstr "Ruotsi"
-
-#, fuzzy
-#~ msgid "Swedish"
-#~ msgstr "Ruotsi"
-
-#~ msgid "Taiwan"
-#~ msgstr "Taiwan"
-
-#, fuzzy
-#~ msgid "Thai"
-#~ msgstr "Thaimaa"
-
-#~ msgid "Thailand"
-#~ msgstr "Thaimaa"
-
-#~ msgid "United States"
-#~ msgstr "Yhdysvallat"

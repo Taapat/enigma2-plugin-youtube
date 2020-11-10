@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-30 23:02+0300\n"
+"POT-Creation-Date: 2020-11-10 17:31+0200\n"
 "PO-Revision-Date: 2018-11-18 12:37+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: \n"
@@ -32,9 +32,6 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Aktiivsed allalaadimised"
-
-msgid "All"
-msgstr "Kõik"
 
 msgid "Ask user"
 msgstr "Küsitakse"
@@ -465,110 +462,3 @@ msgstr "YouTube seadistamine"
 
 msgid "YouTube starting. Please wait..."
 msgstr "YouTube käivitub. Oota..."
-
-#~ msgid "Australia"
-#~ msgstr "Austraalia"
-
-#~ msgid "Brazil"
-#~ msgstr "Brasiilia"
-
-#~ msgid "Canada"
-#~ msgstr "Kanada"
-
-#~ msgid "Czech Republic"
-#~ msgstr "Tšehhi"
-
-#~ msgid "France"
-#~ msgstr "Prantsusmaa"
-
-#, fuzzy
-#~ msgid "German"
-#~ msgstr "Saksamaa"
-
-#~ msgid "Germany"
-#~ msgstr "Saksamaa"
-
-#~ msgid "Greece"
-#~ msgstr "Kreeka"
-
-#, fuzzy
-#~ msgid "Greek"
-#~ msgstr "Kreeka"
-
-#~ msgid "Hong Kong"
-#~ msgstr "Hong Kong"
-
-#~ msgid "India"
-#~ msgstr "India"
-
-#~ msgid "Ireland"
-#~ msgstr "Iirimaa"
-
-#~ msgid "Israel"
-#~ msgstr "Iisrael"
-
-#, fuzzy
-#~ msgid "Italian"
-#~ msgstr "Itaalia"
-
-#~ msgid "Italy"
-#~ msgstr "Itaalia"
-
-#~ msgid "Japan"
-#~ msgstr "Jaapan"
-
-#, fuzzy
-#~ msgid "Japanese"
-#~ msgstr "Jaapan"
-
-#~ msgid "Latvia"
-#~ msgstr "Läti"
-
-#, fuzzy
-#~ msgid "Latvian"
-#~ msgstr "Läti"
-
-#~ msgid "Mexico"
-#~ msgstr "Mehhiko"
-
-#~ msgid "New Zealand"
-#~ msgstr "Uus Meremaa"
-
-#~ msgid "Poland"
-#~ msgstr "Poola"
-
-#~ msgid "Russia"
-#~ msgstr "Venemaa"
-
-#~ msgid "South Korea"
-#~ msgstr "Lõuna-Korea"
-
-#~ msgid "Spain"
-#~ msgstr "Hispaania"
-
-#~ msgid "Sweden"
-#~ msgstr "Rootsi"
-
-#, fuzzy
-#~ msgid "Swedish"
-#~ msgstr "Rootsi"
-
-#~ msgid "Taiwan"
-#~ msgstr "Taiwan"
-
-#, fuzzy
-#~ msgid "Thai"
-#~ msgstr "Tai"
-
-#~ msgid "Thailand"
-#~ msgstr "Tai"
-
-#~ msgid "Turkey"
-#~ msgstr "Türgi"
-
-#, fuzzy
-#~ msgid "Turkish"
-#~ msgstr "Türgi"
-
-#~ msgid "United States"
-#~ msgstr "USA"

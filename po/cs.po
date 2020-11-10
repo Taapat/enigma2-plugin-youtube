@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-30 23:02+0300\n"
+"POT-Creation-Date: 2020-11-10 17:31+0200\n"
 "PO-Revision-Date: 2020-06-13 12:57+0200\n"
 "Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: Ims\n"
@@ -32,9 +32,6 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Aktivní stahování videa"
-
-msgid "All"
-msgstr "Vše"
 
 msgid "Ask user"
 msgstr "Zeptat se uživatele"
@@ -467,84 +464,3 @@ msgstr "Nastavení YouTube"
 
 msgid "YouTube starting. Please wait..."
 msgstr "Spouští se YouTube. Prosím, čekejte..."
-
-#~ msgid "Australia"
-#~ msgstr "Austrálie"
-
-#~ msgid "Brazil"
-#~ msgstr "Brazílie"
-
-#~ msgid "Canada"
-#~ msgstr "Kanada"
-
-#~ msgid "Czech"
-#~ msgstr "Česky"
-
-#~ msgid "Czech Republic"
-#~ msgstr "Česká republika"
-
-#~ msgid "France"
-#~ msgstr "Francie"
-
-#~ msgid "Germany"
-#~ msgstr "Německo"
-
-#~ msgid "Greece"
-#~ msgstr "Řecko"
-
-#~ msgid "India"
-#~ msgstr "Indie"
-
-#~ msgid "Ireland"
-#~ msgstr "Irsko"
-
-#~ msgid "Israel"
-#~ msgstr "Izreal"
-
-#~ msgid "Italy"
-#~ msgstr "Itálie"
-
-#~ msgid "Japan"
-#~ msgstr "Japonsko"
-
-#~ msgid "Latvia"
-#~ msgstr "Lotyšsko"
-
-#~ msgid "Mexico"
-#~ msgstr "Mexiko"
-
-#~ msgid "New Zealand"
-#~ msgstr "Nový Zéland"
-
-#~ msgid "Poland"
-#~ msgstr "Polsko"
-
-#~ msgid "Russia"
-#~ msgstr "Rusko"
-
-#~ msgid "South Korea"
-#~ msgstr "Jižní Korea"
-
-#~ msgid "Spain"
-#~ msgstr "Španělsko"
-
-#~ msgid "Sweden"
-#~ msgstr "Svédsko"
-
-#~ msgid "Taiwan"
-#~ msgstr "Taiwan"
-
-#~ msgid "Thailand"
-#~ msgstr "Thajsko"
-
-#~ msgid "The Netherlands"
-#~ msgstr "Nizozemí"
-
-#~ msgid "Turkey"
-#~ msgstr "Turecko"
-
-#~ msgid "United Kingdom"
-#~ msgstr "Velká Británie"
-
-#~ msgid "United States"
-#~ msgstr "USA"

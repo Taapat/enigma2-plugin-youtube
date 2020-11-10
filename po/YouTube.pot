@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-07 12:52+0200\n"
+"POT-Creation-Date: 2020-11-10 17:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,10 +42,6 @@ msgstr ""
 
 #: YouTubeDownload.py:178 YouTubeUi.py:1155
 msgid "Active video downloads"
-msgstr ""
-
-#: YouTubeUi.py:54 YouTubeUi.py:57
-msgid "All"
 msgstr ""
 
 #: YouTubeUi.py:71 YouTubeUi.py:75
