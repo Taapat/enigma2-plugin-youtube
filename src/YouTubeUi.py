@@ -51,10 +51,10 @@ config.plugins.YouTube.searchResult = ConfigSelection(default='24',
 	])
 config.plugins.YouTube.searchRegion = ConfigSelection(
 	default=language.getLanguage().split('_')[1],
-	choices=[('', _('All'))]+[(x[1], x[0]) for x in ISO3166])
+	choices=[(x[1], x[0]) for x in ISO3166])
 config.plugins.YouTube.searchLanguage = ConfigSelection(
 	default=language.getLanguage().split('_')[0],
-	choices=[('', _('All'))]+[(x[1][1], x[1][0]) for x in language.getLanguageList()])
+	choices=[(x[1][1], x[1][0]) for x in language.getLanguageList()])
 config.plugins.YouTube.searchOrder = ConfigSelection(default='relevance',
 	choices=[('relevance', _('Relevance')),
 	('date', _('Created date')),
