@@ -789,6 +789,8 @@ class YouTubeMain(Screen):
 		for get in [getter]:
 			try:
 				return str(get(result))
+			except KeyError:
+				pass
 			except:
 				try:  # Workaround if image have str() problems (GOS)
 					return get(result).encode('utf-8', 'ignore')
