@@ -788,11 +788,12 @@ class YouTubeMain(Screen):
 	def _tryStr(result, getter):
 		for get in [getter]:
 			try:
-				v = str(get(result))
+				return str(get(result))
 			except:
-				pass
-			else:
-				return v
+				try:  # Workaround if image have str() problems (GOS)
+					return get(result).encode('utf-8', 'ignore')
+				except:
+					pass
 		return ''
 
 	def _tryComplStr(self, result, getter, after):
