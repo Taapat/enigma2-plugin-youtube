@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube Plugin slovenský preklad\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 17:31+0200\n"
+"POT-Creation-Date: 2020-11-12 19:33+0200\n"
 "PO-Revision-Date: 2018-05-30 04:10+0200\n"
 "Last-Translator: S4iyan3lit3 <nsa@dontgathermailaddresses.fck>\n"
 "Language-Team: th4nks0url0rd1nh34v3n\n"
@@ -37,6 +37,9 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Aktívne stihanutie videa"
+
+msgid "All"
+msgstr "Vsetky"
 
 msgid "Ask user"
 msgstr "Opýtajte sa používateľa"

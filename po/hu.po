@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin magyar fordítás\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 17:31+0200\n"
+"POT-Creation-Date: 2020-11-12 19:33+0200\n"
 "PO-Revision-Date: 2019-02-19 12:57+0100\n"
 "Last-Translator: cp-teamhun\n"
 "Language-Team: cp-teamhun\n"
@@ -32,6 +32,9 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Aktív videó letöltések"
+
+msgid "All"
+msgstr "Összes"
 
 msgid "Ask user"
 msgstr "Kérdezze a felhasználót"

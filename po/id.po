@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 17:31+0200\n"
+"POT-Creation-Date: 2020-11-12 19:33+0200\n"
 "PO-Revision-Date: 2015-12-19 15:56+0100\n"
 "Last-Translator: Budiarno Pedode\n"
 "Language-Team: \n"
@@ -32,6 +32,9 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Unduh video aktif"
+
+msgid "All"
+msgstr "Semua"
 
 msgid "Ask user"
 msgstr "Tanya pengguna"

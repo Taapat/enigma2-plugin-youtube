@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 17:31+0200\n"
+"POT-Creation-Date: 2020-11-12 19:33+0200\n"
 "PO-Revision-Date: 2018-11-22 19:43+0100\n"
 "Last-Translator: VillaK <soporte@open-plus.es>\n"
 "Language-Team: OpenPlus <open-plus.es>\n"
@@ -32,6 +32,9 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Descargas activas"
+
+msgid "All"
+msgstr "Todo"
 
 msgid "Ask user"
 msgstr "Preguntar al usuario"

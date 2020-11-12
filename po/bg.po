@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 17:31+0200\n"
+"POT-Creation-Date: 2020-11-12 19:33+0200\n"
 "PO-Revision-Date: 2018-04-13 10:46+0300\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -32,6 +32,9 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Активно изтегляне на видеоклипове"
+
+msgid "All"
+msgstr "Всички"
 
 msgid "Ask user"
 msgstr "Питай потребител"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 17:31+0200\n"
+"POT-Creation-Date: 2020-11-12 19:33+0200\n"
 "PO-Revision-Date: 2020-06-12 23:54+0300\n"
 "Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish\n"
@@ -37,6 +37,9 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Aktif video indirme"
+
+msgid "All"
+msgstr "Tümü"
 
 msgid "Ask user"
 msgstr "Kullanıcıya sor"

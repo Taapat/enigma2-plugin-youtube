@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 17:31+0200\n"
+"POT-Creation-Date: 2020-11-12 19:33+0200\n"
 "PO-Revision-Date: 2019-09-16 14:28+0200\n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: LL@li.org\n"
@@ -31,6 +31,9 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Actieve videodownloads"
+
+msgid "All"
+msgstr "Alle"
 
 msgid "Ask user"
 msgstr "Vraag gebruiker"

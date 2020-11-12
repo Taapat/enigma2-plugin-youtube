@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 17:31+0200\n"
+"POT-Creation-Date: 2020-11-12 19:33+0200\n"
 "PO-Revision-Date: 2018-05-26 13:10+0200\n"
 "Last-Translator: Massimo Bambi <maxbambi@libero.it>\n"
 "Language-Team: \n"
@@ -37,6 +37,9 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Download del video corrente"
+
+msgid "All"
+msgstr "Tutti"
 
 msgid "Ask user"
 msgstr "Chiedi all'utente"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin greek translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-10 17:31+0200\n"
+"POT-Creation-Date: 2020-11-12 19:33+0200\n"
 "PO-Revision-Date: 2019-11-19 01:16+0200\n"
 "Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: MCelliot_g <mcelliot_g@hotmail.com>\n"
@@ -33,6 +33,9 @@ msgstr ""
 
 msgid "Active video downloads"
 msgstr "Ενεργές μεταφορτώσεις βίντεο"
+
+msgid "All"
+msgstr "Όλες"
 
 msgid "Ask user"
 msgstr "Ερώτηση χρήστη"
