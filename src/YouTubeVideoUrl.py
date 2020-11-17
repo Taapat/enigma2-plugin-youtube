@@ -290,13 +290,12 @@ class YouTubeVideoUrl():
 			if config:
 				return loads(uppercase_escape(config))
 
-	def extract_url(self, video_id):
+	def _real_extract(self, video_id):
 		gl = config.plugins.YouTube.searchRegion.value
 		hl = config.plugins.YouTube.searchLanguage.value
 
-		url = 'https://www.youtube.com/watch?v=%s&gl=%s&hl=%s&has_verified=1&bpctr=9999999999' % (video_id, gl, hl)
-
 		# Get video webpage
+		url = 'https://www.youtube.com/watch?v=%s&gl=%s&hl=%s&has_verified=1&bpctr=9999999999' % (video_id, gl, hl)
 		video_webpage, urlh = self._download_webpage_handle(url)
 
 		qs = compat_parse_qs(compat_urlparse(urlh.geturl()).query)
@@ -363,6 +362,11 @@ class YouTubeVideoUrl():
 						player_response = extract_player_response(args.get('player_response'))
 				elif not player_response:
 					player_response = ytplayer_config
+
+		if not video_info and not player_response:
+			player_response = extract_player_response(
+					self._search_regex(
+						r'ytInitialPlayerResponse\s*=\s*({.+?})\s*;', video_webpage))
 
 		video_details = try_get(
 			player_response, lambda x: x['videoDetails'], dict) or {}
@@ -547,7 +551,7 @@ class YouTubeVideoUrl():
 		error_message = None
 		for retry in range(3):
 			try:
-				return self.extract_url(video_id)
+				return self._real_extract(video_id)
 			except Exception as ex:
 				if str(ex) == 'None':
 					print('No supported formats found, trying again!')
