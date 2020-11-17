@@ -356,6 +356,11 @@ class YouTubeVideoUrl():
 					if args.get('url_encoded_fmt_stream_map') or args.get('hlsvp'):
 						# Convert to the same format returned by compat_parse_qs
 						video_info = dict((k, [v]) for k, v in list(args.items()))
+					# Rental video is not rented but preview is available (e.g.
+					# https://www.youtube.com/watch?v=yYr8q0y5Jfg,
+					# https://github.com/ytdl-org/youtube-dl/issues/10532)
+					if not video_info and args.get('ypc_vid'):
+						return str(args['ypc_vid'])
 					if args.get('livestream') == '1' or args.get('live_playback') == 1:
 						is_live = True
 					if not player_response:
