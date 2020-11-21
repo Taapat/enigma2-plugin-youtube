@@ -37,7 +37,7 @@ try:
 	from Tools.CountryCodes import ISO3166
 except:
 	# Workaround if CountryCodes not exist (BH)
-	ISO3166 = [(x[1][0], x[1][2]) for x in language.getLanguageList()]
+	ISO3166 = [(x[1][0], x[1][2][3:]) for x in language.getLanguageList()]
 
 
 config.plugins.YouTube = ConfigSubsection()
