@@ -36,8 +36,8 @@ from .YouTubeApi import GetKey
 try:
 	from Tools.CountryCodes import ISO3166
 except:
-	# Workaround if CountryCodes not exist (BH)
-	ISO3166 = [(x[1][0], x[1][3][3:]) for x in language.getLanguageList()]
+	# Workaround if CountryCodes not exist (BH, VTI)
+	ISO3166 = [(x[1][0], x[1][2]) for x in language.getLanguageList() if x[1][2] != 'EN']
 
 
 config.plugins.YouTube = ConfigSubsection()
