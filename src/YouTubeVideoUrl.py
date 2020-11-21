@@ -533,7 +533,7 @@ class YouTubeVideoUrl():
 					error_message.append(msg)
 			if error_message:
 				error_message = '\n'.join(error_message)
-			if not error_message:
+			else:
 				for reason in try_get(
 						player_response,
 						lambda x: x['playabilityStatus']['errorScreen']['playerErrorMessageRenderer']['subreason']['runs'],
@@ -545,8 +545,6 @@ class YouTubeVideoUrl():
 			if error_message:
 				error_message = '\n'.join(error_message)
 			else:
-				error_message = None
-			if not error_message:
 				error_message = clean_html(try_get(
 						player_response,
 						lambda x: x['playabilityStatus']['reason'],
