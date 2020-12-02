@@ -363,10 +363,11 @@ class YouTubeVideoUrl():
 					player_response = ytplayer_config
 
 		if not video_info and not player_response:
+			_YT_INITIAL_PLAYER_RESPONSE_RE = r'ytInitialPlayerResponse\s*=\s*({.+?})\s*;'
 			player_response = extract_player_response(
 					self._search_regex(
-						r'ytInitialPlayerResponse\s*=\s*({.+?})\s*;', video_webpage))
-
+						(r'%s\s*(?:var\s+meta|</script|\n)' % _YT_INITIAL_PLAYER_RESPONSE_RE,
+						_YT_INITIAL_PLAYER_RESPONSE_RE), video_webpage))
 		video_details = try_get(
 			player_response, lambda x: x['videoDetails'], dict) or {}
 
