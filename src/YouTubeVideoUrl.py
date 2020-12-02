@@ -184,19 +184,6 @@ class YouTubeVideoUrl():
 		else:
 			return res
 
-	def _html_search_meta(self, name, html):
-		if not isinstance(name, (list, tuple)):
-			name = [name]
-		return self._html_search_regex(
-			[self._meta_regex(n) for n in name],
-			html, group='content')
-
-	@staticmethod
-	def _meta_regex(prop):
-		return r'''(?isx)<meta
-				(?=[^>]+(?:itemprop|name|property|id|http-equiv)=(["\']?)%s\1)
-				[^>]+?content=(["\'])(?P<content>.*?)\2''' % re.escape(prop)
-
 	def _decrypt_signature(self, s, player_url):
 		"""Turn the encrypted s field into a working signature"""
 
