@@ -317,7 +317,7 @@ class YouTubeVideoUrl():
 		# Get video info
 		video_info = {}
 		embed_webpage = None
-		if re.search(r'player-age-gate-content">', video_webpage) is not None or self._html_search_meta('og:restrictions:age', video_webpage) == "18+":
+		if re.search(r'["\']status["\']\s*:\s*["\']LOGIN_REQUIRED', video_webpage) is not None:
 			print('[YouTubeVideoUrl] Age gate content')
 			age_gate = True
 			# We simulate the access to the video from www.youtube.com/v/{video_id}
@@ -339,12 +339,13 @@ class YouTubeVideoUrl():
 				pl_response = video_info.get('player_response', [None])[0]
 				player_response = extract_player_response(pl_response)
 		else:
+			print('[YouTubeVideoUrl] Try video webpage')
 			age_gate = False
 			args = {}
 			# Try looking directly into the video webpage
 			ytplayer_config = self._get_ytplayer_config(video_webpage)
 			if ytplayer_config:
-				args = ytplayer_config.get("args")
+				args = ytplayer_config.get('args')
 				if args is not None:
 					if args.get('url_encoded_fmt_stream_map') or args.get('hlsvp'):
 						# Convert to the same format returned by compat_parse_qs
