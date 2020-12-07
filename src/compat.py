@@ -10,6 +10,7 @@ if version_info[0] == 2:
 	from urllib import unquote as compat_unquote_to_bytes
 	from urllib2 import urlopen as compat_urlopen
 	from urllib2 import Request as compat_Request
+	from urllib2 import HTTPError as compat_HTTPError
 	from urllib2 import URLError as compat_URLError
 	from urlparse import urljoin as compat_urljoin
 	from urlparse import urlparse as compat_urlparse
@@ -21,6 +22,7 @@ else:
 	from urllib.parse import unquote_to_bytes as compat_unquote_to_bytes
 	from urllib.request import urlopen as compat_urlopen
 	from urllib.request import Request as compat_Request
+	from urllib.error import HTTPError as compat_HTTPError
 	from urllib.error import URLError as compat_URLError
 	from urllib.parse import urljoin as compat_urljoin
 	from urllib.parse import urlparse as compat_urlparse
