@@ -29,12 +29,13 @@ else:
 
 
 # Disable certificate verification on python 2.7.9
+sslContext = None
 if version_info >= (2, 7, 9):
 	try:
 		import ssl
 		sslContext = ssl._create_unverified_context()
-	except:
-		sslContext = None
+	except Exception as e:
+		print('[YouTube] Error in set ssl context', e)
 
 
 def _parse_qsl(qs):

@@ -236,7 +236,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			self.moveHelpWindow()
 		else:
 			searchValue = self.searchValue.value
-			print("[YouTube] Search:", searchValue)
+			print('[YouTubeSearch] Search:', searchValue)
 			self['config'].getCurrent()[1].help_window.instance.hide()
 			if searchValue != '' and config.plugins.YouTube.saveHistory.value:
 				if searchValue in self.searchHistory:
@@ -353,8 +353,8 @@ class GoogleSuggestionsConfigText(ConfigText):
 				charset = 'ISO-8859-1'
 			suggestionsList = loads(response.read().decode(charset).encode('utf-8'))
 			response.close()
-		except:
-			print("[YouTube] Error in get suggestions from google")
+		except Exception as e:
+			print('[YouTubeSearch] Error in get suggestions from google', e)
 		if suggestionsList:
 			for suggestion in suggestionsList[1]:
 				if suggestion:

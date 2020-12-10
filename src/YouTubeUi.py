@@ -778,8 +778,8 @@ class YouTubeMain(Screen):
 		for get in [getter]:
 			try:
 				v = get(result)
-			except:
-				pass
+			except Exception as e:
+				print('[YouTube] Error in try List', e)
 			else:
 				return v
 		return None
@@ -790,12 +790,13 @@ class YouTubeMain(Screen):
 			try:
 				return str(get(result))
 			except KeyError:
-				pass
-			except:
+				print('[YouTube] Key Error in try String')
+			except Exception as e:
+				print('[YouTube] Error in try String', e)
 				try:  # Workaround if image have str() problems (GOS)
 					return get(result).encode('utf-8', 'ignore')
-				except:
-					pass
+				except Exception as e:
+					print('[YouTube] Error in try String encode utf-8', e)
 		return ''
 
 	def _tryComplStr(self, result, getter, after):
@@ -915,8 +916,8 @@ class YouTubeMain(Screen):
 				for result in searchResponse.get('items', []):
 					try:
 						channel = result['contentDetails']['relatedPlaylists'][playlist]
-					except:
-						pass
+					except Exception as e:
+						print('[YouTube] Error get playlist', e)
 
 				videos = self.videoIdFromPlaylist(channel)
 				return self.extractVideoIdList(videos)
@@ -980,8 +981,8 @@ class YouTubeMain(Screen):
 			for result in searchResponse.get('items', []):
 				try:
 					videos.append(result['id']['videoId'])
-				except:
-					pass
+				except Exception as e:
+					print('[YouTube] Error get videoId', e)
 			return self.extractVideoIdList(videos)
 
 	def getAllSubscriptions(self):
@@ -1062,8 +1063,8 @@ class YouTubeMain(Screen):
 		for result in searchResponse.get('items', []):
 			try:
 				videos.append(result['snippet']['resourceId']['videoId'])
-			except:
-				pass
+			except Exception as e:
+				print('[YouTube] Error get videoId from Playlist', e)
 		return videos
 
 	def videoIdFromChannellist(self, channel):
@@ -1080,8 +1081,8 @@ class YouTubeMain(Screen):
 		for result in searchResponse.get('items', []):
 			try:
 				videos.append(result['id']['videoId'])
-			except:
-				pass
+			except Exception as e:
+				print('[YouTube] Error get videoId from Channellis', e)
 		return videos
 
 	def createList(self, searchResponse, subscription):

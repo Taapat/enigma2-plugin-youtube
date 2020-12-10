@@ -28,8 +28,8 @@ class OAuth:
 			else:
 				print('[OAuth] Error in auth response, errorcode', status_code)
 				print(response.read())
-		except:
-			print('[OAuth] Error in auth response')
+		except Exception as e:
+			print('[OAuth] Error in auth response', e)
 		return None
 
 	def get_user_code(self):
@@ -39,15 +39,16 @@ class OAuth:
 				'scope'	: 'https://www.googleapis.com/auth/youtube'
 				}).encode()
 		data = self.get_oauth_response(url, data)
+		error = 'unknown'
 		if data:
 			try:
 				self.device_code = data['device_code']
 				self.verification_url = data['verification_url']
 				self.retry_interval = data['interval']
 				return data['user_code']
-			except:
-				pass
-		print('[OAuth] Error in get user code')
+			except Exception as e:
+				error = e
+		print('[OAuth] Error in get user code', error)
 		return ''
 
 	def get_new_token(self):

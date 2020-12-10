@@ -52,10 +52,10 @@ class YouTubeApi:
 			response = compat_ssl_urlopen(url)
 			status_code = response.getcode()
 		except compat_HTTPError as e:
-			print ('[YouTubeApi] HTTPError error in get response')
+			print ('[YouTubeApi] HTTPError error in get response', e)
 			status_code = e.getcode()
-		except:
-			print ('[YouTubeApi] error in get response')
+		except Exception as e:
+			print ('[YouTubeApi] error in get response', e)
 			status_code = 'Unknown'
 		if status_code == 200:
 			return load(response), None
@@ -81,10 +81,10 @@ class YouTubeApi:
 			status_code = response.getcode()
 			response.close()
 		except compat_HTTPError as e:
-			print ('[YouTubeApi] HTTPError error in aut response')
+			print ('[YouTubeApi] HTTPError error in aut response', e)
 			status_code = e.getcode()
-		except:
-			print ('[YouTubeApi] error in aut response')
+		except Exception as e:
+			print ('[YouTubeApi] error in aut response', e)
 			return 'Unknown'
 		return status_code
 
