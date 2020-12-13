@@ -17,7 +17,7 @@ class OAuth:
 		self.verification_url = ''
 
 	def get_oauth_response(self, url, data):
-		headers = {"Content-type": "application/x-www-form-urlencoded"}
+		headers = {'Content-type': 'application/x-www-form-urlencoded'}
 		try:
 			request = compat_Request(url, data=data, headers=headers)
 			request.get_method = lambda: 'POST'
@@ -30,7 +30,7 @@ class OAuth:
 				print(response.read())
 		except Exception as e:
 			print('[OAuth] Error in auth response', e)
-		return None
+		return {}
 
 	def get_user_code(self):
 		url = 'https://accounts.google.com/o/oauth2/device/code'
@@ -39,17 +39,10 @@ class OAuth:
 				'scope'	: 'https://www.googleapis.com/auth/youtube'
 				}).encode()
 		data = self.get_oauth_response(url, data)
-		error = 'unknown'
-		if data:
-			try:
-				self.device_code = data['device_code']
-				self.verification_url = data['verification_url']
-				self.retry_interval = data['interval']
-				return data['user_code']
-			except Exception as e:
-				error = e
-		print('[OAuth] Error in get user code', error)
-		return ''
+		self.device_code = data.get('device_code', '')
+		self.verification_url = data.get('verification_url', '')
+		self.retry_interval = data.get('interval', 2)
+		return data.get('user_code', '')
 
 	def get_new_token(self):
 		url = 'https://accounts.google.com/o/oauth2/token'
@@ -60,7 +53,7 @@ class OAuth:
 				'grant_type': 'http://oauth.net/grant_type/device/1.0'
 				}).encode()
 		data = self.get_oauth_response(url, data)
-		if data and 'access_token' in data and 'refresh_token' in data:
+		if 'access_token' in data and 'refresh_token' in data:
 			return data['refresh_token'], 1
 		return None, self.retry_interval + 2
 
@@ -73,7 +66,7 @@ class OAuth:
 				'grant_type': 'refresh_token'
 				}).encode()
 		data = self.get_oauth_response(url, data)
-		if data and 'access_token' in data:
+		if 'access_token' in data:
 			return data['access_token']
 		print('[OAuth] Error in get access token')
 		return None
