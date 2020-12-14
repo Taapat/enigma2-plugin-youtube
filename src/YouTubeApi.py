@@ -7,43 +7,21 @@ from .compat import compat_quote
 from .compat import compat_urlopen
 from .compat import compat_Request
 from .compat import compat_HTTPError
-
-
-def GetKey(x):
-	p = 3
-	while True:
-		if p > len(x):
-			break
-		pl = len(str(p))
-		x = x[:p] + x[p+pl:]
-		p += 12 - pl
-	x = x.replace('w_OizD', 'a')
-	x = x.replace('Xhi_Lo', 'A')
-	return x
+from .OAuth import OAuth, API_KEY
 
 
 class YouTubeApi:
-	def __init__(self, client_id, client_secret, developer_key, refresh_token):
-		self.client_id = client_id
-		self.client_secret = client_secret
+	def __init__(self, refresh_token):
 		self.refresh_token = refresh_token
-		self.key = '&key=' + developer_key
 		if self.refresh_token:
-			self.access_token = self.get_access_token()
+			self.renew_access_token()
 		else:
 			self.access_token = None
-		if self.access_token:
-			self.key = self.key + '&access_token=' + self.access_token
-
-	def get_access_token(self):
-		from .OAuth import OAuth
-		oauth = OAuth(self.client_id, self.client_secret)
-		return oauth.get_access_token(self.refresh_token)
+			self.key = '&key=' + API_KEY
 
 	def renew_access_token(self):
-		print('[YouTubeApi] Unauthorized, try get new access token')
-		self.key = self.key.split('&access_token=')[0]
-		self.access_token = self.get_access_token()
+		self.key = '&key=' + API_KEY
+		self.access_token = OAuth().get_access_token(self.refresh_token)
 		if self.access_token:
 			self.key = self.key + '&access_token=' + self.access_token
 
@@ -69,6 +47,7 @@ class YouTubeApi:
 		if response:
 			return response
 		elif status_code == 401 and self.access_token:
+			print('[YouTubeApi] Unauthorized get response, try get new access token')
 			self.renew_access_token()
 			response, status_code = self.try_response(url)
 		return response
@@ -95,6 +74,7 @@ class YouTubeApi:
 			headers.update(header)
 		status_code = self.try_aut_response(method, url, data, header)
 		if status_code == 401 and self.access_token:
+			print('[YouTubeApi] Unauthorized get aut response, try get new access token')
 			self.renew_access_token()
 			status_code = self.try_aut_response(method, url, data, header)
 		if status_code == status:

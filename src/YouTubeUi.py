@@ -30,7 +30,6 @@ from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_PLUGINS
 
 from . import _
 from . import ngettext
-from .YouTubeApi import GetKey
 
 
 try:
@@ -88,33 +87,6 @@ config.plugins.YouTube.searchHistoryDict['Searchbroadcasts'] = ConfigSet(choices
 
 config.plugins.YouTube.refreshToken = ConfigText()
 config.plugins.YouTube.lastPosition = ConfigText(default='[]')
-
-
-API_KEY = GetKey('Xhi3_LoIzw_OizD15SyCNReMvKL27nw_OizDWRR395T5uGWpvn451I2VYc78Gy463')
-YOUTUBE_API_CLIENT_ID = GetKey('4113447027255-v15bgs05u1o3m278mpjs2vcd0394w_OizDfrg5160drbw_Oiz63D.w_OizDpp75s.googleus87ercontent.99com')
-YOUTUBE_API_CLIENT_SECRET = GetKey('Zf93pqd2rxgY2ro159rK20BMxif27')
-
-if os.path.exists('/etc/enigma2/YouTube.key'):
-	try:
-		for line in open('/etc/enigma2/YouTube.key').readlines():
-			line = line.strip().replace(' ', '')
-			if len(line) < 30 or line[0] == '#' or '=' not in line:
-				continue
-			line = line.split('=', 1)
-			if line[1][:1] == '"' or line[1][:1] == "'":
-				line[1] = line[1][1:]
-			if line[1][-1:] == '"' or line[1][-1:] == "'":
-				line[1] = line[1][:-1]
-			if line[1][:4] == 'GET_':
-				line[1] = GetKey(line[1][4:])
-			if 'API_KEY' in line[0]:
-				API_KEY = line[1]
-			elif 'CLIENT_ID' in line[0]:
-				YOUTUBE_API_CLIENT_ID = line[1]
-			elif 'CLIENT_SECRET' in line[0]:
-				YOUTUBE_API_CLIENT_SECRET = line[1]
-	except Exception as ex:
-		print('[YouTube] Error in read YouTube.key:', ex)
 
 
 #  Workaround to keep compatibility broken once again on OpenPLi develop
@@ -810,11 +782,7 @@ class YouTubeMain(Screen):
 		if not self.youtube or (not self.isAuth and
 			refreshToken and config.plugins.YouTube.login.value):
 			from .YouTubeApi import YouTubeApi
-			self.youtube = YouTubeApi(
-				client_id=YOUTUBE_API_CLIENT_ID,
-				client_secret=YOUTUBE_API_CLIENT_SECRET,
-				developer_key=API_KEY,
-				refresh_token=refreshToken)
+			self.youtube = YouTubeApi(refreshToken)
 			if self.youtube.access_token:
 				self.isAuth = True
 			else:
@@ -1544,7 +1512,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			from .OAuth import OAuth
 			self.splitTaimer = eTimer()
 			self.splitTaimer.timeout.callback.append(self.splitTaimerStop)
-			self.oauth = OAuth(YOUTUBE_API_CLIENT_ID, YOUTUBE_API_CLIENT_SECRET)
+			self.oauth = OAuth()
 			userCode = str(self.oauth.get_user_code())
 			if userCode:
 				msg = _('Go to %s\nAnd enter the code %s') % (str(self.oauth.verification_url), userCode)
