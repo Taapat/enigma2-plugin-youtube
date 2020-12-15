@@ -52,7 +52,7 @@ if path.exists('/etc/enigma2/YouTube.key'):
 class OAuth:
 	def __init__(self):
 		self.device_code = ''
-		self.verification_url = ''
+		self.retry_interval = 2
 
 	def get_oauth_response(self, url, data):
 		headers = {'Content-type': 'application/x-www-form-urlencoded'}
@@ -78,9 +78,8 @@ class OAuth:
 				}).encode()
 		data = self.get_oauth_response(url, data)
 		self.device_code = data.get('device_code', '')
-		self.verification_url = data.get('verification_url', '')
 		self.retry_interval = data.get('interval', 2)
-		return data.get('user_code', '')
+		return str(data.get('verification_url', '')), str(data.get('user_code', ''))
 
 	def get_new_token(self):
 		url = 'https://accounts.google.com/o/oauth2/token'

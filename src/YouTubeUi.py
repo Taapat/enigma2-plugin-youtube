@@ -1513,9 +1513,9 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			self.splitTaimer = eTimer()
 			self.splitTaimer.timeout.callback.append(self.splitTaimerStop)
 			self.oauth = OAuth()
-			userCode = str(self.oauth.get_user_code())
+			url, userCode = self.oauth.get_user_code()
 			if userCode:
-				msg = _('Go to %s\nAnd enter the code %s') % (str(self.oauth.verification_url), userCode)
+				msg = _('Go to %s\nAnd enter the code %s') % (url, userCode)
 				print("[YouTube] ", msg)
 				self.mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 				self.splitTaimer.start(9000, True)
