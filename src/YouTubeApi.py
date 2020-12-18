@@ -120,9 +120,9 @@ class YouTubeApi:
 			'&maxResults=' + maxResults + pageToken + self.key
 		return self.get_response(url)
 
-	def search_list(self, part, channelId, maxResults, pageToken):
+	def search_list(self, order, part, channelId, maxResults, pageToken):
 		pageToken = pageToken and '&pageToken=' + pageToken
-		url = 'search?part=' + part.replace(',', '%2C') + \
+		url = 'search?part=' + part.replace(',', '%2C') + '&order=' + order + \
 			'&channelId=' + channelId + '&maxResults=' + maxResults + \
 			pageToken + self.key
 		return self.get_response(url)
@@ -132,9 +132,9 @@ class YouTubeApi:
 			v_id.replace(',', '%2C') + self.key
 		return self.get_response(url)
 
-	def playlistItems_list(self, maxResults, playlistId, pageToken):
+	def playlistItems_list(self, order, maxResults, playlistId, pageToken):
 		pageToken = pageToken and '&pageToken=' + pageToken
-		url = 'playlistItems?part=snippet&maxResults=' + \
+		url = 'playlistItems?' + '&order=' + order + 'part=snippet&maxResults=' + \
 			maxResults + '&playlistId=' + playlistId + pageToken + self.key
 		return self.get_response(url)
 

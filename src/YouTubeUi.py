@@ -909,6 +909,7 @@ class YouTubeMain(Screen):
 				videos = self.videoIdFromPlaylist(self.value[0])
 				if not videos:  # if channel list from subscription
 					searchResponse = self.youtube.search_list(
+							order=order,
 							part='id,snippet',
 							channelId='UC'+self.value[0][2:],
 							maxResults=self.searchResult,
@@ -919,7 +920,7 @@ class YouTubeMain(Screen):
 			return self.extractVideoIdList(videos)
 
 		elif self.action == 'OpenChannelList':
-			videos = self.videoIdFromChannellist(self.value[0])
+			videos = self.videoIdFromChannellist(self.value[0], order)
 			return self.extractVideoIdList(videos)
 
 		else:  # search or pub feeds
@@ -1020,6 +1021,7 @@ class YouTubeMain(Screen):
 	def videoIdFromPlaylist(self, channel, getPageToken=True):
 		videos = []
 		searchResponse = self.youtube.playlistItems_list(
+				order=order,
 				maxResults=self.searchResult,
 				playlistId=channel,
 				pageToken=self.value[2]
@@ -1035,9 +1037,10 @@ class YouTubeMain(Screen):
 				print('[YouTube] Error get videoId from Playlist', e)
 		return videos
 
-	def videoIdFromChannellist(self, channel):
+	def videoIdFromChannellist(self, channel, order):
 		videos = []
 		searchResponse = self.youtube.search_list(
+				order=order,
 				part='id',
 				channelId=channel,
 				maxResults=self.searchResult,
@@ -1050,7 +1053,7 @@ class YouTubeMain(Screen):
 			try:
 				videos.append(result['id']['videoId'])
 			except Exception as e:
-				print('[YouTube] Error get videoId from Channellis', e)
+				print('[YouTube] Error get videoId from Channellist', e)
 		return videos
 
 	def createList(self, searchResponse, subscription):
