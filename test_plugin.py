@@ -32,6 +32,7 @@ def GetVideoId(q, eventType, order, s_type):
 		print('Title', result['snippet']['title'])
 
 		searchResponse = youtube.playlistItems_list(
+			order=order,
 			maxResults='3',
 			playlistId=playlistId,
 			pageToken='')
