@@ -887,17 +887,17 @@ class YouTubeMain(Screen):
 					except Exception as e:
 						print('[YouTube] Error get playlist', e)
 
-				videos = self.videoIdFromPlaylist(channel)
+				videos = self.videoIdFromPlaylist(order, channel)
 				return self.extractVideoIdList(videos)
 
 		elif self.action == 'OpenPlayList':
 			if self.value[0] == 'recent_subscr':
 				for subscription in self.entryList:
 					if subscription[0] != 'recent_subscr':
-						videos += self.videoIdFromPlaylist(subscription[0], False)
+						videos += self.videoIdFromPlaylist(order, subscription[0], False)
 				if self.nextPageToken:
 					for subscription in self.getAllSubscriptions():
-						videos += self.videoIdFromPlaylist(subscription, False)
+						videos += self.videoIdFromPlaylist(order, subscription, False)
 				if videos:
 					videos = sorted(self.extractVideoIdList(videos), key=lambda k: k[12], reverse=True)  # sort by date
 					del videos[int(self.searchResult):]  # leaves only searchResult long list
@@ -906,7 +906,7 @@ class YouTubeMain(Screen):
 					self.setSearchResults(int(self.searchResult))
 				return videos
 			else:
-				videos = self.videoIdFromPlaylist(self.value[0])
+				videos = self.videoIdFromPlaylist(order, self.value[0])
 				if not videos:  # if channel list from subscription
 					searchResponse = self.youtube.search_list(
 							order=order,
@@ -1018,7 +1018,7 @@ class YouTubeMain(Screen):
 				videos.append(videosInfo)
 		return videos
 
-	def videoIdFromPlaylist(self, channel, getPageToken=True):
+	def videoIdFromPlaylist(self, order, channel, getPageToken=True):
 		videos = []
 		searchResponse = self.youtube.playlistItems_list(
 				order=order,
