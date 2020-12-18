@@ -134,7 +134,7 @@ class YouTubeApi:
 
 	def playlistItems_list(self, order, maxResults, playlistId, pageToken):
 		pageToken = pageToken and '&pageToken=' + pageToken
-		url = 'playlistItems?' + '&order=' + order + 'part=snippet&maxResults=' + \
+		url = 'playlistItems?part=snippet&order=' + order + '&maxResults=' + \
 			maxResults + '&playlistId=' + playlistId + pageToken + self.key
 		return self.get_response(url)
 
