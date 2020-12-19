@@ -76,11 +76,11 @@ class YouTubeApi:
 		headers = {'Authorization': 'Bearer %s' % self.access_token}
 		if header:
 			headers.update(header)
-		status_code = self.try_aut_response(method, url, data, header)
+		status_code = self.try_aut_response(method, url, data, headers)
 		if status_code == 401 and self.access_token:
 			print('[YouTubeApi] Unauthorized get aut response, try get new access token')
 			self.renew_access_token()
-			status_code = self.try_aut_response(method, url, data, header)
+			status_code = self.try_aut_response(method, url, data, headers)
 		if status_code == status:
 			return True
 		else:
