@@ -88,7 +88,7 @@ class YouTubeApi:
 			return None
 
 	def subscriptions_list(self, maxResults, pageToken):
-		url = 'subscriptions?part=snippet&mine=true'
+		url = 'subscriptions?part=snippet&mine=true&order=unread'
 		return self.get_response(url, maxResults, pageToken)
 
 	def playlists_list(self, maxResults, pageToken):
