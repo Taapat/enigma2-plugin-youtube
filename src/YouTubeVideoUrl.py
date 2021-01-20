@@ -7,6 +7,7 @@ import re
 
 from codecs import getdecoder
 from json import loads
+from random import randint
 
 from Components.config import config
 
@@ -277,6 +278,30 @@ class YouTubeVideoUrl():
 			if config:
 				return loads(uppercase_escape(config))
 
+	def mark_watched(self, video_info, player_response):
+		playback_url = url_or_none(try_get(
+			player_response,
+			lambda x: x['playbackTracking']['videostatsPlaybackUrl']['baseUrl']) or try_get(
+			video_info, lambda x: x['videostats_playback_base_url'][0]))
+		if not playback_url:
+			return
+		parsed_playback_url = compat_urlparse.urlparse(playback_url)
+		qs = compat_urlparse.parse_qs(parsed_playback_url.query)
+
+		# cpn generation algorithm is reverse engineered from base.js.
+		# In fact it works even with dummy cpn.
+		CPN_ALPHABET = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_'
+		cpn = ''.join((CPN_ALPHABET[randint(0, 256) & 63] for _ in range(0, 16)))
+
+		qs.update({
+			'ver': ['2'],
+			'cpn': [cpn],
+		})
+		playback_url = compat_urlparse.urlunparse(
+			parsed_playback_url._replace(query=compat_urlencode(qs, True)))
+
+		mark = self._download_webpage(playback_url)
+
 	def _real_extract(self, video_id):
 		gl = config.plugins.YouTube.searchRegion.value
 		hl = config.plugins.YouTube.searchLanguage.value
@@ -285,7 +310,7 @@ class YouTubeVideoUrl():
 		url = 'https://www.youtube.com/watch?v=%s&gl=%s&hl=%s&has_verified=1&bpctr=9999999999' % (video_id, gl, hl)
 		video_webpage, urlh = self._download_webpage_handle(url)
 
-		qs = compat_parse_qs(compat_urlparse(urlh.geturl()).query)
+		qs = compat_parse_qs(compat_urlparse.urlparse(urlh.geturl()).query)
 		video_id = qs.get('v', [None])[0] or video_id
 
 		if not video_webpage:
@@ -400,7 +425,7 @@ class YouTubeVideoUrl():
 					if not url_map['url']:
 						continue
 				else:
-					url_map['url_data'] = compat_parse_qs(compat_urlparse(url_map['url']).query)
+					url_map['url_data'] = compat_parse_qs(compat_urlparse.urlparse(url_map['url']).query)
 
 				stream_type = try_get(url_map['url_data'], lambda x: x['stream_type'][0])
 				# Unsupported FORMAT_STREAM_TYPE_OTF
@@ -540,6 +565,8 @@ class YouTubeVideoUrl():
 					compat_str):
 				error_message = 'This video is DRM protected!'
 			raise Exception(error_message)
+
+		self.mark_watched(video_info, player_response)
 
 		return str(url)
 
