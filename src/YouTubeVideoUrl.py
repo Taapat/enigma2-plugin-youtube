@@ -300,7 +300,7 @@ class YouTubeVideoUrl():
 		playback_url = compat_urlparse.urlunparse(
 			parsed_playback_url._replace(query=compat_urlencode(qs, True)))
 
-		mark = self._download_webpage(playback_url)
+		self._download_webpage(playback_url)
 
 	def _real_extract(self, video_id):
 		gl = config.plugins.YouTube.searchRegion.value
