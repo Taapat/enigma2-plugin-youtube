@@ -6,8 +6,6 @@ if version_info[0] == 2:
 	# Python 2
 	compat_str = unicode
 
-	import urlparse as compat_urlparse
-
 	from urllib import urlencode as compat_urlencode
 	from urllib import quote as compat_quote
 	from urllib import unquote as compat_unquote_to_bytes
@@ -16,11 +14,12 @@ if version_info[0] == 2:
 	from urllib2 import HTTPError as compat_HTTPError
 	from urllib2 import URLError as compat_URLError
 	from urlparse import urljoin as compat_urljoin
+	from urlparse import urlparse as compat_urlparse
+	from urlparse import parse_qs as compat_urlparse_qs
+	from urlparse import urlunparse as compat_urlunparse
 else:
 	# Python 3
 	compat_str = str
-
-	import urllib.parse as compat_urlparse
 
 	from urllib.parse import urlencode as compat_urlencode
 	from urllib.parse import quote as compat_quote
@@ -30,6 +29,9 @@ else:
 	from urllib.error import HTTPError as compat_HTTPError
 	from urllib.error import URLError as compat_URLError
 	from urllib.parse import urljoin as compat_urljoin
+	from urllib.parse import urlparse as compat_urlparse
+	from urllib.parse import parse_qs as compat_urlparse_qs
+	from urllib.parse import urlunparse as compat_urlunparse
 
 
 # Disable certificate verification on python 2.7.9

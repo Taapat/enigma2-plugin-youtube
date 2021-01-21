@@ -18,6 +18,8 @@ from .compat import compat_urlencode
 from .compat import compat_URLError
 from .compat import compat_urljoin
 from .compat import compat_urlparse
+from .compat import compat_urlparse_qs
+from .compat import compat_urlunparse
 from .jsinterp import JSInterpreter
 
 
@@ -285,8 +287,8 @@ class YouTubeVideoUrl():
 			video_info, lambda x: x['videostats_playback_base_url'][0]))
 		if not playback_url:
 			return
-		parsed_playback_url = compat_urlparse.urlparse(playback_url)
-		qs = compat_urlparse.parse_qs(parsed_playback_url.query)
+		parsed_playback_url = compat_urlparse(playback_url)
+		qs = compat_urlparse_qs(parsed_playback_url.query)
 
 		# cpn generation algorithm is reverse engineered from base.js.
 		# In fact it works even with dummy cpn.
@@ -297,7 +299,7 @@ class YouTubeVideoUrl():
 			'ver': ['2'],
 			'cpn': [cpn],
 		})
-		playback_url = compat_urlparse.urlunparse(
+		playback_url = compat_urlunparse(
 			parsed_playback_url._replace(query=compat_urlencode(qs, True)))
 
 		self._download_webpage(playback_url)
@@ -310,7 +312,7 @@ class YouTubeVideoUrl():
 		url = 'https://www.youtube.com/watch?v=%s&gl=%s&hl=%s&has_verified=1&bpctr=9999999999' % (video_id, gl, hl)
 		video_webpage, urlh = self._download_webpage_handle(url)
 
-		qs = compat_parse_qs(compat_urlparse.urlparse(urlh.geturl()).query)
+		qs = compat_parse_qs(compat_urlparse(urlh.geturl()).query)
 		video_id = qs.get('v', [None])[0] or video_id
 
 		if not video_webpage:
@@ -425,7 +427,7 @@ class YouTubeVideoUrl():
 					if not url_map['url']:
 						continue
 				else:
-					url_map['url_data'] = compat_parse_qs(compat_urlparse.urlparse(url_map['url']).query)
+					url_map['url_data'] = compat_parse_qs(compat_urlparse(url_map['url']).query)
 
 				stream_type = try_get(url_map['url_data'], lambda x: x['stream_type'][0])
 				# Unsupported FORMAT_STREAM_TYPE_OTF
