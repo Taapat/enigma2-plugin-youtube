@@ -18,7 +18,6 @@ from .compat import compat_urlencode
 from .compat import compat_URLError
 from .compat import compat_urljoin
 from .compat import compat_urlparse
-from .compat import compat_urlparse_qs
 from .compat import compat_urlunparse
 from .jsinterp import JSInterpreter
 
@@ -288,7 +287,7 @@ class YouTubeVideoUrl():
 		if not playback_url:
 			return
 		parsed_playback_url = compat_urlparse(playback_url)
-		qs = compat_urlparse_qs(parsed_playback_url.query)
+		qs = compat_parse_qs(parsed_playback_url.query)
 
 		# cpn generation algorithm is reverse engineered from base.js.
 		# In fact it works even with dummy cpn.
