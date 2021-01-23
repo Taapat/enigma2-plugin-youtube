@@ -16,7 +16,6 @@ if version_info[0] == 2:
 	from urllib2 import URLError as compat_URLError
 	from urlparse import urljoin as compat_urljoin
 	from urlparse import urlparse as compat_urlparse
-	from urlparse import parse_qs as compat_urlparse_qs
 	from urlparse import urlunparse as compat_urlunparse
 
 
