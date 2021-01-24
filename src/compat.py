@@ -24,20 +24,19 @@ if version_info[0] == 2:
 			# Is it a string-like object?
 			string.split
 			return b''
-		if isinstance(string, compat_str):
+		if isinstance(string, unicode):
 			string = string.encode('utf-8')
 		bits = string.split(b'%')
 		if len(bits) == 1:
 			return string
 		res = [bits[0]]
-		append = res.append
 		for item in bits[1:]:
 			try:
-				append(_hextochr[item[:2]])
-				append(item[2:])
+				res.append(_hextochr[item[:2]])
+				res.append(item[2:])
 			except KeyError:
-				append(b'%')
-				append(item)
+				res.append(b'%')
+				res.append(item)
 		return b''.join(res)
 
 	def _unquote(string):
@@ -46,10 +45,9 @@ if version_info[0] == 2:
 			return string
 		bits = compile(r'([\x00-\x7f]+)').split(string)
 		res = [bits[0]]
-		append = res.append
 		for i in range(1, len(bits), 2):
-			append(_unquote_to_bytes(bits[i]).decode('utf-8', 'replace'))
-			append(bits[i + 1])
+			res.append(_unquote_to_bytes(bits[i]).decode('utf-8', 'replace'))
+			res.append(bits[i + 1])
 		return ''.join(res)
 
 	def _parse_qsl(qs):
@@ -59,16 +57,9 @@ if version_info[0] == 2:
 			if not name_value:
 				continue
 			nv = name_value.split('=', 1)
-			if len(nv) != 2:
-				# Handle case of a control-name with no equal sign
-				continue
-			if len(nv[1]):
-				name = nv[0].replace('+', ' ')
-				name = _unquote(name)
-				name = compat_str(name)
-				value = nv[1].replace('+', ' ')
-				value = _unquote(value)
-				value = compat_str(value)
+			if len(nv) == 2:
+				name = unicode(_unquote(nv[0].replace('+', ' ')))
+				value = unicode(_unquote(nv[1].replace('+', ' ')))
 				r.append((name, value))
 		return r
 
