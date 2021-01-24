@@ -57,7 +57,7 @@ if version_info[0] == 2:
 			if not name_value:
 				continue
 			nv = name_value.split('=', 1)
-			if len(nv) == 2:
+			if len(nv) == 2 and len(nv[1]):
 				name = unicode(_unquote(nv[0].replace('+', ' ')))
 				value = unicode(_unquote(nv[1].replace('+', ' ')))
 				r.append((name, value))
