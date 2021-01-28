@@ -6,10 +6,13 @@ python:
 git:
   depth: 1
 
-install: true
+install:
+  - pip install flake8
 
 script:
   - python -O -m compileall ./src/
   - find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
   - bash ./travis_fix.sh
   - pytest -rx -v
+  - flake8 --ignore=W191,E128,E501,E126,E127 --exclude=./src/compat.py
+  - flake8 --ignore=W191,E128,E501,E126,E127,F821,F401 --filename=./src/compat.py
