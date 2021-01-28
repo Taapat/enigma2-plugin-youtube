@@ -34,7 +34,7 @@ from . import ngettext
 
 try:
 	from Tools.CountryCodes import ISO3166
-except:
+except Exception:
 	# Workaround if CountryCodes not exist (BH, VTI)
 	ISO3166 = [(x[1][0], x[1][2]) for x in language.getLanguageList() if x[1][2] != 'EN']
 
@@ -43,24 +43,22 @@ config.plugins.YouTube = ConfigSubsection()
 config.plugins.YouTube.saveHistory = ConfigYesNo(default=True)
 config.plugins.YouTube.searchResult = ConfigSelection(default='24',
 	choices=[('4', '4'),
-	('8', '8'),
-	('16', '16'),
-	('24', '24'),
-	('50', '50')
-	])
+		('8', '8'),
+		('16', '16'),
+		('24', '24'),
+		('50', '50')])
 config.plugins.YouTube.searchRegion = ConfigSelection(
 	default=language.getLanguage().split('_')[1] if language.getLanguage().split('_')[1] != 'EN' else '',
-	choices=[('', _('All'))]+[(x[1], x[0]) for x in ISO3166])
+	choices=[('', _('All'))] + [(x[1], x[0]) for x in ISO3166])
 config.plugins.YouTube.searchLanguage = ConfigSelection(
 	default=language.getLanguage().split('_')[0],
-	choices=[('', _('All'))]+[(x[1][1], x[1][0]) for x in language.getLanguageList()])
+	choices=[('', _('All'))] + [(x[1][1], x[1][0]) for x in language.getLanguageList()])
 config.plugins.YouTube.searchOrder = ConfigSelection(default='relevance',
 	choices=[('relevance', _('Relevance')),
-	('date', _('Created date')),
-	('rating', _('Rating')),
-	('title', _('Title')),
-	('viewCount', _('View count'))
-	])
+		('date', _('Created date')),
+		('rating', _('Rating')),
+		('title', _('Title')),
+		('viewCount', _('View count'))])
 config.plugins.YouTube.safeSearch = ConfigSelection(default='moderate', choices=[
 	('moderate', _('Moderate')), ('none', _('No')), ('strict', _('Yes'))])
 config.plugins.YouTube.maxResolution = ConfigSelection(default='22', choices=[
@@ -100,11 +98,9 @@ class YouTubePlayer(MoviePlayer):
 		MoviePlayer.__init__(self, session, service)
 		self.skinName = ['YouTubeMoviePlayer', 'MoviePlayer']
 		self.current = current
-		self.__youtube_event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
+		self.__youtube_event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evStart: self.__serviceStart,
-				iPlayableService.evVideoSizeChanged: self.__serviceStart  # On exteplayer evStart not working
-			})
+				iPlayableService.evVideoSizeChanged: self.__serviceStart})  # On exteplayer evStart not working
 		self.servicelist = InfoBar.instance and InfoBar.instance.servicelist
 		self.started = False
 		self.lastPosition = []
@@ -134,13 +130,11 @@ class YouTubePlayer(MoviePlayer):
 	def leavePlayer(self):
 		if config.plugins.YouTube.onMovieStop.value == 'ask':
 			title = _('Stop playing this movie?')
-			list = (
-					(_('Yes'), 'quit'),
+			list = ((_('Yes'), 'quit'),
 					(_('Yes, but play next video'), 'playnext'),
 					(_('Yes, but play previous video'), 'playprev'),
 					(_('No, but play video again'), 'repeat'),
-					(_('No'), 'continue')
-				)
+					(_('No'), 'continue'))
 			self.session.openWithCallback(self.leavePlayerConfirmed,
 				ChoiceBox, title=title, list=list)
 		else:
@@ -302,8 +296,7 @@ class YouTubeMain(Screen):
 		self['menu'].hide()
 		self['key_red'] = StaticText('')
 		self['key_green'] = StaticText('')
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'MovieSelectionActions'],
-			{
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'MovieSelectionActions'], {
 				'back': self.cancel,
 				'ok': self.ok,
 				'red': self.cancel,
@@ -311,8 +304,7 @@ class YouTubeMain(Screen):
 				'up': self.selectPrevious,
 				'down': self.selectNext,
 				'contextMenu': self.openMenu,
-				'showEventInfo': self.showEventInfo
-			}, -2)
+				'showEventInfo': self.showEventInfo}, -2)
 		text = _('YouTube starting. Please wait...')
 		self.setTitle(text)
 		self['text'] = Label()  # For backward compatibility, removed after YouTube logo introduction
@@ -382,17 +374,14 @@ class YouTubeMain(Screen):
 					None,   # Dislikes
 					'',     # Big thumbnail url
 					None,   # Channel Id
-					'',     # Published
-				))
+					''))     # Published
 
 	def createMainList(self):
 		self.list = 'main'
 		self.value = [None, None, '']
 		self.text = _('Choose what you want to do')
-		self.createDefEntryList([
-				['Search', _('Search')],
-				['PubFeeds', _('Public feeds')]
-			], False)
+		self.createDefEntryList([['Search', _('Search')],
+				['PubFeeds', _('Public feeds')]], False)
 		if config.plugins.YouTube.login.value and \
 			config.plugins.YouTube.refreshToken.value != '':
 			self.createDefEntryList([['MyFeeds', _('My feeds')]], True)
@@ -402,39 +391,33 @@ class YouTubeMain(Screen):
 		self.list = 'search'
 		self.value = [None, None, '']
 		self.text = _('Search')
-		self.createDefEntryList([
-				['Searchvideo', _('Search videos')],
+		self.createDefEntryList([['Searchvideo', _('Search videos')],
 				['Searchchannel', _('Search channels')],
 				['Searchplaylist', _('Search playlists')],
-				['Searchbroadcasts', _('Search live broadcasts')]
-			], False)
+				['Searchbroadcasts', _('Search live broadcasts')]], False)
 		self.setEntryList()
 
 	def createFeedList(self):
 		self.list = 'feeds'
 		self.value = [None, None, '']
 		self.text = _('Public feeds')
-		self.createDefEntryList([
-				['top_rated', _('Top rated')],
+		self.createDefEntryList([['top_rated', _('Top rated')],
 				['most_viewed', _('Most viewed')],
 				['most_recent', _('Recent')],
 				['HD_videos', _('HD videos')],
 				['embedded_videos', _('Embedded in webpages')],
 				['episodes', _('Shows')],
-				['movies', _('Movies')]
-			], False)
+				['movies', _('Movies')]], False)
 		self.setEntryList()
 
 	def createMyFeedList(self):
 		self.list = 'myfeeds'
 		self.value = [None, None, '']
 		self.text = _('My feeds')
-		self.createDefEntryList([
-				['my_subscriptions', _('My Subscriptions')],
+		self.createDefEntryList([['my_subscriptions', _('My Subscriptions')],
 				['my_liked_videos', _('Liked videos')],
 				['my_uploads', _('Uploads')],
-				['my_playlists', _('Playlists')]
-			], False)
+				['my_playlists', _('Playlists')]], False)
 		self.setEntryList()
 
 	def screenCallback(self, value=None, action=None):
@@ -489,8 +472,7 @@ class YouTubeMain(Screen):
 									entry[9],  # Dislikes
 									entry[10],  # Big thumbnail url
 									entry[11],  # Channel Id
-									entry[12],  # Published
-								)
+									entry[12])  # Published
 							self.value = self.entryList[count]
 							break
 						count += 1
@@ -547,16 +529,16 @@ class YouTubeMain(Screen):
 				url = entry[1]
 				if not url:
 					image = resolveFilename(SCOPE_PLUGINS,
-						'Extensions/YouTube/icons/'+entryId+'.png')
+						'Extensions/YouTube/icons/' + entryId + '.png')
 					self.decodeThumbnail(entryId, image)
 				else:
-					image = os.path.join('/tmp/', str(entryId)+'.jpg')
+					image = os.path.join('/tmp/', str(entryId) + '.jpg')
 					downloadPage(url.encode(), image)\
 						.addCallback(boundFunction(self.downloadFinished, entryId))\
 						.addErrback(boundFunction(self.downloadFailed, entryId))
 
 	def downloadFinished(self, entryId, result):
-		image = os.path.join('/tmp/', str(entryId)+'.jpg')
+		image = os.path.join('/tmp/', str(entryId) + '.jpg')
 		self.decodeThumbnail(entryId, image)
 
 	def downloadFailed(self, entryId, result):
@@ -608,8 +590,7 @@ class YouTubeMain(Screen):
 						entry[9],  # Dislikes
 						entry[10],  # Big thumbnail url
 						entry[11],  # Channel Id
-						entry[12],  # Published
-					)
+						entry[12])  # Published
 			count += 1
 		self['list'].updateList(self.entryList)
 
@@ -650,12 +631,10 @@ class YouTubeMain(Screen):
 			elif action == 'ask':
 				self.rememberCurList()
 				title = _('What do you want to do?')
-				list = (
-						(_('Quit'), 'quit'),
+				list = ((_('Quit'), 'quit'),
 						(_('Play next video'), 'playnext'),
 						(_('Play previous video'), 'playprev'),
-						(_('Play video again'), 'repeat')
-					)
+						(_('Play video again'), 'repeat'))
 				self.session.openWithCallback(self.playCallback,
 					ChoiceBox, title=title, list=list)
 			else:
@@ -832,8 +811,7 @@ class YouTubeMain(Screen):
 				self.list = 'playlist'
 				searchResponse = self.youtube.subscriptions_list(
 						maxResults=self.searchResult,
-						pageToken=self.value[2]
-					)
+						pageToken=self.value[2])
 				self.nextPageToken = searchResponse.get('nextPageToken')
 				self.prevPageToken = searchResponse.get('prevPageToken')
 				self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
@@ -857,8 +835,7 @@ class YouTubeMain(Screen):
 				self.list = 'playlist'
 				searchResponse = self.youtube.playlists_list(
 						maxResults=self.searchResult,
-						pageToken=self.value[2]
-					)
+						pageToken=self.value[2])
 				self.nextPageToken = searchResponse.get('nextPageToken')
 				self.prevPageToken = searchResponse.get('prevPageToken')
 				self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
@@ -875,8 +852,7 @@ class YouTubeMain(Screen):
 				channel = ''
 				searchResponse = self.youtube.channels_list(
 						maxResults=self.searchResult,
-						pageToken=self.value[2]
-					)
+						pageToken=self.value[2])
 
 				self.nextPageToken = searchResponse.get('nextPageToken')
 				self.prevPageToken = searchResponse.get('prevPageToken')
@@ -911,10 +887,9 @@ class YouTubeMain(Screen):
 					searchResponse = self.youtube.search_list(
 							order=order,
 							part='id,snippet',
-							channelId='UC'+self.value[0][2:],
+							channelId='UC' + self.value[0][2:],
 							maxResults=self.searchResult,
-							pageToken=self.value[2]
-						)
+							pageToken=self.value[2])
 					subscription = True if self.pageStartIndex == 1 else False
 					return self.createList(searchResponse, subscription)
 			return self.extractVideoIdList(videos)
@@ -937,8 +912,7 @@ class YouTubeMain(Screen):
 					s_type=searchType,
 					regionCode=config.plugins.YouTube.searchRegion.value,
 					maxResults=self.searchResult,
-					pageToken=self.value[2]
-				)
+					pageToken=self.value[2])
 
 			if searchType != 'video':
 				videos = self.createList(searchResponse, False)
@@ -960,8 +934,7 @@ class YouTubeMain(Screen):
 		while True:
 			searchResponse = self.youtube.subscriptions_list(
 					maxResults='50',
-					pageToken=_nextPageToken
-				)
+					pageToken=_nextPageToken)
 			for result in searchResponse.get('items', []):
 				Id = self._tryList(result, lambda x: x['snippet']['resourceId']['channelId'])
 				if Id:
@@ -980,7 +953,7 @@ class YouTubeMain(Screen):
 		limited_videos = []
 		vx = 50
 		while True:
-			limited_videos += self.extractLimitedVideoIdList(videos[vx-50:vx])
+			limited_videos += self.extractLimitedVideoIdList(videos[vx - 50:vx])
 			if len(videos) > vx:
 				vx += 50
 			else:
@@ -1024,8 +997,7 @@ class YouTubeMain(Screen):
 				order=order,
 				maxResults=self.searchResult,
 				playlistId=channel,
-				pageToken=self.value[2]
-			)
+				pageToken=self.value[2])
 		if getPageToken:
 			self.nextPageToken = searchResponse.get('nextPageToken')
 			self.prevPageToken = searchResponse.get('prevPageToken')
@@ -1044,8 +1016,7 @@ class YouTubeMain(Screen):
 				part='id',
 				channelId=channel,
 				maxResults=self.searchResult,
-				pageToken=self.value[2]
-			)
+				pageToken=self.value[2])
 		self.nextPageToken = searchResponse.get('nextPageToken')
 		self.prevPageToken = searchResponse.get('prevPageToken')
 		self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
@@ -1065,10 +1036,10 @@ class YouTubeMain(Screen):
 		for result in searchResponse.get('items', []):
 			try:
 				kind = result['id']['kind'].split('#')[1]
-			except:
+			except Exception:
 				kind = self.list
 			videos.append((
-				self._tryList(result, lambda x: x['id'][kind+'Id']),  # Id
+				self._tryList(result, lambda x: x['id'][kind + 'Id']),  # Id
 				self._tryStr(result, lambda x: x['snippet']['thumbnails']['default']['url']),  # Thumbnail url
 				None,
 				self._tryStr(result, lambda x: x['snippet']['title']),  # Title
@@ -1109,10 +1080,10 @@ class YouTubeMain(Screen):
 			title = _('What do you want to do?')
 			clist = ((_('YouTube setup'), 'setup'),)
 			if self.nextPageToken:
-				clist += ((ngettext('Next %s entry' ,'Next %s entries',
+				clist += ((ngettext('Next %s entry', 'Next %s entries',
 					int(self.searchResult)) % self.searchResult, 'next'),)
 			if self.prevPageToken:
-				clist += ((ngettext('Previous %s entry' ,'Previous %s entries',
+				clist += ((ngettext('Previous %s entry', 'Previous %s entries',
 					int(self.searchResult)) % self.searchResult, 'prev'),)
 			if self.isAuth:
 				if self.list == 'videolist':
@@ -1211,11 +1182,9 @@ class YouTubeMain(Screen):
 	def rateVideo(self, rating):
 		videoId = self['list'].getCurrent()[0]
 		if self.youtube.videos_rate(videoId=videoId, rating=rating):
-			text = {
-				'like': _('Liked!'),
+			text = {'like': _('Liked!'),
 				'dislike': _('Disliked!'),
-				'none': _('Rating removed!')
-				}
+				'none': _('Rating removed!')}
 			return text[rating]
 		else:
 			return _('There was an error!')
@@ -1232,7 +1201,7 @@ class YouTubeMain(Screen):
 		if not os.path.exists(downloadDir):
 			msg = _('Sorry, download directory not exist!\nPlease specify in the settings existing directory.')
 		else:
-			outputfile = os.path.join(downloadDir, title.replace('/', '')+'.mp4')
+			outputfile = os.path.join(downloadDir, title.replace('/', '') + '.mp4')
 			if os.path.exists(outputfile) or \
 				os.path.exists('%s.m4a' % outputfile[:-4]) or \
 				os.path.exists('%s_suburi.mp4' % outputfile[:-4]) or \
@@ -1343,15 +1312,13 @@ class YouTubeInfo(Screen):
 		self['dislikes'] = Label(current[9])
 		self['published'] = Label(current[12])
 		self['actions'] = ActionMap(['ColorActions',
-			'InfobarShowHideActions', 'DirectionActions'],
-			{
+			'InfobarShowHideActions', 'DirectionActions'], {
 				'red': self.close,
 				'toggleShow': self.close,
 				'hide': self.close,
 				'infoButton': self.close,
 				'up': self['description'].pageUp,
-				'down': self['description'].pageDown
-			}, -2)
+				'down': self['description'].pageDown}, -2)
 		self.picloads = None
 		self.ThumbnailUrl = current[10]
 		self.onLayoutFinish.append(self.LayoutFinish)
@@ -1389,19 +1356,17 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		self['key_red'] = StaticText(_('Cancel'))
 		self['key_green'] = StaticText(_('Ok'))
 		self['description'] = Label('')
-		self['setupActions'] = ActionMap(['SetupActions', 'ColorActions'],
-			{
+		self['setupActions'] = ActionMap(['SetupActions', 'ColorActions'], {
 				'cancel': self.keyCancel,
 				'red': self.keyCancel,
 				'ok': self.ok,
-				'green': self.ok
-			}, -2)
+				'green': self.ok}, -2)
 		self.mbox = None
 		self.login = config.plugins.YouTube.login.value
 		self.mergeFiles = config.plugins.YouTube.mergeFiles.value
 		configlist = []
 		ConfigListScreen.__init__(self, configlist, session=session,
-			on_change = self.checkLoginSatus)
+			on_change=self.checkLoginSatus)
 
 		configlist.append(getConfigListEntry(_('Save search result:'),
 			config.plugins.YouTube.saveHistory,
@@ -1484,7 +1449,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			self.session.open(Console, cmdlist=['opkg update && opkg install ffmpeg'])
 			self.keySave()
 		else:
-			config.plugins.YouTube.mergeFiles.value=False
+			config.plugins.YouTube.mergeFiles.value = False
 
 	def downloadPath(self, res):
 		self['config'].pageUp()
@@ -1531,7 +1496,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		# Here we waiting until the user enter a code
 		refreshToken, retryInterval = self.oauth.get_new_token()
 		if not refreshToken:
-			self.splitTaimer.start(retryInterval*1000, True)
+			self.splitTaimer.start(retryInterval * 1000, True)
 		else:
 			print("[YouTube] Get refresh token")
 			if self.mbox:

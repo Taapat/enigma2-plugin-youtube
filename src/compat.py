@@ -18,7 +18,6 @@ if version_info[0] == 2:
 	from urlparse import urlparse as compat_urlparse
 	from urlparse import urlunparse as compat_urlunparse
 
-
 	def _unquote_to_bytes(string):
 		if not string:
 			# Is it a string-like object?

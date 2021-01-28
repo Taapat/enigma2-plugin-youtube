@@ -26,13 +26,11 @@ class YouTubeDirBrowser(Screen):
 			downloadDir = '/'
 		self.filelist = FileList(downloadDir, showFiles=False)
 		self['filelist'] = self.filelist
-		self['FilelistActions'] = ActionMap(['SetupActions', 'ColorActions'],
-			{
+		self['FilelistActions'] = ActionMap(['SetupActions', 'ColorActions'], {
 				'cancel': self.cancel,
 				'red': self.cancel,
 				'ok': self.ok,
-				'green': self.use
-			}, -2)
+				'green': self.use}, -2)
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
@@ -163,12 +161,10 @@ class YouTubeDownloadList(Screen):
 		Screen.__init__(self, session)
 		self['key_red'] = StaticText(_('Exit'))
 		self['list'] = List([])
-		self['actions'] = ActionMap(['SetupActions', 'ColorActions'],
-			{
+		self['actions'] = ActionMap(['SetupActions', 'ColorActions'], {
 				'cancel': self.close,
 				'ok': self.ok,
-				'red': self.close
-			}, -2)
+				'red': self.close}, -2)
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.cleanVariables)
 		self.progressTimer = eTimer()

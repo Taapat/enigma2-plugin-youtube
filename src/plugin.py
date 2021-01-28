@@ -16,12 +16,9 @@ def Plugins(**kwargs):
 	else:
 		icon = "YouTube_HD.png"
 	return [PluginDescriptor(
-		name = _('YouTube'),
-		description = _('Watch YouTube videos'),
-		where = [
-				PluginDescriptor.WHERE_PLUGINMENU,
-				PluginDescriptor.WHERE_EXTENSIONSMENU
-			],
-		icon = icon,
-		fnc = main
-		)]
+		name=_('YouTube'),
+		description=_('Watch YouTube videos'),
+		where=[PluginDescriptor.WHERE_PLUGINMENU,
+				PluginDescriptor.WHERE_EXTENSIONSMENU],
+		icon=icon,
+		fnc=main)]

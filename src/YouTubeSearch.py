@@ -192,14 +192,12 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		self['key_yellow'] = StaticText(_('Keyboard'))
 		self['HelpWindow'] = Pixmap()
 		self['VKeyIcon'] = Boolean(False)
-		self['searchactions'] = ActionMap(['SetupActions', 'ColorActions', 'MenuActions'],
-			{
+		self['searchactions'] = ActionMap(['SetupActions', 'ColorActions', 'MenuActions'], {
 				'cancel': self.close,
 				'save': self.ok,
 				'ok': self.ok,
 				'yellow': self.openKeyboard,
-				'menu': self.openMenu
-			}, -2)
+				'menu': self.openMenu}, -2)
 		ConfigListScreen.__init__(self, [], session)
 		self.searchValue = GoogleSuggestionsConfigText(default='',
 			updateSuggestions=self.updateSuggestions)
@@ -315,7 +313,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 	def openKeyboard(self):
 		self['config'].getCurrent()[1].help_window.instance.hide()
 		self.session.openWithCallback(self.keyBoardCallback, YouTubeVirtualKeyBoard,
-			text = self.searchValue.value)
+			text=self.searchValue.value)
 
 	def keyBoardCallback(self, name):
 		config = self['config'].getCurrent()[1]
@@ -345,7 +343,7 @@ class GoogleSuggestionsConfigText(ConfigText):
 		suggestions = [('', None)]
 		queryValue = self.value
 		try:
-			response = compat_ssl_urlopen(self.queryString+compat_quote(queryValue))
+			response = compat_ssl_urlopen(self.queryString + compat_quote(queryValue))
 			content_type = response.headers.get('Content-Type', '')
 			if 'charset=' in content_type:
 				charset = content_type.split('charset=', 1)[1]
@@ -366,7 +364,7 @@ class GoogleSuggestionsConfigText(ConfigText):
 			self.suggestionsThread = None
 
 	def getSuggestions(self):
-		if self.value and self.suggestionsThread == None:
+		if self.value and self.suggestionsThread is None:
 			self.suggestionsThread = Thread(target=self.getGoogleSuggestions)
 			self.suggestionsThread.start()
 

@@ -15,7 +15,7 @@ def GetKey(x):
 		if p > len(x):
 			break
 		pl = len(str(p))
-		x = x[:p] + x[p+pl:]
+		x = x[:p] + x[p + pl:]
 		p += 12 - pl
 	x = x.replace('w_OizD', 'a')
 	x = x.replace('Xhi_Lo', 'A')
@@ -74,8 +74,7 @@ class OAuth:
 		url = 'https://accounts.google.com/o/oauth2/device/code'
 		data = compat_urlencode({
 				'client_id': CLIENT_ID,
-				'scope'	: 'https://www.googleapis.com/auth/youtube'
-				}).encode()
+				'scope'	: 'https://www.googleapis.com/auth/youtube'}).encode()
 		data = self.get_oauth_response(url, data)
 		self.device_code = data.get('device_code', '')
 		self.retry_interval = data.get('interval', 2)
@@ -87,8 +86,7 @@ class OAuth:
 				'client_id': CLIENT_ID,
 				'client_secret': CLIENT_SECRET,
 				'code': self.device_code,
-				'grant_type': 'http://oauth.net/grant_type/device/1.0'
-				}).encode()
+				'grant_type': 'http://oauth.net/grant_type/device/1.0'}).encode()
 		data = self.get_oauth_response(url, data)
 		if 'access_token' in data and 'refresh_token' in data:
 			return data['refresh_token'], 1
@@ -100,8 +98,7 @@ class OAuth:
 				'client_id': CLIENT_ID,
 				'client_secret': CLIENT_SECRET,
 				'refresh_token': refresh_token,
-				'grant_type': 'refresh_token'
-				}).encode()
+				'grant_type': 'refresh_token'}).encode()
 		data = self.get_oauth_response(url, data)
 		if 'access_token' in data:
 			return data['access_token']

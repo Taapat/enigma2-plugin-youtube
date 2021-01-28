@@ -25,7 +25,7 @@ def GetVideoId(q, eventType, order, s_type):
 	if s_type != 'video':
 		for result in searchResponse.get('items', []):
 			kind = result['id']['kind'].split('#')[1]
-			playlistId = result['id'][kind+'Id']
+			playlistId = result['id'][kind + 'Id']
 		print('playlistId', playlistId)
 		print('kind', kind)
 		print('Thumbnail', result['snippet']['thumbnails']['default']['url'])
@@ -57,6 +57,7 @@ def GetVideoId(q, eventType, order, s_type):
 		print('PublishedAt', result['snippet']['publishedAt'])
 	return videos
 
+
 def GetUrl(videos):
 	from src.YouTubeVideoUrl import YouTubeVideoUrl
 	ytdl = YouTubeVideoUrl()
@@ -65,15 +66,17 @@ def GetUrl(videos):
 	print('Video Url', videoUrl)
 	return videoUrl
 
+
 def CheckExample(q, eventType='', order='relevance', s_type='video', descr=''):
 	try:
 		videos = GetVideoId(q=q, eventType=eventType, order=order, s_type=s_type)
-	except:
-		print('Error in GetVideoId, try second time')
+	except Exception as ex:
+		print('Error in GetVideoId %s, try second time' % str(ex))
 		from time import sleep
 		sleep(10)
 		videos = GetVideoId(q=q, eventType=eventType, order=order, s_type=s_type)
 	CheckVideoUrl(videos, descr=descr)
+
 
 def CheckVideoUrl(videos, descr):
 	print('Test', descr)
@@ -93,21 +96,24 @@ def CheckVideoUrl(videos, descr):
 		print('Video Url info:')
 		print(info, descr, 'Video Url exist')
 
+
 def test_searchUrl():
 	CheckExample(q='official video', descr='Search')
+
 
 def test_searchLive():
 	CheckExample(q='112', eventType='live', descr='Search Live')
 
+
 def test_mostViewedFeeds():
 	CheckExample(q='', eventType='', order='viewCount', descr='Most Viewed')
+
 
 def test_playlist():
 	CheckExample(q='vevo', eventType='', order='relevance', s_type='playlist', descr='Playlist')
 
 
-_TESTS = [
-		{'Id': 'BaW_jenozKc', 'Description': 'Ue the first video ID in the URL'},
+_TESTS = [{'Id': 'BaW_jenozKc', 'Description': 'Ue the first video ID in the URL'},
 		{'Id': 'a9LDPn-MO4I', 'Description': '256k DASH audio (format 141) via DASH manifest'},
 		{'Id': 'T4XJQO3qol8', 'Description': 'Controversy video'},
 		{'Id': '__2ABJjxzNo', 'Description': 'YouTube Red ad is not captured for creator'},
@@ -117,12 +123,13 @@ _TESTS = [
 		{'Id': 'eQcmzGIKrzg', 'Description': 'Channel-like uploader_url'},
 		{'Id': 'uGpuVWrhIzE', 'Description': 'Rental video preview'},
 		{'Id': 'iqKdEhx-dD4', 'Description': 'YouTube Red video with episode data'},
-		{'Id': 'MgNrAu2pzNs', 'Description': 'Youtube Music Auto-generated description'},
-	]
+		{'Id': 'MgNrAu2pzNs', 'Description': 'Youtube Music Auto-generated description'}]
+
 
 @pytest.fixture(params=_TESTS)
 def video_data(request):
 	return request.param
+
 
 def test_videoUrls(video_data):
 	CheckVideoUrl(videos=video_data['Id'], descr=video_data['Description'])

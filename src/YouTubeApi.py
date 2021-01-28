@@ -30,15 +30,15 @@ class YouTubeApi:
 			response = compat_ssl_urlopen(url)
 			status_code = response.getcode()
 		except compat_HTTPError as e:
-			print ('[YouTubeApi] HTTPError error in get response', e)
+			print('[YouTubeApi] HTTPError error in get response', e)
 			status_code = e.getcode()
 		except Exception as e:
-			print ('[YouTubeApi] error in get response', e)
+			print('[YouTubeApi] error in get response', e)
 			status_code = 'Unknown'
 		if status_code == 200:
 			return load(response), None
 		else:
-			print ('[YouTubeApi] get response status code', status_code)
+			print('[YouTubeApi] get response status code', status_code)
 			return {}, status_code
 
 	def get_response(self, url, maxResults, pageToken):
@@ -64,10 +64,10 @@ class YouTubeApi:
 			status_code = response.getcode()
 			response.close()
 		except compat_HTTPError as e:
-			print ('[YouTubeApi] HTTPError error in aut response', e)
+			print('[YouTubeApi] HTTPError error in aut response', e)
 			status_code = e.getcode()
 		except Exception as e:
-			print ('[YouTubeApi] error in aut response', e)
+			print('[YouTubeApi] error in aut response', e)
 			return 'Unknown'
 		return status_code
 
@@ -134,15 +134,11 @@ class YouTubeApi:
 	def subscriptions_insert(self, channelId):
 		method = 'POST'
 		url = 'subscriptions?part=snippet'
-		data = dumps({
-				'kind': 'youtube#subscription',
+		data = dumps({'kind': 'youtube#subscription',
 				'snippet': {
 					'resourceId': {
 						'kind': 'youtube#channel',
-						'channelId': channelId
-					}
-				}
-			})
+						'channelId': channelId}}})
 		header = {'content-type': 'application/json'}
 		status = 200
 		return self.get_aut_response(method, url, data, header, status)

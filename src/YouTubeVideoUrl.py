@@ -27,31 +27,27 @@ PRIORITY_VIDEO_FORMAT = []
 
 def createPriorityFormats():
 	global PRIORITY_VIDEO_FORMAT
-	video_format = {
-			'38':['38', '266', '264', '138', '313', '315', '272', '308'],  # 4096x3072
-			'37':['37', '96', '301', '137', '299', '248', '303', '271'],  # 1920x1080
-			'22':['22', '95', '300', '136', '298'],  # 1280x720
-			'35':['35', '59', '78', '94', '135', '212'],  # 854x480
-			'18':['18', '93', '34', '6', '134'],  # 640x360
-			'5':['5', '36', '92', '132', '133'],  # 400x240
-			'17':['17', '91', '13', '151', '160']  # 176x144
-		}
+	video_format = {'38': ['38', '266', '264', '138', '313', '315', '272', '308'],  # 4096x3072
+			'37': ['37', '96', '301', '137', '299', '248', '303', '271'],  # 1920x1080
+			'22': ['22', '95', '300', '136', '298'],  # 1280x720
+			'35': ['35', '59', '78', '94', '135', '212'],  # 854x480
+			'18': ['18', '93', '34', '6', '134'],  # 640x360
+			'5': ['5', '36', '92', '132', '133'],  # 400x240
+			'17': ['17', '91', '13', '151', '160']}  # 176x144
 	for itag in ['17', '5', '18', '35', '22', '37', '38']:
 		PRIORITY_VIDEO_FORMAT = video_format[itag] + PRIORITY_VIDEO_FORMAT
 		if itag == config.plugins.YouTube.maxResolution.value:
 			break
 
+
 createPriorityFormats()
 
 
-DASHMP4_FORMAT = [
-		'133', '134', '135', '136', '137', '138',
+DASHMP4_FORMAT = ['133', '134', '135', '136', '137', '138',
 		'160', '212', '264', '266', '298', '299',
-		'248', '303', '271', '313', '315', '272', '308'
-	]
+		'248', '303', '271', '313', '315', '272', '308']
 
-IGNORE_VIDEO_FORMAT = [
-		'43', '44', '45', '46',  # webm
+IGNORE_VIDEO_FORMAT = ['43', '44', '45', '46',  # webm
 		'82', '83', '84', '85',  # 3D
 		'100', '101', '102',  # 3D
 		'167', '168', '169',  # webm
@@ -59,8 +55,7 @@ IGNORE_VIDEO_FORMAT = [
 		'218', '219',  # webm
 		'242', '243', '244', '245', '246', '247',  # webm
 		'249', '250', '251',  # webm
-		'302'  # webm
-	]
+		'302']  # webm
 
 
 def uppercase_escape(s):
@@ -148,7 +143,7 @@ class YouTubeVideoUrl():
 
 		try:
 			content = webpage_bytes.decode(encoding, 'replace')
-		except:
+		except Exception:
 			content = webpage_bytes.decode('utf-8', 'replace')
 
 		return (content, urlh)
@@ -340,12 +335,11 @@ class YouTubeVideoUrl():
 			data = compat_urlencode({
 					'video_id': video_id,
 					'eurl': 'https://youtube.googleapis.com/v/' + video_id,
-					'sts': self._search_regex(r'"sts"\s*:\s*(\d+)', embed_webpage),
-				})
+					'sts': self._search_regex(r'"sts"\s*:\s*(\d+)', embed_webpage)})
 			video_info_url = 'https://www.youtube.com/get_video_info?' + data
 			try:
 				video_info_webpage = self._download_webpage(video_info_url)
-			except ExtractorError:
+			except Exception:
 				video_info_webpage = None
 			if video_info_webpage:
 				video_info = compat_parse_qs(video_info_webpage)
@@ -395,7 +389,7 @@ class YouTubeVideoUrl():
 		if 'conn' in video_info and video_info['conn'][0][:4] == 'rtmp':
 			print('[YouTubeVideoUrl] Try rtmp url')
 			url = video_info['conn'][0]
-		elif not is_live and (streaming_formats or len(video_info.get('url_encoded_fmt_stream_map', [''])[0]) >= 1 or \
+		elif not is_live and (streaming_formats or len(video_info.get('url_encoded_fmt_stream_map', [''])[0]) >= 1 or
 			len(video_info.get('adaptive_fmts', [''])[0]) >= 1):
 			print('[YouTubeVideoUrl] Try fmt url')
 			encoded_url_map = video_info.get('url_encoded_fmt_stream_map', [''])[0] + \
@@ -407,12 +401,10 @@ class YouTubeVideoUrl():
 			url_map_str = []
 
 			for fmt in streaming_formats:
-				url_map = {
-						'url': None,
+				url_map = {'url': None,
 						'format_id': None,
 						'cipher': None,
-						'url_data': None
-					}
+						'url_data': None}
 				if fmt.get('drmFamilies') or fmt.get('drm_families'):
 					continue
 				url_map['url'] = url_or_none(fmt.get('url'))
@@ -511,8 +503,8 @@ class YouTubeVideoUrl():
 				url_or_none(try_get(
 					player_response,
 					lambda x: x['streamingData']['hlsManifestUrl'],
-					compat_str))
-				or url_or_none(try_get(
+					compat_str)) or
+				url_or_none(try_get(
 					video_info, lambda x: x['hlsvp'][0], compat_str)))
 			if manifest_url:
 				print('[YouTubeVideoUrl] Try manifest url')
