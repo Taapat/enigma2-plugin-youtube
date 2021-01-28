@@ -128,7 +128,7 @@ class YouTubeVideoUrl():
 	def _download_webpage_handle(self, url_or_request):
 		""" Returns a tuple (page content as string, URL handle) """
 
-		# Strip hashes from the URL (#1038)
+		# Strip hashes from the URL (1038)
 		if isinstance(url_or_request, (compat_str, str)):
 			url_or_request = url_or_request.partition('#')[0]
 
@@ -247,7 +247,7 @@ class YouTubeVideoUrl():
 
 		def _get_urls(_manifest):
 			lines = _manifest.split('\n')
-			urls = [l for l in lines if l and not l.startswith('#')]
+			urls = [x for x in lines if x and not x.startswith('#')]
 			return urls
 
 		manifest = self._download_webpage(manifest_url)
