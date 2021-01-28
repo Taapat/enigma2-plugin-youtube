@@ -14,5 +14,6 @@ script:
   - find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
   - bash ./travis_fix.sh
   - pytest -rx -v
-  - flake8 --ignore=W191,E128,E501,E126,E127,W504 --exclude=./src/compat.py
+  - flake8 --ignore=W191,E128,E501,E126,E127,W504 --exclude=./src/compat.py,./src/YouTubeVideoUrl.py
   - flake8 --ignore=W191,E128,E501,E126,E127,F821,F401 --filename=./src/compat.py
+  - flake8 --ignore=W191,E128,E501,E126,E127,E265,W504 --filename=./src/YouTubeVideoUrl.py
