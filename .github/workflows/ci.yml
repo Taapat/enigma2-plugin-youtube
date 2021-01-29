@@ -1,0 +1,37 @@
+name: Youtube plugin CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [2.7, 3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Compile python sources
+      run: |
+        python -O -m compileall ./src/
+    - name: Compile language files
+      run: |
+        find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
+    - name: Install dependencies
+      run: |
+        pip install flake8 pytest
+    - name: Check code with flake8
+      run: |
+        flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./src/compat.py
+        flake8 --ignore=W191,E126,E127,E128,E501,F401,F821 --show-source --filename=./src/compat.py
+    - name: Remove enigma2 imports and variables for test
+      run: |
+        bash ./travis_fix.sh
+    - name: Test code with pytest
+      run: |
+        pytest -rx -v
