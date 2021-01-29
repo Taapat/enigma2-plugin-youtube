@@ -16,15 +16,16 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        sudo apt-get install gettext
+        pip install flake8 pytest
     - name: Compile python sources
       run: |
         python -O -m compileall ./src/
     - name: Compile language files
       run: |
         find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
-    - name: Install dependencies
-      run: |
-        pip install flake8 pytest
     - name: Check code with flake8
       run: |
         flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./src/compat.py
