@@ -12,7 +12,7 @@ install:
 script:
   - python -O -m compileall ./src/
   - find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
-  - flake8 --ignore=W191,E128,E501,E126,E127,W504 --exclude=./src/compat.py
-  - flake8 --ignore=W191,E128,E501,E126,E127,F821,F401 --filename=./src/compat.py
+  - flake8 --ignore=W191,E128,E501,E126,E127,W504 --show-source --exclude=./src/compat.py
+  - flake8 --ignore=W191,E128,E501,E126,E127,F821,F401 --show-source --filename=./src/compat.py
   - bash ./travis_fix.sh
   - pytest -rx -v
