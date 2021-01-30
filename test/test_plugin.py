@@ -1,6 +1,11 @@
-"""Test file to use pytest on Travis CI to test some plugin functions"""
+"""Test file to use pytest to test some plugin functions"""
 from __future__ import print_function
+
+import os
 import pytest
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 def GetVideoId(q, eventType, order, s_type):
