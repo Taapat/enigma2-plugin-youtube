@@ -1,4 +1,4 @@
-name: Youtube plugin CI
+name: test
 
 on: [push, pull_request]
 
