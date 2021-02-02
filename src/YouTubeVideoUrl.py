@@ -5,7 +5,6 @@ from __future__ import print_function
 
 import re
 
-from codecs import getdecoder
 from json import loads
 from random import randint
 
@@ -58,14 +57,6 @@ IGNORE_VIDEO_FORMAT = ['43', '44', '45', '46',  # webm
 		'302']  # webm
 
 
-def uppercase_escape(s):
-	unicode_escape = getdecoder('unicode_escape')
-	return re.sub(
-		r'\\U[0-9a-fA-F]{8}',
-		lambda m: unicode_escape(m.group(0))[0],
-		s)
-
-
 def try_get(src, getter, expected_type=None):
 	if not isinstance(getter, (list, tuple)):
 		getter = [getter]
@@ -102,10 +93,13 @@ def clean_html(html):
 
 
 class YouTubeVideoUrl():
+	def __init__(self):
+		self._code_cache = {}
+		self._player_cache = {}
 
-	def _download_webpage(self, url):
+	def _download_webpage(self, url, query={}):
 		""" Return the data of the page as a string """
-		content, urlh = self._download_webpage_handle(url)
+		content, urlh = self._download_webpage_handle(url, query)
 		return content
 
 	@staticmethod
@@ -125,12 +119,19 @@ class YouTubeVideoUrl():
 
 		return encoding
 
-	def _download_webpage_handle(self, url_or_request):
+	def _download_webpage_handle(self, url_or_request, query={}):
 		""" Returns a tuple (page content as string, URL handle) """
 
-		# Strip hashes from the URL (1038)
+		# Strip hashes from the URL (#1038)
 		if isinstance(url_or_request, (compat_str, str)):
 			url_or_request = url_or_request.partition('#')[0]
+
+		if query:
+			parsed_url = compat_urlparse(url_or_request)
+			qs = compat_parse_qs(parsed_url.query)
+			qs.update(query)
+			url_or_request = compat_urlunparse(parsed_url._replace(
+					query=compat_urlencode(qs, True)))
 
 		try:
 			urlh = compat_ssl_urlopen(url_or_request)
@@ -171,16 +172,6 @@ class YouTubeVideoUrl():
 			print('[YouTubeVideoUrl] unable extract pattern from string!')
 			return ''
 
-	def _html_search_regex(self, pattern, string, group=None):
-		"""
-		Like _search_regex, but strips HTML tags and unescapes entities.
-		"""
-		res = self._search_regex(pattern, string, group)
-		if res:
-			return clean_html(res).strip()
-		else:
-			return res
-
 	def _decrypt_signature(self, s, player_url):
 		"""Turn the encrypted s field into a working signature"""
 
@@ -191,17 +182,25 @@ class YouTubeVideoUrl():
 			player_url = 'https:' + player_url
 		elif not re.match(r'https?://', player_url):
 			player_url = compat_urljoin('https://www.youtube.com', player_url)
+
 		try:
-			func = self._extract_signature_function(player_url)
+			player_id = (player_url, self._signature_cache_id(s))
+			if player_id not in self._player_cache:
+				self._player_cache[player_id] = self._extract_signature_function(player_url)
+			func = self._player_cache[player_id]
 			return func(s)
 		except Exception as e:
 			raise Exception('Signature extraction failed!\n%s' % str(e))
 
+	def _signature_cache_id(self, example_sig):
+		""" Return a string representation of a signature """
+		return '.'.join(compat_str(len(part)) for part in example_sig.split('.'))
+
 	@staticmethod
 	def _extract_player_info(player_url):
 		_PLAYER_INFO_RE = (
-			r'/(?P<id>[a-zA-Z0-9_-]{8,})/player_ias\.vflset(?:/[a-zA-Z]{2,3}_[a-zA-Z]{2,3})?/base\.(?P<ext>[a-z]+)$',
-			r'\b(?P<id>vfl[a-zA-Z0-9_-]+)\b.*?\.(?P<ext>[a-z]+)$',
+			r'/(?P<id>[a-zA-Z0-9_-]{8,})/player_ias\.vflset(?:/[a-zA-Z]{2,3}_[a-zA-Z]{2,3})?/base\.js$',
+			r'\b(?P<id>vfl[a-zA-Z0-9_-]+)\b.*?\.js$',
 		)
 
 		for player_re in _PLAYER_INFO_RE:
@@ -210,17 +209,15 @@ class YouTubeVideoUrl():
 				break
 		else:
 			raise Exception('Cannot identify player %r' % player_url)
-		return id_m.group('ext')
+		return id_m.group('id')
 
 	def _extract_signature_function(self, player_url):
-		player_type = self._extract_player_info(player_url)
-		code = self._download_webpage(player_url)
-		if player_type == 'js':
-			return self._parse_sig_js(code)
-		elif player_type == 'swf':
-			raise Exception('Shockwave Flash player is no longer supported!')
-		else:
-			raise Exception('Invalid player type %r!' % player_type)
+		player_id = self._extract_player_info(player_url)
+
+		if player_id not in self._code_cache:
+			self._code_cache[player_id] = self._download_webpage(player_url)
+		code = self._code_cache[player_id]
+		return self._parse_sig_js(code)
 
 	def _parse_sig_js(self, jscode):
 		funcname = self._search_regex(
@@ -257,28 +254,10 @@ class YouTubeVideoUrl():
 			url_map[itag] = format_url
 		return url_map
 
-	def _get_ytplayer_config(self, webpage):
-		# User data may contain arbitrary character sequences that may affect
-		# JSON extraction with regex, e.g. when '};' is contained the second
-		# regex won't capture the whole JSON. Yet working around by trying more
-		# concrete regex first keeping in mind proper quoted string handling
-		# to be implemented in future that will replace this workaround (see
-		# https://github.com/rg3/youtube-dl/issues/7468,
-		# https://github.com/rg3/youtube-dl/pull/7599)
-		patterns = [
-			r';ytplayer\.config\s*=\s*({.+?});ytplayer',
-			r';ytplayer\.config\s*=\s*({.+?});',
-		]
-		for pattern in patterns:
-			config = self._search_regex(pattern, webpage)
-			if config:
-				return loads(uppercase_escape(config))
-
-	def mark_watched(self, video_info, player_response):
+	def mark_watched(self, player_response):
 		playback_url = url_or_none(try_get(
 			player_response,
-			lambda x: x['playbackTracking']['videostatsPlaybackUrl']['baseUrl']) or try_get(
-			video_info, lambda x: x['videostats_playback_base_url'][0]))
+			lambda x: x['playbackTracking']['videostatsPlaybackUrl']['baseUrl']))
 		if not playback_url:
 			return
 		parsed_playback_url = compat_urlparse(playback_url)
@@ -298,217 +277,130 @@ class YouTubeVideoUrl():
 
 		self._download_webpage(playback_url)
 
-	def _real_extract(self, video_id):
-		gl = config.plugins.YouTube.searchRegion.value
-		hl = config.plugins.YouTube.searchLanguage.value
+	def _parse_json(self, json_string):
+		try:
+			return loads(json_string)
+		except ValueError:
+			print('[YouTubeVideoUrl] Failed to parse JSON')
 
-		# Get video webpage
-		url = 'https://www.youtube.com/watch?v=%s&gl=%s&hl=%s&has_verified=1&bpctr=9999999999' % (video_id, gl, hl)
-		video_webpage, urlh = self._download_webpage_handle(url)
+	def _extract_yt_initial_variable(self, webpage, regex):
+		_YT_INITIAL_BOUNDARY_RE = r'(?:var\s+meta|</script|\n)'
+		return self._parse_json(self._search_regex(
+			(r'%s\s*%s' % (regex, _YT_INITIAL_BOUNDARY_RE), regex), webpage))
 
-		qs = compat_parse_qs(compat_urlparse(urlh.geturl()).query)
-		video_id = qs.get('v', [None])[0] or video_id
+	def _extract_fmt_url(self, fmt, webpage):
+		fmt_url = fmt.get('url', '')
+		if not fmt_url:
+			sc = compat_parse_qs(fmt.get('signatureCipher'))
+			fmt_url = try_get(sc, lambda x: x['url'][0])
+			encrypted_sig = try_get(sc, lambda x: x['s'][0])
+			if not (sc and fmt_url and encrypted_sig):
+				return ''
+			player_url = self._search_regex(
+					r'"(?:PLAYER_JS_URL|jsUrl)"\s*:\s*"([^"]+)"',
+					webpage)
+			if not player_url:
+				return ''
+			signature = self._decrypt_signature(sc['s'][0], player_url)
+			sp = try_get(sc, lambda x: x['sp'][0]) or 'signature'
+			fmt_url += '&%s=%s' % (sp, signature)
+		return fmt_url
 
-		if not video_webpage:
-			raise Exception('Video webpage not found!')
-
-		def extract_player_response(player_response):
-			if not player_response:
-				return
-			pl_response = loads(player_response)
-			if isinstance(pl_response, dict):
-				return pl_response
-
-		is_live = None
-		player_response = {}
-
-		# Get video info
-		video_info = {}
-		embed_webpage = None
-		if re.search(r'["\']status["\']\s*:\s*["\']LOGIN_REQUIRED', video_webpage) is not None:
-			print('[YouTubeVideoUrl] Age gate content')
-			age_gate = True
-			# We simulate the access to the video from www.youtube.com/v/{video_id}
-			# this can be viewed without login into Youtube
-			url = 'https://www.youtube.com/embed/%s' % video_id
-			embed_webpage = self._download_webpage(url)
-			data = compat_urlencode({
-					'video_id': video_id,
-					'eurl': 'https://youtube.googleapis.com/v/' + video_id,
-					'sts': self._search_regex(r'"sts"\s*:\s*(\d+)', embed_webpage)})
-			video_info_url = 'https://www.youtube.com/get_video_info?' + data
-			try:
-				video_info_webpage = self._download_webpage(video_info_url)
-			except Exception:
-				video_info_webpage = None
-			if video_info_webpage:
-				video_info = compat_parse_qs(video_info_webpage)
-				pl_response = video_info.get('player_response', [None])[0]
-				player_response = extract_player_response(pl_response)
-		else:
-			print('[YouTubeVideoUrl] Try video webpage')
-			age_gate = False
-			args = {}
-			# Try looking directly into the video webpage
-			ytplayer_config = self._get_ytplayer_config(video_webpage)
-			if ytplayer_config:
-				args = ytplayer_config.get('args')
-				if args is not None:
-					if args.get('url_encoded_fmt_stream_map') or args.get('hlsvp'):
-						# Convert to the same format returned by compat_parse_qs
-						video_info = dict((k, [v]) for k, v in list(args.items()))
-					# Rental video is not rented but preview is available (e.g.
-					# https://www.youtube.com/watch?v=yYr8q0y5Jfg,
-					# https://github.com/ytdl-org/youtube-dl/issues/10532)
-					if not video_info and args.get('ypc_vid'):
-						return str(args['ypc_vid'])
-					if args.get('livestream') == '1' or args.get('live_playback') == 1:
-						is_live = True
-					if not player_response:
-						player_response = extract_player_response(args.get('player_response'))
-				elif not player_response:
-					player_response = ytplayer_config
-
-		if not video_info and not player_response:
-			_YT_INITIAL_PLAYER_RESPONSE_RE = r'ytInitialPlayerResponse\s*=\s*({.+?})\s*;'
-			player_response = extract_player_response(
-					self._search_regex(
-						(r'%s\s*(?:var\s+meta|</script|\n)' % _YT_INITIAL_PLAYER_RESPONSE_RE,
-						_YT_INITIAL_PLAYER_RESPONSE_RE), video_webpage))
-		video_details = try_get(
-			player_response, lambda x: x['videoDetails'], dict) or {}
-
-		if is_live is None:
-			is_live = video_details.get('isLive')
-
-		# Start extracting information
-		url = ''
-		streaming_formats = try_get(player_response, lambda x: x['streamingData']['formats'], list) or []
-		streaming_formats.extend(try_get(player_response, lambda x: x['streamingData']['adaptiveFormats'], list) or [])
-
-		if 'conn' in video_info and video_info['conn'][0][:4] == 'rtmp':
-			print('[YouTubeVideoUrl] Try rtmp url')
-			url = video_info['conn'][0]
-		elif not is_live and (streaming_formats or len(video_info.get('url_encoded_fmt_stream_map', [''])[0]) >= 1 or
-			len(video_info.get('adaptive_fmts', [''])[0]) >= 1):
-			print('[YouTubeVideoUrl] Try fmt url')
-			encoded_url_map = video_info.get('url_encoded_fmt_stream_map', [''])[0] + \
-				',' + video_info.get('adaptive_fmts', [''])[0]
-			if 'rtmpe%3Dyes' in encoded_url_map:
-				raise Exception('rtmpe downloads are not supported, see https://github.com/rg3/youtube-dl/issues/343')
-
-			formats = []
-			url_map_str = []
-
+	def _extract_fmt_video_format(self, streaming_formats, webpage):
+		""" Find the best format from our format priority map """
+		print('[YouTubeVideoUrl] Try fmt url')
+		for our_format in PRIORITY_VIDEO_FORMAT:
 			for fmt in streaming_formats:
-				url_map = {'url': None,
-						'format_id': None,
-						'cipher': None,
-						'url_data': None}
-				if fmt.get('drmFamilies') or fmt.get('drm_families'):
+				if fmt.get('targetDurationSec') or fmt.get('drmFamilies'):
 					continue
-				url_map['url'] = url_or_none(fmt.get('url'))
+				if str(fmt.get('itag', '')) == our_format:
+					url = self._extract_fmt_url(fmt, webpage)
+					if url:
+						print('[YouTubeVideoUrl] Found fmt url')
+						return url, our_format
+		return '', ''
 
-				if not url_map['url']:
-					url_map['cipher'] = fmt.get('cipher') or fmt.get('signatureCipher')
-					if not url_map['cipher']:
-						continue
-					url_map['url_data'] = compat_parse_qs(url_map['cipher'])
-					url_map['url'] = url_or_none(try_get(url_map['url_data'], lambda x: x['url'][0], compat_str))
-					if not url_map['url']:
-						continue
-				else:
-					url_map['url_data'] = compat_parse_qs(compat_urlparse(url_map['url']).query)
-
-				stream_type = try_get(url_map['url_data'], lambda x: x['stream_type'][0])
-				# Unsupported FORMAT_STREAM_TYPE_OTF
-				if stream_type == 3:
+	def _extract_dash_audio_format(self, streaming_formats, webpage):
+		""" If DASH MP4 video add link also on Dash MP4 Audio """
+		print('[YouTubeVideoUrl] Try fmt audio url')
+		for our_format in ['141', '140', '139',
+				'258', '265', '325', '328']:
+			for fmt in streaming_formats:
+				if fmt.get('targetDurationSec') or fmt.get('drmFamilies'):
 					continue
+				if str(fmt.get('itag', '')) == our_format:
+					url = self._extract_fmt_url(fmt, webpage)
+					if url:
+						print('[YouTubeVideoUrl] Found fmt audio url')
+						return url
+		return ''
 
-				url_map['format_id'] = fmt.get('itag') or url_map['url_data']['itag'][0]
-				if not url_map['format_id']:
-					continue
-				url_map['format_id'] = compat_str(url_map['format_id'])
+	def _real_extract(self, video_id):
+		webpage = self._download_webpage(
+				'https://www.youtube.com/watch?v=%s' % video_id)
+		if not webpage:
+			raise Exception('Video webpage not found for!')
 
-				formats.append(url_map)
+		_YT_INITIAL_PLAYER_RESPONSE_RE = r'ytInitialPlayerResponse\s*=\s*({.+?})\s*;'
+		player_response = self._extract_yt_initial_variable(
+			webpage, _YT_INITIAL_PLAYER_RESPONSE_RE)
+		if not player_response:
+			# I did not find a video in which the player response was not found
+			# and should be used api call
+			raise Exception('Player response not found!')
 
+		playability_status = player_response.get('playabilityStatus') or {}
+
+		trailer_video_id = try_get(playability_status,
+				lambda x: x['errorScreen']['playerLegacyDesktopYpcTrailerRenderer']['trailerVideoId'],
+				compat_str)
+		if trailer_video_id:
+			print('[YouTubeVideoUrl] Trailer video')
+			return str(trailer_video_id)
+
+		if playability_status.get('reason') == 'Sign in to confirm your age':
+			print('[YouTubeVideoUrl] Age gate content')
+			pr = self._parse_json(try_get(compat_parse_qs(
+					self._download_webpage(
+							'https://www.youtube.com/get_video_info',
+							query={'video_id': video_id})),
+							lambda x: x['player_response'][0],
+							compat_str) or '{}')
+			if pr:
+				player_response = pr
+
+		url = ''
+		streaming_data = player_response.get('streamingData') or {}
+		streaming_formats = streaming_data.get('formats') or []
+		streaming_formats.extend(streaming_data.get('adaptiveFormats') or [])
+		is_live = try_get(player_response, lambda x: x['videoDetails']['isLive'])
+
+		if not is_live and streaming_formats:
 			# If priority format changed in config, recreate priority list
 			if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.value:
 				createPriorityFormats()
-			# Find the best format from our format priority map
-			for our_format in PRIORITY_VIDEO_FORMAT:
-				for url_map in formats:
-					if url_map['format_id'] == our_format:
-						url_map_str.append(url_map)
-						break
-				if url_map_str:
-					break
-			# If DASH MP4 video add link also on Dash MP4 Audio
-			if url_map_str and our_format in DASHMP4_FORMAT:
-				for our_format in ['141', '140', '139',
-						'258', '265', '325', '328']:
-					for url_map in formats:
-						if url_map['format_id'] == our_format:
-							url_map_str.append(url_map)
+
+			url, our_format = self._extract_fmt_video_format(streaming_formats, webpage)
+			if url and our_format in DASHMP4_FORMAT:
+				audio_url = self._extract_dash_audio_format(streaming_formats, webpage)
+				if audio_url:
+					url += '&suburi=%s' % audio_url
+			if not url:
+				for fmt in streaming_formats:
+					if fmt.get('targetDurationSec') or fmt.get('drmFamilies'):
+						continue
+					if str(fmt.get('itag', '')) not in IGNORE_VIDEO_FORMAT:
+						url = self._extract_fmt_url(fmt, webpage)
+						if url:
 							break
-					if len(url_map_str) > 1:
-						break
-			# If anything not found, used first in the list if it not in ignore map
-			if not url_map_str:
-				for url_map in formats:
-					if url_map['format_id'] not in IGNORE_VIDEO_FORMAT:
-						url_map_str.append(url_map)
-						break
-			if not url_map_str and formats:
-				url_map_str.append(formats[0])
+			if not url:
+				url = self._extract_fmt_url(streaming_formats[0], webpage)
 
-			for url_map in url_map_str:
-				if url:
-					url += '&suburi='
-				url += url_map['url']
-
-				if url_map['cipher']:
-					if 's' in url_map['url_data']:
-						ASSETS_RE = (
-							r'<script[^>]+\bsrc=("[^"]+")[^>]+\bname=["\']player_ias/base',
-							r'"jsUrl"\s*:\s*("[^"]+")',
-							r'"assets":.+?"js":\s*("[^"]+")')
-						jsplayer_url_json = self._search_regex(ASSETS_RE,
-							embed_webpage if age_gate else video_webpage)
-						if not jsplayer_url_json and not age_gate:
-							# We need the embed website after all
-							if embed_webpage is None:
-								embed_url = 'https://www.youtube.com/embed/%s' % video_id
-								embed_webpage = self._download_webpage(embed_url)
-							jsplayer_url_json = self._search_regex(ASSETS_RE, embed_webpage)
-
-						player_url = loads(jsplayer_url_json)
-						if player_url is None:
-							player_url_json = self._search_regex(
-								r'ytplayer\.config.*?"url"\s*:\s*("[^"]+")',
-								video_webpage)
-							player_url = loads(player_url_json)
-
-					if 'sig' in url_map['url_data']:
-						url += '&signature=' + url_map['url_data']['sig'][0]
-					elif 's' in url_map['url_data']:
-						encrypted_sig = url_map['url_data']['s'][0]
-						signature = self._decrypt_signature(encrypted_sig, player_url)
-						sp = try_get(url_map['url_data'], lambda x: x['sp'][0], compat_str) or 'signature'
-						url += '&%s=%s' % (sp, signature)
-				if 'ratebypass' not in url_map['url']:
-					url += '&ratebypass=yes'
-		else:
-			manifest_url = (
-				url_or_none(try_get(
-					player_response,
-					lambda x: x['streamingData']['hlsManifestUrl'],
-					compat_str)) or
-				url_or_none(try_get(
-					video_info, lambda x: x['hlsvp'][0], compat_str)))
-			if manifest_url:
-				print('[YouTubeVideoUrl] Try manifest url')
-				url_map = self._extract_from_m3u8(manifest_url)
+		if not url:
+			print('[YouTubeVideoUrl] Try manifest url')
+			hls_manifest_url = streaming_data.get('hlsManifestUrl')
+			if hls_manifest_url:
+				url_map = self._extract_from_m3u8(hls_manifest_url)
 
 				# Find the best format from our format priority map
 				for our_format in PRIORITY_VIDEO_FORMAT:
@@ -523,43 +415,28 @@ class YouTubeVideoUrl():
 							break
 				if not url:
 					url = list(url_map.values())[0]
-		if not url:
-			error_message = []
-			for tag, kind in (('h1', 'message'), ('div', 'submessage')):
-				msg = self._html_search_regex(
-						r'(?s)<{tag}[^>]+id=["\']unavailable-{kind}["\'][^>]*>(.+?)</{tag}>'.format(tag=tag, kind=kind),
-						video_webpage)
-				if msg:
-					error_message.append(msg)
-			if error_message:
-				error_message = '\n'.join(error_message)
-			else:
-				for reason in try_get(
-						player_response,
-						lambda x: x['playabilityStatus']['errorScreen']['playerErrorMessageRenderer']['subreason']['runs'],
-						list) or []:
-					msg = clean_html(try_get(
-							reason, lambda x: x['text'], compat_str))
-					if msg:
-						error_message.append(msg)
-			if error_message:
-				error_message = '\n'.join(error_message)
-			else:
-				error_message = clean_html(try_get(
-						player_response,
-						lambda x: x['playabilityStatus']['reason'],
-						compat_str))
-			if not error_message:
-				error_message = clean_html(try_get(
-						video_info, lambda x: x['reason'][0], compat_str))
-			if not error_message and try_get(
-					player_response,
-					lambda x: x['streamingData']['licenseInfos'],
-					compat_str):
-				error_message = 'This video is DRM protected!'
-			raise Exception(error_message)
 
-		self.mark_watched(video_info, player_response)
+		if not url:
+			if streaming_data.get('licenseInfos'):
+				raise Exception('This video is DRM protected!')
+			pemr = try_get(playability_status,
+				lambda x: x['errorScreen']['playerErrorMessageRenderer'],
+				dict) or {}
+
+			def get_text(x):
+				if not x:
+					return ''
+				return x.get('simpleText') or ''.join([r['text'] for r in x['runs']])
+
+			reason = get_text(pemr.get('reason')) or playability_status.get('reason') or None
+			if reason:
+				subreason = pemr.get('subreason')
+				if subreason:
+					subreason = clean_html(get_text(subreason))
+					reason += '\n%s' % subreason
+			raise Exception(reason)
+
+		self.mark_watched(player_response)
 
 		return str(url)
 
