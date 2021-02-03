@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin magyar fordítás\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 19:33+0200\n"
+"POT-Creation-Date: 2021-02-03 19:50+0200\n"
 "PO-Revision-Date: 2019-02-19 12:57+0100\n"
 "Last-Translator: cp-teamhun\n"
 "Language-Team: cp-teamhun\n"
@@ -36,8 +36,18 @@ msgstr "Aktív videó letöltések"
 msgid "All"
 msgstr "Összes"
 
+msgid "Alphabetically"
+msgstr ""
+
 msgid "Ask user"
 msgstr "Kérdezze a felhasználót"
+
+msgid "By ativity"
+msgstr ""
+
+#, fuzzy
+msgid "By relevance"
+msgstr "Fontosság"
 
 msgid "Cancel"
 msgstr "Mégsem"
@@ -198,6 +208,10 @@ msgstr "Megnyitás"
 msgid "Order in which search results will be displayed."
 msgstr "A keresési eredmények megjelenítésének sorrendje."
 
+#, fuzzy
+msgid "Order in which subscriptions results will be displayed."
+msgstr "A keresési eredmények megjelenítésének sorrendje."
+
 msgid "Play next"
 msgstr "Következő lejátszása"
 
@@ -324,6 +338,10 @@ msgstr ""
 
 msgid "Sort search results by:"
 msgstr "A keresési eredmények rendezése:"
+
+#, fuzzy
+msgid "Sort subscriptions:"
+msgstr "Saját feliratkozások"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Adja meg a könyvtárat, ahova a letöltött videofájlokat elmenthetjük."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin greek translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 19:33+0200\n"
+"POT-Creation-Date: 2021-02-03 19:50+0200\n"
 "PO-Revision-Date: 2019-11-19 01:16+0200\n"
 "Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: MCelliot_g <mcelliot_g@hotmail.com>\n"
@@ -37,8 +37,18 @@ msgstr "Ενεργές μεταφορτώσεις βίντεο"
 msgid "All"
 msgstr "Όλες"
 
+msgid "Alphabetically"
+msgstr ""
+
 msgid "Ask user"
 msgstr "Ερώτηση χρήστη"
+
+msgid "By ativity"
+msgstr ""
+
+#, fuzzy
+msgid "By relevance"
+msgstr "Συνάφεια"
 
 msgid "Cancel"
 msgstr "Ακύρωση"
@@ -191,6 +201,10 @@ msgstr "Άνοιγμα"
 msgid "Order in which search results will be displayed."
 msgstr "Επιλέξτε τη σειρά εμφάνισης των αποτελεσμάτων αναζήτησης."
 
+#, fuzzy
+msgid "Order in which subscriptions results will be displayed."
+msgstr "Επιλέξτε τη σειρά εμφάνισης των αποτελεσμάτων αναζήτησης."
+
 msgid "Play next"
 msgstr "Αναπαραγωγή επόμενου"
 
@@ -315,6 +329,10 @@ msgstr ""
 
 msgid "Sort search results by:"
 msgstr "Εμφάνιση αποτελεσμάτων αναζήτησης κατά"
+
+#, fuzzy
+msgid "Sort subscriptions:"
+msgstr "Οι συνδρομές μου"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Ορίστε τον φάκελο στον οποίο θα αποθηκεύονται τα ληφθέντα αρχεία βίντεο."

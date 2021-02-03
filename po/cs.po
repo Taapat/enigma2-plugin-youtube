@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 19:33+0200\n"
+"POT-Creation-Date: 2021-02-03 19:50+0200\n"
 "PO-Revision-Date: 2020-06-13 12:57+0200\n"
 "Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: Ims\n"
@@ -36,8 +36,18 @@ msgstr "Aktivní stahování videa"
 msgid "All"
 msgstr "Vše"
 
+msgid "Alphabetically"
+msgstr ""
+
 msgid "Ask user"
 msgstr "Zeptat se uživatele"
+
+msgid "By ativity"
+msgstr ""
+
+#, fuzzy
+msgid "By relevance"
+msgstr "Relevance"
 
 msgid "Cancel"
 msgstr "Zrušit"
@@ -199,6 +209,10 @@ msgstr "Otevřít"
 msgid "Order in which search results will be displayed."
 msgstr "Pořadí, ve kterém se zobrazí výsledky vyhledávání."
 
+#, fuzzy
+msgid "Order in which subscriptions results will be displayed."
+msgstr "Pořadí, ve kterém se zobrazí výsledky vyhledávání."
+
 msgid "Play next"
 msgstr "Přehrát další"
 
@@ -326,6 +340,10 @@ msgstr ""
 
 msgid "Sort search results by:"
 msgstr "Třídit výsledky vyhledávání podle:"
+
+#, fuzzy
+msgid "Sort subscriptions:"
+msgstr "Moje odebírané"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Určete adresář do kterého se ukládají stažené video soubory."

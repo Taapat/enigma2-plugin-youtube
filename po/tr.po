@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 19:33+0200\n"
+"POT-Creation-Date: 2021-02-03 19:50+0200\n"
 "PO-Revision-Date: 2020-06-12 23:54+0300\n"
 "Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish\n"
@@ -41,8 +41,18 @@ msgstr "Aktif video indirme"
 msgid "All"
 msgstr "Tümü"
 
+msgid "Alphabetically"
+msgstr ""
+
 msgid "Ask user"
 msgstr "Kullanıcıya sor"
+
+msgid "By ativity"
+msgstr ""
+
+#, fuzzy
+msgid "By relevance"
+msgstr "Uygunluk"
 
 msgid "Cancel"
 msgstr "İptal"
@@ -203,6 +213,10 @@ msgstr "Aç"
 msgid "Order in which search results will be displayed."
 msgstr "Arama sonuçlarının görüntüleneceği sıra."
 
+#, fuzzy
+msgid "Order in which subscriptions results will be displayed."
+msgstr "Arama sonuçlarının görüntüleneceği sıra."
+
 msgid "Play next"
 msgstr "Sonrakini oynat"
 
@@ -329,6 +343,10 @@ msgstr ""
 
 msgid "Sort search results by:"
 msgstr "Arama sonuçlarını sırala:"
+
+#, fuzzy
+msgid "Sort subscriptions:"
+msgstr "Aboneliklerim"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "İndirilen video dosyalarının kaydedileceği dizini belirtin."

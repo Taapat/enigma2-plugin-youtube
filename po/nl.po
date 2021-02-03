@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 19:33+0200\n"
+"POT-Creation-Date: 2021-02-03 19:50+0200\n"
 "PO-Revision-Date: 2019-09-16 14:28+0200\n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: LL@li.org\n"
@@ -35,8 +35,18 @@ msgstr "Actieve videodownloads"
 msgid "All"
 msgstr "Alle"
 
+msgid "Alphabetically"
+msgstr ""
+
 msgid "Ask user"
 msgstr "Vraag gebruiker"
+
+msgid "By ativity"
+msgstr ""
+
+#, fuzzy
+msgid "By relevance"
+msgstr "Overeenkomst"
 
 msgid "Cancel"
 msgstr "Annuleer"
@@ -191,6 +201,10 @@ msgstr "Open"
 msgid "Order in which search results will be displayed."
 msgstr "Met deze optie stelt u de volgorde in waarin zoekresultaten worden getoond."
 
+#, fuzzy
+msgid "Order in which subscriptions results will be displayed."
+msgstr "Met deze optie stelt u de volgorde in waarin zoekresultaten worden getoond."
+
 msgid "Play next"
 msgstr "Speel volgende"
 
@@ -317,6 +331,10 @@ msgstr ""
 
 msgid "Sort search results by:"
 msgstr "Sorteer zoekresultaten op"
+
+#, fuzzy
+msgid "Sort subscriptions:"
+msgstr "Mijn inschrijvingen"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Met deze optie geeft u aan waar de gedownloade video's opgeslagen moeten worden."

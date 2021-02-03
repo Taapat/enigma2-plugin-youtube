@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 19:33+0200\n"
+"POT-Creation-Date: 2021-02-03 19:50+0200\n"
 "PO-Revision-Date: 2015-12-19 15:56+0100\n"
 "Last-Translator: Budiarno Pedode\n"
 "Language-Team: \n"
@@ -36,8 +36,18 @@ msgstr "Unduh video aktif"
 msgid "All"
 msgstr "Semua"
 
+msgid "Alphabetically"
+msgstr ""
+
 msgid "Ask user"
 msgstr "Tanya pengguna"
+
+msgid "By ativity"
+msgstr ""
+
+#, fuzzy
+msgid "By relevance"
+msgstr "Relevan"
 
 msgid "Cancel"
 msgstr "Batal"
@@ -198,6 +208,10 @@ msgstr "Buka"
 msgid "Order in which search results will be displayed."
 msgstr "Urutan dimana hasil pencarian akan ditampilkan."
 
+#, fuzzy
+msgid "Order in which subscriptions results will be displayed."
+msgstr "Urutan dimana hasil pencarian akan ditampilkan."
+
 msgid "Play next"
 msgstr "Putar berikutnya"
 
@@ -324,6 +338,10 @@ msgstr ""
 
 msgid "Sort search results by:"
 msgstr "Pilah hasil pencarian berdasarkan:"
+
+#, fuzzy
+msgid "Sort subscriptions:"
+msgstr "Langganan saya"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Atur direktori dimana menyimpan berkas yang telah diunduh."

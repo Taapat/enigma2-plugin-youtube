@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 19:33+0200\n"
+"POT-Creation-Date: 2021-02-03 19:50+0200\n"
 "PO-Revision-Date: 2020-11-03 23:02+0300\n"
 "Last-Translator: Lishoo\n"
 "Language-Team: \n"
@@ -35,8 +35,18 @@ msgstr "Aktualnie pobierane filmy"
 msgid "All"
 msgstr "Wszystko"
 
+msgid "Alphabetically"
+msgstr ""
+
 msgid "Ask user"
 msgstr "Zapytaj użytkownika"
+
+msgid "By ativity"
+msgstr ""
+
+#, fuzzy
+msgid "By relevance"
+msgstr "Trafność"
 
 msgid "Cancel"
 msgstr "Anuluj"
@@ -197,6 +207,10 @@ msgstr "Otwórz"
 msgid "Order in which search results will be displayed."
 msgstr "Kolejność, w jakiej będą wyświetlane wyniki wyszukiwania."
 
+#, fuzzy
+msgid "Order in which subscriptions results will be displayed."
+msgstr "Kolejność, w jakiej będą wyświetlane wyniki wyszukiwania."
+
 msgid "Play next"
 msgstr "Odtwórz kolejny"
 
@@ -324,6 +338,10 @@ msgstr ""
 
 msgid "Sort search results by:"
 msgstr "Sortuj wyniki wyszukiwania według:"
+
+#, fuzzy
+msgid "Sort subscriptions:"
+msgstr "Moje subskrypcje"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Określ katalog, w którym zapisywać pobrane filmy."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 19:33+0200\n"
+"POT-Creation-Date: 2021-02-03 19:50+0200\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -36,8 +36,18 @@ msgstr "Активные загрузки видео"
 msgid "All"
 msgstr "Все"
 
+msgid "Alphabetically"
+msgstr ""
+
 msgid "Ask user"
 msgstr "Спросить пользователя"
+
+msgid "By ativity"
+msgstr ""
+
+#, fuzzy
+msgid "By relevance"
+msgstr "Актуальность"
 
 msgid "Cancel"
 msgstr "Отменить"
@@ -199,6 +209,10 @@ msgstr "Открыть"
 msgid "Order in which search results will be displayed."
 msgstr "Порядок, в котором будут отображаться результаты поиска."
 
+#, fuzzy
+msgid "Order in which subscriptions results will be displayed."
+msgstr "Порядок, в котором будут отображаться результаты поиска."
+
 msgid "Play next"
 msgstr "Воспроизвести следующее"
 
@@ -326,6 +340,10 @@ msgstr ""
 
 msgid "Sort search results by:"
 msgstr "Сортировать результаты поиска по:"
+
+#, fuzzy
+msgid "Sort subscriptions:"
+msgstr "Мои подписки"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Укажите каталог, где сохранить видео файлы."

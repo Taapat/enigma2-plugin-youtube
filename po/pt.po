@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin for Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 19:33+0200\n"
+"POT-Creation-Date: 2021-02-03 19:50+0200\n"
 "PO-Revision-Date: 2018-11-19 00:44+0000\n"
 "Last-Translator: nunigaia\n"
 "Language-Team: BH Team\n"
@@ -43,8 +43,18 @@ msgstr "Descargas de vídeos activas"
 msgid "All"
 msgstr "Tudo"
 
+msgid "Alphabetically"
+msgstr ""
+
 msgid "Ask user"
 msgstr "Perguntar ao utilizador"
+
+msgid "By ativity"
+msgstr ""
+
+#, fuzzy
+msgid "By relevance"
+msgstr "Relevância"
 
 msgid "Cancel"
 msgstr "Cancelar"
@@ -205,6 +215,10 @@ msgstr "Abrir"
 msgid "Order in which search results will be displayed."
 msgstr "Ordene como os resultados encontrados serão exibidos."
 
+#, fuzzy
+msgid "Order in which subscriptions results will be displayed."
+msgstr "Ordene como os resultados encontrados serão exibidos."
+
 msgid "Play next"
 msgstr "Reproduzir seguinte"
 
@@ -331,6 +345,10 @@ msgstr ""
 
 msgid "Sort search results by:"
 msgstr "Ordene resultados de procura por:"
+
+#, fuzzy
+msgid "Sort subscriptions:"
+msgstr "As minhas Subscrições"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Especifiar o diretório para salvar descargars de vídeos."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube Plugin slovenský preklad\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 19:33+0200\n"
+"POT-Creation-Date: 2021-02-03 19:50+0200\n"
 "PO-Revision-Date: 2018-05-30 04:10+0200\n"
 "Last-Translator: S4iyan3lit3 <nsa@dontgathermailaddresses.fck>\n"
 "Language-Team: th4nks0url0rd1nh34v3n\n"
@@ -41,8 +41,18 @@ msgstr "Aktívne stihanutie videa"
 msgid "All"
 msgstr "Vsetky"
 
+msgid "Alphabetically"
+msgstr ""
+
 msgid "Ask user"
 msgstr "Opýtajte sa používateľa"
+
+msgid "By ativity"
+msgstr ""
+
+#, fuzzy
+msgid "By relevance"
+msgstr "Dôležitosť"
 
 msgid "Cancel"
 msgstr "Zrušiť"
@@ -201,6 +211,10 @@ msgstr "Otvoriť"
 msgid "Order in which search results will be displayed."
 msgstr "Poradie, v ktorom sa zobrazia výsledky vyhľadávania."
 
+#, fuzzy
+msgid "Order in which subscriptions results will be displayed."
+msgstr "Poradie, v ktorom sa zobrazia výsledky vyhľadávania."
+
 msgid "Play next"
 msgstr "Prehrať ďalšie"
 
@@ -327,6 +341,10 @@ msgstr ""
 
 msgid "Sort search results by:"
 msgstr "Zoradiť výsledky vyhľadávania podľa:"
+
+#, fuzzy
+msgid "Sort subscriptions:"
+msgstr "Moje odbery "
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Zadajte adresár, kam ukladáte stiahnuté video súbory. "

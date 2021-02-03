@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 19:33+0200\n"
+"POT-Creation-Date: 2021-02-03 19:50+0200\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: kvinto <kvinto@rambler.ru>\n"
 "Language-Team: <kvinto  sat-ukraine.info>\n"
@@ -36,8 +36,18 @@ msgstr "Активні відеозавантаження"
 msgid "All"
 msgstr "Всі"
 
+msgid "Alphabetically"
+msgstr ""
+
 msgid "Ask user"
 msgstr "Запитати користувача"
+
+msgid "By ativity"
+msgstr ""
+
+#, fuzzy
+msgid "By relevance"
+msgstr "Актуальність"
 
 msgid "Cancel"
 msgstr "Скасувати"
@@ -198,6 +208,10 @@ msgstr "Відкрити"
 msgid "Order in which search results will be displayed."
 msgstr "Порядок, відображення результатів пошуку."
 
+#, fuzzy
+msgid "Order in which subscriptions results will be displayed."
+msgstr "Порядок, відображення результатів пошуку."
+
 msgid "Play next"
 msgstr "Відтворити наступне"
 
@@ -324,6 +338,10 @@ msgstr ""
 
 msgid "Sort search results by:"
 msgstr "Сортувати результати пошуку по:"
+
+#, fuzzy
+msgid "Sort subscriptions:"
+msgstr "Мої підписки"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Вкажіть каталог, для збереження відеофайлів."

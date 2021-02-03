@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 19:33+0200\n"
+"POT-Creation-Date: 2021-02-03 19:50+0200\n"
 "PO-Revision-Date: 2016-02-27 17:17+0100\n"
 "Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: OpenPlus <open-plus.es>\n"
@@ -36,8 +36,18 @@ msgstr "Aktiver Video Download"
 msgid "All"
 msgstr "Alle"
 
+msgid "Alphabetically"
+msgstr ""
+
 msgid "Ask user"
 msgstr "User fragen"
+
+msgid "By ativity"
+msgstr ""
+
+#, fuzzy
+msgid "By relevance"
+msgstr "Relevanz"
 
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -196,6 +206,10 @@ msgstr "Öffnen"
 msgid "Order in which search results will be displayed."
 msgstr "Suchergebnisse sortieren"
 
+#, fuzzy
+msgid "Order in which subscriptions results will be displayed."
+msgstr "Suchergebnisse sortieren"
+
 msgid "Play next"
 msgstr "Nächstes abspielen"
 
@@ -322,6 +336,10 @@ msgstr ""
 
 msgid "Sort search results by:"
 msgstr "Suchergebnisse filtern nach:"
+
+#, fuzzy
+msgid "Sort subscriptions:"
+msgstr "Meine Abos"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Verzeichnis für gespeicherte Videos wählen."

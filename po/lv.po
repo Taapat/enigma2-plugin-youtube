@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 19:33+0200\n"
+"POT-Creation-Date: 2021-02-03 19:50+0200\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -37,8 +37,18 @@ msgstr "Aktīvās video lejupielādes"
 msgid "All"
 msgstr "Visas"
 
+msgid "Alphabetically"
+msgstr ""
+
 msgid "Ask user"
 msgstr "Jautāt"
+
+msgid "By ativity"
+msgstr ""
+
+#, fuzzy
+msgid "By relevance"
+msgstr "Atbilstības"
 
 msgid "Cancel"
 msgstr "Atcelt"
@@ -199,6 +209,10 @@ msgstr "Atvērt"
 msgid "Order in which search results will be displayed."
 msgstr "Kārtība, kādā meklēšanas rezultāti tiks attēloti."
 
+#, fuzzy
+msgid "Order in which subscriptions results will be displayed."
+msgstr "Kārtība, kādā meklēšanas rezultāti tiks attēloti."
+
 msgid "Play next"
 msgstr "Atskaņot nākošo"
 
@@ -326,6 +340,10 @@ msgstr ""
 
 msgid "Sort search results by:"
 msgstr "Kārtot meklēšnas rezultātus pēc:"
+
+#, fuzzy
+msgid "Sort subscriptions:"
+msgstr "Mani abonementi"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Norādiet mapi kurā saglabāt lejupielādētos video failus."

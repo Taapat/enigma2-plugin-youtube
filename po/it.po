@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 19:33+0200\n"
+"POT-Creation-Date: 2021-02-03 19:50+0200\n"
 "PO-Revision-Date: 2018-05-26 13:10+0200\n"
 "Last-Translator: Massimo Bambi <maxbambi@libero.it>\n"
 "Language-Team: \n"
@@ -41,8 +41,18 @@ msgstr "Download del video corrente"
 msgid "All"
 msgstr "Tutti"
 
+msgid "Alphabetically"
+msgstr ""
+
 msgid "Ask user"
 msgstr "Chiedi all'utente"
+
+msgid "By ativity"
+msgstr ""
+
+#, fuzzy
+msgid "By relevance"
+msgstr "Rilevanza"
 
 msgid "Cancel"
 msgstr "Annulla"
@@ -201,6 +211,10 @@ msgstr "Apri"
 msgid "Order in which search results will be displayed."
 msgstr "Ordine con cui i risultati della ricerca saranno mostrati."
 
+#, fuzzy
+msgid "Order in which subscriptions results will be displayed."
+msgstr "Ordine con cui i risultati della ricerca saranno mostrati."
+
 msgid "Play next"
 msgstr "Riproduci il prossimo"
 
@@ -327,6 +341,10 @@ msgstr ""
 
 msgid "Sort search results by:"
 msgstr "Ordina i risultati della ricerca per:"
+
+#, fuzzy
+msgid "Sort subscriptions:"
+msgstr "I miei abbonamenti "
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Specifica la cartella dove salvare i video scaricati. "
