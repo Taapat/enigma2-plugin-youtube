@@ -87,8 +87,8 @@ class YouTubeApi:
 			print('[YouTubeApi] aut response status code', status_code)
 			return None
 
-	def subscriptions_list(self, maxResults, pageToken):
-		url = 'subscriptions?part=snippet&mine=true&order=unread'
+	def subscriptions_list(self, maxResults, pageToken, subscriptOrder):
+		url = 'subscriptions?part=snippet&mine=true&order={}'.format(subscriptOrder)
 		return self.get_response(url, maxResults, pageToken)
 
 	def playlists_list(self, maxResults, pageToken):

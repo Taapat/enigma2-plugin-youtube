@@ -59,6 +59,10 @@ config.plugins.YouTube.searchOrder = ConfigSelection(default='relevance',
 		('rating', _('Rating')),
 		('title', _('Title')),
 		('viewCount', _('View count'))])
+config.plugins.YouTube.subscriptOrder = ConfigSelection(default='relevance',
+	choices=[('relevance', _('By relevance')),
+		('unread', _('By ativity')),
+		('alphabetical', _('Alphabetically'))])
 config.plugins.YouTube.safeSearch = ConfigSelection(default='moderate', choices=[
 	('moderate', _('Moderate')), ('none', _('No')), ('strict', _('Yes'))])
 config.plugins.YouTube.maxResolution = ConfigSelection(default='22', choices=[
@@ -811,7 +815,8 @@ class YouTubeMain(Screen):
 				self.list = 'playlist'
 				searchResponse = self.youtube.subscriptions_list(
 						maxResults=self.searchResult,
-						pageToken=self.value[2])
+						pageToken=self.value[2],
+						subscriptOrder=config.plugins.YouTube.subscriptOrder.value)
 				self.nextPageToken = searchResponse.get('nextPageToken')
 				self.prevPageToken = searchResponse.get('prevPageToken')
 				self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
@@ -931,10 +936,12 @@ class YouTubeMain(Screen):
 	def getAllSubscriptions(self):
 		subscriptions = []
 		_nextPageToken = self.nextPageToken
+		subscriptOrder = config.plugins.YouTube.subscriptOrder.value
 		while True:
 			searchResponse = self.youtube.subscriptions_list(
 					maxResults='50',
-					pageToken=_nextPageToken)
+					pageToken=_nextPageToken,
+					subscriptOrder=subscriptOrder)
 			for result in searchResponse.get('items', []):
 				Id = self._tryList(result, lambda x: x['snippet']['resourceId']['channelId'])
 				if Id:
@@ -1362,62 +1369,75 @@ class YouTubeSetup(ConfigListScreen, Screen):
 				'ok': self.ok,
 				'green': self.ok}, -2)
 		self.mbox = None
-		self.login = config.plugins.YouTube.login.value
 		self.mergeFiles = config.plugins.YouTube.mergeFiles.value
-		configlist = []
-		ConfigListScreen.__init__(self, configlist, session=session,
-			on_change=self.checkLoginSatus)
+		ConfigListScreen.__init__(self, [], session=session)
+		self.setConfigList()
+		config.plugins.YouTube.login.addNotifier(self.checkLoginSatus,
+				initial_call=False)
+		self.onLayoutFinish.append(self.layoutFinished)
 
-		configlist.append(getConfigListEntry(_('Save search result:'),
-			config.plugins.YouTube.saveHistory,
-			_('Save your search result in the history, when search completed.')))
-		configlist.append(getConfigListEntry(_('Search results:'),
-			config.plugins.YouTube.searchResult,
-			_('How many search results will be returned.\nIf greater value then longer time will be needed for thumbnail download.')))
-		configlist.append(getConfigListEntry(_('Search region:'),
-			config.plugins.YouTube.searchRegion,
-			_('Return search results for the specified country.')))
-		configlist.append(getConfigListEntry(_('Search language:'),
-			config.plugins.YouTube.searchLanguage,
-			_('Return search results that are most relevant to the specified language.')))
-		configlist.append(getConfigListEntry(_('Sort search results by:'),
-			config.plugins.YouTube.searchOrder,
-			_('Order in which search results will be displayed.')))
-		configlist.append(getConfigListEntry(_('Exclude restricted content:'),
-			config.plugins.YouTube.safeSearch,
-			_('Try to exclude all restricted content from the search result.')))
-		configlist.append(getConfigListEntry(_('Maximum video resolution:'),
-		config.plugins.YouTube.maxResolution,
-			_('What maximum resolution used when playing video, if available.\nIf you have a slow Internet connection, you can use a lower resolution.')))
-		configlist.append(getConfigListEntry(_('When video ends:'),
-			config.plugins.YouTube.onMovieEof,
-			_('What to do when the video ends.')))
-		configlist.append(getConfigListEntry(_('When playback stop:'),
-			config.plugins.YouTube.onMovieStop,
-			_('What to do when stop playback in videoplayer.')))
-		configlist.append(getConfigListEntry(_('Login on startup:'),
+	def layoutFinished(self):
+		self.setTitle(_('YouTube setup'))
+
+	def checkLoginSatus(self, configElement):
+		self.setConfigList()
+		if config.plugins.YouTube.login.value:
+			if config.plugins.YouTube.refreshToken.value != '':
+				self.session.openWithCallback(self.startupCallback,
+						MessageBox, _('You already authorized access for this plugin to your YouTube account.\nDo you want to do it again to update access data?'))
+			else:
+				self.startupCallback(True)
+
+	def setConfigList(self):
+		self.list = []
+		self.list.append(getConfigListEntry(_('Login on startup:'),
 			config.plugins.YouTube.login,
 			_('Log in to your YouTube account when plugin starts.\nThis needs to approve in the Google home page!')))
-		configlist.append(getConfigListEntry(_('Download directory:'),
+		self.list.append(getConfigListEntry(_('Save search result:'),
+			config.plugins.YouTube.saveHistory,
+			_('Save your search result in the history, when search completed.')))
+		self.list.append(getConfigListEntry(_('Search results:'),
+			config.plugins.YouTube.searchResult,
+			_('How many search results will be returned.\nIf greater value then longer time will be needed for thumbnail download.')))
+		self.list.append(getConfigListEntry(_('Search region:'),
+			config.plugins.YouTube.searchRegion,
+			_('Return search results for the specified country.')))
+		self.list.append(getConfigListEntry(_('Search language:'),
+			config.plugins.YouTube.searchLanguage,
+			_('Return search results that are most relevant to the specified language.')))
+		self.list.append(getConfigListEntry(_('Sort search results by:'),
+			config.plugins.YouTube.searchOrder,
+			_('Order in which search results will be displayed.')))
+		if config.plugins.YouTube.login.getValue():
+			self.list.append(getConfigListEntry(_('Sort subscriptions:'),
+				config.plugins.YouTube.subscriptOrder,
+				_('Order in which subscriptions results will be displayed.')))
+		self.list.append(getConfigListEntry(_('Exclude restricted content:'),
+			config.plugins.YouTube.safeSearch,
+			_('Try to exclude all restricted content from the search result.')))
+		self.list.append(getConfigListEntry(_('Maximum video resolution:'),
+		config.plugins.YouTube.maxResolution,
+			_('What maximum resolution used when playing video, if available.\nIf you have a slow Internet connection, you can use a lower resolution.')))
+		self.list.append(getConfigListEntry(_('When video ends:'),
+			config.plugins.YouTube.onMovieEof,
+			_('What to do when the video ends.')))
+		self.list.append(getConfigListEntry(_('When playback stop:'),
+			config.plugins.YouTube.onMovieStop,
+			_('What to do when stop playback in videoplayer.')))
+		self.list.append(getConfigListEntry(_('Download directory:'),
 			config.plugins.YouTube.downloadDir,
 			_('Specify the directory where save downloaded video files.')))
-		configlist.append(getConfigListEntry(_('Merge downloaded files:'),
+		self.list.append(getConfigListEntry(_('Merge downloaded files:'),
 			config.plugins.YouTube.mergeFiles,
 			_('FFmpeg will be used to merge downloaded DASH video and audio files.\nFFmpeg will be installed if necessary.')))
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
 			# TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 			if p.name == _("ServiceApp"):
-				configlist.append(getConfigListEntry(_('Media player:'),
+				self.list.append(getConfigListEntry(_('Media player:'),
 					config.plugins.YouTube.player,
 					_('Specify the player which will be used for YouTube media playback.')))
 				break
-
-		self['config'].list = configlist
-		self['config'].l.setList(configlist)
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(_('YouTube setup'))
+		self["config"].setList(self.list)
 
 	def ok(self):
 		if self["config"].getCurrent()[1] == config.plugins.YouTube.downloadDir:
@@ -1456,19 +1476,6 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		if res:
 			config.plugins.YouTube.downloadDir.setValue(res)
 
-	def checkLoginSatus(self):
-		if self.login != config.plugins.YouTube.login.value:
-			self.login = config.plugins.YouTube.login.value
-			if self.login:
-				self.startAutentification()
-
-	def startAutentification(self):
-		if config.plugins.YouTube.refreshToken.value != '':
-			self.session.openWithCallback(self.startupCallback,
-			MessageBox, _('You already authorized access for this plugin to your YouTube account.\nDo you want to do it again to update access data?'))
-		else:
-			self.startupCallback(True)
-
 	def startupCallback(self, answer):
 		if answer:
 			self.session.openWithCallback(self.warningCallback,
@@ -1476,7 +1483,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 
 	def warningCallback(self, answer):
 		if not answer:
-			self.login = config.plugins.YouTube.login.value = False
+			config.plugins.YouTube.login.value = False
 		else:
 			from .OAuth import OAuth
 			self.splitTaimer = eTimer()
