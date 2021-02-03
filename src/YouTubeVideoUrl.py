@@ -312,8 +312,8 @@ class YouTubeVideoUrl():
 		print('[YouTubeVideoUrl] Try fmt url')
 		for our_format in PRIORITY_VIDEO_FORMAT:
 			for fmt in streaming_formats:
-				if str(fmt.get('itag', '')) == our_format and not \
-						fmt.get('targetDurationSec') and not fmt.get('drmFamilies'):
+				if str(fmt.get('itag', '')) == our_format and not (
+						fmt.get('targetDurationSec') or fmt.get('drmFamilies')):
 					url = self._extract_fmt_url(fmt, webpage)
 					if url:
 						print('[YouTubeVideoUrl] Found fmt url')
@@ -326,8 +326,8 @@ class YouTubeVideoUrl():
 		for our_format in ['141', '140', '139',
 				'258', '265', '325', '328']:
 			for fmt in streaming_formats:
-				if str(fmt.get('itag', '')) == our_format and not \
-							fmt.get('targetDurationSec') and not fmt.get('drmFamilies'):
+				if str(fmt.get('itag', '')) == our_format and not (
+							fmt.get('targetDurationSec') or fmt.get('drmFamilies')):
 					url = self._extract_fmt_url(fmt, webpage)
 					if url:
 						print('[YouTubeVideoUrl] Found fmt audio url')
@@ -385,8 +385,8 @@ class YouTubeVideoUrl():
 					url += '&suburi=%s' % audio_url
 			if not url:
 				for fmt in streaming_formats:
-					if str(fmt.get('itag', '')) not in IGNORE_VIDEO_FORMAT and not \
-							fmt.get('targetDurationSec') and not fmt.get('drmFamilies'):
+					if str(fmt.get('itag', '')) not in IGNORE_VIDEO_FORMAT and not (
+							fmt.get('targetDurationSec') or fmt.get('drmFamilies')):
 						url = self._extract_fmt_url(fmt, webpage)
 						if url:
 							break
