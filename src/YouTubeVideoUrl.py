@@ -277,7 +277,8 @@ class YouTubeVideoUrl():
 
 		self._download_webpage(playback_url)
 
-	def _parse_json(self, json_string):
+	@staticmethod
+	def _parse_json(json_string):
 		try:
 			return loads(json_string)
 		except ValueError:
@@ -311,9 +312,8 @@ class YouTubeVideoUrl():
 		print('[YouTubeVideoUrl] Try fmt url')
 		for our_format in PRIORITY_VIDEO_FORMAT:
 			for fmt in streaming_formats:
-				if fmt.get('targetDurationSec') or fmt.get('drmFamilies'):
-					continue
-				if str(fmt.get('itag', '')) == our_format:
+				if str(fmt.get('itag', '')) == our_format and not \
+						fmt.get('targetDurationSec') and not fmt.get('drmFamilies'):
 					url = self._extract_fmt_url(fmt, webpage)
 					if url:
 						print('[YouTubeVideoUrl] Found fmt url')
@@ -326,9 +326,8 @@ class YouTubeVideoUrl():
 		for our_format in ['141', '140', '139',
 				'258', '265', '325', '328']:
 			for fmt in streaming_formats:
-				if fmt.get('targetDurationSec') or fmt.get('drmFamilies'):
-					continue
-				if str(fmt.get('itag', '')) == our_format:
+				if str(fmt.get('itag', '')) == our_format and not \
+							fmt.get('targetDurationSec') and not fmt.get('drmFamilies'):
 					url = self._extract_fmt_url(fmt, webpage)
 					if url:
 						print('[YouTubeVideoUrl] Found fmt audio url')
@@ -341,9 +340,8 @@ class YouTubeVideoUrl():
 		if not webpage:
 			raise Exception('Video webpage not found for!')
 
-		_YT_INITIAL_PLAYER_RESPONSE_RE = r'ytInitialPlayerResponse\s*=\s*({.+?})\s*;'
 		player_response = self._extract_yt_initial_variable(
-			webpage, _YT_INITIAL_PLAYER_RESPONSE_RE)
+				webpage, r'ytInitialPlayerResponse\s*=\s*({.+?})\s*;')
 		if not player_response:
 			# I did not find a video in which the player response was not found
 			# and should be used api call
@@ -387,9 +385,8 @@ class YouTubeVideoUrl():
 					url += '&suburi=%s' % audio_url
 			if not url:
 				for fmt in streaming_formats:
-					if fmt.get('targetDurationSec') or fmt.get('drmFamilies'):
-						continue
-					if str(fmt.get('itag', '')) not in IGNORE_VIDEO_FORMAT:
+					if str(fmt.get('itag', '')) not in IGNORE_VIDEO_FORMAT and not \
+							fmt.get('targetDurationSec') and not fmt.get('drmFamilies'):
 						url = self._extract_fmt_url(fmt, webpage)
 						if url:
 							break
@@ -424,11 +421,10 @@ class YouTubeVideoUrl():
 				dict) or {}
 
 			def get_text(x):
-				if not x:
-					return ''
-				return x.get('simpleText') or ''.join([r['text'] for r in x['runs']])
+				if x:
+					return x.get('simpleText') or ''.join([r['text'] for r in x['runs']])
 
-			reason = get_text(pemr.get('reason')) or playability_status.get('reason') or None
+			reason = get_text(pemr.get('reason')) or playability_status.get('reason')
 			if reason:
 				subreason = pemr.get('subreason')
 				if subreason:
