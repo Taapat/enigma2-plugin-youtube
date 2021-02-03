@@ -1369,24 +1369,31 @@ class YouTubeSetup(ConfigListScreen, Screen):
 				'ok': self.ok,
 				'green': self.ok}, -2)
 		self.mbox = None
+		self.login = config.plugins.YouTube.login.value
 		self.mergeFiles = config.plugins.YouTube.mergeFiles.value
 		ConfigListScreen.__init__(self, [], session=session)
 		self.setConfigList()
 		config.plugins.YouTube.login.addNotifier(self.checkLoginSatus,
 				initial_call=False)
 		self.onLayoutFinish.append(self.layoutFinished)
+		self.onClose.append(self.__onClose)
 
 	def layoutFinished(self):
 		self.setTitle(_('YouTube setup'))
 
+	def __onClose(self):
+		config.plugins.YouTube.login.removeNotifier(self.checkLoginSatus)
+
 	def checkLoginSatus(self, configElement):
 		self.setConfigList()
-		if config.plugins.YouTube.login.value:
-			if config.plugins.YouTube.refreshToken.value != '':
-				self.session.openWithCallback(self.startupCallback,
-						MessageBox, _('You already authorized access for this plugin to your YouTube account.\nDo you want to do it again to update access data?'))
-			else:
-				self.startupCallback(True)
+		if self.login != config.plugins.YouTube.login.value:
+			self.login = config.plugins.YouTube.login.value
+			if self.login:
+				if config.plugins.YouTube.refreshToken.value != '':
+					self.session.openWithCallback(self.startupCallback,
+							MessageBox, _('You already authorized access for this plugin to your YouTube account.\nDo you want to do it again to update access data?'))
+				else:
+					self.startupCallback(True)
 
 	def setConfigList(self):
 		self.list = []
@@ -1483,7 +1490,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 
 	def warningCallback(self, answer):
 		if not answer:
-			config.plugins.YouTube.login.value = False
+			self.login = config.plugins.YouTube.login.value = False
 		else:
 			from .OAuth import OAuth
 			self.splitTaimer = eTimer()
