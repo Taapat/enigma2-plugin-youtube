@@ -44,11 +44,10 @@ msgid "Ask user"
 msgstr "Jautāt"
 
 msgid "By ativity"
-msgstr ""
+msgstr "Pēc aktivitātes"
 
-#, fuzzy
 msgid "By relevance"
-msgstr "Atbilstības"
+msgstr "Pēc atbilstības"
 
 msgid "Cancel"
 msgstr "Atcelt"
@@ -207,11 +206,10 @@ msgid "Open"
 msgstr "Atvērt"
 
 msgid "Order in which search results will be displayed."
-msgstr "Kārtība, kādā meklēšanas rezultāti tiks attēloti."
+msgstr "Kārtība, kādā tiks attēloti meklēšanas rezultāti."
 
-#, fuzzy
 msgid "Order in which subscriptions results will be displayed."
-msgstr "Kārtība, kādā meklēšanas rezultāti tiks attēloti."
+msgstr "Kārtība, kādā tiks attēlots abonementu saraksts."
 
 msgid "Play next"
 msgstr "Atskaņot nākošo"
@@ -341,9 +339,8 @@ msgstr ""
 msgid "Sort search results by:"
 msgstr "Kārtot meklēšnas rezultātus pēc:"
 
-#, fuzzy
 msgid "Sort subscriptions:"
-msgstr "Mani abonementi"
+msgstr "Kārtot abonementus:"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Norādiet mapi kurā saglabāt lejupielādētos video failus."
