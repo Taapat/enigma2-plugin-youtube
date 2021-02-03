@@ -38,7 +38,7 @@ msgid "All"
 msgstr "Visas"
 
 msgid "Alphabetically"
-msgstr ""
+msgstr "Alfabētiski"
 
 msgid "Ask user"
 msgstr "Jautāt"
