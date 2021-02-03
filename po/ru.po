@@ -37,17 +37,16 @@ msgid "All"
 msgstr "Все"
 
 msgid "Alphabetically"
-msgstr ""
+msgstr "В алфавитном порядке"
 
 msgid "Ask user"
 msgstr "Спросить пользователя"
 
 msgid "By ativity"
-msgstr ""
+msgstr "По активности"
 
-#, fuzzy
 msgid "By relevance"
-msgstr "Актуальность"
+msgstr "По актуальности"
 
 msgid "Cancel"
 msgstr "Отменить"
@@ -149,9 +148,8 @@ msgstr "Понравившиеся видео"
 msgid "Liked!"
 msgstr "Отмечен, что понравилось!"
 
-#, fuzzy
 msgid "Live broadcast"
-msgstr "Поиск прямых трансляций"
+msgstr "Прямой эфир"
 
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"
@@ -209,9 +207,8 @@ msgstr "Открыть"
 msgid "Order in which search results will be displayed."
 msgstr "Порядок, в котором будут отображаться результаты поиска."
 
-#, fuzzy
 msgid "Order in which subscriptions results will be displayed."
-msgstr "Порядок, в котором будут отображаться результаты поиска."
+msgstr "Порядок, в котором будут отображаться подписки."
 
 msgid "Play next"
 msgstr "Воспроизвести следующее"
@@ -341,9 +338,8 @@ msgstr ""
 msgid "Sort search results by:"
 msgstr "Сортировать результаты поиска по:"
 
-#, fuzzy
 msgid "Sort subscriptions:"
-msgstr "Мои подписки"
+msgstr "Сортировать подписки:"
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Укажите каталог, где сохранить видео файлы."
