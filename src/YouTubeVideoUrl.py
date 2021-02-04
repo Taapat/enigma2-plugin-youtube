@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# This video extraction code based on youtube-dl: https://github.com/rg3/youtube-dl
+# This video extraction code based on youtube-dl: https://github.com/ytdl-org/youtube-dl
 
 from __future__ import print_function
 
@@ -374,11 +374,11 @@ class YouTubeVideoUrl():
 
 		url = ''
 		streaming_data = player_response.get('streamingData') or {}
-		streaming_formats = streaming_data.get('formats') or []
-		streaming_formats.extend(streaming_data.get('adaptiveFormats') or [])
 		is_live = try_get(player_response, lambda x: x['videoDetails']['isLive'])
+		streaming_formats = streaming_data.get('formats') or []
 
 		if not is_live and streaming_formats:
+			streaming_formats.extend(streaming_data.get('adaptiveFormats') or [])
 			# If priority format changed in config, recreate priority list
 			if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.value:
 				createPriorityFormats()
