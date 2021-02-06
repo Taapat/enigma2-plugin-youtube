@@ -11,7 +11,7 @@ python-core python-codecs python-json python-netclient python-zlib python-twiste
 
 Download
 -------
-[enigma2-plugin-youtube](http://taapat.ho.ua/enigma2-plugin-youtube/)
+[enigma2-plugin-youtube](https://github.com/Taapat/enigma2-plugin-youtube/releases)
 
 Privacy policy
 -------
