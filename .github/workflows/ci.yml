@@ -26,10 +26,8 @@ jobs:
         pip install flake8 pytest
     - name: Compile python sources
       run: |
-        python -O -m compileall ./src/
-    - name: Compile language files
-      run: |
-        find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
+        python setup.py build --build-lib=build/lib
+        python -O -m compileall build/lib/Extensions/YouTube/
     - name: Check code with flake8
       run: |
         flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./src/compat.py
