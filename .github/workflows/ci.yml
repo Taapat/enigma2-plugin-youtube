@@ -41,6 +41,7 @@ jobs:
         pytest -rx -v
   deploy:
     needs: build
+    runs-on: ubuntu-latest
     steps:
     - name: Get commit count
       env:
