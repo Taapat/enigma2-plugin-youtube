@@ -88,6 +88,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./deploy/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${GITHUB_SHA::8}-r0.0_all.ipk
-        asset_name: enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${GITHUB_SHA::8}-r0.0_all.ipk
+        asset_path: ./deploy/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ GITHUB_SHA::8 }}-r0.0_all.ipk
+        asset_name: enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ GITHUB_SHA::8 }}-r0.0_all.ipk
         asset_content_type: application/ipk
