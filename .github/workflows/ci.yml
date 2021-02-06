@@ -41,6 +41,7 @@ jobs:
         pytest -rx -v
   deploy:
     needs: build
+    steps:
     - name: Get commit count
       env:
         SRCPV: $(git rev-list --count HEAD)
