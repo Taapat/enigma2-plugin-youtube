@@ -40,10 +40,10 @@ jobs:
       run: |
         pytest -rx -v
   deploy:
-    if: ${{ github.event_name == 'push' && matrix.python-version == '2.7' }}
     needs: build
     - name: Get commit count
       env:
         SRCPV: $(git rev-list --count HEAD)
+      if: ${{ github.event_name == 'push' && matrix.python-version == '2.7' }}
       run: |
         echo "Package version git" $SRCPV
