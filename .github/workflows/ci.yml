@@ -1,6 +1,14 @@
-name: test
+name: build
 
-on: [push, pull_request]
+on:
+  push:
+    paths-ignore:
+      - 'README.md'
+      - '.travis.yml'
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+      - '.travis.yml'
 
 jobs:
   build:
@@ -26,8 +34,8 @@ jobs:
         python -O -m compileall ./src/
     - name: Check code with flake8
       run: |
-        flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./src/compat.py,./build
-        flake8 --ignore=W191,F821,F401 --show-source --filename=./src/compat.py,./build
+        flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./src/compat.py
+        flake8 --ignore=W191,F821,F401 --show-source --filename=./src/compat.py
     - name: Remove enigma2 imports and variables for test
       run: |
         bash ./test/ci_fix.sh
@@ -79,7 +87,7 @@ jobs:
       run: |
         echo 2.0 > debian-binary
         tar --numeric-owner --group=0 --owner=0 -cf enigma2-plugin-extensions-youtube_h1+$SRCPV+$SHA7-r0.0_all.ipk debian-binary data.tar.gz control.tar.gz
-    - name: Create Release
+    - name: Create release
       id: create_release
       uses: actions/create-release@v1
       env:
@@ -89,7 +97,7 @@ jobs:
         release_name: Release ${{ github.event.head_commit.message }}
         draft: false
         prerelease: false
-    - name: Upload Release
+    - name: Upload release
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
