@@ -1,6 +1,8 @@
 name: test
 
 on: [push, pull_request]
+    paths-ignore:
+    - 'README.md'
 
 jobs:
   build:
@@ -53,12 +55,10 @@ jobs:
       run: |
         python setup.py build --build-lib=build/lib
         python -O -m compileall build/lib/Extensions/YouTube/
-    - name: Get commit count
+    - name: Get last commit count
       run: |
         SRCPV=$(git rev-list --count HEAD)
         echo "SRCPV=$SRCPV" >> $GITHUB_ENV
-        echo "Package version git ${{ env.SRCPV }}"
-        echo "Package version git $SRCPV"
     - name: Create plugin package files
       run: |
         mkdir -p deploy/data/usr/lib/enigma2/python/Plugins
@@ -73,8 +73,21 @@ jobs:
         tar --numeric-owner --group=0 --owner=0 -czf ./control.tar.gz ./*
         echo 2.0 > debian-binary
         tar --numeric-owner --group=0 --owner=0 -cf enigma2-plugin-extensions-youtube_h1+git$SRCPV+${GITHUB_SHA::8}-r0.0_all.ipk ./debian-binary ./data.tar.gz ./control.tar.gz
-        echo $(ls)
-    - name: Get dirs
-      run: |
-        echo $(ls)
-        echo "Package version h1+git$SRCPV+${GITHUB_SHA::8}-r0.0"
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: "git$SRCPV"
+        release_name: Release ${{ github.event.head_commit.message }}
+        draft: false
+        prerelease: true
+    - name: Upload Release
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./deploy/enigma2-plugin-extensions-youtube_h1+git$SRCPV+${GITHUB_SHA::8}-r0.0_all.ipk
