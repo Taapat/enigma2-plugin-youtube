@@ -50,7 +50,8 @@ jobs:
         python-version: '2.7'
     - name: Get commit count
       run: |
-        echo "SRCPV=$(git rev-list --count HEAD)" >> $GITHUB_ENV
+        SRCPV=$(git rev-list --count HEAD)
+        echo "SRCPV=$SRCPV" >> $GITHUB_ENV
         echo "Package version git ${{ env.SRCPV }}"
         echo "Package version git $SRCPV"
     - name: Get dirs
