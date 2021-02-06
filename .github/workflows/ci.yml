@@ -1,7 +1,7 @@
 name: test
 
 on: [push, pull_request]
-    paths-ignore:
+  paths-ignore:
     - 'README.md'
 
 jobs:
