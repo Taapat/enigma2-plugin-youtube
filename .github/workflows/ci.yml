@@ -56,8 +56,6 @@ jobs:
     - name: Get commit count
       run: |
         SRCPV=$(git rev-list --count HEAD)
-        echo "SRCPV=$SRCPV" >> $GITHUB_ENV
-        echo "Package version git ${{ env.SRCPV }}"
         echo "Package version git $SRCPV"
     - name: Get dirs
       run: |
