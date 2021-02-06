@@ -43,7 +43,7 @@ msgstr "Alfabētiski"
 msgid "Ask user"
 msgstr "Jautāt"
 
-msgid "By ativity"
+msgid "By activity"
 msgstr "Pēc aktivitātes"
 
 msgid "By relevance"
@@ -199,7 +199,7 @@ msgstr "Nē"
 msgid "No, but play video again"
 msgstr "Nē, atskaņot video vēlreiz"
 
-msgid "Ok"
+msgid "OK"
 msgstr "Ok"
 
 msgid "Open"

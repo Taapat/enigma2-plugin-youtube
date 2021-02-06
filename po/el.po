@@ -43,7 +43,7 @@ msgstr ""
 msgid "Ask user"
 msgstr "Ερώτηση χρήστη"
 
-msgid "By ativity"
+msgid "By activity"
 msgstr ""
 
 #, fuzzy
@@ -192,7 +192,7 @@ msgstr "Όχι"
 msgid "No, but play video again"
 msgstr "Όχι, αλλά αναπαραγωγή του βίντεο ξανά"
 
-msgid "Ok"
+msgid "OK"
 msgstr "ΟΚ"
 
 msgid "Open"

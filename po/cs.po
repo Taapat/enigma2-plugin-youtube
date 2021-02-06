@@ -42,7 +42,7 @@ msgstr ""
 msgid "Ask user"
 msgstr "Zeptat se uživatele"
 
-msgid "By ativity"
+msgid "By activity"
 msgstr ""
 
 #, fuzzy
@@ -200,7 +200,7 @@ msgstr "Ne"
 msgid "No, but play video again"
 msgstr "Ne, ale přehrát video znovu"
 
-msgid "Ok"
+msgid "OK"
 msgstr "OK"
 
 msgid "Open"

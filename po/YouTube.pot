@@ -57,7 +57,7 @@ msgid "Ask user"
 msgstr ""
 
 #: YouTubeUi.py:64
-msgid "By ativity"
+msgid "By activity"
 msgstr ""
 
 #: YouTubeUi.py:63
@@ -250,7 +250,7 @@ msgid "No, but play video again"
 msgstr ""
 
 #: YouTubeSearch.py:191 YouTubeUi.py:1364
-msgid "Ok"
+msgid "OK"
 msgstr ""
 
 #: YouTubeUi.py:520

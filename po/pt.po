@@ -49,7 +49,7 @@ msgstr ""
 msgid "Ask user"
 msgstr "Perguntar ao utilizador"
 
-msgid "By ativity"
+msgid "By activity"
 msgstr ""
 
 #, fuzzy
@@ -206,7 +206,7 @@ msgstr "Não"
 msgid "No, but play video again"
 msgstr "Não, mas reproduza o vídeo"
 
-msgid "Ok"
+msgid "OK"
 msgstr "Ok"
 
 msgid "Open"

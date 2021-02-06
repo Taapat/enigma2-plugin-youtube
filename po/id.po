@@ -42,7 +42,7 @@ msgstr ""
 msgid "Ask user"
 msgstr "Tanya pengguna"
 
-msgid "By ativity"
+msgid "By activity"
 msgstr ""
 
 #, fuzzy
@@ -199,7 +199,7 @@ msgstr "Tidak"
 msgid "No, but play video again"
 msgstr "Tidak, tapi putar lagi videonya"
 
-msgid "Ok"
+msgid "OK"
 msgstr "Ok"
 
 msgid "Open"

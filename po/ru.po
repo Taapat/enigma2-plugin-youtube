@@ -42,7 +42,7 @@ msgstr "В алфавитном порядке"
 msgid "Ask user"
 msgstr "Спросить пользователя"
 
-msgid "By ativity"
+msgid "By activity"
 msgstr "По активности"
 
 msgid "By relevance"
@@ -198,7 +198,7 @@ msgstr "Нет"
 msgid "No, but play video again"
 msgstr "Нет, но проиграть это видео еще раз"
 
-msgid "Ok"
+msgid "OK"
 msgstr "OK"
 
 msgid "Open"
