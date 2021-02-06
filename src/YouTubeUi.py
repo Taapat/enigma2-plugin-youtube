@@ -61,7 +61,7 @@ config.plugins.YouTube.searchOrder = ConfigSelection(default='relevance',
 		('viewCount', _('View count'))])
 config.plugins.YouTube.subscriptOrder = ConfigSelection(default='relevance',
 	choices=[('relevance', _('By relevance')),
-		('unread', _('By ativity')),
+		('unread', _('By activity')),
 		('alphabetical', _('Alphabetically'))])
 config.plugins.YouTube.safeSearch = ConfigSelection(default='moderate', choices=[
 	('moderate', _('Moderate')), ('none', _('No')), ('strict', _('Yes'))])
@@ -1361,7 +1361,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		self.session = session
 		self.skinName = ['YouTubeSetup', 'Setup']
 		self['key_red'] = StaticText(_('Cancel'))
-		self['key_green'] = StaticText(_('Ok'))
+		self['key_green'] = StaticText(_('OK'))
 		self['description'] = Label('')
 		self['setupActions'] = ActionMap(['SetupActions', 'ColorActions'], {
 				'cancel': self.keyCancel,

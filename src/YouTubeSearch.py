@@ -188,7 +188,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		self.curList = curList
 		self.setTitle(_('Search'))
 		self['key_red'] = StaticText(_('Exit'))
-		self['key_green'] = StaticText(_('Ok'))
+		self['key_green'] = StaticText(_('OK'))
 		self['key_yellow'] = StaticText(_('Keyboard'))
 		self['HelpWindow'] = Pixmap()
 		self['VKeyIcon'] = Boolean(False)
