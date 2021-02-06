@@ -54,4 +54,5 @@ jobs:
       run: |
         echo "Package version git" $SRCPV
     - name: Get dirs
+      run: |
         echo ls
