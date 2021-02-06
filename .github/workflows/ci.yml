@@ -45,7 +45,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message,'skip-release') }}
     steps:
     - uses: actions/checkout@v2
       with:
@@ -94,7 +94,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ env.SRCPV }}
-        release_name: Release ${{ github.event.head_commit.message }}
+        release_name: ${{ github.event.head_commit.message }}
         draft: false
         prerelease: false
     - name: Upload release
