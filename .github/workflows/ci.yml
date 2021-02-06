@@ -66,6 +66,13 @@ jobs:
         mkdir -p deploy/data/etc/enigma2
         cp YouTube.key deploy/data/etc/enigma2
         sed -i 's/Version:/Version: h1+git$SRCPV+${GITHUB_SHA::8}-r0.0/' deploy/control/control
+    - name: Build ipk package
+      working-directory: "./deploy"
+      run: |
+        tar --numeric-owner --group=0 --owner=0 -czf ../data.tar.gz ./*
+        tar --numeric-owner --group=0 --owner=0 -czf ../control.tar.gz ./*
+        echo 2.0 > debian-binary
+        tar --numeric-owner --group=0 --owner=0 -cf enigma2-plugin-extensions-youtube_h1+git$SRCPV+${GITHUB_SHA::8}-r0.0_all.ipk ./debian-binary ./data.tar.gz ./control.tar.gz
     - name: Get dirs
       run: |
         echo $(ls)
