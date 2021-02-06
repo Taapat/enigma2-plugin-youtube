@@ -4,12 +4,10 @@ on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [2.7, 3.8]
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -22,12 +20,10 @@ jobs:
         python -m pip install --upgrade pip
     - name: Install dependencies
       run: |
-        sudo apt-get install gettext
         pip install flake8 pytest
     - name: Compile python sources
       run: |
-        python setup.py build --build-lib=build/lib
-        python -O -m compileall build/lib/Extensions/YouTube/
+        python -O -m compileall ./src/
     - name: Check code with flake8
       run: |
         flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./src/compat.py,./build
@@ -38,3 +34,67 @@ jobs:
     - name: Test code with pytest
       run: |
         pytest -rx -v
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Set up Python 2.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: '2.7'
+    - name: Install dependencies
+      run: |
+        sudo apt-get install gettext
+    - name: Compile sources
+      run: |
+        python setup.py build --build-lib=build/lib
+        python -O -m compileall build/lib/Extensions/YouTube/
+    - name: Set env variables
+      run: |
+        SRCPV="git$(git rev-list --count HEAD)"
+        echo "SRCPV=$SRCPV" >> $GITHUB_ENV
+        SHA7="${GITHUB_SHA::7}"
+        echo "SHA7=$SHA7" >> $GITHUB_ENV
+    - name: Create plugin package files
+      run: |
+        mkdir -p deploy/data/usr/lib/enigma2/python/Plugins
+        cp -r build/lib/* deploy/data/usr/lib/enigma2/python/Plugins
+        mkdir -p deploy/data/etc/enigma2
+        cp YouTube.key deploy/data/etc/enigma2
+        sed -i 's/Version:/Version: h1+$SRCPV+$SHA7-r0.0/' deploy/control/control
+    - name: Build data package
+      working-directory: "./deploy/data"
+      run: |
+        tar --numeric-owner --group=0 --owner=0 -czf ../data.tar.gz ./*
+    - name: Build control package
+      working-directory: "./deploy/control"
+      run: |
+        tar --numeric-owner --group=0 --owner=0 -czf ../control.tar.gz ./*
+    - name: Build ipk package
+      working-directory: "./deploy"
+      run: |
+        echo 2.0 > debian-binary
+        tar --numeric-owner --group=0 --owner=0 -cf enigma2-plugin-extensions-youtube_h1+$SRCPV+$SHA7-r0.0_all.ipk debian-binary data.tar.gz control.tar.gz
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ env.SRCPV }}
+        release_name: Release ${{ github.event.head_commit.message }}
+        draft: false
+        prerelease: false
+    - name: Upload Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./deploy/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
+        asset_name: enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
+        asset_content_type: application/ipk

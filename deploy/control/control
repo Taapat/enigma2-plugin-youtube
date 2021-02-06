@@ -1,0 +1,12 @@
+Package: enigma2-plugin-extensions-youtube
+Version:
+Description: Enigma2 plugin to manage your youtube account and watch videos
+ Small plugin to manage your account, search and watch videos from youtube
+Section: multimedia
+Priority: optional
+Maintainer: Taapat <taapat@gmail.com>
+License: PD
+Architecture: all
+OE: enigma2-plugin-extensions-youtube
+Homepage: https://github.com/Taapat/enigma2-plugin-youtube
+Depends: python-codecs, python-compression, python-core, python-json, python-netclient, python-pyopenssl, python-twisted-web, python-zlib
