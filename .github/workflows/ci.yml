@@ -59,7 +59,14 @@ jobs:
         echo "SRCPV=$SRCPV" >> $GITHUB_ENV
         echo "Package version git ${{ env.SRCPV }}"
         echo "Package version git $SRCPV"
+    - name: Create plugin package files
+      run: |
+        mkdir -p deploy/data/usr/lib/enigma2/python/Plugins
+        cp -r build/lib/* deploy/data/usr/lib/enigma2/python/Plugins
+        mkdir -p deploy/data/etc/enigma2
+        cp YouTube.key deploy/data/etc/enigma2
+        sed -i 's/Version:/Version: h1+git$SRCPV+${GITHUB_SHA::8}-r0.0/' deploy/control/control
     - name: Get dirs
       run: |
         echo $(ls)
-        echo "Package version git $SRCPV"
+        echo "Package version h1+git$SRCPV+${GITHUB_SHA::8}-r0.0"
