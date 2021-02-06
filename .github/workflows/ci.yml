@@ -10,9 +10,6 @@ jobs:
         python-version: [2.7, 3.8]
     steps:
     - uses: actions/checkout@v2
-      if: ${{ matrix.python-version == '2.7' }}
-      with:
-        fetch-depth: 0
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
@@ -42,10 +39,19 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
     steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Set up Python 2.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: '2.7'
     - name: Get commit count
       env:
         SRCPV: $(git rev-list --count HEAD)
-      if: ${{ github.event_name == 'push' && matrix.python-version == '2.7' }}
       run: |
         echo "Package version git" $SRCPV
+    - name: Get dirs
+        echo ls
