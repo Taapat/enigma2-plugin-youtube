@@ -30,8 +30,8 @@ jobs:
         python -O -m compileall build/lib/Extensions/YouTube/
     - name: Check code with flake8
       run: |
-        flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./src/compat.py
-        flake8 --ignore=W191,F821,F401 --show-source --filename=./src/compat.py
+        flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./build/lib/Extensions/YouTube/compat.py
+        flake8 --ignore=W191,F821,F401 --show-source --filename=./build/lib/Extensions/YouTube/compat.py
     - name: Remove enigma2 imports and variables for test
       run: |
         bash ./test/ci_fix.sh
