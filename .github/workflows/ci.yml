@@ -49,10 +49,9 @@ jobs:
       with:
         python-version: '2.7'
     - name: Get commit count
-      env:
-        SRCPV: $(git rev-list --count HEAD)
       run: |
+        echo "::set-env name=SRCPV::$(git rev-list --count HEAD)"
         echo "Package version git" $SRCPV
     - name: Get dirs
       run: |
-        echo ls
+        echo $(ls)
