@@ -48,11 +48,9 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '2.7'
-      env:
-        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
     - name: Get commit count
       run: |
-        echo "::set-env name=SRCPV::$(git rev-list --count HEAD)"
+        echo "SRCPV=$(git rev-list --count HEAD)" >> $GITHUB_ENV
         echo "Package version git" $SRCPV
     - name: Get dirs
       run: |
