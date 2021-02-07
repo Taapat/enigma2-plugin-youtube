@@ -61,12 +61,14 @@ jobs:
       run: |
         python setup.py build --build-lib=build/lib
         python -O -m compileall build/lib/Extensions/YouTube/
-    - name: Set env variables
+    - name: Set git variables
       run: |
         SRCPV="git$(git rev-list --count HEAD)"
         echo "SRCPV=$SRCPV" >> $GITHUB_ENV
         SHA7="${GITHUB_SHA::7}"
         echo "SHA7=$SHA7" >> $GITHUB_ENV
+        COMMIT_SUBJECT=$(git log -1 --pretty=format:%s)
+        echo "COMMIT_SUBJECT=$COMMIT_SUBJECT" >> $GITHUB_ENV
     - name: Create plugin package files
       run: |
         mkdir -p deploy/data/usr/lib/enigma2/python/Plugins
@@ -94,7 +96,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ env.SRCPV }}
-        release_name: ${{ github.event.head_commit.message }}
+        release_name: ${{ env.COMMIT_SUBJECT }}
         draft: false
         prerelease: false
     - name: Upload release
