@@ -75,7 +75,7 @@ jobs:
         cp -r build/lib/* deploy/data/usr/lib/enigma2/python/Plugins
         mkdir -p deploy/data/etc/enigma2
         cp YouTube.key deploy/data/etc/enigma2
-        sed -i 's/Version:/Version: h1+$SRCPV+$SHA7-r0.0/' deploy/control/control
+        sed -i 's/Version:/Version: h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0/' deploy/control/control
     - name: Build data package
       working-directory: "./deploy/data"
       run: |
@@ -88,7 +88,7 @@ jobs:
       working-directory: "./deploy"
       run: |
         echo 2.0 > debian-binary
-        tar --numeric-owner --group=0 --owner=0 -cf enigma2-plugin-extensions-youtube_h1+$SRCPV+$SHA7-r0.0_all.ipk debian-binary data.tar.gz control.tar.gz
+        tar --numeric-owner --group=0 --owner=0 -cf enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk debian-binary data.tar.gz control.tar.gz
     - name: Create release
       id: create_release
       uses: actions/create-release@v1
