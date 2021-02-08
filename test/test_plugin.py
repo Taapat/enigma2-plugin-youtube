@@ -118,23 +118,19 @@ def test_playlist():
 	CheckExample(q='vevo', eventType='', order='relevance', s_type='playlist', descr='Playlist')
 
 
-_TESTS = [{'Id': 'BaW_jenozKc', 'Description': 'Ue the first video ID in the URL'},
-		{'Id': 'a9LDPn-MO4I', 'Description': '256k DASH audio (format 141) via DASH manifest'},
-		{'Id': 'T4XJQO3qol8', 'Description': 'Controversy video'},
-		{'Id': '__2ABJjxzNo', 'Description': 'YouTube Red ad is not captured for creator'},
-		{'Id': 'FIl7x6_3R5Y', 'Description': 'Extraction from multiple DASH manifests'},
-		{'Id': 'lsguqyKfVQg', 'Description': 'Title with JS-like syntax'},
-		{'Id': 'M4gD1WSo5mA', 'Description': 'Video licensed under Creative Commons'},
-		{'Id': 'eQcmzGIKrzg', 'Description': 'Channel-like uploader_url'},
-		{'Id': 'uGpuVWrhIzE', 'Description': 'Rental video preview'},
-		{'Id': 'iqKdEhx-dD4', 'Description': 'YouTube Red video with episode data'},
-		{'Id': 'MgNrAu2pzNs', 'Description': 'Youtube Music Auto-generated description'}]
-
-
-@pytest.fixture(params=_TESTS)
-def video_data(request):
-	return request.param
-
-
-def test_videoUrls(video_data):
-	CheckVideoUrl(videos=video_data['Id'], descr=video_data['Description'])
+@pytest.mark.parametrize(
+		'videos, descr',
+		[('BaW_jenozKc', 'Use the first video ID'),
+		('a9LDPn-MO4I', '256k DASH audio via DASH manifest'),
+		('T4XJQO3qol8', 'Controversy video'),
+		('__2ABJjxzNo', 'Ad is not captured for creator'),
+		('FIl7x6_3R5Y', 'Multiple DASH manifests'),
+		('lsguqyKfVQg', 'Title with JS-like syntax'),
+		('M4gD1WSo5mA', 'Licensed under Creative Commons'),
+		('eQcmzGIKrzg', 'Channel-like uploader_url'),
+		('uGpuVWrhIzE', 'Rental video preview'),
+		('iqKdEhx-dD4', 'YouTube Red with episode data'),
+		('MgNrAu2pzNs', 'Auto generated description')],
+)
+def test_videoUrl(videos, descr):
+	CheckVideoUrl(videos=videos, descr=descr)
