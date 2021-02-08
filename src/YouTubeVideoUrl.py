@@ -196,8 +196,7 @@ class YouTubeVideoUrl():
 		""" Return a string representation of a signature """
 		return '.'.join(compat_str(len(part)) for part in example_sig.split('.'))
 
-	@staticmethod
-	def _extract_player_info(player_url):
+	def _extract_signature_function(self, player_url):
 		_PLAYER_INFO_RE = (
 			r'/s/player/(?P<id>[a-zA-Z0-9_-]{8,})/player',
 			r'/(?P<id>[a-zA-Z0-9_-]{8,})/player(?:_ias\.vflset(?:/[a-zA-Z]{2,3}_[a-zA-Z]{2,3})?|-plasma-ias-(?:phone|tablet)-[a-z]{2}_[A-Z]{2}\.vflset)/base\.js$',
@@ -210,17 +209,13 @@ class YouTubeVideoUrl():
 				break
 		else:
 			raise Exception('Cannot identify player %r' % player_url)
-		return id_m.group('id')
 
-	def _extract_signature_function(self, player_url):
-		player_id = self._extract_player_info(player_url)
+		player_id = id_m.group('id')
 
 		if player_id not in self._code_cache:
 			self._code_cache[player_id] = self._download_webpage(player_url)
-		code = self._code_cache[player_id]
-		return self._parse_sig_js(code)
+		jscode = self._code_cache[player_id]
 
-	def _parse_sig_js(self, jscode):
 		funcname = self._search_regex(
 				(r'\b[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\(',
 				r'\b[a-zA-Z0-9]+\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\(',
