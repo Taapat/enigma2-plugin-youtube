@@ -76,6 +76,7 @@ jobs:
         mkdir -p deploy/data/etc/enigma2
         cp YouTube.key deploy/data/etc/enigma2
         sed -i 's/Version:/Version: h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0/' deploy/control/control
+        mkdir ipk
     - name: Build data package
       working-directory: "./deploy/data"
       run: |
@@ -88,7 +89,7 @@ jobs:
       working-directory: "./deploy"
       run: |
         echo 2.0 > debian-binary
-        ar rv enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk debian-binary data.tar.gz control.tar.gz
+        ar rv ../ipk/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk debian-binary data.tar.gz control.tar.gz
     - name: Create release
       id: create_release
       uses: actions/create-release@v1
@@ -105,6 +106,14 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./deploy/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
+        asset_path: ./ipk/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
         asset_name: enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
         asset_content_type: application/ipk
+    - name: Upload ipk via ftp
+      uses: sebastianpopp/ftp-action@releases/v2
+      with:
+        host: ${{ secrets.FTP_SERVER }}
+        user: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        localDir: "ipk"
+        remoteDir: ${{ secrets.FTP_DIR }}
