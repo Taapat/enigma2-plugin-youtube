@@ -133,7 +133,7 @@ video_id = ['BaW_jenozKc',
 
 
 video_descr = ['Use the first video ID',
-		'DASH mp4 video and audio'
+		'DASH mp4 video and audio',
 		'256k DASH audio via manifest',
 		'Controversy video',
 		'Ad is not captured for creator',
