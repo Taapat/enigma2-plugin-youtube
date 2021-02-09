@@ -5,8 +5,8 @@ from __future__ import print_function
 
 import re
 
-from json import loads
 from random import randint
+from json import loads
 
 from Components.config import config
 
