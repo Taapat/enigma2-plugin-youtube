@@ -253,29 +253,6 @@ class YouTubeVideoUrl():
 			url_map[itag] = format_url
 		return url_map
 
-	def mark_watched(self, player_response):
-		playback_url = url_or_none(try_get(
-			player_response,
-			lambda x: x['playbackTracking']['videostatsPlaybackUrl']['baseUrl']))
-		if not playback_url:
-			return
-		parsed_playback_url = compat_urlparse(playback_url)
-		qs = compat_parse_qs(parsed_playback_url.query)
-
-		# cpn generation algorithm is reverse engineered from base.js.
-		# In fact it works even with dummy cpn.
-		CPN_ALPHABET = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_'
-		cpn = ''.join((CPN_ALPHABET[randint(0, 256) & 63] for _ in range(0, 16)))
-
-		qs.update({
-			'ver': ['2'],
-			'cpn': [cpn],
-		})
-		playback_url = compat_urlunparse(
-			parsed_playback_url._replace(query=compat_urlencode(qs, True)))
-
-		self._download_webpage(playback_url)
-
 	@staticmethod
 	def _parse_json(json_string):
 		try:
@@ -434,8 +411,6 @@ class YouTubeVideoUrl():
 					subreason = clean_html(get_text(subreason))
 					reason += '\n%s' % subreason
 			raise Exception(reason)
-
-		self.mark_watched(player_response)
 
 		return str(url)
 
