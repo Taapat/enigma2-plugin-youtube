@@ -7,8 +7,27 @@ on:
       - '.travis.yml'
 
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
+    outputs:
+      python-changed: ${{ steps.python-changed.outputs.changed }}
+      language-changed: ${{ steps.language-changed.outputs.changed }}
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
+    - uses: marceloprado/has-changed-path@v1
+      id: python-changed
+      with:
+        paths: ./*.py ./src/*.py ./test/*.py
+    - uses: marceloprado/has-changed-path@v1
+      id: language-changed
+      with:
+        paths: ./po/*.po ./po/*.pot
+  test_python:
+    needs: check
+    runs-on: ubuntu-latest
+    if: ${{ needs.check.outputs.python-changed == 'true' }}
     strategy:
       matrix:
         python-version: [2.7, 3.8]
@@ -38,8 +57,20 @@ jobs:
     - name: Test code with pytest
       run: |
         pytest -rx -v
+  test_languages:
+    needs: check
+    runs-on: ubuntu-latest
+    if: ${{ needs.check.outputs.language-changed == 'true' }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        sudo apt-get install gettext
+    - name: Compile language files
+      run: |
+        find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
   deploy:
-    needs: build
+    needs: [test_python, test_languages]
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && !contains(github.event.head_commit.message,'skip-release') }}
     steps:
