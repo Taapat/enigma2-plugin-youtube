@@ -119,6 +119,7 @@ def test_playlist():
 
 
 video_id = ['BaW_jenozKc',
+		'YQHsXMglC9A',
 		'a9LDPn-MO4I',
 		'T4XJQO3qol8',
 		'__2ABJjxzNo',
@@ -132,7 +133,8 @@ video_id = ['BaW_jenozKc',
 
 
 video_descr = ['Use the first video ID',
-		'256k DASH audio via DASH manifest',
+		'DASH mp4 video and audio'
+		'256k DASH audio via manifest',
 		'Controversy video',
 		'Ad is not captured for creator',
 		'Multiple DASH manifests',
