@@ -7,126 +7,140 @@ on:
       - '.travis.yml'
 
 jobs:
-  test:
+  check_source:
+    runs-on: ubuntu-latest
+    outputs:
+      python-changed: ${{ steps.python.outputs.changed }}
+      language-changed: ${{ steps.language.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - uses: marceloprado/has-changed-path@v1
+        id: python
+        with:
+          paths: ./*.py ./src/*.py ./test/*.py
+      - uses: marceloprado/has-changed-path@v1
+        id: language
+        with:
+          paths: ./po/*.po ./po/*.pot
+  test-python:
+    needs: check_source
+    if: needs.check_source.outputs.python-changed == 'true'
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [2.7, 3.8]
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 2
-    - uses: marceloprado/has-changed-path@v1
-      id: python
-      with:
-        paths: ./*.py ./src/*.py ./test/*.py
-    - uses: marceloprado/has-changed-path@v1
-      id: language
-      with:
-        paths: ./po/*.po ./po/*.pot
-    - name: Set up Python ${{ matrix.python-version }}
-      if: ${{ steps.python.outputs.changed == 'true' }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Upgrade pip
-      if: ${{ steps.python.outputs.changed == 'true' && matrix.python-version != '2.7' }}
-      run: |
-        python -m pip install --upgrade pip
-    - name: Install python dependencies
-      if: ${{ steps.python.outputs.changed == 'true' }}
-      run: |
-        pip install flake8 pytest
-    - name: Test python sources
-      if: ${{ steps.python.outputs.changed == 'true' }}
-      run: |
-        python -O -m compileall ./src/
-        echo "flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./src/compat.py"
-        flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./src/compat.py
-        echo "flake8 --ignore=W191,F821,F401 --show-source --filename=./src/compat.py"
-        flake8 --ignore=W191,F821,F401 --show-source --filename=./src/compat.py
-        bash ./test/ci_fix.sh
-        pytest -rx -v
-    - name: Install language dependencies
-      if: ${{ steps.language.outputs.changed == 'true' && matrix.python-version == '2.7' }}
-      run: |
-        sudo apt-get install gettext
-    - name: Test language files
-      if: ${{ steps.language.outputs.changed == 'true' && matrix.python-version == '2.7' }}
-      run: |
-        find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
-  deploy:
-    needs: test
-    if: ${{ github.repository == 'Taapat/enigma2-plugin-youtube' && github.ref == 'refs/heads/master' && !contains(github.event.head_commit.message,'skip-release') }}
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Upgrade pip
+        if: matrix.python-version != '2.7'
+        run: |
+          python -m pip install --upgrade pip
+      - name: Install dependencies
+        run: |
+          pip install flake8 pytest
+      - name: Compile sources
+        run: |
+          python -O -m compileall ./src/
+      - name: Check code with flake8
+        run: |
+          flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./src/compat.py
+          flake8 --ignore=W191,F821,F401 --show-source --filename=./src/compat.py
+      - name: Remove enigma2 imports and variables for test
+        run: |
+          bash ./test/ci_fix.sh
+      - name: Test code with pytest
+        run: |
+          pytest -rx -v
+  test-language:
+    needs: check_source
+    if: needs.check_source.outputs.language-changed == 'true'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    - name: Set up Python 2.7
-      uses: actions/setup-python@v2
-      with:
-        python-version: '2.7'
-    - name: Install dependencies
-      run: |
-        sudo apt-get install gettext
-    - name: Compile sources
-      run: |
-        python setup.py build --build-lib=build/lib
-        python -O -m compileall build/lib/Extensions/YouTube/
-    - name: Set git variables
-      run: |
-        SRCPV="git$(git rev-list --count HEAD)"
-        echo "SRCPV=$SRCPV" >> $GITHUB_ENV
-        SHA7="${GITHUB_SHA::7}"
-        echo "SHA7=$SHA7" >> $GITHUB_ENV
-        COMMIT_SUBJECT=$(git log -1 --pretty=format:%s)
-        echo "COMMIT_SUBJECT=$COMMIT_SUBJECT" >> $GITHUB_ENV
-    - name: Create plugin package files
-      run: |
-        mkdir -p deploy/data/usr/lib/enigma2/python/Plugins
-        cp -r build/lib/* deploy/data/usr/lib/enigma2/python/Plugins
-        mkdir -p deploy/data/etc/enigma2
-        cp YouTube.key deploy/data/etc/enigma2
-        sed -i 's/Version:/Version: h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0/' deploy/control/control
-    - name: Build data package
-      working-directory: "./deploy/data"
-      run: |
-        tar --numeric-owner --group=0 --owner=0 -czf ../data.tar.gz ./*
-    - name: Build control package
-      working-directory: "./deploy/control"
-      run: |
-        tar --numeric-owner --group=0 --owner=0 -czf ../control.tar.gz ./*
-    - name: Build ipk package
-      working-directory: "./deploy"
-      run: |
-        echo 2.0 > debian-binary
-        mkdir ../ipk
-        ar rv ../ipk/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk debian-binary data.tar.gz control.tar.gz
-    - name: Create release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ env.SRCPV }}
-        release_name: ${{ env.COMMIT_SUBJECT }}
-        draft: false
-        prerelease: false
-    - name: Upload release
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./ipk/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
-        asset_name: enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
-        asset_content_type: application/ipk
-    - name: Upload ipk via ftp
-      uses: sebastianpopp/ftp-action@releases/v2
-      with:
-        host: ${{ secrets.FTP_SERVER }}
-        user: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        localDir: "ipk"
-        remoteDir: ${{ secrets.FTP_DIR }}
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          sudo apt-get install gettext
+      - name: Compile sources
+        run: |
+          find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
+  deploy:
+    needs: [test-python, test-language]
+    if: always() && (needs.test-python.result == 'success' || needs.test-python.result == 'skipped') && (needs.test-language.result == 'success' || needs.test-language.result == 'skipped') && github.repository == 'Taapat/enigma2-plugin-youtube' && github.ref == 'refs/heads/master' && !contains(github.event.head_commit.message,'skip-release')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up Python 2.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: '2.7'
+      - name: Install dependencies
+        run: |
+          sudo apt-get install gettext
+      - name: Compile sources
+        run: |
+          python setup.py build --build-lib=build/lib
+          python -O -m compileall build/lib/Extensions/YouTube/
+      - name: Set git variables
+        run: |
+          SRCPV="git$(git rev-list --count HEAD)"
+          echo "SRCPV=$SRCPV" >> $GITHUB_ENV
+          SHA7="${GITHUB_SHA::7}"
+          echo "SHA7=$SHA7" >> $GITHUB_ENV
+          COMMIT_SUBJECT=$(git log -1 --pretty=format:%s)
+          echo "COMMIT_SUBJECT=$COMMIT_SUBJECT" >> $GITHUB_ENV
+      - name: Create plugin package files
+        run: |
+          mkdir -p deploy/data/usr/lib/enigma2/python/Plugins
+          cp -r build/lib/* deploy/data/usr/lib/enigma2/python/Plugins
+          mkdir -p deploy/data/etc/enigma2
+          cp YouTube.key deploy/data/etc/enigma2
+          sed -i 's/Version:/Version: h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0/' deploy/control/control
+          mkdir ipk
+      - name: Build data package
+        working-directory: "./deploy/data"
+        run: |
+          tar --numeric-owner --group=0 --owner=0 -czf ../data.tar.gz ./*
+      - name: Build control package
+        working-directory: "./deploy/control"
+        run: |
+          tar --numeric-owner --group=0 --owner=0 -czf ../control.tar.gz ./*
+      - name: Build ipk package
+        working-directory: "./deploy"
+        run: |
+          echo 2.0 > debian-binary
+          ar rv ../ipk/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk debian-binary data.tar.gz control.tar.gz
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.SRCPV }}
+          release_name: ${{ env.COMMIT_SUBJECT }}
+          draft: false
+          prerelease: false
+      - name: Upload release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./ipk/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
+          asset_name: enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
+          asset_content_type: application/ipk
+      - name: Upload ipk via ftp
+        uses: sebastianpopp/ftp-action@releases/v2
+        with:
+          host: ${{ secrets.FTP_SERVER }}
+          user: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          localDir: "ipk"
+          remoteDir: ${{ secrets.FTP_DIR }}
