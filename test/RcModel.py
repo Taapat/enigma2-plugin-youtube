@@ -13,5 +13,8 @@ class RcModel:
 	def getRcPositions(self):
 		return self.getRcFile('xml')
 
+	def getRcFolder(self):
+		return ''
+
 
 rc_model = RcModel()
