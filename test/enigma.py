@@ -37,6 +37,10 @@ RT_VALIGN_BOTTOM = 7
 BT_KEEP_ASPECT_RATIO = 8
 RT_WRAP = 9
 
+BT_HALIGN_CENTER = 10
+BT_ALIGN_CENTER = 11
+BT_VALIGN_CENTER = 12
+
 
 class _eAttr:
 	def __init__(self, *x):
@@ -201,6 +205,9 @@ class eListbox:
 		pass
 
 	def setWrapAround(self, x):
+		pass
+
+	def allowNativeKeys(self, x):
 		pass
 
 
@@ -532,8 +539,18 @@ class eServiceReference(_eAttr):
 
 
 class iRecordableService(_eAttr):
-	evEnd = 1
-	evStart = 2
+	evStart = 1
+	evEnd = 2
+	evTunedIn = 3
+	evTuneFailed = 4
+	evRecordRunning = 5
+	evRecordStopped = 6
+	evNewProgramInfo = 7
+	evRecordFailed = 8
+	evRecordWriteError = 9
+	evNewEventInfo = 10
+	evRecordAborted = 11
+	evGstRecordEnded = 12
 
 	def __init__(self, ref):
 		self.getInstance = _Instances
@@ -599,8 +616,13 @@ class Session:
 		print('Session instantiateSummaryDialog')
 		if self.summary_desktop is not None:
 			self.pushSummary()
-			from Screens.SimpleSummary import SimpleSummary
-			summary = screen.createSummary() or SimpleSummary
+			try:
+				from Screens.SimpleSummary import SimpleSummary
+				simple_summary = SimpleSummary
+			except ImportError:  # OpenVix
+				from Screens.Screen import ScreenSummary
+				simple_summary = ScreenSummary
+			summary = screen.createSummary() or simple_summary
 			arguments = (screen,)
 			self.summary = self.doInstantiateDialog(summary, arguments, kwargs, self.summary_desktop)
 			self.summary.show()
@@ -658,9 +680,8 @@ def new_activateLanguage(self, index):
 		print('Selected language %s does not exist, fallback to de_DE!' % index)
 		index = 'de_DE'
 	self.lang[index] = ('Deutsch', 'de', 'DE', 'ISO-8859-15')
-	lang = self.lang[index]
 	self.activeLanguage = index
-	print('Activating language', lang)
+	print('Activating language de_DE')
 
 
 def new_getCurrent(self):
@@ -691,13 +712,24 @@ def start_session():
 		return _session
 
 	print('init language')
-	from Components.Language import Language
+	from Components.Language import Language, language
 	Language.activateLanguage = new_activateLanguage
-	Language().activateLanguage(0)
+	language.activateLanguage('de_DE')
+
+	try:  # OpenVix
+		import Components.ClientMode
+	except ImportError:
+		pass
+	else:
+		print('init client mode')
+		Components.ClientMode.InitClientMode()
 
 	print('init simple summary')
 	from Screens import InfoBar
-	from Screens.SimpleSummary import SimpleSummary
+	try:
+		from Screens.SimpleSummary import SimpleSummary
+	except ImportError:
+		pass
 
 	print('init parental')
 	import Components.ParentalControl
@@ -715,6 +747,14 @@ def start_session():
 	print('init setup devices')
 	import Components.SetupDevices
 	Components.SetupDevices.InitSetupDevices()
+
+	try:  # OpenVix
+		import Components.EpgConfig
+	except ImportError:
+		pass
+	else:
+		print('init epg config')
+		Components.EpgConfig.InitEPGConfig()
 
 	print('init usage')
 	import Components.UsageConfig

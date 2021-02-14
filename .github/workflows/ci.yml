@@ -69,7 +69,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        enigma2-version: ['openpli-develop', 'openpli-release-8.0', 'openatv-6.5', 'openatv-6.4']
+        enigma2-version: ['openpli-develop', 'openpli-release-8.0', 'openatv-6.5', 'openatv-6.4', 'openvix-dev']
     steps:
       - uses: actions/checkout@v2
       - uses: actions/checkout@v2
@@ -96,10 +96,16 @@ jobs:
           ref: '6.4'
           path: './enigma2'
         if: matrix.enigma2-version == 'openatv-6.4'
+      - uses: actions/checkout@v2
+        with:
+          repository: 'OpenViX/enigma2'
+          ref: 'Dev'
+          path: './enigma2'
+        if: matrix.enigma2-version == 'openvix-dev'
       - uses: actions/setup-python@v2
         with:
           python-version: '2.7'
-        if: matrix.enigma2-version == 'openpli-develop' || matrix.enigma2-version == 'openpli-release-8.0' || matrix.enigma2-version == 'openatv-6.4'
+        if: matrix.enigma2-version == 'openpli-develop' || matrix.enigma2-version == 'openpli-release-8.0' || matrix.enigma2-version == 'openatv-6.4' || matrix.enigma2-version == 'openvix-dev'
       - uses: actions/setup-python@v2
         with:
           python-version: '3.8'
@@ -110,17 +116,23 @@ jobs:
       - name: Install pyopenssl
         run: |
           pip install pyopenssl
-        if: matrix.enigma2-version == 'openatv-6.5' || matrix.enigma2-version == 'openatv-6.4'
+        if: matrix.enigma2-version == 'openatv-6.5' || matrix.enigma2-version == 'openatv-6.4' || matrix.enigma2-version == 'openvix-dev'
       - name: Setup plugin files for test
         run: |
           mkdir enigma2/lib/python/Plugins/Extensions/YouTube
           cp -R src/* enigma2/lib/python/Plugins/Extensions/YouTube
-      - name: Patch enigma
-        if: matrix.enigma2-version == 'openatv-6.5' || matrix.enigma2-version == 'openatv-6.4'
+      - name: Patch enigma step 1
         run: |
           cp test/RcModel.py enigma2/lib/python/Components
           sed -i 's/\/home/./g' enigma2/lib/python/Components/UsageConfig.py
           sed -i 's/config.crash.pystackonspinner.addNotifier/# config.crash.pystackonspinner.addNotifier/g' enigma2/lib/python/Components/UsageConfig.py
+        if: matrix.enigma2-version == 'openatv-6.5' || matrix.enigma2-version == 'openatv-6.4' || matrix.enigma2-version == 'openvix-dev'
+      - name: Patch enigma step 2
+        run: |
+          sed -i 's/\/root/./g' enigma2/lib/python/Components/UsageConfig.py
+          sed -i 's/\/usr/./g' enigma2/lib/python/Components/UsageConfig.py
+          sed -i 's/addNotifier(iAVSwitch/addNotifier(iAVSwitch.setPolicy169) #/g' enigma2/lib/python/Components/AVSwitch.py
+        if: matrix.enigma2-version == 'openvix-dev'
       - name: Test plugin screens load
         run: |
           PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py
