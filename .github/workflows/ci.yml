@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       python-changed: ${{ steps.python.outputs.changed }}
+      gui-changed: ${{ steps.gui.outputs.changed }}
       language-changed: ${{ steps.language.outputs.changed }}
     steps:
       - uses: actions/checkout@v2
@@ -21,12 +22,16 @@ jobs:
         with:
           paths: ./*.py ./src/*.py ./test/*.py
       - uses: marceloprado/has-changed-path@v1
+        id: gui
+        with:
+          paths: ./src/YouTubeUi.py ./src/YouTubeDownload.py
+      - uses: marceloprado/has-changed-path@v1
         id: language
         with:
           paths: ./po/*.po ./po/*.pot
   test-python:
     needs: check_source
-    if: needs.check_source.outputs.python-changed == 'true'
+    if: needs.check_source.outputs.python-changed == 'true' || contains(github.event.head_commit.message,'force-test')
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -49,7 +54,8 @@ jobs:
           python -O -m compileall ./src/
       - name: Check code with flake8
         run: |
-          flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./src/compat.py
+          flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./src/compat.py,./test/enigma.py
+          flake8 --ignore=W191,F401,E128,E501 --show-source --filename=./test/enigma.py
           flake8 --ignore=W191,F821,F401 --show-source --filename=./src/compat.py
       - name: Remove enigma2 imports and variables for test
         run: |
@@ -57,9 +63,70 @@ jobs:
       - name: Test code with pytest
         run: |
           pytest -rx -v
+  test-gui:
+    needs: test-python
+    if: needs.check_source.outputs.gui-changed == 'true' || contains(github.event.head_commit.message,'force-test')
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        enigma2-version: ['openpli-develop', 'openpli-release-8.0', 'openatv-6.5', 'openatv-6.4']
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          repository: 'OpenPLi/enigma2'
+          ref: 'develop'
+          path: './enigma2'
+        if: matrix.enigma2-version == 'openpli-develop'
+      - uses: actions/checkout@v2
+        with:
+          repository: 'OpenPLi/enigma2'
+          ref: 'release-8.0'
+          path: './enigma2'
+        if: matrix.enigma2-version == 'openpli-release-8.0'
+      - uses: actions/checkout@v2
+        with:
+          repository: 'openatv/enigma2'
+          ref: '6.5'
+          path: './enigma2'
+        if: matrix.enigma2-version == 'openatv-6.5'
+      - uses: actions/checkout@v2
+        with:
+          repository: 'openatv/enigma2'
+          ref: '6.4'
+          path: './enigma2'
+        if: matrix.enigma2-version == 'openatv-6.4'
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '2.7'
+        if: matrix.enigma2-version == 'openpli-develop' || matrix.enigma2-version == 'openpli-release-8.0' || matrix.enigma2-version == 'openatv-6.4'
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+        if: matrix.enigma2-version == 'openatv-6.5'
+      - name: Install twisted
+        run: |
+          pip install twisted
+      - name: Install pyopenssl
+        run: |
+          pip install pyopenssl
+        if: matrix.enigma2-version == 'openatv-6.5' || matrix.enigma2-version == 'openatv-6.4'
+      - name: Setup plugin files for test
+        run: |
+          mkdir enigma2/lib/python/Plugins/Extensions/YouTube
+          cp -R src/* enigma2/lib/python/Plugins/Extensions/YouTube
+      - name: Patch enigma
+        if: matrix.enigma2-version == 'openatv-6.5' || matrix.enigma2-version == 'openatv-6.4'
+        run: |
+          cp test/RcModel.py enigma2/lib/python/Components
+          sed -i 's/\/home/./g' enigma2/lib/python/Components/UsageConfig.py
+          sed -i 's/config.crash.pystackonspinner.addNotifier/# config.crash.pystackonspinner.addNotifier/g' enigma2/lib/python/Components/UsageConfig.py
+      - name: Test plugin screens load
+        run: |
+          PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py
   test-language:
     needs: check_source
-    if: needs.check_source.outputs.language-changed == 'true'
+    if: needs.check_source.outputs.language-changed == 'true' || contains(github.event.head_commit.message,'force-test')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -70,8 +137,8 @@ jobs:
         run: |
           find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
   deploy:
-    needs: [test-python, test-language]
-    if: always() && (needs.test-python.result == 'success' || needs.test-python.result == 'skipped') && (needs.test-language.result == 'success' || needs.test-language.result == 'skipped') && github.repository == 'Taapat/enigma2-plugin-youtube' && github.ref == 'refs/heads/master' && !contains(github.event.head_commit.message,'skip-release')
+    needs: [test-python, test-gui, test-language]
+    if: always() && (needs.test-python.result == 'success' || needs.test-python.result == 'skipped') && (needs.test-gui.result == 'success' || needs.test-gui.result == 'skipped') && (needs.test-language.result == 'success' || needs.test-language.result == 'skipped') && github.repository == 'Taapat/enigma2-plugin-youtube' && github.ref == 'refs/heads/master' && !contains(github.event.head_commit.message,'skip-release')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
