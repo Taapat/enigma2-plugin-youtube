@@ -99,7 +99,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
-          pip install twisted pyopenssl
+          pip install twisted pyopenssl service_identity
       - name: Setup plugin files for test
         run: |
           mkdir enigma2/lib/python/Plugins/Extensions/YouTube
