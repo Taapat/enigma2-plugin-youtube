@@ -17,15 +17,18 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2
-      - uses: marceloprado/has-changed-path@v1
+      - name: Check python code changes
+        uses: marceloprado/has-changed-path@v1
         id: python
         with:
           paths: ./*.py ./src/*.py ./test/*.py
-      - uses: marceloprado/has-changed-path@v1
+      - name: Check gui code changes
+        uses: marceloprado/has-changed-path@v1
         id: gui
         with:
           paths: ./src/YouTubeUi.py ./src/YouTubeDownload.py
-      - uses: marceloprado/has-changed-path@v1
+      - name: Check language file changes
+        uses: marceloprado/has-changed-path@v1
         id: language
         with:
           paths: ./po/*.po ./po/*.pot
@@ -78,13 +81,12 @@ jobs:
           - enigma2-version: 'openatv 6.5'
             python-version: 2.7
     steps:
+      - uses: actions/checkout@v2
       - name: Set enigma2 repository
         uses: jungwinter/split@v1
         id: split
         with:
           msg: ${{ matrix.enigma2-version }}
-      - name: Checkout plugin repository
-        uses: actions/checkout@v2
       - name: Checkout ${{ matrix.enigma2-version }} repository
         uses: actions/checkout@v2
         with:
@@ -130,7 +132,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get install gettext
-      - name: Compile sources
+      - name: Compile language files
         run: |
           find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
   deploy:
