@@ -13,15 +13,17 @@ def try_plugin_screens_load():
 	yt = session.open(YouTubeMain)
 	yt.ok()
 	yt.searchScreenCallback('video')
-	yt.ok()
+	yt.cancel()
 
 	print('Try YouTubeSetup')
 	from Plugins.Extensions.YouTube.YouTubeUi import YouTubeSetup
 	yt = session.open(YouTubeSetup)
+	yt.cancel()
 
 	print('Try YouTubeDownloadList')
 	from Plugins.Extensions.YouTube.YouTubeDownload import YouTubeDownloadList
 	yt = session.open(YouTubeDownloadList)
+	yt.close()
 
 
 try_plugin_screens_load()

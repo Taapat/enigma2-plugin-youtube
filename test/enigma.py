@@ -1,19 +1,14 @@
 from __future__ import print_function
 
 
-eSize = None
-gFont = None
 eWindowStyleManager = None
-loadPNG = None
 addFont = None
 eWindowStyleSkinned = None
 eButton = None
-eListboxPythonStringContent = None
 eSubtitleWidget = None
 iRecordableServicePtr = None
 iServiceInformation = None
 eRect = None
-getFontFaces = None
 eDVBCI_UI = None
 eVideoWidget = None
 getBestPlayableServiceReference = None
@@ -26,20 +21,18 @@ getBsodCounter = None
 resetBsodCounter = None
 
 
+RT_VALIGN_TOP = 0
 RT_HALIGN_LEFT = 1
 RT_HALIGN_RIGHT = 2
-RT_VALIGN_CENTER = 3
-RT_VALIGN_TOP = 4
-BT_SCALE = 5
-RT_HALIGN_CENTER = 6
-RT_VALIGN_BOTTOM = 7
-
+RT_HALIGN_CENTER = 4
+RT_VALIGN_CENTER = 16
+RT_VALIGN_BOTTOM = 32
+RT_WRAP = 64
+BT_SCALE = 4
 BT_KEEP_ASPECT_RATIO = 8
-RT_WRAP = 9
-
-BT_HALIGN_CENTER = 10
-BT_ALIGN_CENTER = 11
-BT_VALIGN_CENTER = 12
+BT_HALIGN_CENTER = 16
+BT_VALIGN_CENTER = 64
+BT_ALIGN_CENTER = BT_HALIGN_CENTER | BT_VALIGN_CENTER
 
 
 class _eAttr:
@@ -65,7 +58,6 @@ eDVBFrontendParametersTerrestrial = _eAttr()
 eDVBFrontendParametersATSC = _eAttr()
 iRdsDecoder = _eAttr()
 eDVBServicePMTHandler = _eAttr()
-ePoint = _eAttr()
 
 eDVBSatelliteLNBParameters = _eAttr()
 iDVBFrontend = _eAttr()
@@ -81,8 +73,6 @@ class eTimer:
 	def start(self, msec, singleshot=False):
 		print('start timer', msec, singleshot)
 		for x in self.timeout.callback:
-			if singleshot and x in self.timeout.callback:
-				self.timeout.callback.remove(x)
 			x()
 		for x in self.callback:
 			if singleshot and x in self.callback:
@@ -129,20 +119,36 @@ eRFmod = _eInstances()
 eDBoxLCD = _eInstances()
 
 
+def getFontFaces():
+	return ''
+
+
+def ePoint(x, y):
+	pass
+
+
+def eSize(x, y):
+	pass
+
+
 def eGetEnigmaDebugLvl():
 	return 6
 
 
-def loadPNG(*x):
-	pass
+def loadPNG(path, accel, cached):
+	return path.replace('/usr/lib/enigma2', './enigma2/lib')
 
 
-def loadJPG(*x):
-	pass
+def loadJPG(path, *x):
+	return path.replace('/usr/lib/enigma2', './enigma2/lib')
 
 
 def setPreferredTuner(x):
 	pass
+
+
+def gFont(x, y):
+	return ''
 
 
 def gRGB(x):
@@ -197,46 +203,6 @@ class pNavigation:
 		return ''
 
 
-class eListbox:
-	def __init__(self, *x):
-		self.selectionChanged = _Instances()
-
-	def setContent(self, x):
-		pass
-
-	def setWrapAround(self, x):
-		pass
-
-	def allowNativeKeys(self, x):
-		pass
-
-
-eListbox()
-
-
-class eWindow:
-	def __init__(self, *x):
-		self.getInstance = _Instances
-
-	def show(self):
-		pass
-
-	def hide(self):
-		pass
-
-	def size(self, x):
-		pass
-
-	def title(self, x):
-		pass
-
-	def position(self, x):
-		pass
-
-
-eWindow()
-
-
 class _eServiceEvent:
 	def setEPGLanguage(self, x):
 		pass
@@ -259,34 +225,6 @@ class ePicLoad:
 		pass
 
 	def getData(self):
-		pass
-
-
-class eLabel:
-	def __init__(self, *x):
-		pass
-
-	def setText(self, x):
-		pass
-
-	def font(self, x):
-		pass
-
-	def position(self, x):
-		pass
-
-	def size(self, x):
-		pass
-
-
-class eWidget:
-	def __init__(self, x):
-		pass
-
-	def move(self, x):
-		pass
-
-	def resize(self, x):
 		pass
 
 
@@ -323,6 +261,10 @@ eListboxPythonStringContent = eListboxPythonConfigContent
 
 
 class eListboxPythonMultiContent:
+	TYPE_PIXMAP_ALPHATEST = None
+	TYPE_TEXT = None
+	TYPE_PROGRESS = None
+
 	def __init__(self):
 		self.getItemSize = _getDesktop
 
@@ -347,6 +289,9 @@ class eListboxPythonMultiContent:
 	def setList(self, x):
 		pass
 
+	def setTemplate(self, x):
+		pass
+
 
 class _eDVBSatelliteEquipmentControl(_eInstances):
 	def __init__(self):
@@ -368,16 +313,16 @@ class eListboxServiceContent(_eInstances):
 
 
 class iPlayableService:
-	evStart = 1
-	evEnd = 2
-	evUpdatedInfo = 3
-	evVideoSizeChanged = 4
-	evUpdatedEventInfo = 5
-	evNewProgramInfo = 6
-	evCuesheetChanged = 7
-	evVideoGammaChanged = 8
-	evHBBTVInfo = 9
-	evTunedIn = 10
+	evStart = None
+	evEnd = None
+	evUpdatedInfo = None
+	evVideoSizeChanged = None
+	evUpdatedEventInfo = None
+	evNewProgramInfo = None
+	evCuesheetChanged = None
+	evVideoGammaChanged = None
+	evHBBTVInfo = None
+	evTunedIn = None
 
 
 class eConsoleAppContainer:
@@ -428,6 +373,9 @@ class getDesktop:
 	def bounds(self):
 		return _getDesktop()
 
+	def makeCompatiblePixmap(self, x):
+		pass
+
 
 class ePixmapPosition:
 	def x(self):
@@ -437,9 +385,9 @@ class ePixmapPosition:
 		return 0
 
 
-class ePixmap:
+class eWidget:
 	def __init__(self, x):
-		self.size = _getDesktop
+		pass
 
 	def show(self):
 		pass
@@ -447,15 +395,129 @@ class ePixmap:
 	def hide(self):
 		pass
 
-	def position(self):
+	def position(self, *x):
 		return ePixmapPosition()
+
+	def resize(self, x):
+		pass
+
+	def move(self, x):
+		pass
+
+	def size(self, x):
+		pass
+
+	def setZPosition(self, x):
+		pass
+
+	def setTransparent(self, x):
+		pass
+
+
+class eLabel(eWidget):
+	def __init__(self, *x):
+		pass
+
+	def setText(self, x):
+		pass
+
+	def font(self, x):
+		pass
+
+	def setHAlign(self, x):
+		pass
+
+	def alignLeft(self):
+		pass
+
+	def alignCenter(self):
+		pass
+
+	def alignRight(self):
+		pass
+
+	def alignBlock(self):
+		pass
+
+	def setVAlign(self, x):
+		pass
+
+	def alignTop(self):
+		pass
+
+	def alignBottom(self):
+		pass
+
+	def setFont(self, x):
+		pass
+
+
+class eListbox(eWidget):
+	def __init__(self, *x):
+		self.selectionChanged = _Instances()
+
+	def setContent(self, x):
+		pass
+
+	def setWrapAround(self, x):
+		pass
+
+	def allowNativeKeys(self, x):
+		pass
+
+	def setSelectionEnable(self, x):
+		pass
+
+	def setScrollbarMode(self, x):
+		pass
+
+	def getCurrentIndex(self):
+		return 0
+
+	def moveSelectionTo(self, x):
+		pass
+
+	def showOnDemand(self):
+		pass
+
+	def showAlways(self):
+		pass
+
+	def showNever(self):
+		pass
+
+	def showLeft(self):
+		pass
+
+
+class eWindow(eWidget):
+	def __init__(self, *x):
+		self.getInstance = _Instances
+		self.size = _getDesktop
+
+	def title(self, x):
+		pass
+
+	def setTitle(self, x):
+		pass
+
+
+class ePixmap(eWidget):
+	def __init__(self, x):
+		self.size = _getDesktop
+
+	def setAlphatest(self, x):
+		pass
+
+	def setPixmap(self, x):
+		pass
 
 
 class _eEPGCache:
-	MHW = 1
-	VIRGIN_NOWNEXT = 2
-	VIRGIN_SCHEDULE = 3
-	OPENTV = 4
+	MHW = 8
+	VIRGIN_NOWNEXT = 2048
+	VIRGIN_SCHEDULE = 4096
+	OPENTV = 16384
 
 	def __init__(self):
 		self.getInstance = _Instances
@@ -509,6 +571,7 @@ class eServiceReferenceDVB:
 
 
 class eServiceReference(_eAttr):
+	idInvalid = -1
 	isDirectory = 1
 	mustDescent = 2
 	canDescent = 4
@@ -518,9 +581,8 @@ class eServiceReference(_eAttr):
 	sort1 = 32
 	isMarker = 64
 	isGroup = 128
-	idInvalid = 256
 
-	idDVB = 512
+	idDVB = None
 
 	def __init__(self, *x):
 		self.getInstance = _Instances
@@ -539,18 +601,18 @@ class eServiceReference(_eAttr):
 
 
 class iRecordableService(_eAttr):
-	evStart = 1
-	evEnd = 2
-	evTunedIn = 3
-	evTuneFailed = 4
-	evRecordRunning = 5
-	evRecordStopped = 6
-	evNewProgramInfo = 7
-	evRecordFailed = 8
-	evRecordWriteError = 9
-	evNewEventInfo = 10
-	evRecordAborted = 11
-	evGstRecordEnded = 12
+	evStart = None
+	evEnd = None
+	evTunedIn = None
+	evTuneFailed = None
+	evRecordRunning = None
+	evRecordStopped = None
+	evNewProgramInfo = None
+	evRecordFailed = None
+	evRecordWriteError = None
+	evNewEventInfo = None
+	evRecordAborted = None
+	evGstRecordEnded = None
 
 	def __init__(self, ref):
 		self.getInstance = _Instances
@@ -568,72 +630,32 @@ eServiceCenter = _eServiceCenter()
 
 
 class Session:
-	def __init__(self, desktop=None, summary_desktop=None, navigation=None):
+	def __init__(self, desktop=None, navigation=None):
 		print('Session init')
 		self.desktop = desktop
-		self.summary_desktop = summary_desktop
 		self.nav = navigation
 		self.current_dialog = None
 		self.dialog_stack = []
-		self.summary_stack = []
-		self.summary = None
-		self.in_exec = False
 		from Screens.SessionGlobals import SessionGlobals
 		self.screen = SessionGlobals(self)
 
 	def execBegin(self, first=True, do_show=True):
 		print('Session execBegin')
-		assert not self.in_exec
-		self.in_exec = True
 		c = self.current_dialog
-
-		# when this is an execbegin after a execend of a "higher" dialog,
-		# popSummary already did the right thing.
-		if first:
-			self.instantiateSummaryDialog(c)
-
-		c.saveKeyboardMode()
 		c.execBegin()
-
-		# when execBegin opened a new dialog, don't bother showing the old one.
-		if c == self.current_dialog and do_show:
-			c.show()
 
 	def execEnd(self, last=True):
 		print('Session execEnd')
-		assert self.in_exec
-		self.in_exec = False
-
 		self.current_dialog.execEnd()
-		self.current_dialog.restoreKeyboardMode()
-		self.current_dialog.hide()
 
 	def instantiateDialog(self, screen, *arguments, **kwargs):
 		print('Session instantiateDialog')
 		return self.doInstantiateDialog(screen, arguments, kwargs, self.desktop)
 
-	def instantiateSummaryDialog(self, screen, **kwargs):
-		print('Session instantiateSummaryDialog')
-		if self.summary_desktop is not None:
-			self.pushSummary()
-			try:
-				from Screens.SimpleSummary import SimpleSummary
-				simple_summary = SimpleSummary
-			except ImportError:  # OpenVix
-				from Screens.Screen import ScreenSummary
-				simple_summary = ScreenSummary
-			summary = screen.createSummary() or simple_summary
-			arguments = (screen,)
-			self.summary = self.doInstantiateDialog(summary, arguments, kwargs, self.summary_desktop)
-			self.summary.show()
-			screen.addSummary(self.summary)
-
 	def doInstantiateDialog(self, screen, arguments, kwargs, desktop):
 		print('Session doInstantiateDialog')
 		# create dialog
 		dlg = screen(self, *arguments, **kwargs)
-		if dlg is None:
-			return
 		# read skin data
 		from skin import readSkin
 		readSkin(dlg, None, dlg.skinName, desktop)
@@ -656,10 +678,6 @@ class Session:
 
 	def open(self, screen, *arguments, **kwargs):
 		print('Session open')
-		if self.dialog_stack and not self.in_exec:
-			raise RuntimeError("modal open are allowed only from a screen which is modal!")
-			# ...unless it's the very first screen.
-
 		self.pushCurrent()
 		dlg = self.current_dialog = self.instantiateDialog(screen, *arguments, **kwargs)
 		dlg.isTmp = True
@@ -667,12 +685,10 @@ class Session:
 		self.execBegin()
 		return dlg
 
-	def pushSummary(self):
-		print('Session pushSummary')
-		if self.summary:
-			self.summary.hide()
-			self.summary_stack.append(self.summary)
-			self.summary = None
+	def close(self, screen, *retval):
+		assert screen == self.current_dialog
+		self.current_dialog.returnValue = retval
+		self.execEnd()
 
 
 def new_activateLanguage(self, index):
@@ -682,10 +698,6 @@ def new_activateLanguage(self, index):
 	self.lang[index] = ('Deutsch', 'de', 'DE', 'ISO-8859-15')
 	self.activeLanguage = index
 	print('Activating language de_DE')
-
-
-def new_getCurrent(self):
-	return self._List__list and self._List__list[0]
 
 
 def new_index(self, value):
@@ -770,10 +782,6 @@ def start_session():
 	config.misc.prev_wakeup_time = ConfigInteger(default=0)
 	config.misc.prev_wakeup_time_type = ConfigInteger(default=0)
 
-	print('change list')
-	from Components.Sources.List import List
-	List.getCurrent = new_getCurrent
-
-	_session = Session(getDesktop(1), getDesktop(2), Navigation())
+	_session = Session(getDesktop(1), Navigation())
 
 	return _session
