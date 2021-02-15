@@ -97,13 +97,9 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install twisted
+      - name: Install dependencies
         run: |
-          pip install twisted
-      - name: Install pyopenssl
-        if: steps.split.outputs._0 == 'openatv' || steps.split.outputs._0 == 'OpenViX'
-        run: |
-          pip install pyopenssl
+          pip install twisted pyopenssl
       - name: Setup plugin files for test
         run: |
           mkdir enigma2/lib/python/Plugins/Extensions/YouTube
