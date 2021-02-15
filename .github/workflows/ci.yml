@@ -69,70 +69,55 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        enigma2-version: ['openpli-develop', 'openpli-release-8.0', 'openatv-6.5', 'openatv-6.4', 'openvix-dev']
+        enigma2-version: ['OpenPLi develop', 'OpenPLi release-8.0', 'openatv 6.5', 'openatv 6.4', 'OpenViX Dev']
+        python-version: [2.7]
+        include:
+          - enigma2-version: 'openatv 6.5'
+            python-version: 3.8
+        exclude:
+          - enigma2-version: 'openatv 6.5'
+            python-version: 2.7
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/checkout@v2
+      - name: Set enigma2 repository
+        uses: jungwinter/split@v1
+        id: split
         with:
-          repository: 'OpenPLi/enigma2'
-          ref: 'develop'
+          msg: ${{ matrix.enigma2-version }}
+      - name: Checkout plugin repository
+        uses: actions/checkout@v2
+      - name: Checkout ${{ matrix.enigma2-version }} repository
+        uses: actions/checkout@v2
+        with:
+          repository: '${{ steps.split.outputs._0 }}/enigma2'
+          ref: ${{ steps.split.outputs._1 }}
           path: './enigma2'
-        if: matrix.enigma2-version == 'openpli-develop'
-      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
         with:
-          repository: 'OpenPLi/enigma2'
-          ref: 'release-8.0'
-          path: './enigma2'
-        if: matrix.enigma2-version == 'openpli-release-8.0'
-      - uses: actions/checkout@v2
-        with:
-          repository: 'openatv/enigma2'
-          ref: '6.5'
-          path: './enigma2'
-        if: matrix.enigma2-version == 'openatv-6.5'
-      - uses: actions/checkout@v2
-        with:
-          repository: 'openatv/enigma2'
-          ref: '6.4'
-          path: './enigma2'
-        if: matrix.enigma2-version == 'openatv-6.4'
-      - uses: actions/checkout@v2
-        with:
-          repository: 'OpenViX/enigma2'
-          ref: 'Dev'
-          path: './enigma2'
-        if: matrix.enigma2-version == 'openvix-dev'
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '2.7'
-        if: matrix.enigma2-version == 'openpli-develop' || matrix.enigma2-version == 'openpli-release-8.0' || matrix.enigma2-version == 'openatv-6.4' || matrix.enigma2-version == 'openvix-dev'
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
-        if: matrix.enigma2-version == 'openatv-6.5'
+          python-version: ${{ matrix.python-version }}
       - name: Install twisted
         run: |
           pip install twisted
       - name: Install pyopenssl
+        if: steps.split.outputs._0 == 'openatv' || steps.split.outputs._0 == 'OpenViX'
         run: |
           pip install pyopenssl
-        if: matrix.enigma2-version == 'openatv-6.5' || matrix.enigma2-version == 'openatv-6.4' || matrix.enigma2-version == 'openvix-dev'
       - name: Setup plugin files for test
         run: |
           mkdir enigma2/lib/python/Plugins/Extensions/YouTube
           cp -R src/* enigma2/lib/python/Plugins/Extensions/YouTube
       - name: Patch enigma step 1
+        if: steps.split.outputs._0 == 'openatv' || steps.split.outputs._0 == 'OpenViX'
         run: |
           cp test/RcModel.py enigma2/lib/python/Components
           sed -i 's/\/home/./g' enigma2/lib/python/Components/UsageConfig.py
           sed -i 's/config.crash.pystackonspinner.addNotifier/# config.crash.pystackonspinner.addNotifier/g' enigma2/lib/python/Components/UsageConfig.py
-        if: matrix.enigma2-version == 'openatv-6.5' || matrix.enigma2-version == 'openatv-6.4' || matrix.enigma2-version == 'openvix-dev'
       - name: Patch enigma step 2
+        if: steps.split.outputs._0 == 'OpenViX'
         run: |
           sed -i 's/\/root/./g' enigma2/lib/python/Components/UsageConfig.py
           sed -i 's/\/usr/./g' enigma2/lib/python/Components/UsageConfig.py
           sed -i 's/addNotifier(iAVSwitch/addNotifier(iAVSwitch.setPolicy169) #/g' enigma2/lib/python/Components/AVSwitch.py
-        if: matrix.enigma2-version == 'openvix-dev'
       - name: Test plugin screens load
         run: |
           PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py
