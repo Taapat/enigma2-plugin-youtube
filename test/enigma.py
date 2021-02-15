@@ -135,7 +135,7 @@ def eGetEnigmaDebugLvl():
 	return 6
 
 
-def loadPNG(path, accel, cached):
+def loadPNG(path, *x):
 	return path.replace('/usr/lib/enigma2', './enigma2/lib')
 
 
