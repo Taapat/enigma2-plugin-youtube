@@ -12,6 +12,8 @@ def try_plugin_screens_load():
 	from Plugins.Extensions.YouTube.YouTubeUi import YouTubeMain
 	yt = session.open(YouTubeMain)
 	yt.ok()
+	yt.ok()
+	session.current_dialog.close('video')
 	yt.searchScreenCallback('video')
 	yt.cancel()
 

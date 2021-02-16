@@ -244,7 +244,6 @@ class eListboxPythonConfigContent:
 		pass
 
 	def getCurrentSelection(self):
-		print('getCurrentSelection', self.__list[0])
 		return self.__list and self.__list[0]
 
 	def getCurrentSelectionIndex(self):
@@ -253,8 +252,11 @@ class eListboxPythonConfigContent:
 	def invalidateEntry(self, x):
 		pass
 
-	def setList(self, x):
-		self.__list = x
+	def setList(self, _list):
+		if _list:
+			global _session
+			self.__list = _list
+			_list[0][1].onSelect(_session)
 
 
 eListboxPythonStringContent = eListboxPythonConfigContent
@@ -404,8 +406,8 @@ class eWidget:
 	def move(self, x):
 		pass
 
-	def size(self, x):
-		pass
+	def size(self, *x):
+		return _getDesktop()
 
 	def setZPosition(self, x):
 		pass
@@ -451,10 +453,22 @@ class eLabel(eWidget):
 	def setFont(self, x):
 		pass
 
+	def getNoWrap(self):
+		pass
+
+	def setNoWrap(self, x):
+		pass
+
+	def calculateSize(self):
+		return _getDesktop()
+
 
 class eListbox(eWidget):
 	def __init__(self, *x):
 		self.selectionChanged = _Instances()
+
+	def get(self):
+		return []
 
 	def setContent(self, x):
 		pass
@@ -677,7 +691,7 @@ class Session:
 		return dlg
 
 	def open(self, screen, *arguments, **kwargs):
-		print('Session open')
+		print('Session open ', screen)
 		self.pushCurrent()
 		dlg = self.current_dialog = self.instantiateDialog(screen, *arguments, **kwargs)
 		dlg.isTmp = True
@@ -686,6 +700,7 @@ class Session:
 		return dlg
 
 	def close(self, screen, *retval):
+		print('Session close', screen.__class__.__name__)
 		assert screen == self.current_dialog
 		self.current_dialog.returnValue = retval
 		self.execEnd()
