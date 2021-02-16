@@ -315,7 +315,7 @@ class YouTubeVideoUrl():
 
 	def _real_extract(self, video_id):
 		webpage = self._download_webpage(
-				'https://www.youtube.com/watch?v=%s' % video_id)
+				'https://www.youtube.com/watch?v=%s&bpctr=9999999999' % video_id)
 		if not webpage:
 			raise Exception('Video webpage not found for!')
 
