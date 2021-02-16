@@ -3,8 +3,8 @@ name: build
 on:
   push:
     paths-ignore:
-      - "README.md"
-      - ".travis.yml"
+      - 'README.md'
+      - '.travis.yml'
 
 jobs:
   check_source:
@@ -34,7 +34,7 @@ jobs:
           paths: ./po/*.po ./po/*.pot
   test-python:
     needs: check_source
-    if: needs.check_source.outputs.python-changed == "true" || contains(github.event.head_commit.message,"force-test")
+    if: needs.check_source.outputs.python-changed == 'true' || contains(github.event.head_commit.message,'force-test')
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -46,7 +46,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Upgrade pip
-        if: matrix.python-version != "2.7"
+        if: matrix.python-version != '2.7'
         run: |
           python -m pip install --upgrade pip
       - name: Install dependencies
@@ -68,17 +68,17 @@ jobs:
           pytest -rx -v
   test-gui:
     needs: test-python
-    if: needs.check_source.outputs.gui-changed == "true" || contains(github.event.head_commit.message,"force-test")
+    if: needs.check_source.outputs.gui-changed == 'true' || contains(github.event.head_commit.message,'force-test')
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        enigma2-version: ["OpenPLi develop", "OpenPLi release-8.0", "openatv 6.5", "openatv 6.4", "OpenViX Dev"]
+        enigma2-version: ['OpenPLi develop', 'OpenPLi release-8.0', 'openatv 6.5', 'openatv 6.4', 'OpenViX Dev']
         python-version: [2.7]
         include:
-          - enigma2-version: "openatv 6.5"
+          - enigma2-version: 'openatv 6.5'
             python-version: 3.8
         exclude:
-          - enigma2-version: "openatv 6.5"
+          - enigma2-version: 'openatv 6.5'
             python-version: 2.7
     steps:
       - uses: actions/checkout@v2
@@ -90,9 +90,9 @@ jobs:
       - name: Checkout ${{ matrix.enigma2-version }} repository
         uses: actions/checkout@v2
         with:
-          repository: "${{ steps.split.outputs._0 }}/enigma2"
+          repository: '${{ steps.split.outputs._0 }}/enigma2'
           ref: ${{ steps.split.outputs._1 }}
-          path: "./enigma2"
+          path: './enigma2'
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -105,23 +105,23 @@ jobs:
           mkdir enigma2/lib/python/Plugins/Extensions/YouTube
           cp -R src/* enigma2/lib/python/Plugins/Extensions/YouTube
       - name: Patch enigma step 1
-        if: steps.split.outputs._0 == "openatv" || steps.split.outputs._0 == "OpenViX"
+        if: steps.split.outputs._0 == 'openatv' || steps.split.outputs._0 == 'OpenViX'
         run: |
           cp test/RcModel.py enigma2/lib/python/Components
-          sed -i "s/\/home/./g" enigma2/lib/python/Components/UsageConfig.py
-          sed -i "s/config.crash.pystackonspinner.addNotifier/# config.crash.pystackonspinner.addNotifier/g" enigma2/lib/python/Components/UsageConfig.py
+          sed -i 's/\/home/./g' enigma2/lib/python/Components/UsageConfig.py
+          sed -i 's/config.crash.pystackonspinner.addNotifier/# config.crash.pystackonspinner.addNotifier/g' enigma2/lib/python/Components/UsageConfig.py
       - name: Patch enigma step 2
-        if: steps.split.outputs._0 == "OpenViX"
+        if: steps.split.outputs._0 == 'OpenViX'
         run: |
-          sed -i "s/\/root/./g" enigma2/lib/python/Components/UsageConfig.py
-          sed -i "s/\/usr/./g" enigma2/lib/python/Components/UsageConfig.py
-          sed -i "s/addNotifier(iAVSwitch/addNotifier(iAVSwitch.setPolicy169) #/g" enigma2/lib/python/Components/AVSwitch.py
+          sed -i 's/\/root/./g' enigma2/lib/python/Components/UsageConfig.py
+          sed -i 's/\/usr/./g' enigma2/lib/python/Components/UsageConfig.py
+          sed -i 's/addNotifier(iAVSwitch/addNotifier(iAVSwitch.setPolicy169) #/g' enigma2/lib/python/Components/AVSwitch.py
       - name: Test plugin screens load
         run: |
           PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py
   test-language:
     needs: check_source
-    if: needs.check_source.outputs.language-changed == "true" || contains(github.event.head_commit.message,"force-test")
+    if: needs.check_source.outputs.language-changed == 'true' || contains(github.event.head_commit.message,'force-test')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -130,10 +130,10 @@ jobs:
           sudo apt-get install gettext
       - name: Compile language files
         run: |
-          find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
+          find ./po -type f -name '*.po' -print -exec msgfmt {} -o {}.mo \;
   deploy:
     needs: [test-python, test-gui, test-language]
-    if: always() && !contains(github.event.head_commit.message,"skip-release") && (needs.test-python.result == "success" || needs.test-python.result == "skipped") && (needs.test-gui.result == "success" || needs.test-gui.result == "skipped") && (needs.test-language.result == "success" || needs.test-language.result == "skipped") && github.repository == "Taapat/enigma2-plugin-youtube" && github.ref == "refs/heads/master"
+    if: always() && !contains(github.event.head_commit.message,'skip-release') && (needs.test-python.result == 'success' || needs.test-python.result == 'skipped') && (needs.test-gui.result == 'success' || needs.test-gui.result == 'skipped') && (needs.test-language.result == 'success' || needs.test-language.result == 'skipped') && github.repository == 'Taapat/enigma2-plugin-youtube' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -142,7 +142,7 @@ jobs:
       - name: Set up Python 2.7
         uses: actions/setup-python@v2
         with:
-          python-version: "2.7"
+          python-version: '2.7'
       - name: Install dependencies
         run: |
           sudo apt-get install gettext
@@ -161,18 +161,18 @@ jobs:
           cp -r build/lib/* deploy/data/usr/lib/enigma2/python/Plugins
           mkdir -p deploy/data/etc/enigma2
           cp YouTube.key deploy/data/etc/enigma2
-          sed -i "s/Version:/Version: h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0/" deploy/control/control
+          sed -i 's/Version:/Version: h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0/' deploy/control/control
           mkdir ipk
       - name: Build data package
-        working-directory: "./deploy/data"
+        working-directory: './deploy/data'
         run: |
           tar --numeric-owner --group=0 --owner=0 -czf ../data.tar.gz ./*
       - name: Build control package
-        working-directory: "./deploy/control"
+        working-directory: './deploy/control'
         run: |
           tar --numeric-owner --group=0 --owner=0 -czf ../control.tar.gz ./*
       - name: Build ipk package
-        working-directory: "./deploy"
+        working-directory: './deploy'
         run: |
           echo 2.0 > debian-binary
           ar rv ../ipk/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk debian-binary data.tar.gz control.tar.gz
@@ -201,5 +201,5 @@ jobs:
           host: ${{ secrets.FTP_SERVER }}
           user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          localDir: "ipk"
+          localDir: 'ipk'
           remoteDir: ${{ secrets.FTP_DIR }}
