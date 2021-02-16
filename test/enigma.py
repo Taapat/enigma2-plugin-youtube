@@ -515,6 +515,9 @@ class eWindow(eWidget):
 	def setTitle(self, x):
 		pass
 
+	def setAnimationMode(self, x):
+		pass
+
 
 class ePixmap(eWidget):
 	def __init__(self, x):
