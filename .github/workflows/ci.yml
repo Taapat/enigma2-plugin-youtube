@@ -130,10 +130,10 @@ jobs:
           sudo apt-get install gettext
       - name: Compile language files
         run: |
-          find ./po -type f -name "*.po" -print -exec msgfmt {} -o {}.mo \;
+          find ./po -type f -name '*.po' -print -exec msgfmt {} -o {}.mo \;
   deploy:
     needs: [test-python, test-gui, test-language]
-    if: always() && (needs.test-python.result == 'success' || needs.test-python.result == 'skipped') && (needs.test-gui.result == 'success' || needs.test-gui.result == 'skipped') && (needs.test-language.result == 'success' || needs.test-language.result == 'skipped') && github.repository == 'Taapat/enigma2-plugin-youtube' && github.ref == 'refs/heads/master' && !contains(github.event.head_commit.message,'skip-release')
+    if: always() && !contains(github.event.head_commit.message,'skip-release') && (needs.test-python.result == 'success' || needs.test-python.result == 'skipped') && (needs.test-gui.result == 'success' || needs.test-gui.result == 'skipped') && (needs.test-language.result == 'success' || needs.test-language.result == 'skipped') && github.repository == 'Taapat/enigma2-plugin-youtube' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -152,12 +152,9 @@ jobs:
           python -O -m compileall build/lib/Extensions/YouTube/
       - name: Set git variables
         run: |
-          SRCPV="git$(git rev-list --count HEAD)"
-          echo "SRCPV=$SRCPV" >> $GITHUB_ENV
-          SHA7="${GITHUB_SHA::7}"
-          echo "SHA7=$SHA7" >> $GITHUB_ENV
-          COMMIT_SUBJECT=$(git log -1 --pretty=format:%s)
-          echo "COMMIT_SUBJECT=$COMMIT_SUBJECT" >> $GITHUB_ENV
+          echo 'SRCPV=git$(git rev-list --count HEAD)' >> $GITHUB_ENV
+          echo 'SHA7=${GITHUB_SHA::7}' >> $GITHUB_ENV
+          echo 'COMMIT_SUBJECT=$(git log -1 --pretty=format:%s)' >> $GITHUB_ENV
       - name: Create plugin package files
         run: |
           mkdir -p deploy/data/usr/lib/enigma2/python/Plugins
@@ -167,15 +164,15 @@ jobs:
           sed -i 's/Version:/Version: h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0/' deploy/control/control
           mkdir ipk
       - name: Build data package
-        working-directory: "./deploy/data"
+        working-directory: './deploy/data'
         run: |
           tar --numeric-owner --group=0 --owner=0 -czf ../data.tar.gz ./*
       - name: Build control package
-        working-directory: "./deploy/control"
+        working-directory: './deploy/control'
         run: |
           tar --numeric-owner --group=0 --owner=0 -czf ../control.tar.gz ./*
       - name: Build ipk package
-        working-directory: "./deploy"
+        working-directory: './deploy'
         run: |
           echo 2.0 > debian-binary
           ar rv ../ipk/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk debian-binary data.tar.gz control.tar.gz
@@ -204,5 +201,5 @@ jobs:
           host: ${{ secrets.FTP_SERVER }}
           user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          localDir: "ipk"
+          localDir: 'ipk'
           remoteDir: ${{ secrets.FTP_DIR }}
