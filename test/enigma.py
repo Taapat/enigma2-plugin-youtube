@@ -337,6 +337,7 @@ class _eEnv:
 	def resolve(self, x):
 		x = x.replace('${datadir}/enigma2/po/', './enigma2/po/')
 		x = x.replace('${datadir}/enigma2/', './enigma2/data/')
+		x = x.replace('${datadir}/keymaps/', './enigma2/data/')
 		x = x.replace('${sysconfdir}/enigma2/', '/tmp/')
 		x = x.replace('${sysconfdir}/', '/tmp/')
 		x = x.replace('${libdir}/enigma2/', './enigma2/lib/')
