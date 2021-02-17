@@ -120,6 +120,7 @@ eDVBVolumecontrol = _eInstances()
 eRCInput = _eInstances()
 eRFmod = _eInstances()
 eDBoxLCD = _eInstances()
+gMainDC = _eInstances()
 
 
 def getFontFaces():
