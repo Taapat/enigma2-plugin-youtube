@@ -20,6 +20,9 @@ eDVBFrontend = None
 getBsodCounter = None
 resetBsodCounter = None
 
+ePythonOutput = None
+iPlayableServicePtr = None
+
 
 RT_VALIGN_TOP = 0
 RT_HALIGN_LEFT = 1
@@ -400,6 +403,9 @@ class getDesktop:
 
 	def makeCompatiblePixmap(self, x):
 		pass
+
+	def getStyleID(self):
+		return 1
 
 
 class ePixmapPosition:
