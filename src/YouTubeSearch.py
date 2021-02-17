@@ -31,13 +31,13 @@ class YouTubeVirtualKeyBoard(VirtualKeyBoard):
 		VirtualKeyBoard.__init__(self, session, title=title, text=text)
 		self.skinName = ['YouTubeVirtualKeyBoard', 'VirtualKeyBoard']
 		self.searchValue = GoogleSuggestionsConfigText(default=text,
-			updateSuggestions=self.updateSuggestions)
+				updateSuggestions=self.updateSuggestions)
 		if text:
 			# Force a search by setting the old search value to ""
 			self.searchValue.value = ""
 			self.tryGetSuggestions()
 
-	#  Replace okClicked on OpenPLi develop
+	# Replace okClicked on OpenPLi develop
 	def processSelect(self):
 		VirtualKeyBoard.processSelect(self)
 		self.tryGetSuggestions()
@@ -213,12 +213,11 @@ class YouTubeSearch(Screen, ConfigListScreen):
 	def moveHelpWindow(self):
 		helpwindowpos = self["HelpWindow"].getPosition()
 		self['config'].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],
-			helpwindowpos[1]))
+				helpwindowpos[1]))
 
 	def setSearchEntry(self):
-		searchEntry = [getConfigListEntry(_('Search'), self.searchValue)]
-		self['config'].list = searchEntry
-		self['config'].l.setList(searchEntry)
+		self['config'].setList([getConfigListEntry(_('Search'),
+				self.searchValue)])
 
 	def updateSuggestions(self, suggestions):
 		self['list'].setList(suggestions)
@@ -284,7 +283,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			sellist = ((_('YouTube setup'), 'setup'),
 					(_('Delete this entry'), 'delete'),)
 			self.session.openWithCallback(self.menuCallback,
-				ChoiceBox, title=title, list=sellist)
+					ChoiceBox, title=title, list=sellist)
 		else:
 			self.menuCallback('setup')
 
@@ -313,7 +312,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 	def openKeyboard(self):
 		self['config'].getCurrent()[1].help_window.instance.hide()
 		self.session.openWithCallback(self.keyBoardCallback, YouTubeVirtualKeyBoard,
-			text=self.searchValue.value)
+				text=self.searchValue.value)
 
 	def keyBoardCallback(self, name):
 		config = self['config'].getCurrent()[1]
