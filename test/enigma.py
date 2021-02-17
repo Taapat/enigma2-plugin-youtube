@@ -254,7 +254,6 @@ class eListboxPythonConfigContent:
 
 	def setList(self, _list):
 		if _list:
-			global _session
 			self.__list = _list
 			_list[0][1].onSelect(_session)
 
@@ -661,10 +660,6 @@ class Session:
 		c = self.current_dialog
 		c.execBegin()
 
-	def execEnd(self, last=True):
-		print('Session execEnd')
-		self.current_dialog.execEnd()
-
 	def instantiateDialog(self, screen, *arguments, **kwargs):
 		print('Session instantiateDialog')
 		return self.doInstantiateDialog(screen, arguments, kwargs, self.desktop)
@@ -685,7 +680,7 @@ class Session:
 		print('Session pushCurrent')
 		if self.current_dialog is not None:
 			self.dialog_stack.append((self.current_dialog, self.current_dialog.shown))
-			self.execEnd(last=False)
+			self.current_dialog.execEnd()
 
 	def openWithCallback(self, callback, screen, *arguments, **kwargs):
 		print('Session openWithCallback')
@@ -697,7 +692,6 @@ class Session:
 		print('Session open ', screen)
 		self.pushCurrent()
 		dlg = self.current_dialog = self.instantiateDialog(screen, *arguments, **kwargs)
-		dlg.isTmp = True
 		dlg.callback = None
 		self.execBegin()
 		return dlg
@@ -705,8 +699,18 @@ class Session:
 	def close(self, screen, *retval):
 		print('Session close', screen.__class__.__name__)
 		assert screen == self.current_dialog
-		self.current_dialog.returnValue = retval
-		self.execEnd()
+		self.current_dialog.execEnd()
+		callback = self.current_dialog.callback
+		del self.current_dialog.callback
+
+		if self.dialog_stack:
+			(self.current_dialog, do_show) = self.dialog_stack.pop()
+			self.execBegin(first=False, do_show=do_show)
+		else:
+			self.current_dialog = None
+
+		if callback is not None:
+			callback(*retval)
 
 
 def new_activateLanguage(self, index):

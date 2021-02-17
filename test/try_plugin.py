@@ -14,7 +14,8 @@ def try_plugin_screens_load():
 	yt.ok()
 	yt.ok()
 	session.current_dialog.close('video')
-	yt.searchScreenCallback('video')
+	yt.cancel()
+	yt.cancel()
 	yt.cancel()
 
 	print('Try YouTubeSetup')
