@@ -8,7 +8,7 @@ def try_plugin_screens_load():
 	print('Try start session')
 	session = enigma.start_session()
 
-	print('Try YouTubeMain')
+	print('Try YouTube screens load')
 	from Plugins.Extensions.YouTube.YouTubeUi import YouTubeMain
 	yt = session.open(YouTubeMain)
 	yt.ok()
@@ -16,17 +16,11 @@ def try_plugin_screens_load():
 	session.current_dialog.close('video')
 	yt.cancel()
 	yt.cancel()
+	yt.openMenu()
+	session.current_dialog.cancel()
+	yt.menuCallback(('', 'download_list'))
+	session.current_dialog.close()
 	yt.cancel()
-
-	print('Try YouTubeSetup')
-	from Plugins.Extensions.YouTube.YouTubeUi import YouTubeSetup
-	yt = session.open(YouTubeSetup)
-	yt.cancel()
-
-	print('Try YouTubeDownloadList')
-	from Plugins.Extensions.YouTube.YouTubeDownload import YouTubeDownloadList
-	yt = session.open(YouTubeDownloadList)
-	yt.close()
 
 
 try_plugin_screens_load()
