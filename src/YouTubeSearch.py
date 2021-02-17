@@ -355,7 +355,10 @@ class GoogleSuggestionsConfigText(ConfigText):
 		if suggestionsList:
 			for suggestion in suggestionsList[1]:
 				if suggestion:
-					suggestions.append((str(suggestion), None))
+					try:
+						suggestions.append((str(suggestion), None))
+					except Exception as e:
+						print('[YouTubeSearch] Error in set suggestion', e)
 		self.updateSuggestions(suggestions)
 		if queryValue != self.value:
 			self.getGoogleSuggestions()
