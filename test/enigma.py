@@ -135,14 +135,6 @@ def eGetEnigmaDebugLvl():
 	return 6
 
 
-def loadPNG(path, *x):
-	return path.replace('/usr/lib/enigma2', './enigma2/lib')
-
-
-def loadJPG(path, *x):
-	return path.replace('/usr/lib/enigma2', './enigma2/lib')
-
-
 def setPreferredTuner(x):
 	pass
 
@@ -353,6 +345,38 @@ class _eEnv:
 eEnv = _eEnv()
 
 
+class _getPicture:
+	def height(self):
+		return 60
+
+	def width(self):
+		return 100
+
+	def left(self):
+		return 0
+
+	def top(self):
+		return 0
+
+
+class loadPNG:
+	def __init__(self, path, *x):
+		self.size = _getPicture
+		self.return_path(path)
+
+	def return_path(self, path):
+		return path.replace('/usr/lib/enigma2', './enigma2/lib')
+
+
+class loadJPG:
+	def __init__(self, path, *x):
+		self.size = _getPicture
+		self.return_path(path)
+
+	def return_path(self, path):
+		return path.replace('/usr/lib/enigma2', './enigma2/lib')
+
+
 class _getDesktop:
 	def height(self):
 		return 720
@@ -461,6 +485,9 @@ class eLabel(eWidget):
 	def calculateSize(self):
 		return _getDesktop()
 
+	def setMarkedPos(self, x):
+		pass
+
 
 class eListbox(eWidget):
 	def __init__(self, *x):
@@ -520,7 +547,7 @@ class eWindow(eWidget):
 
 class ePixmap(eWidget):
 	def __init__(self, x):
-		self.size = _getDesktop
+		self.size = _getPicture
 
 	def setAlphatest(self, x):
 		pass
@@ -656,16 +683,14 @@ class Session:
 		self.screen = SessionGlobals(self)
 
 	def execBegin(self, first=True, do_show=True):
-		print('Session execBegin')
+		print('Session exec begin')
 		c = self.current_dialog
 		c.execBegin()
 
 	def instantiateDialog(self, screen, *arguments, **kwargs):
-		print('Session instantiateDialog')
 		return self.doInstantiateDialog(screen, arguments, kwargs, self.desktop)
 
 	def doInstantiateDialog(self, screen, arguments, kwargs, desktop):
-		print('Session doInstantiateDialog')
 		# create dialog
 		dlg = screen(self, *arguments, **kwargs)
 		# read skin data
@@ -677,7 +702,6 @@ class Session:
 		return dlg
 
 	def pushCurrent(self):
-		print('Session pushCurrent')
 		if self.current_dialog is not None:
 			self.dialog_stack.append((self.current_dialog, self.current_dialog.shown))
 			self.current_dialog.execEnd()
@@ -715,7 +739,7 @@ class Session:
 
 def new_activateLanguage(self, index):
 	if index not in self.lang:
-		print('Selected language %s does not exist, fallback to de_DE!' % index)
+		print('Selected language does not exist, fallback to de_DE!')
 		index = 'de_DE'
 	self.lang[index] = ('Deutsch', 'de', 'DE', 'ISO-8859-15')
 	self.activeLanguage = index
