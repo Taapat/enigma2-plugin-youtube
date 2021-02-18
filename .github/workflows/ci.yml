@@ -41,7 +41,7 @@ jobs:
           paths: ./po/*.po ./po/*.pot
   test-python:
     needs: check_source
-    if: github.event_name != 'schedule' && needs.check_source.outputs.python-changed == 'true' || contains(github.event.head_commit.message,'force-test')
+    if: needs.check_source.outputs.python-changed == 'true' || contains(github.event.head_commit.message,'force-test')
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -76,7 +76,7 @@ jobs:
           pytest -rx -v
   test-gui:
     needs: test-python
-    if: (github.event_name == 'schedule' && github.ref == 'refs/heads/master') || needs.check_source.outputs.gui-changed == 'true' || contains(github.event.head_commit.message,'force-test')
+    if: needs.check_source.outputs.gui-changed == 'true' || contains(github.event.head_commit.message,'force-test') || (always() && github.event_name == 'schedule' && github.ref == 'refs/heads/master')
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -129,7 +129,7 @@ jobs:
           PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py
   test-language:
     needs: check_source
-    if: github.event_name != 'schedule' || needs.check_source.outputs.language-changed == 'true' || contains(github.event.head_commit.message,'force-test')
+    if: needs.check_source.outputs.language-changed == 'true' || contains(github.event.head_commit.message,'force-test')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
