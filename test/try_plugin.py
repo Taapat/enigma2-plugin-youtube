@@ -6,14 +6,11 @@ import sys
 import enigma
 
 
-try:
+if sys.version_info[0] == 2:
 	reload(sys)
-except NameError:  # Python3
-	pass
-else:
 	sys.setdefaultencoding('utf-8')
 
-	
+
 def try_plugin_screens_load():
 	print('Try start session')
 	session = enigma.start_session()
