@@ -1,4 +1,9 @@
-""" Start test with PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py """
+"""
+Minimal plugin screens startup and functional testing on various enigma2 images.
+Clone enigma2 image in folder ./enigma2 and start test with
+PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py
+"""
+
 from __future__ import print_function
 
 import sys
