@@ -111,7 +111,6 @@ eDVBCIInterfaces = _eInstances()
 Misc_Options = _eInstances()
 eStreamServer = _eInstances()
 eDVBDB = _eInstances()
-eActionMap = _eInstances()
 fontRenderClass = _eInstances()
 eBackgroundFileEraser = _eInstances()
 eDVBLocalTimeHandler = _eInstances()
@@ -683,6 +682,35 @@ class _eServiceCenter:
 eServiceCenter = _eServiceCenter()
 
 
+class eActionMap:
+	@classmethod
+	def getInstance(self):
+		return self.instance
+
+	instance = None
+
+	def __init__(self):
+		eActionMap.instance = self
+
+	def bindKey(self, *x):
+		pass
+
+	def bindToggle(self, *x):
+		pass
+
+	def bindTranslation(self, *x):
+		pass
+
+	def bindAction(self, *x):
+		pass
+
+	def unbindAction(self, *x):
+		pass
+
+
+eActionMap()
+
+
 class Session:
 	def __init__(self, desktop=None, navigation=None):
 		print('Session init')
@@ -838,6 +866,11 @@ def start_session():
 	config.misc.RestartUI = ConfigYesNo(default=False)
 	config.misc.prev_wakeup_time = ConfigInteger(default=0)
 	config.misc.prev_wakeup_time_type = ConfigInteger(default=0)
+
+	print('init keymapparser')
+	import keymapparser
+	keymapparser.readKeymap(config.usage.keymap.value)
+	keymapparser.readKeymap(config.usage.keytrans.value)
 
 	_session = Session(getDesktop(1), Navigation())
 
