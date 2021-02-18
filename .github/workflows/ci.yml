@@ -5,9 +5,16 @@ on:
     paths-ignore:
       - 'README.md'
       - '.travis.yml'
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+      - '.travis.yml'
+  schedule:
+    - cron:  '0 6 * * *'
 
 jobs:
   check_source:
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
     outputs:
       python-changed: ${{ steps.python.outputs.changed }}
@@ -34,7 +41,7 @@ jobs:
           paths: ./po/*.po ./po/*.pot
   test-python:
     needs: check_source
-    if: needs.check_source.outputs.python-changed == 'true' || contains(github.event.head_commit.message,'force-test')
+    if: github.event_name != 'schedule' && needs.check_source.outputs.python-changed == 'true' || contains(github.event.head_commit.message,'force-test')
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -69,7 +76,7 @@ jobs:
           pytest -rx -v
   test-gui:
     needs: test-python
-    if: needs.check_source.outputs.gui-changed == 'true' || contains(github.event.head_commit.message,'force-test')
+    if: (github.event_name == 'schedule' && github.ref == 'refs/heads/master') || needs.check_source.outputs.gui-changed == 'true' || contains(github.event.head_commit.message,'force-test')
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -122,7 +129,7 @@ jobs:
           PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py
   test-language:
     needs: check_source
-    if: needs.check_source.outputs.language-changed == 'true' || contains(github.event.head_commit.message,'force-test')
+    if: github.event_name != 'schedule' || needs.check_source.outputs.language-changed == 'true' || contains(github.event.head_commit.message,'force-test')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -134,7 +141,7 @@ jobs:
           find ./po -type f -name '*.po' -print -exec msgfmt {} -o {}.mo \;
   deploy:
     needs: [test-python, test-gui, test-language]
-    if: always() && !contains(github.event.head_commit.message,'skip-release') && (needs.test-python.result == 'success' || needs.test-python.result == 'skipped') && (needs.test-gui.result == 'success' || needs.test-gui.result == 'skipped') && (needs.test-language.result == 'success' || needs.test-language.result == 'skipped') && github.repository == 'Taapat/enigma2-plugin-youtube' && github.ref == 'refs/heads/master'
+    if: always() && !contains(github.event.head_commit.message,'skip-release') && github.event_name == 'push' && github.event_name != 'schedule' && (needs.test-python.result == 'success' || needs.test-python.result == 'skipped') && (needs.test-gui.result == 'success' || needs.test-gui.result == 'skipped') && (needs.test-language.result == 'success' || needs.test-language.result == 'skipped') && github.repository == 'Taapat/enigma2-plugin-youtube' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
