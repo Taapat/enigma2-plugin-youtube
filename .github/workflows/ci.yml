@@ -56,6 +56,7 @@ jobs:
         run: |
           python -O -m compileall ./src/
       - name: Check code with flake8
+        if: matrix.python-version == '2.7'
         run: |
           flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./src/compat.py,./test/enigma.py
           flake8 --ignore=W191,F401,E128,E501 --show-source --filename=./test/enigma.py
