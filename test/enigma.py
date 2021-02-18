@@ -870,7 +870,6 @@ def start_session():
 	print('init keymapparser')
 	import keymapparser
 	keymapparser.readKeymap(config.usage.keymap.value)
-	keymapparser.readKeymap(config.usage.keytrans.value)
 
 	_session = Session(getDesktop(1), Navigation())
 
