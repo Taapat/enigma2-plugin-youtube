@@ -20,7 +20,9 @@ def try_plugin_screens_load():
 	print('Try start session')
 	session = enigma.start_session()
 
-	print('Try YouTube screens load')
+	print('=========================================================')
+	print('               Try YouTube screens load')
+	print('=========================================================')
 	from Plugins.Extensions.YouTube.YouTubeUi import YouTubeMain
 	# Open YouTubeMain
 	yt = session.open(YouTubeMain)
