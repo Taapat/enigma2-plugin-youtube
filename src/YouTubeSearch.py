@@ -39,17 +39,11 @@ class YouTubeVirtualKeyBoard(VirtualKeyBoard):
 
 	# Replace okClicked on OpenPLi develop
 	def processSelect(self):
-		try:
-			VirtualKeyBoard.processSelect(self)
-		except UnicodeDecodeError:
-			pass
+		VirtualKeyBoard.processSelect(self)
 		self.tryGetSuggestions()
 
 	def okClicked(self):
-		try:
-			VirtualKeyBoard.okClicked(self)
-		except UnicodeDecodeError:
-			pass
+		VirtualKeyBoard.okClicked(self)
 		self.tryGetSuggestions()
 
 	def backSelected(self):
@@ -361,10 +355,7 @@ class GoogleSuggestionsConfigText(ConfigText):
 		if suggestionsList:
 			for suggestion in suggestionsList[1]:
 				if suggestion:
-					try:
-						suggestions.append((str(suggestion), None))
-					except UnicodeDecodeError:
-						print('[YouTubeSearch] Unicode Decode Error in set suggestion')
+					suggestions.append((str(suggestion), None))
 		self.updateSuggestions(suggestions)
 		if queryValue != self.value:
 			self.getGoogleSuggestions()
