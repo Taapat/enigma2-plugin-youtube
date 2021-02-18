@@ -1,7 +1,13 @@
 """ Start test with PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py """
 from __future__ import print_function
 
+import sys
+
 import enigma
+
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 
 def try_plugin_screens_load():
