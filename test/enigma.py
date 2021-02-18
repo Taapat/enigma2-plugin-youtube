@@ -251,7 +251,10 @@ class eListboxPythonConfigContent:
 	def setList(self, _list):
 		if _list:
 			self.__list = _list
-			_list[0][1].onSelect(_session)
+			try:
+				_list[0][1].onSelect(_session)
+			except AttributeError:
+				pass
 
 
 eListboxPythonStringContent = eListboxPythonConfigContent

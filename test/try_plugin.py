@@ -53,6 +53,10 @@ def try_plugin_screens_load():
 	yt.cancel()
 	# Open YouTubeSetup
 	yt.openMenu()
+	# Enable 'Login on startup:'
+	session.current_dialog.keyLeft()
+	# Cancel authentication
+	session.current_dialog.cancel()
 	# Close YouTubeSetup
 	session.current_dialog.cancel()
 	# Open YouTubeDownloadList
