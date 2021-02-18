@@ -6,7 +6,12 @@ import sys
 import enigma
 
 
-reload(sys)
+try:
+	reload(sys)
+except NameError:  # Python3
+	from importlib import reload
+	reload(sys)
+
 sys.setdefaultencoding('utf-8')
 
 
