@@ -9,12 +9,11 @@ import enigma
 try:
 	reload(sys)
 except NameError:  # Python3
-	from importlib import reload
-	reload(sys)
+	pass
+else:
+	sys.setdefaultencoding('utf-8')
 
-sys.setdefaultencoding('utf-8')
-
-
+	
 def try_plugin_screens_load():
 	print('Try start session')
 	session = enigma.start_session()
