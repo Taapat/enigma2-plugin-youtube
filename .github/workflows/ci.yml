@@ -38,7 +38,7 @@ jobs:
         uses: marceloprado/has-changed-path@v1
         id: language
         with:
-          paths: ./po/*.po ./po/*.pot
+          paths: ./po/*.po
   test-python:
     needs: check_source
     if: needs.check_source.outputs.python-changed == 'true' || contains(github.event.head_commit.message,'force-test')
@@ -124,7 +124,7 @@ jobs:
           sed -i 's/\/root/./g' enigma2/lib/python/Components/UsageConfig.py
           sed -i 's/\/usr/./g' enigma2/lib/python/Components/UsageConfig.py
           sed -i 's/addNotifier(iAVSwitch/addNotifier(iAVSwitch.setPolicy169) #/g' enigma2/lib/python/Components/AVSwitch.py
-      - name: Test plugin screens load
+      - name: ========== Test plugin screens load ==========
         run: |
           PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py
   test-language:
@@ -141,7 +141,7 @@ jobs:
           find ./po -type f -name '*.po' -print -exec msgfmt {} -o {}.mo \;
   deploy:
     needs: [test-python, test-gui, test-language]
-    if: always() && !contains(github.event.head_commit.message,'skip-release') && github.event_name == 'push' && github.event_name != 'schedule' && (needs.test-python.result == 'success' || needs.test-python.result == 'skipped') && (needs.test-gui.result == 'success' || needs.test-gui.result == 'skipped') && (needs.test-language.result == 'success' || needs.test-language.result == 'skipped') && github.repository == 'Taapat/enigma2-plugin-youtube' && github.ref == 'refs/heads/master'
+    if: always() && !contains(github.event.head_commit.message,'skip-release') && github.event_name == 'push' && (needs.test-python.result == 'success' || needs.test-python.result == 'skipped') && (needs.test-gui.result == 'success' || needs.test-gui.result == 'skipped') && (needs.test-language.result == 'success' || needs.test-language.result == 'skipped') && github.repository == 'Taapat/enigma2-plugin-youtube' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
