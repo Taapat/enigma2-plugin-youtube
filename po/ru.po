@@ -345,6 +345,8 @@ msgid ""
 "Specify or you want to use DASH MP4 format streams if available.\n"
 "This requires playing two streams together and may cause problems for some receivers."
 msgstr ""
+"Укажите хотите ли вы использовать потоки формата DASH MP4, если они доступны.\n"
+"Это требует одновременного воспроизведения двух потоков и может вызвать проблемы для некоторых приемников."
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Укажите каталог, где сохранить видео файлы."
@@ -420,7 +422,7 @@ msgid "Use"
 msgstr "Использовать"
 
 msgid "Use DASH MP4 format:"
-msgstr ""
+msgstr "Использовать DASH MP4"
 
 msgid "Video download started!"
 msgstr "Загрузка видео началась!"
