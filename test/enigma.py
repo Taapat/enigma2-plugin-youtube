@@ -110,6 +110,15 @@ class eTimer:
 		print('stop timer')
 
 
+class _eDVBResourceManager(_eInstances):
+	def __init__(self, *x):
+		self.frontendUseMaskChanged = _eInstances()
+
+
+eDVBResourceManager = _eInstances()
+eDVBResourceManager.getInstance = _eDVBResourceManager
+
+
 class pNavigation(_eInstances):
 	isRealRecording = 1
 	isStreaming = 2
