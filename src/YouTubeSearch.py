@@ -225,7 +225,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 
 	def ok(self):
 		selected = self['list'].getCurrent()[0]
-		if selected:
+		if selected and self.searchValue.value != selected:
 			self['list'].setIndex(0)
 			self.searchValue.value = selected
 			self.setSearchEntry()
