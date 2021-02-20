@@ -60,8 +60,6 @@ eRCInput = _eInstances()
 eRFmod = _eInstances()
 eServiceCenter = _eInstances()
 eServiceEvent = _eInstances()
-eServiceReference = _eInstances()
-eServiceReferenceDVB = _eInstances()
 eSlider = _eInstances()
 eStreamServer = _eInstances()
 fontRenderClass = _eInstances()
@@ -113,9 +111,68 @@ class eTimer:
 
 
 class pNavigation(_eInstances):
+	isRealRecording = 1
+	isStreaming = 2
+	isPseudoRecording = 4
+	isUnknownRecording = 8
+	isFromTimer = 0x10
+	isFromInstantRecording = 0x20
+	isFromEPGrefresh = 0x40
+	isFromSpecialJumpFastZap = 0x80
+	isAnyRecording = 0xFF
+
 	def __init__(self, *args):
 		self.m_event = _eInstances()
 		self.m_record_event = _eInstances()
+
+
+class eServiceReferenceDVB:
+	invalid = -1,
+	dTv = 0x01
+	dRadio = 0x02
+	tText = 0x03
+	nvod = 0x04
+	nvodTs = 0x05
+	mosaic = 0x06
+	radioFm = 0x07
+	dvbSrm = 0x08
+	dRadioAvc = 0x0A
+	mosaicAvc = 0x0B
+	datacast = 0x0C
+	ci = 0x0D
+	rcsMap = 0x0E
+	rcsFls = 0x0F
+	dvbMhp = 0x10
+	mpeg2HdTv = 0x11
+	avcSdTv = 0x16
+	nvodAvcSdTs = 0x17
+	nvodAvcSdRef = 0x18
+	avcHdTv = 0x19
+	nvodAvcHdTs = 0x1A
+	nvodAvcHdRef = 0x1B
+	avcHdStereo = 0x1C
+	nvodAvcHdStereoTs = 0x1D
+	nvodAvcHdStereoRef = 0x1E
+	nvecTv = 0x1F
+	user134 = 0x86
+	user195 = 0xC
+
+
+class eServiceReference(_eInstances):
+	idInvalid = -1
+	isDirectory = 1
+	mustDescent = 2
+	canDescent = 4
+	flagDirectory = isDirectory | mustDescent | canDescent
+	shouldSort = 8
+	hasSortKey = 16
+	sort1 = 32
+	isMarker = 64
+	isGroup = 128
+	idDVB = None
+
+	def getPath(self):
+		return ''
 
 
 class ePicLoad:
