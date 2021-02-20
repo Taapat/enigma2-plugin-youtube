@@ -346,6 +346,8 @@ msgid ""
 "Specify or you want to use DASH MP4 format streams if available.\n"
 "This requires playing two streams together and may cause problems for some receivers."
 msgstr ""
+"Norādiet vai vēlaties izmantot DASH MP4 formātu ja tāds pieejams.\n"
+"Lai to izmantotu ir jāatskaņo divas straumes paralēli un dažos uztvērējos tas var nestrādāt."
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Norādiet mapi kurā saglabāt lejupielādētos video failus."
@@ -421,7 +423,7 @@ msgid "Use"
 msgstr "Lietot"
 
 msgid "Use DASH MP4 format:"
-msgstr ""
+msgstr "Izmantot DASH MP4 formātu"
 
 msgid "Video download started!"
 msgstr "Video lejupielāde uzsākta!"
