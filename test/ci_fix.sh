@@ -2,4 +2,5 @@
 
 cp -f ./test/ci_init.py ./src/__init__.py
 sed -i 's/from Components/# from Components/g' ./src/YouTubeVideoUrl.py
-sed -i 's/config.plugins.YouTube.maxResolution.value/"22"/g' ./src/YouTubeVideoUrl.py
+sed -i 's/config.plugins.YouTube.maxResolution.getValue()/"22"/g' ./src/YouTubeVideoUrl.py
+sed -i 's/config.plugins.YouTube.useDashMP4.getValue()/True/g' ./src/YouTubeVideoUrl.py

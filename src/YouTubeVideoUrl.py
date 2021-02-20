@@ -95,6 +95,7 @@ class YouTubeVideoUrl():
 	def __init__(self):
 		self._code_cache = {}
 		self._player_cache = {}
+		self.use_dash_mp4 = []
 
 	def _download_webpage(self, url, query={}):
 		""" Return the data of the page as a string """
@@ -282,11 +283,11 @@ class YouTubeVideoUrl():
 			fmt_url += '&%s=%s' % (sp, signature)
 		return fmt_url
 
-	@staticmethod
-	def _not_in_fmt(fmt):
+	def _not_in_fmt(self, fmt):
 		return not (fmt.get('targetDurationSec') or
 				fmt.get('drmFamilies') or
-				fmt.get('type') == 'FORMAT_STREAM_TYPE_OTF')
+				fmt.get('type') == 'FORMAT_STREAM_TYPE_OTF' or
+				str(fmt.get('itag', '')) in self.use_dash_mp4)
 
 	def _extract_fmt_video_format(self, streaming_formats, webpage):
 		""" Find the best format from our format priority map """
@@ -355,8 +356,14 @@ class YouTubeVideoUrl():
 		if not is_live and streaming_formats:
 			streaming_formats.extend(streaming_data.get('adaptiveFormats') or [])
 			# If priority format changed in config, recreate priority list
-			if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.value:
+			if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.getValue():
 				createPriorityFormats()
+
+			if config.plugins.YouTube.useDashMP4.getValue():
+				self.use_dash_mp4 = []
+			else:
+				print('[YouTubeVideoUrl] skip DASH MP4 format')
+				self.use_dash_mp4 = DASHMP4_FORMAT
 
 			url, our_format = self._extract_fmt_video_format(streaming_formats, webpage)
 			if url and our_format in DASHMP4_FORMAT:

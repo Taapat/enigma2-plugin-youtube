@@ -76,6 +76,7 @@ config.plugins.YouTube.onMovieStop = ConfigSelection(default='ask', choices=[
 	('ask', _('Ask user')), ('quit', _('Return to list'))])
 config.plugins.YouTube.login = ConfigYesNo(default=False)
 config.plugins.YouTube.downloadDir = ConfigDirectory(default=resolveFilename(SCOPE_HDD))
+config.plugins.YouTube.useDashMP4 = ConfigYesNo(default=True)
 config.plugins.YouTube.mergeFiles = ConfigYesNo(default=False)
 config.plugins.YouTube.player = ConfigSelection(default='4097', choices=[
 	('4097', _('Default')), ('5002', _('Exteplayer')), ('5001', _('Gstplayer'))])
@@ -1375,6 +1376,8 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		self.setConfigList()
 		config.plugins.YouTube.login.addNotifier(self.checkLoginSatus,
 				initial_call=False)
+		config.plugins.YouTube.useDashMP4.addNotifier(self.setConfigList,
+				initial_call=False)
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
@@ -1392,7 +1395,9 @@ class YouTubeSetup(ConfigListScreen, Screen):
 					else:
 						self.startupCallback(True)
 
-	def setConfigList(self):
+	def setConfigList(self, configElement=None):
+		if 'config' not in self:
+			return
 		self.list = []
 		self.list.append(getConfigListEntry(_('Login on startup:'),
 			config.plugins.YouTube.login,
@@ -1431,9 +1436,13 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_('Download directory:'),
 			config.plugins.YouTube.downloadDir,
 			_('Specify the directory where save downloaded video files.')))
-		self.list.append(getConfigListEntry(_('Merge downloaded files:'),
-			config.plugins.YouTube.mergeFiles,
-			_('FFmpeg will be used to merge downloaded DASH video and audio files.\nFFmpeg will be installed if necessary.')))
+		self.list.append(getConfigListEntry(_('Use DASH MP4 format:'),
+			config.plugins.YouTube.useDashMP4,
+			_('Specify or you want to use DASH MP4 format streams if available.\nThis requires playing two streams together and may cause problems for some receivers.')))
+		if config.plugins.YouTube.useDashMP4.getValue():
+			self.list.append(getConfigListEntry(_('Merge downloaded files:'),
+				config.plugins.YouTube.mergeFiles,
+				_('FFmpeg will be used to merge downloaded DASH video and audio files.\nFFmpeg will be installed if necessary.')))
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
 			# TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 			if p.name == _("ServiceApp"):
