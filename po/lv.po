@@ -423,7 +423,7 @@ msgid "Use"
 msgstr "Lietot"
 
 msgid "Use DASH MP4 format:"
-msgstr "Izmantot DASH MP4 formātu"
+msgstr "Izmantot DASH MP4 formātu:"
 
 msgid "Video download started!"
 msgstr "Video lejupielāde uzsākta!"
