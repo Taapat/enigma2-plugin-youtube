@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-03 19:50+0200\n"
+"POT-Creation-Date: 2021-02-20 19:52+0200\n"
 "PO-Revision-Date: 2018-05-26 13:10+0200\n"
 "Last-Translator: Massimo Bambi <maxbambi@libero.it>\n"
 "Language-Team: \n"
@@ -346,6 +346,11 @@ msgstr "Ordina i risultati della ricerca per:"
 msgid "Sort subscriptions:"
 msgstr "I miei abbonamenti "
 
+msgid ""
+"Specify or you want to use DASH MP4 format streams if available.\n"
+"This requires playing two streams together and may cause problems for some receivers."
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Specifica la cartella dove salvare i video scaricati. "
 
@@ -415,6 +420,9 @@ msgstr "Caricamenti"
 
 msgid "Use"
 msgstr "Usa"
+
+msgid "Use DASH MP4 format:"
+msgstr ""
 
 msgid "Video download started!"
 msgstr "Il download del video si è avviato!"

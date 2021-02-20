@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin greek translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-03 19:50+0200\n"
+"POT-Creation-Date: 2021-02-20 19:52+0200\n"
 "PO-Revision-Date: 2019-11-19 01:16+0200\n"
 "Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: MCelliot_g <mcelliot_g@hotmail.com>\n"
@@ -334,6 +334,11 @@ msgstr "Εμφάνιση αποτελεσμάτων αναζήτησης κατ�
 msgid "Sort subscriptions:"
 msgstr "Οι συνδρομές μου"
 
+msgid ""
+"Specify or you want to use DASH MP4 format streams if available.\n"
+"This requires playing two streams together and may cause problems for some receivers."
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Ορίστε τον φάκελο στον οποίο θα αποθηκεύονται τα ληφθέντα αρχεία βίντεο."
 
@@ -399,6 +404,9 @@ msgstr "Μεταφορτώσεις"
 
 msgid "Use"
 msgstr "Χρήση"
+
+msgid "Use DASH MP4 format:"
+msgstr ""
 
 msgid "Video download started!"
 msgstr "Η λήψη του βίντεο ξεκίνησε!"

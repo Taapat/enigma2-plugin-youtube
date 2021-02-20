@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-03 19:50+0200\n"
+"POT-Creation-Date: 2021-02-20 19:52+0200\n"
 "PO-Revision-Date: 2016-08-24 10:46+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: \n"
@@ -345,6 +345,11 @@ msgstr "Lajittele hakutulokset:"
 msgid "Sort subscriptions:"
 msgstr "Minun seuraamat"
 
+msgid ""
+"Specify or you want to use DASH MP4 format streams if available.\n"
+"This requires playing two streams together and may cause problems for some receivers."
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Määritä kansio jonne videot tallennetaan."
 
@@ -414,6 +419,9 @@ msgstr "Lataukset"
 
 msgid "Use"
 msgstr "Käytä"
+
+msgid "Use DASH MP4 format:"
+msgstr ""
 
 msgid "Video download started!"
 msgstr "Videon lataus alkoi!"

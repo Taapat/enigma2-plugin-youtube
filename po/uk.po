@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-03 19:50+0200\n"
+"POT-Creation-Date: 2021-02-20 19:52+0200\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: kvinto <kvinto@rambler.ru>\n"
 "Language-Team: <kvinto  sat-ukraine.info>\n"
@@ -343,6 +343,11 @@ msgstr "Сортувати результати пошуку по:"
 msgid "Sort subscriptions:"
 msgstr "Мої підписки"
 
+msgid ""
+"Specify or you want to use DASH MP4 format streams if available.\n"
+"This requires playing two streams together and may cause problems for some receivers."
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Вкажіть каталог, для збереження відеофайлів."
 
@@ -416,6 +421,9 @@ msgstr "Мої завантаження"
 
 msgid "Use"
 msgstr "Використати"
+
+msgid "Use DASH MP4 format:"
+msgstr ""
 
 msgid "Video download started!"
 msgstr "Завантаження відео розпочалось!"

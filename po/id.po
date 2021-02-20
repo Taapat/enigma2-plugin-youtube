@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-03 19:50+0200\n"
+"POT-Creation-Date: 2021-02-20 19:52+0200\n"
 "PO-Revision-Date: 2015-12-19 15:56+0100\n"
 "Last-Translator: Budiarno Pedode\n"
 "Language-Team: \n"
@@ -343,6 +343,11 @@ msgstr "Pilah hasil pencarian berdasarkan:"
 msgid "Sort subscriptions:"
 msgstr "Langganan saya"
 
+msgid ""
+"Specify or you want to use DASH MP4 format streams if available.\n"
+"This requires playing two streams together and may cause problems for some receivers."
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Atur direktori dimana menyimpan berkas yang telah diunduh."
 
@@ -415,6 +420,9 @@ msgstr "Unggah"
 
 msgid "Use"
 msgstr "Gunakan"
+
+msgid "Use DASH MP4 format:"
+msgstr ""
 
 msgid "Video download started!"
 msgstr "Unduh video dimulai"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-03 19:50+0200\n"
+"POT-Creation-Date: 2021-02-20 19:52+0200\n"
 "PO-Revision-Date: 2020-06-13 12:57+0200\n"
 "Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: Ims\n"
@@ -345,6 +345,11 @@ msgstr "Třídit výsledky vyhledávání podle:"
 msgid "Sort subscriptions:"
 msgstr "Moje odebírané"
 
+msgid ""
+"Specify or you want to use DASH MP4 format streams if available.\n"
+"This requires playing two streams together and may cause problems for some receivers."
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Určete adresář do kterého se ukládají stažené video soubory."
 
@@ -417,6 +422,9 @@ msgstr "Nahrávání"
 
 msgid "Use"
 msgstr "Použít"
+
+msgid "Use DASH MP4 format:"
+msgstr ""
 
 msgid "Video download started!"
 msgstr "Začalo stahování videa!"

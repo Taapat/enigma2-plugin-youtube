@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-03 19:50+0200\n"
+"POT-Creation-Date: 2021-02-20 19:52+0200\n"
 "PO-Revision-Date: 2019-09-16 14:28+0200\n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: LL@li.org\n"
@@ -336,6 +336,11 @@ msgstr "Sorteer zoekresultaten op"
 msgid "Sort subscriptions:"
 msgstr "Mijn inschrijvingen"
 
+msgid ""
+"Specify or you want to use DASH MP4 format streams if available.\n"
+"This requires playing two streams together and may cause problems for some receivers."
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Met deze optie geeft u aan waar de gedownloade video's opgeslagen moeten worden."
 
@@ -406,6 +411,9 @@ msgstr "Uploads"
 
 msgid "Use"
 msgstr "Gebruik"
+
+msgid "Use DASH MP4 format:"
+msgstr ""
 
 msgid "Video download started!"
 msgstr "Videodownload gestart!"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube Plugin slovenský preklad\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-03 19:50+0200\n"
+"POT-Creation-Date: 2021-02-20 19:52+0200\n"
 "PO-Revision-Date: 2018-05-30 04:10+0200\n"
 "Last-Translator: S4iyan3lit3 <nsa@dontgathermailaddresses.fck>\n"
 "Language-Team: th4nks0url0rd1nh34v3n\n"
@@ -346,6 +346,11 @@ msgstr "Zoradiť výsledky vyhľadávania podľa:"
 msgid "Sort subscriptions:"
 msgstr "Moje odbery "
 
+msgid ""
+"Specify or you want to use DASH MP4 format streams if available.\n"
+"This requires playing two streams together and may cause problems for some receivers."
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Zadajte adresár, kam ukladáte stiahnuté video súbory. "
 
@@ -415,6 +420,9 @@ msgstr "Nahraté"
 
 msgid "Use"
 msgstr "Používať"
+
+msgid "Use DASH MP4 format:"
+msgstr ""
 
 msgid "Video download started!"
 msgstr "Prevzatie videa sa začalo!"

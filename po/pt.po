@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin for Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-03 19:50+0200\n"
+"POT-Creation-Date: 2021-02-20 19:52+0200\n"
 "PO-Revision-Date: 2018-11-19 00:44+0000\n"
 "Last-Translator: nunigaia\n"
 "Language-Team: BH Team\n"
@@ -350,6 +350,11 @@ msgstr "Ordene resultados de procura por:"
 msgid "Sort subscriptions:"
 msgstr "As minhas Subscrições"
 
+msgid ""
+"Specify or you want to use DASH MP4 format streams if available.\n"
+"This requires playing two streams together and may cause problems for some receivers."
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Especifiar o diretório para salvar descargars de vídeos."
 
@@ -422,6 +427,9 @@ msgstr "Envios"
 
 msgid "Use"
 msgstr "Usar"
+
+msgid "Use DASH MP4 format:"
+msgstr ""
 
 msgid "Video download started!"
 msgstr "Descarga de vídeo iniciada!"

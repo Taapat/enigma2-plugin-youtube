@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin magyar fordítás\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-03 19:50+0200\n"
+"POT-Creation-Date: 2021-02-20 19:52+0200\n"
 "PO-Revision-Date: 2019-02-19 12:57+0100\n"
 "Last-Translator: cp-teamhun\n"
 "Language-Team: cp-teamhun\n"
@@ -343,6 +343,11 @@ msgstr "A keresési eredmények rendezése:"
 msgid "Sort subscriptions:"
 msgstr "Saját feliratkozások"
 
+msgid ""
+"Specify or you want to use DASH MP4 format streams if available.\n"
+"This requires playing two streams together and may cause problems for some receivers."
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "Adja meg a könyvtárat, ahova a letöltött videofájlokat elmenthetjük."
 
@@ -415,6 +420,9 @@ msgstr "Feltöltések"
 
 msgid "Use"
 msgstr "Használat"
+
+msgid "Use DASH MP4 format:"
+msgstr ""
 
 msgid "Video download started!"
 msgstr "A videó letöltése elindult!"

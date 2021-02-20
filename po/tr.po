@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-03 19:50+0200\n"
+"POT-Creation-Date: 2021-02-20 19:52+0200\n"
 "PO-Revision-Date: 2020-06-12 23:54+0300\n"
 "Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish\n"
@@ -348,6 +348,11 @@ msgstr "Arama sonuçlarını sırala:"
 msgid "Sort subscriptions:"
 msgstr "Aboneliklerim"
 
+msgid ""
+"Specify or you want to use DASH MP4 format streams if available.\n"
+"This requires playing two streams together and may cause problems for some receivers."
+msgstr ""
+
 msgid "Specify the directory where save downloaded video files."
 msgstr "İndirilen video dosyalarının kaydedileceği dizini belirtin."
 
@@ -420,6 +425,9 @@ msgstr "Yüklemeler"
 
 msgid "Use"
 msgstr "Kullan"
+
+msgid "Use DASH MP4 format:"
+msgstr ""
 
 msgid "Video download started!"
 msgstr "Video indirme başladı!"
