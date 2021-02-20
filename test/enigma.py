@@ -134,6 +134,12 @@ class pNavigation(_eInstances):
 		self.m_event = _eInstances()
 		self.m_record_event = _eInstances()
 
+	def getCurrentService(self):
+		return ''
+
+	def getRecordings(self, *x):
+		return ''
+
 
 class eServiceReferenceDVB:
 	invalid = -1,
