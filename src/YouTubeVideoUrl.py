@@ -34,7 +34,7 @@ def createPriorityFormats():
 			'17': ['17', '91', '13', '151', '160']}  # 176x144
 	for itag in ['17', '5', '18', '35', '22', '37', '38']:
 		PRIORITY_VIDEO_FORMAT = video_format[itag] + PRIORITY_VIDEO_FORMAT
-		if itag == config.plugins.YouTube.maxResolution.value:
+		if itag == config.plugins.YouTube.maxResolution.getValue():
 			break
 
 
