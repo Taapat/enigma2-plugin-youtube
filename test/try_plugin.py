@@ -64,6 +64,12 @@ def try_plugin_screens_load():
 	session.current_dialog.keyLeft()
 	# Cancel authentication
 	session.current_dialog.cancel()
+	# Choice YouTubeDirBrowser
+	session.current_dialog['config'].setCurrentIndex(10)
+	# Open YouTubeDirBrowser
+	session.current_dialog.ok()
+	# Close YouTubeDirBrowser
+	session.current_dialog.cancel()
 	# Close YouTubeSetup
 	session.current_dialog.cancel()
 	# Open YouTubeDownloadList

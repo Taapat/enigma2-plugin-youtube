@@ -78,7 +78,6 @@ iRecordableServicePtr = _eInstances()
 iServiceInformation = _eInstances()
 eRect = _eInstances()
 eDVBCI_UI = _eInstances()
-eVideoWidget = _eInstances()
 getBestPlayableServiceReference = _eInstances()
 getPrevAsciiCode = _eInstances()
 quitMainloop = _eInstances()
@@ -111,7 +110,7 @@ class eTimer:
 
 
 class _eDVBResourceManager(_eInstances):
-	def __init__(self, *x):
+	def __init__(self, *args):
 		self.frontendUseMaskChanged = _eInstances()
 
 
@@ -137,7 +136,7 @@ class pNavigation(_eInstances):
 	def getCurrentService(self):
 		return ''
 
-	def getRecordings(self, *x):
+	def getRecordings(self, *args):
 		return ''
 
 
@@ -200,9 +199,14 @@ class ePicLoad:
 		return default
 
 
+sel_index = 0
+
+
 class eListboxPythonConfigContent:
 	def __init__(self):
 		self.__list = []
+		global sel_index
+		sel_index = 0
 
 	def __getattr__(self, attr):
 		def default(*args):
@@ -210,7 +214,11 @@ class eListboxPythonConfigContent:
 		return default
 
 	def getCurrentSelection(self):
-		return self.__list and self.__list[0]
+		if self.__list:
+			if len(self.__list) >=  sel_index:
+				return self.__list[sel_index]
+			else:
+				return self.__list[0]
 
 	def setList(self, _list):
 		if _list:
@@ -225,9 +233,12 @@ eListboxPythonStringContent = eListboxPythonConfigContent
 
 
 class eListboxPythonMultiContent:
-	TYPE_PIXMAP_ALPHATEST = None
 	TYPE_TEXT = None
 	TYPE_PROGRESS = None
+	TYPE_PIXMAP = None
+	TYPE_PIXMAP_ALPHATEST = None
+	TYPE_PIXMAP_ALPHABLEND = None
+	TYPE_PROGRESS_PIXMAP = None
 
 	def __init__(self):
 		self.getItemSize = _getDesktop
@@ -361,10 +372,15 @@ class eWidget:
 	def calculateSize(self):
 		return _getDesktop()
 
+	def moveSelectionTo(self, index):
+		global sel_index
+		sel_index = index
+
 
 eLabel = eWidget
 eListbox = eWidget
 eWindow = eWidget
+eVideoWidget = eWidget
 
 
 class ePixmap(eWidget):
