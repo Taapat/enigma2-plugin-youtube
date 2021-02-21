@@ -1489,7 +1489,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			config.plugins.YouTube.mergeFiles.value = False
 
 	def downloadPath(self, res):
-		self['config'].pageUp()
+		self['config'].setCurrentIndex(0)
 		if res:
 			config.plugins.YouTube.downloadDir.setValue(res)
 
