@@ -76,7 +76,7 @@ jobs:
           pytest -rx -v
   test-gui:
     needs: test-python
-    if: always() && (github.event_name == 'schedule' && github.ref == 'refs/heads/master') || (needs.check_source.outputs.gui-changed == 'true' && needs.test-python.result == 'success')
+    if: always() && (github.event_name == 'schedule' && github.ref == 'refs/heads/master') || (needs.check_source.outputs.gui-changed == 'true' || contains(github.event.head_commit.message,'force-test') && needs.test-python.result == 'success' || needs.test-python.result == 'skipped')
     runs-on: ubuntu-latest
     strategy:
       matrix:
