@@ -76,7 +76,7 @@ jobs:
           pytest -rx -v
   test-gui:
     needs: test-python
-    if: needs.check_source.outputs.gui-changed == 'true' || needs.test-python.result == 'success' || (always() && github.event_name == 'schedule' && github.ref == 'refs/heads/master')
+    if: always() && (github.event_name == 'schedule' && github.ref == 'refs/heads/master') || (needs.check_source.outputs.gui-changed == 'true' && needs.test-python.result == 'success')
     runs-on: ubuntu-latest
     strategy:
       matrix:
