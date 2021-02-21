@@ -128,7 +128,8 @@ class YouTubePlayer(MoviePlayer):
 
 	def messageBoxCallback(self, answer):
 		if answer:
-			seek = self.session.nav.getCurrentService().seek()
+			service = self.session.nav.getCurrentService()
+			seek = service and service.seek()
 			if seek:
 				seek.seekTo(self.seekPosition)
 
@@ -147,7 +148,8 @@ class YouTubePlayer(MoviePlayer):
 
 	def leavePlayerConfirmed(self, answer):
 		if answer and answer[1] != 'continue':
-			seek = self.session.nav.getCurrentService().seek()
+			service = self.session.nav.getCurrentService()
+			seek = service and service.seek()
 			if seek:
 				if len(self.lastPosition) > 20:
 					self.lastPosition.pop(0)
