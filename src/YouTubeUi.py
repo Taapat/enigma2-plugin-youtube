@@ -362,6 +362,7 @@ class YouTubeMain(Screen):
 		self.prevEntryList = None
 
 	def createDefEntryList(self, entry_list, append):
+		self.value = [None, None, '']
 		if not append:
 			self.entryList = []
 		for Id, Title in entry_list:
@@ -382,18 +383,15 @@ class YouTubeMain(Screen):
 
 	def createMainList(self):
 		self.list = 'main'
-		self.value = [None, None, '']
 		self.text = _('Choose what you want to do')
 		self.createDefEntryList([['Search', _('Search')],
 				['PubFeeds', _('Public feeds')]], False)
-		if config.plugins.YouTube.login.getValue() and \
-			config.plugins.YouTube.refreshToken.getValue() != '':
+		if self.isAuth:
 			self.createDefEntryList([['MyFeeds', _('My feeds')]], True)
 		self.setEntryList()
 
 	def createSearchList(self):
 		self.list = 'search'
-		self.value = [None, None, '']
 		self.text = _('Search')
 		self.createDefEntryList([['Searchvideo', _('Search videos')],
 				['Searchchannel', _('Search channels')],
@@ -403,7 +401,6 @@ class YouTubeMain(Screen):
 
 	def createFeedList(self):
 		self.list = 'feeds'
-		self.value = [None, None, '']
 		self.text = _('Public feeds')
 		self.createDefEntryList([['top_rated', _('Top rated')],
 				['most_viewed', _('Most viewed')],
@@ -416,7 +413,6 @@ class YouTubeMain(Screen):
 
 	def createMyFeedList(self):
 		self.list = 'myfeeds'
-		self.value = [None, None, '']
 		self.text = _('My feeds')
 		self.createDefEntryList([['my_subscriptions', _('My Subscriptions')],
 				['my_liked_videos', _('Liked videos')],
@@ -762,8 +758,8 @@ class YouTubeMain(Screen):
 
 	def createBuild(self):
 		refreshToken = config.plugins.YouTube.refreshToken.getValue()
-		if not self.youtube or (not self.isAuth and
-			refreshToken and config.plugins.YouTube.login.getValue()):
+		if not self.youtube or (not self.isAuth and refreshToken and
+				config.plugins.YouTube.login.getValue()):
 			from .YouTubeApi import YouTubeApi
 			self.youtube = YouTubeApi(refreshToken)
 			if self.youtube.access_token:
