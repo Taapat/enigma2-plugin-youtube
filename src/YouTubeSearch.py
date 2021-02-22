@@ -203,7 +203,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			updateSuggestions=self.updateSuggestions)
 		self.setSearchEntry()
 		self['list'] = List([])
-		self.searchHistory = config.plugins.YouTube.searchHistoryDict[self.curList].value
+		self.searchHistory = config.plugins.YouTube.searchHistoryDict[self.curList].getValue()
 		searchList = [('', None)]
 		for entry in self.searchHistory:
 			searchList.append((entry, None))
@@ -235,14 +235,13 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			searchValue = self.searchValue.value
 			print('[YouTubeSearch] Search:', searchValue)
 			self['config'].getCurrent()[1].help_window.instance.hide()
-			if searchValue != '' and config.plugins.YouTube.saveHistory.value:
+			if searchValue != '' and config.plugins.YouTube.saveHistory.getValue():
 				if searchValue in self.searchHistory:
 					self.searchHistory.remove(searchValue)
 				self.searchHistory.insert(0, searchValue)
 				if len(self.searchHistory) > 41:
 					self.searchHistory.pop()
-				config.plugins.YouTube.searchHistoryDict[self.curList].value = self.searchHistory
-				config.plugins.YouTube.searchHistoryDict.save()
+				config.plugins.YouTube.searchHistoryDict[self.curList].setValue(self.searchHistory)
 			self.close(searchValue)
 
 	def noNativeKeys(self):
@@ -299,8 +298,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				if not searchList:
 					searchList = [('', None)]
 				self['list'].updateList(searchList)
-				config.plugins.YouTube.searchHistoryDict[self.curList].value = self.searchHistory
-				config.plugins.YouTube.searchHistoryDict.save()
+				config.plugins.YouTube.searchHistoryDict[self.curList].setValue(self.searchHistory)
 				self['config'].getCurrent()[1].help_window.instance.show()
 			else:
 				from .YouTubeUi import YouTubeSetup
@@ -328,8 +326,8 @@ class GoogleSuggestionsConfigText(ConfigText):
 		self.updateSuggestions = updateSuggestions
 		self.suggestionsThread = None
 
-		gl = config.plugins.YouTube.searchRegion.value
-		hl = config.plugins.YouTube.searchLanguage.value
+		gl = config.plugins.YouTube.searchRegion.getValue()
+		hl = config.plugins.YouTube.searchLanguage.getValue()
 		self.queryString = 'https://www.google.com/complete/search?output=toolbar&client=youtube&json=true&ds=yt'
 		if gl:
 			self.queryString += '&gl=' + gl
