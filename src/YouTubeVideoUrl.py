@@ -342,7 +342,7 @@ class YouTubeVideoUrl():
 					self._download_webpage(
 							'https://www.youtube.com/get_video_info',
 							query={'video_id': video_id,
-									'eurl': 'https://www.youtube.com/embed/%s' % video_id})),
+									'eurl': 'https://youtube.googleapis.com/v/%s' % video_id})),
 							lambda x: x['player_response'][0],
 							compat_str) or '{}')
 			if pr:
