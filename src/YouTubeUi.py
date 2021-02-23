@@ -334,8 +334,7 @@ class YouTubeMain(Screen):
 		self.isAuth = False
 		self.activeDownloads = 0
 		self.searchResult = config.plugins.YouTube.searchResult.getValue()
-		self.pageStartIndex = 1
-		self.pageEndIndex = int(self.searchResult)
+		self.pageIndex = 1
 		self.onLayoutFinish.append(self.layoutFinish)
 		self.onClose.append(self.cleanVariables)
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
@@ -602,8 +601,7 @@ class YouTubeMain(Screen):
 			self['list'].selectNext()
 		else:
 			if self.nextPageToken:  # call next serch results if it exist
-				self.pageStartIndex = self.pageEndIndex + 1
-				self.pageEndIndex += int(self.searchResult)
+				self.pageIndex += int(self.searchResult)
 				self.setNextEntries()
 			else:
 				self['list'].setIndex(0)
@@ -613,8 +611,7 @@ class YouTubeMain(Screen):
 			self['list'].selectPrevious()
 		else:
 			if self.prevPageToken:  # call previous serch results if it exist
-				self.pageEndIndex = self.pageStartIndex - 1
-				self.pageStartIndex -= int(self.searchResult)
+				self.pageIndex -= int(self.searchResult)
 				self.setPrevEntries()
 			else:
 				self['list'].setIndex(len(self.entryList) - 1)
@@ -827,7 +824,7 @@ class YouTubeMain(Screen):
 						'', '',
 						self._tryList(result, lambda x: x['id']),  # Subscription
 						None, None, None, None, None, ''))
-				if self.pageStartIndex == 1 and len(videos) > 1:
+				if self.pageIndex == 1 and len(videos) > 1:
 					videos.insert(0, ('recent_subscr', '', None, _('Recent'), '', '',
 						None, None, None, None, None, None, ''))
 				return videos
@@ -891,7 +888,7 @@ class YouTubeMain(Screen):
 							channelId='UC' + self.value[0][2:],
 							maxResults=self.searchResult,
 							pageToken=self.value[2])
-					subscription = True if self.pageStartIndex == 1 else False
+					subscription = True if self.pageIndex == 1 else False
 					return self.createList(searchResponse, subscription)
 			return self.extractVideoIdList(videos)
 
@@ -1055,15 +1052,15 @@ class YouTubeMain(Screen):
 
 	def setSearchResults(self, totalResults):
 		if not self.prevPageToken:
-			self.pageStartIndex = 1
-			self.pageEndIndex = int(self.searchResult)
+			self.pageIndex = 1
 		if totalResults > 0:
-			if self.pageEndIndex > totalResults:
-				self.pageEndIndex = totalResults
+			page_end = self.pageIndex + int(self.searchResult) -1
+			if page_end > totalResults:
+				page_end = totalResults
 			if '  (' in self.value[1]:
 				self.value[1] = self.value[1].rsplit('  (', 1)[0]
 			self.value[1] = self.value[1][:40] + _('  (%d-%d of %d)') % \
-				(self.pageStartIndex, self.pageEndIndex, totalResults)
+				(self.pageIndex, page_end, totalResults)
 
 	def cancel(self):
 		entryListIndex = len(self.prevEntryList) - 1
