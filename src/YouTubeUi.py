@@ -383,25 +383,25 @@ class YouTubeMain(Screen):
 
 	def createMainList(self):
 		self.list = 'main'
-		self.text = _('Choose what you want to do')
+		title = _('Choose what you want to do')
 		self.createDefEntryList([['Search', _('Search')],
 				['PubFeeds', _('Public feeds')]], False)
 		if self.isAuth:
 			self.createDefEntryList([['MyFeeds', _('My feeds')]], True)
-		self.setEntryList()
+		self.setEntryList(title)
 
 	def createSearchList(self):
 		self.list = 'search'
-		self.text = _('Search')
+		title = _('Search')
 		self.createDefEntryList([['Searchvideo', _('Search videos')],
 				['Searchchannel', _('Search channels')],
 				['Searchplaylist', _('Search playlists')],
 				['Searchbroadcasts', _('Search live broadcasts')]], False)
-		self.setEntryList()
+		self.setEntryList(title)
 
 	def createFeedList(self):
 		self.list = 'feeds'
-		self.text = _('Public feeds')
+		title = _('Public feeds')
 		self.createDefEntryList([['top_rated', _('Top rated')],
 				['most_viewed', _('Most viewed')],
 				['most_recent', _('Recent')],
@@ -409,16 +409,16 @@ class YouTubeMain(Screen):
 				['embedded_videos', _('Embedded in webpages')],
 				['episodes', _('Shows')],
 				['movies', _('Movies')]], False)
-		self.setEntryList()
+		self.setEntryList(title)
 
 	def createMyFeedList(self):
 		self.list = 'myfeeds'
-		self.text = _('My feeds')
+		title = _('My feeds')
 		self.createDefEntryList([['my_subscriptions', _('My Subscriptions')],
 				['my_liked_videos', _('Liked videos')],
 				['my_uploads', _('Uploads')],
 				['my_playlists', _('Playlists')]], False)
-		self.setEntryList()
+		self.setEntryList(title)
 
 	def screenCallback(self, value=None, action=None):
 		self.value = value
@@ -503,11 +503,11 @@ class YouTubeMain(Screen):
 				self.prevEntryList.pop()
 			else:
 				self.entryList = entryList
-				self.text = self.value[1]
-				self.setEntryList()
+				self.setEntryList(self.value[1])
 
-	def setEntryList(self):
-		self.setTitle(self.text)
+	def setEntryList(self, title=None):
+		if title:
+			self.setTitle(title)
 		self['list'].setList(self.entryList)
 		self['red'].show()
 		self['green'].show()
@@ -654,15 +654,15 @@ class YouTubeMain(Screen):
 		lastInex = self.prevIndex[len(self.prevIndex) - 1]
 		self['list'].setIndex(lastInex[0])
 		self.list = lastInex[1]
-		self.text = lastInex[2]
 		self.nextPageToken = lastInex[3]
 		self.prevPageToken = lastInex[4]
-		self.setTitle(self.text)
+		self.setTitle(lastInex[2])
 		self.prevIndex.pop()
 
 	def rememberCurList(self):
+		title = self.getTitle()
 		self.prevIndex.append([self['list'].index,
-			self.list, self.text, self.nextPageToken, self.prevPageToken])
+			self.list, title, self.nextPageToken, self.prevPageToken])
 
 	def ok(self):
 		current = self['list'].getCurrent()
@@ -1237,13 +1237,13 @@ class YouTubeMain(Screen):
 		self.usePageToken()
 
 	def usePageToken(self):
-		text = self.text
+		title = self.getTitle()
 		self.cancel()
 		if self.list == 'search':
 			self.rememberCurList()
 			self.prevEntryList.append(self.entryList)
 			self.screenCallback([self['list'].getCurrent()[0][6:],
-				text, self.value[2]], 'OpenSearch')
+				title, self.value[2]], 'OpenSearch')
 		else:
 			self.ok()
 
@@ -1376,7 +1376,8 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.setTitle(_('YouTube setup'))
+		title = _('YouTube setup')
+		self.setTitle(title)
 
 	def checkLoginSatus(self, configElement):
 		if 'config' in self and self.login is not None:
