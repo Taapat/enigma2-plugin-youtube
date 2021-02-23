@@ -1057,7 +1057,7 @@ class YouTubeMain(Screen):
 		if not self.prevPageToken:
 			self.pageIndex = 1
 		if totalResults > 0:
-			page_end = self.pageIndex + int(self.searchResult) -1
+			page_end = self.pageIndex + int(self.searchResult) - 1
 			if page_end > totalResults:
 				page_end = totalResults
 			if '  (' in self.value[1]:
