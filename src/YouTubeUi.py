@@ -323,7 +323,8 @@ class YouTubeMain(Screen):
 		self.sc = AVSwitch().getFramebufferScale()
 		self.list = 'main'
 		self.action = 'startup'
-		self.value = [None, None]
+		self.current = []
+		self.text = ''
 		self.prevIndex = []
 		self.prevEntryList = []
 		self.entryList = []
@@ -362,7 +363,8 @@ class YouTubeMain(Screen):
 		self.prevEntryList = None
 
 	def createDefEntryList(self, entry_list, append):
-		self.value = [None, None]
+		self.current = []
+		self.text = ''
 		self.pageToken = ''
 		if not append:
 			self.entryList = []
@@ -421,8 +423,9 @@ class YouTubeMain(Screen):
 				['my_playlists', _('Playlists')]], False)
 		self.setEntryList(title)
 
-	def screenCallback(self, value=None, action=None):
-		self.value = value
+	def screenCallback(self, current, text, action):
+		self.current = current
+		self.text = text
 		self.action = action
 		if action == 'OpenSearch':
 			text = _('Download search results. Please wait...')
@@ -449,17 +452,17 @@ class YouTubeMain(Screen):
 			for job in job_manager.getPendingJobs():
 				self.activeDownloads += 1
 		elif self.action in ['playVideo', 'downloadVideo']:
-			videoUrl = self.value[6]
+			videoUrl = self.current[6]
 			if not videoUrl:  # remember video url
 				videoUrl, urlError = self.getVideoUrl()
 				if urlError:
 					self.session.open(MessageBox,
-						_('There was an error in extract video url:\n%s') % urlError,
-						MessageBox.TYPE_INFO, timeout=8)
+							_('There was an error in extract video url:\n%s') % urlError,
+							MessageBox.TYPE_INFO, timeout=8)
 				else:
 					count = 0
 					for entry in self.entryList:
-						if entry[0] == self.value[0]:
+						if entry[0] == self.current[0]:
 							self.entryList[count] = (
 									entry[0],  # Id
 									entry[1],  # Thumbnail url
@@ -474,24 +477,25 @@ class YouTubeMain(Screen):
 									entry[10],  # Big thumbnail url
 									entry[11],  # Channel Id
 									entry[12])  # Published
-							self.value = self.entryList[count]
+							self.current = self.entryList[count]
 							break
 						count += 1
 			if videoUrl:
 				if self.action == 'playVideo':
 					service = eServiceReference(int(config.plugins.YouTube.player.getValue()), 0, videoUrl)
-					service.setName(self.value[3])
+					service.setName(self.current[3])
 					print("[YouTube] Play:", videoUrl)
 					self.session.openWithCallback(self.playCallback,
-						YouTubePlayer, service=service, current=self.value)
+						YouTubePlayer, service=service, current=self.current)
 				else:
-					self.videoDownload(videoUrl, self.value[3])
+					self.videoDownload(videoUrl, self.current[3])
 					self.setEntryList()
 					self.setPreviousList()
 			else:
 				self.setEntryList()
 				self.setPreviousList()
-			self.value = [None, None]
+			self.current = None
+			self.text = ''
 			self.pageToken = ''
 		else:
 			entryList = self.createEntryList()
@@ -505,7 +509,7 @@ class YouTubeMain(Screen):
 				self.prevEntryList.pop()
 			else:
 				self.entryList = entryList
-				self.setEntryList(self.value[1])
+				self.setEntryList(self.text)
 
 	def setEntryList(self, title=None):
 		if title:
@@ -670,7 +674,7 @@ class YouTubeMain(Screen):
 			print("[YouTube] Selected:", current[0])
 			self.rememberCurList()
 			if self.list == 'videolist':
-				self.screenCallback(current, 'playVideo')
+				self.screenCallback(current, '', 'playVideo')
 			else:
 				self.prevEntryList.append(self.entryList)
 				if current[0] == 'Search':
@@ -683,27 +687,27 @@ class YouTubeMain(Screen):
 					from .YouTubeSearch import YouTubeSearch
 					self.session.openWithCallback(self.searchScreenCallback, YouTubeSearch, current[0])
 				elif self.list == 'feeds':
-					self.screenCallback([current[0], current[3]], 'OpenFeeds')
+					self.screenCallback(current[0], current[3], 'OpenFeeds')
 				elif self.list == 'myfeeds':
-					self.screenCallback([current[0], current[3]], 'OpenMyFeeds')
+					self.screenCallback(current[0], current[3], 'OpenMyFeeds')
 				elif self.list == 'playlist':
-					self.screenCallback([current[0], current[3]], 'OpenPlayList')
+					self.screenCallback(current[0], current[3], 'OpenPlayList')
 				elif self.list == 'channel':
-					self.screenCallback([current[0], current[3]], 'OpenChannelList')
+					self.screenCallback(current[0], current[3], 'OpenChannelList')
 
 	def searchScreenCallback(self, searchValue=None):
 		if not searchValue:  # cancel in search
 			self.cancel()
 		else:
 			self.searchResult = config.plugins.YouTube.searchResult.getValue()
-			self.screenCallback([self['list'].getCurrent()[0][6:], searchValue], 'OpenSearch')
+			self.screenCallback(self['list'].getCurrent()[0][6:], searchValue, 'OpenSearch')
 
 	def getVideoUrl(self):
 		try:
-			videoUrl = self.ytdl.extract(self.value[0])
+			videoUrl = self.ytdl.extract(self.current[0])
 		except Exception as e:
 			print('[YouTube] Error in extract info:', e)
-			return None, '%s\nVideo Id %s' % (e, str(self.value[0]))
+			return None, '%s\nVideo Id %s' % (e, str(self.current))
 		if videoUrl:
 			return videoUrl, None
 		print('[YouTube] Video url not found')
@@ -771,43 +775,18 @@ class YouTubeMain(Screen):
 		self.createBuild()
 		order = 'date'
 		searchType = 'video'
-		q = ''
-		videoEmbeddable = videoDefinition = videoType = eventType = ''
-
-		if self.action == 'OpenSearch':
-			order = config.plugins.YouTube.searchOrder.getValue()
-			if self.value[0] == 'broadcasts':
-				eventType = 'live'
-			else:
-				searchType = self.value[0]
-			if '  (' in self.value[1]:
-				self.value[1] = self.value[1].rsplit('  (', 1)[0]
-			q = self.value[1]
-		elif self.action == 'OpenFeeds':
-			if self.value[0] == 'top_rated':
-				order = 'rating'
-			elif self.value[0] == 'most_viewed':
-				order = 'viewCount'
-			elif self.value[0] == 'HD_videos':
-				videoDefinition = 'high'
-			elif self.value[0] == 'embedded_videos':
-				videoEmbeddable = 'true'
-			elif self.value[0] == 'episodes':
-				videoType = 'episode'
-			elif self.value[0] == 'movies':
-				videoType = 'movie'
-		elif self.action == 'OpenMyFeeds':
-			if not self.isAuth:
-				return None
-			elif self.value[0] == 'my_liked_videos':
-				playlist = 'likes'
-			elif self.value[0] == 'my_uploads':
-				playlist = 'uploads'
-
+		q = videoEmbeddable = videoDefinition = videoType = eventType = ''
 		videos = []
 
 		if self.action == 'OpenMyFeeds':
-			if self.value[0] == 'my_subscriptions':
+			if not self.isAuth:
+				return None
+			elif self.current == 'my_liked_videos':
+				playlist = 'likes'
+			elif self.current == 'my_uploads':
+				playlist = 'uploads'
+
+			if self.current == 'my_subscriptions':
 				self.list = 'playlist'
 				searchResponse = self.youtube.subscriptions_list(
 						maxResults=self.searchResult,
@@ -832,7 +811,7 @@ class YouTubeMain(Screen):
 						None, None, None, None, None, None, ''))
 				return videos
 
-			elif self.value[0] == 'my_playlists':
+			elif self.current == 'my_playlists':
 				self.list = 'playlist'
 				searchResponse = self.youtube.playlists_list(
 						maxResults=self.searchResult,
@@ -868,7 +847,7 @@ class YouTubeMain(Screen):
 				return self.extractVideoIdList(videos)
 
 		elif self.action == 'OpenPlayList':
-			if self.value[0] == 'recent_subscr':
+			if self.current == 'recent_subscr':
 				for subscription in self.entryList:
 					if subscription[0] != 'recent_subscr':
 						videos += self.videoIdFromPlaylist(order, subscription[0], False)
@@ -883,12 +862,12 @@ class YouTubeMain(Screen):
 					self.setSearchResults(int(self.searchResult))
 				return videos
 			else:
-				videos = self.videoIdFromPlaylist(order, self.value[0])
+				videos = self.videoIdFromPlaylist(order, self.current)
 				if not videos:  # if channel list from subscription
 					searchResponse = self.youtube.search_list(
 							order=order,
 							part='id,snippet',
-							channelId='UC' + self.value[0][2:],
+							channelId='UC' + self.current[2:],
 							maxResults=self.searchResult,
 							pageToken=self.pageToken)
 					subscription = True if self.pageIndex == 1 else False
@@ -896,10 +875,33 @@ class YouTubeMain(Screen):
 			return self.extractVideoIdList(videos)
 
 		elif self.action == 'OpenChannelList':
-			videos = self.videoIdFromChannellist(self.value[0], order)
+			videos = self.videoIdFromChannellist(self.current, order)
 			return self.extractVideoIdList(videos)
 
 		else:  # search or pub feeds
+			if self.action == 'OpenSearch':
+				order = config.plugins.YouTube.searchOrder.getValue()
+				if self.current == 'broadcasts':
+					eventType = 'live'
+				else:
+					searchType = self.current
+				if '  (' in self.text:
+					self.text = self.text.rsplit('  (', 1)[0]
+				q = self.text
+			elif self.action == 'OpenFeeds':
+				if self.current == 'top_rated':
+					order = 'rating'
+				elif self.current == 'most_viewed':
+					order = 'viewCount'
+				elif self.current == 'HD_videos':
+					videoDefinition = 'high'
+				elif self.current == 'embedded_videos':
+					videoEmbeddable = 'true'
+				elif self.current == 'episodes':
+					videoType = 'episode'
+				elif self.current == 'movies':
+					videoType = 'movie'
+
 			searchResponse = self.youtube.search_list_full(
 					videoEmbeddable=videoEmbeddable,
 					safeSearch=config.plugins.YouTube.safeSearch.getValue(),
@@ -1060,9 +1062,9 @@ class YouTubeMain(Screen):
 			page_end = self.pageIndex + int(self.searchResult) - 1
 			if page_end > totalResults:
 				page_end = totalResults
-			if '  (' in self.value[1]:
-				self.value[1] = self.value[1].rsplit('  (', 1)[0]
-			self.value[1] = self.value[1][:40] + _('  (%d-%d of %d)') % \
+			if '  (' in self.text:
+				self.text = self.text.rsplit('  (', 1)[0]
+			self.text = self.text[:40] + _('  (%d-%d of %d)') % \
 				(self.pageIndex, page_end, totalResults)
 
 	def cancel(self):
@@ -1118,8 +1120,8 @@ class YouTubeMain(Screen):
 				self.setPrevEntries()
 			elif answer[1] == 'rate':
 				clist = ((_('I like this'), 'like'),
-					(_('I dislike this'), 'dislike'),
-					(_('Remove my rating'), 'none'),)
+						(_('I dislike this'), 'dislike'),
+						(_('Remove my rating'), 'none'),)
 			elif answer[1] == 'subscribe':
 				current = self['list'].getCurrent()[0]
 				msg = self.subscribeChannel(current)
@@ -1130,21 +1132,21 @@ class YouTubeMain(Screen):
 				msg = self.unsubscribeChannel()
 			elif answer[1] == 'search':
 				clist = ((_('Search for similar'), 'similar'),
-					(_('Videos from this video channel'), 'channel_videos'),)
+						(_('Videos from this video channel'), 'channel_videos'),)
 			elif answer[1] == 'similar':
 				term = self['list'].getCurrent()[3][:40]
-				self.screenCallback(['video', term], 'OpenSearch')
+				self.screenCallback('video', term, 'OpenSearch')
 			elif answer[1] == 'channel_videos':
 				current = self['list'].getCurrent()
-				self.screenCallback([current[11], current[3][:40]],
-					'OpenChannelList')
+				self.screenCallback(current[11], current[3][:40],
+						'OpenChannelList')
 			elif answer[1] == 'download':
 				current = self['list'].getCurrent()
 				if current[6]:
 					self.videoDownload(current[6], current[3])
 				else:
 					self.rememberCurList()
-					self.screenCallback(current, 'downloadVideo')
+					self.screenCallback(current, '', 'downloadVideo')
 			elif answer[1] == 'download_list':
 				from .YouTubeDownload import YouTubeDownloadList
 				self.session.open(YouTubeDownloadList)
@@ -1157,7 +1159,7 @@ class YouTubeMain(Screen):
 			elif clist:
 				title = _('What do you want to do?')
 				self.session.openWithCallback(self.menuCallback,
-					ChoiceBox, title=title, list=clist)
+						ChoiceBox, title=title, list=clist)
 
 	def configScreenCallback(self, callback=None):
 		self.searchResult = config.plugins.YouTube.searchResult.getValue()
@@ -1242,8 +1244,8 @@ class YouTubeMain(Screen):
 		if self.list == 'search':
 			self.rememberCurList()
 			self.prevEntryList.append(self.entryList)
-			self.screenCallback([self['list'].getCurrent()[0][6:],
-				title], 'OpenSearch')
+			self.screenCallback(self['list'].getCurrent()[0][6:],
+					title, 'OpenSearch')
 		else:
 			self.ok()
 
