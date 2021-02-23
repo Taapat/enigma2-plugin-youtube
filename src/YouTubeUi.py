@@ -323,7 +323,7 @@ class YouTubeMain(Screen):
 		self.sc = AVSwitch().getFramebufferScale()
 		self.list = 'main'
 		self.action = 'startup'
-		self.value = [None, None, '']
+		self.value = [None, None]
 		self.prevIndex = []
 		self.prevEntryList = []
 		self.entryList = []
@@ -331,6 +331,7 @@ class YouTubeMain(Screen):
 		self.youtube = None
 		self.nextPageToken = None
 		self.prevPageToken = None
+		self.pageToken = ''
 		self.isAuth = False
 		self.activeDownloads = 0
 		self.searchResult = config.plugins.YouTube.searchResult.getValue()
@@ -361,7 +362,8 @@ class YouTubeMain(Screen):
 		self.prevEntryList = None
 
 	def createDefEntryList(self, entry_list, append):
-		self.value = [None, None, '']
+		self.value = [None, None]
+		self.pageToken = ''
 		if not append:
 			self.entryList = []
 		for Id, Title in entry_list:
@@ -489,10 +491,11 @@ class YouTubeMain(Screen):
 			else:
 				self.setEntryList()
 				self.setPreviousList()
-			self.value = [None, None, '']
+			self.value = [None, None]
+			self.pageToken = ''
 		else:
 			entryList = self.createEntryList()
-			self.value[2] = ''
+			self.pageToken = ''
 			if not entryList:
 				self.session.open(MessageBox,
 					_('There was an error in creating entry list!\nMaybe try other feeds...'),
@@ -680,20 +683,20 @@ class YouTubeMain(Screen):
 					from .YouTubeSearch import YouTubeSearch
 					self.session.openWithCallback(self.searchScreenCallback, YouTubeSearch, current[0])
 				elif self.list == 'feeds':
-					self.screenCallback([current[0], current[3], self.value[2]], 'OpenFeeds')
+					self.screenCallback([current[0], current[3]], 'OpenFeeds')
 				elif self.list == 'myfeeds':
-					self.screenCallback([current[0], current[3], self.value[2]], 'OpenMyFeeds')
+					self.screenCallback([current[0], current[3]], 'OpenMyFeeds')
 				elif self.list == 'playlist':
-					self.screenCallback([current[0], current[3], self.value[2]], 'OpenPlayList')
+					self.screenCallback([current[0], current[3]], 'OpenPlayList')
 				elif self.list == 'channel':
-					self.screenCallback([current[0], current[3], self.value[2]], 'OpenChannelList')
+					self.screenCallback([current[0], current[3]], 'OpenChannelList')
 
 	def searchScreenCallback(self, searchValue=None):
 		if not searchValue:  # cancel in search
 			self.cancel()
 		else:
 			self.searchResult = config.plugins.YouTube.searchResult.getValue()
-			self.screenCallback([self['list'].getCurrent()[0][6:], searchValue, ''], 'OpenSearch')
+			self.screenCallback([self['list'].getCurrent()[0][6:], searchValue], 'OpenSearch')
 
 	def getVideoUrl(self):
 		try:
@@ -808,7 +811,7 @@ class YouTubeMain(Screen):
 				self.list = 'playlist'
 				searchResponse = self.youtube.subscriptions_list(
 						maxResults=self.searchResult,
-						pageToken=self.value[2],
+						pageToken=self.pageToken,
 						subscriptOrder=config.plugins.YouTube.subscriptOrder.getValue())
 				self.nextPageToken = searchResponse.get('nextPageToken')
 				self.prevPageToken = searchResponse.get('prevPageToken')
@@ -833,7 +836,7 @@ class YouTubeMain(Screen):
 				self.list = 'playlist'
 				searchResponse = self.youtube.playlists_list(
 						maxResults=self.searchResult,
-						pageToken=self.value[2])
+						pageToken=self.pageToken)
 				self.nextPageToken = searchResponse.get('nextPageToken')
 				self.prevPageToken = searchResponse.get('prevPageToken')
 				self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
@@ -850,7 +853,7 @@ class YouTubeMain(Screen):
 				channel = ''
 				searchResponse = self.youtube.channels_list(
 						maxResults=self.searchResult,
-						pageToken=self.value[2])
+						pageToken=self.pageToken)
 
 				self.nextPageToken = searchResponse.get('nextPageToken')
 				self.prevPageToken = searchResponse.get('prevPageToken')
@@ -887,7 +890,7 @@ class YouTubeMain(Screen):
 							part='id,snippet',
 							channelId='UC' + self.value[0][2:],
 							maxResults=self.searchResult,
-							pageToken=self.value[2])
+							pageToken=self.pageToken)
 					subscription = True if self.pageIndex == 1 else False
 					return self.createList(searchResponse, subscription)
 			return self.extractVideoIdList(videos)
@@ -910,7 +913,7 @@ class YouTubeMain(Screen):
 					s_type=searchType,
 					regionCode=config.plugins.YouTube.searchRegion.getValue(),
 					maxResults=self.searchResult,
-					pageToken=self.value[2])
+					pageToken=self.pageToken)
 
 			if searchType != 'video':
 				videos = self.createList(searchResponse, False)
@@ -997,7 +1000,7 @@ class YouTubeMain(Screen):
 				order=order,
 				maxResults=self.searchResult,
 				playlistId=channel,
-				pageToken=self.value[2])
+				pageToken=self.pageToken)
 		if getPageToken:
 			self.nextPageToken = searchResponse.get('nextPageToken')
 			self.prevPageToken = searchResponse.get('prevPageToken')
@@ -1016,7 +1019,7 @@ class YouTubeMain(Screen):
 				part='id',
 				channelId=channel,
 				maxResults=self.searchResult,
-				pageToken=self.value[2])
+				pageToken=self.pageToken)
 		self.nextPageToken = searchResponse.get('nextPageToken')
 		self.prevPageToken = searchResponse.get('prevPageToken')
 		self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
@@ -1130,10 +1133,10 @@ class YouTubeMain(Screen):
 					(_('Videos from this video channel'), 'channel_videos'),)
 			elif answer[1] == 'similar':
 				term = self['list'].getCurrent()[3][:40]
-				self.screenCallback(['video', term, ''], 'OpenSearch')
+				self.screenCallback(['video', term], 'OpenSearch')
 			elif answer[1] == 'channel_videos':
 				current = self['list'].getCurrent()
-				self.screenCallback([current[11], current[3][:40], ''],
+				self.screenCallback([current[11], current[3][:40]],
 					'OpenChannelList')
 			elif answer[1] == 'download':
 				current = self['list'].getCurrent()
@@ -1226,11 +1229,11 @@ class YouTubeMain(Screen):
 			self.activeDownloads -= 1
 
 	def setPrevEntries(self):
-		self.value[2] = self.prevPageToken
+		self.pageToken = self.prevPageToken
 		self.usePageToken()
 
 	def setNextEntries(self):
-		self.value[2] = self.nextPageToken
+		self.pageToken = self.nextPageToken
 		self.usePageToken()
 
 	def usePageToken(self):
@@ -1240,7 +1243,7 @@ class YouTubeMain(Screen):
 			self.rememberCurList()
 			self.prevEntryList.append(self.entryList)
 			self.screenCallback([self['list'].getCurrent()[0][6:],
-				title, self.value[2]], 'OpenSearch')
+				title], 'OpenSearch')
 		else:
 			self.ok()
 
