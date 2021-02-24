@@ -70,10 +70,7 @@ iRdsDecoder = _eInstances()
 iRecordableService = _eInstances()
 Misc_Options = _eInstances()
 eWindowStyleManager = _eInstances()
-addFont = _eInstances()
-eWindowStyleSkinned = _eInstances()
 eButton = _eInstances()
-eSubtitleWidget = _eInstances()
 iRecordableServicePtr = _eInstances()
 iServiceInformation = _eInstances()
 eRect = _eInstances()
@@ -270,7 +267,7 @@ class _eEnv:
 	def resolve(self, path):
 		path = path.replace('${datadir}/enigma2/po/', './enigma2/po/')
 		path = path.replace('${datadir}/enigma2/', './enigma2/data/')
-		path = path.replace('${datadir}/keymaps/', './enigma2/data/')
+		path = path.replace('${datadir}/', './enigma2/data/')
 		path = path.replace('${sysconfdir}/enigma2/', '/tmp/')
 		path = path.replace('${sysconfdir}/', '/tmp/')
 		path = path.replace('${libdir}/enigma2/', './enigma2/lib/')
@@ -314,6 +311,9 @@ class loadJPG:
 
 
 class _getDesktop:
+	def __init__(self, *args):
+		pass
+
 	def height(self):
 		return 720
 
@@ -324,6 +324,9 @@ class _getDesktop:
 		def default(*args):
 			return 0
 		return default
+
+
+eSize = _getDesktop
 
 
 class getDesktop:
@@ -351,6 +354,8 @@ class ePixmapPosition:
 
 
 class eWidget:
+	wfNoBorder = None
+
 	def __init__(self, *args):
 		self.selectionChanged = _eInstances()
 		self.getInstance = _eInstances
@@ -381,6 +386,43 @@ eLabel = eWidget
 eListbox = eWidget
 eWindow = eWidget
 eVideoWidget = eWidget
+
+
+class eWindowStyleSkinned(eWidget):
+	colBackground = None
+	colLabelForeground = None
+	colListboxBackground = None
+	colListboxForeground = None
+	colListboxSelectedBackground = None
+	colListboxSelectedForeground = None
+	colListboxMarkedBackground = None
+	colListboxMarkedForeground = None
+	colListboxMarkedAndSelectedBackground = None
+	colListboxMarkedAndSelectedForeground = None
+	colWindowTitleForeground = None
+	colWindowTitleBackground = None
+	bsWindow = None
+	bsListboxEntry = None
+	bpTopLeft = None
+	bpTop = None
+	bpTopRight = None
+	bpLeft = None
+	bpBottomLeft = None
+	bpBottom = None
+	bpBottomRight = None
+	bpRight = None
+
+
+class eSubtitleWidget:
+	Subtitle_TTX = None
+	Subtitle_Regular = None
+	Subtitle_Bold = None
+	Subtitle_Italic = None
+	Subtitle_MAX = None
+
+	@classmethod
+	def setFontStyle(self, *args):
+		pass
 
 
 class ePixmap(eWidget):
@@ -502,15 +544,19 @@ class Session:
 			callback(*retval)
 
 
+enigma_fonts = {}
+
+
+def addFont(filename, name, *args):
+	global enigma_fonts
+	enigma_fonts[name] = filename
+
+
 def getFontFaces():
-	return ''
+	return enigma_fonts
 
 
-def ePoint(x, y):
-	pass
-
-
-def eSize(x, y):
+def ePoint(*args):
 	pass
 
 
@@ -518,27 +564,27 @@ def eGetEnigmaDebugLvl():
 	return 6
 
 
-def setPreferredTuner(x):
+def setPreferredTuner(*args):
 	pass
 
 
-def gFont(x, y):
+def gFont(*args):
 	return ''
 
 
-def gRGB(x):
+def gRGB(*args):
 	return ''
 
 
-def setTunerTypePriorityOrder(x):
+def setTunerTypePriorityOrder(*args):
 	pass
 
 
-def setSpinnerOnOff(x):
+def setSpinnerOnOff(*args):
 	pass
 
 
-def setEnableTtCachingOnOff(x):
+def setEnableTtCachingOnOff(*args):
 	pass
 
 
@@ -622,6 +668,13 @@ def start_session():
 	print('init usage')
 	import Components.UsageConfig
 	Components.UsageConfig.InitUsageConfig()
+
+	print('init skin')
+	import skin
+	try:
+		skin.loadSkinData(getDesktop(0))
+	except AttributeError:  # ATV
+		pass
 
 	print('init av')
 	import Components.AVSwitch
