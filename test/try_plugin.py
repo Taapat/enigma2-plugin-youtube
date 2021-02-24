@@ -76,6 +76,16 @@ def try_plugin_screens_load():
 	yt.menuCallback(('', 'download_list'))
 	# Close YouTubeDownloadList
 	session.current_dialog.close()
+	# Open Public feeds
+	yt.createFeedList()
+	# Open Top rated
+	yt.ok()
+	# Open Menu ChoiceBox
+	yt.openMenu()
+	# Close Menu ChoiceBox
+	session.current_dialog.close(False)
+	# Close Public feeds
+	yt.cancel()
 	# Close YouTubeMain
 	yt.cancel()
 
