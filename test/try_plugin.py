@@ -54,6 +54,12 @@ def try_plugin_screens_load():
 	session.current_dialog.close('video')
 	# Close YouTubeSearch
 	session.current_dialog.close('video')
+	# Open YouTubePlayer
+	yt.ok()
+	# Stop playback with ChoiceBox
+	session.current_dialog.leavePlayer()
+	# Close YouTubePlayer
+	session.current_dialog.close(('Yes', 'quit'))
 	# Close video list
 	yt.cancel()
 	# Close search video
@@ -64,6 +70,10 @@ def try_plugin_screens_load():
 	yt.ok()
 	# Choice Most viewed
 	yt.ok()
+	# Open YouTubePlayer
+	yt.ok()
+	# Stop playback with doEofInternal
+	session.current_dialog.doEofInternal('quit')
 	# Close Most viewed
 	yt.cancel()
 	# Close search video

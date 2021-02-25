@@ -169,7 +169,7 @@ class eServiceReferenceDVB:
 	user195 = 0xC
 
 
-class eServiceReference(_eInstances):
+class eServiceReference:
 	idInvalid = -1
 	isDirectory = 1
 	mustDescent = 2
@@ -182,8 +182,30 @@ class eServiceReference(_eInstances):
 	isGroup = 128
 	idDVB = None
 
+	@classmethod
+	def getInstance(self):
+		return self.instance
+
+	instance = None
+
+	def __init__(self, ref_type=0, flags=0, data='', *args):
+		eServiceReference.instance = self
+		self._data = data
+		self._name = ''
+
+	def __getattr__(self, attr):
+		def default(*args):
+			return 0
+		return default
+
+	def setName(self, name):
+		self._name = name
+
+	def getName(self):
+		return self._name
+
 	def getPath(self):
-		return ''
+		return self._data
 
 
 class ePicLoad:
@@ -631,6 +653,15 @@ def new_index(self, value):
 		return 0
 
 
+from Screens.Screen import Screen
+
+
+class new_MoviePlayer(Screen):
+	def __init__(self, session, service, *args):
+		Screen.__init__(self, session)
+		print('[MoviePlayer] service:', service.getName())
+
+
 def ngettext(singular, plural, n):
 	return singular
 
@@ -662,6 +693,7 @@ def start_session():
 
 	print('init simple summary')
 	from Screens import InfoBar
+	InfoBar.MoviePlayer = new_MoviePlayer
 	try:
 		from Screens.SimpleSummary import SimpleSummary
 	except ImportError:
