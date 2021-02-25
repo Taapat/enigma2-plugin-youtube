@@ -187,13 +187,33 @@ class eServiceReference(_eInstances):
 
 
 class ePicLoad:
+	@classmethod
+	def getInstance(self):
+		return self.instance
+
+	instance = None
+
 	def __init__(self):
-		self.PictureData = _eInstances()
+		ePicLoad.PictureData = self
+		self._functions = []
+		self._image = None
 
 	def __getattr__(self, attr):
 		def default(*args):
 			return 0
 		return default
+
+	def get(self):
+		return self._functions
+
+	def startDecode(self, image):
+		self._image = image
+		for f in self._functions:
+			self._functions.remove(f)
+			f()
+
+	def getData(self):
+		return self._image
 
 
 sel_index = 0
