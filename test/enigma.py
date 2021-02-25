@@ -379,6 +379,7 @@ class eWidget:
 	def __init__(self, *args):
 		self.selectionChanged = _eInstances()
 		self.getInstance = _eInstances
+		self._index = 0
 
 	def __getattr__(self, attr):
 		def default(*args):
@@ -399,7 +400,12 @@ class eWidget:
 
 	def moveSelectionTo(self, index):
 		global sel_index
-		sel_index = index
+		self._index = sel_index = index
+
+	def getCurrentIndex(self):
+		global sel_index
+		sel_index = self._index
+		return self._index
 
 
 eLabel = eWidget

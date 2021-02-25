@@ -58,6 +58,16 @@ def try_plugin_screens_load():
 	yt.cancel()
 	# Close search video
 	yt.cancel()
+	# Choice Public feeds
+	yt['list'].setIndex(1)
+	# Open Public feeds
+	yt.ok()
+	# Choice Most viewed
+	yt.ok()
+	# Close Most viewed
+	yt.cancel()
+	# Close search video
+	yt.cancel()
 	# Open YouTubeSetup
 	yt.openMenu()
 	# Enable 'Login on startup:'
