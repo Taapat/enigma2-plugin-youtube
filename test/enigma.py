@@ -399,8 +399,9 @@ class eWidget:
 		return _getDesktop()
 
 	def moveSelectionTo(self, index):
-		global sel_index
-		self._index = sel_index = index
+		if index >= 0:
+			global sel_index
+			self._index = sel_index = index
 
 	def getCurrentIndex(self):
 		global sel_index
