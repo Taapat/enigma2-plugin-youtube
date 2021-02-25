@@ -91,10 +91,8 @@ class eTimer:
 		self.callback = []
 		self.timeout = _eInstances()
 		self.timeout.callback = []
-		print('new timer')
 
 	def start(self, msec, singleshot=False):
-		print('start timer', msec, singleshot)
 		for f in self.timeout.callback:
 			f()
 		for f in self.callback:
@@ -103,7 +101,7 @@ class eTimer:
 			f()
 
 	def stop(self):
-		print('stop timer')
+		pass
 
 
 class _eDVBResourceManager(_eInstances):
