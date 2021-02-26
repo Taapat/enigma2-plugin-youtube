@@ -33,7 +33,7 @@ def try_plugin_screens_load():
 	# Choice YouTubeVirtualKeyBoard
 	session.current_dialog.openKeyboard()
 	# Choice 'vide' in virtual keyboard
-	if hasattr('YouTubeVirtualKeyBoard', 'selectAsciiKey') and hasattr('YouTubeVirtualKeyBoard', 'processSelect'):
+	if hasattr(session.current_dialog, 'selectAsciiKey') and hasattr(session.current_dialog, 'processSelect'):
 		session.current_dialog.selectAsciiKey('v')
 		session.current_dialog.processSelect()
 		session.current_dialog.selectAsciiKey('i')
@@ -42,18 +42,22 @@ def try_plugin_screens_load():
 		session.current_dialog.processSelect()
 		session.current_dialog.selectAsciiKey('e')
 		session.current_dialog.processSelect()
+		session.current_dialog.save()
 	else:  # On old enigma2 choice only '9'
 		session.current_dialog.left()
 		session.current_dialog.left()
 		session.current_dialog.left()
 		try:
 			session.current_dialog.okClicked()
+			session.current_dialog.ok()
 		except AttributeError:
 			session.current_dialog.processSelect()
-	# Close YouTubeVirtualKeyBoard
-	session.current_dialog.close('video')
-	# Close YouTubeSearch
-	session.current_dialog.close('video')
+			session.current_dialog.save()
+	# Move the cursor in suggestions list
+	session.current_dialog['list'].selectNext()
+	session.current_dialog['list'].selectPrevious()
+	# Choice search phrase and close YouTubeSearch
+	session.current_dialog.ok()
 	# Open YouTubePlayer
 	yt.ok()
 	# Stop playback with ChoiceBox
