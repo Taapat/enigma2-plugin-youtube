@@ -1,0 +1,47 @@
+<skin>
+
+	<fonts>
+		<font filename="nmsbd.ttf" name="Regular" scale="100"/>
+	</fonts>
+
+	<screen name="NumericalTextInputHelpDialog" position="center,center" size="394,124">
+		<widget name="key1" position="2,2" size="130,30" font="Regular;18"/>
+		<widget name="key2" position="132,2" size="130,30" font="Regular;18"/>
+		<widget name="key3" position="262,2" size="130,30" font="Regular;18"/>
+		<widget name="key4" position="2,32" size="130,30" font="Regular;18"/>
+		<widget name="key5" position="132,32" size="130,30" font="Regular;18"/>
+		<widget name="key6" position="262,32" size="130,30" font="Regular;18"/>
+		<widget name="key7" position="2,62" size="130,30" font="Regular;18"/>
+		<widget name="key8" position="132,62" size="130,30" font="Regular;18"/>
+		<widget name="key9" position="262,62" size="130,30" font="Regular;18"/>
+		<widget name="help1" position="2,92" size="130,30" font="Regular;18"/>
+		<widget name="key0" position="132,92" size="130,30" font="Regular;14"/>
+		<widget name="help2" position="262,92" size="130,30" font="Regular;18"/>
+	</screen>
+
+	<screen name="VirtualKeyBoard" position="center,center" size="560,460">
+		<widget name="header" position="10,20" size="540,20" font="Regular;20"/>
+		<widget name="text" position="12,45" size="540,46" font="Regular;46"/>
+		<widget name="list" position="10,110" size="540,225" selectionDisabled="1" transparent="1"/>
+	</screen>
+
+	<screen name="MoviePlayer" position="0,380" size="720,160">
+		<eLabel position="0,0" size="100,60"/>
+	</screen>
+
+	<screen name="ChoiceBox" position="center,center" size="670,90">
+		<widget name="text" position="15,10" size="640,40" font="Regular;20"/>
+		<widget name="list" position="0,50" size="670,25" scrollbarMode="showOnDemand"/>
+		<widget name="description" position="15,0" size="0,0" font="Regular;20"/>
+
+	<screen name="Setup" position="center,center" size="680,520">
+		<widget name="config" position="0,10" size="680,300" enableWrapAround="1" scrollbarMode="showOnDemand"/>
+		<widget name="description" position="15,330" size="650,125" font="Regular;20"/>
+	</screen>
+
+	<screen name="MessageBox" position="center,center" size="600,10">
+		<widget name="text" position="65,8" size="520,0" font="Regular;22"/>
+		<widget name="list" position="100,100" size="480,375"/>
+	</screen>
+
+</skin>
