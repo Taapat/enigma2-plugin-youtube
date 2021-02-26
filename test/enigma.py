@@ -227,6 +227,7 @@ class ePicLoad:
 		return self._functions
 
 	def startDecode(self, image):
+		print('ePicLoad decode:', image)
 		self._image = image
 		for f in self._functions:
 			self._functions.remove(f)
