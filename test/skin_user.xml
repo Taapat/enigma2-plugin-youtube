@@ -20,9 +20,12 @@
 	</screen>
 
 	<screen name="VirtualKeyBoard" position="center,center" size="560,460">
-		<widget name="header" position="10,20" size="540,20" font="Regular;20"/>
+		<widget name="prompt" position="15,10" size="630,25" font="Regular;20"/>
 		<widget name="text" position="12,45" size="540,46" font="Regular;46"/>
-		<widget name="list" position="10,110" size="540,225" selectionDisabled="1" transparent="1"/>
+		<widget name="list" position="10,110" size="540,225"/>
+		<widget name="locale" position="15,335" size="570,25" font="Regular;20"/>
+		<widget name="mode" position="585,335" size="60,25" font="Regular;20"/>
+		<widget name="language" position="0,0" size="0,0" font="Regular;20"/>
 	</screen>
 
 	<screen name="MoviePlayer" position="0,380" size="720,160">
@@ -31,17 +34,21 @@
 
 	<screen name="ChoiceBox" position="center,center" size="670,90">
 		<widget name="text" position="15,10" size="640,40" font="Regular;20"/>
-		<widget name="list" position="0,50" size="670,25" scrollbarMode="showOnDemand"/>
+		<widget name="list" position="0,50" size="670,25"/>
 		<widget name="description" position="15,0" size="0,0" font="Regular;20"/>
 	</screen>
 
 	<screen name="Setup" position="center,center" size="680,520">
-		<widget name="config" position="0,10" size="680,300" enableWrapAround="1" scrollbarMode="showOnDemand"/>
+		<widget name="config" position="0,10" size="680,300" enableWrapAround="1"/>
 		<widget name="description" position="15,330" size="650,125" font="Regular;20"/>
 	</screen>
 
 	<screen name="MessageBox" position="center,center" size="600,10">
 		<widget name="text" position="65,8" size="520,0" font="Regular;22"/>
+		<widget name="ErrorPixmap" pixmap="icons/input_error.png" position="5,5" size="53,53"/>
+		<widget name="QuestionPixmap" pixmap="icons/input_question.png" position="5,5" size="53,53"/>
+		<widget name="InfoPixmap" pixmap="icons/input_info.png" position="5,5" size="53,53"/>
+		<widget name="icon" pixmaps="icons/input_info.png,icons/input_error.png,icons/input_question.png" position="70,120" size="53,53"/>
 		<widget name="list" position="100,100" size="480,375"/>
 	</screen>
 
