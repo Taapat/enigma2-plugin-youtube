@@ -33,6 +33,7 @@
 		<widget name="text" position="15,10" size="640,40" font="Regular;20"/>
 		<widget name="list" position="0,50" size="670,25" scrollbarMode="showOnDemand"/>
 		<widget name="description" position="15,0" size="0,0" font="Regular;20"/>
+	</screen>
 
 	<screen name="Setup" position="center,center" size="680,520">
 		<widget name="config" position="0,10" size="680,300" enableWrapAround="1" scrollbarMode="showOnDemand"/>
