@@ -227,7 +227,7 @@ class ePicLoad:
 		return self._functions
 
 	def startDecode(self, image):
-		print('ePicLoad decode:', image)
+		print('ePicLoad decode', image)
 		self._image = image
 		for f in self._functions:
 			self._functions.remove(f)
@@ -536,7 +536,7 @@ class Session:
 		self.screen = SessionGlobals(self)
 
 	def execBegin(self, first=True, do_show=True):
-		print('Session exec begin')
+		print('Exec begin')
 		c = self.current_dialog
 		c.execBegin()
 
@@ -560,7 +560,7 @@ class Session:
 			self.current_dialog.execEnd()
 
 	def openWithCallback(self, callback, screen, *arguments, **kwargs):
-		print('Session openWithCallback')
+		print('OpenWithCallback ', end='')
 		dlg = self.open(screen, *arguments, **kwargs)
 		dlg.callback = callback
 		return dlg
