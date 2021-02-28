@@ -1071,6 +1071,12 @@ class YouTubeMain(Screen):
 		entryListIndex = len(self.prevEntryList) - 1
 		if len(self.prevIndex) == 0 or entryListIndex < 0:
 			self.close()
+		elif len(self.prevIndex) == 1:
+			# Authentication can be changes in setup in another list,
+			# therefore always create a new main list
+			self.prevEntryList = []
+			self.createMainList()
+			self.setPreviousList()
 		else:
 			self.entryList = self.prevEntryList[entryListIndex]
 			self.prevEntryList.pop()
@@ -1163,8 +1169,11 @@ class YouTubeMain(Screen):
 
 	def configScreenCallback(self, callback=None):
 		self.searchResult = config.plugins.YouTube.searchResult.getValue()
-		if self.list == 'main':  # maybe autentification changed
-			self.createMainList()
+		if self.isAuth != config.plugins.YouTube.login.getValue():
+			self.isAuth = False
+			self.createBuild()
+			if self.list == 'main':
+				self.createMainList()
 
 	def subscribeChannel(self, channelId):
 		if self.youtube.subscriptions_insert(channelId=channelId):
