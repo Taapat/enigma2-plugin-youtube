@@ -2,19 +2,22 @@ class RcModel:
 	RcModels = {}
 
 	def rcIsDefault(self):
-		return None
+		return True
 
-	def getRcFile(self, ext):
-		return ''
+	def getRcFile(self, ext=''):
+		return ext
+
+	def getRcFolder(self, GetDefault=True):
+		return 'enigma2/data/'
 
 	def getRcImg(self):
-		return self.getRcFile('png')
+		return self.getRcFile('enigma2/data/rc.png')
 
 	def getRcPositions(self):
-		return self.getRcFile('xml')
+		return self.getRcFile('enigma2/data/rcpositions.xml')
 
-	def getRcFolder(self, *args):
-		return 'enigma2/data/'
+	def getRcLocation(self):
+		return self.getRcFile('enigma2/data/')
 
 
 rc_model = RcModel()
