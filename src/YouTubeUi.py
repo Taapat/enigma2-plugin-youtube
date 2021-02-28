@@ -806,7 +806,7 @@ class YouTubeMain(Screen):
 						'', '',
 						self._tryList(result, lambda x: x['id']),  # Subscription
 						None, None, None, None, None, ''))
-				if self.pageIndex == 1 and len(videos) > 1:
+				if len(videos) > 1:
 					videos.insert(0, ('recent_subscr', '', None, _('Recent'), '', '',
 						None, None, None, None, None, None, ''))
 				return videos
@@ -850,10 +850,7 @@ class YouTubeMain(Screen):
 			if self.current == 'recent_subscr':
 				for subscription in self.entryList:
 					if subscription[0] != 'recent_subscr':
-						videos += self.videoIdFromPlaylist(order, subscription[0], False)
-				if self.nextPageToken:
-					for subscription in self.getAllSubscriptions():
-						videos += self.videoIdFromPlaylist(order, subscription, False)
+						videos += self.videoIdFromPlaylist('unread', subscription[0])
 				if videos:
 					videos = sorted(self.extractVideoIdList(videos), key=lambda k: k[12], reverse=True)  # sort by date
 					del videos[int(self.searchResult):]  # leaves only searchResult long list
@@ -870,8 +867,7 @@ class YouTubeMain(Screen):
 							channelId='UC' + self.current[2:],
 							maxResults=self.searchResult,
 							pageToken=self.pageToken)
-					subscription = True if self.pageIndex == 1 else False
-					return self.createList(searchResponse, subscription)
+					return self.createList(searchResponse, True)
 			return self.extractVideoIdList(videos)
 
 		elif self.action == 'OpenChannelList':
@@ -931,24 +927,6 @@ class YouTubeMain(Screen):
 					print('[YouTube] Error get videoId', e)
 			return self.extractVideoIdList(videos)
 
-	def getAllSubscriptions(self):
-		subscriptions = []
-		_nextPageToken = self.nextPageToken
-		subscriptOrder = config.plugins.YouTube.subscriptOrder.getValue()
-		while True:
-			searchResponse = self.youtube.subscriptions_list(
-					maxResults='50',
-					pageToken=_nextPageToken,
-					subscriptOrder=subscriptOrder)
-			for result in searchResponse.get('items', []):
-				Id = self._tryList(result, lambda x: x['snippet']['resourceId']['channelId'])
-				if Id:
-					subscriptions.append('UU' + Id[2:])
-			_nextPageToken = searchResponse.get('nextPageToken')
-			if not _nextPageToken:
-				break
-		return subscriptions
-
 	def extractVideoIdList(self, videos):
 		if len(videos) == 0:
 			return None
@@ -996,17 +974,16 @@ class YouTubeMain(Screen):
 				videos.append(videosInfo)
 		return videos
 
-	def videoIdFromPlaylist(self, order, channel, getPageToken=True):
+	def videoIdFromPlaylist(self, order, channel):
 		videos = []
 		searchResponse = self.youtube.playlistItems_list(
 				order=order,
 				maxResults=self.searchResult,
 				playlistId=channel,
 				pageToken=self.pageToken)
-		if getPageToken:
-			self.nextPageToken = searchResponse.get('nextPageToken')
-			self.prevPageToken = searchResponse.get('prevPageToken')
-			self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
+		self.nextPageToken = searchResponse.get('nextPageToken')
+		self.prevPageToken = searchResponse.get('prevPageToken')
+		self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
 		for result in searchResponse.get('items', []):
 			try:
 				videos.append(result['snippet']['resourceId']['videoId'])
