@@ -13,7 +13,7 @@ class RcModel:
 	def getRcPositions(self):
 		return self.getRcFile('xml')
 
-	def getRcFolder(self, GetDefault=True, *args):
+	def getRcFolder(self, *args):
 		return 'enigma2/data/'
 
 
