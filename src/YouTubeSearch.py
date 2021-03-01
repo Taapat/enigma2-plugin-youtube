@@ -242,6 +242,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				if len(self.searchHistory) > 41:
 					self.searchHistory.pop()
 				config.plugins.YouTube.searchHistoryDict[self.curList].setValue(self.searchHistory)
+				config.plugins.YouTube.searchHistoryDict[self.curList].save()
 			self.close(searchValue)
 
 	def noNativeKeys(self):
@@ -299,6 +300,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					searchList = [('', None)]
 				self['list'].updateList(searchList)
 				config.plugins.YouTube.searchHistoryDict[self.curList].setValue(self.searchHistory)
+				config.plugins.YouTube.searchHistoryDict[self.curList].save()
 				self['config'].getCurrent()[1].help_window.instance.show()
 			else:
 				from .YouTubeUi import YouTubeSetup
