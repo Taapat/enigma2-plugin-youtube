@@ -119,6 +119,7 @@ class YouTubePlayer(MoviePlayer):
 				self.seekPosition = self.lastPosition[idx]
 				self.lastPosition.pop(idx)
 				config.plugins.YouTube.lastPosition.setValue(str(self.lastPosition))
+				config.plugins.YouTube.lastPosition.save()
 				if '&suburi=' not in self.current[6] or \
 						config.plugins.YouTube.player.getValue() == '5002':
 					self.session.openWithCallback(self.messageBoxCallback, MessageBox,
@@ -155,6 +156,7 @@ class YouTubePlayer(MoviePlayer):
 				self.lastPosition.append(self.current[0])
 				self.lastPosition.append(seek.getPlayPosition()[1])
 				config.plugins.YouTube.lastPosition.setValue(str(self.lastPosition))
+				config.plugins.YouTube.lastPosition.save()
 			self.close(answer)
 
 	def doEofInternal(self, playing):
@@ -1510,6 +1512,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			if self.mbox:
 				self.mbox.close()
 			config.plugins.YouTube.refreshToken.setValue(refreshToken)
+			config.plugins.YouTube.refreshToken.save()
 			del self.splitTaimer
 			self.mbox = None
 			self.oauth = None
