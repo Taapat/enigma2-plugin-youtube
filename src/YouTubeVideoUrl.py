@@ -34,7 +34,7 @@ def createPriorityFormats():
 			'17': ['17', '91', '13', '151', '160']}  # 176x144
 	for itag in ['17', '5', '18', '35', '22', '37', '38']:
 		PRIORITY_VIDEO_FORMAT = video_format[itag] + PRIORITY_VIDEO_FORMAT
-		if itag == config.plugins.YouTube.maxResolution.getValue():
+		if itag == config.plugins.YouTube.maxResolution.value:
 			break
 
 
@@ -356,10 +356,10 @@ class YouTubeVideoUrl():
 		if not is_live and streaming_formats:
 			streaming_formats.extend(streaming_data.get('adaptiveFormats') or [])
 			# If priority format changed in config, recreate priority list
-			if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.getValue():
+			if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.value:
 				createPriorityFormats()
 
-			if config.plugins.YouTube.useDashMP4.getValue():
+			if config.plugins.YouTube.useDashMP4.value:
 				self.use_dash_mp4 = []
 			else:
 				print('[YouTubeVideoUrl] skip DASH MP4 format')

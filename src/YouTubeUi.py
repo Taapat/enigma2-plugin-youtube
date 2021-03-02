@@ -112,16 +112,16 @@ class YouTubePlayer(MoviePlayer):
 	def __serviceStart(self):
 		if not self.started:
 			self.started = True
-			self.lastPosition = eval(config.plugins.YouTube.lastPosition.getValue())
+			self.lastPosition = eval(config.plugins.YouTube.lastPosition.value)
 			if self.current[0] in self.lastPosition:
 				idx = self.lastPosition.index(self.current[0])
 				self.lastPosition.pop(idx)
 				self.seekPosition = self.lastPosition[idx]
 				self.lastPosition.pop(idx)
-				config.plugins.YouTube.lastPosition.setValue(str(self.lastPosition))
+				config.plugins.YouTube.lastPosition.value = str(self.lastPosition)
 				config.plugins.YouTube.lastPosition.save()
 				if '&suburi=' not in self.current[6] or \
-						config.plugins.YouTube.player.getValue() == '5002':
+						config.plugins.YouTube.player.value == '5002':
 					self.session.openWithCallback(self.messageBoxCallback, MessageBox,
 							text=_('Resume playback from the previous position?'), timeout=5)
 
@@ -133,7 +133,7 @@ class YouTubePlayer(MoviePlayer):
 				seek.seekTo(self.seekPosition)
 
 	def leavePlayer(self):
-		if config.plugins.YouTube.onMovieStop.getValue() == 'ask':
+		if config.plugins.YouTube.onMovieStop.value == 'ask':
 			title = _('Stop playing this movie?')
 			list = ((_('Yes'), 'quit'),
 					(_('Yes, but play next video'), 'playnext'),
@@ -155,12 +155,12 @@ class YouTubePlayer(MoviePlayer):
 					self.lastPosition.pop(0)
 				self.lastPosition.append(self.current[0])
 				self.lastPosition.append(seek.getPlayPosition()[1])
-				config.plugins.YouTube.lastPosition.setValue(str(self.lastPosition))
+				config.plugins.YouTube.lastPosition.value = str(self.lastPosition)
 				config.plugins.YouTube.lastPosition.save()
 			self.close(answer)
 
 	def doEofInternal(self, playing):
-		self.close([None, config.plugins.YouTube.onMovieEof.getValue()])
+		self.close([None, config.plugins.YouTube.onMovieEof.value])
 
 	def getPluginList(self):
 		list = []
@@ -337,7 +337,7 @@ class YouTubeMain(Screen):
 		self.pageToken = ''
 		self.isAuth = False
 		self.activeDownloads = 0
-		self.searchResult = config.plugins.YouTube.searchResult.getValue()
+		self.searchResult = config.plugins.YouTube.searchResult.value
 		self.pageIndex = 1
 		self.onLayoutFinish.append(self.layoutFinish)
 		self.onClose.append(self.cleanVariables)
@@ -346,7 +346,7 @@ class YouTubeMain(Screen):
 			if p.name == _("ServiceApp"):
 				break
 		else:
-			config.plugins.YouTube.player.setValue('4097')
+			config.plugins.YouTube.player.value = '4097'
 
 	def layoutFinish(self):
 		self.thumbSize = [self['thumbnail'].instance.size().width(),
@@ -484,7 +484,7 @@ class YouTubeMain(Screen):
 						count += 1
 			if videoUrl:
 				if self.action == 'playVideo':
-					service = eServiceReference(int(config.plugins.YouTube.player.getValue()), 0, videoUrl)
+					service = eServiceReference(int(config.plugins.YouTube.player.value), 0, videoUrl)
 					service.setName(self.current[3])
 					print("[YouTube] Play:", videoUrl)
 					self.session.openWithCallback(self.playCallback,
@@ -701,7 +701,7 @@ class YouTubeMain(Screen):
 		if not searchValue:  # cancel in search
 			self.cancel()
 		else:
-			self.searchResult = config.plugins.YouTube.searchResult.getValue()
+			self.searchResult = config.plugins.YouTube.searchResult.value
 			self.screenCallback(self['list'].getCurrent()[0][6:], searchValue, 'OpenSearch')
 
 	def getVideoUrl(self):
@@ -763,9 +763,9 @@ class YouTubeMain(Screen):
 		return ''
 
 	def createBuild(self):
-		refreshToken = config.plugins.YouTube.refreshToken.getValue()
+		refreshToken = config.plugins.YouTube.refreshToken.value
 		if not self.youtube or (not self.isAuth and refreshToken and
-				config.plugins.YouTube.login.getValue()):
+				config.plugins.YouTube.login.value):
 			from .YouTubeApi import YouTubeApi
 			self.youtube = YouTubeApi(refreshToken)
 			if self.youtube.access_token:
@@ -793,7 +793,7 @@ class YouTubeMain(Screen):
 				searchResponse = self.youtube.subscriptions_list(
 						maxResults=self.searchResult,
 						pageToken=self.pageToken,
-						subscriptOrder=config.plugins.YouTube.subscriptOrder.getValue())
+						subscriptOrder=config.plugins.YouTube.subscriptOrder.value)
 				self.nextPageToken = searchResponse.get('nextPageToken')
 				self.prevPageToken = searchResponse.get('prevPageToken')
 				self.setSearchResults(searchResponse.get('pageInfo', {}).get('totalResults', 0))
@@ -878,7 +878,7 @@ class YouTubeMain(Screen):
 
 		else:  # search or pub feeds
 			if self.action == 'OpenSearch':
-				order = config.plugins.YouTube.searchOrder.getValue()
+				order = config.plugins.YouTube.searchOrder.value
 				if self.current == 'broadcasts':
 					eventType = 'live'
 				else:
@@ -902,16 +902,16 @@ class YouTubeMain(Screen):
 
 			searchResponse = self.youtube.search_list_full(
 					videoEmbeddable=videoEmbeddable,
-					safeSearch=config.plugins.YouTube.safeSearch.getValue(),
+					safeSearch=config.plugins.YouTube.safeSearch.value,
 					eventType=eventType,
 					videoType=videoType,
 					videoDefinition=videoDefinition,
 					order=order,
 					part='id,snippet',
 					q=q,
-					relevanceLanguage=config.plugins.YouTube.searchLanguage.getValue(),
+					relevanceLanguage=config.plugins.YouTube.searchLanguage.value,
 					s_type=searchType,
-					regionCode=config.plugins.YouTube.searchRegion.getValue(),
+					regionCode=config.plugins.YouTube.searchRegion.value,
 					maxResults=self.searchResult,
 					pageToken=self.pageToken)
 
@@ -1147,8 +1147,8 @@ class YouTubeMain(Screen):
 						ChoiceBox, title=title, list=clist)
 
 	def configScreenCallback(self, callback=None):
-		self.searchResult = config.plugins.YouTube.searchResult.getValue()
-		if self.isAuth != config.plugins.YouTube.login.getValue():
+		self.searchResult = config.plugins.YouTube.searchResult.value
+		if self.isAuth != config.plugins.YouTube.login.value:
 			self.isAuth = False
 			self.createBuild()
 			if self.list == 'main':
@@ -1188,7 +1188,7 @@ class YouTubeMain(Screen):
 			self.session.open(YouTubeInfo, current=current)
 
 	def videoDownload(self, url, title):
-		downloadDir = config.plugins.YouTube.downloadDir.getValue()
+		downloadDir = config.plugins.YouTube.downloadDir.value
 		if downloadDir[0] == "'":
 			downloadDir = downloadDir[2:-2]
 		if not os.path.exists(downloadDir):
@@ -1355,8 +1355,8 @@ class YouTubeSetup(ConfigListScreen, Screen):
 				'ok': self.ok,
 				'green': self.ok}, -2)
 		self.mbox = None
-		self.login = config.plugins.YouTube.login.getValue()
-		self.mergeFiles = config.plugins.YouTube.mergeFiles.getValue()
+		self.login = config.plugins.YouTube.login.value
+		self.mergeFiles = config.plugins.YouTube.mergeFiles.value
 		ConfigListScreen.__init__(self, [], session=session)
 		self.setConfigList()
 		config.plugins.YouTube.login.addNotifier(self.checkLoginSatus,
@@ -1372,10 +1372,10 @@ class YouTubeSetup(ConfigListScreen, Screen):
 	def checkLoginSatus(self, configElement):
 		if 'config' in self and self.login is not None:
 			self.setConfigList()
-			if self.login != config.plugins.YouTube.login.getValue():
-				self.login = config.plugins.YouTube.login.getValue()
+			if self.login != config.plugins.YouTube.login.value:
+				self.login = config.plugins.YouTube.login.value
 				if self.login:
-					if config.plugins.YouTube.refreshToken.getValue() != '':
+					if config.plugins.YouTube.refreshToken.value != '':
 						self.session.openWithCallback(self.startupCallback,
 								MessageBox, _('You already authorized access for this plugin to your YouTube account.\nDo you want to do it again to update access data?'))
 					else:
@@ -1403,7 +1403,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_('Sort search results by:'),
 			config.plugins.YouTube.searchOrder,
 			_('Order in which search results will be displayed.')))
-		if config.plugins.YouTube.login.getValue():
+		if config.plugins.YouTube.login.value:
 			self.list.append(getConfigListEntry(_('Sort subscriptions:'),
 				config.plugins.YouTube.subscriptOrder,
 				_('Order in which subscriptions results will be displayed.')))
@@ -1425,7 +1425,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_('Use DASH MP4 format:'),
 			config.plugins.YouTube.useDashMP4,
 			_('Specify or you want to use DASH MP4 format streams if available.\nThis requires playing two streams together and may cause problems for some receivers.')))
-		if config.plugins.YouTube.useDashMP4.getValue():
+		if config.plugins.YouTube.useDashMP4.value:
 			self.list.append(getConfigListEntry(_('Merge downloaded files:'),
 				config.plugins.YouTube.mergeFiles,
 				_('FFmpeg will be used to merge downloaded DASH video and audio files.\nFFmpeg will be installed if necessary.')))
@@ -1445,12 +1445,12 @@ class YouTubeSetup(ConfigListScreen, Screen):
 	def ok(self):
 		if self['config'].getCurrent()[1] == config.plugins.YouTube.downloadDir:
 			from .YouTubeDownload import YouTubeDirBrowser
-			downloadDir = config.plugins.YouTube.downloadDir.getValue()
+			downloadDir = config.plugins.YouTube.downloadDir.value
 			if downloadDir[0] == "'":
 				downloadDir = downloadDir[2:-2]
 			self.session.openWithCallback(self.downloadPath,
 				YouTubeDirBrowser, downloadDir)
-		elif self.mergeFiles != config.plugins.YouTube.mergeFiles.getValue():
+		elif self.mergeFiles != config.plugins.YouTube.mergeFiles.value:
 			if self.mergeFiles:
 				self.session.openWithCallback(self.removeCallback,
 					MessageBox, _('You have disabled downloaded file merge.\nInstalled FFmpeg is no longer necessary.\nDo you want to remove FFmpeg?'))
@@ -1472,12 +1472,12 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			self.session.open(Console, cmdlist=['opkg update && opkg install ffmpeg'])
 			self.keySave()
 		else:
-			config.plugins.YouTube.mergeFiles.setValue(False)
+			config.plugins.YouTube.mergeFiles.value = False
 
 	def downloadPath(self, res):
 		self['config'].setCurrentIndex(0)
 		if res:
-			config.plugins.YouTube.downloadDir.setValue(res)
+			config.plugins.YouTube.downloadDir.value = res
 
 	def startupCallback(self, answer):
 		if answer:
@@ -1486,7 +1486,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 
 	def warningCallback(self, answer):
 		if not answer:
-			self.login = config.plugins.YouTube.login.setValue(False)
+			self.login = config.plugins.YouTube.login.value = False
 		else:
 			from .OAuth import OAuth
 			self.splitTaimer = eTimer()
@@ -1511,7 +1511,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			print("[YouTube] Get refresh token")
 			if self.mbox:
 				self.mbox.close()
-			config.plugins.YouTube.refreshToken.setValue(refreshToken)
+			config.plugins.YouTube.refreshToken.value = refreshToken
 			config.plugins.YouTube.refreshToken.save()
 			del self.splitTaimer
 			self.mbox = None
