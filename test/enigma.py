@@ -104,7 +104,8 @@ class eTimer:
 	def start(self, msec, singleshot=False):
 		if int(msec) == 1000:
 			from threading import Thread
-			self.callback_thread = Thread(target=self.start_callback, args=(singleshot,))
+			self.callback_thread = Thread(target=self.start_callback,
+					args=(singleshot,))
 			self.callback_thread.start()
 		else:
 			self.start_callback(singleshot)
