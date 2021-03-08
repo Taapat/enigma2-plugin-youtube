@@ -91,8 +91,9 @@ class eTimer:
 		self.callback = []
 		self.timeout = _eInstances()
 		self.timeout.callback = []
+		self.callback_thread = None
 
-	def start(self, msec, singleshot=False):
+	def start_callback(self, singleshot):
 		for f in self.timeout.callback:
 			f()
 		for f in self.callback:
@@ -100,8 +101,16 @@ class eTimer:
 				self.callback.remove(f)
 			f()
 
+	def start(self, msec, singleshot=False):
+		if int(msec) == 1000:
+			from threading import Thread
+			self.callback_thread = Thread(target=self.start_callback, args=(singleshot,))
+			self.callback_thread.start()
+		else:
+			self.start_callback(singleshot)
+
 	def stop(self):
-		pass
+		self.callback_thread = None
 
 
 class _eDVBResourceManager(_eInstances):
@@ -428,6 +437,9 @@ class eWidget:
 		global sel_index
 		sel_index = self._index
 		return self._index
+
+	def getTitle(self):
+		return ''
 
 
 eLabel = eWidget

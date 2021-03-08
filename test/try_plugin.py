@@ -60,10 +60,15 @@ def try_plugin_screens_load():
 	session.current_dialog.ok()
 	# Open YouTubePlayer
 	yt.ok()
-	# Stop playback with ChoiceBox
-	session.current_dialog.leavePlayer()
-	# Close YouTubePlayer
-	session.current_dialog.close(('Yes', 'quit'))
+	# If open YouTubePlayer
+	if hasattr(session.current_dialog, 'leavePlayer'):
+		# Stop playback with ChoiceBox
+		session.current_dialog.leavePlayer()
+		# Close YouTubePlayer
+		session.current_dialog.close(('Yes', 'quit'))
+	elif session.current_dialog:
+		# Close MessageBox if exist
+		session.current_dialog.close()
 	# Close video list
 	yt.cancel()
 	# Close search video
@@ -76,8 +81,13 @@ def try_plugin_screens_load():
 	yt.ok()
 	# Open YouTubePlayer
 	yt.ok()
-	# Stop playback with doEofInternal
-	session.current_dialog.doEofInternal('quit')
+	# If open YouTubePlayer
+	if hasattr(session.current_dialog, 'doEofInternal'):
+		# Stop playback with doEofInternal
+		session.current_dialog.doEofInternal('quit')
+	elif session.current_dialog:
+		# Close MessageBox if exist
+		session.current_dialog.close()
 	# Close Most viewed
 	yt.cancel()
 	# Close search video
