@@ -4,11 +4,9 @@ on:
   push:
     paths-ignore:
       - 'README.md'
-      - '.travis.yml'
   pull_request:
     paths-ignore:
       - 'README.md'
-      - '.travis.yml'
   schedule:
     - cron:  '0 6 * * *'
 
