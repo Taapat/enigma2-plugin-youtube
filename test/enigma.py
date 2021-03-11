@@ -343,24 +343,6 @@ class _getPicture:
 		return default
 
 
-class loadPNG:
-	def __init__(self, path, *args):
-		self.size = _getPicture
-		self.return_path(path)
-
-	def return_path(self, path):
-		return path.replace('/usr/lib/enigma2', './enigma2/lib')
-
-
-class loadJPG:
-	def __init__(self, path, *args):
-		self.size = _getPicture
-		self.return_path(path)
-
-	def return_path(self, path):
-		return path.replace('/usr/lib/enigma2', './enigma2/lib')
-
-
 class _getDesktop:
 	def __init__(self, *args):
 		pass
@@ -635,6 +617,18 @@ def gFont(*args):
 
 def gRGB(*args):
 	return ''
+
+
+def loadJPG(path, *args):
+	return path
+
+
+def loadPNG(path, *args):
+	return path
+
+
+def loadSVG(path, *args):
+	return path
 
 
 def setTunerTypePriorityOrder(*args):
