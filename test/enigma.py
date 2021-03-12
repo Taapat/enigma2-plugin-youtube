@@ -352,8 +352,22 @@ class loadPNG:
 		return path.replace('/usr/lib/enigma2', './enigma2/lib')
 
 
-loadJPG = loadPNG
-loadSVG = loadPNG
+class loadJPG:
+	def __init__(self, path, *args):
+		self.size = _getPicture
+		self.return_path(path)
+
+	def return_path(self, path):
+		return path.replace('/usr/lib/enigma2', './enigma2/lib')
+
+
+class loadSVG:
+	def __init__(self, path, *args):
+		self.size = _getPicture
+		self.return_path(path)
+
+	def return_path(self, path):
+		return path.replace('/usr/lib/enigma2', './enigma2/lib')
 
 
 class _getDesktop:
