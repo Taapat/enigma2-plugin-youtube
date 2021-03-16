@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-20 19:52+0200\n"
-"PO-Revision-Date: 2015-12-19 15:56+0100\n"
-"Last-Translator: Budiarno Pedode\n"
+"PO-Revision-Date: 2021-03-16 17:56+0100\n"
+"Last-Translator: LinuxSTV\n"
 "Language-Team: \n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -37,17 +37,17 @@ msgid "All"
 msgstr "Semua"
 
 msgid "Alphabetically"
-msgstr ""
+msgstr "Urutan huruf"
 
 msgid "Ask user"
 msgstr "Tanya pengguna"
 
 msgid "By activity"
-msgstr ""
+msgstr "Sesuai aktifitas"
 
 #, fuzzy
 msgid "By relevance"
-msgstr "Relevan"
+msgstr "Relevansi"
 
 msgid "Cancel"
 msgstr "Batal"
@@ -62,7 +62,7 @@ msgid "Created date"
 msgstr "Tanggal dibuat"
 
 msgid "Default"
-msgstr ""
+msgstr "Bawaan"
 
 msgid "Delete this entry"
 msgstr "Hapus entri ini"
@@ -98,7 +98,7 @@ msgid "Exit"
 msgstr "Keluar"
 
 msgid "Exteplayer"
-msgstr ""
+msgstr "Exteplayer"
 
 msgid "Extract video url. Please wait..."
 msgstr "Mengurai alamat url video. Silakan tunggu..."
@@ -119,7 +119,7 @@ msgstr ""
 "Dan masukkan kode %s"
 
 msgid "Gstplayer"
-msgstr ""
+msgstr "Gstplayer"
 
 msgid "HD videos"
 msgstr "Vídeo HD"
@@ -270,7 +270,7 @@ msgid "Repeat"
 msgstr "Ulang"
 
 msgid "Resume playback from the previous position?"
-msgstr ""
+msgstr "Lanjut putarlagi dari posisi sebelumnya?"
 
 msgid "Return search results for the specified country."
 msgstr "Tampilkan hasil pencarian untuk negara yg ditentukan."
@@ -347,12 +347,14 @@ msgid ""
 "Specify or you want to use DASH MP4 format streams if available.\n"
 "This requires playing two streams together and may cause problems for some receivers."
 msgstr ""
+"Tentukan atau anda ingin menggunakan stream format DASH MP4 jika tersedia.\n"
+"Hal ini memerlukan untuk memainkan dua stream bersamaan dan bisa menyebabkan masalah pada sebagian rx."
 
 msgid "Specify the directory where save downloaded video files."
 msgstr "Atur direktori dimana menyimpan berkas yang telah diunduh."
 
 msgid "Specify the player which will be used for YouTube media playback."
-msgstr ""
+msgstr "Tentukan pemutar yang akan digunakan untuk memainkan media YouTube."
 
 msgid "Stop playing this movie?"
 msgstr "Berhenti memutar film ini?"
@@ -422,7 +424,7 @@ msgid "Use"
 msgstr "Gunakan"
 
 msgid "Use DASH MP4 format:"
-msgstr ""
+msgstr "Gunakan format DASH MP4:"
 
 msgid "Video download started!"
 msgstr "Unduh video dimulai"
