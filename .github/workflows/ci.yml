@@ -156,7 +156,7 @@ jobs:
           sudo apt-get install gettext
       - name: Compile language files
         run: |
-          find ./po -type f -name '*.po' -print -exec msgfmt {} -o {}.mo \;
+          for i in $(ls -1 ./po/*.po); do $(msgfmt "$i" -o "$i".mo); done
   update-translation:
     needs: [check_source, test-python]
     if: (needs.check_source.outputs.translation-changed == 'true' && needs.test-python.result == 'success') || contains(github.event.head_commit.message,'force-test')
@@ -177,7 +177,7 @@ jobs:
           xgettext --no-wrap --no-location --omit-header -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d YouTube -s -o ./po/YouTube.pot `find ./src -type f -name '*.py'`
       - name: Compile language files
         run: |
-          find ./po -type f -name '*.po' -print -exec msgfmt {} -o {}.mo \;
+          for i in $(ls -1 ./po/*.po); do $(msgfmt "$i" -o "$i".mo); done
           rm ./po/*.mo
       - name: Commit and push translation updates
         uses: actions-js/push@master
