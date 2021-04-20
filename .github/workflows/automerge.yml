@@ -1,0 +1,28 @@
+name: automerge
+
+on:
+  pull_request:
+    paths:
+      - 'po/*.po'
+
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    env:
+      MERGE_LABELS: ""
+      MERGE_METHOD: "rebase"
+      MERGE_COMMIT_MESSAGE: "pull-request-title-and-description"
+      UPDATE_LABELS: ""
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          sudo apt-get install gettext
+      - name: Compile language files
+        run: |
+          for i in $(ls -1 ./po/*po); do $(msgfmt "$i" -o "$i".mo); done
+          rm ./po/*.mo
+      - name: Automerge language file updates
+        uses: "pascalgn/automerge-action@v0.13.1"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
