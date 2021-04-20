@@ -9,8 +9,10 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     env:
+      MERGE_LABELS: ""
       MERGE_METHOD: "rebase"
       MERGE_COMMIT_MESSAGE: "pull-request-title-and-description"
+      UPDATE_LABELS: ""
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
