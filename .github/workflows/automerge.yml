@@ -20,7 +20,7 @@ jobs:
           sudo apt-get install gettext
       - name: Compile language files
         run: |
-          find ./po -type f -name '*.po' -print -exec msgfmt {} -o {}.mo \;
+          for i in $(ls -1 ./po/*po); do $(msgfmt "$i" -o "$i".mo); done
           rm ./po/*.mo
       - name: Automerge language file updates
         uses: "pascalgn/automerge-action@v0.13.1"
