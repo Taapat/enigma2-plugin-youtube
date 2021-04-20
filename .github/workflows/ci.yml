@@ -18,6 +18,7 @@ jobs:
       python-changed: ${{ steps.python.outputs.changed }}
       gui-changed: ${{ steps.gui.outputs.changed }}
       language-changed: ${{ steps.language.outputs.changed }}
+      translation-changed: ${{ steps.po.outputs.po_changed }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -37,6 +38,23 @@ jobs:
         id: language
         with:
           paths: ./po/*.po
+      - name: Check files with translation changes
+        uses: marceloprado/has-changed-path@v1
+        id: translation
+        with:
+          paths: ./src/plugin.py ./src/YouTubeUi.py ./src/YouTubeDownload.py ./src/YouTubeSearch.py
+      - name: Install dependencies
+        if: steps.translation.outputs.changed == 'true'
+        run: |
+          sudo apt-get install gettext
+      - name: Check translation phrase changes
+        if: steps.translation.outputs.changed == 'true'
+        id: po
+        run: |
+          xgettext --no-wrap --no-location --omit-header -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d YouTube -s -o ./po/YouTube.pot `find ./src -type f -name '*.py'`
+          if git status -s | grep 'M'; then
+            echo '::set-output name=po_changed::true'
+          fi
   test-python:
     needs: check_source
     if: needs.check_source.outputs.python-changed == 'true' || contains(github.event.head_commit.message,'force-test')
@@ -139,6 +157,33 @@ jobs:
       - name: Compile language files
         run: |
           find ./po -type f -name '*.po' -print -exec msgfmt {} -o {}.mo \;
+  update-translation:
+    needs: [check_source, test-python]
+    if: (needs.check_source.outputs.translation-changed == 'true' && needs.test-python.result == 'success') || contains(github.event.head_commit.message,'force-test')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Install dependencies
+        run: |
+          sudo apt-get install gettext
+      - name: Update translation files
+        run: |
+          xgettext --no-wrap --no-location -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d ./po/YouTube -s -o ./po/YouTube.pot `find ./src -type f -name '*.py'`
+          find ./po -type f -name '*.po' -print -exec msgmerge --backup=none --no-wrap -s -U {} ./po/YouTube.pot \;
+          find ./po -type f -name '*.po' -print -exec msgattrib --no-obsolete --no-wrap -o {} {} \;
+          xgettext --no-wrap --no-location --omit-header -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d YouTube -s -o ./po/YouTube.pot `find ./src -type f -name '*.py'`
+      - name: Compile language files
+        run: |
+          find ./po -type f -name '*.po' -print -exec msgfmt {} -o {}.mo \;
+          rm ./po/*.mo
+      - name: Commit and push translation updates
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: 'Update language files'
   deploy:
     needs: [test-python, test-gui, test-language]
     if: always() && !contains(github.event.head_commit.message,'skip-release') && github.event_name == 'push' && (needs.test-python.result == 'success' || needs.test-python.result == 'skipped') && (needs.test-gui.result == 'success' || needs.test-gui.result == 'skipped') && (needs.test-language.result == 'success' || needs.test-language.result == 'skipped') && github.repository == 'Taapat/enigma2-plugin-youtube' && github.ref == 'refs/heads/master'
