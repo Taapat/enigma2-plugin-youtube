@@ -21,7 +21,7 @@ jobs:
         uses: marceloprado/has-changed-path@v1
         id: src
         with:
-          paths: ./src/*.py ./test/*.py
+          paths: ./*.* ./src/** ./test/**
       - name: Check variable
         run: |
           echo ${{ steps.src.outputs.changed }}
