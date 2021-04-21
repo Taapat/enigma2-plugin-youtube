@@ -21,7 +21,7 @@ jobs:
         uses: marceloprado/has-changed-path@v1
         id: src
         with:
-          paths: src test
+          paths: COPYING.GPLv2 README.md YouTube.key setup.py setup_translate.py deploy src test
       - name: Check variable
         run: |
           echo ${{ steps.src.outputs.changed }}
