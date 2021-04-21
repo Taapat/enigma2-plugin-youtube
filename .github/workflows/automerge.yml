@@ -15,14 +15,24 @@ jobs:
       UPDATE_LABELS: ""
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: Check other source changes
+        uses: marceloprado/has-changed-path@v1
+        id: src
+        with:
+          paths: ./*.* src test deploy workflows
       - name: Install dependencies
+        if: steps.src.outputs.changed != 'true'
         run: |
           sudo apt-get install gettext
       - name: Compile language files
+        if: steps.src.outputs.changed != 'true'
         run: |
           for i in $(ls -1 ./po/*po); do $(msgfmt "$i" -o "$i".mo); done
           rm ./po/*.mo
       - name: Automerge language file updates
+        if: steps.src.outputs.changed != 'true'
         uses: "pascalgn/automerge-action@v0.13.1"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
