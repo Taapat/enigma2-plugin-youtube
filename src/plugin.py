@@ -1,7 +1,6 @@
 from Plugins.Plugin import PluginDescriptor
-from enigma import getDesktop
 
-from . import _
+from . import _, screenwidth
 
 
 def main(session, **kwargs):
@@ -10,11 +9,12 @@ def main(session, **kwargs):
 
 
 def Plugins(**kwargs):
-	screenwidth = getDesktop(0).size().width()
-	if screenwidth and screenwidth == 1920:
-		icon = "YouTube_FHD.png"
+	if screenwidth == 'svg':
+		icon = 'YouTube.svg'
+	elif screenwidth == 1920:
+		icon = 'YouTube_FHD.png'
 	else:
-		icon = "YouTube_HD.png"
+		icon = 'YouTube_HD.png'
 	return [PluginDescriptor(
 		name=_('YouTube'),
 		description=_('Watch YouTube videos'),

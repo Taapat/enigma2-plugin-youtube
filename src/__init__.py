@@ -28,3 +28,15 @@ def ngettext(singular, plural, n):
 
 localeInit()
 language.addCallback(localeInit)
+
+
+try:
+	# Check functions for full svg and scaling support
+	from enigma import loadSVG
+	from skin import applySkinFactor
+	screenwidth = 'svg'
+except ImportError:
+	from enigma import getDesktop
+	screenwidth = getDesktop(0).size().width()
+	if not screenwidth:
+		screenwidth = 720

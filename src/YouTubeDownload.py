@@ -2,7 +2,7 @@ from __future__ import print_function
 
 import os
 
-from enigma import eTimer, getDesktop
+from enigma import eTimer
 from Components.config import config
 from Components.ActionMap import ActionMap
 from Components.FileList import FileList
@@ -12,7 +12,7 @@ from Components.Task import Task, Job, job_manager
 from Screens.Screen import Screen
 from Tools.Downloader import downloadWithProgress
 
-from . import _
+from . import _, screenwidth
 from .YouTubeUi import BUTTONS_FOLDER
 
 
@@ -105,8 +105,33 @@ class downloadTask(Task):
 
 
 class YouTubeDownloadList(Screen):
-	screenWidth = getDesktop(0).size().width()
-	if screenWidth and screenWidth == 1920:
+	if screenwidth == 'svg':
+		skin = """<screen position="center,center" size="720*f,370*f">
+				<widget source="list" render="Listbox" position="center,30*f" size="690*f,270*f" \
+					scrollbarMode="showOnDemand" >
+					<convert type="TemplatedMultiContent" >
+						{"template": [
+							MultiContentEntryText(pos=(5*f,1), size=(270*f,22*f), \
+								font=0, flags=RT_HALIGN_LEFT, text=1),  # Title
+							MultiContentEntryText(pos=(280*f,1), size=(120*f,22*f), \
+								font=0, flags=RT_HALIGN_RIGHT, text=2),  # State
+							MultiContentEntryProgress(pos=(410*f,4*f), size=(100*f,22*f), \
+								percent=-3), # Progress
+							MultiContentEntryText(pos=(520*f,1), size=(80*f,22*f), \
+								font=0, flags=RT_HALIGN_LEFT, text=4),  # Percentage
+							MultiContentEntryText(pos=(600*f,1), size=(86*f,22*f), \
+								font=0, flags=RT_HALIGN_RIGHT, text=5),  # Size
+							],
+						"fonts": [gFont("Regular",20*f)],
+						"itemHeight": 30*f}
+					</convert>
+				</widget>
+				<ePixmap position="center,323*f" size="140*f,40*f" pixmap="skin_default/buttons/red.svg" \
+					transparent="1" alphatest="on" />
+				<widget source="key_red" render="Label" position="center,328*f" zPosition="2" \
+					size="140*f,30*f" valign="center" halign="center" font="Regular;22*f" transparent="1" />
+				</screen>"""
+	elif screenwidth == 1920:
 		skin = """<screen position="center,center" size="945,555">
 				<widget source="list" render="Listbox" position="center,45" size="900,405" \
 					scrollbarMode="showOnDemand" >

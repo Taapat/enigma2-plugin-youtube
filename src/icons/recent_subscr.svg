@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 100 72" xmlns="http://www.w3.org/2000/svg">
+  <title>antenna-tower-outline</title>
+  <path style="stroke-opacity: 0; stroke-width: 0px; stroke: rgb(186, 218, 85); fill: rgb(255, 255, 255);"/>
+  <path style="stroke-opacity: 0; stroke-width: 0px; stroke: rgb(186, 218, 85); fill: rgb(255, 255, 255);" d="M 56.635 87.2"/>
+  <rect x="12" y="12" width="76" height="48" style="fill: rgb(252, 2, 4);" rx="5.718" ry="5.718"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 30.948 23.911"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 63.062 45.303"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 93.989 48.639"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 64.509 34.85"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 61.634 28.873"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 92.587 42.283"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 132.742 30.004"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 111.42 43.292"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 62.734 45.582"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 15.464 93.601"/>
+  <path d="M 47.881 18 C 51.728 28.766 43.223 29.149 38.525 35.993 C 35.258 40.761 34.704 51.251 46.49 54 C 41.536 51.289 40.469 43.425 45.829 38.501 C 44.438 43.277 46.976 46.339 50.176 45.214 C 53.308 44.113 55.346 46.452 55.292 49.114 C 55.252 50.947 54.698 52.358 52.754 53.39 C 52.754 53.39 63.5 51.251 63.5 40.333 C 63.5 33.69 57.817 32.77 60.679 27.201 C 57.263 27.507 56.089 29.827 56.426 33.652 C 56.642 36.172 54.118 37.903 52.241 36.746 C 50.729 35.806 50.783 33.954 52.093 32.584 C 54.914 29.667 56.021 23.001 47.881 18 Z" style="fill: rgb(255, 255, 255);"/>
+</svg>

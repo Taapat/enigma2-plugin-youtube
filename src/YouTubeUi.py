@@ -3,7 +3,7 @@ from __future__ import print_function
 import os
 from twisted.web.client import downloadPage
 
-from enigma import ePicLoad, eServiceReference, eTimer, getDesktop, iPlayableService
+from enigma import ePicLoad, eServiceReference, eTimer, iPlayableService
 from Components.ActionMap import ActionMap
 from Components.AVSwitch import AVSwitch
 from Components.config import config, ConfigDirectory, ConfigSelection, \
@@ -26,14 +26,15 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_PLUGINS
+from Tools.LoadPixmap import LoadPixmap
 
-from . import _
+from . import _, screenwidth
 from . import ngettext
 
 
 try:
 	from Tools.CountryCodes import ISO3166
-except Exception:
+except ImportError:
 	# Workaround if CountryCodes not exist (BH, VTI)
 	ISO3166 = [(x[1][0], x[1][2]) for x in language.getLanguageList() if x[1][2] != 'EN']
 
@@ -187,8 +188,42 @@ class YouTubePlayer(MoviePlayer):
 
 
 class YouTubeMain(Screen):
-	screenWidth = getDesktop(0).size().width()
-	if screenWidth and screenWidth == 1280:
+	if screenwidth == 'svg':
+		skin = """<screen position="center,center" size="730*f,524*f">
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube.svg" \
+					position="15*f,0" zPosition="2" size="100*f,40*f" alphatest="on" />
+				<widget source="list" render="Listbox" position="15*f,42*f" size="700*f,432*f" \
+					scrollbarMode="showOnDemand" >
+					<convert type="TemplatedMultiContent" >
+						{"template": [
+							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
+								size=(100*f,72*f), flags=BT_SCALE, png=2), # Thumbnail
+							MultiContentEntryText(pos=(110*f,1), size=(575*f,52*f), \
+								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
+							MultiContentEntryText(pos=(120*f, 50*f), size=(200*f,22*f), \
+								font=1, flags=RT_HALIGN_LEFT, text=4), # Views
+							MultiContentEntryText(pos=(360*f,50*f), size=(200*f,22*f), \
+								font=1, flags=RT_HALIGN_LEFT, text=5), # Duration
+							],
+						"fonts": [gFont("Regular",20*f), gFont("Regular",16*f)],
+						"itemHeight": 72*f}
+					</convert>
+				</widget>
+				<widget name="info" position="50*f,489*f" size="35*f,25*f" pixmap="skin_default/buttons/key_info.svg" \
+					transparent="1" alphatest="on" />
+				<widget name="red" position="215*f,477*f" size="140*f,40*f" pixmap="skin_default/buttons/red.svg" \
+					transparent="1" alphatest="on" />
+				<widget name="green" position="375*f,477*f" size="140*f,40*f" pixmap="skin_default/buttons/green.svg" \
+					transparent="1" alphatest="on" />
+				<widget source="key_red" render="Label" position="215*f,482*f" zPosition="2" size="140*f,30*f" \
+					valign="center" halign="center" font="Regular;22*f" transparent="1" />
+				<widget source="key_green" render="Label" position="375*f,482*f" zPosition="2" size="140*f,30*f" \
+					valign="center" halign="center" font="Regular;22*f" transparent="1" />
+				<widget name="menu" position="645*f,489*f" size="35*f,25*f" pixmap="skin_default/buttons/key_menu.svg" \
+					transparent="1" alphatest="on" />
+				<widget name="thumbnail" position="0,0" size="100*f,72*f" /> # Thumbnail size in list
+			</screen>"""
+	elif screenwidth == 1280:
 		skin = """<screen position="center,center" size="730,524">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
 					position="15,0" zPosition="2" size="100,40" alphatest="on" />
@@ -223,7 +258,7 @@ class YouTubeMain(Screen):
 					transparent="1" alphatest="on" />
 				<widget name="thumbnail" position="0,0" size="100,72" /> # Thumbnail size in list
 			</screen>"""
-	elif screenWidth and screenWidth == 1920:
+	elif screenwidth == 1920:
 		skin = """<screen position="center,center" size="1095,786">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_FHD.png" \
 					position="22,0" zPosition="2" size="150,60" transparent="1" alphatest="on" />
@@ -352,7 +387,8 @@ class YouTubeMain(Screen):
 		self.thumbSize = [self['thumbnail'].instance.size().width(),
 			self['thumbnail'].instance.size().height()]
 		defThumbnail = resolveFilename(SCOPE_PLUGINS,
-			'Extensions/YouTube/icons/icon.png')
+			'Extensions/YouTube/icons/icon%s' %
+			'.svg' if screenwidth == 'svg' else '.png')
 		self.decodeThumbnail('default', defThumbnail)
 		self.splitTaimer.start(1, True)
 
@@ -536,9 +572,7 @@ class YouTubeMain(Screen):
 			else:
 				url = entry[1]
 				if not url:
-					image = resolveFilename(SCOPE_PLUGINS,
-						'Extensions/YouTube/icons/' + entryId + '.png')
-					self.decodeThumbnail(entryId, image)
+					self.loadIcon(entryId)
 				else:
 					image = os.path.join('/tmp/', str(entryId) + '.jpg')
 					downloadPage(url.encode(), image)\
@@ -552,6 +586,19 @@ class YouTubeMain(Screen):
 	def downloadFailed(self, entryId, result):
 		print("[YouTube] Thumbnail download failed, use default for", entryId)
 		self.decodeThumbnail(entryId)
+
+	def loadIcon(self, entryId):
+		if screenwidth == 'svg':
+			self.thumbnails[entryId] = LoadPixmap(
+					path=resolveFilename(SCOPE_PLUGINS,
+						'Extensions/YouTube/icons/%s.svg' % entryId),
+					width=self.thumbSize[0],
+					height=self.thumbSize[1])
+			self.updateThumbnails()
+		else:
+			self.decodeThumbnail(entryId,
+					resolveFilename(SCOPE_PLUGINS,
+						'Extensions/YouTube/icons/%s.png' % entryId))
 
 	def decodeThumbnail(self, entryId, image=None):
 		if not image or not os.path.exists(image):
@@ -1262,8 +1309,24 @@ class YouTubeMain(Screen):
 
 
 class YouTubeInfo(Screen):
-	screenWidth = getDesktop(0).size().width()
-	if screenWidth and screenWidth == 1280:
+	if screenwidth == 'svg':
+		skin = """<screen position="center,center" size="730*f,424*f">
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube.svg" \
+					position="15*f,0" size="100*f,40*f" transparent="1" alphatest="on" />
+				<widget name="title" position="115*f,0" size="600*f,60*f" halign="center" font="Regular;24*f" />
+				<widget name="pic" position="20*f,70*f" size="320*f,180*f" transparent="1" alphatest="on" />
+				<widget name="description" position="360*f,70*f" size="360*f,300*f" font="Regular;16*f" />
+				<widget name="views" position="30*f,270*f" size="150*f,20*f" font="Regular;16*f" />
+				<widget name="duration" position="200*f,270*f" size="150*f,20*f" font="Regular;16*f" />
+				<widget name="likes" position="30*f,300*f" size="150*f,20*f" font="Regular;16*f" />
+				<widget name="dislikes" position="200*f,300*f" size="150*f,20*f" font="Regular;16*f" />
+				<widget name="published" position="30*f,330*f" size="300*f,20*f" font="Regular;16*f" />
+				<ePixmap position="295*f,377*f" size="140*f,40*f" pixmap="skin_default/buttons/red.svg" \
+					transparent="1" alphatest="on" />
+				<widget source="key_red" render="Label" position="center,382*f" zPosition="2" size="140*f,30*f" \
+					valign="295*f" halign="center" font="Regular;22*f" transparent="1" />
+			</screen>"""
+	elif screenwidth == 1280:
 		skin = """<screen position="center,center" size="730,424">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
 					position="15,0" size="100,40" transparent="1" alphatest="on" />
@@ -1280,7 +1343,7 @@ class YouTubeInfo(Screen):
 				<widget source="key_red" render="Label" position="center,382" zPosition="2" size="140,30" \
 					valign="295" halign="center" font="Regular;22" transparent="1" />
 			</screen>"""
-	elif screenWidth and screenWidth == 1920:
+	elif screenwidth == 1920:
 		skin = """<screen position="center,center" size="1095,636">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_FHD.png" \
 					position="15,0" size="150,60" transparent="1" alphatest="on" />

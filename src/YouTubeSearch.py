@@ -3,7 +3,7 @@ from __future__ import print_function
 from threading import Thread
 from json import loads
 
-from enigma import ePoint, getDesktop
+from enigma import ePoint
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -16,7 +16,7 @@ from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 
-from . import _
+from . import _, screenwidth
 from .compat import compat_quote
 from .compat import compat_ssl_urlopen
 from .YouTubeUi import BUTTONS_FOLDER
@@ -78,8 +78,41 @@ class YouTubeVirtualKeyBoard(VirtualKeyBoard):
 
 
 class YouTubeSearch(Screen, ConfigListScreen):
-	screenWidth = getDesktop(0).size().width()
-	if screenWidth and screenWidth == 1280:
+	if screenwidth == 'svg':
+		skin = """<screen position="center,150*f" size="630*f,370*f">
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube.svg" \
+					position="15*f,6*f" size="100*f,40*f" transparent="1" alphatest="on" />
+				<widget name="config" position="130*f,15*f" size="485*f,30*f" zPosition="2" \
+					scrollbarMode="showNever" />
+				<widget source="list" render="Listbox" position="15*f,48*f" size="600*f,273*f" \
+					scrollbarMode="showOnDemand" >
+					<convert type="TemplatedMultiContent" >
+						{"template": [MultiContentEntryText(pos=(10*f,1), size=(580*f,30*f), \
+							font=0, flags=RT_HALIGN_LEFT, text=0)],
+						"fonts": [gFont("Regular",20*f)],
+						"itemHeight": 30*f}
+					</convert>
+				</widget>
+				<ePixmap position="30*f,335*f" size="35*f,25*f" pixmap="skin_default/buttons/key_text.svg" \
+					transparent="1" alphatest="on" />
+				<ePixmap position="85*f,323*f" size="140*f,40*f" pixmap="skin_default/buttons/red.svg" \
+					transparent="1" alphatest="on" />
+				<ePixmap position="245*f,323*f" size="140*f,40*f" pixmap="skin_default/buttons/green.svg" \
+					transparent="1" alphatest="on" />
+				<ePixmap position="405*f,323*f" size="140*f,40*f" pixmap="skin_default/buttons/yellow.svg" \
+					transparent="1" alphatest="on" />
+				<widget source="key_red" render="Label" position="85*f,328*f" zPosition="2" size="140*f,30*f" \
+					valign="center" halign="center" font="Regular;22*f" transparent="1" />
+				<widget source="key_green" render="Label" position="245*f,328*f" zPosition="2" size="140*f,30*f" \
+					valign="center" halign="center" font="Regular;22*f" transparent="1" />
+				<widget source="key_yellow" render="Label" position="405*f,328*f" zPosition="2" size="140*f,30*f" \
+					valign="center" halign="center" font="Regular;22*f" transparent="1" />
+				<ePixmap position="565*f,335*f" size="35*f,25*f" pixmap="skin_default/buttons/key_menu.svg" \
+					transparent="1" alphatest="on" />
+				<widget name="HelpWindow" position="400*f,540*f" size="1,1" zPosition="5" \
+					pixmap="skin_default/vkey_icon.svg" transparent="1" alphatest="on" />
+			</screen>"""
+	elif screenwidth == 1280:
 		skin = """<screen position="center,150" size="630,370">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
 					position="15,6" size="100,40" transparent="1" alphatest="on" />
@@ -113,7 +146,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				<widget name="HelpWindow" position="400,540" size="1,1" zPosition="5" \
 					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
 			</screen>"""
-	elif screenWidth and screenWidth == 1920:
+	elif screenwidth == 1920:
 		skin = """<screen position="center,225" size="945,555">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_FHD.png" \
 					position="22,15" size="150,60" transparent="1" alphatest="on" />

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 100 72" xmlns="http://www.w3.org/2000/svg">
+  <rect x="12" y="12" width="76" height="48" style="fill: rgb(252, 2, 4);" rx="5.718" ry="5.718"/>
+  <title>antenna-tower-outline</title>
+  <path style="stroke-opacity: 0; stroke-width: 0px; stroke: rgb(186, 218, 85); fill: rgb(255, 255, 255);"/>
+  <path style="stroke-opacity: 0; stroke-width: 0px; stroke: rgb(186, 218, 85); fill: rgb(255, 255, 255);" d="M 56.635 87.2"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 30.948 23.911"/>
+  <rect x="28" y="21.578" width="44" height="25" style="fill: rgb(255, 255, 255);" rx="4.156" ry="4.156"/>
+  <polygon style="stroke-linecap: round; stroke-miterlimit: 1; fill: rgb(252, 2, 4); stroke: rgb(252, 2, 4);" points="30.89 43.705 50.703 24.47 31.022 24.317"/>
+  <rect x="40.029" y="47.922" width="20" height="2.5" style="fill: rgb(255, 255, 255);"/>
+</svg>
