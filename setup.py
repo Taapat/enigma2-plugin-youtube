@@ -8,6 +8,6 @@ setup(name='enigma2-plugin-extensions-youtube',
 		author_email='taapat@gmail.com',
 		package_dir={'Extensions.YouTube': 'src'},
 		packages=['Extensions.YouTube'],
-		package_data={'Extensions.YouTube': ['*.png', 'icons/*.png', '*.svg' 'icons/*.svg']},
+		package_data={'Extensions.YouTube': ['*.png', 'icons/*.png', '*.svg', 'icons/*.svg']},
 		description='Watch YouTube videos',
 		cmdclass=setup_translate.cmdclass)
