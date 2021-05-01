@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg viewBox="0 0 100 72" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
-  <rect x="12" y="12" width="76" height="48" style="fill: rgb(252, 2, 4);" rx="5.718" ry="5.718"/>
+  <rect x="12" y="12" width="76" height="48" style="fill: rgb(255, 0, 0);" rx="6" ry="6"/>
   <rect x="26" y="28" width="34" height="23" style="fill: rgb(255, 255, 255);"/>
-  <path style="stroke: rgb(186, 218, 85); fill: rgb(255, 255, 255);"/>
-  <path style="stroke: rgb(186, 218, 85); fill: rgb(255, 255, 255);" d="M 56.635 87.2"/>
-  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 30.948 23.911"/>
-  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 63.062 45.303"/>
-  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 93.989 48.639"/>
-  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 64.509 34.85"/>
-  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 61.634 28.873"/>
-  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 92.587 42.283"/>
-  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 132.742 30.004"/>
-  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 111.42 43.292"/>
-  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 62.734 45.582"/>
-  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 15.464 93.601"/>
   <path d="M 58.491 143.624 H 62.491 V 149.624 H 68.491 V 153.624 H 62.491 V 159.624 H 58.491 V 153.624 H 52.491 V 149.624 H 58.491 Z" style="fill: rgb(255, 255, 255);" transform="matrix(1, 0.000049, -0.000049, 1, 12.516821, -115.626953)" bx:shape="cross 52.491 143.624 16 16 4 4 0.5 1@69e7b8f5"/>
-  <path d="M 38.398 115.437 L 44.398 128.437 L 32.398 128.437 L 38.398 115.437 Z" style="fill: rgb(252, 2, 4);" transform="matrix(0, 1, -1, 0, 164.970917, 1.031644)" bx:shape="triangle 32.398 115.437 12 13 0.5 0 1@47be1d73"/>
+  <path d="M 38.398 115.437 L 44.398 128.437 L 32.398 128.437 L 38.398 115.437 Z" style="fill: rgb(255, 0, 0);" transform="matrix(0, 1, -1, 0, 164.970917, 1.031644)" bx:shape="triangle 32.398 115.437 12 13 0.5 0 1@47be1d73"/>
   <rect x="20" y="22" width="3" height="25" style="fill: rgb(255, 255, 255);"/>
   <rect x="20" y="22" width="36" height="3" style="fill: rgb(255, 255, 255);"/>
 </svg>
