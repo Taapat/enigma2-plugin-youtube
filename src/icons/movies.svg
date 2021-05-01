@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg viewBox="0 0 100 72" xmlns="http://www.w3.org/2000/svg">
   <rect x="12" y="12" width="76" height="48" style="fill: rgb(252, 2, 4);" rx="5.718" ry="5.718"/>
-  <title>antenna-tower-outline</title>
-  <path style="stroke-opacity: 0; stroke-width: 0px; stroke: rgb(186, 218, 85); fill: rgb(255, 255, 255);"/>
-  <path style="stroke-opacity: 0; stroke-width: 0px; stroke: rgb(186, 218, 85); fill: rgb(255, 255, 255);" d="M 56.635 87.2"/>
+  <path style="stroke: rgb(186, 218, 85); fill: rgb(255, 255, 255);"/>
+  <path style="stroke: rgb(186, 218, 85); fill: rgb(255, 255, 255);" d="M 56.635 87.2"/>
   <path d="M 60 21 L 60 24.333 L 56.667 24.333 L 56.667 21 L 43.334 21 L 43.334 24.333 L 40 24.333 L 40 21 L 36.667 21 L 36.667 51 L 40 51 L 40 47.667 L 43.334 47.667 L 43.334 51 L 56.667 51 L 56.667 47.667 L 60 47.667 L 60 51 L 63.334 51 L 63.334 21 L 60 21 Z M 43.334 44.333 L 40 44.333 L 40 41 L 43.334 41 L 43.334 44.333 Z M 43.334 37.667 L 40 37.667 L 40 34.333 L 43.334 34.333 L 43.334 37.667 Z M 43.334 31 L 40 31 L 40 27.667 L 43.334 27.667 L 43.334 31 Z M 60 44.333 L 56.667 44.333 L 56.667 41 L 60 41 L 60 44.333 Z M 60 37.667 L 56.667 37.667 L 56.667 34.333 L 60 34.333 L 60 37.667 Z M 60 31 L 56.667 31 L 56.667 27.667 L 60 27.667 L 60 31 Z" style="fill: rgb(255, 255, 255);"/>
 </svg>

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg viewBox="0 0 100 72" xmlns="http://www.w3.org/2000/svg">
-  <title>antenna-tower-outline</title>
-  <path style="stroke-opacity: 0; stroke-width: 0px; stroke: rgb(186, 218, 85); fill: rgb(255, 255, 255);"/>
-  <path style="stroke-opacity: 0; stroke-width: 0px; stroke: rgb(186, 218, 85); fill: rgb(255, 255, 255);" d="M 56.635 87.2"/>
+  <path style="stroke: rgb(186, 218, 85); fill: rgb(255, 255, 255);"/>
+  <path style="stroke: rgb(186, 218, 85); fill: rgb(255, 255, 255);" d="M 56.635 87.2"/>
   <rect x="12" y="12" width="76" height="48" style="fill: rgb(252, 2, 4);" rx="5.718" ry="5.718"/>
   <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 30.948 23.911"/>
   <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 63.062 45.303"/>
