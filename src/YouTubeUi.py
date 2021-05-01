@@ -572,7 +572,17 @@ class YouTubeMain(Screen):
 			else:
 				url = entry[1]
 				if not url:
-					self.loadIcon(entryId)
+					if screenwidth == 'svg':
+						image = resolveFilename(SCOPE_PLUGINS,
+								'Extensions/YouTube/icons/%s.svg' % entryId)
+						self.thumbnails[entryId] = LoadPixmap(path=image,
+								width=self.thumbSize[0],
+								height=self.thumbSize[1])
+						self.updateThumbnails()
+					else:
+						image = resolveFilename(SCOPE_PLUGINS,
+								'Extensions/YouTube/icons/%s.png' % entryId)
+						self.decodeThumbnail(entryId, image)
 				else:
 					image = os.path.join('/tmp/', str(entryId) + '.jpg')
 					downloadPage(url.encode(), image)\
@@ -586,19 +596,6 @@ class YouTubeMain(Screen):
 	def downloadFailed(self, entryId, result):
 		print("[YouTube] Thumbnail download failed, use default for", entryId)
 		self.decodeThumbnail(entryId)
-
-	def loadIcon(self, entryId):
-		if screenwidth == 'svg':
-			self.thumbnails[entryId] = LoadPixmap(
-					path=resolveFilename(SCOPE_PLUGINS,
-						'Extensions/YouTube/icons/%s.svg' % entryId),
-					width=self.thumbSize[0],
-					height=self.thumbSize[1])
-			self.updateThumbnails()
-		else:
-			self.decodeThumbnail(entryId,
-					resolveFilename(SCOPE_PLUGINS,
-						'Extensions/YouTube/icons/%s.png' % entryId))
 
 	def decodeThumbnail(self, entryId, image=None):
 		if not image or not os.path.exists(image):
