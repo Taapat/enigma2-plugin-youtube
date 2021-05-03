@@ -385,11 +385,17 @@ class YouTubeMain(Screen):
 
 	def layoutFinish(self):
 		self.thumbSize = [self['thumbnail'].instance.size().width(),
-			self['thumbnail'].instance.size().height()]
-		defThumbnail = resolveFilename(SCOPE_PLUGINS,
-			'Extensions/YouTube/icons/icon%s' %
-			'.svg' if screenwidth == 'svg' else '.png')
-		self.decodeThumbnail('default', defThumbnail)
+				self['thumbnail'].instance.size().height()]
+		if screenwidth == 'svg':
+			image = resolveFilename(SCOPE_PLUGINS,
+					'Extensions/YouTube/icons/icon.svg')
+			self.thumbnails['default'] = LoadPixmap(path=image,
+					width=self.thumbSize[0],
+					height=self.thumbSize[1])
+		else:
+			image = resolveFilename(SCOPE_PLUGINS,
+					'Extensions/YouTube/icons/icon.png')
+			self.decodeThumbnail('default', image)
 		self.splitTaimer.start(1, True)
 
 	def cleanVariables(self):
