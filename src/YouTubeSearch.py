@@ -83,7 +83,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube.svg" \
 					position="15*f,6*f" size="100*f,40*f" transparent="1" alphatest="on" />
 				<widget name="config" position="130*f,15*f" size="485*f,30*f" zPosition="2" \
-					scrollbarMode="showNever" />
+					scrollbarMode="showNever" itemHeight="25*f" font="Regular;20*f" />
 				<widget source="list" render="Listbox" position="15*f,48*f" size="600*f,273*f" \
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
@@ -110,7 +110,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				<ePixmap position="565*f,335*f" size="35*f,25*f" pixmap="skin_default/buttons/key_menu.svg" \
 					transparent="1" alphatest="on" />
 				<widget name="HelpWindow" position="400*f,540*f" size="1,1" zPosition="5" \
-					pixmap="skin_default/vkey_icon.svg" transparent="1" alphatest="on" />
+					pixmap="skin_default/buttons/vkey_icon.svg" transparent="1" alphatest="on" />
 			</screen>"""
 	elif screenwidth == 1280:
 		skin = """<screen position="center,150" size="630,370">
@@ -144,7 +144,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				<ePixmap position="565,335" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="HelpWindow" position="400,540" size="1,1" zPosition="5" \
-					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
+					pixmap="skin_default/buttons/vkey_icon.png" transparent="1" alphatest="on" />
 			</screen>"""
 	elif screenwidth == 1920:
 		skin = """<screen position="center,225" size="945,555">
@@ -178,7 +178,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				<ePixmap position="849,507" size="53,38" pixmap="%s/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="HelpWindow" position="600,810" size="1,1" zPosition="5" \
-					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
+					pixmap="skin_default/buttons/vkey_icon.png" transparent="1" alphatest="on" />
 			</screen>""" % (BUTTONS_FOLDER, BUTTONS_FOLDER, BUTTONS_FOLDER, BUTTONS_FOLDER, BUTTONS_FOLDER)
 	else:
 		skin = """<screen position="center,150" size="630,370">
