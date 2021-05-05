@@ -127,7 +127,7 @@ class YouTubeDownloadList(Screen):
 					</convert>
 				</widget>
 				<ePixmap position="center,323*f" size="140*f,40*f" pixmap="skin_default/buttons/red.svg" \
-					transparent="1" alphatest="on" />
+					transparent="1" alphatest="blend" />
 				<widget source="key_red" render="Label" position="center,328*f" zPosition="2" \
 					size="140*f,30*f" valign="center" halign="center" font="Regular;22*f" transparent="1" />
 				</screen>"""

@@ -81,7 +81,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 	if screenwidth == 'svg':
 		skin = """<screen position="center,150*f" size="630*f,370*f">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube.svg" \
-					position="15*f,6*f" size="100*f,40*f" transparent="1" alphatest="on" />
+					position="15*f,6*f" size="100*f,40*f" transparent="1" alphatest="blend" />
 				<widget name="config" position="130*f,15*f" size="485*f,30*f" zPosition="2" \
 					scrollbarMode="showNever" itemHeight="25*f" font="Regular;20*f" />
 				<widget source="list" render="Listbox" position="15*f,48*f" size="600*f,273*f" \
@@ -94,13 +94,13 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					</convert>
 				</widget>
 				<ePixmap position="30*f,335*f" size="35*f,25*f" pixmap="skin_default/buttons/key_text.svg" \
-					transparent="1" alphatest="on" />
+					transparent="1" alphatest="blend" />
 				<ePixmap position="85*f,323*f" size="140*f,40*f" pixmap="skin_default/buttons/red.svg" \
-					transparent="1" alphatest="on" />
+					transparent="1" alphatest="blend" />
 				<ePixmap position="245*f,323*f" size="140*f,40*f" pixmap="skin_default/buttons/green.svg" \
-					transparent="1" alphatest="on" />
+					transparent="1" alphatest="blend" />
 				<ePixmap position="405*f,323*f" size="140*f,40*f" pixmap="skin_default/buttons/yellow.svg" \
-					transparent="1" alphatest="on" />
+					transparent="1" alphatest="blend" />
 				<widget source="key_red" render="Label" position="85*f,328*f" zPosition="2" size="140*f,30*f" \
 					valign="center" halign="center" font="Regular;22*f" transparent="1" />
 				<widget source="key_green" render="Label" position="245*f,328*f" zPosition="2" size="140*f,30*f" \
@@ -108,9 +108,9 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				<widget source="key_yellow" render="Label" position="405*f,328*f" zPosition="2" size="140*f,30*f" \
 					valign="center" halign="center" font="Regular;22*f" transparent="1" />
 				<ePixmap position="565*f,335*f" size="35*f,25*f" pixmap="skin_default/buttons/key_menu.svg" \
-					transparent="1" alphatest="on" />
+					transparent="1" alphatest="blend" />
 				<widget name="HelpWindow" position="400*f,540*f" size="1,1" zPosition="5" \
-					pixmap="skin_default/buttons/vkey_icon.svg" transparent="1" alphatest="on" />
+					pixmap="skin_default/buttons/vkey_icon.svg" transparent="1" alphatest="blend" />
 			</screen>"""
 	elif screenwidth == 1280:
 		skin = """<screen position="center,150" size="630,370">

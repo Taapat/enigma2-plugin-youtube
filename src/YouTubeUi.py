@@ -191,12 +191,12 @@ class YouTubeMain(Screen):
 	if screenwidth == 'svg':
 		skin = """<screen position="center,center" size="730*f,524*f">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube.svg" \
-					position="15*f,0" zPosition="2" size="100*f,40*f" alphatest="on" />
+					position="15*f,0" zPosition="2" size="100*f,40*f" alphatest="blend" />
 				<widget source="list" render="Listbox" position="15*f,42*f" size="700*f,432*f" \
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [
-							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
+							MultiContentEntryPixmapAlphaBlend(pos=(0,0), \
 								size=(100*f,72*f), flags=BT_SCALE, png=2), # Thumbnail
 							MultiContentEntryText(pos=(110*f,1), size=(575*f,52*f), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
@@ -210,17 +210,17 @@ class YouTubeMain(Screen):
 					</convert>
 				</widget>
 				<widget name="info" position="50*f,489*f" size="35*f,25*f" pixmap="skin_default/buttons/key_info.svg" \
-					transparent="1" alphatest="on" />
+					transparent="1" alphatest="blend" />
 				<widget name="red" position="215*f,477*f" size="140*f,40*f" pixmap="skin_default/buttons/red.svg" \
-					transparent="1" alphatest="on" />
+					transparent="1" alphatest="blend" />
 				<widget name="green" position="375*f,477*f" size="140*f,40*f" pixmap="skin_default/buttons/green.svg" \
-					transparent="1" alphatest="on" />
+					transparent="1" alphatest="blend" />
 				<widget source="key_red" render="Label" position="215*f,482*f" zPosition="2" size="140*f,30*f" \
 					valign="center" halign="center" font="Regular;22*f" transparent="1" />
 				<widget source="key_green" render="Label" position="375*f,482*f" zPosition="2" size="140*f,30*f" \
 					valign="center" halign="center" font="Regular;22*f" transparent="1" />
 				<widget name="menu" position="645*f,489*f" size="35*f,25*f" pixmap="skin_default/buttons/key_menu.svg" \
-					transparent="1" alphatest="on" />
+					transparent="1" alphatest="blend" />
 				<widget name="thumbnail" position="0,0" size="100*f,72*f" /> # Thumbnail size in list
 			</screen>"""
 	elif screenwidth == 1280:
@@ -1315,7 +1315,7 @@ class YouTubeInfo(Screen):
 	if screenwidth == 'svg':
 		skin = """<screen position="center,center" size="730*f,424*f">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube.svg" \
-					position="15*f,0" size="100*f,40*f" transparent="1" alphatest="on" />
+					position="15*f,0" size="100*f,40*f" transparent="1" alphatest="blend" />
 				<widget name="title" position="115*f,0" size="600*f,60*f" halign="center" font="Regular;24*f" />
 				<widget name="pic" position="20*f,70*f" size="320*f,180*f" transparent="1" alphatest="on" />
 				<widget name="description" position="360*f,70*f" size="360*f,300*f" font="Regular;16*f" />
@@ -1325,7 +1325,7 @@ class YouTubeInfo(Screen):
 				<widget name="dislikes" position="200*f,300*f" size="150*f,20*f" font="Regular;16*f" />
 				<widget name="published" position="30*f,330*f" size="300*f,20*f" font="Regular;16*f" />
 				<ePixmap position="295*f,377*f" size="140*f,40*f" pixmap="skin_default/buttons/red.svg" \
-					transparent="1" alphatest="on" />
+					transparent="1" alphatest="blend" />
 				<widget source="key_red" render="Label" position="center,382*f" zPosition="2" size="140*f,30*f" \
 					valign="295*f" halign="center" font="Regular;22*f" transparent="1" />
 			</screen>"""
