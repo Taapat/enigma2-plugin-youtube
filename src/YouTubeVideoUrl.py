@@ -336,7 +336,7 @@ class YouTubeVideoUrl():
 			print('[YouTubeVideoUrl] Trailer video')
 			return str(trailer_video_id)
 
-		if playability_status.get('reason') == 'Sign in to confirm your age':
+		if playability_status.get('status') == 'LOGIN_REQUIRED':
 			print('[YouTubeVideoUrl] Age gate content')
 			pr = self._parse_json(try_get(compat_parse_qs(
 					self._download_webpage(
