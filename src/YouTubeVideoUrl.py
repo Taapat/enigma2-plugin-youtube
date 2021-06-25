@@ -338,16 +338,20 @@ class YouTubeVideoUrl():
 
 		if playability_status.get('status') == 'LOGIN_REQUIRED':
 			print('[YouTubeVideoUrl] Age gate content')
-			pr = self._parse_json(try_get(compat_parse_qs(
-					self._download_webpage(
-							'https://www.youtube.com/get_video_info',
-							query={'video_id': video_id,
-									'eurl': 'https://youtube.googleapis.com/v/%s' % video_id,
-									'html5': 1})),
-							lambda x: x['player_response'][0],
-							compat_str) or '{}')
-			if pr:
-				player_response = pr
+			video_info = self._download_webpage(
+					'https://www.youtube.com/get_video_info',
+					query={'video_id': video_id,
+							'eurl': 'https://youtube.googleapis.com/v/%s' % video_id,
+							'html5': 1,
+							'c': 'TVHTML5',
+							'cver': '6.20180913'})
+			if video_info:
+				pr = self._parse_json(try_get(
+						compat_parse_qs(video_info),
+						lambda x: x['player_response'][0],
+						compat_str) or '{}')
+				if pr and isinstance(pr, dict):
+					 player_response = pr
 
 		url = ''
 		streaming_data = player_response.get('streamingData') or {}
