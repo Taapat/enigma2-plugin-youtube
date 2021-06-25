@@ -351,7 +351,7 @@ class YouTubeVideoUrl():
 						lambda x: x['player_response'][0],
 						compat_str) or '{}')
 				if pr and isinstance(pr, dict):
-					 player_response = pr
+					player_response = pr
 
 		url = ''
 		streaming_data = player_response.get('streamingData') or {}
