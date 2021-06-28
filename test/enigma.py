@@ -173,6 +173,7 @@ class eServiceReferenceDVB:
 	nvodAvcHdStereoTs = 0x1D
 	nvodAvcHdStereoRef = 0x1E
 	nvecTv = 0x1F
+	nvecTv20 = 0x20
 	user134 = 0x86
 	user195 = 0xC
 
