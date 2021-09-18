@@ -1,5 +1,7 @@
 from __future__ import print_function
 
+from os import path as os_path
+
 from threading import Thread
 from json import loads
 
@@ -20,6 +22,12 @@ from . import _, screenwidth
 from .compat import compat_quote
 from .compat import compat_ssl_urlopen
 from .YouTubeUi import BUTTONS_FOLDER
+
+
+# Workaround to keep compatibility broken with changes in new images
+DEFAULT_BUTTONS = 'skin_default/buttons'
+if os_path.exists('/usr/share/enigma2/skin_default/vkey_icon.png'):
+	DEFAULT_BUTTONS = 'skin_default'
 
 
 class YouTubeVirtualKeyBoard(VirtualKeyBoard):
@@ -144,8 +152,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				<ePixmap position="565,335" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="HelpWindow" position="400,540" size="1,1" zPosition="5" \
-					pixmap="skin_default/buttons/vkey_icon.png" transparent="1" alphatest="on" />
-			</screen>"""
+					pixmap="%s/vkey_icon.png" transparent="1" alphatest="on" />
+			</screen>""" % (DEFAULT_BUTTONS)
 	elif screenwidth == 1920:
 		skin = """<screen position="center,225" size="945,555">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_FHD.png" \
@@ -178,8 +186,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				<ePixmap position="849,507" size="53,38" pixmap="%s/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="HelpWindow" position="600,810" size="1,1" zPosition="5" \
-					pixmap="skin_default/buttons/vkey_icon.png" transparent="1" alphatest="on" />
-			</screen>""" % (BUTTONS_FOLDER, BUTTONS_FOLDER, BUTTONS_FOLDER, BUTTONS_FOLDER, BUTTONS_FOLDER)
+					pixmap="%s/vkey_icon.png" transparent="1" alphatest="on" />
+			</screen>""" % (BUTTONS_FOLDER, BUTTONS_FOLDER, BUTTONS_FOLDER, BUTTONS_FOLDER, BUTTONS_FOLDER, DEFAULT_BUTTONS)
 	else:
 		skin = """<screen position="center,150" size="630,370">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
@@ -212,8 +220,8 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				<ePixmap position="565,335" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="HelpWindow" position="160,440" size="1,1" zPosition="5" \
-					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
-			</screen>"""
+					pixmap="%s/vkey_icon.png" transparent="1" alphatest="on" />
+			</screen>""" % (DEFAULT_BUTTONS)
 
 	def __init__(self, session, curList):
 		Screen.__init__(self, session)
