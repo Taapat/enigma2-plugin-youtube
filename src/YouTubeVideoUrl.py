@@ -5,7 +5,7 @@ from __future__ import print_function
 
 import re
 
-from json import loads
+from json import loads, dumps
 
 from Components.config import config
 
@@ -17,6 +17,7 @@ from .compat import compat_URLError
 from .compat import compat_urljoin
 from .compat import compat_urlparse
 from .compat import compat_urlunparse
+from .compat import compat_Request
 from .jsinterp import JSInterpreter
 
 
@@ -97,9 +98,9 @@ class YouTubeVideoUrl():
 		self._player_cache = {}
 		self.use_dash_mp4 = []
 
-	def _download_webpage(self, url, query={}):
+	def _download_webpage(self, url, query={}, data=None, headers={}):
 		""" Return the data of the page as a string """
-		content, urlh = self._download_webpage_handle(url, query)
+		content, urlh = self._download_webpage_handle(url, query, data, headers)
 		return content
 
 	@staticmethod
@@ -119,7 +120,7 @@ class YouTubeVideoUrl():
 
 		return encoding
 
-	def _download_webpage_handle(self, url_or_request, query={}):
+	def _download_webpage_handle(self, url_or_request, query={}, data=None, headers={}):
 		""" Returns a tuple (page content as string, URL handle) """
 
 		# Strip hashes from the URL (#1038)
@@ -132,6 +133,9 @@ class YouTubeVideoUrl():
 			qs.update(query)
 			url_or_request = compat_urlunparse(parsed_url._replace(
 					query=compat_urlencode(qs, True)))
+		if data is not None or headers:
+			url_or_request = compat_Request(url_or_request, data=data, headers=headers)
+			url_or_request.get_method = lambda: 'POST'
 
 		try:
 			urlh = compat_ssl_urlopen(url_or_request)
@@ -315,17 +319,30 @@ class YouTubeVideoUrl():
 		return ''
 
 	def _real_extract(self, video_id):
-		webpage = self._download_webpage(
-				'https://www.youtube.com/watch?v=%s&bpctr=9999999999&has_verified=1' % video_id)
-		if not webpage:
-			raise Exception('Video webpage not found for!')
+		# Try ANDROID client
+		player_response = self._parse_json(self._download_webpage(
+				url='https://www.youtube.com/youtubei/v1/player?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
+				data=dumps({'videoId': video_id,
+						'context': {'client': {
+								'hl': 'en',
+								'clientVersion': '16.20',
+								'clientName': 'ANDROID'}}}),
+				headers={'Content-Type': 'application/json',
+						'Origin': 'https://www.youtube.com',
+						'X-YouTube-Client-Name': '3',
+						'X-YouTube-Client-Version': '16.20'}))
 
-		player_response = self._extract_yt_initial_variable(
-				webpage, r'ytInitialPlayerResponse\s*=\s*({.+?})\s*;')
 		if not player_response:
-			# I did not find a video in which the player response was not found
-			# and should be used api call
-			raise Exception('Player response not found!')
+			# Try WEB client
+			webpage = self._download_webpage(
+					'https://www.youtube.com/watch?v=%s&bpctr=9999999999&has_verified=1' % video_id)
+			if not webpage:
+				raise Exception('Video webpage not found for!')
+
+			player_response = self._extract_yt_initial_variable(
+					webpage, r'ytInitialPlayerResponse\s*=\s*({.+?})\s*;')
+			if not player_response:
+				raise Exception('Player response not found!')
 
 		playability_status = player_response.get('playabilityStatus') or {}
 
@@ -370,19 +387,19 @@ class YouTubeVideoUrl():
 				print('[YouTubeVideoUrl] skip DASH MP4 format')
 				self.use_dash_mp4 = DASHMP4_FORMAT
 
-			url, our_format = self._extract_fmt_video_format(streaming_formats, webpage)
+			url, our_format = self._extract_fmt_video_format(streaming_formats, player_response)
 			if url and our_format in DASHMP4_FORMAT:
-				audio_url = self._extract_dash_audio_format(streaming_formats, webpage)
+				audio_url = self._extract_dash_audio_format(streaming_formats, player_response)
 				if audio_url:
 					url += '&suburi=%s' % audio_url
 			if not url:
 				for fmt in streaming_formats:
 					if str(fmt.get('itag', '')) not in IGNORE_VIDEO_FORMAT and self._not_in_fmt(fmt):
-						url = self._extract_fmt_url(fmt, webpage)
+						url = self._extract_fmt_url(fmt, player_response)
 						if url:
 							break
 			if not url:
-				url = self._extract_fmt_url(streaming_formats[0], webpage)
+				url = self._extract_fmt_url(streaming_formats[0], player_response)
 
 		if not url:
 			print('[YouTubeVideoUrl] Try manifest url')
