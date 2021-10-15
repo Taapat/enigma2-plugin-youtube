@@ -320,7 +320,7 @@ class YouTubeVideoUrl():
 
 	def _real_extract(self, video_id):
 		# Try ANDROID client
-		player_response = self._parse_json(self._download_webpage(
+		player_response = webpage = self._parse_json(self._download_webpage(
 				url='https://www.youtube.com/youtubei/v1/player?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
 				data=dumps({'videoId': video_id,
 						'context': {'client': {
@@ -387,19 +387,19 @@ class YouTubeVideoUrl():
 				print('[YouTubeVideoUrl] skip DASH MP4 format')
 				self.use_dash_mp4 = DASHMP4_FORMAT
 
-			url, our_format = self._extract_fmt_video_format(streaming_formats, player_response)
+			url, our_format = self._extract_fmt_video_format(streaming_formats, webpage)
 			if url and our_format in DASHMP4_FORMAT:
-				audio_url = self._extract_dash_audio_format(streaming_formats, player_response)
+				audio_url = self._extract_dash_audio_format(streaming_formats, webpage)
 				if audio_url:
 					url += '&suburi=%s' % audio_url
 			if not url:
 				for fmt in streaming_formats:
 					if str(fmt.get('itag', '')) not in IGNORE_VIDEO_FORMAT and self._not_in_fmt(fmt):
-						url = self._extract_fmt_url(fmt, player_response)
+						url = self._extract_fmt_url(fmt, webpage)
 						if url:
 							break
 			if not url:
-				url = self._extract_fmt_url(streaming_formats[0], player_response)
+				url = self._extract_fmt_url(streaming_formats[0], webpage)
 
 		if not url:
 			print('[YouTubeVideoUrl] Try manifest url')
