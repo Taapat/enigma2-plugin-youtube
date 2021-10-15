@@ -326,7 +326,7 @@ class YouTubeVideoUrl():
 						'context': {'client': {
 								'hl': 'en',
 								'clientVersion': '16.20',
-								'clientName': 'ANDROID'}}}),
+								'clientName': 'ANDROID'}}}).encode('utf8'),
 				headers={'Content-Type': 'application/json',
 						'Origin': 'https://www.youtube.com',
 						'X-YouTube-Client-Name': '3',
