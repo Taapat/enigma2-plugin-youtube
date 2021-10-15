@@ -74,7 +74,7 @@ class OAuth:
 		url = 'https://accounts.google.com/o/oauth2/device/code'
 		data = compat_urlencode({
 				'client_id': CLIENT_ID,
-				'scope'	: 'https://www.googleapis.com/auth/youtube'}).encode()
+				'scope': 'https://www.googleapis.com/auth/youtube'}).encode()
 		data = self.get_oauth_response(url, data)
 		self.device_code = data.get('device_code', '')
 		self.retry_interval = data.get('interval', 2)
