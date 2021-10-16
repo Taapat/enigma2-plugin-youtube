@@ -259,9 +259,8 @@ msgstr "Рейтинг удален!"
 msgid "Recent"
 msgstr "Самые последние"
 
-#, fuzzy
 msgid "Related videos"
-msgstr "Оценить видео"
+msgstr "Похожие видео"
 
 msgid "Relevance"
 msgstr "Актуальность"
@@ -321,9 +320,8 @@ msgstr "Поиск видео"
 msgid "ServiceApp"
 msgstr ""
 
-#, fuzzy
 msgid "Show related videos"
-msgstr "Скачать видео"
+msgstr "Показать похожие видео"
 
 msgid "Shows"
 msgstr "Шоу"
@@ -469,12 +467,11 @@ msgstr "Когда видео закончилось:"
 msgid "Yes"
 msgstr "Да"
 
-#, fuzzy
 msgid "Yes, and return to list"
-msgstr "Вернуться к списку"
+msgstr "Да, и вернуться к списку"
 
 msgid "Yes, and show related videos"
-msgstr ""
+msgstr "Да, и показать похожие видео"
 
 msgid "Yes, but play next video"
 msgstr "Да, но проиграть следующее видео"

@@ -260,9 +260,8 @@ msgstr "Novērtējums dzēsts!"
 msgid "Recent"
 msgstr "Jaunākie"
 
-#, fuzzy
 msgid "Related videos"
-msgstr "Novērtēt video"
+msgstr "Saistītie video"
 
 msgid "Relevance"
 msgstr "Atbilstības"
@@ -322,9 +321,8 @@ msgstr "Meklēt video"
 msgid "ServiceApp"
 msgstr ""
 
-#, fuzzy
 msgid "Show related videos"
-msgstr "Lejuplādēt video"
+msgstr "Rādīt saistītos video"
 
 msgid "Shows"
 msgstr "Pārraides"
@@ -470,12 +468,11 @@ msgstr "Kad video beidzas:"
 msgid "Yes"
 msgstr "Jā"
 
-#, fuzzy
 msgid "Yes, and return to list"
-msgstr "Atgriesties sarakstā"
+msgstr "Jā, un atgriesties sarakstā"
 
 msgid "Yes, and show related videos"
-msgstr ""
+msgstr "Jā, un parādīt saistītos video"
 
 msgid "Yes, but play next video"
 msgstr "Jā, atskaņot nākošo video"
