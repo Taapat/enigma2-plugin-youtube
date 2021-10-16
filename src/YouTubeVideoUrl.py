@@ -337,7 +337,7 @@ class YouTubeVideoUrl():
 			webpage = self._download_webpage(
 					'https://www.youtube.com/watch?v=%s&bpctr=9999999999&has_verified=1' % video_id)
 			if not webpage:
-				raise Exception('Video webpage not found for!')
+				raise Exception('Video webpage not found!')
 
 			player_response = self._extract_yt_initial_variable(
 					webpage, r'ytInitialPlayerResponse\s*=\s*({.+?})\s*;')
