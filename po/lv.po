@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-20 19:55+0200\n"
+"POT-Creation-Date: 2021-10-16 12:09+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -260,6 +260,10 @@ msgstr "Novērtējums dzēsts!"
 msgid "Recent"
 msgstr "Jaunākie"
 
+#, fuzzy
+msgid "Related videos"
+msgstr "Novērtēt video"
+
 msgid "Relevance"
 msgstr "Atbilstības"
 
@@ -317,6 +321,10 @@ msgstr "Meklēt video"
 #. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 msgid "ServiceApp"
 msgstr ""
+
+#, fuzzy
+msgid "Show related videos"
+msgstr "Lejuplādēt video"
 
 msgid "Shows"
 msgstr "Pārraides"
@@ -461,6 +469,13 @@ msgstr "Kad video beidzas:"
 
 msgid "Yes"
 msgstr "Jā"
+
+#, fuzzy
+msgid "Yes, and return to list"
+msgstr "Atgriesties sarakstā"
+
+msgid "Yes, and show related videos"
+msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Jā, atskaņot nākošo video"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-20 19:52+0200\n"
+"POT-Creation-Date: 2021-10-16 12:09+0300\n"
 "PO-Revision-Date: 2020-06-12 23:54+0300\n"
 "Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish\n"
@@ -265,6 +265,10 @@ msgstr "Derecelendirme kaldırıldı!"
 msgid "Recent"
 msgstr "Son"
 
+#, fuzzy
+msgid "Related videos"
+msgstr "Videoya oy ver"
+
 msgid "Relevance"
 msgstr "Uygunluk"
 
@@ -322,6 +326,10 @@ msgstr "Video ara"
 #. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 msgid "ServiceApp"
 msgstr "ServiceApp"
+
+#, fuzzy
+msgid "Show related videos"
+msgstr "Video indir"
 
 msgid "Shows"
 msgstr "Gösteriler"
@@ -465,6 +473,13 @@ msgstr "Video bittiğinde:"
 
 msgid "Yes"
 msgstr "Evet"
+
+#, fuzzy
+msgid "Yes, and return to list"
+msgstr "Listeye geri dön"
+
+msgid "Yes, and show related videos"
+msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Evet, ama sonraki videoyu oynat"

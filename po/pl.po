@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-20 19:52+0200\n"
+"POT-Creation-Date: 2021-10-16 12:09+0300\n"
 "PO-Revision-Date: 2020-11-03 23:02+0300\n"
 "Last-Translator: Lishoo\n"
 "Language-Team: \n"
@@ -260,6 +260,10 @@ msgstr "Ocena została usunięta!"
 msgid "Recent"
 msgstr "Na czasie"
 
+#, fuzzy
+msgid "Related videos"
+msgstr "Oceń film"
+
 msgid "Relevance"
 msgstr "Trafność"
 
@@ -317,6 +321,10 @@ msgstr "Wyszukaj filmy"
 #. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 msgid "ServiceApp"
 msgstr ""
+
+#, fuzzy
+msgid "Show related videos"
+msgstr "Poberz film"
 
 msgid "Shows"
 msgstr "Programy telewizyjne"
@@ -460,6 +468,13 @@ msgstr "Kiedy film się skończy:"
 
 msgid "Yes"
 msgstr "Tak"
+
+#, fuzzy
+msgid "Yes, and return to list"
+msgstr "Wróć do listy"
+
+msgid "Yes, and show related videos"
+msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Tak, ale odtwórz następny film"

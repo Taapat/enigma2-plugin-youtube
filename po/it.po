@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-20 19:52+0200\n"
+"POT-Creation-Date: 2021-10-16 12:09+0300\n"
 "PO-Revision-Date: 2018-05-26 13:10+0200\n"
 "Last-Translator: Massimo Bambi <maxbambi@libero.it>\n"
 "Language-Team: \n"
@@ -263,6 +263,10 @@ msgstr "Valutazione cancellata!"
 msgid "Recent"
 msgstr "Recente"
 
+#, fuzzy
+msgid "Related videos"
+msgstr "Valuta video"
+
 msgid "Relevance"
 msgstr "Rilevanza"
 
@@ -320,6 +324,10 @@ msgstr "Ricerca video"
 #. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 msgid "ServiceApp"
 msgstr ""
+
+#, fuzzy
+msgid "Show related videos"
+msgstr "Download video"
 
 msgid "Shows"
 msgstr "Mostra"
@@ -460,6 +468,13 @@ msgstr "Quando il video finisce:"
 
 msgid "Yes"
 msgstr "Sì"
+
+#, fuzzy
+msgid "Yes, and return to list"
+msgstr "Ritorna all'elenco"
+
+msgid "Yes, and show related videos"
+msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Sì, ma riproduci il prossimo video"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-20 19:52+0200\n"
+"POT-Creation-Date: 2021-10-16 12:09+0300\n"
 "PO-Revision-Date: 2016-02-27 17:17+0100\n"
 "Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: OpenPlus <open-plus.es>\n"
@@ -258,6 +258,10 @@ msgstr "Bewertung entfernt!"
 msgid "Recent"
 msgstr "Neueste Videos"
 
+#, fuzzy
+msgid "Related videos"
+msgstr "Video bewerten"
+
 msgid "Relevance"
 msgstr "Relevanz"
 
@@ -315,6 +319,10 @@ msgstr "Videos"
 #. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 msgid "ServiceApp"
 msgstr ""
+
+#, fuzzy
+msgid "Show related videos"
+msgstr "Download Video"
 
 msgid "Shows"
 msgstr "Shows"
@@ -455,6 +463,13 @@ msgstr "Wenn Videoende erreicht ist:"
 
 msgid "Yes"
 msgstr "Ja"
+
+#, fuzzy
+msgid "Yes, and return to list"
+msgstr "Zurück zur Liste"
+
+msgid "Yes, and show related videos"
+msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Vorheriges Video abspielen"

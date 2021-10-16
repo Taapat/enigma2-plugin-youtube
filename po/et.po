@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-20 19:52+0200\n"
+"POT-Creation-Date: 2021-10-16 12:09+0300\n"
 "PO-Revision-Date: 2018-11-18 12:37+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: \n"
@@ -260,6 +260,10 @@ msgstr "Hinnang eemaldati!"
 msgid "Recent"
 msgstr "Uusimad"
 
+#, fuzzy
+msgid "Related videos"
+msgstr "Hinda video"
+
 msgid "Relevance"
 msgstr "Tähtsus"
 
@@ -317,6 +321,10 @@ msgstr "Otsi videoid"
 #. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 msgid "ServiceApp"
 msgstr ""
+
+#, fuzzy
+msgid "Show related videos"
+msgstr "Laadi alla"
 
 msgid "Shows"
 msgstr "Saated"
@@ -460,6 +468,13 @@ msgstr "Video lõppedes:"
 
 msgid "Yes"
 msgstr "Jah"
+
+#, fuzzy
+msgid "Yes, and return to list"
+msgstr "Tagasi nimekirja"
+
+msgid "Yes, and show related videos"
+msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Jah, aga esita järgmine video"

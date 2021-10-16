@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube Plugin slovenský preklad\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-20 19:52+0200\n"
+"POT-Creation-Date: 2021-10-16 12:09+0300\n"
 "PO-Revision-Date: 2018-05-30 04:10+0200\n"
 "Last-Translator: S4iyan3lit3 <nsa@dontgathermailaddresses.fck>\n"
 "Language-Team: th4nks0url0rd1nh34v3n\n"
@@ -263,6 +263,10 @@ msgstr "Hodnotenie vymazané!"
 msgid "Recent"
 msgstr "Nedávné"
 
+#, fuzzy
+msgid "Related videos"
+msgstr "Hodnotiť video"
+
 msgid "Relevance"
 msgstr "Dôležitosť"
 
@@ -320,6 +324,10 @@ msgstr "Vyhľadávajte videá"
 #. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 msgid "ServiceApp"
 msgstr ""
+
+#, fuzzy
+msgid "Show related videos"
+msgstr "Stiahnúť video"
 
 msgid "Shows"
 msgstr "Relácie"
@@ -460,6 +468,13 @@ msgstr "Keď video skončí:"
 
 msgid "Yes"
 msgstr "Áno"
+
+#, fuzzy
+msgid "Yes, and return to list"
+msgstr "Vrátiť sa do zoznamu"
+
+msgid "Yes, and show related videos"
+msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Áno, ale prehrať dalšie video"

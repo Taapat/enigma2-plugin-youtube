@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-20 19:52+0200\n"
+"POT-Creation-Date: 2021-10-16 12:09+0300\n"
 "PO-Revision-Date: 2020-06-13 12:57+0200\n"
 "Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: Ims\n"
@@ -262,6 +262,10 @@ msgstr "Hodnocení odstraněno!"
 msgid "Recent"
 msgstr "Nedávno přidané"
 
+#, fuzzy
+msgid "Related videos"
+msgstr "Ohodnotit video"
+
 msgid "Relevance"
 msgstr "Relevance"
 
@@ -319,6 +323,10 @@ msgstr "Hledat videa"
 #. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 msgid "ServiceApp"
 msgstr ""
+
+#, fuzzy
+msgid "Show related videos"
+msgstr "Stáhnout video"
 
 msgid "Shows"
 msgstr "Ukázky"
@@ -462,6 +470,13 @@ msgstr "Při skončení videa:"
 
 msgid "Yes"
 msgstr "Ano"
+
+#, fuzzy
+msgid "Yes, and return to list"
+msgstr "Návrat do seznamu"
+
+msgid "Yes, and show related videos"
+msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Ano, ale přehrát následující video"

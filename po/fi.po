@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-20 19:52+0200\n"
+"POT-Creation-Date: 2021-10-16 12:09+0300\n"
 "PO-Revision-Date: 2016-08-24 10:46+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: \n"
@@ -262,6 +262,10 @@ msgstr "Arvostelu poistettu!"
 msgid "Recent"
 msgstr "Viimeisimmät"
 
+#, fuzzy
+msgid "Related videos"
+msgstr "Arvostele video"
+
 msgid "Relevance"
 msgstr "Vastaavuus"
 
@@ -319,6 +323,10 @@ msgstr "Hae videoita"
 #. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 msgid "ServiceApp"
 msgstr ""
+
+#, fuzzy
+msgid "Show related videos"
+msgstr "Lataa video"
 
 msgid "Shows"
 msgstr "Show:t"
@@ -459,6 +467,13 @@ msgstr "Kun video loppuu:"
 
 msgid "Yes"
 msgstr "Kyllä"
+
+#, fuzzy
+msgid "Yes, and return to list"
+msgstr "Palaa listaan"
+
+msgid "Yes, and show related videos"
+msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Kyllä, mutta toista seuraava video"

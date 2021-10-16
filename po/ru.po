@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-20 19:52+0200\n"
+"POT-Creation-Date: 2021-10-16 12:09+0300\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -259,6 +259,10 @@ msgstr "Рейтинг удален!"
 msgid "Recent"
 msgstr "Самые последние"
 
+#, fuzzy
+msgid "Related videos"
+msgstr "Оценить видео"
+
 msgid "Relevance"
 msgstr "Актуальность"
 
@@ -316,6 +320,10 @@ msgstr "Поиск видео"
 #. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 msgid "ServiceApp"
 msgstr ""
+
+#, fuzzy
+msgid "Show related videos"
+msgstr "Скачать видео"
 
 msgid "Shows"
 msgstr "Шоу"
@@ -460,6 +468,13 @@ msgstr "Когда видео закончилось:"
 
 msgid "Yes"
 msgstr "Да"
+
+#, fuzzy
+msgid "Yes, and return to list"
+msgstr "Вернуться к списку"
+
+msgid "Yes, and show related videos"
+msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Да, но проиграть следующее видео"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Taapat/Rob\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-20 19:52+0200\n"
+"POT-Creation-Date: 2021-10-16 12:09+0300\n"
 "PO-Revision-Date: 2019-09-16 14:28+0200\n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: LL@li.org\n"
@@ -253,6 +253,10 @@ msgstr "Waardering verwijderd!"
 msgid "Recent"
 msgstr "Recent"
 
+#, fuzzy
+msgid "Related videos"
+msgstr "Waardeer video"
+
 msgid "Relevance"
 msgstr "Overeenkomst"
 
@@ -310,6 +314,10 @@ msgstr "Zoek video's"
 #. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 msgid "ServiceApp"
 msgstr ""
+
+#, fuzzy
+msgid "Show related videos"
+msgstr "Download video"
 
 msgid "Shows"
 msgstr "voorstellingen"
@@ -451,6 +459,13 @@ msgstr "Indien de video afgelopen is ..."
 
 msgid "Yes"
 msgstr "Ja"
+
+#, fuzzy
+msgid "Yes, and return to list"
+msgstr "Ga terug naar de lijst"
+
+msgid "Yes, and show related videos"
+msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Ja, maar speel de vorige video af"

@@ -234,6 +234,9 @@ msgstr ""
 msgid "Recent"
 msgstr ""
 
+msgid "Related videos"
+msgstr ""
+
 msgid "Relevance"
 msgstr ""
 
@@ -290,6 +293,9 @@ msgstr ""
 
 #. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
 msgid "ServiceApp"
+msgstr ""
+
+msgid "Show related videos"
 msgstr ""
 
 msgid "Shows"
@@ -417,6 +423,12 @@ msgid "When video ends:"
 msgstr ""
 
 msgid "Yes"
+msgstr ""
+
+msgid "Yes, and return to list"
+msgstr ""
+
+msgid "Yes, and show related videos"
 msgstr ""
 
 msgid "Yes, but play next video"
