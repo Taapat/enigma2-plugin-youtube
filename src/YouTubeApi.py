@@ -100,12 +100,12 @@ class YouTubeApi:
 		return self.get_response(url, maxResults, pageToken)
 
 	def search_list_full(self, videoEmbeddable, safeSearch, eventType, videoType,
-			videoDefinition, order, part, q, relevanceLanguage,
-			s_type, regionCode, maxResults, pageToken):
+			videoDefinition, order, part, q, relevanceLanguage, s_type,
+			regionCode, relatedToVideoId, maxResults, pageToken):
 
 		q = compat_quote(q)
 
-		url = 'search?{}safeSearch={}{}{}{}&order={}&part={}&q={}&type={}{}{}'.format(
+		url = 'search?{}safeSearch={}{}{}{}&order={}&part={}&q={}&type={}{}{}{}'.format(
 				videoEmbeddable and 'videoEmbeddable=%s&' % videoEmbeddable,
 				safeSearch,
 				eventType and '&eventType=%s' % eventType,
@@ -113,7 +113,8 @@ class YouTubeApi:
 				videoDefinition and '&videoDefinition=%s' % videoDefinition,
 				order, part.replace(',', '%2C'), q, s_type,
 				relevanceLanguage and '&relevanceLanguage=%s' % relevanceLanguage,
-				regionCode and '&regionCode=%s' % regionCode)
+				regionCode and '&regionCode=%s' % regionCode,
+				relatedToVideoId and '&relatedToVideoId=%s' % relatedToVideoId)
 		return self.get_response(url, maxResults, pageToken)
 
 	def search_list(self, order, part, channelId, maxResults, pageToken):

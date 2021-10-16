@@ -68,11 +68,13 @@ config.plugins.YouTube.safeSearch = ConfigSelection(default='moderate', choices=
 config.plugins.YouTube.maxResolution = ConfigSelection(default='22', choices=[
 	('38', '4096x3072'), ('37', '1920x1080'), ('22', '1280x720'), ('35', '854x480'),
 	('18', '640x360'), ('5', '400x240'), ('17', '176x144')])
-config.plugins.YouTube.onMovieEof = ConfigSelection(default='quit', choices=[
+config.plugins.YouTube.onMovieEof = ConfigSelection(default='related', choices=[
+	('related', _('Show related videos')),
 	('quit', _('Return to list')), ('ask', _('Ask user')),
 	('playnext', _('Play next')), ('repeat', _('Repeat')),
 	('playprev', _('Play previous'))])
-config.plugins.YouTube.onMovieStop = ConfigSelection(default='ask', choices=[
+config.plugins.YouTube.onMovieStop = ConfigSelection(default='related', choices=[
+	('related', _('Show related videos')),
 	('ask', _('Ask user')), ('quit', _('Return to list'))])
 config.plugins.YouTube.login = ConfigYesNo(default=False)
 config.plugins.YouTube.downloadDir = ConfigDirectory(default=resolveFilename(SCOPE_HDD))
@@ -134,9 +136,11 @@ class YouTubePlayer(MoviePlayer):
 				seek.seekTo(self.seekPosition)
 
 	def leavePlayer(self):
-		if config.plugins.YouTube.onMovieStop.value == 'ask':
+		on_movie_stop = config.plugins.YouTube.onMovieStop.value
+		if on_movie_stop == 'ask':
 			title = _('Stop playing this movie?')
-			list = ((_('Yes'), 'quit'),
+			list = ((_('Yes, and return to list'), 'quit'),
+					(_('Yes, and show related videos'), 'related'),
 					(_('Yes, but play next video'), 'playnext'),
 					(_('Yes, but play previous video'), 'playprev'),
 					(_('No, but play video again'), 'repeat'),
@@ -144,7 +148,7 @@ class YouTubePlayer(MoviePlayer):
 			self.session.openWithCallback(self.leavePlayerConfirmed,
 				ChoiceBox, title=title, list=list)
 		else:
-			self.leavePlayerConfirmed([None, 'quit'])
+			self.leavePlayerConfirmed([None, on_movie_stop])
 
 	def leavePlayerConfirmed(self, answer):
 		if answer and answer[1] != 'continue':
@@ -471,7 +475,7 @@ class YouTubeMain(Screen):
 		self.current = current
 		self.text = text
 		self.action = action
-		if action == 'OpenSearch':
+		if action in ['OpenSearch', 'OpenRelated']:
 			text = _('Download search results. Please wait...')
 		elif action in ['playVideo', 'downloadVideo']:
 			text = _('Extract video url. Please wait...')
@@ -693,6 +697,10 @@ class YouTubeMain(Screen):
 						(_('Play video again'), 'repeat'))
 				self.session.openWithCallback(self.playCallback,
 					ChoiceBox, title=title, list=list)
+			elif action == 'related':
+				current = str(self['list'].getCurrent()[0])
+				text = _('Related videos')
+				self.screenCallback(current, text, 'OpenRelated')
 			else:
 				if action == 'playnext':
 					self.selectNext()
@@ -827,7 +835,7 @@ class YouTubeMain(Screen):
 		self.createBuild()
 		order = 'date'
 		searchType = 'video'
-		q = videoEmbeddable = videoDefinition = videoType = eventType = ''
+		q = videoEmbeddable = videoDefinition = videoType = eventType = related = ''
 		videos = []
 
 		if self.action == 'OpenMyFeeds':
@@ -940,6 +948,8 @@ class YouTubeMain(Screen):
 				if '  (' in self.text:
 					self.text = self.text.rsplit('  (', 1)[0]
 				q = self.text
+			elif self.action == 'OpenRelated':
+				related = self.current
 			elif self.action == 'OpenFeeds':
 				if self.current == 'top_rated':
 					order = 'rating'
@@ -966,6 +976,7 @@ class YouTubeMain(Screen):
 					relevanceLanguage=config.plugins.YouTube.searchLanguage.value,
 					s_type=searchType,
 					regionCode=config.plugins.YouTube.searchRegion.value,
+					relatedToVideoId=related,
 					maxResults=self.searchResult,
 					pageToken=self.pageToken)
 

@@ -24,6 +24,7 @@ def GetVideoId(q, eventType, order, s_type):
 		relevanceLanguage='',
 		s_type=s_type,
 		regionCode='',
+		relatedToVideoId='',
 		maxResults='3',
 		pageToken='')
 
