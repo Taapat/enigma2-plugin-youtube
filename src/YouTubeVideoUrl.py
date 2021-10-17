@@ -133,7 +133,9 @@ class YouTubeVideoUrl():
 			qs.update(query)
 			url_or_request = compat_urlunparse(parsed_url._replace(
 					query=compat_urlencode(qs, True)))
-		if data is not None or headers:
+		if data:
+			data = dumps(data).encode('utf8')
+		if data or headers:
 			url_or_request = compat_Request(url_or_request, data=data, headers=headers)
 			url_or_request.get_method = lambda: 'POST'
 
@@ -319,18 +321,23 @@ class YouTubeVideoUrl():
 		return ''
 
 	def _real_extract(self, video_id):
-		# Try ANDROID client
-		player_response = webpage = self._parse_json(self._download_webpage(
-				url='https://www.youtube.com/youtubei/v1/player?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
-				data=dumps({'videoId': video_id,
-						'context': {'client': {
-								'hl': 'en',
-								'clientVersion': '16.20',
-								'clientName': 'ANDROID'}}}).encode('utf8'),
-				headers={'Content-Type': 'application/json',
-						'Origin': 'https://www.youtube.com',
-						'X-YouTube-Client-Name': '3',
-						'X-YouTube-Client-Version': '16.20'}))
+		player_response = None
+		try:
+			# Try ANDROID client
+			player_response = webpage = self._parse_json(self._download_webpage(
+					url='https://www.youtube.com/youtubei/v1/player',
+					query={'key': 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8'},
+					data={'videoId': video_id,
+							'context': {'client': {
+									'hl': 'en',
+									'clientVersion': '16.20',
+									'clientName': 'ANDROID'}}},
+					headers={'Content-Type': 'application/json',
+							'Origin': 'https://www.youtube.com',
+							'X-YouTube-Client-Name': '3',
+							'X-YouTube-Client-Version': '16.20'}))
+		except Exception as e:
+			print('[YouTubeVideoUrl] ANDROID client failed! %s' % str(e))
 
 		if not player_response:
 			# Try WEB client
