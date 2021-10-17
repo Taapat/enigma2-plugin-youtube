@@ -767,7 +767,7 @@ class YouTubeMain(Screen):
 			videoUrl = self.ytdl.extract(self.current[0])
 		except Exception as e:
 			print('[YouTube] Error in extract info:', e)
-			return None, '%s\nVideo Id %s' % (e, str(self.current))
+			return None, '%s\nVideo Id %s' % (e, str(self.current[0]))
 		if videoUrl:
 			return videoUrl, None
 		print('[YouTube] Video url not found')
