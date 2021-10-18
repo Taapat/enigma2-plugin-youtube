@@ -46,7 +46,7 @@ if path.exists('/etc/enigma2/YouTube.key'):
 			elif 'CLIENT_SECRET' in line[0]:
 				CLIENT_SECRET = line[1]
 	except Exception as e:
-		print('[OAuth] Error in read YouTube.key:', e)
+		print('[OAuth] Error in read YouTube.key', e)
 
 
 class OAuth:
@@ -55,6 +55,7 @@ class OAuth:
 		self.retry_interval = 2
 
 	def get_oauth_response(self, url, data):
+		data = compat_urlencode(data).encode()
 		headers = {'Content-type': 'application/x-www-form-urlencoded'}
 		try:
 			request = compat_Request(url, data=data, headers=headers)
@@ -72,9 +73,8 @@ class OAuth:
 
 	def get_user_code(self):
 		url = 'https://accounts.google.com/o/oauth2/device/code'
-		data = compat_urlencode({
-				'client_id': CLIENT_ID,
-				'scope': 'https://www.googleapis.com/auth/youtube'}).encode()
+		data = {'client_id': CLIENT_ID,
+				'scope': 'https://www.googleapis.com/auth/youtube'}
 		data = self.get_oauth_response(url, data)
 		self.device_code = data.get('device_code', '')
 		self.retry_interval = data.get('interval', 2)
@@ -82,11 +82,10 @@ class OAuth:
 
 	def get_new_token(self):
 		url = 'https://accounts.google.com/o/oauth2/token'
-		data = compat_urlencode({
-				'client_id': CLIENT_ID,
+		data = {'client_id': CLIENT_ID,
 				'client_secret': CLIENT_SECRET,
 				'code': self.device_code,
-				'grant_type': 'http://oauth.net/grant_type/device/1.0'}).encode()
+				'grant_type': 'http://oauth.net/grant_type/device/1.0'}
 		data = self.get_oauth_response(url, data)
 		if 'access_token' in data and 'refresh_token' in data:
 			return data['refresh_token'], 1
@@ -94,13 +93,11 @@ class OAuth:
 
 	def get_access_token(self, refresh_token):
 		url = 'https://accounts.google.com/o/oauth2/token'
-		data = compat_urlencode({
-				'client_id': CLIENT_ID,
+		data = {'client_id': CLIENT_ID,
 				'client_secret': CLIENT_SECRET,
 				'refresh_token': refresh_token,
-				'grant_type': 'refresh_token'}).encode()
+				'grant_type': 'refresh_token'}
 		data = self.get_oauth_response(url, data)
 		if 'access_token' in data:
 			return data['access_token']
 		print('[OAuth] Error in get access token')
-		return None
