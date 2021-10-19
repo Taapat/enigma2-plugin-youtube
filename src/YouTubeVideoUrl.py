@@ -70,13 +70,6 @@ def try_get(src, getter, expected_type=None):
 				return v
 
 
-def url_or_none(url):
-	if not url or not isinstance(url, compat_str):
-		return None
-	url = url.strip()
-	return url if re.match(r'^(?:[a-zA-Z][\da-zA-Z.+-]*:)?//', url) else None
-
-
 def clean_html(html):
 	"""Clean an HTML snippet into a readable string"""
 
