@@ -230,7 +230,7 @@ class YouTubeVideoUrl():
 						'hl': 'en',
 						'clientVersion': '16.20',
 						'clientName': client_name}}}
-		headers={'Content-Type': 'application/json',
+		headers = {'Content-Type': 'application/json',
 				'Origin': 'https://www.youtube.com',
 				'X-YouTube-Client-Name': it_client_name,
 				'X-YouTube-Client-Version': '16.20'}
