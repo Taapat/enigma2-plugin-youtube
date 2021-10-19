@@ -14,11 +14,9 @@ from .compat import compat_ssl_urlopen
 from .compat import compat_str
 from .compat import compat_urlencode
 from .compat import compat_URLError
-from .compat import compat_urljoin
 from .compat import compat_urlparse
 from .compat import compat_urlunparse
 from .compat import compat_Request
-from .jsinterp import JSInterpreter
 
 
 PRIORITY_VIDEO_FORMAT = []
@@ -171,72 +169,6 @@ class YouTubeVideoUrl():
 			print('[YouTubeVideoUrl] unable extract pattern from string!')
 			return ''
 
-	def _decrypt_signature(self, s, player_url):
-		"""Turn the encrypted s field into a working signature"""
-
-		if player_url is None:
-			raise Exception('Cannot decrypt signature without player_url!')
-
-		if player_url[:2] == '//':
-			player_url = 'https:' + player_url
-		elif not re.match(r'https?://', player_url):
-			player_url = compat_urljoin('https://www.youtube.com', player_url)
-
-		try:
-			player_id = (player_url, self._signature_cache_id(s))
-			if player_id not in self._player_cache:
-				self._player_cache[player_id] = self._extract_signature_function(player_url)
-			func = self._player_cache[player_id]
-			return func(s)
-		except Exception as e:
-			raise Exception('Signature extraction failed!\n%s' % str(e))
-
-	def _signature_cache_id(self, example_sig):
-		""" Return a string representation of a signature """
-		return '.'.join(compat_str(len(part)) for part in example_sig.split('.'))
-
-	def _extract_signature_function(self, player_url):
-		_PLAYER_INFO_RE = (
-			r'/s/player/(?P<id>[a-zA-Z0-9_-]{8,})/player',
-			r'/(?P<id>[a-zA-Z0-9_-]{8,})/player(?:_ias\.vflset(?:/[a-zA-Z]{2,3}_[a-zA-Z]{2,3})?|-plasma-ias-(?:phone|tablet)-[a-z]{2}_[A-Z]{2}\.vflset)/base\.js$',
-			r'\b(?P<id>vfl[a-zA-Z0-9_-]+)\b.*?\.js$',
-		)
-
-		for player_re in _PLAYER_INFO_RE:
-			id_m = re.search(player_re, player_url)
-			if id_m:
-				break
-		else:
-			raise Exception('Cannot identify player %r' % player_url)
-
-		player_id = id_m.group('id')
-
-		if player_id not in self._code_cache:
-			self._code_cache[player_id] = self._download_webpage(player_url)
-		jscode = self._code_cache[player_id]
-
-		funcname = self._search_regex(
-				(r'\b[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\(',
-				r'\b[a-zA-Z0-9]+\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\(',
-				r'\bm=(?P<sig>[a-zA-Z0-9$]{2,})\(decodeURIComponent\(h\.s\)\)',
-				r'\bc&&\(c=(?P<sig>[a-zA-Z0-9$]{2,})\(decodeURIComponent\(c\)\)',
-				r'(?:\b|[^a-zA-Z0-9$])(?P<sig>[a-zA-Z0-9$]{2,})\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\);[a-zA-Z0-9$]{2}\.[a-zA-Z0-9$]{2}\(a,\d+\)',
-				r'(?:\b|[^a-zA-Z0-9$])(?P<sig>[a-zA-Z0-9$]{2,})\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)',
-				r'(?P<sig>[a-zA-Z0-9$]+)\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)',
-				# Obsolete patterns
-				r'(["\'])signature\1\s*,\s*(?P<sig>[a-zA-Z0-9$]+)\(',
-				r'\.sig\|\|(?P<sig>[a-zA-Z0-9$]+)\(',
-				r'yt\.akamaized\.net/\)\s*\|\|\s*.*?\s*[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*(?:encodeURIComponent\s*\()?\s*(?P<sig>[a-zA-Z0-9$]+)\(',
-				r'\b[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*(?P<sig>[a-zA-Z0-9$]+)\(',
-				r'\b[a-zA-Z0-9]+\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*(?P<sig>[a-zA-Z0-9$]+)\(',
-				r'\bc\s*&&\s*a\.set\([^,]+\s*,\s*\([^)]*\)\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\(',
-				r'\bc\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*\([^)]*\)\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\(',
-				r'\bc\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*\([^)]*\)\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\('),
-				jscode, group='sig')
-		jsi = JSInterpreter(jscode)
-		initial_function = jsi.extract_function(funcname)
-		return lambda s: initial_function([s])
-
 	def _extract_from_m3u8(self, manifest_url):
 		url_map = {}
 
@@ -259,90 +191,60 @@ class YouTubeVideoUrl():
 		except ValueError:
 			print('[YouTubeVideoUrl] Failed to parse JSON')
 
-	def _extract_yt_initial_variable(self, webpage, regex):
-		_YT_INITIAL_BOUNDARY_RE = r'(?:var\s+meta|</script|\n)'
-		return self._parse_json(self._search_regex(
-			(r'%s\s*%s' % (regex, _YT_INITIAL_BOUNDARY_RE), regex), webpage))
-
-	def _extract_fmt_url(self, fmt, webpage):
-		fmt_url = fmt.get('url', '')
-		if not fmt_url:
-			sc = compat_parse_qs(fmt.get('signatureCipher'))
-			fmt_url = try_get(sc, lambda x: x['url'][0])
-			encrypted_sig = try_get(sc, lambda x: x['s'][0])
-			if not (sc and fmt_url and encrypted_sig):
-				return ''
-			player_url = self._search_regex(
-					r'"(?:PLAYER_JS_URL|jsUrl)"\s*:\s*"([^"]+)"',
-					webpage)
-			if not player_url:
-				return ''
-			signature = self._decrypt_signature(sc['s'][0], player_url)
-			sp = try_get(sc, lambda x: x['sp'][0]) or 'signature'
-			fmt_url += '&%s=%s' % (sp, signature)
-		return fmt_url
-
 	def _not_in_fmt(self, fmt):
 		return not (fmt.get('targetDurationSec') or
 				fmt.get('drmFamilies') or
 				fmt.get('type') == 'FORMAT_STREAM_TYPE_OTF' or
 				str(fmt.get('itag', '')) in self.use_dash_mp4)
 
-	def _extract_fmt_video_format(self, streaming_formats, webpage):
+	def _extract_fmt_video_format(self, streaming_formats):
 		""" Find the best format from our format priority map """
 		print('[YouTubeVideoUrl] Try fmt url')
 		for our_format in PRIORITY_VIDEO_FORMAT:
 			for fmt in streaming_formats:
 				if str(fmt.get('itag', '')) == our_format and self._not_in_fmt(fmt):
-					url = self._extract_fmt_url(fmt, webpage)
+					url = fmt.get('url')
 					if url:
 						print('[YouTubeVideoUrl] Found fmt url')
 						return url, our_format
 		return '', ''
 
-	def _extract_dash_audio_format(self, streaming_formats, webpage):
+	def _extract_dash_audio_format(self, streaming_formats):
 		""" If DASH MP4 video add link also on Dash MP4 Audio """
 		print('[YouTubeVideoUrl] Try fmt audio url')
 		for our_format in ['141', '140', '139',
 				'258', '265', '325', '328']:
 			for fmt in streaming_formats:
 				if str(fmt.get('itag', '')) == our_format and self._not_in_fmt(fmt):
-					url = self._extract_fmt_url(fmt, webpage)
+					url = fmt.get('url')
 					if url:
 						print('[YouTubeVideoUrl] Found fmt audio url')
 						return url
 		return ''
 
+	def _extract_player_response(self, video_id, client_name='ANDROID', it_client_name='3', age_gate=False):
+		url = 'https://www.youtube.com/youtubei/v1/player'
+		query = {'key': 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8'}
+		data = {'videoId': video_id,
+				'context': {'client': {
+						'hl': 'en',
+						'clientVersion': '16.20',
+						'clientName': client_name}}}
+		headers={'Content-Type': 'application/json',
+				'Origin': 'https://www.youtube.com',
+				'X-YouTube-Client-Name': it_client_name,
+				'X-YouTube-Client-Version': '16.20'}
+		if age_gate:
+			data['thirdParty'] = 'https://google.com'
+			data['context']['client']['clientScreen'] = 'EMBED'
+		return self._parse_json(self._download_webpage(url, query, data, headers))
+
 	def _real_extract(self, video_id):
-		player_response = None
-		try:
-			# Try ANDROID client
-			player_response = webpage = self._parse_json(self._download_webpage(
-					url='https://www.youtube.com/youtubei/v1/player',
-					query={'key': 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8'},
-					data={'videoId': video_id,
-							'context': {'client': {
-									'hl': 'en',
-									'clientVersion': '16.20',
-									'clientName': 'ANDROID'}}},
-					headers={'Content-Type': 'application/json',
-							'Origin': 'https://www.youtube.com',
-							'X-YouTube-Client-Name': '3',
-							'X-YouTube-Client-Version': '16.20'}))
-		except Exception as e:
-			print('[YouTubeVideoUrl] ANDROID client failed! %s' % str(e))
+		url = ''
 
+		player_response = self._extract_player_response(video_id)
 		if not player_response:
-			# Try WEB client
-			webpage = self._download_webpage(
-					'https://www.youtube.com/watch?v=%s&bpctr=9999999999&has_verified=1' % video_id)
-			if not webpage:
-				raise Exception('Video webpage not found!')
-
-			player_response = self._extract_yt_initial_variable(
-					webpage, r'ytInitialPlayerResponse\s*=\s*({.+?})\s*;')
-			if not player_response:
-				raise Exception('Player response not found!')
+			raise Exception('Player response not found!')
 
 		playability_status = player_response.get('playabilityStatus') or {}
 
@@ -355,22 +257,8 @@ class YouTubeVideoUrl():
 
 		if playability_status.get('status') == 'LOGIN_REQUIRED':
 			print('[YouTubeVideoUrl] Age gate content')
-			player_response = webpage = self._parse_json(self._download_webpage(
-					url='https://www.youtube.com/youtubei/v1/player',
-					query={'key': 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8'},
-					data={'videoId': video_id,
-							'thirdParty': 'https://google.com',
-							'context': {'client': {
-									'hl': 'en',
-									'clientScreen': 'EMBED',
-									'clientVersion': '16.20',
-									'clientName': 'ANDROID'}}},
-					headers={'Content-Type': 'application/json',
-							'Origin': 'https://www.youtube.com',
-							'X-YouTube-Client-Name': '3',
-							'X-YouTube-Client-Version': '16.20'}))
+			player_response = self._extract_player_response(video_id, age_gate=True)
 
-		url = ''
 		streaming_data = player_response.get('streamingData') or {}
 		is_live = try_get(player_response, lambda x: x['videoDetails']['isLive'])
 		streaming_formats = streaming_data.get('formats') or []
@@ -387,19 +275,19 @@ class YouTubeVideoUrl():
 				print('[YouTubeVideoUrl] skip DASH MP4 format')
 				self.use_dash_mp4 = DASHMP4_FORMAT
 
-			url, our_format = self._extract_fmt_video_format(streaming_formats, webpage)
+			url, our_format = self._extract_fmt_video_format(streaming_formats)
 			if url and our_format in DASHMP4_FORMAT:
-				audio_url = self._extract_dash_audio_format(streaming_formats, webpage)
+				audio_url = self._extract_dash_audio_format(streaming_formats)
 				if audio_url:
 					url += '&suburi=%s' % audio_url
 			if not url:
 				for fmt in streaming_formats:
 					if str(fmt.get('itag', '')) not in IGNORE_VIDEO_FORMAT and self._not_in_fmt(fmt):
-						url = self._extract_fmt_url(fmt, webpage)
+						url = fmt.get('url')
 						if url:
 							break
 			if not url:
-				url = self._extract_fmt_url(streaming_formats[0], webpage)
+				url = streaming_formats[0].get('url', '')
 
 		if not url:
 			print('[YouTubeVideoUrl] Try manifest url')
