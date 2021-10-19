@@ -263,11 +263,12 @@ class YouTubeVideoUrl():
 		is_live = try_get(player_response, lambda x: x['videoDetails']['isLive'])
 		streaming_formats = streaming_data.get('formats') or []
 
+		# If priority format changed in config, recreate priority list
+		if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.value:
+			createPriorityFormats()
+
 		if not is_live and streaming_formats:
 			streaming_formats.extend(streaming_data.get('adaptiveFormats') or [])
-			# If priority format changed in config, recreate priority list
-			if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.value:
-				createPriorityFormats()
 
 			if config.plugins.YouTube.useDashMP4.value:
 				self.use_dash_mp4 = []
