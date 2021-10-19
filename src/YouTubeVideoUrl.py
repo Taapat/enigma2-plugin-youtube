@@ -222,17 +222,17 @@ class YouTubeVideoUrl():
 						return url
 		return ''
 
-	def _extract_player_response(self, video_id, client_name='ANDROID', it_client_name='3', age_gate=False):
+	def _extract_player_response(self, video_id, age_gate=False):
 		url = 'https://www.youtube.com/youtubei/v1/player'
 		query = {'key': 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8'}
 		data = {'videoId': video_id,
 				'context': {'client': {
 						'hl': 'en',
 						'clientVersion': '16.20',
-						'clientName': client_name}}}
+						'clientName': 'ANDROID'}}}
 		headers = {'Content-Type': 'application/json',
 				'Origin': 'https://www.youtube.com',
-				'X-YouTube-Client-Name': it_client_name,
+				'X-YouTube-Client-Name': '3',
 				'X-YouTube-Client-Version': '16.20'}
 		if age_gate:
 			data['thirdParty'] = 'https://google.com'
@@ -257,7 +257,7 @@ class YouTubeVideoUrl():
 
 		if playability_status.get('status') == 'LOGIN_REQUIRED':
 			print('[YouTubeVideoUrl] Age gate content')
-			player_response = self._extract_player_response(video_id, age_gate=True)
+			player_response = self._extract_player_response(video_id, True)
 
 		streaming_data = player_response.get('streamingData') or {}
 		is_live = try_get(player_response, lambda x: x['videoDetails']['isLive'])
