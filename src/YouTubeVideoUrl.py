@@ -24,16 +24,17 @@ PRIORITY_VIDEO_FORMAT = []
 
 def createPriorityFormats():
 	global PRIORITY_VIDEO_FORMAT
-	video_format = {'38': ['38', '266', '264', '138', '313', '315', '272', '308'],  # 4096x3072
-			'37': ['37', '96', '301', '137', '299', '248', '303', '271'],  # 1920x1080
-			'22': ['22', '95', '300', '136', '298'],  # 1280x720
-			'35': ['35', '59', '78', '94', '135', '212'],  # 854x480
-			'18': ['18', '93', '34', '6', '134'],  # 640x360
-			'5': ['5', '36', '92', '132', '133'],  # 400x240
-			'17': ['17', '91', '13', '151', '160']}  # 176x144
-	for itag in ['17', '5', '18', '35', '22', '37', '38']:
-		PRIORITY_VIDEO_FORMAT = video_format[itag] + PRIORITY_VIDEO_FORMAT
-		if itag == config.plugins.YouTube.maxResolution.value:
+	itag = config.plugins.YouTube.maxResolution.value
+	video_formats = [['17', '91', '13', '151', '160'],  # 176x144
+			['5', '36', '92', '132', '133'],  # 400x240
+			['18', '93', '34', '6', '134'],  # 640x360
+			['35', '59', '78', '94', '135', '212'],  # 854x480
+			['22', '95', '300', '136', '298'],  # 1280x720
+			['37', '96', '301', '137', '299', '248', '303', '271'],  # 1920x1080
+			['38', '266', '264', '138', '313', '315', '272', '308']]  # 4096x3072
+	for video_format in video_formats:
+		PRIORITY_VIDEO_FORMAT = video_format + PRIORITY_VIDEO_FORMAT
+		if video_format[0] == itag:
 			break
 
 
@@ -85,8 +86,6 @@ def clean_html(html):
 
 class YouTubeVideoUrl():
 	def __init__(self):
-		self._code_cache = {}
-		self._player_cache = {}
 		self.use_dash_mp4 = []
 
 	def _download_webpage(self, url, query={}, data=None, headers={}):
