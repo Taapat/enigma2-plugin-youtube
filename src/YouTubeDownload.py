@@ -93,13 +93,13 @@ class downloadTask(Task):
 				os.remove(self.outputfile)
 				os.remove('%s.m4a' % self.outputfile[:-11])
 			except Exception as e:
-				print('[YouTube] Error delete file:', e)
+				print('[YouTubeDownload] Error delete file', e)
 
 	def downloadFailed(self, failure_instance=None, error_message=''):
-		print('[YouTube] Video download failed')
+		print('[YouTubeDownload] Video download failed')
 		if error_message == '' and failure_instance is not None:
 			error_message = failure_instance.getErrorMessage()
-			print('[YouTube]', str(error_message))
+			print('[YouTubeDownload] error', str(error_message))
 		Task.processFinished(self, 1)
 		self.downloadStop()
 
@@ -206,13 +206,12 @@ class YouTubeDownloadList(Screen):
 		self.progressTimer.stop()
 		downloadList = []
 		for job in job_manager.getPendingJobs():
-			progress = job.progress / float(job.end) * 100
 			task = job.tasks[job.current_task]
 			totalSize = ''
 			if hasattr(task, 'totalSize') and task.totalSize > 0:
 				totalSize = _('%.1fMB') % (task.totalSize / 1000000.0)
 			downloadList.append((job, '%s ...' % job.name, job.getStatustext(),
-				int(progress), '%s%%' % progress, totalSize))
+				int(job.progress), '%s%%' % str(job.progress), totalSize))
 		self['list'].updateList(downloadList)
 		if downloadList:
 			self.progressTimer.startLongTimer(1)
