@@ -211,7 +211,7 @@ class YouTubeDownloadList(Screen):
 			if hasattr(task, 'totalSize') and task.totalSize > 0:
 				totalSize = _('%.1fMB') % (task.totalSize / 1000000.0)
 			downloadList.append((job, '%s ...' % job.name, job.getStatustext(),
-				int(job.progress), '%s%%' % str(job.progress), totalSize))
+				int(task.progress), '%s%%' % str(task.progress), totalSize))
 		self['list'].updateList(downloadList)
 		if downloadList:
 			self.progressTimer.startLongTimer(1)
