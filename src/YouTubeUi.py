@@ -536,7 +536,7 @@ class YouTubeMain(Screen):
 					self.session.openWithCallback(self.playCallback,
 						YouTubePlayer, service=service, current=self.current)
 				else:
-					self.videoDownload(videoUrl, self.current[3])
+					self.videoDownload(videoUrl, self.current[3], self.current[0])
 					self.setEntryList()
 					self.setPreviousList()
 			else:
@@ -1212,7 +1212,7 @@ class YouTubeMain(Screen):
 			elif answer[1] == 'download':
 				current = self['list'].getCurrent()
 				if current[6]:
-					self.videoDownload(current[6], current[3])
+					self.videoDownload(current[6], current[3], current[0])
 				else:
 					self.rememberCurList()
 					self.screenCallback(current, '', 'downloadVideo')
@@ -1271,14 +1271,16 @@ class YouTubeMain(Screen):
 			current = self['list'].getCurrent()
 			self.session.open(YouTubeInfo, current=current)
 
-	def videoDownload(self, url, title):
+	def videoDownload(self, url, title, vid):
 		downloadDir = config.plugins.YouTube.downloadDir.value
 		if downloadDir[0] == "'":
 			downloadDir = downloadDir[2:-2]
 		if not os.path.exists(downloadDir):
 			msg = _('Sorry, download directory not exist!\nPlease specify in the settings existing directory.')
 		else:
-			title = title.decode('utf-8', 'replace').encode('utf-8')
+			title = title.decode('utf-8', 'ignore').encode('utf-8')
+			if len(title) < 3:
+				title = 'YouTube-%s' % str(vid)
 			outputfile = os.path.join(downloadDir, title.replace('/', '') + '.mp4')
 			if os.path.exists(outputfile) or \
 				os.path.exists('%s.m4a' % outputfile[:-4]) or \
