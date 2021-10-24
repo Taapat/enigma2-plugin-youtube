@@ -701,6 +701,20 @@ def start_session():
 		print('init client mode')
 		Components.ClientMode.InitClientMode()
 
+	print('init usage')
+	import Components.UsageConfig
+	try:
+		Components.UsageConfig.InitUsageConfig()
+	except AttributeError:  # ATV-7.0
+		from Components.config import config, ConfigSubsection, ConfigText, ConfigYesNo
+		config.osd = ConfigSubsection()
+		config.osd.language = ConfigText(default="de_DE")
+		config.crash = ConfigSubsection()
+		config.crash.debugActionMaps = ConfigYesNo(default=False)
+		config.crash.debugKeyboards = ConfigYesNo(default=False)
+		config.plugins = ConfigSubsection()
+		Components.UsageConfig.InitUsageConfig()
+
 	print('init simple summary')
 	from Screens import InfoBar
 	InfoBar.MoviePlayer = new_MoviePlayer
@@ -728,20 +742,6 @@ def start_session():
 	else:
 		print('init epg config')
 		Components.EpgConfig.InitEPGConfig()
-
-	print('init usage')
-	import Components.UsageConfig
-	try:
-		Components.UsageConfig.InitUsageConfig()
-	except AttributeError:  # ATV-7.0
-		from Components.config import config, ConfigSubsection, ConfigText, ConfigYesNo
-		config.osd = ConfigSubsection()
-		config.osd.language = ConfigText(default="de_DE")
-		config.crash = ConfigSubsection()
-		config.crash.debugActionMaps = ConfigYesNo(default=False)
-		config.crash.debugKeyboards = ConfigYesNo(default=False)
-		config.plugins = ConfigSubsection()
-		Components.UsageConfig.InitUsageConfig()
 
 	print('init skin')
 	import skin
