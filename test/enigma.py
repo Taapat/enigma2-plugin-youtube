@@ -744,6 +744,7 @@ def start_session():
 		config.osd.language = ConfigText(default="de_DE")
 		config.crash = ConfigSubsection()
 		config.crash.debugActionMaps = ConfigYesNo(default=False)
+		config.crash.debugKeyboards = ConfigYesNo(default=False)
 		config.plugins = ConfigSubsection()
 		Components.UsageConfig.InitUsageConfig()
 
