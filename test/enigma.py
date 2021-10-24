@@ -721,11 +721,6 @@ def start_session():
 	from Components.config import choicesList
 	choicesList.index = new_index
 
-	# ATV
-	print('init setup devices')
-	import Components.SetupDevices
-	Components.SetupDevices.InitSetupDevices()
-
 	try:  # OpenVix
 		import Components.EpgConfig
 	except ImportError:
