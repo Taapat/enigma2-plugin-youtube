@@ -570,7 +570,7 @@ class YouTubeMain(Screen):
 		self['key_green'].setText(_('Open'))
 		if self.list == 'videolist':
 			self['info'].show()
-		self.createThumbnails()
+		#self.createThumbnails()
 
 	def createThumbnails(self):
 		for entry in self.entryList:
