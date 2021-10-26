@@ -601,8 +601,7 @@ class YouTubeMain(Screen):
 
 	def downloadFinished(self, entryId, result):
 		image = os.path.join('/tmp/', str(entryId) + '.jpg')
-		os.remove(image)
-		self.decodeThumbnail(entryId)
+		self.decodeThumbnail(entryId, image)
 
 	def downloadFailed(self, entryId, result):
 		print("[YouTube] Thumbnail download failed, use default for", entryId)
@@ -654,6 +653,7 @@ class YouTubeMain(Screen):
 						entry[10],  # Big thumbnail url
 						entry[11],  # Channel Id
 						entry[12])  # Published
+				del self.thumbnails[entry[0]]
 			count += 1
 		self['list'].updateList(self.entryList)
 
