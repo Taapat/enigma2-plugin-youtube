@@ -570,7 +570,7 @@ class YouTubeMain(Screen):
 		self['key_green'].setText(_('Open'))
 		if self.list == 'videolist':
 			self['info'].show()
-		#self.createThumbnails()
+		self.createThumbnails()
 
 	def createThumbnails(self):
 		for entry in self.entryList:
@@ -601,7 +601,8 @@ class YouTubeMain(Screen):
 
 	def downloadFinished(self, entryId, result):
 		image = os.path.join('/tmp/', str(entryId) + '.jpg')
-		self.decodeThumbnail(entryId, image)
+		os.remove(image)
+		self.decodeThumbnail(entryId)
 
 	def downloadFailed(self, entryId, result):
 		print("[YouTube] Thumbnail download failed, use default for", entryId)
