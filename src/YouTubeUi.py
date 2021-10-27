@@ -100,6 +100,15 @@ if os.path.exists('/usr/share/enigma2/skin_fallback_1080/buttons/red.png'):
 	BUTTONS_FOLDER = 'skin_fallback_1080'
 
 
+try:
+	from enigma import BT_SCALE
+except ImportError:
+	# Workaround if BT_SCALE not exist in enigma (BH)
+	BT_SCALE = ''
+else:
+	BT_SCALE = 'flags=BT_SCALE'
+
+
 class YouTubePlayer(MoviePlayer):
 	def __init__(self, session, service, current):
 		MoviePlayer.__init__(self, session, service)
@@ -236,7 +245,7 @@ class YouTubeMain(Screen):
 					<convert type="TemplatedMultiContent" >
 						{"template": [
 							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(100,72), flags=BT_SCALE, png=2), # Thumbnail
+								size=(100,72), %s, png=2), # Thumbnail
 							MultiContentEntryText(pos=(110,1), size=(575,52), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
 							MultiContentEntryText(pos=(120, 50), size=(200,22), \
@@ -261,7 +270,7 @@ class YouTubeMain(Screen):
 				<widget name="menu" position="645,489" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="thumbnail" position="0,0" size="100,72" /> # Thumbnail size in list
-			</screen>"""
+			</screen>""" % BT_SCALE
 	elif screenwidth == 1920:
 		skin = """<screen position="center,center" size="1095,786">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_FHD.png" \
@@ -271,7 +280,7 @@ class YouTubeMain(Screen):
 					<convert type="TemplatedMultiContent" >
 						{"template": [
 							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(150,108), flags=BT_SCALE, png=2), # Thumbnail
+								size=(150,108), %s, png=2), # Thumbnail
 							MultiContentEntryText(pos=(165,1), size=(862,78), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
 							MultiContentEntryText(pos=(180, 75), size=(300,33), \
@@ -292,7 +301,7 @@ class YouTubeMain(Screen):
 				<widget source="key_green" render="Label" position="563,729" zPosition="2" size="210,45" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 				<widget name="thumbnail" position="0,0" size="150,108" /> # Thumbnail size in list
-			</screen>""" % (BUTTONS_FOLDER, BUTTONS_FOLDER)
+			</screen>""" % (BT_SCALE, BUTTONS_FOLDER, BUTTONS_FOLDER)
 	else:
 		skin = """<screen position="center,center" size="630,380">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
@@ -302,7 +311,7 @@ class YouTubeMain(Screen):
 					<convert type="TemplatedMultiContent" >
 						{"template": [
 							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(100,72), flags=BT_SCALE, png=2), # Thumbnail
+								size=(100,72), %s, png=2), # Thumbnail
 							MultiContentEntryText(pos=(110,1), size=(475,52), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
 							MultiContentEntryText(pos=(120, 50), size=(200,22), \
@@ -327,7 +336,7 @@ class YouTubeMain(Screen):
 				<widget name="menu" position="565,345" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="thumbnail" position="0,0" size="100,72" /> # Thumbnail size in list
-			</screen>"""
+			</screen>""" % BT_SCALE
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
