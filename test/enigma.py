@@ -1,6 +1,13 @@
 from __future__ import print_function
 
 
+def _(txt):
+	return txt
+
+
+globals()['__builtins__']['_'] = _
+
+
 RT_VALIGN_TOP = 0
 RT_HALIGN_LEFT = 1
 RT_HALIGN_RIGHT = 2
