@@ -1,11 +1,11 @@
 from __future__ import print_function
 
 import os
+from copy import copy
 from twisted.web.client import downloadPage
 
-from enigma import ePicLoad, eServiceReference, eTimer, iPlayableService
+from enigma import eServiceReference, eTimer, iPlayableService
 from Components.ActionMap import ActionMap
-from Components.AVSwitch import AVSwitch
 from Components.config import config, ConfigDirectory, ConfigSelection, \
 	ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, \
 	getConfigListEntry
@@ -236,7 +236,7 @@ class YouTubeMain(Screen):
 					<convert type="TemplatedMultiContent" >
 						{"template": [
 							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(100,72), png=2), # Thumbnail
+								size=(100,72), flags=BT_SCALE, png=2), # Thumbnail
 							MultiContentEntryText(pos=(110,1), size=(575,52), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
 							MultiContentEntryText(pos=(120, 50), size=(200,22), \
@@ -271,7 +271,7 @@ class YouTubeMain(Screen):
 					<convert type="TemplatedMultiContent" >
 						{"template": [
 							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(150,108), png=2), # Thumbnail
+								size=(150,108), flags=BT_SCALE, png=2), # Thumbnail
 							MultiContentEntryText(pos=(165,1), size=(862,78), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
 							MultiContentEntryText(pos=(180, 75), size=(300,33), \
@@ -302,7 +302,7 @@ class YouTubeMain(Screen):
 					<convert type="TemplatedMultiContent" >
 						{"template": [
 							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(100,72), png=2), # Thumbnail
+								size=(100,72), flags=BT_SCALE, png=2), # Thumbnail
 							MultiContentEntryText(pos=(110,1), size=(475,52), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
 							MultiContentEntryText(pos=(120, 50), size=(200,22), \
@@ -359,9 +359,7 @@ class YouTubeMain(Screen):
 		self['thumbnail'].hide()
 		self.splitTaimer = eTimer()
 		self.splitTaimer.timeout.callback.append(self.splitTaimerStop)
-		self.picloads = {}
 		self.thumbnails = {}
-		self.sc = AVSwitch().getFramebufferScale()
 		self.list = 'main'
 		self.action = 'startup'
 		self.current = []
@@ -391,15 +389,15 @@ class YouTubeMain(Screen):
 		self.thumbSize = [self['thumbnail'].instance.size().width(),
 				self['thumbnail'].instance.size().height()]
 		if screenwidth == 'svg':
-			image = resolveFilename(SCOPE_PLUGINS,
-					'Extensions/YouTube/icons/icon.svg')
-			self.thumbnails['default'] = LoadPixmap(path=image,
+			self.thumbnails['default'] = LoadPixmap(
+					resolveFilename(SCOPE_PLUGINS,
+							'Extensions/YouTube/icons/icon.svg'),
 					width=self.thumbSize[0],
 					height=self.thumbSize[1])
 		else:
-			image = resolveFilename(SCOPE_PLUGINS,
-					'Extensions/YouTube/icons/icon.png')
-			self.decodeThumbnail('default', image)
+			self.thumbnails['default'] = LoadPixmap(
+					resolveFilename(SCOPE_PLUGINS,
+							'Extensions/YouTube/icons/icon.png'))
 		self.splitTaimer.start(1, True)
 
 	def cleanVariables(self):
@@ -583,25 +581,23 @@ class YouTubeMain(Screen):
 				url = entry[1]
 				if not url:
 					if screenwidth == 'svg':
-						image = resolveFilename(SCOPE_PLUGINS,
-								'Extensions/YouTube/icons/%s.svg' % entryId)
-						self.thumbnails[entryId] = LoadPixmap(path=image,
+						self.thumbnails[entryId] = LoadPixmap(
+								resolveFilename(SCOPE_PLUGINS,
+										'Extensions/YouTube/icons/%s.svg' % entryId),
 								width=self.thumbSize[0],
 								height=self.thumbSize[1])
-						self.updateThumbnails()
 					else:
-						image = resolveFilename(SCOPE_PLUGINS,
-								'Extensions/YouTube/icons/%s.png' % entryId)
-						self.decodeThumbnail(entryId, image)
+						self.thumbnails[entryId] = LoadPixmap(
+								resolveFilename(SCOPE_PLUGINS,
+										'Extensions/YouTube/icons/%s.png' % entryId))
+					self.updateThumbnails()
 				else:
-					image = os.path.join('/tmp/', str(entryId) + '.jpg')
-					downloadPage(url.encode(), image)\
+					downloadPage(url.encode(), '/tmp/%s.jpg' % str(entryId))\
 						.addCallback(boundFunction(self.downloadFinished, entryId))\
 						.addErrback(boundFunction(self.downloadFailed, entryId))
 
 	def downloadFinished(self, entryId, result):
-		image = os.path.join('/tmp/', str(entryId) + '.jpg')
-		self.decodeThumbnail(entryId, image)
+		self.decodeThumbnail(entryId, '/tmp/%s.jpg' % str(entryId))
 
 	def downloadFailed(self, entryId, result):
 		print("[YouTube] Thumbnail download failed, use default for", entryId)
@@ -611,28 +607,16 @@ class YouTubeMain(Screen):
 		if not image or not os.path.exists(image):
 			print("[YouTube] Thumbnail not exists, use default for", entryId)
 			self.thumbnails[entryId] = True
-			self.updateThumbnails()
+			self.updateThumbnails(True)
 		else:
-			self.picloads[entryId] = ePicLoad()
-			self.picloads[entryId].PictureData.get()\
-				.append(boundFunction(self.FinishDecode, entryId, image))
-			self.picloads[entryId].setPara((
-				self.thumbSize[0], self.thumbSize[1],
-				self.sc[0], self.sc[1], False, 1, '#00000000'))
-			self.picloads[entryId].startDecode(image)
-
-	def FinishDecode(self, entryId, image, picInfo=None):
-		ptr = self.picloads[entryId].getData()
-		if ptr:
-			self.thumbnails[entryId] = ptr
-			self.updateThumbnails()
+			self.thumbnails[entryId] = LoadPixmap(image)
 			if image[:4] == '/tmp':
+				self.updateThumbnails(True)
 				os.remove(image)
-			self.delPicloadTimer = eTimer()
-			self.delPicloadTimer.callback.append(boundFunction(self.delPicload, entryId))
-			self.delPicloadTimer.start(1, True)
+			else:
+				self.updateThumbnails()
 
-	def updateThumbnails(self):
+	def updateThumbnails(self, delete=False):
 		count = 0
 		for entry in self.entryList:
 			if not entry[2] and entry[0] in self.thumbnails:
@@ -642,7 +626,7 @@ class YouTubeMain(Screen):
 				self.entryList[count] = (
 						entry[0],  # Id
 						entry[1],  # Thumbnail url
-						thumbnail,  # Thumbnail
+						copy(thumbnail),  # Thumbnail
 						entry[3],  # Title
 						entry[4],  # Views
 						entry[5],  # Duration
@@ -653,11 +637,10 @@ class YouTubeMain(Screen):
 						entry[10],  # Big thumbnail url
 						entry[11],  # Channel Id
 						entry[12])  # Published
+				if len(self.thumbnails) > 200 and delete:
+					del self.thumbnails[entry[0]]
 			count += 1
 		self['list'].updateList(self.entryList)
-
-	def delPicload(self, entryId):
-		del self.picloads[entryId]
 
 	def selectNext(self):
 		if self['list'].index + 1 < len(self.entryList):  # not last enrty in entry list
@@ -1413,7 +1396,6 @@ class YouTubeInfo(Screen):
 				'infoButton': self.close,
 				'up': self['description'].pageUp,
 				'down': self['description'].pageDown}, -2)
-		self.picloads = None
 		self.ThumbnailUrl = current[10]
 		self.onLayoutFinish.append(self.LayoutFinish)
 
@@ -1425,21 +1407,9 @@ class YouTubeInfo(Screen):
 	def downloadFinished(self, result):
 		image = '/tmp/hqdefault.jpg'
 		if os.path.exists(image):
-			sc = AVSwitch().getFramebufferScale()
-			self.picloads = ePicLoad()
-			self.picloads.PictureData.get().append(self.FinishDecode)
-			self.picloads.setPara((
-				self['pic'].instance.size().width(),
-				self['pic'].instance.size().height(),
-				sc[0], sc[1], False, 1, '#00000000'))
-			self.picloads.startDecode(image)
-
-	def FinishDecode(self, picInfo=None):
-		ptr = self.picloads.getData()
-		if ptr:
-			self["pic"].instance.setPixmap(ptr.__deref__())
-			del self.picloads
-			os.remove('/tmp/hqdefault.jpg')
+			self['pic'].instance.setScale(1)
+			self['pic'].instance.setPixmap(LoadPixmap(image))
+			os.remove(image)
 
 
 class YouTubeSetup(ConfigListScreen, Screen):
