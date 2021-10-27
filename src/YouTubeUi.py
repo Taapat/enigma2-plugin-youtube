@@ -389,7 +389,7 @@ class YouTubeMain(Screen):
 		self.onClose.append(self.cleanVariables)
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
 			# TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
-			if p.name == _("ServiceApp"):
+			if p.name == _('ServiceApp'):
 				break
 		else:
 			config.plugins.YouTube.player.value = '4097'
@@ -539,7 +539,7 @@ class YouTubeMain(Screen):
 				if self.action == 'playVideo':
 					service = eServiceReference(int(config.plugins.YouTube.player.value), 0, videoUrl)
 					service.setName(self.current[3])
-					print("[YouTube] Play:", videoUrl)
+					print('[YouTube] Play:', videoUrl)
 					self.session.openWithCallback(self.playCallback,
 						YouTubePlayer, service=service, current=self.current)
 				else:
@@ -609,12 +609,12 @@ class YouTubeMain(Screen):
 		self.decodeThumbnail(entryId, '/tmp/%s.jpg' % str(entryId))
 
 	def downloadFailed(self, entryId, result):
-		print("[YouTube] Thumbnail download failed, use default for", entryId)
+		print('[YouTube] Thumbnail download failed, use default for', entryId)
 		self.decodeThumbnail(entryId)
 
 	def decodeThumbnail(self, entryId, image=None):
 		if not image or not os.path.exists(image):
-			print("[YouTube] Thumbnail not exists, use default for", entryId)
+			print('[YouTube] Thumbnail not exists, use default for', entryId)
 			self.thumbnails[entryId] = True
 			self.updateThumbnails(True)
 		else:
@@ -723,7 +723,7 @@ class YouTubeMain(Screen):
 	def ok(self):
 		current = self['list'].getCurrent()
 		if current and current[0]:
-			print("[YouTube] Selected:", current[0])
+			print('[YouTube] Selected:', current[0])
 			self.rememberCurList()
 			if self.list == 'videolist':
 				self.screenCallback(current, '', 'playVideo')
@@ -1511,7 +1511,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 				_('FFmpeg will be used to merge downloaded DASH video and audio files.\nFFmpeg will be installed if necessary.')))
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
 			# TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
-			if p.name == _("ServiceApp"):
+			if p.name == _('ServiceApp'):
 				self.list.append(getConfigListEntry(_('Media player:'),
 					config.plugins.YouTube.player,
 					_('Specify the player which will be used for YouTube media playback.')))
@@ -1575,11 +1575,11 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			url, userCode = self.oauth.get_user_code()
 			if userCode:
 				msg = _('Go to %s\nAnd enter the code %s') % (url, userCode)
-				print("[YouTube] ", msg)
+				print('[YouTube] ', msg)
 				self.mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 				self.splitTaimer.start(9000, True)
 			else:
-				print("[YouTube] Error in OAuth!")
+				print('[YouTube] Error in OAuth!')
 				self.session.open(MessageBox, 'There was an error!', MessageBox.TYPE_INFO, timeout=5)
 
 	def splitTaimerStop(self):
@@ -1588,7 +1588,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		if not refreshToken:
 			self.splitTaimer.start(retryInterval * 1000, True)
 		else:
-			print("[YouTube] Get refresh token")
+			print('[YouTube] Get refresh token')
 			if self.mbox:
 				self.mbox.close()
 			config.plugins.YouTube.refreshToken.value = refreshToken
