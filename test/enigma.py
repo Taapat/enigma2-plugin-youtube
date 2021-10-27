@@ -10,7 +10,13 @@ RT_VALIGN_BOTTOM = 32
 RT_WRAP = 64
 BT_ALPHATEST = 1
 BT_ALPHABLEND = 2
-BT_SCALE = 4
+try:
+	from Tools.CountryCodes import ISO3166
+except ImportError:
+	# ISO3166 and BT_SCALE not exist in BH
+	pass
+else:
+	BT_SCALE = 4
 BT_KEEP_ASPECT_RATIO = 8
 BT_HALIGN_CENTER = 16
 BT_VALIGN_CENTER = 64

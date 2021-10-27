@@ -106,7 +106,7 @@ except ImportError:
 	# Workaround if BT_SCALE not exist in enigma (BH)
 	BT_SCALE = ''
 else:
-	BT_SCALE = 'flags=BT_SCALE'
+	BT_SCALE = 'flags=BT_SCALE,'
 
 
 class YouTubePlayer(MoviePlayer):
@@ -245,7 +245,7 @@ class YouTubeMain(Screen):
 					<convert type="TemplatedMultiContent" >
 						{"template": [
 							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(100,72), %s, png=2), # Thumbnail
+								size=(100,72), %s png=2), # Thumbnail
 							MultiContentEntryText(pos=(110,1), size=(575,52), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
 							MultiContentEntryText(pos=(120, 50), size=(200,22), \
@@ -280,7 +280,7 @@ class YouTubeMain(Screen):
 					<convert type="TemplatedMultiContent" >
 						{"template": [
 							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(150,108), %s, png=2), # Thumbnail
+								size=(150,108), %s png=2), # Thumbnail
 							MultiContentEntryText(pos=(165,1), size=(862,78), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
 							MultiContentEntryText(pos=(180, 75), size=(300,33), \
@@ -311,7 +311,7 @@ class YouTubeMain(Screen):
 					<convert type="TemplatedMultiContent" >
 						{"template": [
 							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(100,72), %s, png=2), # Thumbnail
+								size=(100,72), %s png=2), # Thumbnail
 							MultiContentEntryText(pos=(110,1), size=(475,52), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
 							MultiContentEntryText(pos=(120, 50), size=(200,22), \
