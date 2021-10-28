@@ -1,13 +1,6 @@
 from __future__ import print_function
 
 
-def _(txt):
-	return txt
-
-
-globals()['__builtins__']['_'] = _
-
-
 RT_VALIGN_TOP = 0
 RT_HALIGN_LEFT = 1
 RT_HALIGN_RIGHT = 2
@@ -17,13 +10,7 @@ RT_VALIGN_BOTTOM = 32
 RT_WRAP = 64
 BT_ALPHATEST = 1
 BT_ALPHABLEND = 2
-try:
-	from Tools.CountryCodes import ISO3166
-except ImportError:
-	# ISO3166 and BT_SCALE not exist in BH
-	pass
-else:
-	BT_SCALE = 4
+BT_SCALE = 4
 BT_KEEP_ASPECT_RATIO = 8
 BT_HALIGN_CENTER = 16
 BT_VALIGN_CENTER = 64
