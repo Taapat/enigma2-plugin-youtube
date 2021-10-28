@@ -393,10 +393,11 @@ class YouTubeMain(Screen):
 			pass
 		else:
 			element, path = domScreens.get('YouTubeMain', (None, None))
-			for widget in element.findall('widget'):
-				for converter in widget.findall('convert'):
-					if 'BT_SCALE' in converter.text.strip():
-						self.use_picload = False
+			if element:
+				for widget in element.findall('widget'):
+					for converter in widget.findall('convert'):
+						if 'BT_SCALE' in converter.text.strip():
+							self.use_picload = False
 		if self.use_picload:
 			from Components.AVSwitch import AVSwitch
 			self.sc = AVSwitch().getFramebufferScale()
