@@ -37,10 +37,6 @@ try:
 except ImportError:
 	# Workaround if CountryCodes not exist (BH, VTI)
 	ISO3166 = [(x[1][0], x[1][2]) for x in language.getLanguageList() if x[1][2] != 'EN']
-	# Also BT_SCALE not exist in BH, VTI TemplatedMultiContent
-	BT_SCALE = ''
-else:
-	BT_SCALE = 'flags=BT_SCALE,'
 
 
 config.plugins.YouTube = ConfigSubsection()
@@ -240,7 +236,7 @@ class YouTubeMain(Screen):
 					<convert type="TemplatedMultiContent" >
 						{"template": [
 							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(100,72), %s png=2), # Thumbnail
+								size=(100,72), png=2), # Thumbnail please use here flags=BT_SCALE
 							MultiContentEntryText(pos=(110,1), size=(575,52), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
 							MultiContentEntryText(pos=(120, 50), size=(200,22), \
@@ -265,7 +261,7 @@ class YouTubeMain(Screen):
 				<widget name="menu" position="645,489" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="thumbnail" position="0,0" size="100,72" /> # Thumbnail size in list
-			</screen>""" % BT_SCALE
+			</screen>"""
 	elif screenwidth == 1920:
 		skin = """<screen position="center,center" size="1095,786">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_FHD.png" \
@@ -275,7 +271,7 @@ class YouTubeMain(Screen):
 					<convert type="TemplatedMultiContent" >
 						{"template": [
 							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(150,108), %s png=2), # Thumbnail
+								size=(150,108), png=2), # Thumbnail please use here flags=BT_SCALE
 							MultiContentEntryText(pos=(165,1), size=(862,78), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
 							MultiContentEntryText(pos=(180, 75), size=(300,33), \
@@ -296,7 +292,7 @@ class YouTubeMain(Screen):
 				<widget source="key_green" render="Label" position="563,729" zPosition="2" size="210,45" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 				<widget name="thumbnail" position="0,0" size="150,108" /> # Thumbnail size in list
-			</screen>""" % (BT_SCALE, BUTTONS_FOLDER, BUTTONS_FOLDER)
+			</screen>""" % (BUTTONS_FOLDER, BUTTONS_FOLDER)
 	else:
 		skin = """<screen position="center,center" size="630,380">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
@@ -306,7 +302,7 @@ class YouTubeMain(Screen):
 					<convert type="TemplatedMultiContent" >
 						{"template": [
 							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(100,72), %s png=2), # Thumbnail
+								size=(100,72), png=2), # Thumbnail please use here flags=BT_SCALE
 							MultiContentEntryText(pos=(110,1), size=(475,52), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
 							MultiContentEntryText(pos=(120, 50), size=(200,22), \
@@ -331,7 +327,7 @@ class YouTubeMain(Screen):
 				<widget name="menu" position="565,345" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="thumbnail" position="0,0" size="100,72" /> # Thumbnail size in list
-			</screen>""" % BT_SCALE
+			</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -363,6 +359,7 @@ class YouTubeMain(Screen):
 		self['thumbnail'].hide()
 		self.splitTaimer = eTimer()
 		self.splitTaimer.timeout.callback.append(self.splitTaimerStop)
+		self.picloads = {}
 		self.thumbnails = {}
 		self.list = 'main'
 		self.action = 'startup'
@@ -389,6 +386,21 @@ class YouTubeMain(Screen):
 		else:
 			config.plugins.YouTube.player.value = '4097'
 
+		self.use_picload = True
+		try:
+			from skin import domScreens
+		except ImportError:
+			pass
+		else:
+			element, path = domScreens.get('YouTubeMain', (None, None))
+			for widget in element.findall('widget'):
+				for converter in widget.findall('convert'):
+					if 'BT_SCALE' in converter.text.strip():
+						self.use_picload = False
+		if self.use_picload:
+			from Components.AVSwitch import AVSwitch
+			self.sc = AVSwitch().getFramebufferScale()
+
 	def layoutFinish(self):
 		self.thumbSize = [self['thumbnail'].instance.size().width(),
 				self['thumbnail'].instance.size().height()]
@@ -399,7 +411,7 @@ class YouTubeMain(Screen):
 					width=self.thumbSize[0],
 					height=self.thumbSize[1])
 		else:
-			self.thumbnails['default'] = LoadPixmap(
+			self.decodeThumbnail('default',
 					resolveFilename(SCOPE_PLUGINS,
 							'Extensions/YouTube/icons/icon.png'))
 		self.splitTaimer.start(1, True)
@@ -408,6 +420,7 @@ class YouTubeMain(Screen):
 		del self.splitTaimer
 		self.ytdl = None
 		self.youtube = None
+		self.picloads = None
 		self.thumbnails = None
 		self.entryList = None
 		self.prevEntryList = None
@@ -572,15 +585,13 @@ class YouTubeMain(Screen):
 		self['key_green'].setText(_('Open'))
 		if self.list == 'videolist':
 			self['info'].show()
-		self.createThumbnails()
 
-	def createThumbnails(self):
 		for entry in self.entryList:
 			if entry[2]:  # If thumbnail created
 				continue
 			entryId = entry[0]
 			if entryId in self.thumbnails:
-				self.updateThumbnails()
+				self.updateThumbnails(entryId)
 			else:
 				url = entry[1]
 				if not url:
@@ -590,11 +601,11 @@ class YouTubeMain(Screen):
 										'Extensions/YouTube/icons/%s.svg' % entryId),
 								width=self.thumbSize[0],
 								height=self.thumbSize[1])
+						self.updateThumbnails(entryId)
 					else:
-						self.thumbnails[entryId] = LoadPixmap(
+						self.decodeThumbnail(entryId,
 								resolveFilename(SCOPE_PLUGINS,
 										'Extensions/YouTube/icons/%s.png' % entryId))
-					self.updateThumbnails()
 				else:
 					downloadPage(url.encode(), '/tmp/%s.jpg' % str(entryId))\
 						.addCallback(boundFunction(self.downloadFinished, entryId))\
@@ -611,20 +622,45 @@ class YouTubeMain(Screen):
 		if not image or not os.path.exists(image):
 			print('[YouTube] Thumbnail not exists, use default for', entryId)
 			self.thumbnails[entryId] = True
-			self.updateThumbnails(True)
+			self.updateThumbnails(entryId, True)
+		elif self.use_picload:
+			from enigma import ePicLoad
+			self.picloads[entryId] = ePicLoad()
+			self.picloads[entryId].PictureData.get()\
+				.append(boundFunction(self.finishDecode, entryId, image))
+			self.picloads[entryId].setPara((
+				self.thumbSize[0], self.thumbSize[1],
+				self.sc[0], self.sc[1], False, 1, '#00000000'))
+			self.picloads[entryId].startDecode(image)
 		else:
 			self.thumbnails[entryId] = LoadPixmap(image)
 			if image[:4] == '/tmp':
-				self.updateThumbnails(True)
+				self.updateThumbnails(entryId, True)
 				os.remove(image)
 			else:
-				self.updateThumbnails()
+				self.updateThumbnails(entryId)
 
-	def updateThumbnails(self, delete=False):
+	def finishDecode(self, entryId, image, picInfo=None):
+		ptr = self.picloads[entryId].getData()
+		if ptr:
+			self.thumbnails[entryId] = ptr
+			if image[:4] == '/tmp':
+				self.updateThumbnails(entryId, True)
+				os.remove(image)
+			else:
+				self.updateThumbnails(entryId)
+			self.delPicloadTimer = eTimer()
+			self.delPicloadTimer.callback.append(boundFunction(self.delPicload, entryId))
+			self.delPicloadTimer.start(1, True)
+
+	def delPicload(self, entryId):
+		del self.picloads[entryId]
+
+	def updateThumbnails(self, entryId, delete=False):
 		count = 0
 		for entry in self.entryList:
-			if not entry[2] and entry[0] in self.thumbnails:
-				thumbnail = self.thumbnails[entry[0]]
+			if entry[0] == entryId and entryId in self.thumbnails:
+				thumbnail = self.thumbnails[entryId]
 				if thumbnail is True:
 					thumbnail = self.thumbnails['default']
 				self.entryList[count] = (
@@ -642,7 +678,8 @@ class YouTubeMain(Screen):
 						entry[11],  # Channel Id
 						entry[12])  # Published
 				if len(self.thumbnails) > 200 and delete:
-					del self.thumbnails[entry[0]]
+					del self.thumbnails[entryId]
+				break
 			count += 1
 		self['list'].updateList(self.entryList)
 
