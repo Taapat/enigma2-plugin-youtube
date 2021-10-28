@@ -37,6 +37,10 @@ try:
 except ImportError:
 	# Workaround if CountryCodes not exist (BH, VTI)
 	ISO3166 = [(x[1][0], x[1][2]) for x in language.getLanguageList() if x[1][2] != 'EN']
+	# Also BT_SCALE not exist in BH, VTI TemplatedMultiContent
+	BT_SCALE = ''
+else:
+	BT_SCALE = 'flags=BT_SCALE,'
 
 
 config.plugins.YouTube = ConfigSubsection()
@@ -98,15 +102,6 @@ config.plugins.YouTube.lastPosition = ConfigText(default='[]')
 BUTTONS_FOLDER = 'skin_default'
 if os.path.exists('/usr/share/enigma2/skin_fallback_1080/buttons/red.png'):
 	BUTTONS_FOLDER = 'skin_fallback_1080'
-
-
-try:
-	from enigma import BT_SCALE
-except ImportError:
-	# Workaround if BT_SCALE not exist in enigma (BH)
-	BT_SCALE = ''
-else:
-	BT_SCALE = 'flags=BT_SCALE,'
 
 
 class YouTubePlayer(MoviePlayer):
