@@ -396,7 +396,9 @@ class YouTubeMain(Screen):
 			if element:
 				for widget in element.findall('widget'):
 					for converter in widget.findall('convert'):
-						if 'BT_SCALE' in converter.text.strip():
+						if 'EntryPixmap' in converter.text and \
+								'BT_SCALE' in converter.text.split(
+										'EntryPixmap')[1].split('#')[0]:
 							self.use_picload = False
 		if self.use_picload:
 			from Components.AVSwitch import AVSwitch
