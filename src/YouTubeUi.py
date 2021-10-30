@@ -10,6 +10,7 @@ from Components.config import config, ConfigDirectory, ConfigSelection, \
 	ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, \
 	getConfigListEntry
 from Components.ConfigList import ConfigListScreen
+from Components.Converter.TemplatedMultiContent import TemplatedMultiContent
 from Components.Label import Label
 from Components.Language import language
 from Components.Pixmap import Pixmap
@@ -98,6 +99,17 @@ config.plugins.YouTube.lastPosition = ConfigText(default='[]')
 BUTTONS_FOLDER = 'skin_default'
 if os.path.exists('/usr/share/enigma2/skin_fallback_1080/buttons/red.png'):
 	BUTTONS_FOLDER = 'skin_fallback_1080'
+
+
+FLAGS = ', flags=BT_SCALE'
+try:
+	TemplatedMultiContent('{"template": \
+					[MultiContentEntryPixmapAlphaTest(flags=BT_SCALE)], \
+			"fonts": [gFont("Regular",20)], \
+			"itemHeight": 72}')
+except (NameError, TypeError):
+	# If MultiContent not support flags (BH, VTI)
+	FLAGS = ''
 
 
 class YouTubePlayer(MoviePlayer):
@@ -236,7 +248,7 @@ class YouTubeMain(Screen):
 					<convert type="TemplatedMultiContent" >
 						{"template": [
 							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(100,72), png=2), # Thumbnail please use here flags=BT_SCALE
+								size=(100,72), png=2 %s), # Thumbnail
 							MultiContentEntryText(pos=(110,1), size=(575,52), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
 							MultiContentEntryText(pos=(120, 50), size=(200,22), \
@@ -261,7 +273,7 @@ class YouTubeMain(Screen):
 				<widget name="menu" position="645,489" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="thumbnail" position="0,0" size="100,72" /> # Thumbnail size in list
-			</screen>"""
+			</screen>""" % FLAGS
 	elif screenwidth == 1920:
 		skin = """<screen position="center,center" size="1095,786">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_FHD.png" \
@@ -271,7 +283,7 @@ class YouTubeMain(Screen):
 					<convert type="TemplatedMultiContent" >
 						{"template": [
 							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(150,108), png=2), # Thumbnail please use here flags=BT_SCALE
+								size=(150,108), png=2 %s), # Thumbnail
 							MultiContentEntryText(pos=(165,1), size=(862,78), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
 							MultiContentEntryText(pos=(180, 75), size=(300,33), \
@@ -292,7 +304,7 @@ class YouTubeMain(Screen):
 				<widget source="key_green" render="Label" position="563,729" zPosition="2" size="210,45" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 				<widget name="thumbnail" position="0,0" size="150,108" /> # Thumbnail size in list
-			</screen>""" % (BUTTONS_FOLDER, BUTTONS_FOLDER)
+			</screen>""" % (FLAGS, BUTTONS_FOLDER, BUTTONS_FOLDER)
 	else:
 		skin = """<screen position="center,center" size="630,380">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
@@ -302,7 +314,7 @@ class YouTubeMain(Screen):
 					<convert type="TemplatedMultiContent" >
 						{"template": [
 							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
-								size=(100,72), png=2), # Thumbnail please use here flags=BT_SCALE
+								size=(100,72), png=2 %s), # Thumbnail
 							MultiContentEntryText(pos=(110,1), size=(475,52), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
 							MultiContentEntryText(pos=(120, 50), size=(200,22), \
@@ -327,7 +339,7 @@ class YouTubeMain(Screen):
 				<widget name="menu" position="565,345" size="35,25" pixmap="skin_default/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
 				<widget name="thumbnail" position="0,0" size="100,72" /> # Thumbnail size in list
-			</screen>"""
+			</screen>""" % FLAGS
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -387,13 +399,13 @@ class YouTubeMain(Screen):
 			config.plugins.YouTube.player.value = '4097'
 
 		self.use_picload = True
-		try:
-			from skin import domScreens
-		except ImportError:
-			pass
-		else:
-			element, path = domScreens.get('YouTubeMain', (None, None))
-			if element:
+		if FLAGS:
+			try:
+				from skin import domScreens
+			except ImportError:
+				pass
+			else:
+				element, path = domScreens.get('YouTubeMain', (None, None))
 				for widget in element.findall('widget'):
 					for converter in widget.findall('convert'):
 						if 'EntryPixmap' in converter.text and \
