@@ -406,12 +406,13 @@ class YouTubeMain(Screen):
 				pass
 			else:
 				element, path = domScreens.get('YouTubeMain', (None, None))
-				for widget in element.findall('widget'):
-					for converter in widget.findall('convert'):
-						if 'EntryPixmap' in converter.text and \
-								'BT_SCALE' in converter.text.split(
-										'EntryPixmap')[1].split('#')[0]:
-							self.use_picload = False
+				if element:
+					for widget in element.findall('widget'):
+						for converter in widget.findall('convert'):
+							if 'EntryPixmap' in converter.text and \
+									'BT_SCALE' in converter.text.split(
+											'EntryPixmap')[1].split('#')[0]:
+								self.use_picload = False
 		if self.use_picload:
 			from Components.AVSwitch import AVSwitch
 			self.sc = AVSwitch().getFramebufferScale()
