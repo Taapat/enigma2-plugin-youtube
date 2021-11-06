@@ -389,6 +389,7 @@ class YouTubeMain(Screen):
 		self.activeDownloads = 0
 		self.searchResult = config.plugins.YouTube.searchResult.value
 		self.pageIndex = 1
+		self.use_picload = True
 		self.onLayoutFinish.append(self.layoutFinish)
 		self.onClose.append(self.cleanVariables)
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
@@ -398,7 +399,7 @@ class YouTubeMain(Screen):
 		else:
 			config.plugins.YouTube.player.value = '4097'
 
-		self.use_picload = True
+	def layoutFinish(self):
 		if FLAGS:
 			try:
 				from skin import domScreens
@@ -406,6 +407,8 @@ class YouTubeMain(Screen):
 				pass
 			else:
 				element, path = domScreens.get('YouTubeMain', (None, None))
+				if not element and hasattr(self, 'parsedSkin'):
+					element = self.parsedSkin
 				if element:
 					for widget in element.findall('widget'):
 						for converter in widget.findall('convert'):
@@ -413,11 +416,12 @@ class YouTubeMain(Screen):
 									'BT_SCALE' in converter.text.split(
 											'EntryPixmap')[1].split('#')[0]:
 								self.use_picload = False
+						if not self.use_picload:
+							break
 		if self.use_picload:
 			from Components.AVSwitch import AVSwitch
 			self.sc = AVSwitch().getFramebufferScale()
 
-	def layoutFinish(self):
 		self.thumbSize = [self['thumbnail'].instance.size().width(),
 				self['thumbnail'].instance.size().height()]
 		if screenwidth == 'svg':
