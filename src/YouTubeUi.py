@@ -400,24 +400,13 @@ class YouTubeMain(Screen):
 			config.plugins.YouTube.player.value = '4097'
 
 	def layoutFinish(self):
-		if FLAGS:
-			try:
-				from skin import domScreens
-			except ImportError:
-				pass
-			else:
-				element, path = domScreens.get('YouTubeMain', (None, None))
-				if not element and hasattr(self, 'parsedSkin'):
-					element = self.parsedSkin
-				if element:
-					for widget in element.findall('widget'):
-						for converter in widget.findall('convert'):
-							if 'EntryPixmap' in converter.text and \
-									'BT_SCALE' in converter.text.split(
-											'EntryPixmap')[1].split('#')[0]:
-								self.use_picload = False
-						if not self.use_picload:
-							break
+		if FLAGS and hasattr(self, 'renderer'):
+			for screen_renderer in self.renderer:
+				text = str(screen_renderer.source)
+				if 'EntryPixmap' in text and 'BT_SCALE' in text.split(
+						'EntryPixmap')[1].split('#')[0]:
+					self.use_picload = False
+					break
 		if self.use_picload:
 			from Components.AVSwitch import AVSwitch
 			self.sc = AVSwitch().getFramebufferScale()
