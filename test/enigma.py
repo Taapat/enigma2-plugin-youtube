@@ -26,6 +26,7 @@ class _eInstances:
 
 	def __init__(self, *args):
 		_eInstances.instance = self
+		self.slotRotorSatPosChanged = self
 
 	def __setattr__(self, name, value, *args):
 		self.__dict__[name] = value
@@ -247,7 +248,7 @@ class ePicLoad:
 			f()
 
 	def getData(self):
-		return self._image
+		return self
 
 
 sel_index = 0
