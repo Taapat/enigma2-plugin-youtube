@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-16 12:09+0300\n"
+"POT-Creation-Date: 2021-11-11 16:10+0000\n"
 "PO-Revision-Date: 2018-04-13 10:46+0300\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -16,9 +16,6 @@ msgstr ""
 #, python-format
 msgid "  (%d-%d of %d)"
 msgstr "  (%d-%d из %d)"
-
-msgid " dislikes"
-msgstr " нехаресвания"
 
 msgid " likes"
 msgstr " харесвания"

@@ -2,9 +2,6 @@
 msgid "  (%d-%d of %d)"
 msgstr ""
 
-msgid " dislikes"
-msgstr ""
-
 msgid " likes"
 msgstr ""
 
