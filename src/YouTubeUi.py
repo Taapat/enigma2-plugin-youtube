@@ -1428,7 +1428,7 @@ class YouTubeInfo(Screen):
 		self['views'] = Label(current[4])
 		self['duration'] = Label(current[5])
 		self['likes'] = Label(current[8])
-		self['dislikes'] = Label() # For backward compatibility, YouTube make dislike count private
+		self['dislikes'] = Label()  # For backward compatibility, YouTube make dislike count private
 		self['published'] = Label(current[11])
 		self['actions'] = ActionMap(['ColorActions',
 			'InfobarShowHideActions', 'DirectionActions'], {
