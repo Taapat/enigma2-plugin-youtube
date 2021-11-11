@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-16 12:09+0300\n"
+"POT-Creation-Date: 2021-11-11 16:10+0000\n"
 "PO-Revision-Date: 2020-06-12 23:54+0300\n"
 "Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish\n"
@@ -21,9 +21,6 @@ msgstr ""
 #, python-format
 msgid "  (%d-%d of %d)"
 msgstr "  (%d-%d of %d)"
-
-msgid " dislikes"
-msgstr " beğenmeme"
 
 msgid " likes"
 msgstr " beğeniler"

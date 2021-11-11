@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin greek translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-16 12:09+0300\n"
+"POT-Creation-Date: 2021-11-11 16:10+0000\n"
 "PO-Revision-Date: 2019-11-19 01:16+0200\n"
 "Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: MCelliot_g <mcelliot_g@hotmail.com>\n"
@@ -17,9 +17,6 @@ msgstr ""
 #, python-format
 msgid "  (%d-%d of %d)"
 msgstr "  (%d-%d από %d)"
-
-msgid " dislikes"
-msgstr " δεν μου αρέσει"
 
 msgid " likes"
 msgstr " μου αρέσει"

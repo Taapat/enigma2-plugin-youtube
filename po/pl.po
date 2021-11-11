@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-16 12:09+0300\n"
+"POT-Creation-Date: 2021-11-11 16:10+0000\n"
 "PO-Revision-Date: 2020-11-03 23:02+0300\n"
 "Last-Translator: Lishoo\n"
 "Language-Team: \n"
@@ -15,9 +15,6 @@ msgstr ""
 #, python-format
 msgid "  (%d-%d of %d)"
 msgstr "  (%d-%d z %d)"
-
-msgid " dislikes"
-msgstr " nie podoba się"
 
 msgid " likes"
 msgstr " podoba się"
