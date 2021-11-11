@@ -531,10 +531,9 @@ class YouTubeMain(Screen):
 							_('There was an error in extract video url:\n%s') % urlError,
 							MessageBox.TYPE_INFO, timeout=8)
 				else:
-					count = 0
-					for entry in self.entryList:
+					for idx, entry in enumerate(self.entryList):
 						if entry[0] == self.current[0]:
-							self.entryList[count] = (
+							self.entryList[idx] = (
 									entry[0],  # Id
 									entry[1],  # Thumbnail url
 									entry[2],  # Thumbnail
@@ -547,9 +546,8 @@ class YouTubeMain(Screen):
 									entry[9],  # Big thumbnail url
 									entry[10],  # Channel Id
 									entry[11])  # Published
-							self.current = self.entryList[count]
+							self.current = self.entryList[idx]
 							break
-						count += 1
 			if videoUrl:
 				if self.action == 'playVideo':
 					service = eServiceReference(int(config.plugins.YouTube.player.value), 0, videoUrl)
@@ -664,13 +662,12 @@ class YouTubeMain(Screen):
 		del self.picloads[entryId]
 
 	def updateThumbnails(self, entryId, delete=False):
-		count = 0
-		for entry in self.entryList:
+		for idx, entry in enumerate(self.entryList):
 			if entry[0] == entryId and entryId in self.thumbnails:
 				thumbnail = self.thumbnails[entryId]
 				if thumbnail is True:
 					thumbnail = self.thumbnails['default']
-				self.entryList[count] = (
+				self.entryList[idx] = (
 						entry[0],  # Id
 						entry[1],  # Thumbnail url
 						copy(thumbnail),  # Thumbnail
@@ -686,7 +683,6 @@ class YouTubeMain(Screen):
 				if len(self.thumbnails) > 200 and delete:
 					del self.thumbnails[entryId]
 				break
-			count += 1
 		self['list'].updateList(self.entryList)
 
 	def selectNext(self):
