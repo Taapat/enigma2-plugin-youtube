@@ -451,7 +451,6 @@ class YouTubeMain(Screen):
 					None,   # Video url
 					None,   # Description
 					None,   # Likes
-					None,   # Dislikes
 					'',     # Big thumbnail url
 					None,   # Channel Id
 					''))     # Published
@@ -545,10 +544,9 @@ class YouTubeMain(Screen):
 									videoUrl,  # Video url
 									entry[7],  # Description
 									entry[8],  # Likes
-									entry[9],  # Dislikes
-									entry[10],  # Big thumbnail url
-									entry[11],  # Channel Id
-									entry[12])  # Published
+									entry[9],  # Big thumbnail url
+									entry[10],  # Channel Id
+									entry[11])  # Published
 							self.current = self.entryList[count]
 							break
 						count += 1
@@ -682,10 +680,9 @@ class YouTubeMain(Screen):
 						entry[6],  # Video url
 						entry[7],  # Description
 						entry[8],  # Likes
-						entry[9],  # Dislikes
-						entry[10],  # Big thumbnail url
-						entry[11],  # Channel Id
-						entry[12])  # Published
+						entry[9],  # Big thumbnail url
+						entry[10],  # Channel Id
+						entry[11])  # Published
 				if len(self.thumbnails) > 200 and delete:
 					del self.thumbnails[entryId]
 				break
@@ -898,10 +895,10 @@ class YouTubeMain(Screen):
 						self._tryStr(result, lambda x: x['snippet']['title']),  # Title
 						'', '',
 						self._tryList(result, lambda x: x['id']),  # Subscription
-						None, None, None, None, None, ''))
+						None, None, None, None, ''))
 				if self.pageIndex == 1 and len(videos) > 1:
 					videos.insert(0, ('recent_subscr', '', None, _('Recent'), '', '',
-						None, None, None, None, None, None, ''))
+						None, None, None, None, None, ''))
 				return videos
 
 			elif self.current == 'my_playlists':
@@ -918,7 +915,7 @@ class YouTubeMain(Screen):
 						self._tryStr(result, lambda x: x['snippet']['thumbnails']['default']['url']),  # Thumbnail url
 						None,
 						self._tryStr(result, lambda x: x['snippet']['title']),  # Title
-						'', '', None, None, None, None, None, None, ''))
+						'', '', None, None, None, None, None, ''))
 				return videos
 
 			else:  # all other my data
@@ -948,7 +945,7 @@ class YouTubeMain(Screen):
 					for subscription in self.getAllSubscriptions():
 						videos += self.videoIdFromPlaylist(order, subscription, False)
 				if videos:
-					videos = sorted(self.extractVideoIdList(videos), key=lambda k: k[12], reverse=True)  # sort by date
+					videos = sorted(self.extractVideoIdList(videos), key=lambda k: k[11], reverse=True)  # sort by date
 					del videos[int(self.searchResult):]  # leaves only searchResult long list
 					self.nextPageToken = ''
 					self.prevPageToken = ''
@@ -1081,7 +1078,6 @@ class YouTubeMain(Screen):
 				None,
 				self._tryStr(result, lambda x: x['snippet']['description']),  # Description
 				self._tryComplStr(result, lambda x: x['statistics']['likeCount'], _(' likes')),  # Likes
-				self._tryComplStr(result, lambda x: x['statistics']['dislikeCount'], _(' dislikes')),  # Dislikes
 				self._tryStr(result, lambda x: x['snippet']['thumbnails']['medium']['url']),  # Big thumbnail url
 				self._tryList(result, lambda x: x['snippet']['channelId']),  # Channel id
 				PublishedAt)
@@ -1144,10 +1140,10 @@ class YouTubeMain(Screen):
 				self._tryStr(result, lambda x: x['snippet']['thumbnails']['default']['url']),  # Thumbnail url
 				None,
 				self._tryStr(result, lambda x: x['snippet']['title']),  # Title
-				'', '', None, None, None, None, None, None, ''))
+				'', '', None, None, None, None, None, ''))
 		if subscription and len(videos) > 1:
 			videos.insert(0, ('recent_subscr', None, None, _('Recent'), '', '',
-				None, None, None, None, None, None, ''))
+				None, None, None, None, None, ''))
 		self.list = kind
 		return videos
 
@@ -1228,7 +1224,7 @@ class YouTubeMain(Screen):
 				current = self['list'].getCurrent()[0]
 				msg = self.subscribeChannel(current)
 			elif answer[1] == 'subscribe_video':
-				current = self['list'].getCurrent()[11]
+				current = self['list'].getCurrent()[10]
 				msg = self.subscribeChannel(current)
 			elif answer[1] == 'unsubscribe':
 				msg = self.unsubscribeChannel()
@@ -1240,7 +1236,7 @@ class YouTubeMain(Screen):
 				self.screenCallback('video', term, 'OpenSearch')
 			elif answer[1] == 'channel_videos':
 				current = self['list'].getCurrent()
-				self.screenCallback(current[11], current[3][:40],
+				self.screenCallback(current[10], current[3][:40],
 						'OpenChannelList')
 			elif answer[1] == 'download':
 				current = self['list'].getCurrent()
@@ -1367,7 +1363,6 @@ class YouTubeInfo(Screen):
 				<widget name="views" position="30*f,270*f" size="150*f,20*f" font="Regular;16*f" />
 				<widget name="duration" position="200*f,270*f" size="150*f,20*f" font="Regular;16*f" />
 				<widget name="likes" position="30*f,300*f" size="150*f,20*f" font="Regular;16*f" />
-				<widget name="dislikes" position="200*f,300*f" size="150*f,20*f" font="Regular;16*f" />
 				<widget name="published" position="30*f,330*f" size="300*f,20*f" font="Regular;16*f" />
 				<ePixmap position="295*f,377*f" size="140*f,40*f" pixmap="skin_default/buttons/red.svg" \
 					transparent="1" alphatest="blend" />
@@ -1384,7 +1379,6 @@ class YouTubeInfo(Screen):
 				<widget name="views" position="30,270" size="150,20" font="Regular;16" />
 				<widget name="duration" position="200,270" size="150,20" font="Regular;16" />
 				<widget name="likes" position="30,300" size="150,20" font="Regular;16" />
-				<widget name="dislikes" position="200,300" size="150,20" font="Regular;16" />
 				<widget name="published" position="30,330" size="300,20" font="Regular;16" />
 				<ePixmap position="295,377" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
@@ -1401,7 +1395,6 @@ class YouTubeInfo(Screen):
 				<widget name="views" position="45,305" size="225,30" font="Regular;24" />
 				<widget name="duration" position="45,355" size="225,30" font="Regular;24" />
 				<widget name="likes" position="45,405" size="225,30" font="Regular;24" />
-				<widget name="dislikes" position="45,455" size="225,30" font="Regular;24" />
 				<widget name="published" position="45,505" size="335,30" font="Regular;24" />
 				<ePixmap position="442,565" size="210,60" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
@@ -1418,7 +1411,6 @@ class YouTubeInfo(Screen):
 				<widget name="views" position="30,270" size="150,20" font="Regular;16" />
 				<widget name="duration" position="200,270" size="150,20" font="Regular;16" />
 				<widget name="likes" position="30,300" size="150,20" font="Regular;16" />
-				<widget name="dislikes" position="200,300" size="150,20" font="Regular;16" />
 				<widget name="published" position="360,300" size="260,20" font="Regular;16" />
 				<ePixmap position="245,323" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
@@ -1436,8 +1428,8 @@ class YouTubeInfo(Screen):
 		self['views'] = Label(current[4])
 		self['duration'] = Label(current[5])
 		self['likes'] = Label(current[8])
-		self['dislikes'] = Label(current[9])
-		self['published'] = Label(current[12])
+		self['dislikes'] = Label() # For backward compatibility, YouTube make dislike count private
+		self['published'] = Label(current[11])
 		self['actions'] = ActionMap(['ColorActions',
 			'InfobarShowHideActions', 'DirectionActions'], {
 				'red': self.close,
@@ -1446,7 +1438,7 @@ class YouTubeInfo(Screen):
 				'infoButton': self.close,
 				'up': self['description'].pageUp,
 				'down': self['description'].pageDown}, -2)
-		self.ThumbnailUrl = current[10]
+		self.ThumbnailUrl = current[9]
 		self.onLayoutFinish.append(self.LayoutFinish)
 
 	def LayoutFinish(self):
