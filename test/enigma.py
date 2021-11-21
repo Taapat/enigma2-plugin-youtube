@@ -33,6 +33,7 @@ class _eInstances:
 		self.scanCompleted = self
 		self.scanProgress = self
 		self.protectContextMenu = self
+		self.frontendUseMaskChanged = self
 		self.list = []
 
 	def __setattr__(self, name, value, *args):
