@@ -1303,7 +1303,10 @@ class YouTubeMain(Screen):
 		if not os.path.exists(downloadDir):
 			msg = _('Sorry, download directory not exist!\nPlease specify in the settings existing directory.')
 		else:
-			job_title = title[:20].decode('utf-8', 'ignore').encode('utf-8')
+			try:
+				job_title = title[:20]
+			except:
+				job_title = title[:20].decode('utf-8', 'ignore').encode('utf-8')
 			outputfile = os.path.join(downloadDir, title.replace('/', '') + '.mp4')
 			if os.path.exists(outputfile) or \
 				os.path.exists('%s.m4a' % outputfile[:-4]) or \
