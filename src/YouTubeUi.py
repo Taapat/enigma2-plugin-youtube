@@ -1305,7 +1305,7 @@ class YouTubeMain(Screen):
 		else:
 			try:
 				job_title = title[:20]
-			except:
+			except AttributeError:
 				job_title = title[:20].decode('utf-8', 'ignore').encode('utf-8')
 			outputfile = os.path.join(downloadDir, title.replace('/', '') + '.mp4')
 			if os.path.exists(outputfile) or \
