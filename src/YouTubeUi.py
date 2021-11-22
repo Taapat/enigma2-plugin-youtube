@@ -2,6 +2,7 @@ from __future__ import print_function
 
 import os
 from copy import copy
+from re import sub
 from twisted.web.client import downloadPage
 
 from enigma import eServiceReference, eTimer, iPlayableService
@@ -1303,10 +1304,7 @@ class YouTubeMain(Screen):
 		if not os.path.exists(downloadDir):
 			msg = _('Sorry, download directory not exist!\nPlease specify in the settings existing directory.')
 		else:
-			try:
-				job_title = title[:20]
-			except AttributeError:
-				job_title = title[:20].decode('utf-8', 'ignore').encode('utf-8')
+			job_title = sub(r'[^\x00-\x7f]', r'_', title[:20])
 			outputfile = os.path.join(downloadDir, title.replace('/', '') + '.mp4')
 			if os.path.exists(outputfile) or \
 				os.path.exists('%s.m4a' % outputfile[:-4]) or \
