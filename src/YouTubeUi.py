@@ -741,13 +741,12 @@ class YouTubeMain(Screen):
 		self.ok()
 
 	def setPreviousList(self):
-		lastInex = self.prevIndex[len(self.prevIndex) - 1]
+		lastInex = self.prevIndex.pop()
 		self['list'].setIndex(lastInex[0])
 		self.list = lastInex[1]
 		self.nextPageToken = lastInex[3]
 		self.prevPageToken = lastInex[4]
 		self.setTitle(lastInex[2])
-		self.prevIndex.pop()
 
 	def rememberCurList(self):
 		title = self.getTitle()
