@@ -163,8 +163,8 @@ jobs:
         run: |
           for i in $(ls -1 ./po/*.po); do $(msgfmt "$i" -o "$i".mo); done
   update-translation:
-    needs: [check_source, test-python]
-    if: (needs.check_source.outputs.translation-changed == 'true' && needs.test-python.result == 'success') || contains(github.event.head_commit.message,'force-test')
+    needs: check_source
+    if: needs.check_source.outputs.translation-changed == 'true' || contains(github.event.head_commit.message,'force-test')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
