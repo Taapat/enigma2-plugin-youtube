@@ -1120,6 +1120,8 @@ class YouTubeMain(Screen):
 				# therefore always create a new main list
 				self.createMainList()
 			else:
+				if self.yts[0]['list'] != 'videolist':
+					self['info'].hide()
 				self.setEntryList()
 
 	def openMenu(self):
