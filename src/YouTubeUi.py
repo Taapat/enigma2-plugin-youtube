@@ -377,7 +377,7 @@ class YouTubeMain(Screen):
 		self.thumbnails = {}
 		self.use_picload = True
 		self.ytapi = None
-		self.yts = [{}]
+		self.yts = [{'entry_list': []}]
 		self.onLayoutFinish.append(self.layoutFinish)
 		self.onClose.append(self.cleanVariables)
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
