@@ -409,8 +409,11 @@ class GoogleSuggestionsConfigText(ConfigText):
 			self.suggestionsThread = Thread(target=self.getGoogleSuggestions)
 			self.suggestionsThread.start()
 
-	def handleKey(self, key):
-		ConfigText.handleKey(self, key)
+	def handleKey(self, key, callback=None):
+		if callback:
+			ConfigText.handleKey(self, key, callback)
+		else:
+			ConfigText.handleKey(self, key)
 		if key in [KEY_DELETE, KEY_BACKSPACE, KEY_ASCII, KEY_TIMEOUT]:
 			self.getSuggestions()
 
