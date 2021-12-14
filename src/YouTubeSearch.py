@@ -261,8 +261,9 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				self.searchValue)])
 
 	def updateSuggestions(self, suggestions):
-		self['list'].setList(suggestions)
-		self['list'].setIndex(0)
+		if 'list' in  sef:
+			self['list'].setList(suggestions)
+			self['list'].setIndex(0)
 
 	def ok(self):
 		selected = self['list'].getCurrent()[0]
