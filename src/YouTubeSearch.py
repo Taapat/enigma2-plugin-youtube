@@ -261,7 +261,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				self.searchValue)])
 
 	def updateSuggestions(self, suggestions):
-		if 'list' in  sef:
+		if 'list' in  self:
 			self['list'].setList(suggestions)
 			self['list'].setIndex(0)
 
