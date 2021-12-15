@@ -40,6 +40,7 @@ class YouTubeVirtualKeyBoard(VirtualKeyBoard):
 		self.skinName = ['YouTubeVirtualKeyBoard', 'VirtualKeyBoard']
 		self.searchValue = GoogleSuggestionsConfigText(default=text,
 				updateSuggestions=self.updateSuggestions)
+		self.onClose.append(self.searchValue.stopSuggestions)
 		if text:
 			# Force a search by setting the old search value to ""
 			self.searchValue.value = ""
@@ -250,6 +251,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			searchList.append((entry, None))
 		self['list'].setList(searchList)
 		self.onLayoutFinish.append(self.moveHelpWindow)
+		self.onClose.append(self.searchValue.stopSuggestions)
 
 	def moveHelpWindow(self):
 		helpwindowpos = self["HelpWindow"].getPosition()
@@ -368,46 +370,47 @@ class GoogleSuggestionsConfigText(ConfigText):
 	def __init__(self, default, updateSuggestions):
 		ConfigText.__init__(self, default, fixed_size=False, visible_width=False)
 		self.updateSuggestions = updateSuggestions
-		self.suggestionsThread = None
+		self.use_suggestions = False
 
 		gl = config.plugins.YouTube.searchRegion.value
 		hl = config.plugins.YouTube.searchLanguage.value
-		self.queryString = 'https://www.google.com/complete/search?output=toolbar&client=youtube&json=true&ds=yt'
-		if gl:
-			self.queryString += '&gl=' + gl
-		if hl:
-			self.queryString += '&hl=' + hl
-		self.queryString += '&q='
+		self.url = 'https://www.google.com/complete/search?output=toolbar&client=youtube&json=true&ds=yt{}{}&q='.format(
+				gl and '&gl=%s' % gl,
+				hl and '&hl=%s' % hl)
 
 	def getGoogleSuggestions(self):
-		suggestionsList = None
+		suggestions_list = None
 		suggestions = [('', None)]
-		queryValue = self.value
+		query_value = self.value
 		try:
-			response = compat_ssl_urlopen(self.queryString + compat_quote(queryValue))
+			response = compat_ssl_urlopen(self.url + compat_quote(query_value))
 			content_type = response.headers.get('Content-Type', '')
 			if 'charset=' in content_type:
 				charset = content_type.split('charset=', 1)[1]
 			else:
 				charset = 'ISO-8859-1'
-			suggestionsList = loads(response.read().decode(charset).encode('utf-8'))
+			suggestions_list = loads(response.read().decode(charset).encode('utf-8'))
 			response.close()
 		except Exception as e:
 			print('[YouTubeSearch] Error in get suggestions from google', e)
-		if suggestionsList:
-			for suggestion in suggestionsList[1]:
+		if suggestions_list:
+			for suggestion in suggestions_list[1]:
 				if suggestion:
 					suggestions.append((str(suggestion), None))
-		self.updateSuggestions(suggestions)
-		if queryValue != self.value:
-			self.getGoogleSuggestions()
-		else:
-			self.suggestionsThread = None
+		if self.use_suggestions:
+			self.updateSuggestions(suggestions)
+			if query_value != self.value:
+				self.getGoogleSuggestions()
+			else:
+				self.use_suggestions = False
 
 	def getSuggestions(self):
-		if self.value and self.suggestionsThread is None:
-			self.suggestionsThread = Thread(target=self.getGoogleSuggestions)
-			self.suggestionsThread.start()
+		if self.value and not self.use_suggestions:
+			self.use_suggestions = True
+			Thread(target=self.getGoogleSuggestions).start()
+
+	def stopSuggestions(self):
+		self.use_suggestions = False
 
 	def handleKey(self, key, callback=None):
 		if callback:
