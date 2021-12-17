@@ -377,7 +377,7 @@ class YouTubeMain(Screen):
 		self.thumbnails = {}
 		self.use_picload = True
 		self.ytapi = None
-		self.yts = [{'entry_list': []}]
+		self.yts = [{}]
 		self.onLayoutFinish.append(self.layoutFinish)
 		self.onClose.append(self.cleanVariables)
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
@@ -566,8 +566,8 @@ class YouTubeMain(Screen):
 				self.setEntryList()
 
 	def setEntryList(self):
-		self.setTitle(self.yts[0]['title'])
-		self['list'].setList(self.yts[0]['entry_list'])
+		self.setTitle(self.yts[0].get('title', ''))
+		self['list'].setList(self.yts[0].get('entry_list', []))
 		self['list'].index = (self.yts[0].get('index', 0))
 
 		for entry in self.yts[0]['entry_list']:
@@ -641,7 +641,7 @@ class YouTubeMain(Screen):
 		del self.picloads[entry_id]
 
 	def updateThumbnails(self, entry_id, delete=False):
-		for idx, entry in enumerate(self.yts[0]['entry_list']):
+		for idx, entry in enumerate(self.yts[0].get('entry_list', [])):
 			if entry[0] == entry_id and entry_id in self.thumbnails:
 				thumbnail = self.thumbnails[entry_id]
 				if thumbnail is True:
@@ -662,6 +662,8 @@ class YouTubeMain(Screen):
 				if len(self.thumbnails) > 200 and delete:
 					del self.thumbnails[entry_id]
 				break
+		else:
+			return
 		self['list'].updateList(self.yts[0]['entry_list'])
 
 	def selectNext(self):
@@ -1226,7 +1228,7 @@ class YouTubeMain(Screen):
 		if sub_id and self.ytapi.subscriptions_delete(sub_id):
 			# update subscriptions list
 			del self.yts[0]['entry_list'][self['list'].index]
-			self['list'].updateList(self.yts[0]['entry_list'])
+			self['list'].updateList(self.yts[0].get('entry_list', []))
 			return _('Unsubscribed!')
 		return _('There was an error!')
 
