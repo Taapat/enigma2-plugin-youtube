@@ -33,7 +33,8 @@ def try_plugin_screens_load():
 	# Choice YouTubeVirtualKeyBoard
 	session.current_dialog.openKeyboard()
 	# Choice 'vide' in virtual keyboard
-	if hasattr(session.current_dialog, 'selectAsciiKey') and hasattr(session.current_dialog, 'processSelect'):
+	from Screens.VirtualKeyBoard import VirtualKeyBoard
+	if hasattr(session.current_dialog, 'selectAsciiKey') and hasattr(VirtualKeyBoard, 'processSelect'):
 		session.current_dialog.selectAsciiKey('v')
 		session.current_dialog.processSelect()
 		session.current_dialog.selectAsciiKey('i')
