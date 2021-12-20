@@ -205,10 +205,9 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get install gettext
-      - name: Compile sources
+      - name: Build sources
         run: |
           python setup.py build --build-lib=build/lib
-          python -O -m compileall build/lib/Extensions/YouTube/
       - name: Set git variables
         run: |
           echo "SRCPV=git$(git rev-list --count HEAD)" >> $GITHUB_ENV
@@ -222,18 +221,34 @@ jobs:
           cp YouTube.key deploy/data/etc/enigma2
           sed -i 's/Version:/Version: h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0/' deploy/control/control
           mkdir ipk
-      - name: Build data package
+      - name: Build python3 data package
         working-directory: './deploy/data'
         run: |
           tar --numeric-owner --group=0 --owner=0 -czf ../data.tar.gz ./*
-      - name: Build control package
+      - name: Build python3 control package
         working-directory: './deploy/control'
         run: |
           tar --numeric-owner --group=0 --owner=0 -czf ../control.tar.gz ./*
-      - name: Build ipk package
+      - name: Build python3 ipk package
         working-directory: './deploy'
         run: |
           echo 2.0 > debian-binary
+          ar rv ../ipk/enigma2-plugin-extensions-youtube_py3+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk debian-binary data.tar.gz control.tar.gz
+      - name: Compile python2 sources
+        run: |
+          python -O -m compileall deploy/data/usr/lib/enigma2/python/Plugins/Extensions/YouTube/
+      - name: Build python2 data package
+        working-directory: './deploy/data'
+        run: |
+          tar --numeric-owner --group=0 --owner=0 -czf ../data.tar.gz ./*
+      - name: Build python2 control package
+        working-directory: './deploy/control'
+        run: |
+          sed -i 's/python3-/python-/g' control
+          tar --numeric-owner --group=0 --owner=0 -czf ../control.tar.gz ./*
+      - name: Build python2 ipk package
+        working-directory: './deploy'
+        run: |
           ar rv ../ipk/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk debian-binary data.tar.gz control.tar.gz
       - name: Create release
         id: create_release
@@ -245,7 +260,7 @@ jobs:
           release_name: ${{ env.COMMIT_SUBJECT }}
           draft: false
           prerelease: false
-      - name: Upload release
+      - name: Upload python2 release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -253,6 +268,15 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./ipk/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
           asset_name: enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
+          asset_content_type: application/ipk
+      - name: Upload python3 release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./ipk/enigma2-plugin-extensions-youtube_py3+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
+          asset_name: enigma2-plugin-extensions-youtube_py3+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
           asset_content_type: application/ipk
       - name: Upload ipk via ftp
         uses: sebastianpopp/ftp-action@releases/v2
