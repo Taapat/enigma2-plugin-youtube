@@ -219,7 +219,7 @@ jobs:
           cp -r build/lib/* deploy/data/usr/lib/enigma2/python/Plugins
           mkdir -p deploy/data/etc/enigma2
           cp YouTube.key deploy/data/etc/enigma2
-          sed -i 's/Version:/Version: h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0/' deploy/control/control
+          sed -i 's/Version:/Version: py3+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0/' deploy/control/control
           mkdir ipk
       - name: Build python3 data package
         working-directory: './deploy/data'
@@ -244,6 +244,7 @@ jobs:
       - name: Build python2 control package
         working-directory: './deploy/control'
         run: |
+          sed -i 's/Version: py3+/Version: h1+/' control
           sed -i 's/python3-/python-/g' control
           tar --numeric-owner --group=0 --owner=0 -czf ../control.tar.gz ./*
       - name: Build python2 ipk package
