@@ -9,4 +9,4 @@ License: PD
 Architecture: all
 OE: enigma2-plugin-extensions-youtube
 Homepage: https://github.com/Taapat/enigma2-plugin-youtube
-Depends: python-codecs, python-compression, python-core, python-json, python-netclient, python-pyopenssl, python-twisted-web, python-zlib
+Depends: python-codecs, python-core, python-json, python-netclient, python-twisted-web
