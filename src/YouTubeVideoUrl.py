@@ -22,7 +22,7 @@ from .compat import compat_Request
 PRIORITY_VIDEO_FORMAT = []
 
 
-def createPriorityFormats():
+def create_priority_formats():
 	global PRIORITY_VIDEO_FORMAT
 	itag = config.plugins.YouTube.maxResolution.value
 	video_formats = [['17', '91', '13', '151', '160'],  # 176x144
@@ -38,7 +38,7 @@ def createPriorityFormats():
 			break
 
 
-createPriorityFormats()
+create_priority_formats()
 
 
 DASHMP4_FORMAT = ['133', '134', '135', '136', '137', '138',
@@ -80,7 +80,7 @@ def clean_html(html):
 	html = re.sub(r'(?u)\s*<\s*br\s*/?\s*>\s*', '\n', html)
 	html = re.sub(r'(?u)<\s*/\s*p\s*>\s*<\s*p[^>]*>', '\n', html)
 	# Strip html tags
-	html = re.sub('<.*?>', '', html)
+	html = re.sub(r'<[^>]*>', '', html)
 	return html.strip()
 
 
@@ -264,7 +264,7 @@ class YouTubeVideoUrl():
 
 		# If priority format changed in config, recreate priority list
 		if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.value:
-			createPriorityFormats()
+			create_priority_formats()
 
 		if not is_live and streaming_formats:
 			streaming_formats.extend(streaming_data.get('adaptiveFormats') or [])
@@ -332,7 +332,7 @@ class YouTubeVideoUrl():
 
 	def extract(self, video_id):
 		error_message = None
-		for retry in range(3):
+		for _ in range(3):
 			try:
 				return self._real_extract(video_id)
 			except Exception as ex:
