@@ -98,7 +98,10 @@ jobs:
           flake8 --ignore=W191,F821,F401 --show-source --filename=./src/compat.py
       - name: Remove enigma2 imports and variables for test
         run: |
-          bash ./test/ci_fix.sh
+          echo "" > src/__init__.py
+          sed -i 's/from Components/# from Components/g' src/YouTubeVideoUrl.py
+          sed -i 's/config.plugins.YouTube.maxResolution.value/"22"/g' src/YouTubeVideoUrl.py
+          sed -i 's/config.plugins.YouTube.useDashMP4.value/True/g' src/YouTubeVideoUrl.py
       - name: Test code with pytest
         run: |
           pytest -rx -v
