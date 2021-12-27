@@ -6,7 +6,7 @@ from Components.Language import language
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 
-def localeInit():
+def locale_init():
 	environ["LANGUAGE"] = language.getLanguage()[:2]
 	gettext.bindtextdomain("YouTube", resolveFilename(SCOPE_PLUGINS,
 		"Extensions/YouTube/locale"))
@@ -26,8 +26,8 @@ def ngettext(singular, plural, n):
 	return t
 
 
-localeInit()
-language.addCallback(localeInit)
+locale_init()
+language.addCallback(locale_init)
 
 
 try:

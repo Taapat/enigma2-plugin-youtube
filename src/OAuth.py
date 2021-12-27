@@ -9,7 +9,7 @@ from .compat import compat_urlopen
 from .compat import compat_Request
 
 
-def GetKey(x):
+def get_key(x):
 	p = 3
 	while True:
 		if p > len(x):
@@ -22,9 +22,9 @@ def GetKey(x):
 	return x
 
 
-API_KEY = GetKey('Xhi3_LoIzw_OizD15SyCNReMvKL27nw_OizDWRR395T5uGWpvn451I2VYc78Gy463')
-CLIENT_ID = GetKey('4113447027255-v15bgs05u1o3m278mpjs2vcd0394w_OizDfrg5160drbw_Oiz63D.w_OizDpp75s.googleus87ercontent.99com')
-CLIENT_SECRET = GetKey('Zf93pqd2rxgY2ro159rK20BMxif27')
+API_KEY = get_key('Xhi3_LoIzw_OizD15SyCNReMvKL27nw_OizDWRR395T5uGWpvn451I2VYc78Gy463')
+CLIENT_ID = get_key('4113447027255-v15bgs05u1o3m278mpjs2vcd0394w_OizDfrg5160drbw_Oiz63D.w_OizDpp75s.googleus87ercontent.99com')
+CLIENT_SECRET = get_key('Zf93pqd2rxgY2ro159rK20BMxif27')
 
 if path.exists('/etc/enigma2/YouTube.key'):
 	try:
@@ -38,7 +38,7 @@ if path.exists('/etc/enigma2/YouTube.key'):
 			if line[1][-1:] == '"' or line[1][-1:] == "'":
 				line[1] = line[1][:-1]
 			if line[1][:4] == 'GET_':
-				line[1] = GetKey(line[1][4:])
+				line[1] = get_key(line[1][4:])
 			if 'API_KEY' in line[0]:
 				API_KEY = line[1]
 			elif 'CLIENT_ID' in line[0]:
