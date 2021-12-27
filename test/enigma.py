@@ -24,15 +24,15 @@ BT_VALIGN_BOTTOM = 128
 BT_ALIGN_CENTER = BT_HALIGN_CENTER | BT_VALIGN_CENTER
 
 
-class _eInstances:
+class _einstances:
 	@classmethod
-	def getInstance(self):
-		return self.instance
+	def getInstance(cls):
+		return cls.instance
 
 	instance = None
 
 	def __init__(self, *args):
-		_eInstances.instance = self
+		_einstances.instance = self
 		self.slotRotorSatPosChanged = self
 		self.selected = self
 		self.ciStateChanged = self
@@ -58,69 +58,69 @@ class _eInstances:
 		return self.list
 
 
-eAVSwitch = _eInstances()
-eBackgroundFileEraser = _eInstances()
-eCableScan = _eInstances()
-eComponentScan = _eInstances()
-eDBoxLCD = _eInstances()
-eDVBCIInterfaces = _eInstances()
-eDVBDB = _eInstances()
-eDVBDiseqcCommand = _eInstances()
-eDVBFrontendParameters = _eInstances()
-eDVBFrontendParametersATSC = _eInstances()
-eDVBFrontendParametersCable = _eInstances()
-eDVBFrontendParametersSatellite = _eInstances()
-eDVBFrontendParametersTerrestrial = _eInstances()
-eDVBLocalTimeHandler = _eInstances()
-eDVBResourceManager = _eInstances()
-eDVBSatelliteDiseqcParameters = _eInstances()
-eDVBSatelliteEquipmentControl = _eInstances()
-eDVBSatelliteLNBParameters = _eInstances()
-eDVBSatelliteRotorParameters = _eInstances()
-eDVBSatelliteSwitchParameters = _eInstances()
-eDVBServicePMTHandler = _eInstances()
-eDVBVolumecontrol = _eInstances()
-eFastScan = _eInstances()
-eHdmiCEC = _eInstances()
-eListboxServiceContent = _eInstances()
-ePositionGauge = _eInstances()
-eRCInput = _eInstances()
-eRFmod = _eInstances()
-eServiceCenter = _eInstances()
-eServiceEvent = _eInstances()
-eSlider = _eInstances()
-eStreamServer = _eInstances()
-fontRenderClass = _eInstances()
-gMainDC = _eInstances()
-iDVBFrontend = _eInstances()
-iDVBMetaFile = _eInstances()
-iPlayableService = _eInstances()
-iRdsDecoder = _eInstances()
-iRecordableService = _eInstances()
-Misc_Options = _eInstances()
-eWindowStyleManager = _eInstances()
-eButton = _eInstances()
-iRecordableServicePtr = _eInstances()
-iServiceInformation = _eInstances()
-iServiceKeys = _eInstances()
-iFrontendInformation = _eInstances()
-eRect = _eInstances()
-eDVBCI_UI = _eInstances()
-getBestPlayableServiceReference = _eInstances()
-getPrevAsciiCode = _eInstances()
-quitMainloop = _eInstances()
-eServiceReferenceFS = _eInstances()
-eDVBFrontend = _eInstances()
-getBsodCounter = _eInstances()
-resetBsodCounter = _eInstances()
-ePythonOutput = _eInstances()
-iPlayableServicePtr = _eInstances()
+eAVSwitch = _einstances()
+eBackgroundFileEraser = _einstances()
+eCableScan = _einstances()
+eComponentScan = _einstances()
+eDBoxLCD = _einstances()
+eDVBCIInterfaces = _einstances()
+eDVBDB = _einstances()
+eDVBDiseqcCommand = _einstances()
+eDVBFrontendParameters = _einstances()
+eDVBFrontendParametersATSC = _einstances()
+eDVBFrontendParametersCable = _einstances()
+eDVBFrontendParametersSatellite = _einstances()
+eDVBFrontendParametersTerrestrial = _einstances()
+eDVBLocalTimeHandler = _einstances()
+eDVBResourceManager = _einstances()
+eDVBSatelliteDiseqcParameters = _einstances()
+eDVBSatelliteEquipmentControl = _einstances()
+eDVBSatelliteLNBParameters = _einstances()
+eDVBSatelliteRotorParameters = _einstances()
+eDVBSatelliteSwitchParameters = _einstances()
+eDVBServicePMTHandler = _einstances()
+eDVBVolumecontrol = _einstances()
+eFastScan = _einstances()
+eHdmiCEC = _einstances()
+eListboxServiceContent = _einstances()
+ePositionGauge = _einstances()
+eRCInput = _einstances()
+eRFmod = _einstances()
+eServiceCenter = _einstances()
+eServiceEvent = _einstances()
+eSlider = _einstances()
+eStreamServer = _einstances()
+fontRenderClass = _einstances()
+gMainDC = _einstances()
+iDVBFrontend = _einstances()
+iDVBMetaFile = _einstances()
+iPlayableService = _einstances()
+iRdsDecoder = _einstances()
+iRecordableService = _einstances()
+Misc_Options = _einstances()
+eWindowStyleManager = _einstances()
+eButton = _einstances()
+iRecordableServicePtr = _einstances()
+iServiceInformation = _einstances()
+iServiceKeys = _einstances()
+iFrontendInformation = _einstances()
+eRect = _einstances()
+eDVBCI_UI = _einstances()
+getBestPlayableServiceReference = _einstances()
+getPrevAsciiCode = _einstances()
+quitMainloop = _einstances()
+eServiceReferenceFS = _einstances()
+eDVBFrontend = _einstances()
+getBsodCounter = _einstances()
+resetBsodCounter = _einstances()
+ePythonOutput = _einstances()
+iPlayableServicePtr = _einstances()
 
 
 class eTimer:
 	def __init__(self):
 		self.callback = []
-		self.timeout = _eInstances()
+		self.timeout = _einstances()
 		self.timeout.callback = []
 		self.callback_thread = None
 
@@ -148,7 +148,7 @@ class eTimer:
 		self.callback_thread = None
 
 
-class pNavigation(_eInstances):
+class pNavigation(_einstances):
 	isRealRecording = 1
 	isStreaming = 2
 	isPseudoRecording = 4
@@ -160,8 +160,8 @@ class pNavigation(_eInstances):
 	isAnyRecording = 0xFF
 
 	def __init__(self, *args):
-		self.m_event = _eInstances()
-		self.m_record_event = _eInstances()
+		self.m_event = _einstances()
+		self.m_record_event = _einstances()
 
 	def getCurrentService(self):
 		return ''
@@ -203,7 +203,7 @@ class eServiceReferenceDVB:
 	user195 = 0xC
 
 
-class eServiceReference(_eInstances):
+class eServiceReference(_einstances):
 	idInvalid = -1
 	isDirectory = 1
 	mustDescent = 2
@@ -231,7 +231,7 @@ class eServiceReference(_eInstances):
 		return self._data
 
 
-class ePicLoad(_eInstances):
+class ePicLoad(_einstances):
 	def __init__(self):
 		ePicLoad.PictureData = self
 		self._functions = []
@@ -254,7 +254,7 @@ class ePicLoad(_eInstances):
 sel_index = 0
 
 
-class eListboxPythonConfigContent(_eInstances):
+class eListboxPythonConfigContent(_einstances):
 	TYPE_TEXT = None
 	TYPE_PROGRESS = None
 	TYPE_PIXMAP = None
@@ -291,7 +291,7 @@ eListboxPythonStringContent = eListboxPythonConfigContent
 eListboxPythonMultiContent = eListboxPythonConfigContent
 
 
-class eConsoleAppContainer(_eInstances):
+class eConsoleAppContainer(_einstances):
 	def __init__(self):
 		self.dataAvail = []
 		self.appClosed = []
@@ -313,7 +313,7 @@ class _eEnv:
 eEnv = _eEnv()
 
 
-class _getPicture(_eInstances):
+class _getPicture(_einstances):
 	def height(self):
 		return 60
 
@@ -334,9 +334,9 @@ loadJPG = loadPNG
 loadSVG = loadPNG
 
 
-class _getDesktop(_eInstances):
+class _getDesktop(_einstances):
 	def __init__(self, *args):
-		pass
+		pass  # Dummy method
 
 	def height(self):
 		return 720
@@ -348,7 +348,7 @@ class _getDesktop(_eInstances):
 eSize = _getDesktop
 
 
-class getDesktop(_eInstances):
+class getDesktop(_einstances):
 	def __init__(self, *args):
 		self.size = _getDesktop
 
@@ -367,12 +367,12 @@ class ePixmapPosition:
 		return 0
 
 
-class eWidget(_eInstances):
+class eWidget(_einstances):
 	wfNoBorder = None
 
 	def __init__(self, *args):
-		self.selectionChanged = _eInstances()
-		self.getInstance = _eInstances
+		self.selectionChanged = _einstances()
+		self.getInstance = _einstances
 		self._index = 0
 
 	def get(self):
@@ -440,8 +440,8 @@ class eSubtitleWidget:
 	Subtitle_MAX = None
 
 	@classmethod
-	def setFontStyle(self, *args):
-		pass
+	def setFontStyle(cls, *args):
+		pass  # Dummy method
 
 
 class ePixmap(eWidget):
@@ -449,14 +449,14 @@ class ePixmap(eWidget):
 		return _getPicture()
 
 
-class _eEPGCache(_eInstances):
+class _eEPGCache(_einstances):
 	MHW = 8
 	VIRGIN_NOWNEXT = 2048
 	VIRGIN_SCHEDULE = 4096
 	OPENTV = 16384
 
 	def __init__(self):
-		self.getInstance = _eInstances
+		self.getInstance = _einstances
 
 
 eEPGCache = _eEPGCache()
@@ -464,8 +464,8 @@ eEPGCache = _eEPGCache()
 
 class eActionMap:
 	@classmethod
-	def getInstance(self):
-		return self.instance
+	def getInstance(cls):
+		return cls.instance
 
 	instance = None
 
@@ -473,19 +473,19 @@ class eActionMap:
 		eActionMap.instance = self
 
 	def bindKey(self, *args):
-		pass
+		pass  # Dummy method
 
 	def bindToggle(self, *args):
-		pass
+		pass  # Dummy method
 
 	def bindTranslation(self, *args):
-		pass
+		pass  # Dummy method
 
 	def bindAction(self, *args):
-		pass
+		pass  # Dummy method
 
 	def unbindAction(self, *args):
-		pass
+		pass  # Dummy method
 
 
 eActionMap()
@@ -571,7 +571,7 @@ def getFontFaces():
 
 
 def ePoint(*args):
-	pass
+	pass  # Dummy function
 
 
 def eGetEnigmaDebugLvl():
@@ -579,7 +579,7 @@ def eGetEnigmaDebugLvl():
 
 
 def setPreferredTuner(*args):
-	pass
+	pass  # Dummy function
 
 
 def gFont(*args):
@@ -591,18 +591,18 @@ def gRGB(*args):
 
 
 def setTunerTypePriorityOrder(*args):
-	pass
+	pass  # Dummy function
 
 
 def setSpinnerOnOff(*args):
-	pass
+	pass  # Dummy function
 
 
 def setEnableTtCachingOnOff(*args):
-	pass
+	pass  # Dummy function
 
 
-def new_activateLanguage(self, index):
+def new_activate_language(self, index):
 	if index not in self.lang:
 		print('Selected language does not exist, fallback to de_DE!')
 		index = 'de_DE'
@@ -621,7 +621,7 @@ def new_index(self, value):
 from Screens.Screen import Screen
 
 
-class new_MoviePlayer(Screen):
+class new_movie_player(Screen):
 	def __init__(self, session, service, *args):
 		Screen.__init__(self, session)
 		print('[MoviePlayer] service:', service.getName())
@@ -645,7 +645,7 @@ def start_session():
 
 	print('init language')
 	from Components.Language import Language, language
-	Language.activateLanguage = new_activateLanguage
+	Language.activateLanguage = new_activate_language
 	language.activateLanguage('de_DE')
 
 	try:  # OpenVix
@@ -666,7 +666,7 @@ def start_session():
 		config.crash.debugKeyboards = ConfigYesNo(default=False)
 		config.plugins = ConfigSubsection()
 		from Screens import InfoBar
-	InfoBar.MoviePlayer = new_MoviePlayer
+	InfoBar.MoviePlayer = new_movie_player
 	try:
 		from Screens.SimpleSummary import SimpleSummary
 	except ImportError:
