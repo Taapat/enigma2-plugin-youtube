@@ -5,7 +5,6 @@
 from __future__ import print_function
 from distutils import cmd
 from distutils.command.build import build as _build
-import glob
 import os
 
 
@@ -13,31 +12,30 @@ class build_trans(cmd.Command):
 	description = 'Compile .po files into .mo files'
 
 	def initialize_options(self):
-		pass
+		"""
+		This method must be implemented by all command classes,
+		but we don't need to set default values.
+		"""
 
 	def finalize_options(self):
-		pass
+		"""
+		This method must be implemented by all command classes,
+		but we don't need to set final values.
+		"""
 
 	def run(self):
-		s = os.path.join('po')
-		lang_domains = glob.glob(os.path.join(s, '*.pot'))
-		if len(lang_domains):
-			for lang in os.listdir(s):
-				if lang.endswith('.po'):
-					src = os.path.join(s, lang)
-					lang = lang[:-3]
-					destdir = os.path.join('build', 'lib', 'Extensions',
-						'YouTube', 'locale', lang, 'LC_MESSAGES')
-					if not os.path.exists(destdir):
-						os.makedirs(destdir)
-					for lang_domain in lang_domains:
-						lang_domain = lang_domain.rsplit('/', 1)[1]
-						dest = os.path.join(destdir, lang_domain[:-3] + 'mo')
-						print("Language compile %s -> %s" % (src, dest))
-						if os.system("msgfmt '%s' -o '%s'" % (src, dest)) != 0:
-							raise Exception("Failed to compile", src)
-		else:
-			print("we got no domain -> no translation was compiled")
+		for lang in os.listdir('po'):
+			if lang.endswith('.po'):
+				src = os.path.join('po', lang)
+				lang = lang[:-3]
+				destdir = os.path.join('build/lib/Extensions/YouTube/locale',
+						lang, 'LC_MESSAGES')
+				if not os.path.exists(destdir):
+					os.makedirs(destdir)
+				dest = os.path.join(destdir, 'YouTube.mo')
+				print("Language compile %s -> %s" % (src, dest))
+				if os.system("msgfmt '%s' -o '%s'" % (src, dest)) != 0:
+					raise Exception("Failed to compile", src)
 
 
 class build(_build):
@@ -49,5 +47,4 @@ class build(_build):
 
 cmdclass = {
 	'build': build,
-	'build_trans': build_trans,
-}
+	'build_trans': build_trans}
