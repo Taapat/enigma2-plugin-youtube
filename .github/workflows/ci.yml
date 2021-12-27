@@ -11,6 +11,18 @@ on:
     - cron:  '0 6 * * *'
 
 jobs:
+  sonarcloud:
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Sonarcloud scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   check_source:
     if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
