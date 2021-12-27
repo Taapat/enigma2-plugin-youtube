@@ -117,7 +117,7 @@ class YouTubePlayer(MoviePlayer):
 		MoviePlayer.__init__(self, session, service)
 		self.skinName = ['YouTubeMoviePlayer', 'MoviePlayer']
 		self.current = current
-		self.__youtube_event_tracker = ServiceEventTracker(screen=self, eventmap={
+		ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evStart: self.__serviceStart,
 				iPlayableService.evVideoSizeChanged: self.__serviceStart})  # On exteplayer evStart not working
 		self.servicelist = InfoBar.instance and InfoBar.instance.servicelist
@@ -180,12 +180,12 @@ class YouTubePlayer(MoviePlayer):
 		self.close([None, config.plugins.YouTube.onMovieEof.value])
 
 	def getPluginList(self):
-		list = []
+		plist = []
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_EXTENSIONSMENU):
 			if p.name != _('YouTube'):
-				list.append(((boundFunction(self.getPluginName, p.name),
+				plist.append(((boundFunction(self.getPluginName, p.name),
 					boundFunction(self.runPlugin, p), lambda: True), None))
-		return list
+		return plist
 
 	def openCurEventView(self):
 		self.session.open(YouTubeInfo, current=self.current)
@@ -196,7 +196,7 @@ class YouTubePlayer(MoviePlayer):
 		self.openCurEventView()
 
 	def showMovies(self):
-		pass
+		pass  # Ignore this method
 
 	def openServiceList(self):
 		if hasattr(self, 'toggleShow'):
@@ -416,7 +416,7 @@ class YouTubeMain(Screen):
 		self.ytdl = YouTubeVideoUrl()
 		self.createAuth()
 		self.createMainList()
-		for job in job_manager.getPendingJobs():
+		for _ in job_manager.getPendingJobs():
 			self.active_downloads += 1
 
 	def cleanVariables(self):
@@ -438,12 +438,12 @@ class YouTubeMain(Screen):
 	def createDefEntryList(self, entry_list, append=False):
 		if not append:
 			self.yts[0]['entry_list'] = []
-		for Id, Title in entry_list:
+		for ytid, title in entry_list:
 			self.yts[0]['entry_list'].append((
-					Id,     # Id
+					ytid,   # Id
 					'',     # Thumbnail url
 					None,   # Thumbnail
-					Title,  # Title
+					title,  # Title
 					'',     # Views
 					'',     # Duration
 					None,   # Video url
@@ -451,7 +451,7 @@ class YouTubeMain(Screen):
 					None,   # Likes
 					'',     # Big thumbnail url
 					None,   # Channel Id
-					''))     # Published
+					''))    # Published
 
 	def createMainList(self):
 		self.yts[0]['list'] = 'main'
@@ -1558,9 +1558,9 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			self.splitTaimer = eTimer()
 			self.splitTaimer.timeout.callback.append(self.splitTaimerStop)
 			self.oauth = OAuth()
-			url, userCode = self.oauth.get_user_code()
-			if userCode:
-				msg = _('Go to %s\nAnd enter the code %s') % (url, userCode)
+			url, user_code = self.oauth.get_user_code()
+			if user_code:
+				msg = _('Go to %s\nAnd enter the code %s') % (url, user_code)
 				print('[YouTube] ', msg)
 				self.mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
 				self.splitTaimer.start(9000, True)
@@ -1570,14 +1570,14 @@ class YouTubeSetup(ConfigListScreen, Screen):
 
 	def splitTaimerStop(self):
 		# Here we waiting until the user enter a code
-		refreshToken, retryInterval = self.oauth.get_new_token()
-		if not refreshToken:
-			self.splitTaimer.start(retryInterval * 1000, True)
+		refresh_token, retry_interval = self.oauth.get_new_token()
+		if not refresh_token:
+			self.splitTaimer.start(retry_interval * 1000, True)
 		else:
 			print('[YouTube] Get refresh token')
 			if self.mbox:
 				self.mbox.close()
-			config.plugins.YouTube.refreshToken.value = refreshToken
+			config.plugins.YouTube.refreshToken.value = refresh_token
 			config.plugins.YouTube.refreshToken.save()
 			del self.splitTaimer
 			self.mbox = None
