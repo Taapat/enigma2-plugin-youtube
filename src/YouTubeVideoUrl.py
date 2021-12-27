@@ -132,7 +132,7 @@ class YouTubeVideoUrl():
 		try:
 			urlh = compat_ssl_urlopen(url_or_request)
 		except compat_URLError as e:
-			raise Exception(e.reason)
+			raise RuntimeError(e.reason)
 
 		content_type = urlh.headers.get('Content-Type', '')
 		webpage_bytes = urlh.read()
@@ -243,7 +243,7 @@ class YouTubeVideoUrl():
 
 		player_response = self._extract_player_response(video_id)
 		if not player_response:
-			raise Exception('Player response not found!')
+			raise RuntimeError('Player response not found!')
 
 		playability_status = player_response.get('playabilityStatus') or {}
 
@@ -311,7 +311,7 @@ class YouTubeVideoUrl():
 
 		if not url:
 			if streaming_data.get('licenseInfos'):
-				raise Exception('This video is DRM protected!')
+				raise RuntimeError('This video is DRM protected!')
 			pemr = try_get(playability_status,
 				lambda x: x['errorScreen']['playerErrorMessageRenderer'],
 				dict) or {}
@@ -326,7 +326,7 @@ class YouTubeVideoUrl():
 				if subreason:
 					subreason = clean_html(get_text(subreason))
 					reason += '\n%s' % subreason
-			raise Exception(reason)
+			raise RuntimeError(reason)
 
 		return str(url)
 
@@ -343,4 +343,4 @@ class YouTubeVideoUrl():
 					break
 		if not error_message:
 			error_message = 'No supported formats found in video info!'
-		raise Exception(error_message)
+		raise RuntimeError(error_message)
