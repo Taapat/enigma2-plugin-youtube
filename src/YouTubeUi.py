@@ -416,7 +416,7 @@ class YouTubeMain(Screen):
 		self.ytdl = YouTubeVideoUrl()
 		self.createAuth()
 		self.createMainList()
-		for _ in job_manager.getPendingJobs():
+		for _ in job_manager.getPendingJobs():  # noqa: F402
 			self.active_downloads += 1
 
 	def cleanVariables(self):
