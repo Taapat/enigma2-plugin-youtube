@@ -125,4 +125,9 @@ def try_plugin_screens_load():
 	yt.cancel()
 
 
-try_plugin_screens_load()
+def test_plugin():
+	try_plugin_screens_load()
+
+
+if __name__ == '__main__':
+	try_plugin_screens_load()
