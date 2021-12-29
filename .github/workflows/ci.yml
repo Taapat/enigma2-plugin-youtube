@@ -24,7 +24,7 @@ jobs:
           python-version: '2.7'
       - name: Install dependencies
         run: |
-          pip install coverage pytest
+          pip install pytest pytest-cov
       - name: Remove enigma2 imports and variables for test
         run: |
           echo "" > src/__init__.py
@@ -33,8 +33,7 @@ jobs:
           sed -i 's/config.plugins.YouTube.useDashMP4.value/True/g' src/YouTubeVideoUrl.py
       - name: Coverage code
         run: |
-          coverage run -m pytest -rap -v --junitxml=coverage.xml
-          coverage xml -i
+          pytest -v  --cov --cov-report=xml --cov-report=html
       - name: Show coverage file
         run: |
           cat /home/runner/work/enigma2-plugin-youtube/enigma2-plugin-youtube/coverage.xml
