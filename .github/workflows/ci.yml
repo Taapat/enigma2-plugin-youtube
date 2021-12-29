@@ -35,6 +35,8 @@ jobs:
         run: |
           coverage run -m pytest -rap -v --junitxml=coverage.xml
           coverage xml -i
+      - name: Show coverage file
+        run: |
           cat /home/runner/work/enigma2-plugin-youtube/enigma2-plugin-youtube/coverage.xml
       - name: Sonarcloud scan
         uses: SonarSource/sonarcloud-github-action@master
