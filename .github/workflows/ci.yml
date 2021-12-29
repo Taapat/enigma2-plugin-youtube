@@ -18,6 +18,17 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - name: Set up Python 2.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: '2.7'
+      - name: Install dependencies
+        run: |
+          pip install coverage pytest
+      - name: Coverage code
+        run: |
+          coverage run -m pytest -rap -v --junitxml=coverage.xml
+          coverage xml -i
       - name: Sonarcloud scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
