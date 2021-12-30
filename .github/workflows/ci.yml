@@ -160,7 +160,7 @@ jobs:
       - name: Coverage code
         if: github.event_name != 'schedule' && matrix.enigma2-version == 'OpenPLi develop'
         run: |
-          PYTHONPATH=./test:./enigma2:./enigma2/lib/python python -m pytest -rx -v --cov --cov-report=xml --cov-report=html test/try_plugin.py
+          PYTHONPATH=./test:./enigma2:./enigma2/lib/python python -m pytest -rx -v --cov=src --cov-report=xml --cov-report=html test/try_plugin.py
       - name: Sonarcloud scan
         if: github.event_name != 'schedule' && matrix.enigma2-version == 'OpenPLi develop'
         uses: SonarSource/sonarcloud-github-action@master
