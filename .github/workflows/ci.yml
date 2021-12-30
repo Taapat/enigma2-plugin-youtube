@@ -74,7 +74,7 @@ jobs:
           python -m pip install --upgrade pip
       - name: Install dependencies
         run: |
-          pip install flake8 pytest
+          pip install flake8 pytest pytest-cov
       - name: Compile sources
         run: |
           python -O -m compileall ./src/
@@ -92,7 +92,13 @@ jobs:
           sed -i 's/config.plugins.YouTube.useDashMP4.value/True/g' src/YouTubeVideoUrl.py
       - name: Test code with pytest
         run: |
-          pytest -rx -v
+          pytest -rx -v --cov=src --cov-report=xml --cov-report=html
+          mv .coverage .coverage_pytest
+      - name: Upload code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: .coverage_${{ matrix.python-version }}
   test-gui:
     needs: test-python
     if: always() && (github.event_name == 'schedule' && github.ref == 'refs/heads/master') || ((needs.check_source.outputs.gui-changed == 'true' || contains(github.event.head_commit.message,'force-test')) && (needs.test-python.result == 'success' || needs.test-python.result == 'skipped'))
@@ -154,13 +160,40 @@ jobs:
         run: |
           PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py
       - name: Install coverage dependencies
-        if: github.event_name != 'schedule' && matrix.enigma2-version == 'OpenPLi develop'
+        if: github.event_name != 'schedule'
         run: |
           pip install pytest pytest-cov
       - name: Coverage code
-        if: github.event_name != 'schedule' && matrix.enigma2-version == 'OpenPLi develop'
+        if: github.event_name != 'schedule'
         run: |
-          PYTHONPATH=./test:./enigma2:./enigma2/lib/python python -m pytest -rx -v --cov --cov-report=xml --cov-report=html test/try_plugin.py test/test_plugin.py
+          PYTHONPATH=./test:./enigma2:./enigma2/lib/python python -m pytest -rx -v --cov=src --cov-report=xml --cov-report=html test/try_plugin.py
+          mv .coverage .coverage_${{ steps.split.outputs._0 }}_${{ steps.split.outputs._1 }}
+      - name: Upload code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: .coverage_${{ steps.split.outputs._0 }}_${{ steps.split.outputs._1 }}
+  sonarcloud:
+    needs: [test-python, test-gui]
+    if: always() && contains(github.event.head_commit.message,'force-test')) || github.event_name == 'push' && (needs.test-python.result == 'success' && needs.test-gui.result == 'success')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 2.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: '2.7'
+      - name: Install coverage dependencies
+        run: |
+          pip install coverage
+      - name: Download code coverage results
+        uses: actions/download-artifact@v2
+        with:
+          name: coverage
+      - name: Combine coverage results
+        run: |
+          coverage combine .coverage_*
+          coverage xml
       - name: Sonarcloud scan
         if: github.event_name != 'schedule' && matrix.enigma2-version == 'OpenPLi develop'
         uses: SonarSource/sonarcloud-github-action@master
