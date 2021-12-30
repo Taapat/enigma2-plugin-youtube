@@ -93,7 +93,7 @@ jobs:
       - name: Test code with pytest
         run: |
           pytest -rx -v --cov=src --cov-report=xml --cov-report=html
-          mv .coverage .coverage_pytest
+          mv .coverage .coverage_${{ matrix.python-version }}
       - name: Upload code coverage results
         uses: actions/upload-artifact@v2
         with:
@@ -175,7 +175,7 @@ jobs:
           path: .coverage_${{ steps.split.outputs._0 }}_${{ steps.split.outputs._1 }}
   sonarcloud:
     needs: [test-python, test-gui]
-    if: always() && contains(github.event.head_commit.message,'force-test') || github.event_name == 'push' && (needs.test-python.result == 'success' && needs.test-gui.result == 'success')
+    if: always() && needs.test-python.result == 'success' && needs.test-gui.result == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -195,7 +195,6 @@ jobs:
           coverage combine .coverage_*
           coverage xml
       - name: Sonarcloud scan
-        if: github.event_name != 'schedule' && matrix.enigma2-version == 'OpenPLi develop'
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
