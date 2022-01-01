@@ -93,6 +93,8 @@ def check_video_url(videos, descr):
 			pytest.xfail('Error in get_url, Too Many Requests')
 		elif str(ex) == 'No supported formats found in video info!':
 			pytest.xfail('Error in get_url, No supported formats found in video info!')
+		elif 'inappropriate' in str(ex):
+			pytest.xfail('Error in get_url, this video may be inappropriate for some users!')
 		else:
 			raise RuntimeError(ex)
 	else:
