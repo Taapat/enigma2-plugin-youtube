@@ -64,6 +64,8 @@ jobs:
         python-version: [2.7, 3.8]
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -119,6 +121,8 @@ jobs:
             python-version: 2.7
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Set enigma2 repository
         uses: jungwinter/split@v1
         id: split
@@ -130,6 +134,7 @@ jobs:
           repository: '${{ steps.split.outputs._0 }}/enigma2'
           ref: ${{ steps.split.outputs._1 }}
           path: './enigma2'
+          fetch-depth: 0
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -179,6 +184,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Set up Python 2.7
         uses: actions/setup-python@v2
         with:
@@ -205,6 +212,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Install dependencies
         run: |
           sudo apt-get install gettext
