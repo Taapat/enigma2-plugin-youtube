@@ -270,7 +270,7 @@ class eListboxPythonConfigContent(_einstances):
 
 	def getCurrentSelection(self):
 		if self.__list:
-			if len(self.__list) >= sel_index:
+			if len(self.__list) > sel_index:
 				return self.__list[sel_index]
 			else:
 				return self.__list[0]
