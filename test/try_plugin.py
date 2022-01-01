@@ -64,12 +64,14 @@ def try_plugin_screens_load():
 	# Move the cursor in suggestions list
 	session.current_dialog['list'].selectNext()
 	session.current_dialog['list'].selectPrevious()
-	session.current_dialog.keyDown()
-	session.current_dialog.keyUp()
-	session.current_dialog.keyPageDown()
-	session.current_dialog.keyPageUp()
-	session.current_dialog.keyBottom()
-	session.current_dialog.keyTop()
+	from Components.Sources.List import List
+	if hasattr(List, 'down'):
+		session.current_dialog.keyDown()
+		session.current_dialog.keyUp()
+		session.current_dialog.keyPageDown()
+		session.current_dialog.keyPageUp()
+		session.current_dialog.keyBottom()
+		session.current_dialog.keyTop()
 	session.current_dialog.setupCallback()
 	# Choice 'videotest' in suggestions list
 	session.current_dialog['list'].setList([('', None), ('videotest', None)])
