@@ -75,11 +75,6 @@ def try_plugin_screens_load():
 	session.current_dialog['list'].setList([('', None), ('videotest', None)])
 	session.current_dialog['list'].setIndex(1)
 	session.current_dialog.ok()
-	# Open Menu ChoiceBox
-	session.current_dialog['list'].setIndex(1)
-	session.current_dialog.openMenu()
-	# Close Menu ChoiceBox
-	session.current_dialog.close(None)
 	# Open YouTubeVirtualKeyBoard again with text
 	session.current_dialog.keyText()
 	# Close YouTubeVirtualKeyBoard
