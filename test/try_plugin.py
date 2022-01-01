@@ -136,7 +136,34 @@ def try_plugin_screens_load():
 	yt.setPrevEntries()
 	# Close video list
 	yt.cancel()
-	# Close search video
+	# Open search channels
+	yt['list'].setIndex(1)
+	yt.ok()
+	# Choice 'ello' in suggestions list
+	session.current_dialog.updateSuggestions([('', None), ('ello', None)])
+	session.current_dialog['list'].setIndex(1)
+	session.current_dialog.ok()
+	# Close channels list
+	yt.cancel()
+	# Open search playlists
+	yt['list'].setIndex(2)
+	yt.ok()
+	# Choice 'hdvideo' in suggestions list
+	session.current_dialog.updateSuggestions([('', None), ('hdvideo', None)])
+	session.current_dialog['list'].setIndex(1)
+	session.current_dialog.ok()
+	# Close playlists list
+	yt.cancel()
+	# Open search live broadcasts
+	yt['list'].setIndex(3)
+	yt.ok()
+	# Choice '112' in suggestions list
+	session.current_dialog.updateSuggestions([('', None), ('112', None)])
+	session.current_dialog['list'].setIndex(1)
+	session.current_dialog.ok()
+	# Close live broadcasts list
+	yt.cancel()
+	# Close search
 	yt.cancel()
 	# Choice Public feeds
 	yt['list'].setIndex(1)
