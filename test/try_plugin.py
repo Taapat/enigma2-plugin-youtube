@@ -63,9 +63,25 @@ def try_plugin_screens_load():
 	yt.ok()
 	# If open YouTubePlayer
 	if hasattr(session.current_dialog, 'leavePlayer'):
+		# Try YouTubePlayer methods for code coverage
+		session.current_dialog.getPluginList()
+		session.current_dialog.messageBoxCallback(True)
+		session.current_dialog.showMovies()
+		# Open YouTubeInfo
+		from enigma import eTimer
+		session.current_dialog.hideTimer = eTimer()
+		session.current_dialog.showSecondInfoBar()
+		# Close YouTubeInfo
+		session.current_dialog.close()
 		# Stop playback with ChoiceBox
+		from Components.config import config
+		config.plugins.YouTube.onMovieStop.value = 'ask'
 		session.current_dialog.leavePlayer()
+		# Repeat play on YouTubePlayer
+		session.current_dialog.close(('Repeat', 'repeat'))
 		# Close YouTubePlayer
+		config.plugins.YouTube.onMovieStop.value = 'related'
+		session.current_dialog.leavePlayer()
 		session.current_dialog.close(('Yes', 'quit'))
 	elif session.current_dialog:
 		# Close MessageBox if exist
