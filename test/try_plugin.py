@@ -170,6 +170,7 @@ def try_plugin_screens_load():
 	# Open Public feeds
 	yt.ok()
 	# Choice Most viewed
+	yt['list'].setIndex(1)
 	yt.ok()
 	# Open YouTubePlayer
 	yt.ok()
@@ -182,7 +183,31 @@ def try_plugin_screens_load():
 		session.current_dialog.close()
 	# Close Most viewed
 	yt.cancel()
-	# Close search video
+	# Open top rated feeds
+	yt['list'].setIndex(0)
+	yt.ok()
+	yt.cancel()
+	# Open recent feeds
+	yt['list'].setIndex(2)
+	yt.ok()
+	yt.cancel()
+	# Open HD videos feeds
+	yt['list'].setIndex(3)
+	yt.ok()
+	yt.cancel()
+	# Open embedded feeds
+	yt['list'].setIndex(4)
+	yt.ok()
+	yt.cancel()
+	# Open shows feeds
+	yt['list'].setIndex(5)
+	yt.ok()
+	yt.cancel()
+	# Open movies feeds
+	yt['list'].setIndex(6)
+	yt.ok()
+	yt.cancel()
+	# Close Public feeds
 	yt.cancel()
 	# Open YouTubeSetup
 	yt.openMenu()
