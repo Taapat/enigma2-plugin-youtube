@@ -130,7 +130,8 @@ video_id = ['BaW_jenozKc',
 		'eQcmzGIKrzg',
 		'uGpuVWrhIzE',
 		'iqKdEhx-dD4',
-		'MgNrAu2pzNs']
+		'MgNrAu2pzNs',
+		'Tq92D6wQ1mg']
 
 
 video_descr = ['Use the first video ID',
@@ -144,9 +145,20 @@ video_descr = ['Use the first video ID',
 		'Channel-like uploader_url',
 		'Rental video preview',
 		'YouTube Red with episode data',
-		'Auto generated description']
+		'Auto generated description',
+		'Age gated video']
 
 
 @pytest.mark.parametrize('descr', video_descr)
 def test_url(descr):
 	check_video_url(videos=video_id[video_descr.index(descr)], descr=descr)
+
+
+@pytest.mark.xfail
+def test_wrong_id():
+		get_url('test_wrong_id')
+
+
+@pytest.mark.xfail
+def test_age_gate():
+		get_url('K9TRaGNnjEU')
