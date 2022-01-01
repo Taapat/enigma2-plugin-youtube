@@ -154,6 +154,12 @@ def test_url(descr):
 	check_video_url(videos=video_id[video_descr.index(descr)], descr=descr)
 
 
+def test_clean_html():
+	from src.YouTubeVideoUrl import clean_html
+	clean_html(None)
+	clean_html('<i>html</i><b>remove</b><br>-><a href="http://www.bbc.co.uk">BBC</a>1<br><p>stuff</p>')
+
+
 @pytest.mark.xfail
 def test_wrong_id():
 	get_url('test_wrong_id')
