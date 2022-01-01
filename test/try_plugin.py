@@ -31,10 +31,17 @@ def try_plugin_screens_load():
 	# Choice search video, open YouTubeSearch
 	yt.ok()
 	# Choice YouTubeVirtualKeyBoard
-	session.current_dialog.openKeyboard()
-	# Choice 'vide' in virtual keyboard
+	session.current_dialog.keyText()
+	# Open YouTubeVirtualKeyBoard
 	from Screens.VirtualKeyBoard import VirtualKeyBoard
 	if hasattr(session.current_dialog, 'selectAsciiKey') and hasattr(VirtualKeyBoard, 'processSelect'):
+		# Try YouTubeVirtualKeyBoard methods for code coverage
+		session.current_dialog.backSelected()
+		session.current_dialog.forwardSelected()
+		session.current_dialog.eraseAll()
+		from Components.config import KEY_DELETE
+		session.current_dialog.searchValue.handleKey(KEY_DELETE)
+		# Choice 'vide' in virtual keyboard
 		session.current_dialog.selectAsciiKey('v')
 		session.current_dialog.processSelect()
 		session.current_dialog.selectAsciiKey('i')
@@ -57,6 +64,27 @@ def try_plugin_screens_load():
 	# Move the cursor in suggestions list
 	session.current_dialog['list'].selectNext()
 	session.current_dialog['list'].selectPrevious()
+	session.current_dialog.keyDown()
+	session.current_dialog.keyUp()
+	session.current_dialog.keyPageDown()
+	session.current_dialog.keyPageUp()
+	session.current_dialog.keyBottom()
+	session.current_dialog.keyTop()
+	session.current_dialog.setupCallback()
+	# Choice 'videotest' in suggestions list
+	session.current_dialog['list'].setList([('', None), ('videotest', None)])
+	session.current_dialog['list'].setIndex(1)
+	session.current_dialog.ok()
+	# Open Menu ChoiceBox
+	session.current_dialog['list'].setIndex(1)
+	session.current_dialog.openMenu()
+	# Close Menu ChoiceBox
+	session.current_dialog.close(None)
+	# Open YouTubeVirtualKeyBoard again with text
+	session.current_dialog.keyText()
+	# Close YouTubeVirtualKeyBoard
+	session.current_dialog.close(None)
+	session.current_dialog.searchValue.stopSuggestions()
 	# Choice search phrase and close YouTubeSearch
 	session.current_dialog.ok()
 	# Open YouTubePlayer
