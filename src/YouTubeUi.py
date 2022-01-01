@@ -1320,7 +1320,7 @@ class YouTubeInfo(Screen):
 				<ePixmap position="295*f,377*f" size="140*f,40*f" pixmap="skin_default/buttons/red.svg" \
 					transparent="1" alphatest="blend" />
 				<widget source="key_red" render="Label" position="center,382*f" zPosition="2" size="140*f,30*f" \
-					valign="295*f" halign="center" font="Regular;22*f" transparent="1" />
+					valign="center" halign="center" font="Regular;22*f" transparent="1" />
 			</screen>"""
 	elif screenwidth == 1280:
 		skin = """<screen position="center,center" size="730,424">
@@ -1336,7 +1336,7 @@ class YouTubeInfo(Screen):
 				<ePixmap position="295,377" size="140,40" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
 				<widget source="key_red" render="Label" position="center,382" zPosition="2" size="140,30" \
-					valign="295" halign="center" font="Regular;22" transparent="1" />
+					valign="center" halign="center" font="Regular;22" transparent="1" />
 			</screen>"""
 	elif screenwidth == 1920:
 		skin = """<screen position="center,center" size="1095,636">
