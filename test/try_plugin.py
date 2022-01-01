@@ -74,7 +74,7 @@ def try_plugin_screens_load():
 		session.current_dialog.keyTop()
 	session.current_dialog.setupCallback()
 	# Choice 'videotest' in suggestions list
-	session.current_dialog['list'].setList([('', None), ('videotest', None)])
+	session.current_dialog.updateSuggestions([('', None), ('videotest', None)])
 	session.current_dialog['list'].setIndex(1)
 	session.current_dialog.ok()
 	# Open YouTubeVirtualKeyBoard again with text
