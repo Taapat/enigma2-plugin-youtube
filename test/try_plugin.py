@@ -187,6 +187,10 @@ def try_plugin_screens_load():
 	yt.cancel()
 	# Close YouTubeMain
 	yt.cancel()
+	# Try plugin for code coverage
+	from Plugins.Extensions.YouTube.plugin import main, Plugins
+	Plugins()
+	main(session)
 
 
 def test_plugin():
