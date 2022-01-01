@@ -77,15 +77,38 @@ def try_plugin_screens_load():
 		from Components.config import config
 		config.plugins.YouTube.onMovieStop.value = 'ask'
 		session.current_dialog.leavePlayer()
-		# Repeat play on YouTubePlayer
+		# Repeat playback on YouTubePlayer
 		session.current_dialog.close(('Repeat', 'repeat'))
 		# Close YouTubePlayer
-		config.plugins.YouTube.onMovieStop.value = 'related'
 		session.current_dialog.leavePlayer()
-		session.current_dialog.close(('Yes', 'quit'))
+		session.current_dialog.close(('Ask', 'ask'))
+		# Play next with ChoiceBox
+		session.current_dialog.close(('Play next', 'playnext'))
 	elif session.current_dialog:
 		# Close MessageBox if exist
 		session.current_dialog.close()
+	# If open YouTubePlayer
+	if hasattr(session.current_dialog, 'leavePlayer'):
+		# Close YouTubePlayer
+		session.current_dialog.leavePlayer()
+		session.current_dialog.close(('Ask', 'ask'))
+		# Play previous with ChoiceBox
+		session.current_dialog.close(('Play previous', 'playprev'))
+	elif session.current_dialog:
+		# Close MessageBox if exist
+		session.current_dialog.close()
+	# If open YouTubePlayer
+	if hasattr(session.current_dialog, 'leavePlayer'):
+		# Close YouTubePlayer
+		config.plugins.YouTube.onMovieStop.value = 'related'
+		session.current_dialog.leavePlayer()
+		session.current_dialog.close(('Quit', 'quit'))
+	elif session.current_dialog:
+		# Close MessageBox if exist
+		session.current_dialog.close()
+	# Try YouTubeMain methods for code coverage
+	yt.setNextEntries()
+	yt.setPrevEntries()
 	# Close video list
 	yt.cancel()
 	# Close search video
