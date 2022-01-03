@@ -180,7 +180,7 @@ jobs:
           path: .coverage_${{ steps.split.outputs._0 }}_${{ steps.split.outputs._1 }}
   sonarcloud:
     needs: [test-python, test-gui]
-    if: always() && needs.test-python.result == 'success' && needs.test-gui.result == 'success'
+    if: always() && needs.test-python.result == 'success' && (needs.test-gui.result == 'success' || needs.test-gui.result == 'skipped')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
