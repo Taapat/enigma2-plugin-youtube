@@ -1,6 +1,12 @@
 from sys import version_info
 
 
+# Disable certificate verification on python 2.7.9
+if version_info >= (2, 7, 9):
+	import ssl
+	ssl._create_default_https_context = ssl._create_unverified_context
+
+
 if version_info[0] == 2:
 	# Python 2
 	compat_str = unicode
@@ -21,18 +27,3 @@ else:
 	from urllib.request import Request as compat_Request
 	from urllib.error import HTTPError as compat_HTTPError
 	from urllib.error import URLError as compat_URLError
-# Disable certificate verification on python 2.7.9
-sslContext = None
-if version_info >= (2, 7, 9):
-	try:
-		import ssl
-		sslContext = ssl._create_unverified_context()
-	except Exception as e:
-		print('[YouTube] Error in set ssl context', e)
-
-
-def compat_ssl_urlopen(url):
-	if sslContext:
-		return compat_urlopen(url, context=sslContext)
-	else:
-		return compat_urlopen(url)

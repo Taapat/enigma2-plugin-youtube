@@ -98,8 +98,8 @@ def check_video_url(videos, descr):
 		else:
 			raise RuntimeError(ex)
 	else:
-		from src.compat import compat_ssl_urlopen
-		response = compat_ssl_urlopen(video_url)
+		from src.compat import compat_urlopen
+		response = compat_urlopen(video_url)
 		info = response.info()
 		print('Video Url info:')
 		print(info, descr, 'Video Url exist')

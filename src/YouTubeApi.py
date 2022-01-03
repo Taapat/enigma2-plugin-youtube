@@ -2,7 +2,6 @@ from __future__ import print_function
 
 from json import dumps, load
 
-from .compat import compat_ssl_urlopen
 from .compat import compat_quote
 from .compat import compat_urlopen
 from .compat import compat_Request
@@ -27,7 +26,7 @@ class YouTubeApi:
 
 	def try_response(self, url):
 		try:
-			response = compat_ssl_urlopen(url)
+			response = compat_urlopen(url)
 			status_code = response.getcode()
 		except compat_HTTPError as e:
 			print('[YouTubeApi] HTTPError error in get response', e)

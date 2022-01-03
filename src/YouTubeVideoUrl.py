@@ -9,9 +9,8 @@ from json import loads, dumps
 
 from Components.config import config
 
-from .compat import compat_ssl_urlopen
+from .compat import compat_urlopen
 from .compat import compat_str
-from .compat import compat_urlencode
 from .compat import compat_URLError
 from .compat import compat_Request
 
@@ -121,7 +120,7 @@ class YouTubeVideoUrl():
 			url_or_request.get_method = lambda: 'POST'
 
 		try:
-			urlh = compat_ssl_urlopen(url_or_request)
+			urlh = compat_urlopen(url_or_request)
 		except compat_URLError as e:
 			raise RuntimeError(e.reason)
 
