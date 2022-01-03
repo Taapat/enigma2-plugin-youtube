@@ -162,10 +162,8 @@ jobs:
           sed -i 's/\/usr/./g' enigma2/lib/python/Components/UsageConfig.py
           sed -i 's/addNotifier(iAVSwitch/addNotifier(iAVSwitch.setPolicy169) #/g' enigma2/lib/python/Components/AVSwitch.py
       - name: ========== Test plugin screens load ==========
-        env:
-          YOUTUBE_PLUGIN_TOKEN: ${{ secrets.YOUTUBE_PLUGIN_TOKEN }}
         run: |
-          PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py
+          YOUTUBE_PLUGIN_TOKEN=${{ secrets.YOUTUBE_PLUGIN_TOKEN }} PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py
       - name: Install coverage dependencies
         if: github.event_name != 'schedule'
         run: |
@@ -173,7 +171,7 @@ jobs:
       - name: Coverage code
         if: github.event_name != 'schedule'
         run: |
-          PYTHONPATH=./test:./enigma2:./enigma2/lib/python python -m pytest -rx -v --cov=src --cov-report=xml --cov-report=html test/try_plugin.py
+          YOUTUBE_PLUGIN_TOKEN=${{ secrets.YOUTUBE_PLUGIN_TOKEN }} PYTHONPATH=./test:./enigma2:./enigma2/lib/python python -m pytest -rx -v --cov=src --cov-report=xml --cov-report=html test/try_plugin.py
           mv .coverage .coverage_${{ steps.split.outputs._0 }}_${{ steps.split.outputs._1 }}
       - name: Upload code coverage results
         uses: actions/upload-artifact@v2
