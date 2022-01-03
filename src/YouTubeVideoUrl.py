@@ -223,11 +223,11 @@ class YouTubeVideoUrl():
 
 	def _extract_player_response(self, video_id, age_gate=False):
 		url = 'https://www.youtube.com/youtubei/v1/player'
-		query = {'key': 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8'}
+		query = {'key': 'AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w'}
 		data = {'videoId': video_id,
 				'context': {'client': {
 						'hl': 'en',
-						'clientVersion': '16.20',
+						'clientVersion': '16.49',
 						'clientName': 'ANDROID'}}}
 		headers = {'Content-Type': 'application/json',
 				'Origin': 'https://www.youtube.com',
