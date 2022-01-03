@@ -7,6 +7,7 @@ PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py
 from __future__ import print_function
 
 import sys
+from os import environ
 
 import enigma
 
@@ -25,7 +26,7 @@ def try_plugin_screens_load():
 	print('=========================================================')
 	from Plugins.Extensions.YouTube.YouTubeUi import YouTubeMain
 	from Components.config import config
-	config.plugins.YouTube.refreshToken.value = ${{ secrets.YOUTUBE_PLUGIN_TOKEN }}
+	config.plugins.YouTube.refreshToken.value = environ['YOUTUBE_PLUGIN_TOKEN']
 	# Open YouTubeMain
 	yt = session.open(YouTubeMain)
 	# Choice search

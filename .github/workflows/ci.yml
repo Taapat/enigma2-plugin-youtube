@@ -162,6 +162,8 @@ jobs:
           sed -i 's/\/usr/./g' enigma2/lib/python/Components/UsageConfig.py
           sed -i 's/addNotifier(iAVSwitch/addNotifier(iAVSwitch.setPolicy169) #/g' enigma2/lib/python/Components/AVSwitch.py
       - name: ========== Test plugin screens load ==========
+        env:
+          YOUTUBE_PLUGIN_TOKEN: ${{ secrets.YOUTUBE_PLUGIN_TOKEN }}
         run: |
           PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py
       - name: Install coverage dependencies
