@@ -9,13 +9,10 @@ from json import loads, dumps
 
 from Components.config import config
 
-from .compat import compat_parse_qs
 from .compat import compat_ssl_urlopen
 from .compat import compat_str
 from .compat import compat_urlencode
 from .compat import compat_URLError
-from .compat import compat_urlparse
-from .compat import compat_urlunparse
 from .compat import compat_Request
 
 
@@ -88,9 +85,9 @@ class YouTubeVideoUrl():
 	def __init__(self):
 		self.use_dash_mp4 = []
 
-	def _download_webpage(self, url, query={}, data=None, headers={}):
+	def _download_webpage(self, url, data=None, headers={}):
 		""" Return the data of the page as a string """
-		content, urlh = self._download_webpage_handle(url, query, data, headers)
+		content, urlh = self._download_webpage_handle(url, data, headers)
 		return content
 
 	@staticmethod
@@ -110,19 +107,13 @@ class YouTubeVideoUrl():
 
 		return encoding
 
-	def _download_webpage_handle(self, url_or_request, query={}, data=None, headers={}):
+	def _download_webpage_handle(self, url_or_request, data=None, headers={}):
 		""" Returns a tuple (page content as string, URL handle) """
 
 		# Strip hashes from the URL (#1038)
 		if isinstance(url_or_request, (compat_str, str)):
 			url_or_request = url_or_request.partition('#')[0]
 
-		if query:
-			parsed_url = compat_urlparse(url_or_request)
-			qs = compat_parse_qs(parsed_url.query)
-			qs.update(query)
-			url_or_request = compat_urlunparse(parsed_url._replace(
-					query=compat_urlencode(qs, True)))
 		if data:
 			data = dumps(data).encode('utf8')
 		if data or headers:
@@ -222,8 +213,7 @@ class YouTubeVideoUrl():
 		return ''
 
 	def _extract_player_response(self, video_id, age_gate=False):
-		url = 'https://www.youtube.com/youtubei/v1/player'
-		query = {'key': 'AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w'}
+		url = 'https://www.youtube.com/youtubei/v1/player?key=AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w'
 		data = {'videoId': video_id,
 				'context': {'client': {
 						'hl': 'en',
@@ -236,7 +226,7 @@ class YouTubeVideoUrl():
 		if age_gate:
 			data['thirdParty'] = 'https://google.com'
 			data['context']['client']['clientScreen'] = 'EMBED'
-		return self._parse_json(self._download_webpage(url, query, data, headers))
+		return self._parse_json(self._download_webpage(url, data, headers))
 
 	def _real_extract(self, video_id):
 		url = ''
