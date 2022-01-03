@@ -24,6 +24,8 @@ def try_plugin_screens_load():
 	print('               Try YouTube screens load')
 	print('=========================================================')
 	from Plugins.Extensions.YouTube.YouTubeUi import YouTubeMain
+	from Components.config import config
+	config.plugins.YouTube.refreshToken.value = ${{ secrets.YOUTUBE_PLUGIN_TOKEN }}
 	# Open YouTubeMain
 	yt = session.open(YouTubeMain)
 	# Choice search
@@ -99,7 +101,6 @@ def try_plugin_screens_load():
 		# Close YouTubeInfo
 		session.current_dialog.close()
 		# Stop playback with ChoiceBox
-		from Components.config import config
 		config.plugins.YouTube.onMovieStop.value = 'ask'
 		session.current_dialog.leavePlayer()
 		# Repeat playback on YouTubePlayer
@@ -165,9 +166,8 @@ def try_plugin_screens_load():
 	yt.cancel()
 	# Close search
 	yt.cancel()
-	# Choice Public feeds
-	yt['list'].setIndex(1)
 	# Open Public feeds
+	yt['list'].setIndex(1)
 	yt.ok()
 	# Choice Most viewed
 	yt['list'].setIndex(1)
@@ -209,14 +209,41 @@ def try_plugin_screens_load():
 	yt.cancel()
 	# Close Public feeds
 	yt.cancel()
+	# Open my feeds
+	yt['list'].setIndex(2)
+	# Open my subscriptions
+	yt.ok()
+	# Open recent subscriptions
+	yt['list'].setIndex(0)
+	yt.ok()
+	yt.ok()
+	yt.cancel()
+	yt.cancel()
+	# Open liked videos
+	yt['list'].setIndex(1)
+	yt.ok()
+	yt.cancel()
+	# Open uploads
+	yt['list'].setIndex(2)
+	yt.ok()
+	yt.cancel()
+	# Open playlists
+	yt['list'].setIndex(3)
+	yt.ok()
+	yt['list'].setIndex(0)
+	yt.ok()
+	yt.cancel()
+	yt.cancel()
+	# Close my subscriptions
+	yt.cancel()
 	# Open YouTubeSetup
 	yt.openMenu()
-	# Enable 'Login on startup:'
+	# Disable 'Login on startup:'
 	session.current_dialog.keyLeft()
-	# Cancel authentication
+	# Cancel update access data
 	session.current_dialog.cancel()
 	# Choice YouTubeDirBrowser
-	session.current_dialog['config'].setCurrentIndex(10)
+	session.current_dialog['config'].setCurrentIndex(11)
 	# Open YouTubeDirBrowser
 	session.current_dialog.ok()
 	# Close YouTubeDirBrowser
@@ -229,7 +256,7 @@ def try_plugin_screens_load():
 	session.current_dialog.close()
 	# Open Public feeds
 	yt.createFeedList()
-	# Open Top rated
+	# Open recent
 	yt.ok()
 	# Open Menu ChoiceBox
 	yt.openMenu()
