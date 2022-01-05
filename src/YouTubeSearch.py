@@ -320,7 +320,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 	def keyBottom(self):
 		self['list'].setIndex(max(0, self['list'].count() - 1))
 
-	def openMenu(self):
+	def openMenu(self):  # pragma: no cover
 		self['config'].getCurrent()[1].help_window.instance.hide()
 		if self['list'].getCurrent()[0]:
 			title = _('What do you want to do?')
@@ -331,7 +331,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		else:
 			self.menuCallback('setup')
 
-	def menuCallback(self, answer):
+	def menuCallback(self, answer):  # pragma: no cover
 		if not answer:
 			self['config'].getCurrent()[1].help_window.instance.show()
 		else:
