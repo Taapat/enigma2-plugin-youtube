@@ -124,7 +124,7 @@ class YouTubePlayer(MoviePlayer):
 		self.started = False
 		self.lastPosition = []
 
-	def __serviceStart(self):
+	def __serviceStart(self):  # pragma: no cover
 		if not self.started:
 			self.started = True
 			self.lastPosition = eval(config.plugins.YouTube.lastPosition.value)
@@ -144,7 +144,7 @@ class YouTubePlayer(MoviePlayer):
 		if answer:
 			service = self.session.nav.getCurrentService()
 			seek = service and service.seek()
-			if seek:
+			if seek:  # pragma: no cover
 				seek.seekTo(self.seekPosition)
 
 	def leavePlayer(self):
@@ -166,7 +166,7 @@ class YouTubePlayer(MoviePlayer):
 		if answer and answer[1] != 'continue':
 			service = self.session.nav.getCurrentService()
 			seek = service and service.seek()
-			if seek:
+			if seek:  # pragma: no cover
 				if len(self.lastPosition) > 20:
 					self.lastPosition.pop(0)
 					self.lastPosition.pop(0)
@@ -182,7 +182,7 @@ class YouTubePlayer(MoviePlayer):
 	def getPluginList(self):
 		plist = []
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_EXTENSIONSMENU):
-			if p.name != _('YouTube'):
+			if p.name != _('YouTube'):  # pragma: no cover
 				plist.append(((boundFunction(self.getPluginName, p.name),
 					boundFunction(self.runPlugin, p), lambda: True), None))
 		return plist
@@ -198,7 +198,7 @@ class YouTubePlayer(MoviePlayer):
 	def showMovies(self):
 		pass  # Ignore this method
 
-	def openServiceList(self):
+	def openServiceList(self):  # pragma: no cover
 		if hasattr(self, 'toggleShow'):
 			self.toggleShow()
 
