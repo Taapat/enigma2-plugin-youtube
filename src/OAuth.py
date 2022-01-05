@@ -26,7 +26,7 @@ API_KEY = get_key('Xhi3_LoIzw_OizD15SyCNReMvKL27nw_OizDWRR395T5uGWpvn451I2VYc78G
 CLIENT_ID = get_key('4113447027255-v15bgs05u1o3m278mpjs2vcd0394w_OizDfrg5160drbw_Oiz63D.w_OizDpp75s.googleus87ercontent.99com')
 CLIENT_SECRET = get_key('Zf93pqd2rxgY2ro159rK20BMxif27')
 
-if path.exists('/etc/enigma2/YouTube.key'):
+if path.exists('/etc/enigma2/YouTube.key'):  # pragma: no cover
 	try:
 		for line in open('/etc/enigma2/YouTube.key').readlines():
 			line = line.strip().replace(' ', '')
@@ -64,14 +64,14 @@ class OAuth:
 			status_code = response.getcode()
 			if status_code == 200:
 				return loads(response.read())
-			else:
+			else:  # pragma: no cover
 				print('[OAuth] Error in auth response, errorcode', status_code)
 				print(response.read())
-		except Exception as e:
+		except Exception as e:  # pragma: no cover
 			print('[OAuth] Error in auth response', e)
 		return {}
 
-	def get_user_code(self):
+	def get_user_code(self):  # pragma: no cover
 		url = 'https://accounts.google.com/o/oauth2/device/code'
 		data = {'client_id': CLIENT_ID,
 				'scope': 'https://www.googleapis.com/auth/youtube'}
@@ -80,7 +80,7 @@ class OAuth:
 		self.retry_interval = data.get('interval', 2)
 		return str(data.get('verification_url', '')), str(data.get('user_code', ''))
 
-	def get_new_token(self):
+	def get_new_token(self):  # pragma: no cover
 		url = 'https://accounts.google.com/o/oauth2/token'
 		data = {'client_id': CLIENT_ID,
 				'client_secret': CLIENT_SECRET,
