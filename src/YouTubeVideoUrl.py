@@ -121,7 +121,7 @@ class YouTubeVideoUrl():
 
 		try:
 			urlh = compat_urlopen(url_or_request)
-		except compat_URLError as e:
+		except compat_URLError as e:  # pragma: no cover
 			raise RuntimeError(e.reason)
 
 		content_type = urlh.headers.get('Content-Type', '')
@@ -130,7 +130,7 @@ class YouTubeVideoUrl():
 
 		try:
 			content = webpage_bytes.decode(encoding, 'replace')
-		except Exception:
+		except Exception:  # pragma: no cover
 			content = webpage_bytes.decode('utf-8', 'replace')
 
 		return (content, urlh)
@@ -143,7 +143,7 @@ class YouTubeVideoUrl():
 		"""
 		if isinstance(pattern, (str, compat_str, type(re.compile('')))):
 			mobj = re.search(pattern, string, 0)
-		else:
+		else:  # pragma: no cover
 			for p in pattern:
 				mobj = re.search(p, string, 0)
 				if mobj:
@@ -152,9 +152,9 @@ class YouTubeVideoUrl():
 			if group is None:
 				# return the first matching group
 				return next(g for g in mobj.groups() if g is not None)
-			else:
+			else:  # pragma: no cover
 				return mobj.group(group)
-		else:
+		else:  # pragma: no cover
 			print('[YouTubeVideoUrl] unable extract pattern from string!')
 			return ''
 
@@ -177,7 +177,7 @@ class YouTubeVideoUrl():
 	def _parse_json(json_string):
 		try:
 			return loads(json_string)
-		except ValueError:
+		except ValueError:  # pragma: no cover
 			print('[YouTubeVideoUrl] Failed to parse JSON')
 
 	def _not_in_fmt(self, fmt):
@@ -260,7 +260,7 @@ class YouTubeVideoUrl():
 
 			if config.plugins.YouTube.useDashMP4.value:
 				self.use_dash_mp4 = []
-			else:
+			else:  # pragma: no cover
 				print('[YouTubeVideoUrl] skip DASH MP4 format')
 				self.use_dash_mp4 = DASHMP4_FORMAT
 
@@ -269,13 +269,13 @@ class YouTubeVideoUrl():
 				audio_url = self._extract_dash_audio_format(streaming_formats)
 				if audio_url:
 					url += '&suburi=%s' % audio_url
-			if not url:
+			if not url:  # pragma: no cover
 				for fmt in streaming_formats:
 					if str(fmt.get('itag', '')) not in IGNORE_VIDEO_FORMAT and self._not_in_fmt(fmt):
 						url = fmt.get('url')
 						if url:
 							break
-			if not url:
+			if not url:  # pragma: no cover
 				url = streaming_formats[0].get('url', '')
 
 		if not url:
@@ -290,12 +290,12 @@ class YouTubeVideoUrl():
 						url = url_map[our_format]
 						break
 				# If anything not found, used first in the list if it not in ignore map
-				if not url:
+				if not url:  # pragma: no cover
 					for url_map_key in list(url_map.keys()):
 						if url_map_key not in IGNORE_VIDEO_FORMAT:
 							url = url_map[url_map_key]
 							break
-				if not url:
+				if not url:  # pragma: no cover
 					url = list(url_map.values())[0]
 
 		if not url:
@@ -312,7 +312,7 @@ class YouTubeVideoUrl():
 			reason = get_text(pemr.get('reason')) or playability_status.get('reason')
 			if reason:
 				subreason = pemr.get('subreason')
-				if subreason:
+				if subreason:  # pragma: no cover
 					subreason = clean_html(get_text(subreason))
 					reason += '\n%s' % subreason
 			raise RuntimeError(reason)
