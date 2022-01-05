@@ -1399,7 +1399,7 @@ class YouTubeInfo(Screen):
 			downloadPage(self.ThumbnailUrl.encode(), '/tmp/hqdefault.jpg')\
 				.addCallback(self.downloadFinished)
 
-	def downloadFinished(self, result):
+	def downloadFinished(self, result):  # pragma: no cover
 		image = '/tmp/hqdefault.jpg'
 		if os.path.exists(image):
 			self['pic'].instance.setScale(1)
@@ -1497,7 +1497,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 				_('FFmpeg will be used to merge downloaded DASH video and audio files.\nFFmpeg will be installed if necessary.')))
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
 			# TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
-			if p.name == _('ServiceApp'):
+			if p.name == _('ServiceApp'):  # pragma: no cover
 				self.list.append(getConfigListEntry(_('Media player:'),
 					config.plugins.YouTube.player,
 					_('Specify the player which will be used for YouTube media playback.')))
@@ -1516,23 +1516,23 @@ class YouTubeSetup(ConfigListScreen, Screen):
 				downloadDir = downloadDir[2:-2]
 			self.session.openWithCallback(self.downloadPath,
 				YouTubeDirBrowser, downloadDir)
-		elif self.mergeFiles != config.plugins.YouTube.mergeFiles.value:
+		elif self.mergeFiles != config.plugins.YouTube.mergeFiles.value:  # pragma: no cover
 			if self.mergeFiles:
 				self.session.openWithCallback(self.removeCallback,
 					MessageBox, _('You have disabled downloaded file merge.\nInstalled FFmpeg is no longer necessary.\nDo you want to remove FFmpeg?'))
 			else:
 				self.session.openWithCallback(self.installCallback,
 					MessageBox, _('To merge downloaded files FFmpeg will be installed.\nFFmpeg can take a lot of space!\nDo you want to continue?'))
-		else:
+		else:  # pragma: no cover
 			self.keySave()
 
-	def removeCallback(self, answer):
+	def removeCallback(self, answer):  # pragma: no cover
 		if answer:
 			from Screens.Console import Console
 			self.session.open(Console, cmdlist=['opkg remove --autoremove ffmpeg'])
 		self.keySave()
 
-	def installCallback(self, answer):
+	def installCallback(self, answer):  # pragma: no cover
 		if answer:
 			from Screens.Console import Console
 			self.session.open(Console, cmdlist=['opkg update && opkg install ffmpeg'])
@@ -1550,7 +1550,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 			self.session.openWithCallback(self.warningCallback,
 				MessageBox, _('To perform authentication will need in a web browser open Google home page, and enter the code!\nDo you currently have Internet access on the other device and we can continue?'))
 
-	def warningCallback(self, answer):
+	def warningCallback(self, answer):  # pragma: no cover
 		if not answer:
 			self.login = config.plugins.YouTube.login.value = False
 		else:
@@ -1568,7 +1568,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 				print('[YouTube] Error in OAuth!')
 				self.session.open(MessageBox, 'There was an error!', MessageBox.TYPE_INFO, timeout=5)
 
-	def splitTaimerStop(self):
+	def splitTaimerStop(self):  # pragma: no cover
 		# Here we waiting until the user enter a code
 		refresh_token, retry_interval = self.oauth.get_new_token()
 		if not refresh_token:
