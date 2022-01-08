@@ -27,6 +27,7 @@ def try_plugin_screens_load():
 	from Plugins.Extensions.YouTube.YouTubeUi import YouTubeMain
 	from Components.config import config
 	config.plugins.YouTube.refreshToken.value = environ['YOUTUBE_PLUGIN_TOKEN']
+	config.plugins.YouTube.subscriptOrder.value = 'alphabetical'
 	# Open YouTubeMain
 	yt = session.open(YouTubeMain)
 	# Choice search
@@ -145,7 +146,17 @@ def try_plugin_screens_load():
 	session.current_dialog.updateSuggestions([('', None), ('ello', None)])
 	session.current_dialog['list'].setIndex(1)
 	session.current_dialog.ok()
+	session.current_dialog.ok()
+	yt.ok()
+	# Like video, remove rating
+	yt.rateVideo('like')
+	yt.rateVideo('none')
+	yt.close()
+	# Subscribe to channel ELLO
+	yt['list'].setIndex(0)
+	print(yt.subscribeChannel('UUXdLsO-b4Xjf0f9xtD_YHzg'))
 	# Close channels list
+	yt.cancel()
 	yt.cancel()
 	# Open search playlists
 	yt['list'].setIndex(2)
@@ -217,6 +228,10 @@ def try_plugin_screens_load():
 	# Open recent subscriptions
 	yt['list'].setIndex(0)
 	yt.ok()
+	# Unsubscribe channel ELLO
+	yt['list'].setIndex(2)
+	if yt['list'].getCurrent()[0] == 'UUXdLsO-b4Xjf0f9xtD_YHzg':
+		print(yt.unsubscribeChannel())
 	yt.ok()
 	yt.cancel()
 	yt.cancel()
