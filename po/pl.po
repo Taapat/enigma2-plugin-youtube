@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-11 16:10+0000\n"
 "PO-Revision-Date: 2020-11-03 23:02+0300\n"
-"Last-Translator: Lishoo\n"
+"Last-Translator: PrinceNorris\n"
 "Language-Team: \n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -17,10 +17,10 @@ msgid "  (%d-%d of %d)"
 msgstr "  (%d-%d z %d)"
 
 msgid " likes"
-msgstr " podoba się"
+msgstr " polubień"
 
 msgid " views"
-msgstr " Wyświetleń"
+msgstr " wyświetleń"
 
 #, python-format
 msgid "%.1fMB"
@@ -33,13 +33,13 @@ msgid "All"
 msgstr "Wszystko"
 
 msgid "Alphabetically"
-msgstr ""
+msgstr "Alfabetycznie"
 
 msgid "Ask user"
 msgstr "Zapytaj użytkownika"
 
 msgid "By activity"
-msgstr ""
+msgstr "Według aktywności"
 
 #, fuzzy
 msgid "By relevance"
@@ -64,7 +64,7 @@ msgid "Delete this entry"
 msgstr "Usuń ten wpis"
 
 msgid "Disliked!"
-msgstr "Nie podoba mi się!"
+msgstr "Oceniono negatywnie!"
 
 msgid "Download directory:"
 msgstr "Katalog pobierania:"
@@ -76,22 +76,22 @@ msgid "Download search results. Please wait..."
 msgstr "Pobieranie wyników wyszukiwania. Proszę czekać..."
 
 msgid "Download video"
-msgstr "Poberz film"
+msgstr "Pobierz film"
 
 msgid "Downloading"
 msgstr "Pobieranie"
 
 msgid "Duration: "
-msgstr "Trwanie: "
+msgstr "Czas trwania: "
 
 msgid "Embedded in webpages"
-msgstr "Osadzone na stronach internetowych"
+msgstr "Osadzone na stronach WWW"
 
 msgid "Exclude restricted content:"
-msgstr "Wyklucz ograniczone treści:"
+msgstr "Wyklucz treści z ograniczeniami:"
 
 msgid "Exit"
-msgstr "Wyjście"
+msgstr "Wyjdź"
 
 msgid "Exteplayer"
 msgstr "Exteplayer"
@@ -111,7 +111,7 @@ msgid ""
 "Go to %s\n"
 "And enter the code %s"
 msgstr ""
-"Idź do %s\n"
+"Przejdź do %s\n"
 "I wprowadź kod %s"
 
 msgid "Gstplayer"
@@ -124,14 +124,14 @@ msgid ""
 "How many search results will be returned.\n"
 "If greater value then longer time will be needed for thumbnail download."
 msgstr ""
-"Ile wyników wyszukiwania zostanie zwróconych.\n"
-"Im większa wartość, tym dłuższy czas będzie potrzebny na pobranie miniatur."
+"Ile wyników wyszukiwania zostanie wyświetlonych.\n"
+"Im większa wartość, tym więcej czasu zajmie pobranie miniaturek."
 
 msgid "I dislike this"
-msgstr "To mi się nie podoba"
+msgstr "Nie podoba mi się"
 
 msgid "I like this"
-msgstr "To mi się podoba"
+msgstr "Podoba mi się"
 
 msgid "Info"
 msgstr "Informacje"
@@ -146,7 +146,7 @@ msgid "Liked!"
 msgstr "Polubiono!"
 
 msgid "Live broadcast"
-msgstr "Transmisje na żywo"
+msgstr "Na żywo"
 
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"
@@ -168,10 +168,10 @@ msgid "Merge downloaded files:"
 msgstr "Scal pobrane pliki:"
 
 msgid "Moderate"
-msgstr "Umiarkowany"
+msgstr "Zarządzaj"
 
 msgid "Most viewed"
-msgstr "Najczęściej oglądane"
+msgstr "Najpopularniejsze"
 
 msgid "Movies"
 msgstr "Kino"
@@ -224,7 +224,7 @@ msgid "Play video again"
 msgstr "Odtwórz ponownie film"
 
 msgid "Playlists"
-msgstr "Playlisty"
+msgstr "Listy odtwarzania"
 
 msgid "Please select the download directory"
 msgstr "Wybierz katalog pobierania"
@@ -243,7 +243,7 @@ msgid "Published at: "
 msgstr "Opublikowano: "
 
 msgid "Quit"
-msgstr "Opuść"
+msgstr "Wyjdź"
 
 msgid "Rate video"
 msgstr "Oceń film"
@@ -259,7 +259,7 @@ msgstr "Na czasie"
 
 #, fuzzy
 msgid "Related videos"
-msgstr "Oceń film"
+msgstr "Podobne filmy"
 
 msgid "Relevance"
 msgstr "Trafność"
@@ -277,7 +277,7 @@ msgid "Return search results for the specified country."
 msgstr "Pokaż wyniki wyszukiwania dla określonego kraju."
 
 msgid "Return search results that are most relevant to the specified language."
-msgstr "Wyświetl wyniki wyszukiwania, które są najbardziej odpowiednie dla określonego języka."
+msgstr "Wyświetl wyniki wyszukiwania najbardziej odpowiednie dla określonego języka."
 
 msgid "Return to list"
 msgstr "Wróć do listy"
@@ -304,7 +304,7 @@ msgid "Search live broadcasts"
 msgstr "Wyszukaj transmisje na żywo"
 
 msgid "Search playlists"
-msgstr "Wyszukaj playlisty"
+msgstr "Wyszukaj listy odtwarzania"
 
 msgid "Search region:"
 msgstr "Region wyszukiwania:"
@@ -321,7 +321,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Show related videos"
-msgstr "Poberz film"
+msgstr "Pokaż podobne filmy"
 
 msgid "Shows"
 msgstr "Programy telewizyjne"
@@ -330,15 +330,15 @@ msgid ""
 "Sorry, download directory not exist!\n"
 "Please specify in the settings existing directory."
 msgstr ""
-"Przepraszamy, katalog pobierania nie istnieje!\n"
-"Proszę wybrać istniejący katalog w ustawieniach."
+"Niestety, ale katalog pobierania nie istnieje!\n"
+"Wybierz istniejący katalog w ustawieniach."
 
 #, python-format
 msgid ""
 "Sorry, this file already exists:\n"
 "%s"
 msgstr ""
-"Przepraszamy, ten plik już istnieje:\n"
+"Niestety, ale ten plik już istnieje:\n"
 "%s"
 
 msgid "Sort search results by:"
@@ -346,18 +346,20 @@ msgstr "Sortuj wyniki wyszukiwania według:"
 
 #, fuzzy
 msgid "Sort subscriptions:"
-msgstr "Moje subskrypcje"
+msgstr "Moje subskrypcje:"
 
 msgid ""
 "Specify or you want to use DASH MP4 format streams if available.\n"
 "This requires playing two streams together and may cause problems for some receivers."
 msgstr ""
+"Określ, czy chcesz używać transmisji w formacie DASH MP4, gdy będzie dostępny.\n"
+"Ta opcja wymaga odtwarzania dwóch transmisji jednocześnie i może powodować problemy na niektórych odbiornikach."
 
 msgid "Specify the directory where save downloaded video files."
-msgstr "Określ katalog, w którym zapisywać pobrane filmy."
+msgstr "Określ katalog do zapisywania pobranych filmów."
 
 msgid "Specify the player which will be used for YouTube media playback."
-msgstr "Określ odtwarzacz, który będzie używany do odtwarzania multimediów z YouTube."
+msgstr "Określ odtwarzacz używany dla multimediów z YouTube."
 
 msgid "Stop playing this movie?"
 msgstr "Przerwać odtwarzanie filmu?"
@@ -366,24 +368,24 @@ msgid "Subscribe"
 msgstr "Subskrybuj"
 
 msgid "Subscribe this video channel"
-msgstr "Zasubskrybuj ten kanał wideo"
+msgstr "Subskrybuj ten kanał"
 
 msgid "Subscribed!"
-msgstr "Zasubskrybowano!"
+msgstr "Subskrybujesz!"
 
 msgid ""
 "There was an error in creating entry list!\n"
 "Maybe try other feeds..."
 msgstr ""
 "Wystąpił błąd podczas tworzenia listy wpisów!\n"
-"Może spróbuj inny kanał..."
+"Możesz spróbować inny kanał..."
 
 #, python-format
 msgid ""
 "There was an error in extract video url:\n"
 "%s"
 msgstr ""
-"Wystąpił błąd w wyodrębnianiu adresu URL pliku wideo:\n"
+"Wystąpił błąd wyodrębniania adresu URL pliku wideo:\n"
 "%s"
 
 msgid "There was an error!"
@@ -405,14 +407,14 @@ msgid ""
 "To perform authentication will need in a web browser open Google home page, and enter the code!\n"
 "Do you currently have Internet access on the other device and we can continue?"
 msgstr ""
-"Aby przeprowadzić uwierzytelnianie będzie potrzebna przeglądarka internetowa. Otwórz stronę główną Google i wprowadź kod!\n"
+"Aby przeprowadzić uwierzytelnianie, należy otworzyć stronę główną Google w przeglądarce internetowej i wprowadzić kod!\n"
 "Czy masz obecnie dostęp do Internetu na innym urządzeniu aby kontynuować?"
 
 msgid "Top rated"
 msgstr "Najwyżej oceniane"
 
 msgid "Try to exclude all restricted content from the search result."
-msgstr "Spróbuj wykluczyć z wyników wyszukiwania wszystkie treści objęte ograniczeniami."
+msgstr "Spróbuj wykluczyć z wyników wyszukiwania wszystkie treści z ograniczeniami."
 
 msgid "Unsubscribe"
 msgstr "Anuluj subskrypcję"
@@ -421,19 +423,19 @@ msgid "Unsubscribed!"
 msgstr "Anulowano subskrypcję!"
 
 msgid "Uploads"
-msgstr "Wysłanych"
+msgstr "Przesłane"
 
 msgid "Use"
 msgstr "Użyj"
 
 msgid "Use DASH MP4 format:"
-msgstr ""
+msgstr "Użyj formatu DASH MP4:"
 
 msgid "Video download started!"
 msgstr "Rozpoczęto pobieranie filmu!"
 
 msgid "Videos from this video channel"
-msgstr "Filmy z tego kanału wideo"
+msgstr "Filmy z tego kanału"
 
 msgid "View count"
 msgstr "Ilość wyświetleń"
@@ -448,8 +450,8 @@ msgid ""
 "What maximum resolution used when playing video, if available.\n"
 "If you have a slow Internet connection, you can use a lower resolution."
 msgstr ""
-"Jaką maksymalną rozdzielczość ustawić podczas odtwarzania filmu, jeśli będzie dostępna.\n"
-"Jeżeli masz powolne połączenie internetowe, możesz użyć niższej rozdzielczości."
+"Maksymalna rozdzielczość odtwarzania filmu, jeśli jest dostępna.\n"
+"Użyj niższej rozdzielczości, jeśli Twoje połączenie z Internetem nie jest szybkie."
 
 msgid "What to do when stop playback in videoplayer."
 msgstr "Co zrobić, gdy zatrzymasz odtwarzanie filmu."
@@ -468,10 +470,10 @@ msgstr "Tak"
 
 #, fuzzy
 msgid "Yes, and return to list"
-msgstr "Wróć do listy"
+msgstr "Tak i wróć do listy"
 
 msgid "Yes, and show related videos"
-msgstr ""
+msgstr "Tak i pokaż podobne filmy"
 
 msgid "Yes, but play next video"
 msgstr "Tak, ale odtwórz następny film"
@@ -483,7 +485,7 @@ msgid ""
 "You already authorized access for this plugin to your YouTube account.\n"
 "Do you want to do it again to update access data?"
 msgstr ""
-"Masz już autoryzację dostępu dla tej wtyczki do swojego konta YouTube.\n"
+"Dostęp do Twojego konta został już uwierzytlniony dla tej wtyczki.\n"
 "Czy chcesz to zrobić ponownie, aby zaktualizować dane dostępowe?"
 
 msgid ""
@@ -491,7 +493,7 @@ msgid ""
 "Installed FFmpeg is no longer necessary.\n"
 "Do you want to remove FFmpeg?"
 msgstr ""
-"Wyłączyłeś scalanie pobranych plików.\n"
+"Scalanie pobranych plików jest wyłączone.\n"
 "Zainstalowany FFmpeg nie jest już potrzebny.\n"
 "Czy chcesz usunąć FFmpeg?"
 
@@ -502,4 +504,4 @@ msgid "YouTube setup"
 msgstr "Konfiguracja YouTube"
 
 msgid "YouTube starting. Please wait..."
-msgstr "YouTube startuje. Proszę czekać..."
+msgstr "Uruchamianie YouTube. Proszę czekać..."
