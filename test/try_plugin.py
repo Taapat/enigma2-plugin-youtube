@@ -28,6 +28,7 @@ def try_plugin_screens_load():
 	from Components.config import config
 	config.plugins.YouTube.refreshToken.value = environ['YOUTUBE_PLUGIN_TOKEN']
 	config.plugins.YouTube.subscriptOrder.value = 'alphabetical'
+	config.plugins.YouTube.downloadDir.value = './'
 	# Open YouTubeMain
 	yt = session.open(YouTubeMain)
 	# Choice search
@@ -88,6 +89,9 @@ def try_plugin_screens_load():
 	session.current_dialog.searchValue.stopSuggestions()
 	# Choice search phrase and close YouTubeSearch
 	session.current_dialog.ok()
+	# Open YouTubeInfo
+	yt.showEventInfo()
+	session.current_dialog.close()
 	# Open YouTubePlayer
 	yt.ok()
 	# If open YouTubePlayer
@@ -241,6 +245,10 @@ def try_plugin_screens_load():
 	# Open uploads
 	yt['list'].setIndex(2)
 	yt.ok()
+	# Download test video
+	yt['list'].setIndex(0)
+	yt.menuCallback(('download', 'download'))
+	session.current_dialog.close()
 	yt.cancel()
 	# Open playlists
 	yt['list'].setIndex(3)
@@ -258,6 +266,7 @@ def try_plugin_screens_load():
 	# Cancel update access data
 	session.current_dialog.cancel()
 	# Choice YouTubeDirBrowser
+	config.plugins.YouTube.downloadDir.value = '/media/hdd/movie/'
 	session.current_dialog['config'].setCurrentIndex(11)
 	# Open YouTubeDirBrowser
 	session.current_dialog.ok()
