@@ -153,8 +153,7 @@ def try_plugin_screens_load():
 	yt.rateVideo('none')
 	yt.close()
 	# Subscribe to channel ELLO
-	yt['list'].setIndex(0)
-	print(yt.subscribeChannel('UUXdLsO-b4Xjf0f9xtD_YHzg'))
+	print(yt.subscribeChannel('UCXdLsO-b4Xjf0f9xtD_YHzg'))
 	# Close channels list
 	yt.cancel()
 	yt.cancel()
@@ -230,7 +229,7 @@ def try_plugin_screens_load():
 	yt.ok()
 	# Unsubscribe channel ELLO
 	yt['list'].setIndex(2)
-	if yt['list'].getCurrent()[0] == 'UUXdLsO-b4Xjf0f9xtD_YHzg':
+	if yt['list'].getCurrent()[3] == 'ELLO':
 		print(yt.unsubscribeChannel())
 	yt.ok()
 	yt.cancel()
@@ -281,6 +280,7 @@ def try_plugin_screens_load():
 	# Close Public feeds
 	yt.cancel()
 	# Close YouTubeMain
+	yt.cleanVariables()
 	yt.cancel()
 	# Try plugin for code coverage
 	from Plugins.Extensions.YouTube.plugin import main, Plugins
