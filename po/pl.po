@@ -124,7 +124,7 @@ msgid ""
 "How many search results will be returned.\n"
 "If greater value then longer time will be needed for thumbnail download."
 msgstr ""
-"Ile wyników wyszukiwania zostanie wyświetlonych.\n"
+"Ilość wyświetlanych wyników wyszukiwania.\n"
 "Im większa wartość, tym więcej czasu zajmie pobranie miniaturek."
 
 msgid "I dislike this"
