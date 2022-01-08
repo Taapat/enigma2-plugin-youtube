@@ -1145,7 +1145,7 @@ class YouTubeMain(Screen):
 				elif self.yts[0]['list'] == 'channel' and self.yts[1]['list'] != 'myfeeds':
 					clist += ((_('Subscribe'), 'subscribe'),)
 				elif self.yts[0]['list'] == 'playlist' and self.yts[1]['list'] == 'myfeeds' and \
-						len(self.yts) == 2:
+						len(self.yts) == 3:
 					clist += ((_('Unsubscribe'), 'unsubscribe'),)
 			if self.yts[0]['list'] == 'videolist':
 				clist += ((_('Search'), 'search'),
