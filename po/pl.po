@@ -41,7 +41,6 @@ msgstr "Zapytaj użytkownika"
 msgid "By activity"
 msgstr "Według aktywności"
 
-#, fuzzy
 msgid "By relevance"
 msgstr "Trafność"
 
@@ -204,7 +203,6 @@ msgstr "Otwórz"
 msgid "Order in which search results will be displayed."
 msgstr "Kolejność, w jakiej będą wyświetlane wyniki wyszukiwania."
 
-#, fuzzy
 msgid "Order in which subscriptions results will be displayed."
 msgstr "Kolejność, w jakiej będą wyświetlane wyniki wyszukiwania."
 
@@ -257,7 +255,6 @@ msgstr "Ocena została usunięta!"
 msgid "Recent"
 msgstr "Na czasie"
 
-#, fuzzy
 msgid "Related videos"
 msgstr "Podobne filmy"
 
@@ -319,7 +316,6 @@ msgstr "Wyszukaj filmy"
 msgid "ServiceApp"
 msgstr ""
 
-#, fuzzy
 msgid "Show related videos"
 msgstr "Pokaż podobne filmy"
 
@@ -344,7 +340,6 @@ msgstr ""
 msgid "Sort search results by:"
 msgstr "Sortuj wyniki wyszukiwania według:"
 
-#, fuzzy
 msgid "Sort subscriptions:"
 msgstr "Moje subskrypcje:"
 
@@ -468,7 +463,6 @@ msgstr "Kiedy film się skończy:"
 msgid "Yes"
 msgstr "Tak"
 
-#, fuzzy
 msgid "Yes, and return to list"
 msgstr "Tak i wróć do listy"
 
