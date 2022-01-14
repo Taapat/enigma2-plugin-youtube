@@ -167,7 +167,7 @@ msgid "Merge downloaded files:"
 msgstr "Scal pobrane pliki:"
 
 msgid "Moderate"
-msgstr "Zarządzaj"
+msgstr "Filtruj częściowo"
 
 msgid "Most viewed"
 msgstr "Najpopularniejsze"
