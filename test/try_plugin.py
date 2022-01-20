@@ -261,6 +261,9 @@ def try_plugin_screens_load():
 	yt.cancel()
 	# Open YouTubeSetup
 	yt.openMenu()
+	# Try updateDescription
+	if hasattr(session.current_dialog, 'getCurrentDescription'):
+		session.current_dialog.updateDescription()
 	# Disable 'Login on startup:'
 	session.current_dialog.keyLeft()
 	# Cancel update access data
