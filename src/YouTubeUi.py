@@ -1429,7 +1429,8 @@ class YouTubeSetup(ConfigListScreen, Screen):
 				initial_call=False)
 		config.plugins.YouTube.useDashMP4.addNotifier(self.setConfigList,
 				initial_call=False)
-		self['config'].onSelectionChanged.append(self.updateDescription)
+		if hasattr(self, 'getCurrentDescription'):
+			self['config'].onSelectionChanged.append(self.updateDescription)
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
