@@ -1397,7 +1397,7 @@ class YouTubeInfo(Screen):
 	def LayoutFinish(self):
 		if self.ThumbnailUrl:
 			downloadPage(self.ThumbnailUrl.encode(), '/tmp/hqdefault.jpg')\
-				.addCallback(self.downloadFinished)
+					.addCallback(self.downloadFinished)
 
 	def downloadFinished(self, result):  # pragma: no cover
 		image = '/tmp/hqdefault.jpg'
