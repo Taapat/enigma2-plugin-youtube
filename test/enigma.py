@@ -602,6 +602,10 @@ def setEnableTtCachingOnOff(*args):
 	pass  # Dummy function
 
 
+def setListBoxScrollbarStyle(*args):
+	pass  # Dummy function
+
+
 def new_activate_language(self, index):
 	if index not in self.lang:
 		print('Selected language does not exist, fallback to de_DE!')
