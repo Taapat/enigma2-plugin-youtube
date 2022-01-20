@@ -11,6 +11,6 @@ setup(name='enigma2-plugin-extensions-youtube',
 		author_email='taapat@gmail.com',
 		package_dir={PLUGIN_DIR: 'src'},
 		packages=[PLUGIN_DIR],
-		package_data={PLUGIN_DIR: ['*.png', 'icons/*.png', '*.svg', 'icons/*.svg']},
+		package_data={PLUGIN_DIR: ['*.png', 'icons/*.png', '*.svg', 'icons/*.svg', 'locale/*/LC_MESSAGES/*.mo']},
 		description='Watch YouTube videos',
 		cmdclass=setup_translate.cmdclass)
