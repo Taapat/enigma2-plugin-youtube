@@ -1429,8 +1429,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 				initial_call=False)
 		config.plugins.YouTube.useDashMP4.addNotifier(self.setConfigList,
 				initial_call=False)
-		if hasattr(self, 'getCurrentDescription'):
-			self['config'].onSelectionChanged.append(self.updateDescription)
+		self['config'].onSelectionChanged.append(self.updateDescription)
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
@@ -1438,7 +1437,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		self.setTitle(title)
 
 	def updateDescription(self):
-		self["description"].text = self.getCurrentDescription()
+		self['description'].text = self['config'].getCurrent()[2]
 
 	def checkLoginSatus(self, configElement):
 		if 'config' in self and self.login is not None:
