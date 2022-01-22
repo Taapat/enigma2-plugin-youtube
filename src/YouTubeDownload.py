@@ -34,7 +34,7 @@ class YouTubeDirBrowser(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.setTitle(_('Please select the download directory'))
+		self.title = _('Please select the download directory')
 
 	def ok(self):
 		if self.filelist.canDescent():
@@ -196,7 +196,7 @@ class YouTubeDownloadList(Screen):
 		self.progressTimer.callback.append(self.updateDownloadList)
 
 	def layoutFinished(self):
-		self.setTitle(_('Active video downloads'))
+		self.title = _('Active video downloads')
 		self.updateDownloadList()
 
 	def cleanVariables(self):
@@ -212,7 +212,7 @@ class YouTubeDownloadList(Screen):
 				totalSize = _('%.1fMB') % (task.totalSize / 1000000.0)
 			downloadList.append((job, '%s ...' % job.name, job.getStatustext(),
 				int(task.progress), '%s%%' % str(task.progress), totalSize))
-		self['list'].setList(downloadList)
+		self['list'].list = downloadList
 		if downloadList:
 			self.progressTimer.startLongTimer(1)
 

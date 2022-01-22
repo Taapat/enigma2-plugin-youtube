@@ -76,14 +76,14 @@ class YouTubeVirtualKeyBoard(VirtualKeyBoard):
 	def updateSuggestions(self, suggestions):
 		if 'prompt' in self:
 			if len(suggestions) > 1:
-				self['prompt'].setText(', '.join(x[0] for x in suggestions[1:]))
+				self['prompt'].text = ', '.join(x[0] for x in suggestions[1:])
 			else:
-				self['prompt'].setText('')
+				self['prompt'].text = ''
 		elif 'header' in self:
 			if len(suggestions) > 1:
-				self['header'].setText(', '.join(x[0] for x in suggestions[1:]))
+				self['header'].text = ', '.join(x[0] for x in suggestions[1:])
 			else:
-				self['header'].setText('')
+				self['header'].text = ''
 
 
 class YouTubeSearch(Screen, ConfigListScreen):
@@ -228,7 +228,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.curList = curList
-		self.setTitle(_('Search'))
+		self.title = _('Search')
 		self['key_red'] = StaticText(_('Exit'))
 		self['key_green'] = StaticText(_('OK'))
 		self['key_yellow'] = StaticText(_('Keyboard'))
@@ -249,7 +249,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		searchList = [('', None)]
 		for entry in self.searchHistory:
 			searchList.append((entry, None))
-		self['list'].setList(searchList)
+		self['list'].list = searchList
 		self.onLayoutFinish.append(self.moveHelpWindow)
 		self.onClose.append(self.searchValue.stopSuggestions)
 
@@ -259,18 +259,18 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				helpwindowpos[1]))
 
 	def setSearchEntry(self):
-		self['config'].setList([getConfigListEntry(_('Search'),
-				self.searchValue)])
+		self['config'].list = [getConfigListEntry(_('Search'),
+				self.searchValue)]
 
 	def updateSuggestions(self, suggestions):
 		if 'list' in self:
-			self['list'].setList(suggestions)
-			self['list'].setIndex(0)
+			self['list'].list = suggestions
+			self['list'].index = 0
 
 	def ok(self):
 		selected = self['list'].getCurrent()[0]
 		if selected and self.searchValue.value != selected:
-			self['list'].setIndex(0)
+			self['list'].index = 0
 			self.searchValue.value = selected
 			self.setSearchEntry()
 			self['config'].getCurrent()[1].getSuggestions()
@@ -303,7 +303,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		self.openKeyboard()
 
 	def keyTop(self):
-		self['list'].setIndex(0)
+		self['list'].index = 0
 
 	def keyPageUp(self):
 		self['list'].pageUp()
@@ -318,7 +318,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		self['list'].pageDown()
 
 	def keyBottom(self):
-		self['list'].setIndex(max(0, self['list'].count() - 1))
+		self['list'].index = max(0, self['list'].count() - 1)
 
 	def openMenu(self):  # pragma: no cover
 		self['config'].getCurrent()[1].help_window.instance.hide()

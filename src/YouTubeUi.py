@@ -362,10 +362,9 @@ class YouTubeMain(Screen):
 				'down': self.selectNext,
 				'contextMenu': self.openMenu,
 				'showEventInfo': self.showEventInfo}, -2)
-		text = _('YouTube starting. Please wait...')
-		self.setTitle(text)
+		self.title = _('YouTube starting. Please wait...')
 		self['text'] = Label()  # For backward compatibility, removed after YouTube logo introduction
-		self['text'].setText(_('YouTube'))  # Please use YouTube logo in skin instead of this
+		self['text'].text = _('YouTube')  # Please use YouTube logo in skin instead of this
 		self['list'] = List([])
 		self['thumbnail'] = Pixmap()
 		self['thumbnail'].hide()
@@ -430,8 +429,8 @@ class YouTubeMain(Screen):
 		self['red'].show()
 		self['green'].show()
 		self['menu'].show()
-		self['key_red'].setText(_('Exit'))
-		self['key_green'].setText(_('Open'))
+		self['key_red'].text = _('Exit')
+		self['key_green'].text = _('Open')
 		if self.yts[0]['list'] == 'videolist':
 			self['info'].show()
 
@@ -497,15 +496,14 @@ class YouTubeMain(Screen):
 		self.yts[0]['title'] = text
 		self.yts[0]['list'] = action
 		if action == 'search':
-			title = _('Download search results. Please wait...')
+			self.title = _('Download search results. Please wait...')
 		elif action in ['playVideo', 'downloadVideo']:
-			title = _('Extract video url. Please wait...')
+			self.title = _('Extract video url. Please wait...')
 		else:
-			title = _('Download feed entries. Please wait...')
-		self.setTitle(title)
-		self['list'].setList([])
-		self['key_red'].setText('')
-		self['key_green'].setText('')
+			self.title = _('Download feed entries. Please wait...')
+		self['list'].list = []
+		self['key_red'].text = ''
+		self['key_green'].text = ''
 		self['red'].hide()
 		self['green'].hide()
 		self['menu'].hide()
@@ -566,8 +564,8 @@ class YouTubeMain(Screen):
 				self.setEntryList()
 
 	def setEntryList(self):
-		self.setTitle(self.yts[0].get('title', ''))
-		self['list'].setList(self.yts[0].get('entry_list', []))
+		self.title = self.yts[0].get('title', '')
+		self['list'].list = self.yts[0].get('entry_list', [])
 		self['list'].index = (self.yts[0].get('index', 0))
 
 		for entry in self.yts[0]['entry_list']:
@@ -1373,7 +1371,7 @@ class YouTubeInfo(Screen):
 
 	def __init__(self, session, current):
 		Screen.__init__(self, session)
-		self.setTitle(_('Info'))
+		self.title = _('Info')
 		self['key_red'] = StaticText(_('Exit'))
 		self['title'] = Label(current[3])
 		self['pic'] = Pixmap()
@@ -1433,8 +1431,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		title = _('YouTube setup')
-		self.setTitle(title)
+		self.title = _('YouTube setup')
 
 	def updateDescription(self):
 		self['description'].text = self['config'].getCurrent()[2]
@@ -1506,7 +1503,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 					config.plugins.YouTube.player,
 					_('Specify the player which will be used for YouTube media playback.')))
 				break
-		self['config'].setList(self.list)
+		self['config'].list = self.list
 
 	def cancel(self):
 		self.login = None
