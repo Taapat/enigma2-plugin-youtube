@@ -1,502 +1,708 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <maxbambi@libero.it>, 2018.
+# Signed-off-by: Dario Croci <spaeleus@croci.org>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-11 16:10+0000\n"
-"PO-Revision-Date: 2018-05-26 13:10+0200\n"
-"Last-Translator: Massimo Bambi <maxbambi@libero.it>\n"
-"Language-Team: \n"
-"Language: it\n"
+"POT-Creation-Date: 2022-01-29 10:44+0100\n"
+"PO-Revision-Date: 2022-01-29 10:46+0100\n"
+"Last-Translator: Dario Croci <spaeleus@croci.org>\n"
+"Language-Team: Dario Croci <spaeleus@croci.org>\n"
+"Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ../../../../../../../../..\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#, python-format
-msgid "  (%d-%d of %d)"
-msgstr " (%d-%d di %d)"
-
-msgid " likes"
-msgstr "MI piace"
-
-msgid " views"
-msgstr "visualizzazioni"
-
-#, python-format
-msgid "%.1fMB"
-msgstr ""
-
-msgid "Active video downloads"
-msgstr "Download del video corrente"
-
-msgid "All"
-msgstr "Tutti"
-
-msgid "Alphabetically"
-msgstr ""
-
-msgid "Ask user"
-msgstr "Chiedi all'utente"
-
-msgid "By activity"
-msgstr ""
-
-#, fuzzy
-msgid "By relevance"
-msgstr "Rilevanza"
-
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeDownload.py:23
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1451
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Annullare"
 
-msgid "Choose what you want to do"
-msgstr "Scegli cosa fare"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeDownload.py:24
+msgid "Use"
+msgstr "Utilizzare"
 
-msgid "Close YouTube"
-msgstr "Chiudi YouTube"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeDownload.py:37
+msgid "Please select the download directory"
+msgstr "Selezionare la directory di download"
 
-msgid "Created date"
-msgstr "data di creazione"
-
-msgid "Default"
-msgstr ""
-
-msgid "Delete this entry"
-msgstr "Cancella questa voce"
-
-msgid "Disliked!"
-msgstr "Hai messo Non mi piace!"
-
-msgid "Download directory:"
-msgstr "Cartella di download:"
-
-msgid "Download feed entries. Please wait..."
-msgstr "Download delle voci del feed. Attendi..."
-
-msgid "Download search results. Please wait..."
-msgstr "Download dei risultati della ricerca. Attendi..."
-
-msgid "Download video"
-msgstr "Download video"
-
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeDownload.py:62
 msgid "Downloading"
 msgstr "Download in corso"
 
-msgid "Duration: "
-msgstr "Durata:"
-
-msgid "Embedded in webpages"
-msgstr "Incluso nelle pagine web"
-
-msgid "Exclude restricted content:"
-msgstr "Escludi contenuti vietati"
-
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeDownload.py:186
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeSearch.py:266
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:447
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1407
 msgid "Exit"
-msgstr "Esci"
+msgstr "Uscire"
 
-msgid "Exteplayer"
-msgstr ""
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeDownload.py:203
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1183
+msgid "Active video downloads"
+msgstr "Download del video corrente"
 
-msgid "Extract video url. Please wait..."
-msgstr "Estrazione dell'URL del video. Attendi..."
-
-msgid ""
-"FFmpeg will be used to merge downloaded DASH video and audio files.\n"
-"FFmpeg will be installed if necessary."
-msgstr ""
-
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeDownload.py:216
 #, python-format
-msgid ""
-"Go to %s\n"
-"And enter the code %s"
-msgstr ""
-"Vai a %s\n"
-"E inserisci il codice %s"
+msgid "%.1fMB"
+msgstr "%.1fMB"
 
-msgid "Gstplayer"
-msgstr ""
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeSearch.py:43
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeSearch.py:265
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeSearch.py:297
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:473
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:482
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1180
+msgid "Search"
+msgstr "Cercare"
 
-msgid "HD videos"
-msgstr "Video HD"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeSearch.py:267
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1452
+msgid "OK"
+msgstr "OK"
 
-msgid ""
-"How many search results will be returned.\n"
-"If greater value then longer time will be needed for thumbnail download."
-msgstr ""
-"Quanti risultati della ricerca verranno mostrati.\n"
-"Più grande è il valore e maggiore è il tempo impiegato per il download delle immagini di anteprima."
-
-msgid "I dislike this"
-msgstr "Non mi piace"
-
-msgid "I like this"
-msgstr "Mi piace"
-
-msgid "Info"
-msgstr "Info"
-
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeSearch.py:268
 msgid "Keyboard"
 msgstr "Tastiera"
 
-msgid "Liked videos"
-msgstr "Video che ti piacciono"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeSearch.py:361
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:722
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1162
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1238
+msgid "What do you want to do?"
+msgstr "Cosa si vuole fare?"
 
-msgid "Liked!"
-msgstr "Hai messo Mi piace!"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeSearch.py:362
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1163
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1471
+msgid "YouTube setup"
+msgstr "Impostazioni di YouTube"
 
-#, fuzzy
-msgid "Live broadcast"
-msgstr "Ricerca dirette live"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeSearch.py:363
+msgid "Delete this entry"
+msgstr "Rimuovere questa voce"
 
-msgid ""
-"Log in to your YouTube account when plugin starts.\n"
-"This needs to approve in the Google home page!"
-msgstr ""
-"Accedi al tuo account YouTube quando il plugin si avvia.\n"
-"Per fare ciò devi approvarlo nella home page di Google!"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:51
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:54
+msgid "All"
+msgstr "Tutti"
 
-msgid "Login on startup:"
-msgstr "Accedi all'avvio:"
-
-msgid "Maximum video resolution:"
-msgstr "Risoluzione video massima:"
-
-msgid "Media player:"
-msgstr ""
-
-msgid "Merge downloaded files:"
-msgstr ""
-
-msgid "Moderate"
-msgstr "Moderato"
-
-msgid "Most viewed"
-msgstr "Più visti"
-
-msgid "Movies"
-msgstr "Filmati"
-
-msgid "My Subscriptions"
-msgstr "I miei abbonamenti "
-
-msgid "My feeds"
-msgstr "I miei canali"
-
-#, fuzzy, python-format
-msgid "Next %s entry"
-msgid_plural "Next %s entries"
-msgstr[0] "%s voci seguenti"
-msgstr[1] "%s voci seguenti"
-
-msgid "No"
-msgstr "No"
-
-msgid "No, but play video again"
-msgstr "No, ma riproduci di nuovo"
-
-msgid "OK"
-msgstr "Ok"
-
-msgid "Open"
-msgstr "Apri"
-
-msgid "Order in which search results will be displayed."
-msgstr "Ordine con cui i risultati della ricerca saranno mostrati."
-
-#, fuzzy
-msgid "Order in which subscriptions results will be displayed."
-msgstr "Ordine con cui i risultati della ricerca saranno mostrati."
-
-msgid "Play next"
-msgstr "Riproduci il prossimo"
-
-msgid "Play next video"
-msgstr "Riproduci il prossimo video"
-
-msgid "Play previous"
-msgstr "Riproduci il precedente"
-
-msgid "Play previous video"
-msgstr "Riproduci il precedente video"
-
-msgid "Play video again"
-msgstr "Riproduci di nuovo"
-
-msgid "Playlists"
-msgstr "Playlist"
-
-msgid "Please select the download directory"
-msgstr "Per favore, seleziona la cartella di download"
-
-#, fuzzy, python-format
-msgid "Previous %s entry"
-msgid_plural "Previous %s entries"
-msgstr[0] "%s voci precedenti"
-msgstr[1] "%s voci precedenti"
-
-msgid "Public feeds"
-msgstr "Canali pubblici"
-
-msgid "Published at: "
-msgstr "Pubblicato il:"
-
-msgid "Quit"
-msgstr "Termina"
-
-msgid "Rate video"
-msgstr "Valuta video"
-
-msgid "Rating"
-msgstr "Valutazione"
-
-msgid "Rating removed!"
-msgstr "Valutazione cancellata!"
-
-msgid "Recent"
-msgstr "Recente"
-
-#, fuzzy
-msgid "Related videos"
-msgstr "Valuta video"
-
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:56
 msgid "Relevance"
 msgstr "Rilevanza"
 
-msgid "Remove my rating"
-msgstr "Elimina la mia valutazione"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:57
+msgid "Created date"
+msgstr "Data di creazione"
 
-msgid "Repeat"
-msgstr "Ripeti"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:58
+msgid "Rating"
+msgstr "Valutazione"
 
-msgid "Resume playback from the previous position?"
-msgstr ""
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:59
+msgid "Title"
+msgstr "Titolo"
 
-msgid "Return search results for the specified country."
-msgstr "Restituisce i risultati della ricerca per una nazione specifica."
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:60
+msgid "View count"
+msgstr "Numero visualizzazioni"
 
-msgid "Return search results that are most relevant to the specified language."
-msgstr "Restituisce i risultati della ricerca che sono maggiormente rilevanti per una lingua specifica."
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:62
+msgid "By relevance"
+msgstr "Per rilevanza"
 
-msgid "Return to list"
-msgstr "Ritorna all'elenco"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:63
+msgid "By activity"
+msgstr "Per attività"
 
-msgid "Save search result:"
-msgstr "Salva il risultato della ricerca:"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:64
+msgid "Alphabetically"
+msgstr "In ordine alfabetico"
 
-msgid "Save your search result in the history, when search completed."
-msgstr "Una volta effettuata, salva il  risultato della tua ricerca nella cronologia."
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:66
+msgid "Moderate"
+msgstr "Moderato"
 
-msgid "Search"
-msgstr "Ricerca"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:66
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:168
+msgid "No"
+msgstr "No"
 
-msgid "Search channels"
-msgstr "Ricerca canali"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:66
+msgid "Yes"
+msgstr "Sì"
 
-msgid "Search for similar"
-msgstr "Ricerca simili"
-
-msgid "Search language:"
-msgstr "Ricerca la lingua:"
-
-msgid "Search live broadcasts"
-msgstr "Ricerca dirette live"
-
-msgid "Search playlists"
-msgstr "Ricerca playlist"
-
-msgid "Search region:"
-msgstr "Ricerca regione:"
-
-msgid "Search results:"
-msgstr "Risultati della ricerca:"
-
-msgid "Search videos"
-msgstr "Ricerca video"
-
-#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
-msgid "ServiceApp"
-msgstr ""
-
-#, fuzzy
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:71
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:76
 msgid "Show related videos"
-msgstr "Download video"
+msgstr "Mostrare i video associati"
 
-msgid "Shows"
-msgstr "Mostra"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:72
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:77
+msgid "Return to list"
+msgstr "Tornare all'elenco"
 
-msgid ""
-"Sorry, download directory not exist!\n"
-"Please specify in the settings existing directory."
-msgstr ""
-"Mi dispiace, ma la cartella di download non esiste!\n"
-"Per favore, specifica nelle impostazioni una cartella esistente."
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:72
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:77
+msgid "Ask user"
+msgstr "Chiedere all'utente"
 
-#, python-format
-msgid ""
-"Sorry, this file already exists:\n"
-"%s"
-msgstr ""
-"Mi dispiace, il file esiste già:\n"
-"%s"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:73
+msgid "Play next"
+msgstr "Riprodurre il successivo"
 
-msgid "Sort search results by:"
-msgstr "Ordina i risultati della ricerca per:"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:73
+msgid "Repeat"
+msgstr "Ripetere"
 
-#, fuzzy
-msgid "Sort subscriptions:"
-msgstr "I miei abbonamenti "
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:74
+msgid "Play previous"
+msgstr "Riprodure il precedente"
 
-msgid ""
-"Specify or you want to use DASH MP4 format streams if available.\n"
-"This requires playing two streams together and may cause problems for some receivers."
-msgstr ""
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:80
+msgid "YouTube VirtualKeyBoard"
+msgstr "Tastiera virtuale YouTube"
 
-msgid "Specify the directory where save downloaded video files."
-msgstr "Specifica la cartella dove salvare i video scaricati. "
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:80
+msgid "Image VirtualKeyBoard"
+msgstr "Immagine tastiera virtuale"
 
-msgid "Specify the player which will be used for YouTube media playback."
-msgstr ""
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:87
+msgid "Default"
+msgstr "Predefinito"
 
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:87
+msgid "Exteplayer"
+msgstr "Exteplayer"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:87
+msgid "Gstplayer"
+msgstr "Gstplayer"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:150
+msgid "Resume playback from the previous position?"
+msgstr "Riprendere la riproduzione dalla posizione precedente?"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:162
 msgid "Stop playing this movie?"
 msgstr "Arrestare la riproduzione?"
 
-msgid "Subscribe"
-msgstr "Iscriviti"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:163
+msgid "Yes, and return to list"
+msgstr "Sì, e tornare all'elenco"
 
-msgid "Subscribe this video channel"
-msgstr "Iscriviti al canale video"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:164
+msgid "Yes, and show related videos"
+msgstr "Sì, e mostrare i video associati"
 
-msgid "Subscribed!"
-msgstr "Iscritto!"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:165
+msgid "Yes, but play next video"
+msgstr "Sì, ma riprodurre il video successivo"
 
-msgid ""
-"There was an error in creating entry list!\n"
-"Maybe try other feeds..."
-msgstr ""
-"C'è stato un errore nel creare la lista!\n"
-"Prova con altri canali..."
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:166
+msgid "Yes, but play previous video"
+msgstr "Sì, ma riprodurre il video precedente"
 
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:167
+msgid "No, but play video again"
+msgstr "No, ma riprodurlo di nuovo"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:194
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:377
+#: lib/enigma2/python/Plugins/Extensions/YouTube/plugin.py:19
+msgid "YouTube"
+msgstr "YouTube"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:374
+msgid "YouTube starting. Please wait..."
+msgstr "Avvio di YouTube in corso. Attendere..."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:398
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1540
+msgid "ServiceApp"
+msgstr "ServiceApp"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:448
+msgid "Open"
+msgstr "Aprire"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:472
+msgid "Choose what you want to do"
+msgstr "Scegliere cosa fare"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:474
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:491
+msgid "Public feeds"
+msgstr "Feed pubblici"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:476
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:503
+msgid "My feeds"
+msgstr "I miei feed"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:483
+msgid "Search videos"
+msgstr "Cercare video"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:484
+msgid "Search channels"
+msgstr "Cercare canali"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:485
+msgid "Search playlists"
+msgstr "Cercare playlist"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:486
+msgid "Search live broadcasts"
+msgstr "Cercare trasmissioni dal vivo"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:492
+msgid "Top rated"
+msgstr "Più votati"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:493
+msgid "Most viewed"
+msgstr "Più visti"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:494
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:883
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1128
+msgid "Recent"
+msgstr "Recente"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:495
+msgid "HD videos"
+msgstr "Video HD"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:496
+msgid "Embedded in webpages"
+msgstr "Incluso nelle pagine web"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:497
+msgid "Shows"
+msgstr "Show"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:498
+msgid "Movies"
+msgstr "Filmati"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:504
+msgid "My Subscriptions"
+msgstr "Le mie sottoscrizioni"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:505
+msgid "Liked videos"
+msgstr "Video che piacciono"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:506
+msgid "Uploads"
+msgstr "Upload"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:507
+msgid "Playlists"
+msgstr "Playlist"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:514
+msgid "Download search results. Please wait..."
+msgstr "Download dei risultati della ricerca. Attendere..."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:516
+msgid "Extract video url. Please wait..."
+msgstr "Estrazione dell'URL del video. Attendere..."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:518
+msgid "Download feed entries. Please wait..."
+msgstr "Download delle voci del feed. Attendere..."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:537
 #, python-format
 msgid ""
 "There was an error in extract video url:\n"
 "%s"
 msgstr ""
-"C'è stato un errore nell'estrarre l'URL del video:\n"
+"Si è verificato un errore nell'estrazione dell'URL del video:\n"
 "%s"
 
-msgid "There was an error!"
-msgstr "C'è stato un errore!"
-
-msgid "Title"
-msgstr "Titolo"
-
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:574
 msgid ""
-"To merge downloaded files FFmpeg will be installed.\n"
-"FFmpeg can take a lot of space!\n"
-"Do you want to continue?"
+"There was an error in creating entry list!\n"
+"Maybe try other feeds..."
 msgstr ""
+"Si è verificato un errore nel creare l'elenco voci\n"
+"Provare con altri feed..."
 
-msgid ""
-"To perform authentication will need in a web browser open Google home page, and enter the code!\n"
-"Do you currently have Internet access on the other device and we can continue?"
-msgstr ""
-"Per effettuare l'autenticazione è necessario aprire l'home page di Google in un browser ed inserire il codice!\n"
-"Attualmente hai accesso ad internet sull'altro dispositivo e possiamo continuare?"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:723
+msgid "Quit"
+msgstr "Terminare"
 
-msgid "Top rated"
-msgstr "Più votati"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:724
+msgid "Play next video"
+msgstr "Riprodurre il video successivo"
 
-msgid "Try to exclude all restricted content from the search result."
-msgstr "Prova ad escludere tutto il contenuto vietato dai risultati della ricerca."
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:725
+msgid "Play previous video"
+msgstr "Riprodurre il video precedente"
 
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:726
+msgid "Play video again"
+msgstr "Riprodurre di nuovo"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:956
+msgid "Related videos"
+msgstr "Video associati"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1050
+msgid "Duration: "
+msgstr "Durata: "
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1050
+msgid "Live broadcast"
+msgstr "Trasmissioni dal vivo"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1052
+msgid "Published at: "
+msgstr "Pubblicato il: "
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1059
+msgid " views"
+msgstr " visualizzazioni"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1063
+msgid " likes"
+msgstr " mi piace"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1141
+#, python-format
+msgid "  (%d-%d of %d)"
+msgstr " (%d-%d di %d)"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1165
+#, python-format
+msgid "Next %s entry"
+msgid_plural "Next %s entries"
+msgstr[0] "%s voce successiva"
+msgstr[1] "%s voci successive"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1168
+#, python-format
+msgid "Previous %s entry"
+msgid_plural "Previous %s entries"
+msgstr[0] "%s voce precedente"
+msgstr[1] "%s voci precedenti"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1172
+msgid "Rate video"
+msgstr "Valutare il video"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1173
+msgid "Subscribe this video channel"
+msgstr "Sottoscrivere questo canale video"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1175
+msgid "Subscribe"
+msgstr "Sottoscrivere"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1178
 msgid "Unsubscribe"
-msgstr "Annulla iscrizione"
+msgstr "Annullare la sottoscrizione"
 
-msgid "Unsubscribed!"
-msgstr "Iscrizione annullata!"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1181
+msgid "Download video"
+msgstr "Download video"
 
-msgid "Uploads"
-msgstr "Caricamenti"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1184
+msgid "Close YouTube"
+msgstr "Chiudere YouTube"
 
-msgid "Use"
-msgstr "Usa"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1200
+msgid "I like this"
+msgstr "Mi piace"
 
-msgid "Use DASH MP4 format:"
-msgstr ""
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1201
+msgid "I dislike this"
+msgstr "Non mi piace"
 
-msgid "Video download started!"
-msgstr "Il download del video si è avviato!"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1202
+msgid "Remove my rating"
+msgstr "Rimuovere la valutazione"
 
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1212
+msgid "Search for similar"
+msgstr "Cercare simili"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1213
 msgid "Videos from this video channel"
-msgstr "Video dal canale"
+msgstr "Video da questo canale"
 
-msgid "View count"
-msgstr "Numero visualizzazioni"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1252
+msgid "Subscribed!"
+msgstr "Sottoscritto"
 
-msgid "Watch YouTube videos"
-msgstr "Guarda i video da YouTube"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1253
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1262
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1272
+msgid "There was an error!"
+msgstr "Si è verificato un errore."
 
-msgid "What do you want to do?"
-msgstr "Cosa vuoi fare?"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1261
+msgid "Unsubscribed!"
+msgstr "Sottoscrizione rimossa."
 
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1267
+msgid "Liked!"
+msgstr "Piaciuto."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1268
+msgid "Disliked!"
+msgstr "Non gradito."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1269
+msgid "Rating removed!"
+msgstr "Valutazione cancellata."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1284
 msgid ""
-"What maximum resolution used when playing video, if available.\n"
-"If you have a slow Internet connection, you can use a lower resolution."
+"Sorry, download directory not exist!\n"
+"Please specify in the settings existing directory."
 msgstr ""
-"Quale risoluzione massima è utilizzata nella riproduzione dei video, se disponibile.\n"
-"Se hai una connessione Internet lenta, puoi usare una risoluzione più bassa."
+"La directory di download non esiste!\n"
+"Specificare nelle impostazioni una cartella esistente."
 
-msgid "What to do when stop playback in videoplayer."
-msgstr "Cosa fare all'arresto della riproduzione."
-
-msgid "What to do when the video ends."
-msgstr "Cosa fare alla fine del video."
-
-msgid "When playback stop:"
-msgstr "Quando la riproduzione finisce:"
-
-msgid "When video ends:"
-msgstr "Quando il video finisce:"
-
-msgid "Yes"
-msgstr "Sì"
-
-#, fuzzy
-msgid "Yes, and return to list"
-msgstr "Ritorna all'elenco"
-
-msgid "Yes, and show related videos"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1296
+#, python-format
+msgid ""
+"Sorry, this file already exists:\n"
+"%s"
 msgstr ""
+"File già presente:\n"
+"%s"
 
-msgid "Yes, but play next video"
-msgstr "Sì, ma riproduci il prossimo video"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1308
+msgid "Video download started!"
+msgstr "Download del video avviato."
 
-msgid "Yes, but play previous video"
-msgstr "Sì, ma riproduci il precedente video"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1406
+msgid "Info"
+msgstr "Info"
 
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1482
 msgid ""
 "You already authorized access for this plugin to your YouTube account.\n"
 "Do you want to do it again to update access data?"
 msgstr ""
-"Hai già autorizzato l'accesso per questo plugin nel tuo account YouTube.\n"
-"Vuoi farlo ancora per aggiornare i dati di accesso?"
+"È già stato autorizzato l'accesso per questo plugin nel proprio account "
+"YouTube.\n"
+"Farlo ancora per aggiornare i dati di accesso?"
 
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1490
+msgid "Login on startup:"
+msgstr "Accedere all'avvio:"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1492
+msgid ""
+"Log in to your YouTube account when plugin starts.\n"
+"This needs to approve in the Google home page!"
+msgstr ""
+"Accedere al proprio account YouTube quando il plugin si avvia.\n"
+"Per fare ciò è necessario approvarlo nella home page di Google."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1493
+msgid "Save search result:"
+msgstr "Salvare il risultato della ricerca:"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1495
+msgid "Save your search result in the history, when search completed."
+msgstr ""
+"Una volta effettuata, salvare il risultato della ricerca nella cronologia."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1496
+msgid "Search results:"
+msgstr "Risultati della ricerca:"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1498
+msgid ""
+"How many search results will be returned.\n"
+"If greater value then longer time will be needed for thumbnail download."
+msgstr ""
+"Numero dei risultati della ricerca che verranno mostrati.\n"
+"Più grande è il valore e maggiore sarà il tempo impiegato per il download "
+"delle anteprime."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1499
+msgid "Search region:"
+msgstr "Cercare nella regione:"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1501
+msgid "Return search results for the specified country."
+msgstr "Restituisce i risultati di ricerca per una nazione specifica."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1502
+msgid "Search language:"
+msgstr "Lingua di ricerca:"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1504
+msgid "Return search results that are most relevant to the specified language."
+msgstr ""
+"Restituisce i risultati di ricerca che sono maggiormente rilevanti per una "
+"lingua specifica."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1505
+msgid "Sort search results by:"
+msgstr "Ordinare i risultati della ricerca per:"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1507
+msgid "Order in which search results will be displayed."
+msgstr "Ordine con cui i risultati della ricerca saranno mostrati."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1509
+msgid "Sort subscriptions:"
+msgstr "Ordinare le sottoscrizioni:"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1511
+msgid "Order in which subscriptions results will be displayed."
+msgstr "Ordine in cui i risultati delle sottoscrizioni saranno visualizzati."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1512
+msgid "Exclude restricted content:"
+msgstr "Escludere contenuti vietati:"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1514
+msgid "Try to exclude all restricted content from the search result."
+msgstr ""
+"Tentare di escludere tutto il contenuto vietato dai risultati della ricerca."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1515
+msgid "Maximum video resolution:"
+msgstr "Massima risoluzione video:"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1517
+msgid ""
+"What maximum resolution used when playing video, if available.\n"
+"If you have a slow Internet connection, you can use a lower resolution."
+msgstr ""
+"Quale risoluzione massima è utilizzata nella riproduzione dei video, se "
+"disponibile.\n"
+"Se di dispone di una connessione Internet lenta, è possibile utilizzare una "
+"risoluzione più bassa."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1518
+msgid "When video ends:"
+msgstr "Quando il video termina:"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1520
+msgid "What to do when the video ends."
+msgstr "Cosa fare al termine del video."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1521
+msgid "When playback stop:"
+msgstr "Quando la riproduzione si interrompe:"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1523
+msgid "What to do when stop playback in videoplayer."
+msgstr "Cosa fare all'arresto della riproduzione."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1524
+msgid "Download directory:"
+msgstr "Directory di download:"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1526
+msgid "Specify the directory where save downloaded video files."
+msgstr "Specifica la cartella dove salvare i video scaricati."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1527
+msgid "Use DASH MP4 format:"
+msgstr "Usare il formato DASH MP4:"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1529
+msgid ""
+"Specify or you want to use DASH MP4 format streams if available.\n"
+"This requires playing two streams together and may cause problems for some "
+"receivers."
+msgstr ""
+"Specificare se si desidera utilizzare il formato stream DASH MP4 se "
+"disponibile.\n"
+"Ciò richiede la riproduzione di due flussi contemporanei e può causare "
+"problemi con alcuni ricevitori."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1531
+msgid "Merge downloaded files:"
+msgstr "Unire i file scaricati:"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1533
+msgid ""
+"FFmpeg will be used to merge downloaded DASH video and audio files.\n"
+"FFmpeg will be installed if necessary."
+msgstr ""
+"FFmpeg verrà utilizzato per unire i video DASH scaricati e i file audio.\n"
+"Se necessario, FFmpeg verrà installato."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1535
+msgid "Choose VirtualKeyBoard Style:"
+msgstr "Selezionare lo stile della tastiera virtuale:"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1537
+msgid ""
+"You can choose what style of VirtualKeyBoard to use it.\n"
+"YouTube OR Image (VirtualKeyBoard)."
+msgstr ""
+"È possibile scegliere quale stile di tastiera virtuale utilizzare.\n"
+"YouTube o immagine (tastiera virtuale)."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1541
+msgid "Media player:"
+msgstr "Media player:"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1543
+msgid "Specify the player which will be used for YouTube media playback."
+msgstr ""
+"Specificare il player da utilizzare per riprodurre i file multimediali "
+"YouTube."
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1562
 msgid ""
 "You have disabled downloaded file merge.\n"
 "Installed FFmpeg is no longer necessary.\n"
 "Do you want to remove FFmpeg?"
 msgstr ""
+"L'unione dei file scaricati è stata disabilitata.\n"
+"FFmpeg non risulta quindi più necessario.\n"
+"Si desidera disinstallarlo?"
 
-msgid "YouTube"
-msgstr "YouTube"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1565
+msgid ""
+"To merge downloaded files FFmpeg will be installed.\n"
+"FFmpeg can take a lot of space!\n"
+"Do you want to continue?"
+msgstr ""
+"Per unire i file scaricati è necessario installare FFmpeg.\n"
+"FFmpeg può richiedere molto spazio.\n"
+"Procedere con l'installazione?"
 
-msgid "YouTube setup"
-msgstr "Setup YouTube"
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1591
+msgid ""
+"To perform authentication will need in a web browser open Google home page, "
+"and enter the code!\n"
+"Do you currently have Internet access on the other device and we can "
+"continue?"
+msgstr ""
+"Per effettuare l'autenticazione è necessario aprire l'home page di Google in "
+"un browser ed inserire il codice.\n"
+"Attualmente si ha accesso ad internet su un altro dispositivo ed è possibile "
+"continuare?"
 
-msgid "YouTube starting. Please wait..."
-msgstr "YouTube si sta avviando. Attendi..."
+#: lib/enigma2/python/Plugins/Extensions/YouTube/YouTubeUi.py:1608
+#, python-format
+msgid ""
+"Go to %s\n"
+"And enter the code %s"
+msgstr ""
+"Andare a %s\n"
+"e inserire il codice %s"
+
+#: lib/enigma2/python/Plugins/Extensions/YouTube/plugin.py:20
+msgid "Watch YouTube videos"
+msgstr "Guardare video su YouTube"
