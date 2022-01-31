@@ -153,7 +153,9 @@ jobs:
           cp test/skin_display.xml ./
           sed -i 's/\/home/./g' enigma2/lib/python/Components/UsageConfig.py
           sed -i 's/config.crash.pystackonspinner.addNotifier/# config.crash.pystackonspinner.addNotifier/g' enigma2/lib/python/Components/UsageConfig.py
-          echo "model=vu" > enigma2/enigma.info
+          echo "model=duo4k" > enigma2/enigma.info
+          echo "architecture=arm" >> enigma2/enigma.info
+          echo "socfamily=brcmstb" >> enigma2/enigma.info
       - name: Patch enigma step 2
         if: steps.split.outputs._0 == 'OpenViX'
         run: |
