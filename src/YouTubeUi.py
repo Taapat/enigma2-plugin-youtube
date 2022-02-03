@@ -1408,6 +1408,7 @@ class YouTubeInfo(Screen):
 class YouTubeSetup(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.title = _('YouTube setup')
 		self.session = session
 		self.skinName = ['YouTubeSetup', 'Setup']
 		self['key_red'] = StaticText(_('Cancel'))
@@ -1427,10 +1428,6 @@ class YouTubeSetup(ConfigListScreen, Screen):
 				initial_call=False)
 		config.plugins.YouTube.useDashMP4.addNotifier(self.setConfigList,
 				initial_call=False)
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.title = _('YouTube setup')
 
 	def checkLoginSatus(self, configElement):
 		if 'config' in self and self.login is not None:

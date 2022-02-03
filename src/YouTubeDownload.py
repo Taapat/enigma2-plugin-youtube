@@ -20,6 +20,7 @@ class YouTubeDirBrowser(Screen):
 	def __init__(self, session, downloadDir):
 		Screen.__init__(self, session)
 		self.skinName = ['YouTubeDirBrowser', 'FileBrowser']
+		self.title = _('Please select the download directory')
 		self['key_red'] = StaticText(_('Cancel'))
 		self['key_green'] = StaticText(_('Use'))
 		if not os.path.exists(downloadDir):
@@ -31,10 +32,6 @@ class YouTubeDirBrowser(Screen):
 				'red': self.cancel,
 				'ok': self.ok,
 				'green': self.use}, -2)
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.title = _('Please select the download directory')
 
 	def ok(self):
 		if self.filelist.canDescent():
@@ -184,20 +181,17 @@ class YouTubeDownloadList(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.title = _('Active video downloads')
 		self['key_red'] = StaticText(_('Exit'))
 		self['list'] = List([])
 		self['actions'] = ActionMap(['SetupActions', 'ColorActions'], {
 				'cancel': self.close,
 				'ok': self.ok,
 				'red': self.close}, -2)
-		self.onLayoutFinish.append(self.layoutFinished)
+		self.onLayoutFinish.append(self.updateDownloadList)
 		self.onClose.append(self.cleanVariables)
 		self.progressTimer = eTimer()
 		self.progressTimer.callback.append(self.updateDownloadList)
-
-	def layoutFinished(self):
-		self.title = _('Active video downloads')
-		self.updateDownloadList()
 
 	def cleanVariables(self):
 		del self.progressTimer
