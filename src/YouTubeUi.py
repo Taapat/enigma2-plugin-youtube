@@ -1300,7 +1300,7 @@ class YouTubeMain(Screen):
 			self.yts[0]['related'] = related
 		if last:
 			self.yts[0]['index'] = int(self.search_result) - 1
-		self.screenCallback(self.getTitle(), self.yts[1]['list'])
+		self.screenCallback(self.title, self.yts[1]['list'])
 
 
 class YouTubeInfo(Screen):
