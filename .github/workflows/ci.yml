@@ -141,7 +141,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
-          pip install twisted pyopenssl service_identity
+          pip install twisted==20.3.0 pyopenssl service_identity
       - name: Link plugin files for test
         working-directory: './enigma2/lib/python/Plugins/Extensions'
         run: |
