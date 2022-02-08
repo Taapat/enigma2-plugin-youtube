@@ -2,7 +2,6 @@ from __future__ import print_function
 
 import os
 from copy import copy
-from twisted.web.client import downloadPage
 
 from enigma import eServiceReference, eTimer, iPlayableService
 from Components.ActionMap import ActionMap
@@ -28,6 +27,8 @@ from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_PLUGINS
 from Tools.LoadPixmap import LoadPixmap
+
+from .compat import compat_urlretrieve
 
 from . import _, screenwidth
 from . import ngettext
@@ -589,16 +590,13 @@ class YouTubeMain(Screen):
 								resolveFilename(SCOPE_PLUGINS,
 										'Extensions/YouTube/icons/%s.png' % entry_id))
 				else:
-					downloadPage(url.encode(), '/tmp/%s.jpg' % str(entry_id))\
-							.addCallback(boundFunction(self.downloadFinished, entry_id))\
-							.addErrback(boundFunction(self.downloadFailed, entry_id))
-
-	def downloadFinished(self, entry_id, result):
-		self.decodeThumbnail(entry_id, '/tmp/%s.jpg' % str(entry_id))
-
-	def downloadFailed(self, entry_id, result):
-		print('[YouTube] Thumbnail download failed, use default for', entry_id)
-		self.decodeThumbnail(entry_id)
+					try:
+						compat_urlretrieve(url.encode(), '/tmp/%s.jpg' % str(entry_id))
+					except Exception as e:
+						print('[YouTube] Thumbnail download error', e)
+						self.decodeThumbnail(entry_id)
+					else:
+						self.decodeThumbnail(entry_id, '/tmp/%s.jpg' % str(entry_id))
 
 	def decodeThumbnail(self, entry_id, image=None):
 		if not image or not os.path.exists(image):
@@ -1389,20 +1387,20 @@ class YouTubeInfo(Screen):
 				'infoButton': self.close,
 				'up': self['description'].pageUp,
 				'down': self['description'].pageDown}, -2)
-		self.ThumbnailUrl = current[9]
+		self.thumbnail_url = current[9]
 		self.onLayoutFinish.append(self.LayoutFinish)
 
 	def LayoutFinish(self):
-		if self.ThumbnailUrl:
-			downloadPage(self.ThumbnailUrl.encode(), '/tmp/hqdefault.jpg')\
-					.addCallback(self.downloadFinished)
-
-	def downloadFinished(self, result):  # pragma: no cover
-		image = '/tmp/hqdefault.jpg'
-		if os.path.exists(image):
-			self['pic'].instance.setScale(1)
-			self['pic'].instance.setPixmap(LoadPixmap(image))
-			os.remove(image)
+		if self.thumbnail_url:
+			image = '/tmp/hqdefault.jpg'
+			try:
+				compat_urlretrieve(self.thumbnail_url.encode(), image)
+			except Exception as e:
+				print('[YouTube] Medium thumbnail download error', e)
+			else:
+				self['pic'].instance.setScale(1)
+				self['pic'].instance.setPixmap(LoadPixmap(image))
+				os.remove(image)
 
 
 class YouTubeSetup(ConfigListScreen, Screen):

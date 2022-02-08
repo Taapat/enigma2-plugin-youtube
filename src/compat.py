@@ -13,6 +13,7 @@ if version_info[0] == 2:
 
 	from urllib import urlencode as compat_urlencode
 	from urllib import quote as compat_quote
+	from urllib import urlretrieve as compat_urlretrieve
 	from urllib2 import urlopen as compat_urlopen
 	from urllib2 import Request as compat_Request
 	from urllib2 import HTTPError as compat_HTTPError
@@ -23,6 +24,7 @@ else:
 
 	from urllib.parse import urlencode as compat_urlencode
 	from urllib.parse import quote as compat_quote
+	from urllib.request import urlretrieve as compat_urlretrieve
 	from urllib.request import urlopen as compat_urlopen
 	from urllib.request import Request as compat_Request
 	from urllib.error import HTTPError as compat_HTTPError

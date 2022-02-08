@@ -6,7 +6,7 @@ Enigma2 plugin to manage your youtube account and watch videos
 
 Depends
 -------
-python-codecs, python-json, python-netclient, python-twisted-web
+python-codecs, python-json, python-netclient
 
 Download
 -------
