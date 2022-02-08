@@ -591,7 +591,7 @@ class YouTubeMain(Screen):
 										'Extensions/YouTube/icons/%s.png' % entry_id))
 				else:
 					try:
-						compat_urlretrieve(url.encode(), '/tmp/%s.jpg' % str(entry_id))
+						compat_urlretrieve(url, '/tmp/%s.jpg' % str(entry_id))
 					except Exception as e:
 						print('[YouTube] Thumbnail download error', e)
 						self.decodeThumbnail(entry_id)
@@ -1394,7 +1394,7 @@ class YouTubeInfo(Screen):
 		if self.thumbnail_url:
 			image = '/tmp/hqdefault.jpg'
 			try:
-				compat_urlretrieve(self.thumbnail_url.encode(), image)
+				compat_urlretrieve(self.thumbnail_url, image)
 			except Exception as e:
 				print('[YouTube] Medium thumbnail download error', e)
 			else:
