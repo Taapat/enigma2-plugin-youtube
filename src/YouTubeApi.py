@@ -56,12 +56,11 @@ class YouTubeApi:
 		return response
 
 	def try_aut_response(self, method, url, data, headers):
+		request = compat_Request(url, data=data, headers=headers)
+		request.get_method = lambda: method
 		try:
-			request = compat_Request(url, data=data, headers=headers)
-			request.get_method = lambda: method
 			response = compat_urlopen(request)
 			status_code = response.getcode()
-			response.close()
 		except compat_HTTPError as e:
 			print('[YouTubeApi] HTTPError error in aut response', e)
 			status_code = e.getcode()
@@ -72,6 +71,7 @@ class YouTubeApi:
 
 	def get_aut_response(self, method, url, data, header, status):
 		url = 'https://www.googleapis.com/youtube/v3/{}{}'.format(url, self.key)
+		data = dumps(data).encode('utf8')
 		headers = {'Authorization': 'Bearer %s' % self.access_token}
 		if header:
 			headers.update(header)
@@ -84,7 +84,6 @@ class YouTubeApi:
 			return True
 		else:
 			print('[YouTubeApi] aut response status code', status_code)
-			return None
 
 	def subscriptions_list(self, maxResults, pageToken, subscriptOrder):
 		url = 'subscriptions?part=snippet&mine=true&order={}'.format(subscriptOrder)
@@ -134,11 +133,11 @@ class YouTubeApi:
 	def subscriptions_insert(self, channelId):
 		method = 'POST'
 		url = 'subscriptions?part=snippet'
-		data = dumps({'kind': 'youtube#subscription',
+		data = {'kind': 'youtube#subscription',
 				'snippet': {
 					'resourceId': {
 						'kind': 'youtube#channel',
-						'channelId': channelId}}})
+						'channelId': channelId}}}
 		header = {'content-type': 'application/json'}
 		status = 200
 		return self.get_aut_response(method, url, data, header, status)

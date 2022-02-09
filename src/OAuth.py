@@ -57,9 +57,9 @@ class OAuth:
 	def get_oauth_response(self, url, data):
 		data = compat_urlencode(data).encode()
 		headers = {'Content-type': 'application/x-www-form-urlencoded'}
+		request = compat_Request(url, data=data, headers=headers)
+		request.get_method = lambda: 'POST'
 		try:
-			request = compat_Request(url, data=data, headers=headers)
-			request.get_method = lambda: 'POST'
 			response = compat_urlopen(request)
 			status_code = response.getcode()
 			if status_code == 200:
