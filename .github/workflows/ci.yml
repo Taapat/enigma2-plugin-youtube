@@ -32,7 +32,7 @@ jobs:
         uses: marceloprado/has-changed-path@v1
         id: gui
         with:
-          paths: ./src/YouTubeUi.py ./src/YouTubeDownload.py ./src/YouTubeSearch.py ./YouTubeApi.py ./YouTubeVideoUrl.py ./OAuth.py
+          paths: ./src/YouTubeUi.py ./src/YouTubeDownload.py ./src/YouTubeSearch.py ./src/YouTubeApi.py ./src/YouTubeVideoUrl.py ./src/OAuth.py
       - name: Check language file changes
         uses: marceloprado/has-changed-path@v1
         id: language
