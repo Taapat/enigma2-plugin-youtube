@@ -6,6 +6,7 @@ from .compat import compat_quote
 from .compat import compat_urlopen
 from .compat import compat_Request
 from .compat import compat_HTTPError
+from .compat import compat_URLError
 from .OAuth import OAuth, API_KEY
 
 
@@ -24,21 +25,26 @@ class YouTubeApi:
 		if self.access_token:
 			self.key += '&access_token=%s' % self.access_token
 
-	def try_response(self, url):
+	def try_response(self, url_or_request):
+		response = {}
+		status_code = 'Unknown'
 		try:
-			response = compat_urlopen(url)
-			status_code = response.getcode()
+			response = compat_urlopen(url_or_request)
 		except compat_HTTPError as e:
 			print('[YouTubeApi] HTTPError error in get response', e)
 			status_code = e.getcode()
-		except Exception as e:
-			print('[YouTubeApi] error in get response', e)
-			status_code = 'Unknown'
-		if status_code == 200:
-			return load(response), None
+		except compat_URLError as e:
+			print('[YouTubeApi] URLError in get response', e)
 		else:
-			print('[YouTubeApi] get response status code', status_code)
-			return {}, status_code
+			if response:
+				status_code = response.getcode()
+			elif response == None:
+				response = {}
+		if status_code == 401 and self.access_token:
+			print('[YouTubeApi] Unauthorized get response, try get new access token')
+			self.renew_access_token()
+			response, status_code = self.try_response(url_or_request)
+		return response, status_code
 
 	def get_response(self, url, maxResults, pageToken):
 		url = 'https://www.googleapis.com/youtube/v3/{}{}{}{}'.format(
@@ -47,27 +53,9 @@ class YouTubeApi:
 				pageToken and '&pageToken=%s' % pageToken,
 				self.key)
 		response, status_code = self.try_response(url)
-		if response:
-			return response
-		elif status_code == 401 and self.access_token:
-			print('[YouTubeApi] Unauthorized get response, try get new access token')
-			self.renew_access_token()
-			response, status_code = self.try_response(url)
-		return response
-
-	def try_aut_response(self, method, url, data, headers):
-		request = compat_Request(url, data=data, headers=headers)
-		request.get_method = lambda: method
-		try:
-			response = compat_urlopen(request)
-			status_code = response.getcode()
-		except compat_HTTPError as e:
-			print('[YouTubeApi] HTTPError error in aut response', e)
-			status_code = e.getcode()
-		except Exception as e:
-			print('[YouTubeApi] error in aut response', e)
-			return 'Unknown'
-		return status_code
+		if response and status_code == 200:
+			return load(response)
+		return {}
 
 	def get_aut_response(self, method, url, data, header, status):
 		url = 'https://www.googleapis.com/youtube/v3/{}{}'.format(url, self.key)
@@ -75,11 +63,9 @@ class YouTubeApi:
 		headers = {'Authorization': 'Bearer %s' % self.access_token}
 		if header:
 			headers.update(header)
-		status_code = self.try_aut_response(method, url, data, headers)
-		if status_code == 401 and self.access_token:
-			print('[YouTubeApi] Unauthorized get aut response, try get new access token')
-			self.renew_access_token()
-			status_code = self.try_aut_response(method, url, data, headers)
+		request = compat_Request(url, data=data, headers=headers)
+		request.get_method = lambda: method
+		_, status_code = self.try_response(request)
 		if status_code == status:
 			return True
 		else:

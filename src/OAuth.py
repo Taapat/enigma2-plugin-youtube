@@ -59,16 +59,19 @@ class OAuth:
 		headers = {'Content-type': 'application/x-www-form-urlencoded'}
 		request = compat_Request(url, data=data, headers=headers)
 		request.get_method = lambda: 'POST'
+		response = None
 		try:
 			response = compat_urlopen(request)
-			status_code = response.getcode()
-			if status_code == 200:
-				return loads(response.read())
-			else:  # pragma: no cover
-				print('[OAuth] Error in auth response, errorcode', status_code)
-				print(response.read())
-		except Exception as e:  # pragma: no cover
+		except Exception as e:
 			print('[OAuth] Error in auth response', e)
+		else:
+			if response:
+				status_code = response.getcode()
+				if status_code == 200:
+					return loads(response.read())
+				else:  # pragma: no cover
+					print('[OAuth] Error in auth response, errorcode', status_code)
+					print(response.read())
 		return {}
 
 	def get_user_code(self):  # pragma: no cover
