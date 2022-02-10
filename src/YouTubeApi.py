@@ -38,7 +38,7 @@ class YouTubeApi:
 		else:
 			if response:
 				status_code = response.getcode()
-			elif response == None:
+			elif response is None:
 				response = {}
 		if status_code == 401 and self.access_token:
 			print('[YouTubeApi] Unauthorized get response, try get new access token')
