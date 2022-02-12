@@ -1234,6 +1234,10 @@ class YouTubeMain(Screen):
 			text = {'like': _('Liked!'),
 				'dislike': _('Disliked!'),
 				'none': _('Rating removed!')}
+			# update liked video list
+			if self.yts[1]['entry_list'][self.yts[1]['index']][0] == 'my_liked_videos':
+				del self.yts[0]['entry_list'][self['list'].index]
+				self['list'].updateList(self.yts[0].get('entry_list', []))
 			return text[rating]
 		else:
 			return _('There was an error!')
