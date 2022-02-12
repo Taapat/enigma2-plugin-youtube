@@ -31,10 +31,10 @@ class YouTubeApi:
 		try:
 			response = compat_urlopen(url_or_request)
 		except compat_HTTPError as e:
-			print('[YouTubeApi] HTTPError error in get response', e)
+			print('[YouTubeApi] HTTP Error in get response', e)
 			status_code = e.getcode()
 		except compat_URLError as e:
-			print('[YouTubeApi] URLError in get response', e)
+			print('[YouTubeApi] URL Error in get response', e)
 		else:
 			if response:
 				status_code = response.getcode()
@@ -59,7 +59,8 @@ class YouTubeApi:
 
 	def get_aut_response(self, method, url, data, header, status):
 		url = 'https://www.googleapis.com/youtube/v3/{}{}'.format(url, self.key)
-		data = dumps(data).encode('utf8')
+		if data:
+			data = dumps(data).encode('utf8')
 		headers = {'Authorization': 'Bearer %s' % self.access_token}
 		if header:
 			headers.update(header)
@@ -132,11 +133,11 @@ class YouTubeApi:
 		method = 'DELETE'
 		url = 'subscriptions?id=%s' % subscribtionId
 		status = 204
-		return self.get_aut_response(method, url, '', None, status)
+		return self.get_aut_response(method, url, None, None, status)
 
 	def videos_rate(self, videoId, rating):
 		method = 'POST'
 		url = 'videos/rate?id={}&rating={}'.format(videoId, rating)
 		header = {'content-length': '0'}
 		status = 204
-		return self.get_aut_response(method, url, '', header, status)
+		return self.get_aut_response(method, url, None, header, status)
