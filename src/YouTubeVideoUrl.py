@@ -234,7 +234,7 @@ class YouTubeVideoUrl():
 		if not player_response:
 			raise RuntimeError('Player response not found!')
 
-		playability_status = player_response.get('playabilityStatus') or {}
+		playability_status = player_response.get('playabilityStatus', {})
 
 		trailer_video_id = try_get(playability_status,
 				lambda x: x['errorScreen']['playerLegacyDesktopYpcTrailerRenderer']['trailerVideoId'],
@@ -247,16 +247,16 @@ class YouTubeVideoUrl():
 			print('[YouTubeVideoUrl] Age gate content')
 			player_response = self._extract_player_response(video_id, True)
 
-		streaming_data = player_response.get('streamingData') or {}
+		streaming_data = player_response.get('streamingData', {})
 		is_live = try_get(player_response, lambda x: x['videoDetails']['isLive'])
-		streaming_formats = streaming_data.get('formats') or []
+		streaming_formats = streaming_data.get('formats', [])
 
 		# If priority format changed in config, recreate priority list
 		if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.value:
 			create_priority_formats()
 
 		if not is_live and streaming_formats:
-			streaming_formats.extend(streaming_data.get('adaptiveFormats') or [])
+			streaming_formats.extend(streaming_data.get('adaptiveFormats', []))
 
 			if config.plugins.YouTube.useDashMP4.value:
 				self.use_dash_mp4 = []
@@ -307,7 +307,7 @@ class YouTubeVideoUrl():
 
 			def get_text(x):
 				if x:
-					return x.get('simpleText') or ''.join([r['text'] for r in x['runs']])
+					return x.get('simpleText', '').join([r['text'] for r in x['runs']])
 
 			reason = get_text(pemr.get('reason')) or playability_status.get('reason')
 			if reason:
