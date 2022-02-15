@@ -626,9 +626,8 @@ from Screens.Screen import Screen
 
 
 class new_movie_player(Screen):
-	def __init__(self, session, service, *args):
+	def __init__(self, session, *args):
 		Screen.__init__(self, session)
-		print('[MoviePlayer] service:', service.getName())
 
 
 def ngettext(singular, plural, n):
