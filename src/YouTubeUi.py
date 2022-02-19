@@ -128,7 +128,14 @@ class YouTubePlayer(MoviePlayer):
 	def __serviceStart(self):  # pragma: no cover
 		if not self.started:
 			self.started = True
-			self.lastPosition = eval(config.plugins.YouTube.lastPosition.value)
+			try:
+				self.lastPosition = eval(config.plugins.YouTube.lastPosition.value)
+			except SyntaxError:
+				print('[YouTubePlayer] wrong last position config settings!')
+				config.plugins.YouTube.lastPosition.value = '[]'
+				config.plugins.YouTube.lastPosition.save()
+				self.lastPosition = []
+
 			if self.current[0] in self.lastPosition:
 				idx = self.lastPosition.index(self.current[0])
 				self.lastPosition.pop(idx)
