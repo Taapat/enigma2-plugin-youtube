@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [2.7, 3.8]
+        python-version: ['2.7', '3.10']
     steps:
       - uses: actions/checkout@v2
         with:
@@ -111,11 +111,11 @@ jobs:
         python-version: [2.7]
         include:
           - enigma2-version: 'OpenPLi python3'
-            python-version: 3.8
+            python-version: '3.10'
           - enigma2-version: 'openatv 7.0'
-            python-version: 3.8
+            python-version: '3.10'
           - enigma2-version: 'OpenViX Dev-python3-compatible'
-            python-version: 3.8
+            python-version: '3.10'
         exclude:
           - enigma2-version: 'OpenPLi python3'
             python-version: 2.7
