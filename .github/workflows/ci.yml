@@ -152,7 +152,7 @@ jobs:
           ln -s ../../../../../src YouTube
       - name: Patch enigma step 1
         run: |
-          sed -i 's/, domStyle, /, domStyle.getroot(), /g' enigma2/lib/python/skin.py
+          [ -e enigma2/lib/python/skin.py ] && sed -i 's/, domStyle, /, domStyle.getroot(), /g' enigma2/lib/python/skin.py
       - name: Patch enigma step 2
         if: steps.split.outputs._0 == 'openatv' || steps.split.outputs._0 == 'OpenViX'
         run: |
