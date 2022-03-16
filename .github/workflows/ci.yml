@@ -114,14 +114,14 @@ jobs:
             python-version: '3.10'
           - enigma2-version: 'openatv 7.0'
             python-version: '3.10'
-          - enigma2-version: 'OpenViX Dev-python3-compatible'
+          - enigma2-version: 'OpenViX Developer'
             python-version: '3.10'
         exclude:
           - enigma2-version: 'OpenPLi python3'
             python-version: 2.7
           - enigma2-version: 'openatv 7.0'
             python-version: 2.7
-          - enigma2-version: 'OpenViX Dev-python3-compatible'
+          - enigma2-version: 'OpenViX Developer'
             python-version: 2.7
     steps:
       - uses: actions/checkout@v2
