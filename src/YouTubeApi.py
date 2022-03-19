@@ -29,12 +29,14 @@ class YouTubeApi:
 		response = {}
 		status_code = 'Unknown'
 		try:
-			response = compat_urlopen(url_or_request)
+			response = compat_urlopen(url_or_request, timeout=5)
 		except compat_HTTPError as e:
 			print('[YouTubeApi] HTTP Error in get response', e)
 			status_code = e.getcode()
 		except compat_URLError as e:
 			print('[YouTubeApi] URL Error in get response', e)
+		except Exception as e:
+			print('[YouTubeApi] Error in get response', e)
 		else:
 			if response:
 				status_code = response.getcode()

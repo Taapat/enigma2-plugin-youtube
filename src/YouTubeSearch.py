@@ -383,7 +383,7 @@ class GoogleSuggestionsConfigText(ConfigText):
 		suggestions = [('', None)]
 		query_value = self.value
 		try:
-			response = compat_urlopen(self.url + compat_quote(query_value))
+			response = compat_urlopen(self.url + compat_quote(query_value), timeout=3)
 			content_type = response.headers.get('Content-Type', '')
 			if 'charset=' in content_type:
 				charset = content_type.split('charset=', 1)[1]

@@ -120,7 +120,7 @@ class YouTubeVideoUrl():
 			url_or_request.get_method = lambda: 'POST'
 
 		try:
-			urlh = compat_urlopen(url_or_request)
+			urlh = compat_urlopen(url_or_request, timeout=5)
 		except compat_URLError as e:  # pragma: no cover
 			raise RuntimeError(e.reason)
 

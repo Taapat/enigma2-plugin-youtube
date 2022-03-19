@@ -61,7 +61,7 @@ class OAuth:
 		request.get_method = lambda: 'POST'
 		response = None
 		try:
-			response = compat_urlopen(request)
+			response = compat_urlopen(request, timeout=5)
 		except Exception as e:
 			print('[OAuth] Error in auth response', e)
 		else:
