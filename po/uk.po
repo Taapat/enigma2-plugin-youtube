@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-11 16:10+0000\n"
+"POT-Creation-Date: 2022-03-20 14:43+0200\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: kvinto <kvinto@rambler.ru>\n"
 "Language-Team: <kvinto  sat-ukraine.info>\n"
@@ -314,10 +314,6 @@ msgstr "Результати пошуку:"
 
 msgid "Search videos"
 msgstr "Пошук відео"
-
-#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
-msgid "ServiceApp"
-msgstr ""
 
 #, fuzzy
 msgid "Show related videos"

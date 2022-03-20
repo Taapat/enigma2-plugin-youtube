@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin for Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-11 16:10+0000\n"
+"POT-Creation-Date: 2022-03-20 14:43+0200\n"
 "PO-Revision-Date: 2018-11-19 00:44+0000\n"
 "Last-Translator: nunigaia\n"
 "Language-Team: BH Team\n"
@@ -321,10 +321,6 @@ msgstr "Resultados de busca:"
 
 msgid "Search videos"
 msgstr "Procurar vídeos"
-
-#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
-msgid "ServiceApp"
-msgstr ""
 
 #, fuzzy
 msgid "Show related videos"

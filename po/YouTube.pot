@@ -288,10 +288,6 @@ msgstr ""
 msgid "Search videos"
 msgstr ""
 
-#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
-msgid "ServiceApp"
-msgstr ""
-
 msgid "Show related videos"
 msgstr ""
 

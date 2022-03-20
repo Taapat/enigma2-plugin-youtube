@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-11 16:10+0000\n"
+"POT-Creation-Date: 2022-03-20 14:43+0200\n"
 "PO-Revision-Date: 2020-06-13 12:57+0200\n"
 "Last-Translator: Andihawke <reinerploner@gmail.com>\n"
 "Language-Team: Ims\n"
@@ -316,10 +316,6 @@ msgstr "Výsledky vyhledávání:"
 
 msgid "Search videos"
 msgstr "Hledat videa"
-
-#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
-msgid "ServiceApp"
-msgstr ""
 
 #, fuzzy
 msgid "Show related videos"

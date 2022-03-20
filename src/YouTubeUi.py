@@ -388,8 +388,7 @@ class YouTubeMain(Screen):
 		self.onLayoutFinish.append(self.layoutFinish)
 		self.onClose.append(self.cleanVariables)
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
-			# TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
-			if p.name == _('ServiceApp'):
+			if 'ServiceApp' in p.path:
 				break
 		else:
 			config.plugins.YouTube.player.value = '4097'
@@ -1499,8 +1498,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 				config.plugins.YouTube.mergeFiles,
 				_('FFmpeg will be used to merge downloaded DASH video and audio files.\nFFmpeg will be installed if necessary.')))
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
-			# TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
-			if p.name == _('ServiceApp'):  # pragma: no cover
+			if 'ServiceApp' in p.path:  # pragma: no cover
 				self.list.append(getConfigListEntry(_('Media player:'),
 					config.plugins.YouTube.player,
 					_('Specify the player which will be used for YouTube media playback.')))
