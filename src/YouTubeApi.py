@@ -25,7 +25,7 @@ class YouTubeApi:
 		if self.access_token:
 			self.key += '&access_token=%s' % self.access_token
 
-	def try_response(self, url_or_request):
+	def try_response(self, url_or_request, renew=True):
 		response = {}
 		status_code = 'Unknown'
 		try:
@@ -42,10 +42,10 @@ class YouTubeApi:
 				status_code = response.getcode()
 			elif response is None:
 				response = {}
-		if status_code == 401 and self.access_token:
+		if status_code == 401 and self.access_token and renew:
 			print('[YouTubeApi] Unauthorized get response, try get new access token')
 			self.renew_access_token()
-			response, status_code = self.try_response(url_or_request)
+			response, status_code = self.try_response(url_or_request, False)
 		return response, status_code
 
 	def get_response(self, url, maxResults, pageToken):
