@@ -389,10 +389,10 @@ class YouTubeMain(Screen):
 		self.onLayoutFinish.append(self.layoutFinish)
 		self.onClose.append(self.cleanVariables)
 		self.locale = getlocale(LC_CTYPE)
-		if self.locale[0] not in (None, 'en_US'):
-			# Workaround to fix ssl error unable to find public key parameters with some (turkish) LC_CTYPE
+		if self.locale[0] is not None:
+			# Fix ssl error unable to find public key parameters on some (turkish) LC_CTYPE
 			try:
-				setlocale(LC_CTYPE, locale=('en_US', 'UTF-8'))
+				setlocale(LC_CTYPE, locale=(None, None))
 			except Error as e:
 				print('[YouTube] Error on set locale:', e)
 				self.locale = (None, None)
@@ -440,7 +440,7 @@ class YouTubeMain(Screen):
 		self.thumbnails = None
 		self.ytapi = None
 		self.ytdl = None
-		if self.locale[0] not in (None, 'en_US'):
+		if self.locale[0] is not None:
 			setlocale(LC_CTYPE, locale=self.locale)
 
 	def showButtons(self):
