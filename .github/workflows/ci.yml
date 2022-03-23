@@ -151,7 +151,7 @@ jobs:
         run: |
           ln -s ../../../../../src YouTube
       - name: Patch enigma step 1
-        continue-on-error: true
+        if: matrix.enigma2-version != 'OpenPLi release-6.2' && matrix.enigma2-version != 'openatv 6.4' && matrix.enigma2-version != 'Taapat bh'
         run: |
           sed -i 's/, domStyle, /, domStyle.getroot(), /g' enigma2/lib/python/skin.py
       - name: Patch enigma step 2

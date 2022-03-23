@@ -390,7 +390,7 @@ class YouTubeMain(Screen):
 		self.onClose.append(self.cleanVariables)
 		self.locale = getlocale(LC_CTYPE)
 		if self.locale[0] is not None:
-			# Fix ssl error unable to find public key parameters on some (turkish) LC_CTYPE
+			# Workaround to fix ssl error unable to find public key parameters with some (turkish) LC_CTYPE
 			try:
 				setlocale(LC_CTYPE, locale=(None, None))
 			except Error as e:
