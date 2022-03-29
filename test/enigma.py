@@ -1,5 +1,7 @@
 from __future__ import print_function
 
+from os import environ
+
 
 RT_HALIGN_BIDI = 0
 RT_HALIGN_LEFT = 1
@@ -612,6 +614,7 @@ def new_activate_language(self, index):
 		index = 'de_DE'
 	self.lang[index] = ('Deutsch', 'de', 'DE', 'ISO-8859-15')
 	self.activeLanguage = index
+	environ["LANGUAGE2"] = 'de_DE'  # OpenVix
 	print('Activating language de_DE')
 
 
