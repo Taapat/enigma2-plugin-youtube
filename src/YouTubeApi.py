@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 from json import dumps, load
+from socket import error
 
 from .compat import compat_quote
 from .compat import compat_urlopen
@@ -56,7 +57,12 @@ class YouTubeApi:
 				self.key)
 		response, status_code = self.try_response(url)
 		if response and status_code == 200:
-			return load(response)
+			try:
+				response = load(response)
+			except error as e:
+				print('[YouTubeApi] Socket error in load response', e)
+			else:
+				return response
 		return {}
 
 	def get_aut_response(self, method, url, data, header, status):
