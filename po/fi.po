@@ -7,29 +7,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-20 14:43+0200\n"
-"PO-Revision-Date: 2016-08-24 10:46+0200\n"
-"Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
-"Language-Team: \n"
-"Language: \n"
+"POT-Creation-Date: 2021-11-11 16:10+0000\n"
+"PO-Revision-Date: 2022-04-13 19:10+0300\n"
+"Last-Translator: Orlandox\n"
+"Language-Team: Samzam <http://www.world-of-satellite.com>, Orlandox\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, python-format
 msgid "  (%d-%d of %d)"
-msgstr "  (%d-%d of %d)"
+msgstr "  (%d-%d %d:sta)"
 
 msgid " likes"
-msgstr "tykkää"
+msgstr " tykkäystä"
 
 msgid " views"
 msgstr " näyttökertaa"
 
 #, python-format
 msgid "%.1fMB"
-msgstr ""
+msgstr "%.1fMB"
 
 msgid "Active video downloads"
 msgstr "Aktiivisia videolatauksia"
@@ -38,17 +39,16 @@ msgid "All"
 msgstr "Kaikki"
 
 msgid "Alphabetically"
-msgstr ""
+msgstr "Aakkosjärjestyksessä"
 
 msgid "Ask user"
-msgstr "Kysytään mitä tehdään"
+msgstr "Kysy käyttäjältä"
 
 msgid "By activity"
-msgstr ""
+msgstr "Aktiivisuuden mukaan"
 
-#, fuzzy
 msgid "By relevance"
-msgstr "Vastaavuus"
+msgstr "Relevanssin mukaan"
 
 msgid "Cancel"
 msgstr "Peruuta"
@@ -63,13 +63,13 @@ msgid "Created date"
 msgstr "Luontipäivä"
 
 msgid "Default"
-msgstr ""
+msgstr "Oletus"
 
 msgid "Delete this entry"
 msgstr "Poista tämä valinta"
 
 msgid "Disliked!"
-msgstr "Ei tykätty!"
+msgstr "Inhottu!"
 
 msgid "Download directory:"
 msgstr "Latauskansio:"
@@ -87,19 +87,19 @@ msgid "Downloading"
 msgstr "Ladataan"
 
 msgid "Duration: "
-msgstr "Kesto:"
+msgstr "Kesto: "
 
 msgid "Embedded in webpages"
 msgstr "Internetsivujen videot"
 
 msgid "Exclude restricted content:"
-msgstr "Sisällön rajoitus"
+msgstr "Sisällön rajoitus:"
 
 msgid "Exit"
 msgstr "Poistu"
 
 msgid "Exteplayer"
-msgstr ""
+msgstr "Exteplayer"
 
 msgid "Extract video url. Please wait..."
 msgstr "Haetaan videon url-osoitetta. Odota..."
@@ -108,6 +108,8 @@ msgid ""
 "FFmpeg will be used to merge downloaded DASH video and audio files.\n"
 "FFmpeg will be installed if necessary."
 msgstr ""
+"FFmpeg:a käytetään yhdistämään ladatut DASH- video- ja äänitiedostot.\n"
+"FFmpeg asennetaan tarvittaessa."
 
 #, python-format
 msgid ""
@@ -118,7 +120,7 @@ msgstr ""
 "Ja syötä koodi %s"
 
 msgid "Gstplayer"
-msgstr ""
+msgstr "Gstplayer"
 
 msgid "HD videos"
 msgstr "HD videot"
@@ -128,7 +130,7 @@ msgid ""
 "If greater value then longer time will be needed for thumbnail download."
 msgstr ""
 "Kuinka monta hakutulosta noudetaan.\n"
-"Mitä suurempi luku sitä pidempään haku kestää."
+"Mitä suurempi luku sitä pidempi aika tarvitaan esikatselukuvien lataukseen."
 
 msgid "I dislike this"
 msgstr "En tykkää tästä"
@@ -148,9 +150,8 @@ msgstr "Tykätyt videot"
 msgid "Liked!"
 msgstr "Tykätty!"
 
-#, fuzzy
 msgid "Live broadcast"
-msgstr "Hae suoria lähetyksiä"
+msgstr "Suora lähetys"
 
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"
@@ -160,16 +161,16 @@ msgstr ""
 "Tämä vaatii hyväksynnän Googlen kotisivuilta!"
 
 msgid "Login on startup:"
-msgstr "Kirjaudu käynnistettäessä"
+msgstr "Kirjaudu käynnistettäessä:"
 
 msgid "Maximum video resolution:"
-msgstr "Maksimi video resoluutio"
+msgstr "Maksimi videon resoluutio:"
 
 msgid "Media player:"
-msgstr ""
+msgstr "Media soitin:"
 
 msgid "Merge downloaded files:"
-msgstr ""
+msgstr "Yhdistä ladatut tiedostot:"
 
 msgid "Moderate"
 msgstr "Osittainen"
@@ -181,16 +182,16 @@ msgid "Movies"
 msgstr "Elokuvat"
 
 msgid "My Subscriptions"
-msgstr "Minun seuraamat"
+msgstr "Minun tilaamat"
 
 msgid "My feeds"
 msgstr "Minun syötteet"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Next %s entry"
 msgid_plural "Next %s entries"
-msgstr[0] "Seuraavat %s sisällöt"
-msgstr[1] "Seuraavat %s sisällöt"
+msgstr[0] "Seuraava %s sisältö"
+msgstr[1] "Seuraavat %s sisältöä"
 
 msgid "No"
 msgstr "Ei"
@@ -199,17 +200,16 @@ msgid "No, but play video again"
 msgstr "Ei, mutta toista video uudestaan"
 
 msgid "OK"
-msgstr "Ok"
+msgstr "OK"
 
 msgid "Open"
 msgstr "Avaa"
 
 msgid "Order in which search results will be displayed."
-msgstr "Järjestys jossa hakutulokset näytetään"
+msgstr "Järjestys jossa hakutulokset näytetään."
 
-#, fuzzy
 msgid "Order in which subscriptions results will be displayed."
-msgstr "Järjestys jossa hakutulokset näytetään"
+msgstr "Järjestys jossa tilausteni hakutulokset näytetään."
 
 msgid "Play next"
 msgstr "Toista seuraava"
@@ -232,20 +232,20 @@ msgstr "Toistolista"
 msgid "Please select the download directory"
 msgstr "Valitse latauskansio"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Previous %s entry"
 msgid_plural "Previous %s entries"
-msgstr[0] "Edelliset %s sisällöt"
-msgstr[1] "Edelliset %s sisällöt"
+msgstr[0] "Edellinen %s sisältö"
+msgstr[1] "Edelliset %s sisältöä"
 
 msgid "Public feeds"
-msgstr "Luokitellut videot"
+msgstr "Julkiset syötteet"
 
 msgid "Published at: "
-msgstr "Julkaistu:"
+msgstr "Julkaistu: "
 
 msgid "Quit"
-msgstr "Poistu"
+msgstr "Lopeta"
 
 msgid "Rate video"
 msgstr "Arvostele video"
@@ -259,9 +259,8 @@ msgstr "Arvostelu poistettu!"
 msgid "Recent"
 msgstr "Viimeisimmät"
 
-#, fuzzy
 msgid "Related videos"
-msgstr "Arvostele video"
+msgstr "Liittyvät videot"
 
 msgid "Relevance"
 msgstr "Vastaavuus"
@@ -273,22 +272,22 @@ msgid "Repeat"
 msgstr "Toista uudelleen"
 
 msgid "Resume playback from the previous position?"
-msgstr ""
+msgstr "Jatka toistoa edellisestä positiosta?"
 
 msgid "Return search results for the specified country."
-msgstr "Hae tietystä maasta"
+msgstr "Hae tietystä maasta."
 
 msgid "Return search results that are most relevant to the specified language."
-msgstr "Hae tietyllä kielellä"
+msgstr "Hae tietyllä kielellä."
 
 msgid "Return to list"
 msgstr "Palaa listaan"
 
 msgid "Save search result:"
-msgstr "Tallenna hakutulos"
+msgstr "Tallenna hakutulos:"
 
 msgid "Save your search result in the history, when search completed."
-msgstr "Tallenna hakusi hakuhistoriaan kun haku on valmis"
+msgstr "Tallenna hakusi hakuhistoriaan, kun haku on valmis."
 
 msgid "Search"
 msgstr "Hae"
@@ -306,10 +305,10 @@ msgid "Search live broadcasts"
 msgstr "Hae suoria lähetyksiä"
 
 msgid "Search playlists"
-msgstr "Hae toistolistoja"
+msgstr "Hae soittolistoja"
 
 msgid "Search region:"
-msgstr "Hae aluellta:"
+msgstr "Hae alueelta:"
 
 msgid "Search results:"
 msgstr "Hakutulokset:"
@@ -317,9 +316,12 @@ msgstr "Hakutulokset:"
 msgid "Search videos"
 msgstr "Hae videoita"
 
-#, fuzzy
+#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
+msgid "ServiceApp"
+msgstr ""
+
 msgid "Show related videos"
-msgstr "Lataa video"
+msgstr "Näytä liittyvät videot"
 
 msgid "Shows"
 msgstr "Show:t"
@@ -342,20 +344,21 @@ msgstr ""
 msgid "Sort search results by:"
 msgstr "Lajittele hakutulokset:"
 
-#, fuzzy
 msgid "Sort subscriptions:"
-msgstr "Minun seuraamat"
+msgstr "Lajittele seuraamani:"
 
 msgid ""
 "Specify or you want to use DASH MP4 format streams if available.\n"
 "This requires playing two streams together and may cause problems for some receivers."
 msgstr ""
+"Määritä vai haluatko käyttää DASH MP4 -formaatin striimejä, jos saatavilla.\n"
+"Tämä vaatii kahden striimin toiston yhdessä ja voi aiheuttaa ongelmia joissain vastaanottimissa."
 
 msgid "Specify the directory where save downloaded video files."
-msgstr "Määritä kansio jonne videot tallennetaan."
+msgstr "Määritä kansio, jonne ladatut videot tallennetaan."
 
 msgid "Specify the player which will be used for YouTube media playback."
-msgstr ""
+msgstr "Määritä soitin, jota käytetään YouTube median toistoon."
 
 msgid "Stop playing this movie?"
 msgstr "Pysäytä tämän videon toisto?"
@@ -395,6 +398,9 @@ msgid ""
 "FFmpeg can take a lot of space!\n"
 "Do you want to continue?"
 msgstr ""
+"Ladattujen tiedostojen yhdistämistä varten FFmpeg asennetaan.\n"
+"FFmpeg voi viedä paljon levytilaa!\n"
+"Haluatko jatkaa?"
 
 msgid ""
 "To perform authentication will need in a web browser open Google home page, and enter the code!\n"
@@ -422,7 +428,7 @@ msgid "Use"
 msgstr "Käytä"
 
 msgid "Use DASH MP4 format:"
-msgstr ""
+msgstr "Käytä DASH MP4 -formaattia:"
 
 msgid "Video download started!"
 msgstr "Videon lataus alkoi!"
@@ -447,7 +453,7 @@ msgstr ""
 "Jos sinulla on hidas internetnopeus, voit pienentää resoluutiota."
 
 msgid "What to do when stop playback in videoplayer."
-msgstr "Mitä tehdään kun videon toisto loppuu."
+msgstr "Mitä tehdään kun videon toisto pysäytetään."
 
 msgid "What to do when the video ends."
 msgstr "Mitä tehdään kun video loppuu."
@@ -461,12 +467,11 @@ msgstr "Kun video loppuu:"
 msgid "Yes"
 msgstr "Kyllä"
 
-#, fuzzy
 msgid "Yes, and return to list"
-msgstr "Palaa listaan"
+msgstr "Kyllä, ja palaa listaan"
 
 msgid "Yes, and show related videos"
-msgstr ""
+msgstr "Kyllä, ja näytä liittyvät videot"
 
 msgid "Yes, but play next video"
 msgstr "Kyllä, mutta toista seuraava video"
@@ -486,6 +491,9 @@ msgid ""
 "Installed FFmpeg is no longer necessary.\n"
 "Do you want to remove FFmpeg?"
 msgstr ""
+"Olet estänyt ladatun tiedoston yhdistämisen.\n"
+"Asennettu FFmpeg ei enää ole tarpeellinen.\n"
+"Haluatko poistaa FFmpeg:n?"
 
 msgid "YouTube"
 msgstr "YouTube"
