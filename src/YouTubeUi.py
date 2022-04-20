@@ -2,7 +2,6 @@ from __future__ import print_function
 
 import os
 from copy import copy
-from locale import LC_CTYPE, Error, getlocale, setlocale
 
 from enigma import eServiceReference, eTimer, iPlayableService
 from Components.ActionMap import ActionMap
@@ -388,14 +387,6 @@ class YouTubeMain(Screen):
 		self.yts = [{}]
 		self.onLayoutFinish.append(self.layoutFinish)
 		self.onClose.append(self.cleanVariables)
-		self.locale = getlocale(LC_CTYPE)
-		if self.locale[0] is not None:
-			# Workaround to fix ssl error unable to find public key parameters with some (turkish) LC_CTYPE
-			try:
-				setlocale(LC_CTYPE, locale=(None, None))
-			except Error as e:
-				print('[YouTube] Error on set locale:', e)
-				self.locale = (None, None)
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
 			if 'ServiceApp' in p.path:
 				break
@@ -440,8 +431,6 @@ class YouTubeMain(Screen):
 		self.thumbnails = None
 		self.ytapi = None
 		self.ytdl = None
-		if self.locale[0] is not None:
-			setlocale(LC_CTYPE, locale=self.locale)
 
 	def showButtons(self):
 		self['red'].show()
