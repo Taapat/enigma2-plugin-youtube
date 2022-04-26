@@ -597,7 +597,7 @@ class YouTubeMain(Screen):
 										'Extensions/YouTube/icons/%s.png' % entry_id))
 				else:
 					try:
-						compat_urlretrieve(url+'_wrong', '/tmp/%s.jpg' % str(entry_id))
+						compat_urlretrieve(url + '_wrong', '/tmp/%s.jpg' % str(entry_id))
 					except Exception as e:
 						print('[YouTube] Thumbnail download error', url, e)
 						try:
