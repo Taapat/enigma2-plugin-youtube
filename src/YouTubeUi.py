@@ -597,12 +597,17 @@ class YouTubeMain(Screen):
 										'Extensions/YouTube/icons/%s.png' % entry_id))
 				else:
 					try:
-						compat_urlretrieve(url, '/tmp/%s.jpg' % str(entry_id))
+						compat_urlretrieve(url+'_wrong', '/tmp/%s.jpg' % str(entry_id))
 					except Exception as e:
-						print('[YouTube] Thumbnail download error', e)
-						self.decodeThumbnail(entry_id)
-					else:
-						self.decodeThumbnail(entry_id, '/tmp/%s.jpg' % str(entry_id))
+						print('[YouTube] Thumbnail download error', url, e)
+						try:
+							compat_urlretrieve(url, '/tmp/%s.jpg' % str(entry_id))
+						except Exception as e:
+							print('[YouTube] Thumbnail download error', url, e)
+							self.decodeThumbnail(entry_id)
+						else:
+							print('[YouTube] Thumbnail download pass', url)
+							self.decodeThumbnail(entry_id, '/tmp/%s.jpg' % str(entry_id))
 
 	def decodeThumbnail(self, entry_id, image=None):
 		if not image or not os.path.exists(image):
