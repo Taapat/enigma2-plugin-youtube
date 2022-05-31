@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: YouTube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-11 16:10+0000\n"
+"POT-Creation-Date: 2022-05-31 20:44+0000\n"
 "PO-Revision-Date: 2022-04-13 19:10+0300\n"
 "Last-Translator: Orlandox\n"
 "Language-Team: Samzam <http://www.world-of-satellite.com>, Orlandox\n"
@@ -315,10 +315,6 @@ msgstr "Hakutulokset:"
 
 msgid "Search videos"
 msgstr "Hae videoita"
-
-#. TRANSLATORS: Don't translate this! It is used as a variable, so it must be equal to the translation in the plugin!
-msgid "ServiceApp"
-msgstr ""
 
 msgid "Show related videos"
 msgstr "Näytä liittyvät videot"
