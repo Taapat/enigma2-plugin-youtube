@@ -371,6 +371,11 @@ class ePixmapPosition:
 
 class eWidget(_einstances):
 	wfNoBorder = None
+	showOnDemand = None
+	showAlways = None
+	showNever = None
+	showLeftOnDemand = None
+	showLeftAlways = None
 
 	def __init__(self, *args):
 		self.selectionChanged = _einstances()
