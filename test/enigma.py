@@ -376,6 +376,10 @@ class eWidget(_einstances):
 	showNever = None
 	showLeftOnDemand = None
 	showLeftAlways = None
+	DefaultScrollBarBorderWidth = 0
+	DefaultScrollBarOffset = 0
+	DefaultScrollBarScroll = 0
+	DefaultScrollBarWidth = 0
 
 	def __init__(self, *args):
 		self.selectionChanged = _einstances()
