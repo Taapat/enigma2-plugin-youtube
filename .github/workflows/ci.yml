@@ -146,6 +146,10 @@ jobs:
       - name: Install dependencies
         run: |
           pip install twisted==20.3.0 pyopenssl service_identity
+      - name: Install additional dependencies
+        if: matrix.enigma2-version == 'openatv 7.0'
+        run: |
+          pip install requests
       - name: Link plugin files for test
         working-directory: './enigma2/lib/python/Plugins/Extensions'
         run: |
