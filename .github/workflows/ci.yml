@@ -147,7 +147,7 @@ jobs:
         run: |
           pip install twisted==20.3.0 pyopenssl service_identity
       - name: Install additional dependencies
-        if: matrix.enigma2-version == 'openatv 7.0'
+        if: matrix.enigma2-version == 'openatv 7.0' || matrix.enigma2-version == 'OpenViX Developer'
         run: |
           pip install requests
       - name: Link plugin files for test
