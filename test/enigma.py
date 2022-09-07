@@ -90,6 +90,7 @@ eRCInput = _einstances()
 eRFmod = _einstances()
 eServiceCenter = _einstances()
 eServiceEvent = _einstances()
+eServiceEventEnums = _einstances()
 eSlider = _einstances()
 eStreamServer = _einstances()
 fontRenderClass = _einstances()
@@ -680,6 +681,7 @@ def start_session():
 		config.crash = ConfigSubsection()
 		config.crash.debugActionMaps = ConfigYesNo(default=False)
 		config.crash.debugKeyboards = ConfigYesNo(default=False)
+		config.crash.debugTimers = ConfigYesNo(default=False)
 		config.plugins = ConfigSubsection()
 		from Screens import InfoBar
 	InfoBar.MoviePlayer = new_movie_player
