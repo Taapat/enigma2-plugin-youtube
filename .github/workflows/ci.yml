@@ -149,7 +149,7 @@ jobs:
       - name: Install additional dependencies
         if: matrix.enigma2-version == 'openatv 7.0' || matrix.enigma2-version == 'OpenViX Developer'
         run: |
-          pip install requests
+          pip install requests chardet
       - name: Link plugin files for test
         working-directory: './enigma2/lib/python/Plugins/Extensions'
         run: |
