@@ -150,6 +150,9 @@ class eTimer:
 	def stop(self):
 		self.callback_thread = None
 
+	def isActive(self):
+		return self.callback_thread
+
 
 class pNavigation(_einstances):
 	isRealRecording = 1
