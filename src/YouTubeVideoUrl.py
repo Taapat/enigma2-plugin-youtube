@@ -212,16 +212,18 @@ class YouTubeVideoUrl():
 		return ''
 
 	def _extract_player_response(self, video_id, age_gate=False):
-		url = 'https://www.youtube.com/youtubei/v1/player?key=AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w'
+		url = 'https://www.youtube.com/youtubei/v1/player?key=AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w&bpctr=9999999999&has_verified=1'
 		data = {'videoId': video_id,
 				'context': {'client': {
 						'hl': 'en',
-						'clientVersion': '16.49',
+						'clientVersion': '17.31.35',
+						'androidSdkVersion': 30,
+						'userAgent': 'com.google.android.youtube/17.31.35 (Linux; U; Android 11) gzip',
 						'clientName': 'ANDROID'}}}
 		headers = {'Content-Type': 'application/json',
 				'Origin': 'https://www.youtube.com',
 				'X-YouTube-Client-Name': '3',
-				'X-YouTube-Client-Version': '16.20'}
+				'X-YouTube-Client-Version': '17.31.35'}
 		if age_gate:
 			data['thirdParty'] = 'https://google.com'
 			data['context']['client']['clientScreen'] = 'EMBED'
