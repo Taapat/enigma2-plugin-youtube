@@ -84,11 +84,6 @@ class YouTubeVideoUrl():
 	def __init__(self):
 		self.use_dash_mp4 = []
 
-	def _download_webpage(self, url, data=None, headers={}):
-		""" Return the data of the page as a string """
-		content, urlh = self._download_webpage_handle(url, data, headers)
-		return content
-
 	@staticmethod
 	def _guess_encoding_from_content(content_type, webpage_bytes):
 		m = re.match(r'[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+\s*;\s*charset=(.+)', content_type)
@@ -106,21 +101,17 @@ class YouTubeVideoUrl():
 
 		return encoding
 
-	def _download_webpage_handle(self, url_or_request, data=None, headers={}):
-		""" Returns a tuple (page content as string, URL handle) """
-
-		# Strip hashes from the URL (#1038)
-		if isinstance(url_or_request, (compat_str, str)):
-			url_or_request = url_or_request.partition('#')[0]
+	def _download_webpage(self, url, data=None, headers={}):
+		""" Return the data of the page as a string """
 
 		if data:
 			data = dumps(data).encode('utf8')
 		if data or headers:
-			url_or_request = compat_Request(url_or_request, data=data, headers=headers)
-			url_or_request.get_method = lambda: 'POST'
+			url = compat_Request(url, data=data, headers=headers)
+			url.get_method = lambda: 'POST'
 
 		try:
-			urlh = compat_urlopen(url_or_request, timeout=5)
+			urlh = compat_urlopen(url, timeout=5)
 		except compat_URLError as e:  # pragma: no cover
 			raise RuntimeError(e.reason)
 
@@ -133,7 +124,7 @@ class YouTubeVideoUrl():
 		except Exception:  # pragma: no cover
 			content = webpage_bytes.decode('utf-8', 'replace')
 
-		return (content, urlh)
+		return content
 
 	@staticmethod
 	def _search_regex(pattern, string, group=None):
@@ -172,13 +163,6 @@ class YouTubeVideoUrl():
 			itag = self._search_regex(r'itag/(\d+?)/', format_url)
 			url_map[itag] = format_url
 		return url_map
-
-	@staticmethod
-	def _parse_json(json_string):
-		try:
-			return loads(json_string)
-		except ValueError:  # pragma: no cover
-			print('[YouTubeVideoUrl] Failed to parse JSON')
 
 	def _not_in_fmt(self, fmt):
 		return not (fmt.get('targetDurationSec') or
@@ -227,7 +211,10 @@ class YouTubeVideoUrl():
 		if age_gate:
 			data['thirdParty'] = 'https://google.com'
 			data['context']['client']['clientScreen'] = 'EMBED'
-		return self._parse_json(self._download_webpage(url, data, headers))
+		try:
+			return loads(self._download_webpage(url, data, headers))
+		except ValueError:  # pragma: no cover
+			print('[YouTubeVideoUrl] Failed to parse JSON')
 
 	def _real_extract(self, video_id):
 		url = ''
