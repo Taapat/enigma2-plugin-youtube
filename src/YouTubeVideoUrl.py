@@ -202,11 +202,11 @@ class YouTubeVideoUrl():
 						'hl': 'en',
 						'clientVersion': '17.31.35',
 						'androidSdkVersion': 30,
-						'userAgent': 'com.google.android.youtube/17.31.35 (Linux; U; Android 11) gzip',
 						'clientName': 'ANDROID'}}}
 		headers = {'Content-Type': 'application/json',
 				'Origin': 'https://www.youtube.com',
 				'X-YouTube-Client-Name': '3',
+				'User-Agent': 'com.google.android.youtube/17.31.35 (Linux; U; Android 11) gzip',
 				'X-YouTube-Client-Version': '17.31.35'}
 		if age_gate:
 			data['thirdParty'] = 'https://google.com'
