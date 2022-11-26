@@ -402,6 +402,9 @@ class eWidget(_einstances):
 	def calculateSize(self):
 		return _getDesktop()
 
+	def calculateTextSize(self, *args):
+		return _getDesktop()
+
 	def moveSelectionTo(self, index):
 		if index >= 0:
 			global sel_index
