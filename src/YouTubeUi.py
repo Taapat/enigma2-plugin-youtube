@@ -382,6 +382,7 @@ class YouTubeMain(Screen):
 		self.is_auth = False
 		self.search_result = config.plugins.YouTube.searchResult.value
 		self.thumbnails = {}
+		self.thumbnails['default'] = ''  # Workaround for python 2.7 test
 		self.use_picload = True
 		self.ytapi = None
 		self.yts = [{}]
