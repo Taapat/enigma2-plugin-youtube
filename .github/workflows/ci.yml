@@ -67,7 +67,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Upgrade pip
@@ -140,7 +140,7 @@ jobs:
           path: './enigma2'
           fetch-depth: 0
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
@@ -207,7 +207,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Set up Python 2.7
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '2.7'
       - name: Install coverage dependencies
@@ -277,7 +277,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Set up Python 2.7
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '2.7'
       - name: Install dependencies
