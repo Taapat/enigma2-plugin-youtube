@@ -56,7 +56,7 @@ config.plugins.YouTube.searchLanguage = ConfigSelection(
 	default=language.getLanguage().split('_')[0],
 	choices=[('', _('All'))] + [(x[1][1], x[1][0]) for x in language.getLanguageList()])
 config.plugins.YouTube.searchOrder = ConfigSelection(default='relevance',
-	choices=[('relevance', _('Relevanced')),
+	choices=[('relevance', _('Relevance')),
 		('date', _('Created date')),
 		('rating', _('Rating')),
 		('title', _('Title')),
