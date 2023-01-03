@@ -180,6 +180,11 @@ jobs:
           sed -i 's/\/root/./g' enigma2/lib/python/Components/UsageConfig.py
           sed -i 's/\/usr/./g' enigma2/lib/python/Components/UsageConfig.py
           sed -i 's/addNotifier(iAVSwitch/addNotifier(iAVSwitch.setPolicy169) #/g' enigma2/lib/python/Components/AVSwitch.py
+      - name: Patch enigma step 4
+        if: matrix.enigma2-version == 'OpenPLi develop'
+        working-directory: './enigma2/data'
+        run: |
+          python convert-iso-639-3.py
       - name: ========== Test plugin screens load ==========
         run: |
           YOUTUBE_PLUGIN_TOKEN=${{ secrets.YOUTUBE_PLUGIN_TOKEN }} PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py
