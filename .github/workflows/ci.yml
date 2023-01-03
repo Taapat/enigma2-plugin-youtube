@@ -53,7 +53,7 @@ jobs:
         run: |
           xgettext --no-wrap --no-location --omit-header -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d YouTube -s -o ./po/YouTube.pot `find ./src -type f -name '*.py'`
           if git status -s | grep 'M'; then
-            echo '::set-output name=po_changed::true'
+            echo "po_changed=true" >> $GITHUB_OUTPUT
           fi
   test-python:
     needs: check_source
