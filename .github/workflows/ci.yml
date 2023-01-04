@@ -128,7 +128,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Set enigma2 repository
-        uses: jungwinter/split@v1
+        uses: jungwinter/split@v2
         id: split
         with:
           msg: ${{ matrix.enigma2-version }}
