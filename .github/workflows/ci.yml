@@ -20,7 +20,7 @@ jobs:
       language-changed: ${{ steps.language.outputs.changed }}
       translation-changed: ${{ steps.po.outputs.po_changed }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 2
       - name: Check python code changes
@@ -63,7 +63,7 @@ jobs:
       matrix:
         python-version: ['2.7', '3.10']
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Set up Python ${{ matrix.python-version }}
@@ -124,7 +124,7 @@ jobs:
           - enigma2-version: 'OpenViX Developer'
             python-version: 2.7
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Set enigma2 repository
@@ -133,7 +133,7 @@ jobs:
         with:
           msg: ${{ matrix.enigma2-version }}
       - name: Checkout ${{ matrix.enigma2-version }} repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: '${{ steps.split.outputs._0 }}/enigma2'
           ref: ${{ steps.split.outputs._1 }}
@@ -208,7 +208,7 @@ jobs:
     if: always() && needs.test-python.result == 'success' && (needs.test-gui.result == 'success' || needs.test-gui.result == 'skipped')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Set up Python 2.7
@@ -236,7 +236,7 @@ jobs:
     if: needs.check_source.outputs.language-changed == 'true' || contains(github.event.head_commit.message,'force-test')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Install dependencies
@@ -250,7 +250,7 @@ jobs:
     if: needs.check_source.outputs.translation-changed == 'true' || contains(github.event.head_commit.message,'force-test')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           persist-credentials: false
           fetch-depth: 0
@@ -278,7 +278,7 @@ jobs:
     if: always() && !contains(github.event.head_commit.message,'skip-release') && github.event_name == 'push' && (needs.test-python.result == 'success' || needs.test-python.result == 'skipped') && (needs.test-gui.result == 'success' || needs.test-gui.result == 'skipped') && (needs.test-language.result == 'success' || needs.test-language.result == 'skipped') && github.repository == 'Taapat/enigma2-plugin-youtube' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Set up Python 2.7
