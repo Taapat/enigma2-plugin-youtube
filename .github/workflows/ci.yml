@@ -15,36 +15,39 @@ jobs:
     if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
     outputs:
-      python-changed: ${{ steps.python.outputs.changed }}
-      gui-changed: ${{ steps.gui.outputs.changed }}
-      language-changed: ${{ steps.language.outputs.changed }}
+      python-changed: ${{ steps.changed.outputs.python }}
+      gui-changed: ${{ steps.changed.outputs.gui }}
+      language-changed: ${{ steps.changed.outputs.language }}
       translation-changed: ${{ steps.po.outputs.po_changed }}
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
-      - name: Check python code changes
-        uses: marceloprado/has-changed-path@v1
-        id: python
+      - name: Check code changes
+        uses: dorny/paths-filter@v2
+        id: changed
         with:
-          paths: ./*.py ./src/*.py ./test/*.py
-      - name: Check gui code changes
-        uses: marceloprado/has-changed-path@v1
-        id: gui
-        with:
-          paths: ./src/YouTubeUi.py ./src/YouTubeDownload.py ./src/YouTubeSearch.py ./src/YouTubeApi.py ./src/YouTubeVideoUrl.py ./src/OAuth.py
-      - name: Check language file changes
-        uses: marceloprado/has-changed-path@v1
-        id: language
-        with:
-          paths: ./po/*.po
-      - name: Check files with translation changes
-        uses: marceloprado/has-changed-path@v1
-        id: translation
-        with:
-          paths: ./src/plugin.py ./src/YouTubeUi.py ./src/YouTubeDownload.py ./src/YouTubeSearch.py
+          filters: |
+            python:
+              - '*.py'
+              - 'src/*.py'
+              - 'test/*.py'
+            gui:
+              - 'src/YouTubeUi.py'
+              - 'src/YouTubeDownload.py'
+              - 'src/YouTubeSearch.py'
+              - 'src/YouTubeApi.py'
+              - 'src/YouTubeVideoUrl.py'
+              - 'src/OAuth.py'
+            language:
+              - 'po/*.po'
+            translation:
+              - 'src/plugin.py'
+              - 'src/YouTubeUi.py'
+              - 'src/YouTubeDownload.py'
+              - 'src/YouTubeSearch.py'
       - name: Install dependencies
-        if: steps.translation.outputs.changed == 'true'
+        if: steps.changed.outputs.translation == 'true'
         run: |
           sudo apt-get install gettext
       - name: Check translation phrase changes

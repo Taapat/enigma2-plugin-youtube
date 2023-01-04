@@ -14,14 +14,23 @@ jobs:
       MERGE_COMMIT_MESSAGE: "pull-request-title-and-description"
       UPDATE_LABELS: ""
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 2
       - name: Check other source changes
-        uses: marceloprado/has-changed-path@v1
+        uses: dorny/paths-filter@v2
         id: src
         with:
-          paths: COPYING.GPLv2 README.md YouTube.key setup.py deploy src test ./.github
+          filters: |
+            changed:
+              - 'COPYING.GPLv2'
+              - 'README.md'
+              - 'YouTube.key'
+              - 'setup.py'
+              - 'deploy/**'
+              - 'src/**'
+              - 'test/**'
+              - './.github/**'
       - name: Install dependencies
         if: steps.src.outputs.changed != 'true'
         run: |
