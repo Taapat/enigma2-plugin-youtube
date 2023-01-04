@@ -219,7 +219,7 @@ jobs:
         run: |
           pip install coverage
       - name: Download code coverage results
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: coverage
       - name: Combine coverage results
