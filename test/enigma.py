@@ -338,6 +338,7 @@ class loadPNG:
 
 loadJPG = loadPNG
 loadSVG = loadPNG
+loadGIF = loadPNG
 
 
 class _getDesktop(_einstances):
