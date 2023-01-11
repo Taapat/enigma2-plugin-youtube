@@ -338,33 +338,12 @@ jobs:
         run: |
           ar rv ../ipk/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk debian-binary data.tar.gz control.tar.gz
       - name: Create release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: meeDamian/github-release@2.0
         with:
-          tag_name: ${{ env.SRCPV }}
-          release_name: ${{ env.COMMIT_SUBJECT }}
-          draft: false
-          prerelease: false
-      - name: Upload python2 release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./ipk/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
-          asset_name: enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
-          asset_content_type: application/ipk
-      - name: Upload python3 release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./ipk/enigma2-plugin-extensions-youtube_py3+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
-          asset_name: enigma2-plugin-extensions-youtube_py3+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
-          asset_content_type: application/ipk
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ env.SRCPV }}
+          name: ${{ env.COMMIT_SUBJECT }}
+          files: ipk/
       - name: Upload ipk via ftp
         uses: sebastianpopp/ftp-action@releases/v2
         with:
