@@ -343,7 +343,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ env.SRCPV }}
           name: ${{ env.COMMIT_SUBJECT }}
-          files: ipk/
+          gzip: false
+          files: >
+            ipk/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
+            ipk/enigma2-plugin-extensions-youtube_py3+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
       - name: Upload ipk via ftp
         uses: sebastianpopp/ftp-action@releases/v2
         with:
