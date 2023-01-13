@@ -6,8 +6,7 @@ from copy import copy
 from enigma import eServiceReference, eTimer, iPlayableService
 from Components.ActionMap import ActionMap
 from Components.config import config, ConfigDirectory, ConfigSelection, \
-	ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, \
-	getConfigListEntry
+	ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo
 from Components.ConfigList import ConfigListScreen
 from Components.Converter.TemplatedMultiContent import TemplatedMultiContent
 from Components.Label import Label
@@ -178,8 +177,7 @@ class YouTubePlayer(MoviePlayer):
 				if len(self.lastPosition) > 20:
 					self.lastPosition.pop(0)
 					self.lastPosition.pop(0)
-				self.lastPosition.append(self.current[0])
-				self.lastPosition.append(seek.getPlayPosition()[1])
+				self.lastPosition.extend((self.current[0], seek.getPlayPosition()[1]))
 				config.plugins.YouTube.lastPosition.value = str(self.lastPosition)
 				config.plugins.YouTube.lastPosition.save()
 			self.close(answer)
@@ -1453,54 +1451,41 @@ class YouTubeSetup(ConfigListScreen, Screen):
 	def setConfigList(self, configElement=None):
 		if 'config' not in self:
 			return
-		self.list = []
-		self.list.append(getConfigListEntry(_('Login on startup:'),
-			config.plugins.YouTube.login,
-			_('Log in to your YouTube account when plugin starts.\nThis needs to approve in the Google home page!')))
-		self.list.append(getConfigListEntry(_('Save search result:'),
-			config.plugins.YouTube.saveHistory,
-			_('Save your search result in the history, when search completed.')))
-		self.list.append(getConfigListEntry(_('Search results:'),
-			config.plugins.YouTube.searchResult,
-			_('How many search results will be returned.\nIf greater value then longer time will be needed for thumbnail download.')))
-		self.list.append(getConfigListEntry(_('Search region:'),
-			config.plugins.YouTube.searchRegion,
-			_('Return search results for the specified country.')))
-		self.list.append(getConfigListEntry(_('Search language:'),
-			config.plugins.YouTube.searchLanguage,
-			_('Return search results that are most relevant to the specified language.')))
-		self.list.append(getConfigListEntry(_('Sort search results by:'),
-			config.plugins.YouTube.searchOrder,
-			_('Order in which search results will be displayed.')))
+		self.list = [(_('Login on startup:'), config.plugins.YouTube.login,
+				_('Log in to your YouTube account when plugin starts.\nThis needs to approve in the Google home page!')),
+			(_('Save search result:'), config.plugins.YouTube.saveHistory,
+				_('Save your search result in the history, when search completed.')),
+			(_('Search results:'), config.plugins.YouTube.searchResult,
+				_('How many search results will be returned.\nIf greater value then longer time will be needed for thumbnail download.')),
+			(_('Search region:'), config.plugins.YouTube.searchRegion,
+				_('Return search results for the specified country.')),
+			(_('Search language:'), config.plugins.YouTube.searchLanguage,
+				_('Return search results that are most relevant to the specified language.')),
+			(_('Sort search results by:'), config.plugins.YouTube.searchOrder,
+				_('Order in which search results will be displayed.'))]
 		if config.plugins.YouTube.login.value:
-			self.list.append(getConfigListEntry(_('Sort subscriptions:'),
+			self.list.append((_('Sort subscriptions:'),
 				config.plugins.YouTube.subscriptOrder,
 				_('Order in which subscriptions results will be displayed.')))
-		self.list.append(getConfigListEntry(_('Exclude restricted content:'),
-			config.plugins.YouTube.safeSearch,
-			_('Try to exclude all restricted content from the search result.')))
-		self.list.append(getConfigListEntry(_('Maximum video resolution:'),
-		config.plugins.YouTube.maxResolution,
-			_('What maximum resolution used when playing video, if available.\nIf you have a slow Internet connection, you can use a lower resolution.')))
-		self.list.append(getConfigListEntry(_('When video ends:'),
-			config.plugins.YouTube.onMovieEof,
-			_('What to do when the video ends.')))
-		self.list.append(getConfigListEntry(_('When playback stop:'),
-			config.plugins.YouTube.onMovieStop,
-			_('What to do when stop playback in videoplayer.')))
-		self.list.append(getConfigListEntry(_('Download directory:'),
-			config.plugins.YouTube.downloadDir,
-			_('Specify the directory where save downloaded video files.')))
-		self.list.append(getConfigListEntry(_('Use DASH MP4 format:'),
-			config.plugins.YouTube.useDashMP4,
-			_('Specify or you want to use DASH MP4 format streams if available.\nThis requires playing two streams together and may cause problems for some receivers.')))
+		self.list.extend(((_('Exclude restricted content:'), config.plugins.YouTube.safeSearch,
+				_('Try to exclude all restricted content from the search result.')),
+			(_('Maximum video resolution:'), config.plugins.YouTube.maxResolution,
+				_('What maximum resolution used when playing video, if available.\nIf you have a slow Internet connection, you can use a lower resolution.')),
+			(_('When video ends:'), config.plugins.YouTube.onMovieEof,
+				_('What to do when the video ends.')),
+			(_('When playback stop:'), config.plugins.YouTube.onMovieStop,
+				_('What to do when stop playback in videoplayer.')),
+			(_('Download directory:'), config.plugins.YouTube.downloadDir,
+				_('Specify the directory where save downloaded video files.')),
+			(_('Use DASH MP4 format:'), config.plugins.YouTube.useDashMP4,
+				_('Specify or you want to use DASH MP4 format streams if available.\nThis requires playing two streams together and may cause problems for some receivers.'))))
 		if config.plugins.YouTube.useDashMP4.value:
-			self.list.append(getConfigListEntry(_('Merge downloaded files:'),
+			self.list.append((_('Merge downloaded files:'),
 				config.plugins.YouTube.mergeFiles,
 				_('FFmpeg will be used to merge downloaded DASH video and audio files.\nFFmpeg will be installed if necessary.')))
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
 			if 'ServiceApp' in p.path:  # pragma: no cover
-				self.list.append(getConfigListEntry(_('Media player:'),
+				self.list.append((_('Media player:'),
 					config.plugins.YouTube.player,
 					_('Specify the player which will be used for YouTube media playback.')))
 				break

@@ -9,7 +9,7 @@ from enigma import ePoint
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-from Components.config import config, ConfigText, getConfigListEntry
+from Components.config import config, ConfigText
 from Components.config import KEY_DELETE, KEY_BACKSPACE, KEY_ASCII, KEY_TIMEOUT
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
@@ -259,8 +259,7 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				helpwindowpos[1]))
 
 	def setSearchEntry(self):
-		self['config'].list = [getConfigListEntry(_('Search'),
-				self.searchValue)]
+		self['config'].list = [(_('Search'), self.searchValue)]
 
 	def updateSuggestions(self, suggestions):
 		if 'list' in self:
