@@ -114,11 +114,11 @@ jobs:
         python-version: [2.7]
         include:
           - enigma2-version: 'OpenPLi develop'
-            python-version: '3.11'
+            python-version: '3.10'
           - enigma2-version: 'openatv 7.2'
             python-version: '3.11'
           - enigma2-version: 'OpenViX Developer'
-            python-version: '3.11'
+            python-version: '3.10'
         exclude:
           - enigma2-version: 'OpenPLi develop'
             python-version: 2.7
@@ -148,11 +148,15 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
-          pip install twisted==20.3.0 pyopenssl service_identity
+          pip install pyopenssl service_identity
       - name: Install additional dependencies
         if: matrix.enigma2-version == 'openatv 7.2' || matrix.enigma2-version == 'OpenViX Developer'
         run: |
           pip install requests chardet
+      - name: Install additional dependencies
+        if: matrix.enigma2-version != 'openatv 7.2'
+        run: |
+          pip install twisted==20.3.0
       - name: Link plugin files for test
         working-directory: './enigma2/lib/python/Plugins/Extensions'
         run: |
