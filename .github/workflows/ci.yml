@@ -97,7 +97,7 @@ jobs:
           sed -i 's/config.plugins.YouTube.useDashMP4.value/True/g' src/YouTubeVideoUrl.py
       - name: Test code with pytest
         run: |
-          pytest -rx -v --cov=src --cov-report=xml --cov-report=html --rootdir=/github/workspace
+          pytest -rx -v --cov=src --cov-report=xml --cov-report=html
           mv .coverage .coverage_${{ matrix.python-version }}
       - name: Upload code coverage results
         uses: actions/upload-artifact@v3
@@ -198,7 +198,7 @@ jobs:
       - name: Coverage code
         if: github.event_name != 'schedule'
         run: |
-          YOUTUBE_PLUGIN_TOKEN=${{ secrets.YOUTUBE_PLUGIN_TOKEN }} PYTHONPATH=./test:./enigma2:./enigma2/lib/python python -m pytest -rx -v --cov=src --cov-report=xml --cov-report=html --rootdir=/github/workspace test/try_plugin.py
+          YOUTUBE_PLUGIN_TOKEN=${{ secrets.YOUTUBE_PLUGIN_TOKEN }} PYTHONPATH=./test:./enigma2:./enigma2/lib/python python -m pytest -rx -v --cov=src --cov-report=xml --cov-report=html test/try_plugin.py
           mv .coverage .coverage_${{ steps.split.outputs._0 }}_${{ steps.split.outputs._1 }}
       - name: Upload code coverage results
         if: github.event_name != 'schedule'
@@ -229,6 +229,9 @@ jobs:
         run: |
           coverage combine .coverage_*
           coverage xml
+      - name: Override coverage source path for Sonarcloud
+        run: |
+          sed -i "s/<source>\/home\/runner\/work\/enigma2-plugin-youtube\/enigma2-plugin-youtube<\/source>/<source>\/github\/workspace<\/source>/g" coverage.xml
       - name: Sonarcloud scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
