@@ -1,31 +1,32 @@
+# Massimo Pissarello <mapi68@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-20 14:43+0200\n"
-"PO-Revision-Date: 2020-06-13 12:57+0200\n"
-"Last-Translator: Andihawke <reinerploner@gmail.com>\n"
-"Language-Team: Ims\n"
+"PO-Revision-Date: 2023-01-16 13:21+0100\n"
+"Last-Translator: Warder <ciksa@seznam.cz>\n"
+"Language-Team: Italian <>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #, python-format
 msgid "  (%d-%d of %d)"
-msgstr "  (%d-%d z %d)"
+msgstr "  (%d-%d of %d)"
 
 msgid " likes"
-msgstr " líbí se"
+msgstr " má rád"
 
 msgid " views"
-msgstr " zhlédnutí"
+msgstr " pohledy"
 
 #, python-format
 msgid "%.1fMB"
-msgstr ""
+msgstr "%.1f MB"
 
 msgid "Active video downloads"
 msgstr "Aktivní stahování videa"
@@ -34,89 +35,88 @@ msgid "All"
 msgstr "Vše"
 
 msgid "Alphabetically"
-msgstr ""
+msgstr "Abecedně"
 
 msgid "Ask user"
 msgstr "Zeptat se uživatele"
 
 msgid "By activity"
-msgstr ""
+msgstr "Podle činnosti"
 
-#, fuzzy
 msgid "By relevance"
-msgstr "Relevance"
+msgstr "Podle relevance"
 
 msgid "Cancel"
 msgstr "Zrušit"
 
 msgid "Choose what you want to do"
-msgstr "Zvolte, co chcete udělat"
+msgstr "Vyberte si, co chcete udělat"
 
 msgid "Close YouTube"
 msgstr "Zavřít YouTube"
 
 msgid "Created date"
-msgstr "Data vytvoření"
+msgstr "Datum vytvoření"
 
 msgid "Default"
 msgstr "Výchozí"
 
 msgid "Delete this entry"
-msgstr "Smazat tuto položku"
+msgstr "Odstranit tuto položku"
 
 msgid "Disliked!"
-msgstr "Nelíbí se!"
+msgstr "Nelíbilo!"
 
 msgid "Download directory:"
-msgstr "Adresář pro ukládání:"
+msgstr "Stáhnout adresář:"
 
 msgid "Download feed entries. Please wait..."
-msgstr "Stáhují se položky zdrojů. Prosím, čekejte..."
+msgstr "Stáhněte si položky informačního kanálu. Počkejte prosím..."
 
 msgid "Download search results. Please wait..."
-msgstr "Stahují se výsledky vyhledávání. Prosím, čekejte..."
+msgstr "Stáhněte si výsledky vyhledávání. Počkejte prosím..."
 
 msgid "Download video"
 msgstr "Stáhnout video"
 
 msgid "Downloading"
-msgstr "Stahování"
+msgstr "Stahuji"
 
 msgid "Duration: "
-msgstr "Délka: "
+msgstr "Doba trvání: "
 
 msgid "Embedded in webpages"
-msgstr "Vloženo na webových stránkách"
+msgstr "Vložené do webových stránek"
 
 msgid "Exclude restricted content:"
-msgstr "Kromě vyloučeného obsahu:"
+msgstr "Vyloučení zakázaného obsahu:"
 
 msgid "Exit"
-msgstr "Zavřít"
+msgstr "Odejít"
 
 msgid "Exteplayer"
-msgstr ""
+msgstr "Exteplayer"
 
 msgid "Extract video url. Please wait..."
-msgstr "Extrahuje se URL videa. Prosím, čekejte..."
+msgstr "Extrahujte adresu URL videa. Počkejte prosím..."
 
 msgid ""
 "FFmpeg will be used to merge downloaded DASH video and audio files.\n"
 "FFmpeg will be installed if necessary."
 msgstr ""
-"FFmpeg bude použit ke sloučení stažených DASH video a zvukových souborů.\n"
-"V případě potřeby bude nainstalován soubor FFmpeg."
+"FFmpeg bude použit ke sloučení stažených DASH video a audio souborů.\n"
+"FFmpeg bude nainstalován v případě potřeby."
 
 #, python-format
 msgid ""
 "Go to %s\n"
 "And enter the code %s"
 msgstr ""
-"Běžte do %s\n"
-"a zadejte kód %s"
+"Přejít na %s\n"
+"A zadejte kód %s"
 
 msgid "Gstplayer"
-msgstr ""
+msgstr "Gstplayer"
 
 msgid "HD videos"
 msgstr "HD videa"
@@ -125,14 +125,14 @@ msgid ""
 "How many search results will be returned.\n"
 "If greater value then longer time will be needed for thumbnail download."
 msgstr ""
-"Kolik se vrácí výsledků vyhledávání.\n"
-"Při větší hodnotě bude zapotřebí pro stahování náhledů delší čas."
+"Kolik výsledků vyhledávání bude vráceno.\n"
+"Pokud je větší hodnota, bude pro stažení miniatur zapotřebí delší čas."
 
 msgid "I dislike this"
-msgstr "Nelíbí se mi to"
+msgstr "Tohle se mi nelíbí"
 
 msgid "I like this"
-msgstr "Líbí se mi to"
+msgstr "To se mi líbí"
 
 msgid "Info"
 msgstr "Informace"
@@ -144,42 +144,41 @@ msgid "Liked videos"
 msgstr "Oblíbená videa"
 
 msgid "Liked!"
-msgstr "Líbí se!"
+msgstr "Oblíbený!"
 
-#, fuzzy
 msgid "Live broadcast"
-msgstr "Hledat živá vysílání"
+msgstr "Živé vysílání"
 
 msgid ""
 "Log in to your YouTube account when plugin starts.\n"
 "This needs to approve in the Google home page!"
 msgstr ""
-"Při spuštění pluginu se přihlaste k účtu YouTube.\n"
-"To je potřeba schválit na domovské stránce Google!"
+"Přihlaste se ke svému účtu YouTube při spuštění pluginu.\n"
+"To je třeba schválit na domovské stránce Google!"
 
 msgid "Login on startup:"
-msgstr "Přihlásit se při startu:"
+msgstr "Přihlášení při spuštění:"
 
 msgid "Maximum video resolution:"
 msgstr "Maximální rozlišení videa:"
 
 msgid "Media player:"
-msgstr ""
+msgstr "Přehrávač médií:"
 
 msgid "Merge downloaded files:"
-msgstr "Sloučit stažená videa:"
+msgstr "Sloučit stažené soubory:"
 
 msgid "Moderate"
-msgstr "Mírně"
+msgstr "Moderovat"
 
 msgid "Most viewed"
-msgstr "Nejvíce zhlédnutí"
+msgstr "Nejvíce zobrazované"
 
 msgid "Movies"
 msgstr "Filmy"
 
 msgid "My Subscriptions"
-msgstr "Moje odebírané"
+msgstr "Mé předplatné"
 
 msgid "My feeds"
 msgstr "Moje zdroje"
@@ -204,17 +203,16 @@ msgid "Open"
 msgstr "Otevřít"
 
 msgid "Order in which search results will be displayed."
-msgstr "Pořadí, ve kterém se zobrazí výsledky vyhledávání."
+msgstr "Pořadí, ve kterém budou výsledky vyhledávání zobrazeny."
 
-#, fuzzy
 msgid "Order in which subscriptions results will be displayed."
-msgstr "Pořadí, ve kterém se zobrazí výsledky vyhledávání."
+msgstr "Pořadí, ve kterém se zobrazí výsledky předplatného."
 
 msgid "Play next"
-msgstr "Přehrát další"
+msgstr "Hrát další"
 
 msgid "Play next video"
-msgstr "Přehrát následující video"
+msgstr "Přehrát další video"
 
 msgid "Play previous"
 msgstr "Přehrát předchozí"
@@ -242,13 +240,13 @@ msgid "Public feeds"
 msgstr "Veřejné zdroje"
 
 msgid "Published at: "
-msgstr "Zveřejněno na: "
+msgstr "Publikováno na: "
 
 msgid "Quit"
 msgstr "Odejít"
 
 msgid "Rate video"
-msgstr "Ohodnotit video"
+msgstr "Hodnotit video"
 
 msgid "Rating"
 msgstr "Hodnocení"
@@ -257,222 +255,220 @@ msgid "Rating removed!"
 msgstr "Hodnocení odstraněno!"
 
 msgid "Recent"
-msgstr "Nedávno přidané"
+msgstr "Nedávné"
 
-#, fuzzy
 msgid "Related videos"
-msgstr "Ohodnotit video"
+msgstr "Související videa"
 
 msgid "Relevance"
-msgstr "Relevance"
+msgstr "Relevantnost"
 
 msgid "Remove my rating"
-msgstr "Odstranit moje hodnocení"
+msgstr "Odstranit mé hodnocení"
 
 msgid "Repeat"
 msgstr "Opakovat"
 
 msgid "Resume playback from the previous position?"
-msgstr ""
+msgstr "Pokračovat v přehrávání z předchozí pozice?"
 
 msgid "Return search results for the specified country."
-msgstr "Vrací výsledky vyhledávání pro zadanou zemi."
+msgstr "Vrátí výsledky hledání pro zadanou zemi."
 
 msgid "Return search results that are most relevant to the specified language."
-msgstr "Vrací výsledky vyhledávání, které jsou pro daný jazyk nejvíce odpovídající."
+msgstr "Vrátí výsledky hledání, které jsou pro zadaný jazyk nejrelevantnější."
 
 msgid "Return to list"
-msgstr "Návrat do seznamu"
+msgstr "Zpět na seznam"
 
 msgid "Save search result:"
-msgstr "Ukládat výsledky vyhledávání:"
+msgstr "Uložit výsledek hledání:"
 
 msgid "Save your search result in the history, when search completed."
-msgstr "Po skončení vyhledávání se budou výsledky vyhledávání ukládat do historie."
+msgstr "Po dokončení hledání uložte výsledek vyhledávání do historie."
 
 msgid "Search"
 msgstr "Hledat"
 
 msgid "Search channels"
-msgstr "Hledat kanály"
+msgstr "Vyhledávací kanály"
 
 msgid "Search for similar"
 msgstr "Hledat podobné"
 
 msgid "Search language:"
-msgstr "Hledat jazyk:"
+msgstr "Jazyk vyhledávání:"
 
 msgid "Search live broadcasts"
-msgstr "Hledat živá vysílání"
+msgstr "Vyhledávání živých vysílání"
 
 msgid "Search playlists"
-msgstr "Hledat playlisty"
+msgstr "Vyhledávání seznamů skladeb"
 
 msgid "Search region:"
-msgstr "Prohledávaný region:"
+msgstr "Hledaný region:"
 
 msgid "Search results:"
-msgstr "Výsledky vyhledávání:"
+msgstr "Výsledky hledání:"
 
 msgid "Search videos"
-msgstr "Hledat videa"
+msgstr "Vyhledávání videí"
 
-#, fuzzy
 msgid "Show related videos"
-msgstr "Stáhnout video"
+msgstr "Zobrazit související videa"
 
 msgid "Shows"
-msgstr "Ukázky"
+msgstr "Ukazuje"
 
 msgid ""
 "Sorry, download directory not exist!\n"
 "Please specify in the settings existing directory."
 msgstr ""
-"Adresář pro stahování neexistuje!\n"
-"Zadejte ho v nastavení programu."
+"Je nám líto, download adresář neexistuje!\n"
+"Uveďte prosím v nastavení existující adresář."
 
 #, python-format
 msgid ""
 "Sorry, this file already exists:\n"
 "%s"
 msgstr ""
-"Tento soubor jiz existuje:\n"
+"Je nám líto, ale tento soubor již existuje:\n"
 "%s"
 
 msgid "Sort search results by:"
-msgstr "Třídit výsledky vyhledávání podle:"
+msgstr "Seřadit výsledky hledání podle:"
 
-#, fuzzy
 msgid "Sort subscriptions:"
-msgstr "Moje odebírané"
+msgstr "Seřadit odběry:"
 
 msgid ""
 "Specify or you want to use DASH MP4 format streams if available.\n"
 "This requires playing two streams together and may cause problems for some receivers."
 msgstr ""
+"Zadejte nebo chcete použít streamy ve formátu DASH MP4, pokud jsou k dispozici.\n"
+"To vyžaduje přehrávání dvou streamů společně a může způsobit problémy některým přijímačům."
 
 msgid "Specify the directory where save downloaded video files."
-msgstr "Určete adresář do kterého se ukládají stažené video soubory."
+msgstr "Zadejte adresář, kam ukládat stažené video soubory."
 
 msgid "Specify the player which will be used for YouTube media playback."
-msgstr "Určete přehrávač, který bude použitý pro přehrávání médií z YouTube."
+msgstr "Určete přehrávač, který bude použit pro přehrávání médií YouTube."
 
 msgid "Stop playing this movie?"
-msgstr "Zastavit přehrávání?"
+msgstr "Přestat přehrávat tento film?"
 
 msgid "Subscribe"
 msgstr "Odebírat"
 
 msgid "Subscribe this video channel"
-msgstr "Odebírat tento video kanál"
+msgstr "Přihlásit se k odběru tohoto video kanálu"
 
 msgid "Subscribed!"
-msgstr "Odběr nastaven!"
+msgstr "Podporoval!"
 
 msgid ""
 "There was an error in creating entry list!\n"
 "Maybe try other feeds..."
 msgstr ""
-"Při vytváření seznamu položek došlo k chybě!\n"
-"Možná zkuste další zdroje..."
+"Při vytváření startovní listiny došlo k chybě!\n"
+"Možná zkuste jiné zdroje..."
 
 #, python-format
 msgid ""
 "There was an error in extract video url:\n"
 "%s"
 msgstr ""
-"Při extrahování URL adresy videa došlo k chybě:\n"
+"V adrese URL extrahovaného videa došlo k chybě:\n"
 "%s"
 
 msgid "There was an error!"
 msgstr "Došlo k chybě!"
 
 msgid "Title"
-msgstr "Názvu"
+msgstr "Nadpis"
 
 msgid ""
 "To merge downloaded files FFmpeg will be installed.\n"
 "FFmpeg can take a lot of space!\n"
 "Do you want to continue?"
 msgstr ""
-"Pro sloučení stažených souborů bude nainstalován FFmpeg.\n"
-"FFmpeg muže zabrat hodně místa!\n"
+"Chcete-li sloučit stažené soubory FFmpeg bude nainstalován.\n"
+"FFmpeg může trvat hodně místa!\n"
 "Chcete pokračovat?"
 
 msgid ""
 "To perform authentication will need in a web browser open Google home page, and enter the code!\n"
 "Do you currently have Internet access on the other device and we can continue?"
 msgstr ""
-"Chcete-li provést ověření, bude potřeba ve webovém prohlížeči otevřít domovskou stránku Google a zadat kód!\n"
-"Máte v současné době přístup k internetu na druhém zařízení a můžeme tedy pokračovat?"
+"Chcete-li provést autentizaci bude potřebovat ve webovém prohlížeči, otevřete domovskou stránku Google a zadejte kód!\n"
+"Máte v současné době přístup k internetu na druhém zařízení a můžeme pokračovat?"
 
 msgid "Top rated"
-msgstr "Nejvýše hodnocené"
+msgstr "Nejlépe hodnocené"
 
 msgid "Try to exclude all restricted content from the search result."
-msgstr "Pokusí se z výsledků vyhledávání odstranit veškerý vyloučený obsah."
+msgstr "Pokuste se z výsledku vyhledávání vyloučit veškerý omezený obsah."
 
 msgid "Unsubscribe"
-msgstr "Odhlásit odběr"
+msgstr "Odhlásit"
 
 msgid "Unsubscribed!"
-msgstr "Odběr odhlášen!"
+msgstr "Odhlášeno!"
 
 msgid "Uploads"
-msgstr "Nahrávání"
+msgstr "Uploady"
 
 msgid "Use"
 msgstr "Použít"
 
 msgid "Use DASH MP4 format:"
-msgstr ""
+msgstr "Použijte formát DASH MP4:"
 
 msgid "Video download started!"
-msgstr "Začalo stahování videa!"
+msgstr "Stahování videa zahájeno!"
 
 msgid "Videos from this video channel"
-msgstr "Videa z tohoto video kanálu"
+msgstr "Videa z tohoto videokanálu"
 
 msgid "View count"
-msgstr "Počtu zhlédnutí"
+msgstr "Počet shlédnutí"
 
 msgid "Watch YouTube videos"
-msgstr "Sledování YouTube videí"
+msgstr "Podívejte se na videa na YouTube"
 
 msgid "What do you want to do?"
-msgstr "Co chcete dělat?"
+msgstr "Co chcete udělat?"
 
 msgid ""
 "What maximum resolution used when playing video, if available.\n"
 "If you have a slow Internet connection, you can use a lower resolution."
 msgstr ""
-"Maximální použité rozlišení při přehrávání videa, pokud je k dispozici.\n"
+"Jaké maximální rozlišení použité při přehrávání videa, pokud je k dispozici.\n"
 "Pokud máte pomalé připojení k internetu, můžete použít nižší rozlišení."
 
 msgid "What to do when stop playback in videoplayer."
-msgstr "Co se provede při zastavení přehrávače."
+msgstr "Co dělat, když zastavíte přehrávání ve videopřehrávači."
 
 msgid "What to do when the video ends."
-msgstr "Co se provede při skončení videa."
+msgstr "Co dělat, když video skončí."
 
 msgid "When playback stop:"
 msgstr "Při zastavení přehrávání:"
 
 msgid "When video ends:"
-msgstr "Při skončení videa:"
+msgstr "Když video skončí:"
 
 msgid "Yes"
 msgstr "Ano"
 
-#, fuzzy
 msgid "Yes, and return to list"
-msgstr "Návrat do seznamu"
+msgstr "Ano, a vrátit se do seznamu"
 
 msgid "Yes, and show related videos"
-msgstr ""
+msgstr "Ano, a zobrazovat související videa"
 
 msgid "Yes, but play next video"
-msgstr "Ano, ale přehrát následující video"
+msgstr "Ano, ale přehrát další video"
 
 msgid "Yes, but play previous video"
 msgstr "Ano, ale přehrát předchozí video"
@@ -481,8 +477,8 @@ msgid ""
 "You already authorized access for this plugin to your YouTube account.\n"
 "Do you want to do it again to update access data?"
 msgstr ""
-"Již jste autorizovali přístup pro tento plugin do svého YouTube účtu.\n"
-"Chcete to udělat znovu a aktualizovat přístupová data?"
+"Již jste autorizovali přístup k tomuto pluginu ke svému účtu YouTube.\n"
+"Chcete to udělat znovu, abyste aktualizovali přístupové údaje?"
 
 msgid ""
 "You have disabled downloaded file merge.\n"
@@ -494,10 +490,10 @@ msgstr ""
 "Chcete odstranit FFmpeg?"
 
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 msgid "YouTube setup"
 msgstr "Nastavení YouTube"
 
 msgid "YouTube starting. Please wait..."
-msgstr "Spouští se YouTube. Prosím, čekejte..."
+msgstr "YouTube začíná. Počkejte prosím..."
