@@ -55,11 +55,23 @@ class _einstances:
 	def __call__(self, *args):
 		return self
 
-	def __len__(self):
+	def __coerce__(self, *args):
+		return None
+
+	def __hash__(self, *args):
 		return 1
 
 	def __int__(self):
 		return 1
+
+	def __len__(self):
+		return 1
+
+	def __nonzero__(self, *args):
+		return 1
+
+	def __str__(self, *args):
+		return ''
 
 	def get(self):
 		return self.list
@@ -105,7 +117,6 @@ eServiceReferenceDVB = _einstances()
 eServiceReferenceFS = _einstances()
 eSlider = _einstances()
 eStreamServer = _einstances()
-eSubtitleWidget = _einstances()
 eWindowStyleManager = _einstances()
 fontRenderClass = _einstances()
 getBestPlayableServiceReference = _einstances()
@@ -344,7 +355,29 @@ eLabel = eWidget
 eListbox = eWidget
 eWindow = eWidget
 eVideoWidget = eWidget
-eWindowStyleSkinned = eWidget
+
+
+class eWindowStyleSkinned(_eWidget):
+	colBackground = None
+	colLabelForeground = None
+	colListboxBackground = None
+	colListboxForeground = None
+	colListboxSelectedBackground = None
+	colListboxSelectedForeground = None
+	colListboxMarkedBackground = None
+	colListboxMarkedForeground = None
+	colListboxMarkedAndSelectedBackground = None
+	colListboxMarkedAndSelectedForeground = None
+	colWindowTitleForeground = None
+	colWindowTitleBackground = None
+
+
+class eSubtitleWidget(_eWidget):
+	Subtitle_TTX = None
+	Subtitle_Regular = None
+	Subtitle_Bold = None
+	Subtitle_Italic = None
+	Subtitle_MAX = None
 
 
 class ePixmap(_eWidget):
