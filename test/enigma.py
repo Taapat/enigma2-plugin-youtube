@@ -370,6 +370,16 @@ class eWindowStyleSkinned(_eWidget):
 	colListboxMarkedAndSelectedForeground = None
 	colWindowTitleForeground = None
 	colWindowTitleBackground = None
+	bsWindow = None
+	bsListboxEntry = None
+	bpTopLeft = None
+	bpTop = None
+	bpTopRight = None
+	bpLeft = None
+	bpBottomLeft = None
+	bpBottom = None
+	bpBottomRight = None
+	bpRight = None
 
 
 class eSubtitleWidget(_eWidget):
