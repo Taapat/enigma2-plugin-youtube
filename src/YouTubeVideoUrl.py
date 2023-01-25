@@ -13,6 +13,7 @@ from .compat import compat_urlopen
 from .compat import compat_str
 from .compat import compat_URLError
 from .compat import compat_Request
+from .OAuth import YT_KEY
 
 
 PRIORITY_VIDEO_FORMAT = []
@@ -196,7 +197,7 @@ class YouTubeVideoUrl():
 		return ''
 
 	def _extract_player_response(self, video_id, age_gate=False):
-		url = 'https://www.youtube.com/youtubei/v1/player?key=AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w&bpctr=9999999999&has_verified=1'
+		url = 'https://www.youtube.com/youtubei/v1/player?key=%s&bpctr=9999999999&has_verified=1' % YT_KEY
 		data = {'videoId': video_id,
 				'context': {'client': {
 						'hl': 'en',
