@@ -35,39 +35,59 @@ class _einstances:
 
 	def __init__(self, *args):
 		_einstances.instance = self
-		self.slotRotorSatPosChanged = self
-		self.selected = self
-		self.ciStateChanged = self
-		self.CiSelection = self
-		self.scanCompleted = self
-		self.scanProgress = self
-		self.protectContextMenu = self
-		self.frontendUseMaskChanged = self
 		self.list = []
 
 	def __setattr__(self, name, value, *args):
 		self.__dict__[name] = value
 
 	def __getattr__(self, attr):
+
 		def default(*args):
 			return 0
-		return default
+
+		if 'get' in attr.lower() or type(self).__name__ in ('_getDesktop', 'eConsoleAppContainer'):
+			return default
+		elif 'default' in attr.lower() or attr[:2] == 'is' or attr.isupper():
+			return 0
+		else:
+			return self
 
 	def __call__(self, *args):
 		return self
 
-	def get(self, *args):
+	def __coerce__(self, *args):
+		return None
+
+	def __hash__(self, *args):
+		return 1
+
+	def __int__(self):
+		return 1
+
+	def __len__(self):
+		return 1
+
+	def __nonzero__(self, *args):
+		return 1
+
+	def __str__(self, *args):
+		return ''
+
+	def get(self):
 		return self.list
 
 
 eAVSwitch = _einstances()
 eBackgroundFileEraser = _einstances()
+eButton = _einstances()
 eCableScan = _einstances()
 eComponentScan = _einstances()
 eDBoxLCD = _einstances()
+eDVBCI_UI = _einstances()
 eDVBCIInterfaces = _einstances()
 eDVBDB = _einstances()
 eDVBDiseqcCommand = _einstances()
+eDVBFrontend = _einstances()
 eDVBFrontendParameters = _einstances()
 eDVBFrontendParametersATSC = _einstances()
 eDVBFrontendParametersCable = _einstances()
@@ -85,39 +105,37 @@ eDVBVolumecontrol = _einstances()
 eFastScan = _einstances()
 eHdmiCEC = _einstances()
 eListboxServiceContent = _einstances()
+ePythonOutput = _einstances()
 ePositionGauge = _einstances()
 eRCInput = _einstances()
+eRect = _einstances()
 eRFmod = _einstances()
 eServiceCenter = _einstances()
 eServiceEvent = _einstances()
 eServiceEventEnums = _einstances()
+eServiceReferenceDVB = _einstances()
+eServiceReferenceFS = _einstances()
 eSlider = _einstances()
 eStreamServer = _einstances()
+eWindowStyleManager = _einstances()
 fontRenderClass = _einstances()
+getBestPlayableServiceReference = _einstances()
+getBsodCounter = _einstances()
+getPrevAsciiCode = _einstances()
 gMainDC = _einstances()
 iDVBFrontend = _einstances()
 iDVBMetaFile = _einstances()
+iFrontendInformation = _einstances()
 iPlayableService = _einstances()
+iPlayableServicePtr = _einstances()
 iRdsDecoder = _einstances()
 iRecordableService = _einstances()
-Misc_Options = _einstances()
-eWindowStyleManager = _einstances()
-eButton = _einstances()
 iRecordableServicePtr = _einstances()
 iServiceInformation = _einstances()
 iServiceKeys = _einstances()
-iFrontendInformation = _einstances()
-eRect = _einstances()
-eDVBCI_UI = _einstances()
-getBestPlayableServiceReference = _einstances()
-getPrevAsciiCode = _einstances()
+Misc_Options = _einstances()
 quitMainloop = _einstances()
-eServiceReferenceFS = _einstances()
-eDVBFrontend = _einstances()
-getBsodCounter = _einstances()
 resetBsodCounter = _einstances()
-ePythonOutput = _einstances()
-iPlayableServicePtr = _einstances()
 
 
 class eTimer:
@@ -154,18 +172,9 @@ class eTimer:
 		return self.callback_thread
 
 
-class pNavigation(_einstances):
-	isRealRecording = 1
-	isStreaming = 2
-	isPseudoRecording = 4
-	isUnknownRecording = 8
-	isFromTimer = 0x10
-	isFromInstantRecording = 0x20
-	isFromEPGrefresh = 0x40
-	isFromSpecialJumpFastZap = 0x80
-	isAnyRecording = 0xFF
-
+class _pNavigation(_einstances):
 	def __init__(self, *args):
+		_einstances.__init__(self)
 		self.m_event = _einstances()
 		self.m_record_event = _einstances()
 
@@ -176,37 +185,7 @@ class pNavigation(_einstances):
 		return ''
 
 
-class eServiceReferenceDVB:
-	invalid = -1,
-	dTv = 0x01
-	dRadio = 0x02
-	tText = 0x03
-	nvod = 0x04
-	nvodTs = 0x05
-	mosaic = 0x06
-	radioFm = 0x07
-	dvbSrm = 0x08
-	dRadioAvc = 0x0A
-	mosaicAvc = 0x0B
-	datacast = 0x0C
-	ci = 0x0D
-	rcsMap = 0x0E
-	rcsFls = 0x0F
-	dvbMhp = 0x10
-	mpeg2HdTv = 0x11
-	avcSdTv = 0x16
-	nvodAvcSdTs = 0x17
-	nvodAvcSdRef = 0x18
-	avcHdTv = 0x19
-	nvodAvcHdTs = 0x1A
-	nvodAvcHdRef = 0x1B
-	avcHdStereo = 0x1C
-	nvodAvcHdStereoTs = 0x1D
-	nvodAvcHdStereoRef = 0x1E
-	nvecTv = 0x1F
-	nvecTv20 = 0x20
-	user134 = 0x86
-	user195 = 0xC
+pNavigation = _pNavigation()
 
 
 class eServiceReference(_einstances):
@@ -258,43 +237,6 @@ class ePicLoad(_einstances):
 
 
 sel_index = 0
-
-
-class eListboxPythonConfigContent(_einstances):
-	TYPE_TEXT = None
-	TYPE_PROGRESS = None
-	TYPE_PIXMAP = None
-	TYPE_PIXMAP_ALPHATEST = None
-	TYPE_PIXMAP_ALPHABLEND = None
-	TYPE_PROGRESS_PIXMAP = None
-
-	def __init__(self):
-		self.__list = []
-		self.getItemSize = _getDesktop
-		global sel_index
-		sel_index = 0
-
-	def getCurrentSelection(self):
-		if self.__list:
-			if len(self.__list) > sel_index:
-				return self.__list[sel_index]
-			else:
-				return self.__list[0]
-
-	def setList(self, _list):
-		if _list:
-			self.__list = _list
-			try:
-				_list[0][1].onSelect(_session)
-			except (AttributeError, IndexError, TypeError):
-				pass
-
-	def getCurrentSelectionIndex(self):
-		return sel_index
-
-
-eListboxPythonStringContent = eListboxPythonConfigContent
-eListboxPythonMultiContent = eListboxPythonConfigContent
 
 
 class eConsoleAppContainer(_einstances):
@@ -366,27 +308,9 @@ class getDesktop(_einstances):
 		return 1
 
 
-class ePixmapPosition:
-	def x(self):
-		return 0
-
-	def y(self):
-		return 0
-
-
-class eWidget(_einstances):
-	wfNoBorder = None
-	showOnDemand = None
-	showAlways = None
-	showNever = None
-	showLeftOnDemand = None
-	showLeftAlways = None
-	DefaultScrollBarBorderWidth = 0
-	DefaultScrollBarOffset = 0
-	DefaultScrollBarScroll = 0
-	DefaultScrollBarWidth = 0
-
+class _eWidget(_einstances):
 	def __init__(self, *args):
+		_einstances.__init__(self)
 		self.selectionChanged = _einstances()
 		self.getInstance = _einstances
 		self._index = 0
@@ -395,7 +319,7 @@ class eWidget(_einstances):
 		return []
 
 	def position(self, *args):
-		return ePixmapPosition()
+		return self
 
 	def size(self, *args):
 		return _getDesktop()
@@ -419,14 +343,21 @@ class eWidget(_einstances):
 	def getTitle(self):
 		return ''
 
+	def x(self):
+		return 0
 
+	def y(self):
+		return 0
+
+
+eWidget = _eWidget()
 eLabel = eWidget
 eListbox = eWidget
 eWindow = eWidget
 eVideoWidget = eWidget
 
 
-class eWindowStyleSkinned(eWidget):
+class eWindowStyleSkinned(_eWidget):
 	colBackground = None
 	colLabelForeground = None
 	colListboxBackground = None
@@ -451,33 +382,60 @@ class eWindowStyleSkinned(eWidget):
 	bpRight = None
 
 
-class eSubtitleWidget:
+class eSubtitleWidget(_eWidget):
 	Subtitle_TTX = None
 	Subtitle_Regular = None
 	Subtitle_Bold = None
 	Subtitle_Italic = None
 	Subtitle_MAX = None
 
-	@classmethod
-	def setFontStyle(cls, *args):
-		pass  # Dummy method
 
-
-class ePixmap(eWidget):
+class ePixmap(_eWidget):
 	def size(self, *args):
 		return _getPicture()
 
 
-class _eEPGCache(_einstances):
-	MHW = 8
-	FREESAT_NOWNEXT = 16
-	FREESAT_SCHEDULE = 32
-	FREESAT_SCHEDULE_OTHER = 64
-	VIRGIN_NOWNEXT = 2048
-	VIRGIN_SCHEDULE = 4096
-	OPENTV = 16384
+class eListboxPythonConfigContent(_einstances):
+	TYPE_TEXT = None
+	TYPE_PROGRESS = None
+	TYPE_PIXMAP = None
+	TYPE_PIXMAP_ALPHATEST = None
+	TYPE_PIXMAP_ALPHABLEND = None
+	TYPE_PROGRESS_PIXMAP = None
 
 	def __init__(self):
+		_einstances.__init__(self)
+		self.__list = []
+		self.getItemSize = _getDesktop
+		global sel_index
+		sel_index = 0
+
+	def getCurrentSelection(self):
+		if self.__list:
+			if len(self.__list) > sel_index:
+				return self.__list[sel_index]
+			else:
+				return self.__list[0]
+
+	def setList(self, _list):
+		if _list:
+			self.__list = _list
+			try:
+				_list[0][1].onSelect(_session)
+			except (AttributeError, IndexError, TypeError):
+				pass
+
+	def getCurrentSelectionIndex(self):
+		return sel_index
+
+
+eListboxPythonStringContent = eListboxPythonConfigContent
+eListboxPythonMultiContent = eListboxPythonConfigContent
+
+
+class _eEPGCache(_einstances):
+	def __init__(self):
+		_einstances.__init__(self)
 		self.getInstance = _einstances
 
 
