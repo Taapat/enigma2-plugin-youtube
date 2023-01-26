@@ -389,6 +389,10 @@ class eSubtitleWidget(_eWidget):
 	Subtitle_Italic = None
 	Subtitle_MAX = None
 
+	@classmethod
+	def setFontStyle(cls, *args):
+		pass  # Dummy method
+
 
 class ePixmap(_eWidget):
 	def size(self, *args):
