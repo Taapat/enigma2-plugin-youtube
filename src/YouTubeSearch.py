@@ -39,7 +39,7 @@ class YouTubeVirtualKeyBoard(VirtualKeyBoard):
 		VirtualKeyBoard.__init__(self, session, title=title, text=text)
 		self.skinName = ['YouTubeVirtualKeyBoard', 'VirtualKeyBoard']
 		self.searchValue = GoogleSuggestionsConfigText(default=text,
-				updateSuggestions=self.updateSuggestions)
+				update_suggestions=self.updateSuggestions)
 		self.onClose.append(self.searchValue.stopSuggestions)
 		if text:
 			# Force a search by setting the old search value to ""
@@ -68,9 +68,9 @@ class YouTubeVirtualKeyBoard(VirtualKeyBoard):
 		self.tryGetSuggestions()
 
 	def tryGetSuggestions(self):
-		newSearchValue = self['text'].getText()
-		if self.searchValue.value != newSearchValue:
-			self.searchValue.value = newSearchValue
+		new_search_value = self['text'].getText()
+		if self.searchValue.value != new_search_value:
+			self.searchValue.value = new_search_value
 			self.searchValue.getSuggestions()
 
 	def updateSuggestions(self, suggestions):
@@ -224,10 +224,10 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					pixmap="%s/vkey_icon.png" transparent="1" alphatest="on" />
 			</screen>""" % (DEFAULT_BUTTONS)
 
-	def __init__(self, session, curList):
+	def __init__(self, session, cur_list):
 		Screen.__init__(self, session)
 		self.session = session
-		self.curList = curList
+		self.curList = cur_list
 		self.title = _('Search')
 		self['key_red'] = StaticText(_('Exit'))
 		self['key_green'] = StaticText(_('OK'))
@@ -242,14 +242,14 @@ class YouTubeSearch(Screen, ConfigListScreen):
 				'menu': self.openMenu}, -2)
 		ConfigListScreen.__init__(self, [], session)
 		self.searchValue = GoogleSuggestionsConfigText(default='',
-			updateSuggestions=self.updateSuggestions)
+			update_suggestions=self.updateSuggestions)
 		self.setSearchEntry()
 		self['list'] = List([])
 		self.searchHistory = config.plugins.YouTube.searchHistoryDict[self.curList].value
-		searchList = [('', None)]
+		search_list = [('', None)]
 		for entry in self.searchHistory:
-			searchList.append((entry, None))
-		self['list'].list = searchList
+			search_list.append((entry, None))
+		self['list'].list = search_list
 		self.onLayoutFinish.append(self.moveHelpWindow)
 		self.onClose.append(self.searchValue.stopSuggestions)
 
@@ -275,18 +275,18 @@ class YouTubeSearch(Screen, ConfigListScreen):
 			self['config'].getCurrent()[1].getSuggestions()
 			self.moveHelpWindow()
 		else:
-			searchValue = self.searchValue.value
-			print('[YouTubeSearch] Search:', searchValue)
+			search_value = self.searchValue.value
+			print('[YouTubeSearch] Search:', search_value)
 			self['config'].getCurrent()[1].help_window.instance.hide()
-			if searchValue != '' and config.plugins.YouTube.saveHistory.value:
-				if searchValue in self.searchHistory:
-					self.searchHistory.remove(searchValue)
-				self.searchHistory.insert(0, searchValue)
+			if search_value != '' and config.plugins.YouTube.saveHistory.value:
+				if search_value in self.searchHistory:
+					self.searchHistory.remove(search_value)
+				self.searchHistory.insert(0, search_value)
 				if len(self.searchHistory) > 41:
 					self.searchHistory.pop()
 				config.plugins.YouTube.searchHistoryDict[self.curList].value = self.searchHistory
 				config.plugins.YouTube.searchHistoryDict[self.curList].save()
-			self.close(searchValue)
+			self.close(search_value)
 
 	def noNativeKeys(self):
 		ConfigListScreen.noNativeKeys(self)
@@ -336,12 +336,12 @@ class YouTubeSearch(Screen, ConfigListScreen):
 		else:
 			if answer[1] == 'delete':
 				self.searchHistory.remove(self['list'].getCurrent()[0])
-				searchList = []
+				search_list = []
 				for entry in self.searchHistory:
-					searchList.append((entry, None))
-				if not searchList:
-					searchList = [('', None)]
-				self['list'].updateList(searchList)
+					search_list.append((entry, None))
+				if not search_list:
+					search_list = [('', None)]
+				self['list'].updateList(search_list)
 				config.plugins.YouTube.searchHistoryDict[self.curList].value = self.searchHistory
 				config.plugins.YouTube.searchHistoryDict[self.curList].save()
 				self['config'].getCurrent()[1].help_window.instance.show()
@@ -366,9 +366,9 @@ class YouTubeSearch(Screen, ConfigListScreen):
 
 
 class GoogleSuggestionsConfigText(ConfigText):
-	def __init__(self, default, updateSuggestions):
+	def __init__(self, default, update_suggestions):
 		ConfigText.__init__(self, default, fixed_size=False, visible_width=False)
-		self.updateSuggestions = updateSuggestions
+		self.updateSuggestions = update_suggestions
 		self.use_suggestions = False
 
 		gl = config.plugins.YouTube.searchRegion.value

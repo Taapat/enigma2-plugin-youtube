@@ -8,7 +8,7 @@ def main(session, **kwargs):
 	session.open(YouTubeMain)
 
 
-def Plugins(**kwargs):
+def Plugins(**kwargs):  # NOSONAR
 	if screenwidth == 'svg':
 		icon = 'YouTube.svg'
 	elif screenwidth == 1920:

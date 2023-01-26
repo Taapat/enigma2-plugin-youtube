@@ -13,20 +13,20 @@ def get_video_id(q, event_type, order, s_type):
 	youtube = YouTubeApi('')
 
 	search_response = youtube.search_list_full(
-		videoEmbeddable='',
-		safeSearch='none',
-		eventType=event_type,
-		videoType='',
-		videoDefinition='',
+		video_embeddable='',
+		safe_search='none',
+		event_type=event_type,
+		video_type='',
+		video_definition='',
 		order=order,
 		part='id,snippet',
 		q=q,
-		relevanceLanguage='',
+		relevance_language='',
 		s_type=s_type,
-		regionCode='',
-		relatedToVideoId='',
-		maxResults='3',
-		pageToken='')
+		region_code='',
+		related_to_video_id='',
+		max_results='3',
+		page_token='')
 
 	if s_type != 'video':
 		for result in search_response.get('items', []):
@@ -37,11 +37,11 @@ def get_video_id(q, event_type, order, s_type):
 		print('Thumbnail', result['snippet']['thumbnails']['default']['url'])
 		print('Title', result['snippet']['title'])
 
-		search_response = youtube.playlistItems_list(
+		search_response = youtube.playlist_items_list(
 			order=order,
-			maxResults='3',
-			playlistId=playlist_id,
-			pageToken='')
+			max_results='3',
+			playlist_id=playlist_id,
+			page_token='')
 
 		for result in search_response.get('items', []):
 			videos = result['snippet']['resourceId']['videoId']
