@@ -993,7 +993,7 @@ class YouTubeMain(Screen):
 				if _id:
 					subscriptions.append('UU' + _id[2:])
 			_next_page_token = search_response.get('nextPageToken', '')
-			if not _next_page_oken:
+			if not _next_page_token:
 				break
 		return subscriptions
 
