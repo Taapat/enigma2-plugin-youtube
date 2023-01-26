@@ -625,7 +625,7 @@ class YouTubeMain(Screen):
 			else:
 				self.updateThumbnails(entry_id)
 
-	def finishDecode(self, entry_id, image, picInfo=None):
+	def finishDecode(self, entry_id, image, picInfo=None):  # NOSONAR
 		ptr = self.picloads[entry_id].getData()
 		if ptr:
 			self.thumbnails[entry_id] = ptr
@@ -691,7 +691,7 @@ class YouTubeMain(Screen):
 		if action:
 			action = action[1]
 			if action == 'quit':
-				pass
+				pass  # NOSONAR
 			elif action == 'repeat':
 				self.ok()
 			elif action == 'ask':
@@ -819,8 +819,8 @@ class YouTubeMain(Screen):
 
 	def createEntryList(self):
 		order = 'date'
-		searchType = 'video'
-		q = videoEmbeddable = videoDefinition = videoType = eventType = ''
+		search_type = 'video'
+		q = video_embeddable = video_definition = video_type = event_type = ''
 		videos = []
 		current = self.yts[1]['entry_list'][self.yts[1]['index']][0]
 
@@ -835,16 +835,16 @@ class YouTubeMain(Screen):
 			if current == 'my_subscriptions':
 				self.yts[0]['list'] = 'playlist'
 				search_response = self.ytapi.subscriptions_list(
-						maxResults=self.search_result,
-						pageToken=self.yts[0].get('pageToken', ''),
-						subscriptOrder=config.plugins.YouTube.subscriptOrder.value)
+						max_results=self.search_result,
+						page_token=self.yts[0].get('pageToken', ''),
+						subscript_order=config.plugins.YouTube.subscriptOrder.value)
 				self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
 				self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
 				self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
 				for result in search_response.get('items', []):
-					Id = self._tryList(result, lambda x: x['snippet']['resourceId']['channelId'])
-					Id = 'UU' + Id[2:] if Id else None
-					videos.append((Id,
+					_id = self._tryList(result, lambda x: x['snippet']['resourceId']['channelId'])
+					_id = 'UU' + _id[2:] if _id else None
+					videos.append((_id,
 							self._tryStr(result, lambda x: x['snippet']['thumbnails']['high']['url']),  # Thumbnail url
 							None,
 							self._tryStr(result, lambda x: x['snippet']['title']),  # Title
@@ -859,8 +859,8 @@ class YouTubeMain(Screen):
 			elif current == 'my_playlists':
 				self.yts[0]['list'] = 'playlist'
 				search_response = self.ytapi.playlists_list(
-						maxResults=self.search_result,
-						pageToken=self.yts[0].get('pageToken', ''))
+						max_results=self.search_result,
+						page_token=self.yts[0].get('pageToken', ''))
 				self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
 				self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
 				self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
@@ -876,8 +876,8 @@ class YouTubeMain(Screen):
 			else:  # all other my data
 				channel = ''
 				search_response = self.ytapi.channels_list(
-						maxResults=self.search_result,
-						pageToken=self.yts[0].get('pageToken', ''))
+						max_results=self.search_result,
+						page_token=self.yts[0].get('pageToken', ''))
 
 				self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
 				self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
@@ -911,9 +911,9 @@ class YouTubeMain(Screen):
 					search_response = self.ytapi.search_list(
 							order=order,
 							part='id,snippet',
-							channelId='UC' + current[2:],
-							maxResults=self.search_result,
-							pageToken=self.yts[0].get('pageToken', ''))
+							channel_id='UC' + current[2:],
+							max_results=self.search_result,
+							page_token=self.yts[0].get('pageToken', ''))
 					subscription = True if not self.yts[0].get('pageToken') else False
 					return self.createList(search_response, subscription)
 			return self.extractVideoIdList(videos)
@@ -929,9 +929,9 @@ class YouTubeMain(Screen):
 			elif self.yts[0]['list'] == 'search':
 				order = config.plugins.YouTube.searchOrder.value
 				if current[6:] == 'broadcasts':
-					eventType = 'live'
+					event_type = 'live'
 				else:
-					searchType = current[6:]
+					search_type = current[6:]
 				if '  (' in self.yts[0]['title']:
 					self.yts[0]['title'] = self.yts[0]['title'].rsplit('  (', 1)[0]
 				q = self.yts[0]['title']
@@ -941,31 +941,31 @@ class YouTubeMain(Screen):
 				elif current == 'most_viewed':
 					order = 'viewCount'
 				elif current == 'HD_videos':
-					videoDefinition = 'high'
+					video_definition = 'high'
 				elif current == 'embedded_videos':
-					videoEmbeddable = 'true'
+					video_embeddable = 'true'
 				elif current == 'episodes':
-					videoType = 'episode'
+					video_type = 'episode'
 				elif current == 'movies':
-					videoType = 'movie'
+					video_type = 'movie'
 
 			search_response = self.ytapi.search_list_full(
-					videoEmbeddable=videoEmbeddable,
-					safeSearch=config.plugins.YouTube.safeSearch.value,
-					eventType=eventType,
-					videoType=videoType,
-					videoDefinition=videoDefinition,
+					video_embeddable=video_embeddable,
+					safe_search=config.plugins.YouTube.safeSearch.value,
+					event_type=event_type,
+					video_type=video_type,
+					video_definition=video_definition,
 					order=order,
 					part='id,snippet',
 					q=q,
-					relevanceLanguage=config.plugins.YouTube.searchLanguage.value,
-					s_type=searchType,
-					regionCode=config.plugins.YouTube.searchRegion.value,
-					relatedToVideoId=related,
-					maxResults=self.search_result,
-					pageToken=self.yts[0].get('pageToken', ''))
+					relevance_language=config.plugins.YouTube.searchLanguage.value,
+					s_type=search_type,
+					region_code=config.plugins.YouTube.searchRegion.value,
+					related_to_video_id=related,
+					max_results=self.search_result,
+					page_token=self.yts[0].get('pageToken', ''))
 
-			if searchType != 'video':
+			if search_type != 'video':
 				videos = self.createList(search_response, False)
 				return videos
 
@@ -981,19 +981,19 @@ class YouTubeMain(Screen):
 
 	def getAllSubscriptions(self):
 		subscriptions = []
-		_nextPageToken = self.yts[0].get('nextPageToken', '')
-		subscriptOrder = config.plugins.YouTube.subscriptOrder.getValue()
+		_next_page_token = self.yts[0].get('nextPageToken', '')
+		subscript_order = config.plugins.YouTube.subscriptOrder.getValue()
 		while True:
 			search_response = self.ytapi.subscriptions_list(
-					maxResults='50',
-					pageToken=_nextPageToken,
-					subscriptOrder=subscriptOrder)
+					max_results='50',
+					page_token=_next_page_token,
+					subscript_order=subscript_order)
 			for result in search_response.get('items', []):
-				Id = self._tryList(result, lambda x: x['snippet']['resourceId']['channelId'])
-				if Id:
-					subscriptions.append('UU' + Id[2:])
-			_nextPageToken = search_response.get('nextPageToken', '')
-			if not _nextPageToken:
+				_id = self._tryList(result, lambda x: x['snippet']['resourceId']['channelId'])
+				if _id:
+					subscriptions.append('UU' + _id[2:])
+			_next_page_token = search_response.get('nextPageToken', '')
+			if not _next_page_token:
 				break
 		return subscriptions
 
@@ -1017,40 +1017,40 @@ class YouTubeMain(Screen):
 		search_response = self.ytapi.videos_list(v_id=','.join(videos))
 		videos = []
 		for result in search_response.get('items', []):
-			Duration = self._tryStr(result, lambda x: x['contentDetails']['duration'])
-			if Duration:
-				Duration = _('Duration: ') + self._convertDate(Duration) if Duration != 'P0D' else _('Live broadcast')
-			PublishedAt = self._tryStr(result, lambda x: x['snippet']['publishedAt'])
-			PublishedAt = _('Published at: ') + PublishedAt.replace('T', ' ')\
-					.replace('Z', '').split('.')[0] if PublishedAt else ''
-			videosInfo = (
+			duration = self._tryStr(result, lambda x: x['contentDetails']['duration'])
+			if duration:
+				duration = _('Duration: ') + self._convertDate(duration) if duration != 'P0D' else _('Live broadcast')
+			published_at = self._tryStr(result, lambda x: x['snippet']['publishedAt'])
+			published_at = _('Published at: ') + published_at.replace('T', ' ')\
+					.replace('Z', '').split('.')[0] if published_at else ''
+			videos_info = (
 				self._tryList(result, lambda x: x['id']),  # Id
 				self._tryStr(result, lambda x: x['snippet']['thumbnails']['default']['url']),  # Thumbnail url
 				None,
 				self._tryStr(result, lambda x: x['snippet']['title']),  # Title
 				self._tryComplStr(result, lambda x: x['statistics']['viewCount'], _(' views')),  # Views
-				Duration,
+				duration,
 				None,
 				self._tryStr(result, lambda x: x['snippet']['description']),  # Description
 				self._tryComplStr(result, lambda x: x['statistics']['likeCount'], _(' likes')),  # Likes
 				self._tryStr(result, lambda x: x['snippet']['thumbnails']['medium']['url']),  # Big thumbnail url
 				self._tryList(result, lambda x: x['snippet']['channelId']),  # Channel id
-				PublishedAt)
+				published_at)
 
 			if self._tryList(result, lambda x: x['snippet']['liveBroadcastContent']) == 'live':
-				videos.insert(0, videosInfo)  # if live broadcast insert in top of list
+				videos.insert(0, videos_info)  # if live broadcast insert in top of list
 			else:
-				videos.append(videosInfo)
+				videos.append(videos_info)
 		return videos
 
-	def videoIdFromPlaylist(self, order, channel, getPageToken=True):
+	def videoIdFromPlaylist(self, order, channel, get_page_token=True):
 		videos = []
-		search_response = self.ytapi.playlistItems_list(
+		search_response = self.ytapi.playlist_items_list(
 				order=order,
-				maxResults=self.search_result,
-				playlistId=channel,
-				pageToken=self.yts[0].get('pageToken', ''))
-		if getPageToken:
+				max_results=self.search_result,
+				playlist_id=channel,
+				page_token=self.yts[0].get('pageToken', ''))
+		if get_page_token:
 			self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
 			self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
 			self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
@@ -1066,9 +1066,9 @@ class YouTubeMain(Screen):
 		search_response = self.ytapi.search_list(
 				order=order,
 				part='id',
-				channelId=channel,
-				maxResults=self.search_result,
-				pageToken=self.yts[0].get('pageToken', ''))
+				channel_id=channel,
+				max_results=self.search_result,
+				page_token=self.yts[0].get('pageToken', ''))
 		self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
 		self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
 		self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
@@ -1219,8 +1219,8 @@ class YouTubeMain(Screen):
 			if self.yts[0]['list'] == 'main':
 				self.createMainList()
 
-	def subscribeChannel(self, channelId):
-		if self.ytapi.subscriptions_insert(channelId=channelId):
+	def subscribeChannel(self, channel_id):
+		if self.ytapi.subscriptions_insert(channel_id=channel_id):
 			return _('Subscribed!')
 		return _('There was an error!')
 
@@ -1234,8 +1234,8 @@ class YouTubeMain(Screen):
 		return _('There was an error!')
 
 	def rateVideo(self, rating):
-		videoId = self['list'].getCurrent()[0]
-		if self.ytapi.videos_rate(videoId=videoId, rating=rating):
+		video_id = self['list'].getCurrent()[0]
+		if self.ytapi.videos_rate(video_id=video_id, rating=rating):
 			text = {'like': _('Liked!'),
 				'dislike': _('Disliked!'),
 				'none': _('Rating removed!')}
@@ -1253,32 +1253,32 @@ class YouTubeMain(Screen):
 			self.session.open(YouTubeInfo, current=current)
 
 	def videoDownload(self, url, title):
-		downloadDir = config.plugins.YouTube.downloadDir.value
-		if downloadDir[0] == "'":
-			downloadDir = downloadDir[2:-2]
-		if not os.path.exists(downloadDir):
+		download_dir = config.plugins.YouTube.downloadDir.value
+		if download_dir[0] == "'":
+			download_dir = download_dir[2:-2]
+		if not os.path.exists(download_dir):
 			msg = _('Sorry, download directory not exist!\nPlease specify in the settings existing directory.')
 		else:
 			if hasattr(title, 'decode'):  # python2
 				job_title = title.decode('utf-8', 'ignore')[:20].encode('utf-8')
 			else:
 				job_title = title[:20]
-			outputfile = os.path.join(downloadDir, title.replace('/', '') + '.mp4')
+			outputfile = os.path.join(download_dir, title.replace('/', '') + '.mp4')
 			if os.path.exists(outputfile) or \
 					os.path.exists('%s.m4a' % outputfile[:-4]) or \
 					os.path.exists('%s_suburi.mp4' % outputfile[:-4]) or \
 					os.path.exists('%s.mkv' % outputfile[:-4]):
 				msg = _('Sorry, this file already exists:\n%s') % title
 			else:
-				from .YouTubeDownload import downloadJob
+				from .YouTubeDownload import DownloadJob
 				if '&suburi=' in url:  # download DASH MP4 video and audio
 					url = url.split('&suburi=', 1)
-					job_manager.AddJob(downloadJob(url[1], '%s.m4a' % outputfile[:-4],
+					job_manager.AddJob(DownloadJob(url[1], '%s.m4a' % outputfile[:-4],
 							'%s audio' % job_title, self.downloadStop))
 					self.active_downloads += 1
 					url = url[0]
 					outputfile = outputfile[:-4] + '_suburi.mp4'
-				job_manager.AddJob(downloadJob(url, outputfile, job_title, self.downloadStop))
+				job_manager.AddJob(DownloadJob(url, outputfile, job_title, self.downloadStop))
 				self.active_downloads += 1
 				msg = _('Video download started!')
 		self.session.open(MessageBox, msg, MessageBox.TYPE_INFO, timeout=5)
@@ -1436,7 +1436,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		config.plugins.YouTube.useDashMP4.addNotifier(self.setConfigList,
 				initial_call=False)
 
-	def checkLoginSatus(self, configElement):
+	def checkLoginSatus(self, configElement):  # NOSONAR
 		if 'config' in self and self.login is not None:
 			self.setConfigList()
 			if self.login != config.plugins.YouTube.login.value:
@@ -1448,7 +1448,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 					else:
 						self.startupCallback(True)
 
-	def setConfigList(self, configElement=None):
+	def setConfigList(self, configElement=None):  # NOSONAR
 		if 'config' not in self:
 			return
 		self.list = [(_('Login on startup:'), config.plugins.YouTube.login,
@@ -1498,11 +1498,11 @@ class YouTubeSetup(ConfigListScreen, Screen):
 	def ok(self):
 		if self['config'].getCurrent()[1] == config.plugins.YouTube.downloadDir:
 			from .YouTubeDownload import YouTubeDirBrowser
-			downloadDir = config.plugins.YouTube.downloadDir.value
-			if downloadDir[0] == "'":
-				downloadDir = downloadDir[2:-2]
+			download_dir = config.plugins.YouTube.downloadDir.value
+			if download_dir[0] == "'":
+				download_dir = download_dir[2:-2]
 			self.session.openWithCallback(self.downloadPath,
-				YouTubeDirBrowser, downloadDir)
+				YouTubeDirBrowser, download_dir)
 		elif self.mergeFiles != config.plugins.YouTube.mergeFiles.value:  # pragma: no cover
 			if self.mergeFiles:
 				self.session.openWithCallback(self.removeCallback,

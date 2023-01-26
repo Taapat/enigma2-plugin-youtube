@@ -17,15 +17,15 @@ from .YouTubeUi import BUTTONS_FOLDER
 
 
 class YouTubeDirBrowser(Screen):
-	def __init__(self, session, downloadDir):
+	def __init__(self, session, download_dir):
 		Screen.__init__(self, session)
 		self.skinName = ['YouTubeDirBrowser', 'FileBrowser']
 		self.title = _('Please select the download directory')
 		self['key_red'] = StaticText(_('Cancel'))
 		self['key_green'] = StaticText(_('Use'))
-		if not os.path.exists(downloadDir):
-			downloadDir = '/'
-		self.filelist = FileList(downloadDir, showFiles=False)
+		if not os.path.exists(download_dir):
+			download_dir = '/'
+		self.filelist = FileList(download_dir, showFiles=False)
 		self['filelist'] = self.filelist
 		self['FilelistActions'] = ActionMap(['SetupActions', 'ColorActions'], {
 				'cancel': self.cancel,
@@ -38,28 +38,28 @@ class YouTubeDirBrowser(Screen):
 			self.filelist.descent()
 
 	def use(self):
-		currentDir = self['filelist'].getCurrentDirectory()
-		dirName = self['filelist'].getFilename()
-		if currentDir is None or \
-			(self.filelist.canDescent() and dirName and len(dirName) > len(currentDir)):
-			self.close(dirName)
+		current_dir = self['filelist'].getCurrentDirectory()
+		dir_name = self['filelist'].getFilename()
+		if current_dir is None or \
+			(self.filelist.canDescent() and dir_name and len(dir_name) > len(current_dir)):
+			self.close(dir_name)
 
 	def cancel(self):
 		self.close(False)
 
 
-class downloadJob(Job):
-	def __init__(self, url, outputfile, title, downloadStop):
+class DownloadJob(Job):
+	def __init__(self, url, outputfile, title, download_stop):
 		Job.__init__(self, title)
-		downloadTask(self, url, outputfile, downloadStop)
+		DownloadTask(self, url, outputfile, download_stop)
 
 
-class downloadTask(Task):
-	def __init__(self, job, url, outputfile, downloadStop):
+class DownloadTask(Task):
+	def __init__(self, job, url, outputfile, download_stop):
 		Task.__init__(self, job, _('Downloading'))
 		self.url = url
 		self.outputfile = outputfile
-		self.downloadStop = downloadStop
+		self.downloadStop = download_stop
 		self.totalSize = 0
 
 	def run(self, callback):
@@ -198,16 +198,16 @@ class YouTubeDownloadList(Screen):
 
 	def updateDownloadList(self):
 		self.progressTimer.stop()
-		downloadList = []
+		download_list = []
 		for job in job_manager.getPendingJobs():
 			task = job.tasks[job.current_task]
-			totalSize = ''
+			total_size = ''
 			if hasattr(task, 'totalSize') and task.totalSize > 0:
-				totalSize = _('%.1fMB') % (task.totalSize / 1000000.0)
-			downloadList.append((job, '%s ...' % job.name, job.getStatustext(),
-				int(task.progress), '%s%%' % str(task.progress), totalSize))
-		self['list'].list = downloadList
-		if downloadList:
+				total_size = _('%.1fMB') % (task.totalSize / 1000000.0)
+			download_list.append((job, '%s ...' % job.name, job.getStatustext(),
+				int(task.progress), '%s%%' % str(task.progress), total_size))
+		self['list'].list = download_list
+		if download_list:
 			self.progressTimer.startLongTimer(1)
 
 	def ok(self):

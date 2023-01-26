@@ -49,11 +49,11 @@ class YouTubeApi:
 			response, status_code = self.try_response(url_or_request, False)
 		return response, status_code
 
-	def get_response(self, url, maxResults, pageToken):
+	def get_response(self, url, max_results, page_token):
 		url = 'https://www.googleapis.com/youtube/v3/{}{}{}{}'.format(
 				url,
-				maxResults and '&maxResults=%s' % maxResults,
-				pageToken and '&pageToken=%s' % pageToken,
+				max_results and '&maxResults=%s' % max_results,
+				page_token and '&pageToken=%s' % page_token,
 				self.key)
 		response, status_code = self.try_response(url)
 		if response and status_code == 200:
@@ -80,72 +80,72 @@ class YouTubeApi:
 		else:
 			print('[YouTubeApi] aut response status code', status_code)
 
-	def subscriptions_list(self, maxResults, pageToken, subscriptOrder):
-		url = 'subscriptions?part=snippet&mine=true&order={}'.format(subscriptOrder)
-		return self.get_response(url, maxResults, pageToken)
+	def subscriptions_list(self, max_results, page_token, subscript_order):
+		url = 'subscriptions?part=snippet&mine=true&order={}'.format(subscript_order)
+		return self.get_response(url, max_results, page_token)
 
-	def playlists_list(self, maxResults, pageToken):
+	def playlists_list(self, max_results, page_token):
 		url = 'playlists?part=snippet&mine=true'
-		return self.get_response(url, maxResults, pageToken)
+		return self.get_response(url, max_results, page_token)
 
-	def channels_list(self, maxResults, pageToken):
+	def channels_list(self, max_results, page_token):
 		url = 'channels?part=contentDetails&mine=true'
-		return self.get_response(url, maxResults, pageToken)
+		return self.get_response(url, max_results, page_token)
 
-	def search_list_full(self, videoEmbeddable, safeSearch, eventType, videoType,
-			videoDefinition, order, part, q, relevanceLanguage, s_type,
-			regionCode, relatedToVideoId, maxResults, pageToken):
+	def search_list_full(self, video_embeddable, safe_search, event_type, video_type,
+			video_definition, order, part, q, relevance_language, s_type,
+			region_code, related_to_video_id, max_results, page_token):
 
 		q = compat_quote(q)
 
 		url = 'search?{}safeSearch={}{}{}{}&order={}&part={}&q={}&type={}{}{}{}'.format(
-				videoEmbeddable and 'videoEmbeddable=%s&' % videoEmbeddable,
-				safeSearch,
-				eventType and '&eventType=%s' % eventType,
-				videoType and '&videoType=%s' % videoType,
-				videoDefinition and '&videoDefinition=%s' % videoDefinition,
+				video_embeddable and 'videoEmbeddable=%s&' % video_embeddable,
+				safe_search,
+				event_type and '&eventType=%s' % event_type,
+				video_type and '&videoType=%s' % video_type,
+				video_definition and '&videoDefinition=%s' % video_definition,
 				order, part.replace(',', '%2C'), q, s_type,
-				relevanceLanguage and '&relevanceLanguage=%s' % relevanceLanguage,
-				regionCode and '&regionCode=%s' % regionCode,
-				relatedToVideoId and '&relatedToVideoId=%s' % relatedToVideoId)
-		return self.get_response(url, maxResults, pageToken)
+				relevance_language and '&relevanceLanguage=%s' % relevance_language,
+				region_code and '&regionCode=%s' % region_code,
+				related_to_video_id and '&relatedToVideoId=%s' % related_to_video_id)
+		return self.get_response(url, max_results, page_token)
 
-	def search_list(self, order, part, channelId, maxResults, pageToken):
+	def search_list(self, order, part, channel_id, max_results, page_token):
 		url = 'search?part={}&order={}&channelId={}'.format(
-				part.replace(',', '%2C'), order, channelId)
-		return self.get_response(url, maxResults, pageToken)
+				part.replace(',', '%2C'), order, channel_id)
+		return self.get_response(url, max_results, page_token)
 
 	def videos_list(self, v_id):
 		url = 'videos?part=id%2Csnippet%2Cstatistics%2CcontentDetails&id={}'.format(
 				v_id.replace(',', '%2C'))
 		return self.get_response(url, '', '')
 
-	def playlistItems_list(self, order, maxResults, playlistId, pageToken):
+	def playlist_items_list(self, order, max_results, playlist_id, page_token):
 		url = 'playlistItems?part=snippet&order={}&playlistId={}'.format(
-				order, playlistId)
-		return self.get_response(url, maxResults, pageToken)
+				order, playlist_id)
+		return self.get_response(url, max_results, page_token)
 
-	def subscriptions_insert(self, channelId):
+	def subscriptions_insert(self, channel_id):
 		method = 'POST'
 		url = 'subscriptions?part=snippet'
 		data = {'kind': 'youtube#subscription',
 				'snippet': {
 					'resourceId': {
 						'kind': 'youtube#channel',
-						'channelId': channelId}}}
+						'channelId': channel_id}}}
 		header = {'content-type': 'application/json'}
 		status = 200
 		return self.get_aut_response(method, url, data, header, status)
 
-	def subscriptions_delete(self, subscribtionId):
+	def subscriptions_delete(self, subscribtion_id):
 		method = 'DELETE'
-		url = 'subscriptions?id=%s' % subscribtionId
+		url = 'subscriptions?id=%s' % subscribtion_id
 		status = 204
 		return self.get_aut_response(method, url, None, None, status)
 
-	def videos_rate(self, videoId, rating):
+	def videos_rate(self, video_id, rating):
 		method = 'POST'
-		url = 'videos/rate?id={}&rating={}'.format(videoId, rating)
+		url = 'videos/rate?id={}&rating={}'.format(video_id, rating)
 		header = {'content-length': '0'}
 		status = 204
 		return self.get_aut_response(method, url, None, header, status)
