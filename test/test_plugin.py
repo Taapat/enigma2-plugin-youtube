@@ -93,7 +93,7 @@ def check_video_url(videos, descr):
 			pytest.xfail('Error in get_url, Too Many Requests')
 		elif str(ex) == 'No supported formats found in video info!':
 			pytest.xfail('Error in get_url, No supported formats found in video info!')
-		elif 'inappropriate' in str(ex):
+		elif 'inappropriate' in str(ex) or 'violating' in str(ex):
 			pytest.xfail('Error in get_url, this video may be inappropriate for some users!')
 		else:
 			raise RuntimeError(ex)
@@ -133,6 +133,9 @@ video_id = ['BaW_jenozKc',
 		'uGpuVWrhIzE',
 		'iqKdEhx-dD4',
 		'MgNrAu2pzNs',
+		'MeJVWBSsPAY',
+		'zaPI8MvL8pg',
+		'6SJNVb0GnPI',
 		'Tq92D6wQ1mg']
 
 
@@ -148,6 +151,9 @@ video_descr = ['Use the first video ID',
 		'Rental video preview',
 		'YouTube Red with episode data',
 		'Auto generated description',
+		'Non-agegated non-embeddable',
+		'Multifeed videos',
+		'Inappropriate video',
 		'Age gated video']
 
 
