@@ -13,18 +13,11 @@ def get_video_id(q, event_type, order, s_type):
 	youtube = YouTubeApi('')
 
 	search_response = youtube.search_list_full(
-		video_embeddable='',
 		safe_search='none',
-		event_type=event_type,
-		video_type='',
-		video_definition='',
 		order=order,
 		part='id,snippet',
 		q=q,
-		relevance_language='',
 		s_type=s_type,
-		region_code='',
-		related_to_video_id='',
 		max_results='3',
 		page_token='')
 

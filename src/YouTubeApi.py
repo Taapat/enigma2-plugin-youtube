@@ -92,22 +92,21 @@ class YouTubeApi:
 		url = 'channels?part=contentDetails&mine=true'
 		return self.get_response(url, max_results, page_token)
 
-	def search_list_full(self, video_embeddable, safe_search, event_type, video_type,
-			video_definition, order, part, q, relevance_language, s_type,
-			region_code, related_to_video_id, max_results, page_token):
+	def search_list_full(self, safe_search, order, part, q, s_type,
+			max_results, page_token, **kwargs):
 
 		q = compat_quote(q)
 
 		url = 'search?{}safeSearch={}{}{}{}&order={}&part={}&q={}&type={}{}{}{}'.format(
-				video_embeddable and 'videoEmbeddable=%s&' % video_embeddable,
+				kwargs.get('video_embeddable', '') and 'videoEmbeddable=%s&' % kwargs['video_embeddable'],
 				safe_search,
-				event_type and '&eventType=%s' % event_type,
-				video_type and '&videoType=%s' % video_type,
-				video_definition and '&videoDefinition=%s' % video_definition,
+				kwargs.get('event_type', '') and '&eventType=%s' % kwargs['event_type'],
+				kwargs.get('video_type', '') and '&videoType=%s' % kwargs['video_type'],
+				kwargs.get('video_definition', '') and '&videoDefinition=%s' % kwargs['video_definition'],
 				order, part.replace(',', '%2C'), q, s_type,
-				relevance_language and '&relevanceLanguage=%s' % relevance_language,
-				region_code and '&regionCode=%s' % region_code,
-				related_to_video_id and '&relatedToVideoId=%s' % related_to_video_id)
+				kwargs.get('relevance_language', '') and '&relevanceLanguage=%s' % kwargs['relevance_language'],
+				kwargs.get('region_code', '') and '&regionCode=%s' % kwargs['region_code'],
+				kwargs.get('related_to_video_id', '') and '&relatedToVideoId=%s' % kwargs['related_to_video_id'])
 		return self.get_response(url, max_results, page_token)
 
 	def search_list(self, order, part, channel_id, max_results, page_token):
