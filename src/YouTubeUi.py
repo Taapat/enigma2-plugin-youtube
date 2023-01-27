@@ -849,7 +849,7 @@ class YouTubeMain(Screen):
 							None,
 							self._tryStr(result, lambda x: x['snippet']['title']),  # Title
 							'', '',
-							self._tryList(result, lambda x: x['id']),  # Subscription
+							result.get('id'),  # Subscription
 							None, None, None, None, ''))
 				if not self.yts[0].get('pageToken') and len(videos) > 1:
 					videos.insert(0, ('recent_subscr', '', None, _('Recent'), '', '',
@@ -866,7 +866,7 @@ class YouTubeMain(Screen):
 				self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
 				for result in search_response.get('items', []):
 					videos.append((
-						self._tryList(result, lambda x: x['id']),  # Id
+						result.get('id'),  # Id
 						self._tryStr(result, lambda x: x['snippet']['thumbnails']['default']['url']),  # Thumbnail url
 						None,
 						self._tryStr(result, lambda x: x['snippet']['title']),  # Title
@@ -1024,7 +1024,7 @@ class YouTubeMain(Screen):
 			published_at = _('Published at: ') + published_at.replace('T', ' ')\
 					.replace('Z', '').split('.')[0] if published_at else ''
 			videos_info = (
-				self._tryList(result, lambda x: x['id']),  # Id
+				result.get('id'),  # Id
 				self._tryStr(result, lambda x: x['snippet']['thumbnails']['default']['url']),  # Thumbnail url
 				None,
 				self._tryStr(result, lambda x: x['snippet']['title']),  # Title
@@ -1091,7 +1091,7 @@ class YouTubeMain(Screen):
 			except Exception:
 				kind = self.yts[0]['list']
 			videos.append((
-				self._tryList(result, lambda x: x['id'][kind + 'Id']),  # Id
+				self._tryList(result, lambda x, value=kind: x['id'][value + 'Id']),  # Id
 				self._tryStr(result, lambda x: x['snippet']['thumbnails']['default']['url']),  # Thumbnail url
 				None,
 				self._tryStr(result, lambda x: x['snippet']['title']),  # Title
