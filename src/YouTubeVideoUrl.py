@@ -198,20 +198,34 @@ class YouTubeVideoUrl():
 
 	def _extract_player_response(self, video_id, age_gate=False):
 		url = 'https://www.youtube.com/youtubei/v1/player?key=%s&bpctr=9999999999&has_verified=1' % YT_KEY
-		data = {'videoId': video_id,
-				'context': {'client': {
-						'hl': 'en',
-						'clientVersion': '17.31.35',
-						'androidSdkVersion': 30,
-						'clientName': 'ANDROID'}}}
+		data = {
+			'videoId': video_id,
+			'context': {
+				'client': {
+					'hl': 'en',
+					'clientVersion': '17.31.35',
+					'androidSdkVersion': 30,
+					'clientName': 'ANDROID'
+				}
+			}
+		}
 		headers = {'Content-Type': 'application/json',
 				'Origin': 'https://www.youtube.com',
 				'X-YouTube-Client-Name': '3',
 				'User-Agent': 'com.google.android.youtube/17.31.35 (Linux; U; Android 11) gzip',
 				'X-YouTube-Client-Version': '17.31.35'}
 		if age_gate:
-			data['thirdParty'] = 'https://google.com'
-			data['context']['client']['clientScreen'] = 'EMBED'
+			data['context'] = {
+					'client': {
+						'clientName': 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
+						'clientVersion': '2.0',
+						'clientScreen': 'EMBED'
+					},
+					'thirdParty': {
+						'embedUrl': 'https://www.youtube.com/',
+					}
+				}
+			headers['X-YouTube-Client-Name'] = 85
 		try:
 			return loads(self._download_webpage(url, data, headers))
 		except ValueError:  # pragma: no cover

@@ -129,6 +129,7 @@ video_id = ['BaW_jenozKc',
 		'MeJVWBSsPAY',
 		'zaPI8MvL8pg',
 		'6SJNVb0GnPI',
+		'HtVdAasjOgU',
 		'Tq92D6wQ1mg']
 
 
@@ -147,6 +148,7 @@ video_descr = ['Use the first video ID',
 		'Non-agegated non-embeddable',
 		'Multifeed videos',
 		'Inappropriate video',
+		'Embeddable video',
 		'Age gated video']
 
 
