@@ -128,9 +128,9 @@ video_id = ['BaW_jenozKc',
 		'MgNrAu2pzNs',
 		'MeJVWBSsPAY',
 		'zaPI8MvL8pg',
-		'6SJNVb0GnPI',
 		'HtVdAasjOgU',
-		'Tq92D6wQ1mg']
+		'Tq92D6wQ1mg',
+		'6SJNVb0GnPI']
 
 
 video_descr = ['Use the first video ID',
@@ -147,9 +147,9 @@ video_descr = ['Use the first video ID',
 		'Auto generated description',
 		'Non-agegated non-embeddable',
 		'Multifeed videos',
-		'Inappropriate video',
 		'Embeddable video',
-		'Age gated video']
+		'Age gated video',
+		'Inappropriate video']
 
 
 @pytest.mark.parametrize('descr', video_descr)
