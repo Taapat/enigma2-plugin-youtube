@@ -51,7 +51,7 @@ jobs:
         run: |
           sudo apt-get install gettext
       - name: Check translation phrase changes
-        if: steps.translation.outputs.changed == 'true'
+        if: steps.changed.outputs.translation == 'true'
         id: po
         run: |
           xgettext --no-wrap --no-location --omit-header -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d YouTube -s -o ./po/YouTube.pot `find ./src -type f -name '*.py'`
