@@ -35,7 +35,7 @@ from . import ngettext
 
 
 ERROR_WARNING = _('There was an error!')
-YT_TITLE  = _('What do you want to do?')
+YT_TITLE = _('What do you want to do?')
 
 
 try:
