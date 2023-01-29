@@ -35,6 +35,7 @@ from . import ngettext
 
 
 ERROR_WARNING = _('There was an error!')
+YT_TITLE  = _('What do you want to do?')
 
 
 try:
@@ -663,7 +664,7 @@ class YouTubeMain(Screen):
 				self.ok()
 			elif action == 'ask':
 				self.yts.insert(0, {})
-				title = _('What do you want to do?')
+				title = YT_TITLE
 				clist = ((_('Quit'), 'quit'),
 						(_('Play next video'), 'playnext'),
 						(_('Play previous video'), 'playprev'),
@@ -1152,7 +1153,7 @@ class YouTubeMain(Screen):
 		if self.yts[0]['list'] == 'main':
 			self.session.openWithCallback(self.configScreenCallback, YouTubeSetup)
 		else:
-			title = _('What do you want to do?')
+			title = YT_TITLE
 			clist = ((_('YouTube setup'), 'setup'),)
 			if self.yts[0].get('nextPageToken'):
 				clist += ((ngettext('Next %s entry', 'Next %s entries',
@@ -1228,7 +1229,7 @@ class YouTubeMain(Screen):
 			if msg:
 				self.session.open(MessageBox, msg, MessageBox.TYPE_INFO, timeout=3)
 			elif clist:
-				title = _('What do you want to do?')
+				title = YT_TITLE
 				self.session.openWithCallback(self.menuCallback,
 						ChoiceBox, title=title, list=clist)
 
