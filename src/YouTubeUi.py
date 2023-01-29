@@ -592,7 +592,7 @@ class YouTubeMain(Screen):
 			else:
 				self.updateThumbnails(entry_id)
 
-	def finishDecode(self, entry_id, image, _):
+	def finishDecode(self, entry_id, image, picInfo=None):  # NOSONAR picload call  with picInfo in parameter
 		ptr = self.picloads[entry_id].getData()
 		if ptr:
 			self.thumbnails[entry_id] = ptr
