@@ -28,9 +28,13 @@ from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_PLUGINS
 from Tools.LoadPixmap import LoadPixmap
 
 from .compat import compat_urlretrieve
+from .compat import SUBURI
 
 from . import _, screenwidth
 from . import ngettext
+
+
+ERROR_WARNING = _('There was an error!')
 
 
 try:
@@ -142,7 +146,7 @@ class YouTubePlayer(MoviePlayer):
 				self.lastPosition.pop(idx)
 				config.plugins.YouTube.lastPosition.value = str(self.lastPosition)
 				config.plugins.YouTube.lastPosition.save()
-				if '&suburi=' not in self.current[6] or \
+				if SUBURI not in self.current[6] or \
 						config.plugins.YouTube.player.value == '5002':
 					self.session.openWithCallback(self.messageBoxCallback, MessageBox,
 							text=_('Resume playback from the previous position?'), timeout=5)
@@ -518,44 +522,7 @@ class YouTubeMain(Screen):
 
 	def splitTaimerStop(self):
 		if self.yts[0]['list'] in ['playVideo', 'downloadVideo']:
-			current = self.yts[1]['entry_list'][self.yts[1]['index']]
-			video_url = current[6]
-			if not video_url:  # remember video url
-				video_url, url_error = self.getVideoUrl(current[0])
-				if url_error:
-					self.session.open(MessageBox,
-							_('There was an error in extract video url:\n%s') % url_error,
-							MessageBox.TYPE_INFO, timeout=8)
-				else:
-					self.yts[1]['entry_list'][self.yts[1]['index']] = (
-							current[0],  # Id
-							current[1],  # Thumbnail url
-							current[2],  # Thumbnail
-							current[3],  # Title
-							current[4],  # Views
-							current[5],  # Duration
-							video_url,  # Video url
-							current[7],  # Description
-							current[8],  # Likes
-							current[9],  # Big thumbnail url
-							current[10],  # Channel Id
-							current[11])  # Published
-					current = self.yts[1]['entry_list'][self.yts[1]['index']]
-
-			if video_url:
-				if self.yts[0]['list'] == 'playVideo':
-					service = eServiceReference(int(config.plugins.YouTube.player.value), 0, video_url)
-					service.setName(current[3])
-					print('[YouTube] Play:', video_url)
-					self.session.openWithCallback(self.playCallback,
-						YouTubePlayer, service=service, current=current)
-				else:
-					self.videoDownload(video_url, current[3])
-					self.yts.pop(0)
-					self.setEntryList()
-			else:
-				self.yts.pop(0)
-				self.setEntryList()
+			self.useVideoUrl()
 		else:
 			entry_list = self.createEntryList()
 			self.showButtons()
@@ -625,7 +592,7 @@ class YouTubeMain(Screen):
 			else:
 				self.updateThumbnails(entry_id)
 
-	def finishDecode(self, entry_id, image, picInfo=None):  # NOSONAR
+	def finishDecode(self, entry_id, image, _):
 		ptr = self.picloads[entry_id].getData()
 		if ptr:
 			self.thumbnails[entry_id] = ptr
@@ -691,7 +658,7 @@ class YouTubeMain(Screen):
 		if action:
 			action = action[1]
 			if action == 'quit':
-				pass  # NOSONAR
+				pass  # No need to check anything else
 			elif action == 'repeat':
 				self.ok()
 			elif action == 'ask':
@@ -748,16 +715,49 @@ class YouTubeMain(Screen):
 			self.search_result = config.plugins.YouTube.searchResult.value
 			self.screenCallback(search_value, 'search')
 
-	def getVideoUrl(self, video_id):
-		try:
-			video_url = self.ytdl.extract(video_id)
-		except Exception as e:
-			print('[YouTube] Error in extract info:', e)
-			return None, '%s\nVideo Id %s' % (e, str(video_id))
+	def useVideoUrl(self):
+		current = self.yts[1]['entry_list'][self.yts[1]['index']]
+		video_url = current[6]
+		video_id = current[0]
+		if not video_url:  # Get and remember video url
+			e = 'Video url not found!'
+			try:
+				video_url = self.ytdl.extract(video_id)
+			except Exception as e:
+				print('[YouTube] Error in extract info:', e)
+			if not video_url:
+				self.session.open(MessageBox,
+					_('There was an error in extract video url:\n%s\nVideo Id %s') % (e, str(video_id)),
+					MessageBox.TYPE_INFO, timeout=8)
+				self.yts.pop(0)
+				self.setEntryList()
+			else:
+				self.yts[1]['entry_list'][self.yts[1]['index']] = (
+					current[0],  # Id
+					current[1],  # Thumbnail url
+					current[2],  # Thumbnail
+					current[3],  # Title
+					current[4],  # Views
+					current[5],  # Duration
+					video_url,  # Video url
+					current[7],  # Description
+					current[8],  # Likes
+					current[9],  # Big thumbnail url
+					current[10],  # Channel Id
+					current[11]  # Published
+				)
+				current = self.yts[1]['entry_list'][self.yts[1]['index']]
 		if video_url:
-			return video_url, None
-		print('[YouTube] Video url not found')
-		return None, 'Video url not found!'
+			if self.yts[0]['list'] == 'playVideo':
+				service = eServiceReference(int(config.plugins.YouTube.player.value), 0, video_url)
+				service.setName(current[3])
+				print('[YouTube] Play:', video_url)
+				self.session.openWithCallback(self.playCallback,
+					YouTubePlayer, service=service, current=current)
+			else:
+				self.videoDownload(video_url, current[3])
+				self.yts.pop(0)
+				self.setEntryList()
 
 	@staticmethod
 	def _convertDate(duration):
@@ -817,167 +817,185 @@ class YouTubeMain(Screen):
 			else:
 				self.is_auth = False
 
-	def createEntryList(self):
+	def mySubscriptions(self):
+		videos = []
+		self.yts[0]['list'] = 'playlist'
+		search_response = self.ytapi.subscriptions_list(
+			max_results=self.search_result,
+			page_token=self.yts[0].get('pageToken', ''),
+			subscript_order=config.plugins.YouTube.subscriptOrder.value
+		)
+		self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
+		self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
+		self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
+		for result in search_response.get('items', []):
+			_id = self._tryList(result, lambda x: x['snippet']['resourceId']['channelId'])
+			_id = 'UU' + _id[2:] if _id else None
+			videos.append((_id,
+				self._tryStr(result, lambda x: x['snippet']['thumbnails']['high']['url']),  # Thumbnail url
+				None,
+				self._tryStr(result, lambda x: x['snippet']['title']),  # Title
+				'', '',
+				result.get('id'),  # Subscription
+				None, None, None, None, ''))
+		if not self.yts[0].get('pageToken') and len(videos) > 1:
+			videos.insert(0, ('recent_subscr', '', None, _('Recent'), '', '',
+				None, None, None, None, None, ''))
+		return videos
+
+	def myPlaylists(self):
+		videos = []
+		self.yts[0]['list'] = 'playlist'
+		search_response = self.ytapi.playlists_list(
+			max_results=self.search_result,
+			page_token=self.yts[0].get('pageToken', '')
+		)
+		self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
+		self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
+		self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
+		for result in search_response.get('items', []):
+			videos.append((
+				result.get('id'),  # Id
+				self._tryStr(result, lambda x: x['snippet']['thumbnails']['default']['url']),  # Thumbnail url
+				None,
+				self._tryStr(result, lambda x: x['snippet']['title']),  # Title
+				'', '', None, None, None, None, None, ''
+			))
+		return videos
+
+	def myLibrary(self, playlist):
+		videos = []
+		channel = ''
+		search_response = self.ytapi.channels_list(
+			max_results=self.search_result,
+			page_token=self.yts[0].get('pageToken', '')
+		)
+		self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
+		self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
+		self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
+		for result in search_response.get('items', []):
+			try:
+				channel = result['contentDetails']['relatedPlaylists'][playlist]
+			except Exception as e:
+				print('[YouTube] Error get playlist', e)
+		videos = self.videoIdFromPlaylist(channel)
+		return self.extractVideoIdList(videos)
+
+	def myFeeds(self, current):
+		if current == 'my_subscriptions':
+			return self.mySubscriptions()
+		elif current == 'my_playlists':
+			return self.myPlaylists()
+		else:  # all other my data
+			playlist = 'uploads' if current == 'my_uploads' else 'likes'
+			return self.myLibrary(playlist)
+
+	def recentSubscr(self):
+		videos = []
+		for subscription in self.yts[1]['entry_list']:
+			if subscription[0] != 'recent_subscr':
+				videos += self.videoIdFromPlaylist(subscription[0], False)
+		if self.yts[0].get('nextPageToken'):
+			for subscription in self.getAllSubscriptions():
+				videos += self.videoIdFromPlaylist(subscription, False)
+		if videos:
+			videos = sorted(self.extractVideoIdList(videos), key=lambda k: k[11], reverse=True)  # sort by date
+			del videos[int(self.search_result):]  # leaves only searchResult long list
+			self.yts[0]['nextPageToken'] = ''
+			self.setSearchResults(int(self.search_result))
+		return videos
+
+	def playlists(self, current):
+		videos = self.videoIdFromPlaylist(current)
+		if not videos:  # if channel list from subscription
+			search_response = self.ytapi.search_list(
+				order='date',
+				part='id,snippet',
+				channel_id='UC' + current[2:],
+				max_results=self.search_result,
+				page_token=self.yts[0].get('pageToken', '')
+			)
+			subscription = True if not self.yts[0].get('pageToken') else False
+			return self.createList(search_response, subscription)
+		return self.extractVideoIdList(videos)
+
+	def searchAndFeeds(self, current):
 		order = 'date'
 		search_type = 'video'
 		q = video_embeddable = video_definition = video_type = event_type = ''
 		videos = []
+		related = self.yts[0].get('related', '')
+		if related:
+			self.yts[0]['title'] = _('Related videos')
+		elif self.yts[0]['list'] == 'search':
+			order = config.plugins.YouTube.searchOrder.value
+			if current[6:] == 'broadcasts':
+				event_type = 'live'
+			else:
+				search_type = current[6:]
+			if '  (' in self.yts[0]['title']:
+				self.yts[0]['title'] = self.yts[0]['title'].rsplit('  (', 1)[0]
+			q = self.yts[0]['title']
+		elif self.yts[0]['list'] == 'feeds':
+			if current == 'top_rated':
+				order = 'rating'
+			elif current == 'most_viewed':
+				order = 'viewCount'
+			elif current == 'HD_videos':
+				video_definition = 'high'
+			elif current == 'embedded_videos':
+				video_embeddable = 'true'
+			elif current == 'episodes':
+				video_type = 'episode'
+			elif current == 'movies':
+				video_type = 'movie'
+
+		search_response = self.ytapi.search_list_full(
+			video_embeddable=video_embeddable,
+			safe_search=config.plugins.YouTube.safeSearch.value,
+			event_type=event_type,
+			video_type=video_type,
+			video_definition=video_definition,
+			order=order,
+			part='id,snippet',
+			q=q,
+			relevance_language=config.plugins.YouTube.searchLanguage.value,
+			s_type=search_type,
+			region_code=config.plugins.YouTube.searchRegion.value,
+			related_to_video_id=related,
+			max_results=self.search_result,
+			page_token=self.yts[0].get('pageToken', '')
+		)
+		if search_type != 'video':
+			videos = self.createList(search_response, False)
+			return videos
+
+		self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
+		self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
+		self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
+		for result in search_response.get('items', []):
+			try:
+				videos.append(result['id']['videoId'])
+			except Exception as e:
+				print('[YouTube] Error get videoId', e)
+		return self.extractVideoIdList(videos)
+
+	def createEntryList(self):
 		current = self.yts[1]['entry_list'][self.yts[1]['index']][0]
 
 		if self.yts[0]['list'] == 'myfeeds':
 			if not self.is_auth:
 				return None
-			elif current == 'my_liked_videos':
-				playlist = 'likes'
-			elif current == 'my_uploads':
-				playlist = 'uploads'
-
-			if current == 'my_subscriptions':
-				self.yts[0]['list'] = 'playlist'
-				search_response = self.ytapi.subscriptions_list(
-						max_results=self.search_result,
-						page_token=self.yts[0].get('pageToken', ''),
-						subscript_order=config.plugins.YouTube.subscriptOrder.value)
-				self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
-				self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
-				self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
-				for result in search_response.get('items', []):
-					_id = self._tryList(result, lambda x: x['snippet']['resourceId']['channelId'])
-					_id = 'UU' + _id[2:] if _id else None
-					videos.append((_id,
-							self._tryStr(result, lambda x: x['snippet']['thumbnails']['high']['url']),  # Thumbnail url
-							None,
-							self._tryStr(result, lambda x: x['snippet']['title']),  # Title
-							'', '',
-							result.get('id'),  # Subscription
-							None, None, None, None, ''))
-				if not self.yts[0].get('pageToken') and len(videos) > 1:
-					videos.insert(0, ('recent_subscr', '', None, _('Recent'), '', '',
-							None, None, None, None, None, ''))
-				return videos
-
-			elif current == 'my_playlists':
-				self.yts[0]['list'] = 'playlist'
-				search_response = self.ytapi.playlists_list(
-						max_results=self.search_result,
-						page_token=self.yts[0].get('pageToken', ''))
-				self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
-				self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
-				self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
-				for result in search_response.get('items', []):
-					videos.append((
-						result.get('id'),  # Id
-						self._tryStr(result, lambda x: x['snippet']['thumbnails']['default']['url']),  # Thumbnail url
-						None,
-						self._tryStr(result, lambda x: x['snippet']['title']),  # Title
-						'', '', None, None, None, None, None, ''))
-				return videos
-
-			else:  # all other my data
-				channel = ''
-				search_response = self.ytapi.channels_list(
-						max_results=self.search_result,
-						page_token=self.yts[0].get('pageToken', ''))
-
-				self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
-				self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
-				self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
-				for result in search_response.get('items', []):
-					try:
-						channel = result['contentDetails']['relatedPlaylists'][playlist]
-					except Exception as e:
-						print('[YouTube] Error get playlist', e)
-
-				videos = self.videoIdFromPlaylist(order, channel)
-				return self.extractVideoIdList(videos)
-
+			return self.myFeeds(current)
 		elif self.yts[0]['list'] == 'playlist':
 			if current == 'recent_subscr':
-				for subscription in self.yts[1]['entry_list']:
-					if subscription[0] != 'recent_subscr':
-						videos += self.videoIdFromPlaylist(order, subscription[0], False)
-				if self.yts[0].get('nextPageToken'):
-					for subscription in self.getAllSubscriptions():
-						videos += self.videoIdFromPlaylist(order, subscription, False)
-				if videos:
-					videos = sorted(self.extractVideoIdList(videos), key=lambda k: k[11], reverse=True)  # sort by date
-					del videos[int(self.search_result):]  # leaves only searchResult long list
-					self.yts[0]['nextPageToken'] = ''
-					self.setSearchResults(int(self.search_result))
-				return videos
+				return self.recentSubscr()
 			else:
-				videos = self.videoIdFromPlaylist(order, current)
-				if not videos:  # if channel list from subscription
-					search_response = self.ytapi.search_list(
-							order=order,
-							part='id,snippet',
-							channel_id='UC' + current[2:],
-							max_results=self.search_result,
-							page_token=self.yts[0].get('pageToken', ''))
-					subscription = True if not self.yts[0].get('pageToken') else False
-					return self.createList(search_response, subscription)
-			return self.extractVideoIdList(videos)
-
+				return self.playlists(current)
 		elif self.yts[0]['list'] == 'channel':
-			videos = self.videoIdFromChannellist(current, order)
-			return self.extractVideoIdList(videos)
-
-		else:  # search or pub feeds
-			related = self.yts[0].get('related', '')
-			if related:
-				self.yts[0]['title'] = _('Related videos')
-			elif self.yts[0]['list'] == 'search':
-				order = config.plugins.YouTube.searchOrder.value
-				if current[6:] == 'broadcasts':
-					event_type = 'live'
-				else:
-					search_type = current[6:]
-				if '  (' in self.yts[0]['title']:
-					self.yts[0]['title'] = self.yts[0]['title'].rsplit('  (', 1)[0]
-				q = self.yts[0]['title']
-			elif self.yts[0]['list'] == 'feeds':
-				if current == 'top_rated':
-					order = 'rating'
-				elif current == 'most_viewed':
-					order = 'viewCount'
-				elif current == 'HD_videos':
-					video_definition = 'high'
-				elif current == 'embedded_videos':
-					video_embeddable = 'true'
-				elif current == 'episodes':
-					video_type = 'episode'
-				elif current == 'movies':
-					video_type = 'movie'
-
-			search_response = self.ytapi.search_list_full(
-					video_embeddable=video_embeddable,
-					safe_search=config.plugins.YouTube.safeSearch.value,
-					event_type=event_type,
-					video_type=video_type,
-					video_definition=video_definition,
-					order=order,
-					part='id,snippet',
-					q=q,
-					relevance_language=config.plugins.YouTube.searchLanguage.value,
-					s_type=search_type,
-					region_code=config.plugins.YouTube.searchRegion.value,
-					related_to_video_id=related,
-					max_results=self.search_result,
-					page_token=self.yts[0].get('pageToken', ''))
-
-			if search_type != 'video':
-				videos = self.createList(search_response, False)
-				return videos
-
-			self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
-			self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
-			self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
-			for result in search_response.get('items', []):
-				try:
-					videos.append(result['id']['videoId'])
-				except Exception as e:
-					print('[YouTube] Error get videoId', e)
-			return self.extractVideoIdList(videos)
+			return self.extractVideoIdList(self.videoIdFromChannellist(current))
+		else:
+			return self.searchAndFeeds(current)
 
 	def getAllSubscriptions(self):
 		subscriptions = []
@@ -1043,10 +1061,10 @@ class YouTubeMain(Screen):
 				videos.append(videos_info)
 		return videos
 
-	def videoIdFromPlaylist(self, order, channel, get_page_token=True):
+	def videoIdFromPlaylist(self, channel, get_page_token=True):
 		videos = []
 		search_response = self.ytapi.playlist_items_list(
-				order=order,
+				order='date',
 				max_results=self.search_result,
 				playlist_id=channel,
 				page_token=self.yts[0].get('pageToken', ''))
@@ -1061,10 +1079,10 @@ class YouTubeMain(Screen):
 				print('[YouTube] Error get videoId from Playlist', e)
 		return videos
 
-	def videoIdFromChannellist(self, channel, order):
+	def videoIdFromChannellist(self, channel):
 		videos = []
 		search_response = self.ytapi.search_list(
-				order=order,
+				order='date',
 				part='id',
 				channel_id=channel,
 				max_results=self.search_result,
@@ -1222,7 +1240,7 @@ class YouTubeMain(Screen):
 	def subscribeChannel(self, channel_id):
 		if self.ytapi.subscriptions_insert(channel_id=channel_id):
 			return _('Subscribed!')
-		return _('There was an error!')
+		return ERROR_WARNING
 
 	def unsubscribeChannel(self):
 		sub_id = self['list'].getCurrent()[6]
@@ -1231,7 +1249,7 @@ class YouTubeMain(Screen):
 			del self.yts[0]['entry_list'][self['list'].index]
 			self['list'].updateList(self.yts[0].get('entry_list', []))
 			return _('Unsubscribed!')
-		return _('There was an error!')
+		return ERROR_WARNING
 
 	def rateVideo(self, rating):
 		video_id = self['list'].getCurrent()[0]
@@ -1245,7 +1263,7 @@ class YouTubeMain(Screen):
 				self['list'].updateList(self.yts[0].get('entry_list', []))
 			return text[rating]
 		else:
-			return _('There was an error!')
+			return ERROR_WARNING
 
 	def showEventInfo(self):
 		if self.yts[0]['list'] == 'videolist':
@@ -1271,8 +1289,8 @@ class YouTubeMain(Screen):
 				msg = _('Sorry, this file already exists:\n%s') % title
 			else:
 				from .YouTubeDownload import DownloadJob
-				if '&suburi=' in url:  # download DASH MP4 video and audio
-					url = url.split('&suburi=', 1)
+				if SUBURI in url:  # download DASH MP4 video and audio
+					url = url.split(SUBURI, 1)
 					job_manager.AddJob(DownloadJob(url[1], '%s.m4a' % outputfile[:-4],
 							'%s audio' % job_title, self.downloadStop))
 					self.active_downloads += 1
@@ -1436,7 +1454,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 		config.plugins.YouTube.useDashMP4.addNotifier(self.setConfigList,
 				initial_call=False)
 
-	def checkLoginSatus(self, configElement):  # NOSONAR
+	def checkLoginSatus(self, config_element):  # NOSONAR Notifier call with config element in parameter
 		if 'config' in self and self.login is not None:
 			self.setConfigList()
 			if self.login != config.plugins.YouTube.login.value:
@@ -1448,7 +1466,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 					else:
 						self.startupCallback(True)
 
-	def setConfigList(self, configElement=None):  # NOSONAR
+	def setConfigList(self, config_element=None):  # NOSONAR Notifier call with config element in parameter
 		if 'config' not in self:
 			return
 		self.list = [(_('Login on startup:'), config.plugins.YouTube.login,
@@ -1553,7 +1571,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 				self.splitTaimer.start(9000, True)
 			else:
 				print('[YouTube] Error in OAuth!')
-				self.session.open(MessageBox, 'There was an error!', MessageBox.TYPE_INFO, timeout=5)
+				self.session.open(MessageBox, ERROR_WARNING, MessageBox.TYPE_INFO, timeout=5)
 
 	def splitTaimerStop(self):  # pragma: no cover
 		# Here we waiting until the user enter a code
