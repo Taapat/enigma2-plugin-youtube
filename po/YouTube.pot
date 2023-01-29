@@ -342,7 +342,8 @@ msgstr ""
 #, python-format
 msgid ""
 "There was an error in extract video url:\n"
-"%s"
+"%s\n"
+"Video Id %s"
 msgstr ""
 
 msgid "There was an error!"
