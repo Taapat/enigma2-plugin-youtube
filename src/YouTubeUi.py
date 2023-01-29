@@ -923,7 +923,6 @@ class YouTubeMain(Screen):
 		order = 'date'
 		search_type = 'video'
 		q = video_embeddable = video_definition = video_type = event_type = ''
-		videos = []
 		related = self.yts[0].get('related', '')
 		if related:
 			self.yts[0]['title'] = _('Related videos')
@@ -966,6 +965,10 @@ class YouTubeMain(Screen):
 			max_results=self.search_result,
 			page_token=self.yts[0].get('pageToken', '')
 		)
+		return self.createVideoList(search_type, search_response)
+
+	def createVideoList(self, search_type, search_response):
+		videos = []
 		if search_type != 'video':
 			videos = self.createList(search_response, False)
 			return videos
