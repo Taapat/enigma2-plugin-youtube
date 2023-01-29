@@ -29,3 +29,6 @@ else:
 	from urllib.request import Request as compat_Request
 	from urllib.error import HTTPError as compat_HTTPError
 	from urllib.error import URLError as compat_URLError
+
+
+SUBURI = '&suburi='

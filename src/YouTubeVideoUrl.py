@@ -13,6 +13,7 @@ from .compat import compat_urlopen
 from .compat import compat_str
 from .compat import compat_URLError
 from .compat import compat_Request
+from .compat import SUBURI
 from .OAuth import YT_KEY
 
 
@@ -273,7 +274,7 @@ class YouTubeVideoUrl():
 			if url and our_format in DASHMP4_FORMAT:
 				audio_url = self._extract_dash_audio_format(streaming_formats)
 				if audio_url:
-					url += '&suburi=%s' % audio_url
+					url += SUBURI + audio_url
 			if not url:  # pragma: no cover
 				for fmt in streaming_formats:
 					if str(fmt.get('itag', '')) not in IGNORE_VIDEO_FORMAT and self._not_in_fmt(fmt):
