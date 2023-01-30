@@ -128,29 +128,6 @@ class YouTubeVideoUrl():
 
 		return content
 
-	@staticmethod
-	def _search_regex(pattern, string, group=None):
-		"""
-		Perform a regex search on the given string, using a single or a list of
-		patterns returning the first matching group.
-		"""
-		if isinstance(pattern, (str, compat_str, type(re.compile('')))):
-			mobj = re.search(pattern, string, 0)
-		else:  # pragma: no cover
-			for p in pattern:
-				mobj = re.search(p, string, 0)
-				if mobj:
-					break
-		if mobj:
-			if group is None:
-				# return the first matching group
-				return next(g for g in mobj.groups() if g is not None)
-			else:  # pragma: no cover
-				return mobj.group(group)
-		else:  # pragma: no cover
-			print('[YouTubeVideoUrl] unable extract pattern from string!')
-			return ''
-
 	def _extract_from_m3u8(self, manifest_url):
 		url_map = {}
 
@@ -162,7 +139,8 @@ class YouTubeVideoUrl():
 		manifest = self._download_webpage(manifest_url)
 		formats_urls = _get_urls(manifest)
 		for format_url in formats_urls:
-			itag = self._search_regex(r'itag/(\d+?)/', format_url)
+			itag = re.search(r'itag/(\d+?)/', format_url)
+			itag = itag.group(1) if itag else ''
 			url_map[itag] = format_url
 		return url_map
 
@@ -301,7 +279,7 @@ class YouTubeVideoUrl():
 						if url_map_key not in IGNORE_VIDEO_FORMAT:
 							url = url_map[url_map_key]
 							break
-				if not url:  # pragma: no cover
+				if not url and url_map:  # pragma: no cover
 					url = list(url_map.values())[0]
 
 		if not url:

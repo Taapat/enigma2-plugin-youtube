@@ -177,6 +177,16 @@ def try_plugin_screens_load():
 	session.current_dialog.updateSuggestions([('', None), ('112', None)])
 	session.current_dialog['list'].setIndex(1)
 	session.current_dialog.ok()
+	session.current_dialog.ok()
+	# Open YouTubePlayer
+	yt.ok()
+	# If open YouTubePlayer
+	if hasattr(session.current_dialog, 'doEofInternal'):
+		# Stop playback with doEofInternal
+		session.current_dialog.doEofInternal('quit')
+	elif session.current_dialog:
+		# Close MessageBox if exist
+		session.current_dialog.close()
 	# Close live broadcasts list
 	yt.cancel()
 	# Close search
