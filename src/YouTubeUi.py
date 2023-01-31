@@ -426,7 +426,7 @@ class YouTubeMain(Screen):
 		self.ytdl = YouTubeVideoUrl()
 		self.createAuth()
 		self.createMainList()
-		self.active_downloads == len(job_manager.getPendingJobs())
+		self.active_downloads = len(job_manager.getPendingJobs())
 
 	def cleanVariables(self):
 		del self.splitTaimer
