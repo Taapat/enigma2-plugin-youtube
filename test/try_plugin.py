@@ -236,11 +236,13 @@ def try_plugin_screens_load():
 	yt.cancel()
 	# Open my feeds
 	yt['list'].setIndex(2)
-	# Open my subscriptions
 	yt.ok()
-	# Open recent subscriptions
+	# Open my subscriptions
 	yt['list'].setIndex(0)
 	yt.ok()
+	# Open recent subscriptions
+	yt.ok()
+	yt.cancel()
 	# Unsubscribe channel ELLO
 	yt['list'].setIndex(2)
 	if yt['list'].getCurrent()[3] == 'ELLO':
