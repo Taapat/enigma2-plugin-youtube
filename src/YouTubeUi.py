@@ -426,8 +426,7 @@ class YouTubeMain(Screen):
 		self.ytdl = YouTubeVideoUrl()
 		self.createAuth()
 		self.createMainList()
-		for _ in job_manager.getPendingJobs():  # noqa: F402
-			self.active_downloads += 1
+		self.active_downloads == len(job_manager.getPendingJobs())
 
 	def cleanVariables(self):
 		del self.splitTaimer
@@ -593,7 +592,7 @@ class YouTubeMain(Screen):
 			else:
 				self.updateThumbnails(entry_id)
 
-	def finishDecode(self, entry_id, image, picInfo=None):  # NOSONAR picload call  with picInfo in parameter
+	def finishDecode(self, entry_id, image, picInfo=None):  # NOSONAR picload call with picInfo in parameter
 		ptr = self.picloads[entry_id].getData()
 		if ptr:
 			self.thumbnails[entry_id] = ptr
@@ -826,9 +825,7 @@ class YouTubeMain(Screen):
 			page_token=self.yts[0].get('pageToken', ''),
 			subscript_order=config.plugins.YouTube.subscriptOrder.value
 		)
-		self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
-		self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
-		self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
+		self.setSearchResults(search_response)
 		for result in search_response.get('items', []):
 			_id = self._tryList(result, lambda x: x['snippet']['resourceId']['channelId'])
 			_id = 'UU' + _id[2:] if _id else None
@@ -851,9 +848,7 @@ class YouTubeMain(Screen):
 			max_results=self.search_result,
 			page_token=self.yts[0].get('pageToken', '')
 		)
-		self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
-		self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
-		self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
+		self.setSearchResults(search_response)
 		for result in search_response.get('items', []):
 			videos.append((
 				result.get('id'),  # Id
@@ -871,9 +866,7 @@ class YouTubeMain(Screen):
 			max_results=self.search_result,
 			page_token=self.yts[0].get('pageToken', '')
 		)
-		self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
-		self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
-		self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
+		self.setSearchResults(search_response)
 		for result in search_response.get('items', []):
 			try:
 				channel = result['contentDetails']['relatedPlaylists'][playlist]
@@ -903,7 +896,7 @@ class YouTubeMain(Screen):
 			videos = sorted(self.extractVideoIdList(videos), key=lambda k: k[11], reverse=True)  # sort by date
 			del videos[int(self.search_result):]  # leaves only searchResult long list
 			self.yts[0]['nextPageToken'] = ''
-			self.setSearchResults(int(self.search_result))
+			self.setSearchResults(None, int(self.search_result))
 		return videos
 
 	def playlists(self, current):
@@ -973,10 +966,7 @@ class YouTubeMain(Screen):
 		if search_type != 'video':
 			videos = self.createList(search_response, False)
 			return videos
-
-		self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
-		self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
-		self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
+		self.setSearchResults(search_response)
 		for result in search_response.get('items', []):
 			try:
 				videos.append(result['id']['videoId'])
@@ -1073,9 +1063,7 @@ class YouTubeMain(Screen):
 				playlist_id=channel,
 				page_token=self.yts[0].get('pageToken', ''))
 		if get_page_token:
-			self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
-			self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
-			self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
+			self.setSearchResults(search_response)
 		for result in search_response.get('items', []):
 			try:
 				videos.append(result['snippet']['resourceId']['videoId'])
@@ -1091,9 +1079,7 @@ class YouTubeMain(Screen):
 				channel_id=channel,
 				max_results=self.search_result,
 				page_token=self.yts[0].get('pageToken', ''))
-		self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
-		self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
-		self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
+		self.setSearchResults(search_response)
 		for result in search_response.get('items', []):
 			try:
 				videos.append(result['id']['videoId'])
@@ -1103,9 +1089,7 @@ class YouTubeMain(Screen):
 
 	def createList(self, search_response, subscription):
 		videos = []
-		self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
-		self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
-		self.setSearchResults(search_response.get('pageInfo', {}).get('totalResults', 0))
+		self.setSearchResults(search_response)
 		kind = self.yts[0]['list']
 		for result in search_response.get('items', []):
 			try:
@@ -1124,7 +1108,11 @@ class YouTubeMain(Screen):
 		self.yts[0]['list'] = kind
 		return videos
 
-	def setSearchResults(self, total_results):
+	def setSearchResults(self, search_response, total_results=0):
+		if search_response:
+			self.yts[0]['nextPageToken'] = search_response.get('nextPageToken', '')
+			self.yts[0]['prevPageToken'] = search_response.get('prevPageToken', '')
+			total_results = self._tryList(search_response, lambda x: x['pageInfo']['totalResults']) or 0
 		if total_results > 0:
 			page_index = self.yts[0].get('page_index', 1)
 			page_end = page_index + int(self.search_result) - 1
