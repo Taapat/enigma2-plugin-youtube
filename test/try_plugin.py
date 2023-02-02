@@ -244,9 +244,11 @@ def try_plugin_screens_load():
 	yt.ok()
 	yt.cancel()
 	# Unsubscribe channel ELLO
-	yt['list'].setIndex(2)
-	if yt['list'].getCurrent()[3] == 'ELLO':
-		print(yt.unsubscribeChannel())
+	for x in range(2, 23):
+		yt['list'].setIndex(x)
+		if yt['list'].getCurrent()[3] == 'ELLO':
+			print(yt.unsubscribeChannel())
+			break
 	yt.ok()
 	yt.cancel()
 	yt.cancel()
