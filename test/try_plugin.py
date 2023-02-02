@@ -251,6 +251,7 @@ def try_plugin_screens_load():
 	yt.ok()
 	# Open recent subscriptions
 	yt.ok()
+	yt.getAllSubscriptions()
 	yt.cancel()
 	# Unsubscribe channel ELLO
 	for x in range(2, 23):
