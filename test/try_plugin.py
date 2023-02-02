@@ -92,6 +92,13 @@ def try_plugin_screens_load():
 	# Open YouTubeInfo
 	yt.showEventInfo()
 	session.current_dialog.close()
+	# Select next serch results page
+	yt.selectNext()
+	yt['list'].setIndex(23)
+	yt.selectNext()
+	# Select previous serch results page
+	yt.selectPrevious()
+	yt.selectPrevious()
 	# Open YouTubePlayer
 	yt.ok()
 	# If open YouTubePlayer
@@ -138,9 +145,11 @@ def try_plugin_screens_load():
 	elif session.current_dialog:
 		# Close MessageBox if exist
 		session.current_dialog.close()
-	# Try YouTubeMain methods for code coverage
-	yt.setNextEntries()
-	yt.setPrevEntries()
+	# Select last entry in page
+	yt['list'].setIndex(23)
+	yt.selectNext()
+	# Select first entry in page
+	yt.selectPrevious()
 	# Close video list
 	yt.cancel()
 	# Open search channels
