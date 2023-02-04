@@ -720,14 +720,15 @@ class YouTubeMain(Screen):
 		video_url = current[6]
 		video_id = current[0]
 		if not video_url:  # Get and remember video url
-			e = 'Video url not found!'
+			er = 'Video url not found!'
 			try:
 				video_url = self.ytdl.extract(video_id)
 			except Exception as e:
-				print('[YouTube] Error in extract info:', e)
+				er = e
+				print('[YouTube] Error in extract info:', er)
 			if not video_url:
 				self.session.open(MessageBox,
-					_('There was an error in extract video url:\n%s\nVideo Id %s') % (e, str(video_id)),
+					_('There was an error in extract video url:\n%s\nVideo Id %s') % (er, str(video_id)),
 					MessageBox.TYPE_INFO, timeout=8)
 				self.yts.pop(0)
 				self.setEntryList()
