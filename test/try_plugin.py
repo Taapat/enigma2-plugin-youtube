@@ -192,7 +192,7 @@ def try_plugin_screens_load():
 	# If open YouTubePlayer
 	if hasattr(session.current_dialog, 'doEofInternal'):
 		# Stop playback with doEofInternal
-		session.current_dialog.doEofInternal('quit')
+		session.current_dialog.doEofInternal(None)
 	elif session.current_dialog:
 		# Close MessageBox if exist
 		session.current_dialog.close()
@@ -211,7 +211,8 @@ def try_plugin_screens_load():
 	# If open YouTubePlayer
 	if hasattr(session.current_dialog, 'doEofInternal'):
 		# Stop playback with doEofInternal
-		session.current_dialog.doEofInternal('quit')
+		config.plugins.YouTube.onMovieEof.value = 'quit'
+		session.current_dialog.doEofInternal(None)
 	elif session.current_dialog:
 		# Close MessageBox if exist
 		session.current_dialog.close()
@@ -310,6 +311,12 @@ def try_plugin_screens_load():
 	yt.openMenu()
 	# Close Menu ChoiceBox
 	session.current_dialog.close(False)
+	# Test error in extract video url
+	yt.yts[1]['entry_list'][yt.yts[1]['index']] = (
+		'vrong_ID', '', '', '', '', '', '', '', '', '', '', ''
+	)
+	yt.useVideoUrl()
+	yt.cancel()
 	# Close Public feeds
 	yt.cancel()
 	# Close YouTubeMain
