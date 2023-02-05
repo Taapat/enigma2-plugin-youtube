@@ -308,11 +308,13 @@ def try_plugin_screens_load():
 	yt.menuCallback(('', 'download_list'))
 	# Try YouTubeDownloadList methods
 	session.current_dialog.ok()
-	# Close JobView
+	# Close JobView or YouTubeDownloadList
 	session.current_dialog.close()
-	session.current_dialog.cleanVariables()
-	# Close YouTubeDownloadList
-	session.current_dialog.close()
+	# If closed JobView try YouTubeDownloadList methods
+	if hasattr(session.current_dialog, 'cleanVariables'):
+		session.current_dialog.cleanVariables()
+		# Close YouTubeDownloadList
+		session.current_dialog.close()
 	# Open Public feeds
 	yt.createFeedList()
 	# Open recent
