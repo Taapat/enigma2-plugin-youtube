@@ -297,10 +297,20 @@ def try_plugin_screens_load():
 	session.current_dialog.ok()
 	# Close YouTubeDirBrowser
 	session.current_dialog.cancel()
+	# Open YouTubeDirBrowser again to test all other methods
+	session.current_dialog['config'].setCurrentIndex(11)
+	session.current_dialog.ok()
+	session.current_dialog.ok()
+	session.current_dialog.use()
 	# Close YouTubeSetup
 	session.current_dialog.cancel()
 	# Open YouTubeDownloadList
 	yt.menuCallback(('', 'download_list'))
+	# Try YouTubeDownloadList methods
+	session.current_dialog.ok()
+	# Close JobView
+	session.current_dialog.close()
+	session.current_dialog.cleanVariables()
 	# Close YouTubeDownloadList
 	session.current_dialog.close()
 	# Open Public feeds
