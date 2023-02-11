@@ -270,10 +270,37 @@ def try_plugin_screens_load():
 	# Open uploads
 	yt['list'].setIndex(2)
 	yt.ok()
-	# Download test video
+	# Start test video download
 	yt['list'].setIndex(0)
 	yt.menuCallback(('download', 'download'))
 	session.current_dialog.close()
+	# Try DownloadTask methods
+	from Components.Task import job_manager
+	task = job_manager.active_job.tasks[0]
+	task.downloadProgress(10, 100)
+	# Open YouTubeDownloadList
+	yt.menuCallback(('', 'download_list'))
+	# Try YouTubeDownloadList methods
+	session.current_dialog.ok()
+	# Close JobView or YouTubeDownloadList
+	session.current_dialog.close()
+	# If closed JobView try YouTubeDownloadList methods
+	if hasattr(session.current_dialog, 'cleanVariables'):
+		session.current_dialog.cleanVariables()
+		# Close YouTubeDownloadList
+		session.current_dialog.close()
+	# Try merge video files
+	config.plugins.YouTube.mergeFiles.value = True
+	task.outputfile = 'test_suburi.mp4'
+	with open(task.outputfile, 'w') as fp:  # noqa: F841
+		pass  # create empty mp4 file
+	with open('test.m4a', 'w') as fp:  # noqa: F841
+		pass  # create empty m4a file
+	task.downloadFinished(None)
+	try:
+		task.downloadFailed()
+	except IndexError:
+		pass  # expected error in Task
 	yt.cancel()
 	# Open playlists
 	yt['list'].setIndex(3)
@@ -304,17 +331,6 @@ def try_plugin_screens_load():
 	session.current_dialog.use()
 	# Close YouTubeSetup
 	session.current_dialog.cancel()
-	# Open YouTubeDownloadList
-	yt.menuCallback(('', 'download_list'))
-	# Try YouTubeDownloadList methods
-	session.current_dialog.ok()
-	# Close JobView or YouTubeDownloadList
-	session.current_dialog.close()
-	# If closed JobView try YouTubeDownloadList methods
-	if hasattr(session.current_dialog, 'cleanVariables'):
-		session.current_dialog.cleanVariables()
-		# Close YouTubeDownloadList
-		session.current_dialog.close()
 	# Open Public feeds
 	yt.createFeedList()
 	# Open recent
