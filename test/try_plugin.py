@@ -292,9 +292,9 @@ def try_plugin_screens_load():
 	# Try merge video files
 	config.plugins.YouTube.mergeFiles.value = True
 	task.outputfile = 'test_suburi.mp4'
-	with open(task.outputfile, 'w') as fp:
+	with open(task.outputfile, 'w') as fp:  # noqa: F841
 		pass  # create empty mp4 file
-	with open('test.m4a', 'w') as fp:
+	with open('test.m4a', 'w') as fp:  # noqa: F841
 		pass  # create empty m4a file
 	task.downloadFinished(None)
 	try:

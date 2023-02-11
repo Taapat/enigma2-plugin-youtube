@@ -246,7 +246,7 @@ class eConsoleAppContainer(_einstances):
 
 	def execute(self, *cmd):
 		if cmd and 'ffmpeg -i' in cmd[0]:
-			with open('test.mkv', 'w') as fp:
+			with open('test.mkv', 'w') as fp:  # noqa: F841
 				pass  # create empty mkv file
 			return True
 
