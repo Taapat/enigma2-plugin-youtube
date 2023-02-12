@@ -6,8 +6,8 @@ PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py
 
 from __future__ import print_function
 
+import os
 import sys
-from os import environ
 
 import enigma
 
@@ -15,6 +15,11 @@ import enigma
 if sys.version_info[0] == 2:
 	reload(sys)
 	sys.setdefaultencoding('utf-8')
+
+
+class FailureInstance:
+	def getErrorMessage(self):
+		return 'download failed'
 
 
 def try_plugin_screens_load():
@@ -26,7 +31,7 @@ def try_plugin_screens_load():
 	print('=========================================================')
 	from Plugins.Extensions.YouTube.YouTubeUi import YouTubeMain
 	from Components.config import config
-	config.plugins.YouTube.refreshToken.value = environ['YOUTUBE_PLUGIN_TOKEN']
+	config.plugins.YouTube.refreshToken.value = os.environ['YOUTUBE_PLUGIN_TOKEN']
 	config.plugins.YouTube.subscriptOrder.value = 'alphabetical'
 	config.plugins.YouTube.downloadDir.value = './'
 	# Open YouTubeMain
@@ -298,7 +303,11 @@ def try_plugin_screens_load():
 		pass  # create empty m4a file
 	task.downloadFinished(None)
 	try:
-		task.downloadFailed()
+		os.remove('test.mkv')
+	except OSError:
+		pass  # if mkv file not created
+	try:
+		task.downloadFailed(FailureInstance(), '')
 	except IndexError:
 		pass  # expected error in Task
 	yt.cancel()
