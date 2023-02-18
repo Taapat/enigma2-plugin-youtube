@@ -321,7 +321,6 @@ def try_plugin_screens_load():
 	# Close my subscriptions
 	yt.cancel()
 	# Open YouTubeSetup
-	config.plugins.YouTube.login.value = False
 	yt.openMenu()
 	# Disable 'Login on startup:'
 	session.current_dialog.keyLeft()
