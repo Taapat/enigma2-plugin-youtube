@@ -349,9 +349,10 @@ def try_plugin_screens_load():
 	# Close Menu ChoiceBox
 	session.current_dialog.close(False)
 	# Test error in extract video url
-	yt.yts[1]['entry_list'][yt.yts[1]['index']] = (
+	current = (
 		'vrong_ID', '', '', '', '', '', '', '', '', '', '', ''
 	)
+	yt.yts[1]['entry_list'][yt.yts[1]['index']] = current
 	yt.useVideoUrl()
 	yt.cancel()
 	# Close Public feeds
@@ -359,6 +360,23 @@ def try_plugin_screens_load():
 	# Close YouTubeMain
 	yt.cleanVariables()
 	yt.cancel()
+	# Try embedded skins in all resolutions
+	from Plugins.Extensions.YouTube import YouTubeUi
+	from Plugins.Extensions.YouTube import YouTubeSearch
+	from Plugins.Extensions.YouTube import YouTubeDownload
+	for res in (1280, 1920, 720):
+		YouTubeUi.screenwidth = res
+		YouTubeSearch.screenwidth = res
+		yt = session.open(YouTubeUi.YouTubeMain)
+		yt.cancel()
+		yt = session.open(YouTubeUi.YouTubeInfo, current=current)
+		yt.close()
+		yt = session.open(YouTubeSearch.YouTubeSearch, cur_list='Searchvideo')
+		yt.close()
+		if res != 1280:
+			YouTubeDownload.screenwidth = res
+			yt = session.open(YouTubeDownload.YouTubeDownloadList)
+			yt.close()
 	# Try plugin for code coverage
 	from Plugins.Extensions.YouTube.plugin import main, Plugins
 	Plugins()
