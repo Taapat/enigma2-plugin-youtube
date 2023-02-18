@@ -189,16 +189,17 @@ jobs:
         run: |
           python convert-iso-639-3.py
       - name: ========== Test plugin screens load ==========
+        if: github.event_name == 'schedule'
         run: |
           YOUTUBE_PLUGIN_TOKEN=${{ secrets.YOUTUBE_PLUGIN_TOKEN }} PYTHONPATH=./test:./enigma2:./enigma2/lib/python python ./test/try_plugin.py
       - name: Install coverage dependencies
         if: github.event_name != 'schedule'
         run: |
           pip install pytest pytest-cov
-      - name: Coverage code
+      - name: ========== Coverage code ==========
         if: github.event_name != 'schedule'
         run: |
-          YOUTUBE_PLUGIN_TOKEN=${{ secrets.YOUTUBE_PLUGIN_TOKEN }} PYTHONPATH=./test:./enigma2:./enigma2/lib/python python -m pytest -rx -v --cov=src --cov-report=xml --cov-report=html test/try_plugin.py
+          YOUTUBE_PLUGIN_TOKEN=${{ secrets.YOUTUBE_PLUGIN_TOKEN }} PYTHONPATH=./test:./enigma2:./enigma2/lib/python python -m pytest -rx -v --cov=src --cov-report=xml --cov-report=html test/try_plugin.py -s
           mv .coverage .coverage_${{ steps.split.outputs._0 }}_${{ steps.split.outputs._1 }}
       - name: Upload code coverage results
         if: github.event_name != 'schedule'
