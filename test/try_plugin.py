@@ -24,11 +24,16 @@ class FailureInstance:
 
 def try_plugin_screens_load():
 	print('Try start session')
+	e2_version = os.environ['E2_VERSION']
+	if e2_version == 'Taapat bh':
+		enigma.setDesktopSize(720, 576)
+	elif e2_version == 'OpenPLi release-6.2':
+		enigma.setDesktopSize(1280, 720)
 	session = enigma.start_session()
 
-	print('=========================================================')
-	print('               Try YouTube screens load')
-	print('=========================================================')
+	print('=' * 57)
+	print(' ' * 15 + 'Try YouTube screens load')
+	print('=' * 57)
 	from Plugins.Extensions.YouTube.YouTubeUi import YouTubeMain
 	from Components.config import config
 	config.plugins.YouTube.refreshToken.value = os.environ['YOUTUBE_PLUGIN_TOKEN']
@@ -360,23 +365,6 @@ def try_plugin_screens_load():
 	# Close YouTubeMain
 	yt.cleanVariables()
 	yt.cancel()
-	# Try embedded skins in all resolutions
-	from Plugins.Extensions.YouTube import YouTubeUi
-	from Plugins.Extensions.YouTube import YouTubeSearch
-	from Plugins.Extensions.YouTube import YouTubeDownload
-	for res in (1280, 1920, 720):
-		YouTubeUi.screenwidth = res
-		YouTubeSearch.screenwidth = res
-		yt = session.open(YouTubeUi.YouTubeMain)
-		yt.cancel()
-		yt = session.open(YouTubeUi.YouTubeInfo, current=current)
-		yt.close()
-		yt = session.open(YouTubeSearch.YouTubeSearch, cur_list='Searchvideo')
-		yt.close()
-		if res != 1280:
-			YouTubeDownload.screenwidth = res
-			yt = session.open(YouTubeDownload.YouTubeDownloadList)
-			yt.close()
 	# Try plugin for code coverage
 	from Plugins.Extensions.YouTube.plugin import main, Plugins
 	Plugins()

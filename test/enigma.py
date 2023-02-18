@@ -289,15 +289,23 @@ loadSVG = loadPNG
 loadGIF = loadPNG
 
 
+DESKTOP_SIZE = [1920, 1080]
+
+
+def setDesktopSize(w, h):
+	global DESKTOP_SIZE
+	DESKTOP_SIZE = [w, h]
+
+
 class _getDesktop(_einstances):
 	def __init__(self, *args):
 		pass  # Dummy method
 
 	def height(self):
-		return 720
+		return DESKTOP_SIZE[1]
 
 	def width(self):
-		return 1280
+		return DESKTOP_SIZE[0]
 
 
 eSize = _getDesktop
