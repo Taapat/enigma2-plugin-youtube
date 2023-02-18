@@ -25,9 +25,9 @@ class FailureInstance:
 def try_plugin_screens_load():
 	print('Try start session')
 	e2_version = os.environ['E2_VERSION']
-	if e2_version == 'Taapat bh':
+	if e2_version == 'Taapat':
 		enigma.setDesktopSize(720, 576)
-	elif e2_version == 'OpenPLi release-6.2':
+	elif e2_version == 'OpenPLi':
 		enigma.setDesktopSize(1280, 720)
 	session = enigma.start_session()
 
