@@ -133,6 +133,7 @@ def try_plugin_screens_load():
 		config.plugins.YouTube.lastPosition.value = '["%s", 1]' % session.current_dialog.current[0]
 		func()
 		session.current_dialog.close(True)
+		session.current_dialog.started = False
 		config.plugins.YouTube.lastPosition.value = ''
 		func()
 		session.current_dialog.lastPosition = [x for x in range(21)]
