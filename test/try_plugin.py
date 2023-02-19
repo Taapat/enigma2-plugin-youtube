@@ -36,8 +36,8 @@ def try_plugin_screens_load():
 	from Plugins.Extensions.YouTube.plugin import Plugins
 	plugins.addPlugin(Plugins()[0])
 	p = PluginDescriptor(
-		name = 'ServiceApp',
-		where = [
+		name='ServiceApp',
+		where=[
 			PluginDescriptor.WHERE_MENU,
 			PluginDescriptor.WHERE_EXTENSIONSMENU
 		]
