@@ -31,6 +31,20 @@ def try_plugin_screens_load():
 		enigma.setDesktopSize(1280, 720)
 	session = enigma.start_session()
 
+	from Plugins.Plugin import PluginDescriptor
+	from Components.PluginComponent import plugins
+	from Plugins.Extensions.YouTube.plugin import Plugins
+	plugins.addPlugin(Plugins()[0])
+	p = PluginDescriptor(
+		name = 'ServiceApp',
+		where = [
+			PluginDescriptor.WHERE_MENU,
+			PluginDescriptor.WHERE_EXTENSIONSMENU
+		]
+	)
+	p.path = 'ServiceApp'
+	plugins.addPlugin(p)
+
 	print('=' * 57)
 	print(' ' * 15 + 'Try YouTube screens load')
 	print('=' * 57)
@@ -113,10 +127,19 @@ def try_plugin_screens_load():
 	yt.ok()
 	# If open YouTubePlayer
 	if hasattr(session.current_dialog, 'leavePlayer'):
-		# Try YouTubePlayer methods for code coverage
+		# Try YouTubePlayer __serviceStart
+		from Components.ServiceEventTracker import ServiceEventTracker
+		func = list(ServiceEventTracker.EventMap.values())[0][0][2]
+		config.plugins.YouTube.lastPosition.value = '["%s", 1]' % session.current_dialog.current[0]
+		func()
+		session.current_dialog.close(True)
+		config.plugins.YouTube.lastPosition.value = ''
+		func()
+		session.current_dialog.lastPosition = [x for x in range(21)]
+		# Try others YouTubePlayer methods for code coverage
 		session.current_dialog.getPluginList()
-		session.current_dialog.messageBoxCallback(True)
 		session.current_dialog.showMovies()
+		session.current_dialog.openServiceList()
 		# Open YouTubeInfo
 		from enigma import eTimer
 		session.current_dialog.hideTimer = eTimer()
@@ -343,8 +366,24 @@ def try_plugin_screens_load():
 	session.current_dialog.ok()
 	session.current_dialog.ok()
 	session.current_dialog.use()
-	# Close YouTubeSetup
+	# Test removeCallback
+	config.plugins.YouTube.mergeFiles.value = False
+	session.current_dialog['config'].setCurrentIndex(1)
+	session.current_dialog.ok()
+	session.current_dialog.close(True)
 	session.current_dialog.cancel()
+	# Open YouTubeSetup to test installCallback
+	yt.openMenu()
+	config.plugins.YouTube.mergeFiles.value = True
+	session.current_dialog.ok()
+	session.current_dialog.close(False)
+	config.plugins.YouTube.mergeFiles.value = True
+	session.current_dialog.ok()
+	session.current_dialog.close(True)
+	session.current_dialog.cancel()
+	# Open YouTubeSetup to test keySave
+	yt.openMenu()
+	session.current_dialog.ok()
 	# Open Public feeds
 	yt.createFeedList()
 	# Open recent
@@ -365,9 +404,8 @@ def try_plugin_screens_load():
 	# Close YouTubeMain
 	yt.cleanVariables()
 	yt.cancel()
-	# Try plugin for code coverage
-	from Plugins.Extensions.YouTube.plugin import main, Plugins
-	Plugins()
+	# Try plugin main for code coverage
+	from Plugins.Extensions.YouTube.plugin import main
 	main(session)
 
 
