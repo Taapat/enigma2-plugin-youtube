@@ -129,7 +129,7 @@ class YouTubePlayer(MoviePlayer):
 		self.started = False
 		self.lastPosition = []
 
-	def __serviceStart(self):  # pragma: no cover
+	def __serviceStart(self):
 		if not self.started:
 			self.started = True
 			try:
@@ -139,24 +139,24 @@ class YouTubePlayer(MoviePlayer):
 				config.plugins.YouTube.lastPosition.value = '[]'
 				config.plugins.YouTube.lastPosition.save()
 				self.lastPosition = []
-
-			if self.current[0] in self.lastPosition:
-				idx = self.lastPosition.index(self.current[0])
-				self.lastPosition.pop(idx)
-				self.seekPosition = self.lastPosition[idx]
-				self.lastPosition.pop(idx)
-				config.plugins.YouTube.lastPosition.value = str(self.lastPosition)
-				config.plugins.YouTube.lastPosition.save()
-				if SUBURI not in self.current[6] or \
-						config.plugins.YouTube.player.value == '5002':
-					self.session.openWithCallback(self.messageBoxCallback, MessageBox,
-							text=_('Resume playback from the previous position?'), timeout=5)
+			else:
+				if self.current[0] in self.lastPosition:
+					idx = self.lastPosition.index(self.current[0])
+					self.lastPosition.pop(idx)
+					self.seekPosition = self.lastPosition[idx]
+					self.lastPosition.pop(idx)
+					config.plugins.YouTube.lastPosition.value = str(self.lastPosition)
+					config.plugins.YouTube.lastPosition.save()
+					if SUBURI not in self.current[6] or \
+							config.plugins.YouTube.player.value == '5002':
+						self.session.openWithCallback(self.messageBoxCallback, MessageBox,
+								text=_('Resume playback from the previous position?'), timeout=5)
 
 	def messageBoxCallback(self, answer):
 		if answer:
 			service = self.session.nav.getCurrentService()
 			seek = service and service.seek()
-			if seek:  # pragma: no cover
+			if seek:
 				seek.seekTo(self.seekPosition)
 
 	def leavePlayer(self):
@@ -178,7 +178,7 @@ class YouTubePlayer(MoviePlayer):
 		if answer and answer[1] != 'continue':
 			service = self.session.nav.getCurrentService()
 			seek = service and service.seek()
-			if seek:  # pragma: no cover
+			if seek:
 				if len(self.lastPosition) > 20:
 					self.lastPosition.pop(0)
 					self.lastPosition.pop(0)
@@ -193,7 +193,7 @@ class YouTubePlayer(MoviePlayer):
 	def getPluginList(self):
 		plist = []
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_EXTENSIONSMENU):
-			if p.name != _('YouTube'):  # pragma: no cover
+			if p.name != _('YouTube'):
 				plist.append(((boundFunction(self.getPluginName, p.name),
 					boundFunction(self.runPlugin, p), lambda: True), None))
 		return plist
@@ -209,7 +209,7 @@ class YouTubePlayer(MoviePlayer):
 	def showMovies(self):
 		pass  # Ignore this method
 
-	def openServiceList(self):  # pragma: no cover
+	def openServiceList(self):
 		if hasattr(self, 'toggleShow'):
 			self.toggleShow()
 
@@ -1495,7 +1495,7 @@ class YouTubeSetup(ConfigListScreen, Screen):
 				config.plugins.YouTube.mergeFiles,
 				_('FFmpeg will be used to merge downloaded DASH video and audio files.\nFFmpeg will be installed if necessary.')))
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_MENU):
-			if 'ServiceApp' in p.path:  # pragma: no cover
+			if 'ServiceApp' in p.path:
 				self.list.append((_('Media player:'),
 					config.plugins.YouTube.player,
 					_('Specify the player which will be used for YouTube media playback.')))
@@ -1514,23 +1514,23 @@ class YouTubeSetup(ConfigListScreen, Screen):
 				download_dir = download_dir[2:-2]
 			self.session.openWithCallback(self.downloadPath,
 				YouTubeDirBrowser, download_dir)
-		elif self.mergeFiles != config.plugins.YouTube.mergeFiles.value:  # pragma: no cover
+		elif self.mergeFiles != config.plugins.YouTube.mergeFiles.value:
 			if self.mergeFiles:
 				self.session.openWithCallback(self.removeCallback,
 					MessageBox, _('You have disabled downloaded file merge.\nInstalled FFmpeg is no longer necessary.\nDo you want to remove FFmpeg?'))
 			else:
 				self.session.openWithCallback(self.installCallback,
 					MessageBox, _('To merge downloaded files FFmpeg will be installed.\nFFmpeg can take a lot of space!\nDo you want to continue?'))
-		else:  # pragma: no cover
+		else:
 			self.keySave()
 
-	def removeCallback(self, answer):  # pragma: no cover
+	def removeCallback(self, answer):
 		if answer:
 			from Screens.Console import Console
 			self.session.open(Console, cmdlist=['opkg remove --autoremove ffmpeg'])
 		self.keySave()
 
-	def installCallback(self, answer):  # pragma: no cover
+	def installCallback(self, answer):
 		if answer:
 			from Screens.Console import Console
 			self.session.open(Console, cmdlist=['opkg update && opkg install ffmpeg'])

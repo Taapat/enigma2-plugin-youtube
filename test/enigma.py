@@ -179,7 +179,10 @@ class _pNavigation(_einstances):
 		self.m_record_event = _einstances()
 
 	def getCurrentService(self):
-		return ''
+		return self
+
+	def getPlayPosition(self):
+		return (0, 100)
 
 	def getRecordings(self, *args):
 		return ''
@@ -628,6 +631,15 @@ class new_movie_player(Screen):
 	def __init__(self, session, service, *args):
 		Screen.__init__(self, session)
 		print('[MoviePlayer] service:', service.getName())
+
+	def getPluginName(self, name):
+		return name
+
+	def runPlugin(self, plugin):
+		pass  # Dummy method
+
+	def toggleShow(self):
+		pass  # Dummy method
 
 
 def ngettext(singular, plural, n):
