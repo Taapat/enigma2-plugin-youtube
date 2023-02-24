@@ -383,6 +383,7 @@ class YouTubeMain(Screen):
 		self.splitTaimer.timeout.callback.append(self.splitTaimerStop)
 		self.active_downloads = 0
 		self.is_auth = False
+		self.picloads = {}
 		self.search_result = config.plugins.YouTube.searchResult.value
 		self.thumbnails = {}
 		self.thumbnails['default'] = ''  # Workaround for python 2.7 test
@@ -408,7 +409,6 @@ class YouTubeMain(Screen):
 		if self.use_picload:
 			from Components.AVSwitch import AVSwitch
 			self.sc = AVSwitch().getFramebufferScale()
-			self.picloads = {}
 		self.thumb_size = [self['thumbnail'].instance.size().width(),
 				self['thumbnail'].instance.size().height()]
 		if screenwidth == 'svg':
@@ -430,10 +430,10 @@ class YouTubeMain(Screen):
 
 	def cleanVariables(self):
 		del self.splitTaimer
-		self.picloads = None
-		self.thumbnails = None
-		self.ytapi = None
-		self.ytdl = None
+		del self.picloads
+		del self.thumbnails
+		del self.ytapi
+		del self.ytdl
 
 	def showButtons(self):
 		self['red'].show()
