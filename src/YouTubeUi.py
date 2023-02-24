@@ -776,33 +776,31 @@ class YouTubeMain(Screen):
 		return time[1:]
 
 	@staticmethod
-	def _tryList(result, getter):
-		for get in [getter]:
-			try:
-				v = get(result)
-			except Exception as e:
-				print('[YouTube] Error in try List', e)
-			else:
-				return v
+	def _tryList(result, get):
+		try:
+			v = get(result)
+		except Exception as e:
+			print('[YouTube] Error in try List', e)
+		else:
+			return v
 		return None
 
 	@staticmethod
-	def _tryStr(result, getter):
-		for get in [getter]:
-			try:
-				return str(get(result))
-			except KeyError:
-				print('[YouTube] Key Error in try String')
+	def _tryStr(result, get):
+		try:
+			return str(get(result))
+		except KeyError:
+			print('[YouTube] Key Error in try String')
+		except Exception as e:
+			print('[YouTube] Error in try String', e)
+			try:  # Workaround if image have str() problems (GOS)
+				return get(result).encode('utf-8', 'ignore')
 			except Exception as e:
-				print('[YouTube] Error in try String', e)
-				try:  # Workaround if image have str() problems (GOS)
-					return get(result).encode('utf-8', 'ignore')
-				except Exception as e:
-					print('[YouTube] Error in try String encode utf-8', e)
+				print('[YouTube] Error in try String encode utf-8', e)
 		return ''
 
-	def _tryComplStr(self, result, getter, after):
-		v = self._tryStr(result, getter)
+	def _tryComplStr(self, result, get, after):
+		v = self._tryStr(result, get)
 		if v:
 			return v + after
 		return ''

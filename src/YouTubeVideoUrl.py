@@ -54,17 +54,14 @@ IGNORE_VIDEO_FORMAT = ['43', '44', '45', '46',  # webm
 		'302']  # webm
 
 
-def try_get(src, getter, expected_type=None):
-	if not isinstance(getter, (list, tuple)):
-		getter = [getter]
-	for get in getter:
-		try:
-			v = get(src)
-		except (AttributeError, KeyError, TypeError, IndexError):
-			pass
-		else:
-			if expected_type is None or isinstance(v, expected_type):
-				return v
+def try_get(src, get, expected_type=None):
+	try:
+		v = get(src)
+	except (AttributeError, KeyError, TypeError, IndexError):
+		pass
+	else:
+		if expected_type is None or isinstance(v, expected_type):
+			return v
 
 
 def clean_html(html):
