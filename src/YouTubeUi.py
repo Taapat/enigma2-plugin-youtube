@@ -778,12 +778,9 @@ class YouTubeMain(Screen):
 	@staticmethod
 	def _tryList(result, get):
 		try:
-			v = get(result)
+			return get(result)
 		except Exception as e:
 			print('[YouTube] Error in try List', e)
-		else:
-			return v
-		return None
 
 	@staticmethod
 	def _tryStr(result, get):
