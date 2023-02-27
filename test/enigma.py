@@ -26,6 +26,20 @@ BT_VALIGN_BOTTOM = 128
 BT_ALIGN_CENTER = BT_HALIGN_CENTER | BT_VALIGN_CENTER
 
 
+def add_metaclass(metaclass):
+	"""Class decorator for creating a class with a metaclass from six."""
+	def wrapper(cls):
+		orig_vars = cls.__dict__.copy()
+		orig_vars.pop('__dict__', None)
+		return metaclass(cls.__name__, cls.__bases__, orig_vars)
+	return wrapper
+
+
+class ClassVariables(type):
+	def __getattr__(self, attr):
+		return 1
+
+
 class _einstances:
 	@classmethod
 	def getInstance(cls):
@@ -77,6 +91,7 @@ class _einstances:
 		return self.list
 
 
+eActionMap = _einstances()
 eAVSwitch = _einstances()
 eBackgroundFileEraser = _einstances()
 eButton = _einstances()
@@ -191,19 +206,8 @@ class _pNavigation(_einstances):
 pNavigation = _pNavigation()
 
 
-class eServiceReference(_einstances):
-	idInvalid = -1
-	isDirectory = 1
-	mustDescent = 2
-	canDescent = 4
-	flagDirectory = isDirectory | mustDescent | canDescent
-	shouldSort = 8
-	hasSortKey = 16
-	sort1 = 32
-	isMarker = 64
-	isGroup = 128
-	idDVB = None
-
+@add_metaclass(ClassVariables)
+class eServiceReference(_einstances, object):
 	def __init__(self, ref_type=0, flags=0, data='', *args):
 		eServiceReference.instance = self
 		self._data = data
@@ -416,14 +420,8 @@ class ePixmap(_eWidget):
 		return _getPicture()
 
 
-class eListboxPythonConfigContent(_einstances):
-	TYPE_TEXT = None
-	TYPE_PROGRESS = None
-	TYPE_PIXMAP = None
-	TYPE_PIXMAP_ALPHATEST = None
-	TYPE_PIXMAP_ALPHABLEND = None
-	TYPE_PROGRESS_PIXMAP = None
-
+@add_metaclass(ClassVariables)
+class eListboxPythonConfigContent(_einstances, object):
 	def __init__(self):
 		_einstances.__init__(self)
 		self.__list = []
@@ -461,35 +459,6 @@ class _eEPGCache(_einstances):
 
 
 eEPGCache = _eEPGCache()
-
-
-class eActionMap:
-	@classmethod
-	def getInstance(cls):
-		return cls.instance
-
-	instance = None
-
-	def __init__(self):
-		eActionMap.instance = self
-
-	def bindKey(self, *args):
-		pass  # Dummy method
-
-	def bindToggle(self, *args):
-		pass  # Dummy method
-
-	def bindTranslation(self, *args):
-		pass  # Dummy method
-
-	def bindAction(self, *args):
-		pass  # Dummy method
-
-	def unbindAction(self, *args):
-		pass  # Dummy method
-
-
-eActionMap()
 
 
 class Session:
