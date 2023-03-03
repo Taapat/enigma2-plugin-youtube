@@ -1,29 +1,7 @@
 from __future__ import print_function
 
 from os import environ
-
-
-RT_HALIGN_BIDI = 0
-RT_HALIGN_LEFT = 1
-RT_HALIGN_RIGHT = 2
-RT_HALIGN_CENTER = 4
-RT_HALIGN_BLOCK = 8
-RT_VALIGN_TOP = 0
-RT_VALIGN_CENTER = 16
-RT_VALIGN_BOTTOM = 32
-RT_WRAP = 64
-BT_ALPHATEST = 1
-BT_ALPHABLEND = 2
-BT_SCALE = 4
-BT_KEEP_ASPECT_RATIO = 8
-BT_FIXRATIO = 8
-BT_HALIGN_LEFT = 0
-BT_HALIGN_CENTER = 16
-BT_HALIGN_RIGHT = 32
-BT_VALIGN_TOP = 0
-BT_VALIGN_CENTER = 64
-BT_VALIGN_BOTTOM = 128
-BT_ALIGN_CENTER = BT_HALIGN_CENTER | BT_VALIGN_CENTER
+from sys import modules
 
 
 def add_metaclass(metaclass):
@@ -40,7 +18,7 @@ class ClassVariables(type):
 		return 1
 
 
-class _einstances:
+class EnimaInstance:
 	@classmethod
 	def getInstance(cls):
 		return cls.instance
@@ -48,7 +26,7 @@ class _einstances:
 	instance = None
 
 	def __init__(self, *args):
-		_einstances.instance = self
+		EnimaInstance.instance = self
 		self.list = []
 
 	def __setattr__(self, name, value, *args):
@@ -59,7 +37,7 @@ class _einstances:
 		def default(*args):
 			return 0
 
-		if 'get' in attr.lower() or type(self).__name__ in ('_getDesktop', 'eConsoleAppContainer'):
+		if 'get' in attr.lower() or type(self).__name__ in ('EnigmaGetDesktop', 'eConsoleAppContainer'):
 			return default
 		elif 'default' in attr.lower() or attr[:2] == 'is' or attr.isupper():
 			return 0
@@ -91,72 +69,16 @@ class _einstances:
 		return self.list
 
 
-eActionMap = _einstances()
-eAVSwitch = _einstances()
-eBackgroundFileEraser = _einstances()
-eButton = _einstances()
-eCableScan = _einstances()
-eComponentScan = _einstances()
-eDBoxLCD = _einstances()
-eDVBCI_UI = _einstances()
-eDVBCIInterfaces = _einstances()
-eDVBDB = _einstances()
-eDVBDiseqcCommand = _einstances()
-eDVBFrontend = _einstances()
-eDVBFrontendParameters = _einstances()
-eDVBFrontendParametersATSC = _einstances()
-eDVBFrontendParametersCable = _einstances()
-eDVBFrontendParametersSatellite = _einstances()
-eDVBFrontendParametersTerrestrial = _einstances()
-eDVBLocalTimeHandler = _einstances()
-eDVBResourceManager = _einstances()
-eDVBSatelliteDiseqcParameters = _einstances()
-eDVBSatelliteEquipmentControl = _einstances()
-eDVBSatelliteLNBParameters = _einstances()
-eDVBSatelliteRotorParameters = _einstances()
-eDVBSatelliteSwitchParameters = _einstances()
-eDVBServicePMTHandler = _einstances()
-eDVBVolumecontrol = _einstances()
-eFastScan = _einstances()
-eHdmiCEC = _einstances()
-eListboxServiceContent = _einstances()
-ePythonOutput = _einstances()
-ePositionGauge = _einstances()
-eRCInput = _einstances()
-eRect = _einstances()
-eRFmod = _einstances()
-eServiceCenter = _einstances()
-eServiceEvent = _einstances()
-eServiceEventEnums = _einstances()
-eServiceReferenceDVB = _einstances()
-eServiceReferenceFS = _einstances()
-eSlider = _einstances()
-eStreamServer = _einstances()
-eWindowStyleManager = _einstances()
-fontRenderClass = _einstances()
-getBestPlayableServiceReference = _einstances()
-getBsodCounter = _einstances()
-getPrevAsciiCode = _einstances()
-gMainDC = _einstances()
-iDVBFrontend = _einstances()
-iDVBMetaFile = _einstances()
-iFrontendInformation = _einstances()
-iPlayableService = _einstances()
-iPlayableServicePtr = _einstances()
-iRdsDecoder = _einstances()
-iRecordableService = _einstances()
-iRecordableServicePtr = _einstances()
-iServiceInformation = _einstances()
-iServiceKeys = _einstances()
-Misc_Options = _einstances()
-quitMainloop = _einstances()
-resetBsodCounter = _einstances()
+modules['enigma'] = EnimaInstance()
 
 
 class eTimer:
 	def __init__(self):
 		self.callback = []
-		self.timeout = _einstances()
+
+		def slot():
+			pass
+		self.timeout = slot
 		self.timeout.callback = []
 		self.callback_thread = None
 
@@ -187,11 +109,14 @@ class eTimer:
 		return self.callback_thread
 
 
-class _pNavigation(_einstances):
+modules['enigma'].eTimer = eTimer
+
+
+class EnigmaNavigation(EnimaInstance):
 	def __init__(self, *args):
-		_einstances.__init__(self)
-		self.m_event = _einstances()
-		self.m_record_event = _einstances()
+		EnimaInstance.__init__(self)
+		self.m_event = EnimaInstance()
+		self.m_record_event = EnimaInstance()
 
 	def getCurrentService(self):
 		return self
@@ -203,11 +128,12 @@ class _pNavigation(_einstances):
 		return ''
 
 
-pNavigation = _pNavigation()
+pNavigation = EnigmaNavigation()
+modules['enigma'].pNavigation = pNavigation
 
 
 @add_metaclass(ClassVariables)
-class eServiceReference(_einstances, object):
+class eServiceReference(EnimaInstance, object):
 	def __init__(self, ref_type=0, flags=0, data='', *args):
 		eServiceReference.instance = self
 		self._data = data
@@ -223,7 +149,10 @@ class eServiceReference(_einstances, object):
 		return self._data
 
 
-class ePicLoad(_einstances):
+modules['enigma'].eServiceReference = eServiceReference
+
+
+class ePicLoad(EnimaInstance):
 	def __init__(self):
 		ePicLoad.PictureData = self
 		self._functions = []
@@ -243,10 +172,12 @@ class ePicLoad(_einstances):
 		return self
 
 
+modules['enigma'].ePicLoad = ePicLoad
+
 sel_index = 0
 
 
-class eConsoleAppContainer(_einstances):
+class eConsoleAppContainer(EnimaInstance):
 	def __init__(self):
 		self.dataAvail = []
 		self.appClosed = []
@@ -258,7 +189,10 @@ class eConsoleAppContainer(_einstances):
 			return True
 
 
-class _eEnv:
+modules['enigma'].eConsoleAppContainer = eConsoleAppContainer
+
+
+class EnigmaEnv:
 	def resolve(self, path):
 		path = path.replace('${datadir}/enigma2/po/', './enigma2/po/')
 		path = path.replace('${datadir}/enigma2/', './enigma2/data/')
@@ -271,10 +205,11 @@ class _eEnv:
 		return path
 
 
-eEnv = _eEnv()
+eEnv = EnigmaEnv()
+modules['enigma'].eEnv = eEnv
 
 
-class _getPicture(_einstances):
+class _getPicture(EnimaInstance):
 	def height(self):
 		return 60
 
@@ -291,10 +226,10 @@ class loadPNG:
 		return path.replace('/usr/lib/enigma2', './enigma2/lib')
 
 
-loadJPG = loadPNG
-loadSVG = loadPNG
-loadGIF = loadPNG
-
+modules['enigma'].loadPNG = loadPNG
+modules['enigma'].loadJPG = loadPNG
+modules['enigma'].loadSVG = loadPNG
+modules['enigma'].loadGIF = loadPNG
 
 DESKTOP_SIZE = [1920, 1080]
 
@@ -304,7 +239,7 @@ def setDesktopSize(w, h):
 	DESKTOP_SIZE = [w, h]
 
 
-class _getDesktop(_einstances):
+class EnigmaGetDesktop(EnimaInstance):
 	def __init__(self, *args):
 		pass  # Dummy method
 
@@ -315,25 +250,29 @@ class _getDesktop(_einstances):
 		return DESKTOP_SIZE[0]
 
 
-eSize = _getDesktop
+eSize = EnigmaGetDesktop
+modules['enigma'].eSize = eSize
 
 
-class getDesktop(_einstances):
+class getDesktop(EnimaInstance):
 	def __init__(self, *args):
-		self.size = _getDesktop
+		self.size = EnigmaGetDesktop
 
 	def bounds(self):
-		return _getDesktop()
+		return EnigmaGetDesktop()
 
 	def getStyleID(self):
 		return 1
 
 
-class _eWidget(_einstances):
+modules['enigma'].getDesktop = getDesktop
+
+
+class EnigmaWidget(EnimaInstance):
 	def __init__(self, *args):
-		_einstances.__init__(self)
-		self.selectionChanged = _einstances()
-		self.getInstance = _einstances
+		EnimaInstance.__init__(self)
+		self.selectionChanged = EnimaInstance()
+		self.getInstance = EnimaInstance
 		self._index = 0
 
 	def get(self):
@@ -343,13 +282,13 @@ class _eWidget(_einstances):
 		return self
 
 	def size(self, *args):
-		return _getDesktop()
+		return EnigmaGetDesktop()
 
 	def calculateSize(self):
-		return _getDesktop()
+		return EnigmaGetDesktop()
 
 	def calculateTextSize(self, *args):
-		return _getDesktop()
+		return EnigmaGetDesktop()
 
 	def moveSelectionTo(self, index):
 		if index >= 0:
@@ -371,14 +310,15 @@ class _eWidget(_einstances):
 		return 0
 
 
-eWidget = _eWidget()
-eLabel = eWidget
-eListbox = eWidget
-eWindow = eWidget
-eVideoWidget = eWidget
+eWidget = EnigmaWidget()
+modules['enigma'].eWidget = eWidget
+modules['enigma'].eLabel = eWidget
+modules['enigma'].eListbox = eWidget
+modules['enigma'].eWindow = eWidget
+modules['enigma'].eVideoWidget = eWidget
 
 
-class eWindowStyleSkinned(_eWidget):
+class eWindowStyleSkinned(EnigmaWidget):
 	colBackground = None
 	colLabelForeground = None
 	colListboxBackground = None
@@ -403,7 +343,10 @@ class eWindowStyleSkinned(_eWidget):
 	bpRight = None
 
 
-class eSubtitleWidget(_eWidget):
+modules['enigma'].eWindowStyleSkinned = eWindowStyleSkinned
+
+
+class eSubtitleWidget(EnigmaWidget):
 	Subtitle_TTX = None
 	Subtitle_Regular = None
 	Subtitle_Bold = None
@@ -415,17 +358,23 @@ class eSubtitleWidget(_eWidget):
 		pass  # Dummy method
 
 
-class ePixmap(_eWidget):
+modules['enigma'].eSubtitleWidget = eSubtitleWidget
+
+
+class ePixmap(EnigmaWidget):
 	def size(self, *args):
 		return _getPicture()
 
 
+modules['enigma'].ePixmap = ePixmap
+
+
 @add_metaclass(ClassVariables)
-class eListboxPythonConfigContent(_einstances, object):
+class eListboxPythonConfigContent(EnimaInstance, object):
 	def __init__(self):
-		_einstances.__init__(self)
+		EnimaInstance.__init__(self)
 		self.__list = []
-		self.getItemSize = _getDesktop
+		self.getItemSize = EnigmaGetDesktop
 		global sel_index
 		sel_index = 0
 
@@ -448,17 +397,36 @@ class eListboxPythonConfigContent(_einstances, object):
 		return sel_index
 
 
-eListboxPythonStringContent = eListboxPythonConfigContent
-eListboxPythonMultiContent = eListboxPythonConfigContent
+modules['enigma'].eListboxPythonConfigContent = eListboxPythonConfigContent
+modules['enigma'].eListboxPythonStringContent = eListboxPythonConfigContent
+modules['enigma'].eListboxPythonMultiContent = eListboxPythonConfigContent
 
 
-class _eEPGCache(_einstances):
+class EnigmaEPGCache(EnimaInstance):
 	def __init__(self):
-		_einstances.__init__(self)
-		self.getInstance = _einstances
+		EnimaInstance.__init__(self)
+		self.getInstance = EnimaInstance
 
 
-eEPGCache = _eEPGCache()
+eEPGCache = EnigmaEPGCache()
+modules['enigma'].eEPGCache = eEPGCache
+
+enigma_fonts = {}
+
+
+def addFont(filename, name, *args):
+	global enigma_fonts
+	enigma_fonts[name] = filename
+
+
+modules['enigma'].addFont = addFont
+
+
+def getFontFaces():
+	return enigma_fonts
+
+
+modules['enigma'].getFontFaces = getFontFaces
 
 
 class Session:
@@ -526,54 +494,6 @@ class Session:
 
 		if callback is not None:
 			callback(*retval)
-
-
-enigma_fonts = {}
-
-
-def addFont(filename, name, *args):
-	global enigma_fonts
-	enigma_fonts[name] = filename
-
-
-def getFontFaces():
-	return enigma_fonts
-
-
-def ePoint(*args):
-	pass  # Dummy function
-
-
-def eGetEnigmaDebugLvl():
-	return 6
-
-
-def setPreferredTuner(*args):
-	pass  # Dummy function
-
-
-def gFont(*args):
-	return ''
-
-
-def gRGB(*args):
-	return ''
-
-
-def setTunerTypePriorityOrder(*args):
-	pass  # Dummy function
-
-
-def setSpinnerOnOff(*args):
-	pass  # Dummy function
-
-
-def setEnableTtCachingOnOff(*args):
-	pass  # Dummy function
-
-
-def setListBoxScrollbarStyle(*args):
-	pass  # Dummy function
 
 
 def new_activate_language(self, index):
