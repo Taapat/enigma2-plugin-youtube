@@ -9,7 +9,7 @@ from __future__ import print_function
 import os
 import sys
 
-import enigma
+import enigmahelper
 
 
 if sys.version_info[0] == 2:
@@ -26,10 +26,10 @@ def try_plugin_screens_load():
 	print('Try start session')
 	e2_version = os.environ['E2_VERSION']
 	if e2_version == 'Taapat':
-		enigma.setDesktopSize(720, 576)
+		enigmahelper.setDesktopSize(720, 576)
 	elif e2_version == 'OpenPLi':
-		enigma.setDesktopSize(1280, 720)
-	session = enigma.start_session()
+		enigmahelper.setDesktopSize(1280, 720)
+	session = enigmahelper.start_session()
 
 	from Plugins.Plugin import PluginDescriptor
 	from Components.PluginComponent import plugins
@@ -142,7 +142,7 @@ def try_plugin_screens_load():
 		session.current_dialog.showMovies()
 		session.current_dialog.openServiceList()
 		# Open YouTubeInfo
-		from enigma import eTimer
+		from enigmahelper import eTimer
 		session.current_dialog.hideTimer = eTimer()
 		session.current_dialog.showSecondInfoBar()
 		# Close YouTubeInfo
