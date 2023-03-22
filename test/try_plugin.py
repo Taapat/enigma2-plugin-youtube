@@ -310,8 +310,9 @@ def try_plugin_screens_load():
 	session.current_dialog.close()
 	# Try DownloadTask methods
 	from Components.Task import job_manager
-	task = job_manager.active_job.tasks[0]
-	task.downloadProgress(10, 100)
+	if job_manager.active_job:
+		task = job_manager.active_job.tasks[0]
+		task.downloadProgress(10, 100)
 	# Open YouTubeDownloadList
 	yt.menuCallback(('', 'download_list'))
 	# Try YouTubeDownloadList methods
