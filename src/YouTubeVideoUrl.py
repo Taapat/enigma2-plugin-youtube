@@ -162,8 +162,8 @@ class YouTubeVideoUrl():
 	def _extract_dash_audio_format(self, streaming_formats):
 		""" If DASH MP4 video add link also on Dash MP4 Audio """
 		print('[YouTubeVideoUrl] Try fmt audio url')
-		for our_format in ['141', '140', '139',
-				'258', '265', '325', '328']:
+		for our_format in ('141', '140', '139',
+				'258', '265', '325', '328'):
 			for fmt in streaming_formats:
 				if str(fmt.get('itag', '')) == our_format and self._not_in_fmt(fmt):
 					url = fmt.get('url')

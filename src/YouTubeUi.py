@@ -507,7 +507,7 @@ class YouTubeMain(Screen):
 		self.yts[0]['list'] = action
 		if action == 'search':
 			self.title = _('Download search results. Please wait...')
-		elif action in ['playVideo', 'downloadVideo']:
+		elif action in ('playVideo', 'downloadVideo'):
 			self.title = _('Extract video url. Please wait...')
 		else:
 			self.title = _('Download feed entries. Please wait...')
@@ -521,7 +521,7 @@ class YouTubeMain(Screen):
 		self.splitTaimer.start(0, True)
 
 	def splitTaimerStop(self):
-		if self.yts[0]['list'] in ['playVideo', 'downloadVideo']:
+		if self.yts[0]['list'] in ('playVideo', 'downloadVideo'):
 			self.useVideoUrl()
 		else:
 			entry_list = self.createEntryList()

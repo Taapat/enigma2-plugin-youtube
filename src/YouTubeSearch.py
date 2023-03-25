@@ -416,7 +416,7 @@ class GoogleSuggestionsConfigText(ConfigText):
 			ConfigText.handleKey(self, key, callback)
 		else:
 			ConfigText.handleKey(self, key)
-		if key in [KEY_DELETE, KEY_BACKSPACE, KEY_ASCII, KEY_TIMEOUT]:
+		if key in (KEY_DELETE, KEY_BACKSPACE, KEY_ASCII, KEY_TIMEOUT):
 			self.getSuggestions()
 
 	def onSelect(self, session):
