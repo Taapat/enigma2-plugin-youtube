@@ -350,7 +350,7 @@ jobs:
           gzip: false
           files: >
             enigma2-plugin-extensions-youtube_h1${{ env.PKGV }}.ipk:ipk/enigma2-plugin-extensions-youtube_h1${{ env.PKGV }}.ipk
-            enigma2-plugin-extensions-youtube_h1${{ env.PKGV }}.ipk:ipk/enigma2-plugin-extensions-youtube_py3${{ env.PKGV }}.ipk
+            enigma2-plugin-extensions-youtube_py${{ env.PKGV }}.ipk:ipk/enigma2-plugin-extensions-youtube_py3${{ env.PKGV }}.ipk
       - name: Upload ipk via ftp
         uses: sebastianpopp/ftp-action@releases/v2
         with:
