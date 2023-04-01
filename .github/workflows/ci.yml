@@ -299,6 +299,8 @@ jobs:
         run: |
           python setup.py build --build-lib=build/lib
       - name: Set git variables
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         id: variables
         run: |
           echo "SRCPV=git$(git rev-list --count HEAD)" >> $GITHUB_ENV
