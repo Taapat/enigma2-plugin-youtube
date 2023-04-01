@@ -342,8 +342,9 @@ jobs:
           ar rv ../ipk/enigma2-plugin-extensions-youtube_h1${{ env.PKGV }}.ipk debian-binary data.tar.gz control.tar.gz
       - name: Create release
         uses: nicovince/manage-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ env.SRCPV }}
           files: >
             ipk/enigma2-plugin-extensions-youtube_h1${{ env.PKGV }}.ipk
