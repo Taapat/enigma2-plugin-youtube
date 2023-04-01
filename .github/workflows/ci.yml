@@ -348,9 +348,7 @@ jobs:
           tag: ${{ env.SRCPV }}
           name: ${{ env.COMMIT_SUBJECT }}
           gzip: false
-          files: >
-            ipk/enigma2-plugin-extensions-youtube_h1${{ env.PKGV }}.ipk
-            ipk/enigma2-plugin-extensions-youtube_py3${{ env.PKGV }}.ipk
+          files: ipk/
       - name: Upload ipk via ftp
         uses: sebastianpopp/ftp-action@releases/v2
         with:
