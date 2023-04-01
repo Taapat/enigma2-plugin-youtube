@@ -301,7 +301,7 @@ jobs:
       - name: Set git variables
         run: |
           echo "SRCPV=git$(git rev-list --count HEAD)" >> $GITHUB_ENV
-          echo "SHA7=${GITHUB_SHA::7}" >> $GITHUB_ENV
+          echo "PKGV=+git$(git rev-list --count HEAD)+${GITHUB_SHA::7}-r0.0" >> $GITHUB_ENV
           echo "COMMIT_SUBJECT=$(git log -1 --pretty=format:%s)" >> $GITHUB_ENV
       - name: Create plugin package files
         run: |
@@ -309,7 +309,7 @@ jobs:
           cp -r build/lib/* deploy/data/usr/lib/enigma2/python/Plugins
           mkdir -p deploy/data/etc/enigma2
           cp YouTube.key deploy/data/etc/enigma2
-          sed -i 's/Version:/Version: py3+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0/' deploy/control/control
+          sed -i 's/Version:/Version: py3${{ env.PKGV }}/' deploy/control/control
           mkdir ipk
       - name: Build python3 data package
         working-directory: './deploy/data'
@@ -323,7 +323,7 @@ jobs:
         working-directory: './deploy'
         run: |
           echo 2.0 > debian-binary
-          ar rv ../ipk/enigma2-plugin-extensions-youtube_py3+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk debian-binary data.tar.gz control.tar.gz
+          ar rv ../ipk/enigma2-plugin-extensions-youtube_py3${{ env.PKGV }}.ipk debian-binary data.tar.gz control.tar.gz
       - name: Compile python2 sources
         run: |
           python -O -m compileall deploy/data/usr/lib/enigma2/python/Plugins/Extensions/YouTube/
@@ -340,7 +340,7 @@ jobs:
       - name: Build python2 ipk package
         working-directory: './deploy'
         run: |
-          ar rv ../ipk/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk debian-binary data.tar.gz control.tar.gz
+          ar rv ../ipk/enigma2-plugin-extensions-youtube_h1${{ env.PKGV }}.ipk debian-binary data.tar.gz control.tar.gz
       - name: Create release
         uses: meeDamian/github-release@2.0
         with:
@@ -349,8 +349,8 @@ jobs:
           name: ${{ env.COMMIT_SUBJECT }}
           gzip: false
           files: >
-            ipk/enigma2-plugin-extensions-youtube_h1+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
-            ipk/enigma2-plugin-extensions-youtube_py3+${{ env.SRCPV }}+${{ env.SHA7 }}-r0.0_all.ipk
+            ipk/enigma2-plugin-extensions-youtube_h1${{ env.PKGV }}.ipk
+            ipk/enigma2-plugin-extensions-youtube_py3${{ env.PKGV }}.ipk
       - name: Upload ipk via ftp
         uses: sebastianpopp/ftp-action@releases/v2
         with:
