@@ -284,6 +284,8 @@ jobs:
     needs: [test-python, test-gui, test-language]
     if: always() && !contains(github.event.head_commit.message,'skip-release') && github.event_name == 'push' && (needs.test-python.result == 'success' || needs.test-python.result == 'skipped') && (needs.test-gui.result == 'success' || needs.test-gui.result == 'skipped') && (needs.test-language.result == 'success' || needs.test-language.result == 'skipped') && github.repository == 'Taapat/enigma2-plugin-youtube' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v3
         with:
@@ -302,7 +304,6 @@ jobs:
         run: |
           echo "SRCPV=git$(git rev-list --count HEAD)" >> $GITHUB_ENV
           echo "PKGV=+git$(git rev-list --count HEAD)+${GITHUB_SHA::7}-r0.0" >> $GITHUB_ENV
-          echo "COMMIT_SUBJECT=$(git log -1 --pretty=format:%s)" >> $GITHUB_ENV
       - name: Create plugin package files
         run: |
           mkdir -p deploy/data/usr/lib/enigma2/python/Plugins
@@ -342,15 +343,10 @@ jobs:
         run: |
           ar rv ../ipk/enigma2-plugin-extensions-youtube_h1${{ env.PKGV }}.ipk debian-binary data.tar.gz control.tar.gz
       - name: Create release
-        uses: meeDamian/github-release@2.0
+        uses: ahsand97/upload-assets-to-release-with-go@v0.1.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ env.SRCPV }}
-          name: ${{ env.COMMIT_SUBJECT }}
-          gzip: false
-          files: >
-            enigma2-plugin-extensions-youtube_h1${{ env.PKGV }}.ipk:ipk/enigma2-plugin-extensions-youtube_h1${{ env.PKGV }}.ipk
-            enigma2-plugin-extensions-youtube_py${{ env.PKGV }}.ipk:ipk/enigma2-plugin-extensions-youtube_py3${{ env.PKGV }}.ipk
+          files: '["ipk/enigma2-plugin-extensions-youtube_h1${{ env.PKGV }}.ipk", "ipk/enigma2-plugin-extensions-youtube_py3${{ env.PKGV }}.ipk"]'
       - name: Upload ipk via ftp
         uses: sebastianpopp/ftp-action@releases/v2
         with:
