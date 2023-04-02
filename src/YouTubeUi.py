@@ -100,12 +100,6 @@ config.plugins.YouTube.refreshToken = ConfigText()
 config.plugins.YouTube.lastPosition = ConfigText(default='[]')
 
 
-# Workaround to keep compatibility broken once again on OpenPLi develop
-BUTTONS_FOLDER = 'skin_default'
-if os.path.exists('/usr/share/enigma2/skin_fallback_1080/buttons/red.png'):
-	BUTTONS_FOLDER = 'skin_fallback_1080'
-
-
 FLAGS = ', flags=BT_SCALE'
 try:
 	TemplatedMultiContent('{"template": \
@@ -306,16 +300,16 @@ class YouTubeMain(Screen):
 						"itemHeight": 108}
 					</convert>
 				</widget>
-				<widget name="red" position="322,722" size="210,60" pixmap="%s/buttons/red.png" \
+				<widget name="red" position="322,722" size="210,60" pixmap="skin_default/buttons/red.png" \
 					transparent="1" alphatest="on" />
-				<widget name="green" position="563,722" size="210,60" pixmap="%s/buttons/green.png" \
+				<widget name="green" position="563,722" size="210,60" pixmap="skin_default/buttons/green.png" \
 					transparent="1" alphatest="on" />
 				<widget source="key_red" render="Label" position="322,729" zPosition="2" size="210,45" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 				<widget source="key_green" render="Label" position="563,729" zPosition="2" size="210,45" \
 					valign="center" halign="center" font="Regular;33" transparent="1" />
 				<widget name="thumbnail" position="0,0" size="150,108" /> # Thumbnail size in list
-			</screen>""" % (FLAGS, BUTTONS_FOLDER, BUTTONS_FOLDER)
+			</screen>""" % FLAGS
 	else:
 		skin = """<screen position="center,center" size="630,380">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/YouTube/YouTube_HD.png" \
