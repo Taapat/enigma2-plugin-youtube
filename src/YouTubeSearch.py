@@ -391,11 +391,9 @@ class GoogleSuggestionsConfigText(ConfigText):
 			response.close()
 		except Exception as e:
 			print('[YouTubeSearch] Error in get suggestions from google', e)
-		if suggestions_list:
-			for suggestion in suggestions_list[1]:
-				if suggestion:
-					suggestions.append((str(suggestion), None))
 		if self.use_suggestions:
+			if suggestions_list:
+				suggestions.extend([(str(s), None) for s in suggestions_list[1] if s])
 			self.updateSuggestions(suggestions)
 			if query_value != self.value:
 				self.getGoogleSuggestions()
