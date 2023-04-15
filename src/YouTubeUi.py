@@ -379,8 +379,7 @@ class YouTubeMain(Screen):
 		self.is_auth = False
 		self.picloads = {}
 		self.search_result = config.plugins.YouTube.searchResult.value
-		self.thumbnails = {}
-		self.thumbnails['default'] = ''  # Workaround for python 2.7 test
+		self.thumbnails = {'default': ''}  # Set default for python 2.7 test workaround
 		self.use_picload = True
 		self.ytapi = None
 		self.yts = [{}]
@@ -403,8 +402,10 @@ class YouTubeMain(Screen):
 		if self.use_picload:
 			from Components.AVSwitch import AVSwitch
 			self.sc = AVSwitch().getFramebufferScale()
-		self.thumb_size = [self['thumbnail'].instance.size().width(),
-				self['thumbnail'].instance.size().height()]
+		self.thumb_size = (
+			self['thumbnail'].instance.size().width(),
+			self['thumbnail'].instance.size().height()
+		)
 		if screenwidth == 'svg':
 			self.thumbnails['default'] = LoadPixmap(
 					resolveFilename(SCOPE_PLUGINS,
@@ -459,41 +460,49 @@ class YouTubeMain(Screen):
 	def createMainList(self):
 		self.yts[0]['list'] = 'main'
 		self.yts[0]['title'] = _('Choose what you want to do')
-		self.createDefEntryList([['Search', _('Search')],
-				['PubFeeds', _('Public feeds')]])
+		self.createDefEntryList((
+			('Search', _('Search')),
+			('PubFeeds', _('Public feeds'))
+		))
 		if self.is_auth:
-			self.createDefEntryList([['MyFeeds', _('My feeds')]], True)
+			self.createDefEntryList([('MyFeeds', _('My feeds'))], True)
 		self.showButtons()
 		self.setEntryList()
 
 	def createSearchList(self):
 		self.yts[0]['list'] = 'search'
 		self.yts[0]['title'] = _('Search')
-		self.createDefEntryList([['Searchvideo', _('Search videos')],
-				['Searchchannel', _('Search channels')],
-				['Searchplaylist', _('Search playlists')],
-				['Searchbroadcasts', _('Search live broadcasts')]])
+		self.createDefEntryList((
+			('Searchvideo', _('Search videos')),
+			('Searchchannel', _('Search channels')),
+			('Searchplaylist', _('Search playlists')),
+			('Searchbroadcasts', _('Search live broadcasts'))
+		))
 		self.setEntryList()
 
 	def createFeedList(self):
 		self.yts[0]['list'] = 'feeds'
 		self.yts[0]['title'] = _('Public feeds')
-		self.createDefEntryList([['top_rated', _('Top rated')],
-				['most_viewed', _('Most viewed')],
-				['most_recent', _('Recent')],
-				['HD_videos', _('HD videos')],
-				['embedded_videos', _('Embedded in webpages')],
-				['episodes', _('Shows')],
-				['movies', _('Movies')]])
+		self.createDefEntryList((
+			('top_rated', _('Top rated')),
+			('most_viewed', _('Most viewed')),
+			('most_recent', _('Recent')),
+			('HD_videos', _('HD videos')),
+			('embedded_videos', _('Embedded in webpages')),
+			('episodes', _('Shows')),
+			('movies', _('Movies'))
+		))
 		self.setEntryList()
 
 	def createMyFeedList(self):
 		self.yts[0]['list'] = 'myfeeds'
 		self.yts[0]['title'] = _('My feeds')
-		self.createDefEntryList([['my_subscriptions', _('My Subscriptions')],
-				['my_liked_videos', _('Liked videos')],
-				['my_uploads', _('Uploads')],
-				['my_playlists', _('Playlists')]])
+		self.createDefEntryList((
+			('my_subscriptions', _('My Subscriptions')),
+			('my_liked_videos', _('Liked videos')),
+			('my_uploads', _('Uploads')),
+			('my_playlists', _('Playlists'))
+		))
 		self.setEntryList()
 
 	def screenCallback(self, text, action):
