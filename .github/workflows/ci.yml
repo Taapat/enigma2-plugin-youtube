@@ -33,6 +33,7 @@ jobs:
               - 'src/*.py'
               - 'test/*.py'
             gui:
+              - 'src/compat.py'
               - 'src/YouTubeUi.py'
               - 'src/YouTubeDownload.py'
               - 'src/YouTubeSearch.py'
