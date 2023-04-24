@@ -309,7 +309,6 @@ jobs:
           mkdir -p deploy/data/usr/lib/enigma2/python/Plugins
           cp -r build/lib/* deploy/data/usr/lib/enigma2/python/Plugins
           mkdir -p deploy/data/etc/enigma2
-          cp YouTube.key deploy/data/etc/enigma2
           sed -i 's/Version:/Version: py3${{ env.PKGV }}/' deploy/control/control
           mkdir ipk
       - name: Build python3 data package

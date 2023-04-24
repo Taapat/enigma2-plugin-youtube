@@ -25,7 +25,6 @@ jobs:
             changed:
               - 'COPYING.GPLv2'
               - 'README.md'
-              - 'YouTube.key'
               - 'setup.py'
               - 'deploy/**'
               - 'src/**'
