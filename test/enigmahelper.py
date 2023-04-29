@@ -429,6 +429,18 @@ def getFontFaces():
 modules['enigma'].getFontFaces = getFontFaces
 
 
+def ngettext(singular, plural, n):
+	return singular
+
+
+def _(txt):
+	return txt
+
+
+globals()['__builtins__']['ngettext'] = ngettext
+globals()['__builtins__']['_'] = _
+
+
 class Session:
 	def __init__(self, desktop=None, navigation=None):
 		print('Session init')
@@ -529,13 +541,6 @@ class new_movie_player(Screen):
 
 	def toggleShow(self):
 		pass  # Dummy method
-
-
-def ngettext(singular, plural, n):
-	return singular
-
-
-globals()['__builtins__']['ngettext'] = ngettext
 
 
 _session = None
