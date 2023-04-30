@@ -172,37 +172,46 @@ class YouTubeVideoUrl():
 						return url
 		return ''
 
-	def _extract_player_response(self, video_id, age_gate=False):
+	def _extract_player_response(self, video_id, status=''):
 		url = 'https://www.youtube.com/youtubei/v1/player?key=%s&bpctr=9999999999&has_verified=1' % YT_KEY
 		data = {'videoId': video_id}
 		headers = {
-			'Content-Type': 'application/json',
-			'Origin': 'https://www.youtube.com',
-			'User-Agent': 'com.google.android.youtube/17.31.35 (Linux; U; Android 11) gzip',
-			'X-YouTube-Client-Version': '17.31.35'
+			'Content-Type': 'application/json'
 		}
-		if age_gate:
+		if status == 'LIVE':
 			data['context'] = {
 				'client': {
-					'clientName': 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
-					'clientVersion': '2.0',
-					'clientScreen': 'EMBED'
-				},
-				'thirdParty': {
-					'embedUrl': 'https://www.youtube.com/'
+					'clientName': 'WEB',
+					'clientVersion': '2.20220801.00.00',
 				}
 			}
-			headers['X-YouTube-Client-Name'] = 85
+			headers['X-YouTube-Client-Name'] = 1
 		else:
-			data['context'] = {
-				'client': {
-					'hl': 'en',
-					'clientVersion': '17.31.35',
-					'androidSdkVersion': 30,
-					'clientName': 'ANDROID'
+			headers['Origin'] = 'https://www.youtube.com'
+			headers['User-Agent'] = 'com.google.android.youtube/17.31.35 (Linux; U; Android 11) gzip'
+			headers['X-YouTube-Client-Version'] = '17.31.35'
+			if status == 'LOGIN':
+				data['context'] = {
+					'client': {
+						'clientName': 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
+						'clientVersion': '2.0',
+						'clientScreen': 'EMBED'
+					},
+					'thirdParty': {
+						'embedUrl': 'https://www.youtube.com/'
+					}
 				}
-			}
-			headers['X-YouTube-Client-Name'] = 3
+				headers['X-YouTube-Client-Name'] = 85
+			else:
+				data['context'] = {
+					'client': {
+						'hl': 'en',
+						'clientVersion': '17.31.35',
+						'androidSdkVersion': 30,
+						'clientName': 'ANDROID'
+					}
+				}
+				headers['X-YouTube-Client-Name'] = 3
 		try:
 			return loads(self._download_webpage(url, data, headers))
 		except ValueError:  # pragma: no cover
@@ -215,21 +224,28 @@ class YouTubeVideoUrl():
 		if not player_response:
 			raise RuntimeError('Player response not found!')
 
-		playability_status = player_response.get('playabilityStatus', {})
+		is_live = try_get(player_response, lambda x: x['videoDetails']['isLive'])
 
-		trailer_video_id = try_get(playability_status,
+		if is_live:
+			print('[YouTubeVideoUrl] Live content')
+			player_response = self._extract_player_response(video_id, 'LIVE')
+			playability_status = player_response.get('playabilityStatus', {})
+		else:
+			playability_status = player_response.get('playabilityStatus', {})
+			if playability_status.get('status') == 'LOGIN_REQUIRED':
+				print('[YouTubeVideoUrl] Age gate content')
+				player_response = self._extract_player_response(video_id, 'LOGIN')
+				playability_status = player_response.get('playabilityStatus', {})
+
+			trailer_video_id = try_get(playability_status,
 				lambda x: x['errorScreen']['playerLegacyDesktopYpcTrailerRenderer']['trailerVideoId'],
-				compat_str)
-		if trailer_video_id:
-			print('[YouTubeVideoUrl] Trailer video')
-			return str(trailer_video_id)
-
-		if playability_status.get('status') == 'LOGIN_REQUIRED':
-			print('[YouTubeVideoUrl] Age gate content')
-			player_response = self._extract_player_response(video_id, True)
+				compat_str
+			)
+			if trailer_video_id:
+				print('[YouTubeVideoUrl] Trailer video')
+				return str(trailer_video_id)
 
 		streaming_data = player_response.get('streamingData', {})
-		is_live = try_get(player_response, lambda x: x['videoDetails']['isLive'])
 		streaming_formats = streaming_data.get('formats', [])
 
 		# If priority format changed in config, recreate priority list
