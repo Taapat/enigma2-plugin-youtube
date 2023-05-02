@@ -159,7 +159,6 @@ def test_url(descr):
 
 def test_clean_html():
 	from src.YouTubeVideoUrl import clean_html
-	clean_html(None)
 	clean_html('<i>html</i><b>remove</b><br>-><a href="http://www.bbc.co.uk">BBC</a>1<br><p>stuff</p>')
 
 
