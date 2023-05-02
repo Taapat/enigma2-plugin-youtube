@@ -76,7 +76,7 @@ def clean_html(html):
 	html = sub(r'(?u)\s?<\s?br\s?/?\s?>\s?', '\n', html)
 	html = sub(r'(?u)<\s?/\s?p\s?>\s?<\s?p[^>]*>', '\n', html)
 	# Strip html tags
-	html = sub('<.*?>', '', html)
+	html = sub('<[^>]*>', '', html)
 	return html.strip()
 
 
