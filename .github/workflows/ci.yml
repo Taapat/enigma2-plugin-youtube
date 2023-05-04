@@ -111,19 +111,19 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        enigma2-version: ['OpenPLi develop', 'OpenPLi release-8.1', 'OpenPLi release-6.2', 'openatv 7.2', 'openatv 6.4', 'OpenViX Developer', 'Taapat bh']
+        enigma2-version: ['OpenPLi develop', 'OpenPLi release-8.1', 'OpenPLi release-6.2', 'openatv master', 'openatv 6.4', 'OpenViX Developer', 'Taapat bh']
         python-version: [2.7]
         include:
           - enigma2-version: 'OpenPLi develop'
             python-version: '3.10'
-          - enigma2-version: 'openatv 7.2'
+          - enigma2-version: 'openatv master'
             python-version: '3.10'
           - enigma2-version: 'OpenViX Developer'
             python-version: '3.10'
         exclude:
           - enigma2-version: 'OpenPLi develop'
             python-version: 2.7
-          - enigma2-version: 'openatv 7.2'
+          - enigma2-version: 'openatv master'
             python-version: 2.7
           - enigma2-version: 'OpenViX Developer'
             python-version: 2.7
@@ -151,7 +151,7 @@ jobs:
         run: |
           pip install twisted==20.3.0 pyopenssl service_identity
       - name: Install additional dependencies
-        if: matrix.enigma2-version == 'openatv 7.2' || matrix.enigma2-version == 'OpenViX Developer'
+        if: matrix.enigma2-version == 'openatv master' || matrix.enigma2-version == 'OpenViX Developer'
         run: |
           pip install requests chardet
       - name: Link plugin files for test
