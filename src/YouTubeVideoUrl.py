@@ -283,26 +283,21 @@ class YouTubeVideoUrl():
 			raise RuntimeError('Player response not found!')
 
 		is_live = try_get(player_response, lambda x: x['videoDetails']['isLive'])
+		playability_status = player_response.get('playabilityStatus', {})
 
-		if is_live:
-			print('[YouTubeVideoUrl] Live content')
-			player_response = self._extract_player_response(video_id, 1)
+		if not is_live and playability_status.get('status') == 'LOGIN_REQUIRED':
+			print('[YouTubeVideoUrl] Age gate content')
+			player_response = self._extract_player_response(video_id, 85)
 			playability_status = player_response.get('playabilityStatus', {})
-		else:
-			playability_status = player_response.get('playabilityStatus', {})
-			if playability_status.get('status') == 'LOGIN_REQUIRED':
-				print('[YouTubeVideoUrl] Age gate content')
-				player_response = self._extract_player_response(video_id, 85)
-				playability_status = player_response.get('playabilityStatus', {})
 
-			trailer_video_id = try_get(
-				playability_status,
-				lambda x: x['errorScreen']['playerLegacyDesktopYpcTrailerRenderer']['trailerVideoId'],
-				compat_str
-			)
-			if trailer_video_id:
-				print('[YouTubeVideoUrl] Trailer video')
-				return str(trailer_video_id)
+		trailer_video_id = try_get(
+			playability_status,
+			lambda x: x['errorScreen']['playerLegacyDesktopYpcTrailerRenderer']['trailerVideoId'],
+			compat_str
+		)
+		if trailer_video_id:
+			print('[YouTubeVideoUrl] Trailer video')
+			return str(trailer_video_id)
 
 		streaming_data = player_response.get('streamingData', {})
 		streaming_formats = streaming_data.get('formats', [])
@@ -323,13 +318,13 @@ class YouTubeVideoUrl():
 			url, our_format = self._extract_fmt_video_format(streaming_formats)
 			if url and '&n=' in url:
 				url = self._unthrottle_url(url)
-				if not url:  # Cannot ecrypte nsig therefore change to android client
-					print('[YouTubeVideoUrl] Trying another client')
-					player_response = self._extract_player_response(video_id, 3)
-					streaming_data = player_response.get('streamingData', {})
-					streaming_formats = streaming_data.get('formats', [])
-					streaming_formats.extend(streaming_data.get('adaptiveFormats', []))
-					url, our_format = self._extract_fmt_video_format(streaming_formats)
+			if not url:  # Change to android client
+				print('[YouTubeVideoUrl] Trying another client')
+				player_response = self._extract_player_response(video_id, 3)
+				streaming_data = player_response.get('streamingData', {})
+				streaming_formats = streaming_data.get('formats', [])
+				streaming_formats.extend(streaming_data.get('adaptiveFormats', []))
+				url, our_format = self._extract_fmt_video_format(streaming_formats)
 			if url and our_format in DASHMP4_FORMAT:
 				audio_url = self._extract_dash_audio_format(streaming_formats)
 				if audio_url:
@@ -373,7 +368,7 @@ class YouTubeVideoUrl():
 				dict) or {}
 
 			def get_text(x):
-				if x:
+				if x and 'runs' in x:
 					return x.get('simpleText', '').join([r['text'] for r in x['runs']])
 
 			reason = get_text(pemr.get('reason')) or playability_status.get('reason')
