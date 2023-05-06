@@ -42,53 +42,22 @@ def js_to_json(code):
 		'''.format(comment=COMMENT_RE, skip=SKIP_RE), fix_kv, code)
 
 
-def _js_bit_op(op):
-
-	def zeroise(x):
-		return 0 if x in (None, JSUndefined) else x
-
-	def wrapped(a, b):
-		return op(zeroise(a), zeroise(b)) & 0xffffffff
-
-	return wrapped
-
-
 def _js_arith_op(op):
 
 	def wrapped(a, b):
-		if JSUndefined in (a, b):
-			return float('nan')
 		return op(a or 0, b or 0)
 
 	return wrapped
 
 
 def _js_mod(a, b):
-	if JSUndefined in (a, b) or not b:
-		return float('nan')
 	return (a or 0) % b
 
 
 def _js_eq_op(op):
 
 	def wrapped(a, b):
-		if {a, b} <= {None, JSUndefined}:
-			return op(a, a)
 		return op(a, b)
-
-	return wrapped
-
-
-def _js_comp_op(op):
-
-	def wrapped(a, b):
-		if JSUndefined in (a, b):
-			return False
-		if isinstance(a, compat_basestring):
-			b = compat_str(b or 0)
-		elif isinstance(b, compat_basestring):
-			a = compat_str(a or 0)
-		return op(a or 0, b or 0)
 
 	return wrapped
 
@@ -104,8 +73,6 @@ def _js_ternary(cndn, if_true=True, if_false=False):
 # avoid dict to maintain order
 # definition None => Defined in JSInterpreter._operator
 _OPERATORS = (
-	('>>', _js_bit_op(operator.rshift)),
-	('<<', _js_bit_op(operator.lshift)),
 	('+', _js_arith_op(operator.add)),
 	('-', _js_arith_op(operator.sub)),
 	('*', _js_arith_op(operator.mul)),
@@ -117,16 +84,10 @@ _COMP_OPERATORS = (
 	('!==', operator.is_not),
 	('==', _js_eq_op(operator.eq)),
 	('!=', _js_eq_op(operator.ne)),
-	('<=', _js_comp_op(operator.le)),
-	('>=', _js_comp_op(operator.ge)),
-	('<', _js_comp_op(operator.lt)),
-	('>', _js_comp_op(operator.gt)),
-)
-
-_LOG_OPERATORS = (
-	('|', _js_bit_op(operator.or_)),
-	('^', _js_bit_op(operator.xor)),
-	('&', _js_bit_op(operator.and_)),
+	('<=', _js_arith_op(operator.le)),
+	('>=', _js_arith_op(operator.ge)),
+	('<', _js_arith_op(operator.lt)),
+	('>', _js_arith_op(operator.gt)),
 )
 
 _SC_OPERATORS = (
@@ -136,7 +97,7 @@ _SC_OPERATORS = (
 	('&&', None),
 )
 
-_OPERATOR_RE = '|'.join(map(lambda x: re.escape(x[0]), _OPERATORS + _LOG_OPERATORS))
+_OPERATOR_RE = '|'.join(map(lambda x: re.escape(x[0]), _OPERATORS))
 
 _NAME_RE = r'[a-zA-Z_$][\w$]*'
 _MATCHING_PARENS = dict(zip(*zip('()', '{}', '[]')))
@@ -192,17 +153,6 @@ class JSInterpreter(object):
 		namespace[name] = obj
 		return name
 
-	@classmethod
-	def _regex_flags(cls, expr):
-		flags = 0
-		if not expr:
-			return flags, expr
-		for idx, ch in enumerate(expr):
-			if ch not in cls._RE_FLAGS:
-				break
-			flags |= cls._RE_FLAGS[ch]
-		return flags, expr[idx + 1:]
-
 	@staticmethod
 	def _separate(expr, delim=',', max_split=None):
 		OP_CHARS = '+-*/%&|^=<>!,;{}:['
@@ -255,7 +205,7 @@ class JSInterpreter(object):
 	def _all_operators():
 		return chain(
 			# Ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
-			_SC_OPERATORS, _LOG_OPERATORS, _COMP_OPERATORS, _OPERATORS)
+			_SC_OPERATORS, _COMP_OPERATORS, _OPERATORS)
 
 	def _operator(self, op, left_val, right_expr, expr, local_vars, allow_recursion):
 		if op in ('||', '&&'):
@@ -319,7 +269,7 @@ class JSInterpreter(object):
 		if expr[0] in _QUOTES:
 			inner, outer = self._separate(expr, expr[0], 1)
 			if expr[0] == '/':
-				flags, outer = self._regex_flags(outer)
+				flags = 0
 				inner = re.compile(inner[1:].replace('[[', r'[\['), flags=flags)
 			else:
 				inner = loads(js_to_json(inner + expr[0]))
@@ -716,9 +666,6 @@ class JSInterpreter(object):
 				body, local_vars, *global_stack))
 			code = code[:start] + name + remaining
 		return self.build_function(argnames, code, local_vars, *global_stack)
-
-	def call_function(self, funcname, *args):
-		return self.extract_function(funcname)(args)
 
 	@classmethod
 	def build_arglist(cls, arg_text):
