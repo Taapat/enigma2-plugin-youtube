@@ -130,18 +130,6 @@ class LocalNameSpace(compat_map):
 class JSInterpreter(object):
 	__named_object_counter = 0
 
-	_RE_FLAGS = {
-		# special knowledge: Python's re flags are bitmask values, current max 128
-		# invent new bitmask values well above that for literal parsing
-		'd': 1024,  # Generate indices for substring matches
-		'g': 2048,  # Global search
-		'i': re.I,  # Case-insensitive search
-		'm': re.M,  # Multi-line search
-		's': re.S,  # Allows . to match newline characters
-		'u': re.U,  # Treat a pattern as a sequence of unicode code points
-		'y': 4096,  # Perform a "sticky" search that matches starting at the current position in the target string
-	}
-
 	def __init__(self, code, objects=None):
 		self.code, self._functions = code, {}
 		self._objects = {} if objects is None else objects
@@ -266,8 +254,7 @@ class JSInterpreter(object):
 		if expr[0] in _QUOTES:
 			inner, outer = self._separate(expr, expr[0], 1)
 			if expr[0] == '/':
-				flags = 0
-				inner = re.compile(inner[1:].replace('[[', r'[\['), flags=flags)
+				inner = re.compile(inner[1:].replace('[[', r'[\['))
 			else:
 				inner = loads(js_to_json(inner + expr[0]))
 			if not outer:
@@ -470,7 +457,7 @@ class JSInterpreter(object):
 			return local_vars[m.group('name')], should_return
 
 		try:
-			ret = loads(js_to_json(expr))  # strict=True)
+			ret = loads(js_to_json(expr))
 			if not md.get('attribute'):
 				return ret, should_return
 		except ValueError:
