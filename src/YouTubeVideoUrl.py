@@ -3,7 +3,7 @@
 
 from __future__ import print_function
 
-from re import search, match, sub
+from re import search, match, sub, escape
 from json import loads, dumps
 
 from Components.config import config
@@ -13,6 +13,7 @@ from .compat import compat_str
 from .compat import compat_URLError
 from .compat import compat_Request
 from .compat import SUBURI
+from .jsinterp import JSInterpreter
 from .OAuth import YT_KEY
 
 
@@ -83,6 +84,7 @@ def clean_html(html):
 class YouTubeVideoUrl():
 	def __init__(self):
 		self.use_dash_mp4 = ()
+		self._player_cache = {}
 
 	@staticmethod
 	def _guess_encoding_from_content(content_type, webpage_bytes):
@@ -125,6 +127,59 @@ class YouTubeVideoUrl():
 
 		return content
 
+	def _extract_n_function_name(self, jscode):
+		nfunc, idx = search(
+			r'\.get\("n"\)\)&&\(b=(?P<nfunc>[a-zA-Z0-9$]+)(?:\[(?P<idx>\d+)\])?\([a-zA-Z0-9]\)',
+			jscode
+		).group('nfunc', 'idx')
+		if not idx:
+			return nfunc
+		if int(idx) == 0:
+			real_nfunc = search(
+				r'var %s\s*=\s*\[([a-zA-Z_$][\w$]*)\];' % (escape(nfunc), ),
+				jscode
+			)
+			if real_nfunc:
+				return real_nfunc.group(1)
+
+	def _extract_player_info(self):
+		res = self._download_webpage('https://www.youtube.com/iframe_api')
+		if res:
+			player_id = search(r'player\\?/([0-9a-fA-F]{8})\\?/', res)
+			if player_id:
+				return player_id.group(1)
+
+	def _extract_n_function(self, player_id):
+		if player_id not in self._player_cache:
+			jscode = self._download_webpage(
+				'https://www.youtube.com/s/player/%s/player_ias.vflset/en_US/base.js' % player_id
+			)
+			funcname = self._extract_n_function_name(jscode)
+			self._player_cache[player_id] = (jscode, funcname)
+		jsi = JSInterpreter(self._player_cache[player_id][0])
+		func_code = jsi.extract_function_code(self._player_cache[player_id][1])
+		return lambda s: jsi.extract_function_from_code(*func_code)([s])
+
+	def _unthrottle_url(self, url):
+		print('[YouTubeVideoUrl] Try unthrottle url')
+		n_param = search(r'&n=(.+?)&', url).group(1)
+		player_id = self._extract_player_info()
+		if not player_id:
+			print('[YouTubeVideoUrl] Cannot get player info')
+			return
+		try:
+			ret = self._extract_n_function(player_id)(n_param)
+		except Exception as ex:
+			print('[YouTubeVideoUrl] Unable to decode nsig', ex)
+		else:
+			if ret.startswith('enhanced_except_'):
+				print('[YouTubeVideoUrl] Unhandled exception in decode', ret)
+			else:
+				print('[YouTubeVideoUrl] Decrypted nsig %s => %s' % (n_param, ret))
+				return url.replace(n_param, ret)
+		if player_id in self._player_cache:
+			del self._player_cache[player_id]
+
 	def _extract_from_m3u8(self, manifest_url):
 		url_map = {}
 
@@ -151,7 +206,6 @@ class YouTubeVideoUrl():
 
 	def _extract_fmt_video_format(self, streaming_formats):
 		""" Find the best format from our format priority map """
-
 		print('[YouTubeVideoUrl] Try fmt url')
 		for our_format in PRIORITY_VIDEO_FORMAT:
 			for fmt in streaming_formats:
@@ -176,13 +230,13 @@ class YouTubeVideoUrl():
 						return url
 		return ''
 
-	def _extract_player_response(self, video_id, status=''):
+	def _extract_player_response(self, video_id, client):
 		url = 'https://www.youtube.com/youtubei/v1/player?key=%s&bpctr=9999999999&has_verified=1' % YT_KEY
 		data = {'videoId': video_id}
 		headers = {
 			'Content-Type': 'application/json'
 		}
-		if status == 'LIVE':
+		if client == 1:
 			data['context'] = {
 				'client': {
 					'clientName': 'WEB',
@@ -194,7 +248,7 @@ class YouTubeVideoUrl():
 			headers['Origin'] = 'https://www.youtube.com'
 			headers['User-Agent'] = 'com.google.android.youtube/17.31.35 (Linux; U; Android 11) gzip'
 			headers['X-YouTube-Client-Version'] = '17.31.35'
-			if status == 'LOGIN':
+			if client == 85:
 				data['context'] = {
 					'client': {
 						'clientName': 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
@@ -224,7 +278,7 @@ class YouTubeVideoUrl():
 	def _real_extract(self, video_id):
 		url = ''
 
-		player_response = self._extract_player_response(video_id)
+		player_response = self._extract_player_response(video_id, 1)
 		if not player_response:
 			raise RuntimeError('Player response not found!')
 
@@ -232,13 +286,13 @@ class YouTubeVideoUrl():
 
 		if is_live:
 			print('[YouTubeVideoUrl] Live content')
-			player_response = self._extract_player_response(video_id, 'LIVE')
+			player_response = self._extract_player_response(video_id, 1)
 			playability_status = player_response.get('playabilityStatus', {})
 		else:
 			playability_status = player_response.get('playabilityStatus', {})
 			if playability_status.get('status') == 'LOGIN_REQUIRED':
 				print('[YouTubeVideoUrl] Age gate content')
-				player_response = self._extract_player_response(video_id, 'LOGIN')
+				player_response = self._extract_player_response(video_id, 85)
 				playability_status = player_response.get('playabilityStatus', {})
 
 			trailer_video_id = try_get(
@@ -267,6 +321,15 @@ class YouTubeVideoUrl():
 				self.use_dash_mp4 = DASHMP4_FORMAT
 
 			url, our_format = self._extract_fmt_video_format(streaming_formats)
+			if url and '&n=' in url:
+				url = self._unthrottle_url(url)
+				if not url:  # Cannot ecrypte nsig therefore change to android client
+					print('[YouTubeVideoUrl] Trying another client')
+					player_response = self._extract_player_response(video_id, 3)
+					streaming_data = player_response.get('streamingData', {})
+					streaming_formats = streaming_data.get('formats', [])
+					streaming_formats.extend(streaming_data.get('adaptiveFormats', []))
+					url, our_format = self._extract_fmt_video_format(streaming_formats)
 			if url and our_format in DASHMP4_FORMAT:
 				audio_url = self._extract_dash_audio_format(streaming_formats)
 				if audio_url:
