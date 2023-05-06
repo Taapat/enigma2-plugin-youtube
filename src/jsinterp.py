@@ -3,11 +3,10 @@ from __future__ import unicode_literals
 import operator
 import re
 
-from functools import update_wrapper
 from itertools import chain
 from json import dumps, loads
 
-from .compat import compat_basestring, compat_chr, compat_str, compat_map, compat_zip_longest
+from .compat import compat_chr, compat_str, compat_map, compat_zip_longest
 
 
 def js_to_json(code):
@@ -227,14 +226,12 @@ class JSInterpreter(object):
 		except Exception:
 			raise RuntimeError('Failed to evaluate {left_val!r:.50} {op} {right_val!r:.50}'.format(**locals()))
 
-	def _index(self, obj, idx, allow_undefined=False):
+	def _index(self, obj, idx):
 		if idx == 'length':
 			return len(obj)
 		try:
 			return obj[int(idx)] if isinstance(obj, list) else obj[idx]
 		except Exception:
-			if allow_undefined:
-				return JSUndefined
 			raise RuntimeError('Cannot get index {idx:.100}'.format(**locals()))
 
 	def _dump(self, obj, namespace):
@@ -517,8 +514,6 @@ class JSInterpreter(object):
 					raise RuntimeError('{memb} {msg}'.format(**locals()))
 
 			def eval_method():
-				if (variable, member) == ('console', 'debug'):
-					return
 				types = {
 					'String': compat_str,
 					'Math': float,
@@ -532,7 +527,7 @@ class JSInterpreter(object):
 
 				# Member access
 				if arg_str is None:
-					return self._index(obj, member, nullish)
+					return self._index(obj, member)
 
 				# Function call
 				argvals = [

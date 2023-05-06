@@ -10,9 +10,7 @@ if version_info >= (2, 7, 9):
 
 if version_info[0] == 2:
 	# Python 2
-	compat_basestring, compat_chr, compat_str = (
-		basestring, unichr, unicode
-	)
+	compat_chr, compat_str = (unichr, unicode)
 
 	from itertools import izip_longest as compat_zip_longest
 	from urllib import urlencode as compat_urlencode
@@ -24,9 +22,7 @@ if version_info[0] == 2:
 	from urllib2 import URLError as compat_URLError
 else:
 	# Python 3
-	compat_basestring, compat_chr, compat_str = (
-		str, chr, str
-	)
+	compat_chr, compat_str = (chr, str)
 
 	from itertools import zip_longest as compat_zip_longest
 	from urllib.parse import urlencode as compat_urlencode
