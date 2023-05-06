@@ -13,10 +13,6 @@ from .compat import compat_basestring, compat_chr, compat_str, compat_map, compa
 def js_to_json(code):
 	COMMENT_RE = r'/\*(?:(?!\*/).)*?\*/|//[^\n]*'
 	SKIP_RE = r'\s*(?:{comment})?\s*'.format(comment=COMMENT_RE)
-	INTEGER_TABLE = (
-		(r'(?s)^(0[xX][0-9a-fA-F]+){skip}:?$'.format(skip=SKIP_RE), 16),
-		(r'(?s)^(0+[0-7]+){skip}:?$'.format(skip=SKIP_RE), 8),
-	)
 
 	def fix_kv(m):
 		v = m.group(0)
@@ -32,12 +28,6 @@ def js_to_json(code):
 				'\\\n': '',
 				'\\x': '\\u00',
 			}.get(m.group(0), m.group(0)), v[1:-1])
-		else:
-			for regex, base in INTEGER_TABLE:
-				im = re.match(regex, v)
-				if im:
-					i = int(im.group(1), base)
-					return '"%d":' % i if v.endswith(':') else '%d' % i
 
 		return '"%s"' % v
 
@@ -218,12 +208,6 @@ class JSInterpreter(object):
 			'y': 4096,  # Perform a "sticky" search that matches starting at the current position in the target string
 		}
 
-		def __init__(self, pattern_txt, flags=0):  # pragma: no cover
-			# First, avoid https://github.com/python/cpython/issues/74534
-			self.__self = None
-			self.__pattern_txt = pattern_txt.replace('[[', r'[\[')
-			self.__flags = flags
-
 		@classmethod
 		def regex_flags(cls, expr):
 			flags = 0
@@ -398,7 +382,7 @@ class JSInterpreter(object):
 			inner, outer = self._separate(expr, expr[0], 1)
 			if expr[0] == '/':
 				flags, outer = self.JsRegExp.regex_flags(outer)
-				inner = self.JsRegExp(inner[1:], flags=flags)
+				inner = self.JsRegExp()
 			else:
 				inner = loads(js_to_json(inner + expr[0]))  # , strict=True))
 			if not outer:
