@@ -362,7 +362,7 @@ class JSInterpreter(object):
 		try:
 			# print('Eval:', opfunc.__name__, left_val, right_val)
 			return opfunc(left_val, right_val)
-		except Exception as e:
+		except Exception:
 			raise Exception('Failed to evaluate {left_val!r:.50} {op} {right_val!r:.50}'.format(**locals()))
 
 	def _index(self, obj, idx, allow_undefined=False):
@@ -370,7 +370,7 @@ class JSInterpreter(object):
 			return len(obj)
 		try:
 			return obj[int(idx)] if isinstance(obj, list) else obj[idx]
-		except Exception as e:
+		except Exception:
 			if allow_undefined:
 				return JS_Undefined
 			raise Exception('Cannot get index {idx:.100}'.format(**locals()))
