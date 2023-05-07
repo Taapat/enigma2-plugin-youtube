@@ -56,10 +56,7 @@ else:
 			return any((k in m) for m in self.maps)
 
 		def __delitem__(self, k):
-			try:
-				del self.maps[0][k]
-			except KeyError:
-				raise KeyError(k)
+			raise NotImplementedError('Deleting is not supported')
 
 		def __iter__(self):
 			d = {}
