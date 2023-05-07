@@ -38,11 +38,8 @@ if version_info >= (3, 4):
 	from collections import ChainMap as compat_map
 else:
 	from collections import MutableMapping
-	from itertools import chain
 
 	class compat_map(MutableMapping):
-		maps = [{}]
-
 		def __init__(self, *maps):
 			self.maps = list(maps) or [{}]
 
@@ -53,31 +50,30 @@ else:
 			raise KeyError(k)
 
 		def __setitem__(self, k, v):
-			self.maps[0].__setitem__(k, v)
-			return
+			self.maps[0][k] = v
 
 		def __contains__(self, k):
 			return any((k in m) for m in self.maps)
 
-		def __delitem(self, k):
-			if k in self.maps[0]:
-				del self.maps[0][k]
-				return
-			raise KeyError(k)
-
 		def __delitem__(self, k):
-			self.__delitem(k)
+			try:
+				del self.maps[0][k]
+			except KeyError:
+				raise KeyError(k)
 
 		def __iter__(self):
-			return chain(*reversed(self.maps))
+			d = {}
+			for m in reversed(self.maps):
+				d.update(dict.fromkeys(m))
+			return iter(d)
 
 		def __len__(self):
-			return len(iter(self))
+			return len(set().union(*self.maps))
 
 		def new_child(self, m=None, **kwargs):
 			m = m or {}
 			m.update(kwargs)
-			return compat_map(m, *self.maps)
+			return self.__class__(m, *self.maps)
 
 
 SUBURI = '&suburi='
