@@ -154,11 +154,13 @@ class YouTubeVideoUrl():
 			jscode = self._download_webpage(
 				'https://www.youtube.com/s/player/%s/player_ias.vflset/en_US/base.js' % player_id
 			)
+			jsi = JSInterpreter(jscode)
 			funcname = self._extract_n_function_name(jscode)
-			self._player_cache[player_id] = (jscode, funcname)
-		jsi = JSInterpreter(self._player_cache[player_id][0])
-		func_code = jsi.extract_function_code(self._player_cache[player_id][1])
-		return lambda s: jsi.extract_function_from_code(*func_code)([s])
+			func_code = jsi.extract_function_code(funcname)
+			self._player_cache[player_id] = (jscode, func_code)
+		else:
+			jsi = JSInterpreter(self._player_cache[player_id][0])
+		return lambda s: jsi.extract_function_from_code(*self._player_cache[player_id][1])([s])
 
 	def _unthrottle_url(self, url):
 		print('[YouTubeVideoUrl] Try unthrottle url')
