@@ -38,6 +38,7 @@ if version_info >= (3, 4):
 	from collections import ChainMap as compat_map
 else:
 	from collections import MutableMapping
+	from itertools import chain
 
 	class compat_map(MutableMapping):
 		maps = [{}]
@@ -68,10 +69,15 @@ else:
 			self.__delitem(k)
 
 		def __iter__(self):
-			return itertools.chain(*reversed(self.maps))
+			return chain(*reversed(self.maps))
 
 		def __len__(self):
 			return len(iter(self))
+
+		def new_child(self, m=None, **kwargs):
+			m = m or {}
+			m.update(kwargs)
+			return compat_map(m, *self.maps)
 
 
 SUBURI = '&suburi='
