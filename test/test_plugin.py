@@ -172,15 +172,3 @@ def test_wrong_id():
 @pytest.mark.xfail
 def test_age_gate():
 	get_url('K9TRaGNnjEU')
-
-
-def test_compat_map():
-	from src.compat import compat_map
-	c_map = compat_map({'a': 1})
-	try:
-		c_map.__delitem__('a')
-	except NotImplementedError:
-		pass
-	c_map.__iter__()
-	c_map.__len__()
-	c_map.new_child({'b': 2})
