@@ -86,8 +86,6 @@ def check_video_url(videos, descr):
 			pytest.xfail('Error in get_url, Too Many Requests')
 		elif str(ex) == 'No supported formats found in video info!':
 			pytest.xfail('Error in get_url, No supported formats found in video info!')
-		elif 'inappropriate' in str(ex) or 'violating' in str(ex):
-			pytest.xfail('Error in get_url, this video may be inappropriate for some users!')
 		else:
 			raise RuntimeError(ex)
 	else:
@@ -114,49 +112,31 @@ def test_playlist():
 	check_example(q='vevo', event_type='', order='relevance', s_type='playlist', descr='Playlist')
 
 
-video_id = ['BaW_jenozKc',
-		'YQHsXMglC9A',
-		'a9LDPn-MO4I',
-		'T4XJQO3qol8',
-		'__2ABJjxzNo',
-		'FIl7x6_3R5Y',
-		'lsguqyKfVQg',
-		'M4gD1WSo5mA',
-		'eQcmzGIKrzg',
-		'uGpuVWrhIzE',
-		'iqKdEhx-dD4',
-		'MgNrAu2pzNs',
-		'MeJVWBSsPAY',
-		'zaPI8MvL8pg',
-		'HtVdAasjOgU',
-		'Tq92D6wQ1mg',
-		'bWgPKTOMoSY',
-		'6SJNVb0GnPI']
+video_list = (
+	('BaW_jenozKc', 'Use the first video ID'),
+	('YQHsXMglC9A', 'DASH mp4 video and audio'),
+	('a9LDPn-MO4I', '256k DASH audio via manifest'),
+	('T4XJQO3qol8', 'Controversy video'),
+	('__2ABJjxzNo', 'Ad is not captured for creator'),
+	('FIl7x6_3R5Y', 'Multiple DASH manifests'),
+	('lsguqyKfVQg', 'Title with JS-like syntax'),
+	('M4gD1WSo5mA', 'Licensed under Creative Commons'),
+	('eQcmzGIKrzg', 'Channel-like uploader_url'),
+	('uGpuVWrhIzE', 'Rental video preview'),
+	('iqKdEhx-dD4', 'YouTube Red with episode data'),
+	('MgNrAu2pzNs', 'Auto generated description'),
+	('MeJVWBSsPAY', 'Non-agegated non-embeddable'),
+	('zaPI8MvL8pg', 'Multifeed videos'),
+	('HtVdAasjOgU', 'Embeddable video'),
+	('Tq92D6wQ1mg', 'Age gated video'),
+	('bWgPKTOMoSY', 'Decrypting n-sig'),
+	pytest.param('6SJNVb0GnPI', 'Inappropriate video', marks=pytest.mark.xfail),
+)
 
 
-video_descr = ['Use the first video ID',
-		'DASH mp4 video and audio',
-		'256k DASH audio via manifest',
-		'Controversy video',
-		'Ad is not captured for creator',
-		'Multiple DASH manifests',
-		'Title with JS-like syntax',
-		'Licensed under Creative Commons',
-		'Channel-like uploader_url',
-		'Rental video preview',
-		'YouTube Red with episode data',
-		'Auto generated description',
-		'Non-agegated non-embeddable',
-		'Multifeed videos',
-		'Embeddable video',
-		'Age gated video',
-		'Decrypting n-sig',
-		'Inappropriate video']
-
-
-@pytest.mark.parametrize('descr', video_descr)
-def test_url(descr):
-	check_video_url(videos=video_id[video_descr.index(descr)], descr=descr)
+@pytest.mark.parametrize('videos,descr', video_list)
+def test_url(videos, descr):
+	check_video_url(videos=videos, descr=descr)
 
 
 def test_clean_html():
