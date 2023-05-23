@@ -584,7 +584,10 @@ def start_session():
 
 	print('init parental')
 	import Components.ParentalControl
-	Components.ParentalControl.InitParentalControl()
+	try:
+		Components.ParentalControl.InitParentalControl()
+	except AttributeError:  # ATV-7.3
+		pass
 
 	print('init nav')
 	from Navigation import Navigation
