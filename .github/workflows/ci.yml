@@ -111,7 +111,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        enigma2-version: ['OpenPLi develop', 'OpenPLi release-8.1', 'OpenPLi release-6.2', 'openatv master', 'openatv 6.4', 'OpenViX Developer', 'Taapat bh']
+        enigma2-version: ['OpenPLi develop', 'OpenPLi release-8.3', 'OpenPLi release-6.2', 'openatv master', 'openatv 6.4', 'OpenViX Developer', 'Taapat bh']
         python-version: [2.7]
         include:
           - enigma2-version: 'OpenPLi develop'
