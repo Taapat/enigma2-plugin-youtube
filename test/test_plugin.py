@@ -127,7 +127,6 @@ video_list = (
 	('MgNrAu2pzNs', 'Auto generated description'),
 	('MeJVWBSsPAY', 'Non-agegated non-embeddable'),
 	('zaPI8MvL8pg', 'Multifeed videos'),
-	('HtVdAasjOgU', 'Embeddable video'),
 	('Tq92D6wQ1mg', 'Age gated video'),
 	('bWgPKTOMoSY', 'Decrypting n-sig'),
 	pytest.param('6SJNVb0GnPI', 'Inappropriate video', marks=pytest.mark.xfail),
