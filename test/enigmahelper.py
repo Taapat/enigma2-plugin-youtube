@@ -411,6 +411,22 @@ class EnigmaEPGCache(EnimaInstance):
 eEPGCache = EnigmaEPGCache()
 modules['enigma'].eEPGCache = eEPGCache
 
+
+class EnigmaAVControl(EnimaInstance):
+	def __init__(self):
+		EnimaInstance.__init__(self)
+		self.getInstance = self
+
+	def getAvailableModes(self):
+		return '480i60hz 576i50hz'
+
+	def getPreferredModes(self, flags):
+		return self.getAvailableModes()
+
+
+eAVControl = EnigmaAVControl()
+modules['enigma'].eAVControl = eAVControl
+
 enigma_fonts = {}
 
 
