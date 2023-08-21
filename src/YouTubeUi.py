@@ -74,13 +74,11 @@ config.plugins.YouTube.safeSearch = ConfigSelection(default='moderate', choices=
 config.plugins.YouTube.maxResolution = ConfigSelection(default='22', choices=[
 	('38', '4096x3072'), ('37', '1920x1080'), ('22', '1280x720'), ('35', '854x480'),
 	('18', '640x360'), ('5', '400x240'), ('17', '176x144')])
-config.plugins.YouTube.onMovieEof = ConfigSelection(default='related', choices=[
-	('related', _('Show related videos')),
+config.plugins.YouTube.onMovieEof = ConfigSelection(default='quit', choices=[
 	('quit', _('Return to list')), ('ask', _('Ask user')),
 	('playnext', _('Play next')), ('repeat', _('Repeat')),
 	('playprev', _('Play previous'))])
-config.plugins.YouTube.onMovieStop = ConfigSelection(default='related', choices=[
-	('related', _('Show related videos')),
+config.plugins.YouTube.onMovieStop = ConfigSelection(default='ask', choices=[
 	('ask', _('Ask user')), ('quit', _('Return to list'))])
 config.plugins.YouTube.login = ConfigYesNo(default=False)
 config.plugins.YouTube.downloadDir = ConfigDirectory(default=resolveFilename(SCOPE_HDD))
@@ -158,7 +156,6 @@ class YouTubePlayer(MoviePlayer):
 		if on_movie_stop == 'ask':
 			title = _('Stop playing this movie?')
 			clist = ((_('Yes, and return to list'), 'quit'),
-					(_('Yes, and show related videos'), 'related'),
 					(_('Yes, but play next video'), 'playnext'),
 					(_('Yes, but play previous video'), 'playprev'),
 					(_('No, but play video again'), 'repeat'),
@@ -673,11 +670,6 @@ class YouTubeMain(Screen):
 						(_('Play video again'), 'repeat'))
 				self.session.openWithCallback(self.playCallback,
 						ChoiceBox, title=title, list=clist)
-			elif action == 'related':
-				self.yts.pop(0)
-				self.yts.insert(0, {})
-				self.yts[0]['related'] = str(self['list'].getCurrent()[0])
-				self.screenCallback('', 'search')
 			else:
 				if action == 'playnext':
 					self.selectNext()
@@ -916,10 +908,7 @@ class YouTubeMain(Screen):
 		order = 'date'
 		search_type = 'video'
 		q = video_embeddable = video_definition = video_type = event_type = ''
-		related = self.yts[0].get('related', '')
-		if related:
-			self.yts[0]['title'] = _('Related videos')
-		elif self.yts[0]['list'] == 'search':
+		if self.yts[0]['list'] == 'search':
 			order = config.plugins.YouTube.searchOrder.value
 			if current[6:] == 'broadcasts':
 				event_type = 'live'
@@ -954,7 +943,6 @@ class YouTubeMain(Screen):
 			relevance_language=config.plugins.YouTube.searchLanguage.value,
 			s_type=search_type,
 			region_code=config.plugins.YouTube.searchRegion.value,
-			related_to_video_id=related,
 			max_results=self.search_result,
 			page_token=self.yts[0].get('pageToken', '')
 		)
@@ -1307,13 +1295,10 @@ class YouTubeMain(Screen):
 		self.usePageToken(page_token, page_index)
 
 	def usePageToken(self, page_token, page_index, last=False):
-		related = self.yts[0].get('related')
 		self.yts.pop(0)
 		self.yts.insert(0, {})
 		self.yts[0]['pageToken'] = page_token
 		self.yts[0]['page_index'] = page_index
-		if related:
-			self.yts[0]['related'] = related
 		if last:
 			self.yts[0]['index'] = int(self.search_result) - 1
 		self.screenCallback(self.title, self.yts[1]['list'])
