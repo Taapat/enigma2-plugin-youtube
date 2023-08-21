@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin magyar fordítás\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-29 23:04+0200\n"
+"POT-Creation-Date: 2023-08-21 20:48+0300\n"
 "PO-Revision-Date: 2019-02-19 12:57+0100\n"
 "Last-Translator: cp-teamhun\n"
 "Language-Team: cp-teamhun\n"
@@ -257,10 +257,6 @@ msgstr "Értékelés eltávolítva!"
 msgid "Recent"
 msgstr "Friss"
 
-#, fuzzy
-msgid "Related videos"
-msgstr "Videó értékelése"
-
 msgid "Relevance"
 msgstr "Fontosság"
 
@@ -314,10 +310,6 @@ msgstr "Keresési eredmények:"
 
 msgid "Search videos"
 msgstr "Videók keresése"
-
-#, fuzzy
-msgid "Show related videos"
-msgstr "Videó letöltése"
 
 msgid "Shows"
 msgstr "Műsorok"
@@ -467,9 +459,6 @@ msgstr "Igen"
 #, fuzzy
 msgid "Yes, and return to list"
 msgstr "Visszatérés a listához"
-
-msgid "Yes, and show related videos"
-msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Igen, de játssza le a következő videót"

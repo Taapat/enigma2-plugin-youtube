@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-29 23:04+0200\n"
+"POT-Creation-Date: 2023-08-21 20:48+0300\n"
 "PO-Revision-Date: 2018-06-25 22:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -260,10 +260,6 @@ msgstr "Evaluation supprimée!"
 msgid "Recent"
 msgstr "Récent"
 
-#, fuzzy
-msgid "Related videos"
-msgstr "Evaluer la vidéo"
-
 msgid "Relevance"
 msgstr "Pertinence"
 
@@ -317,10 +313,6 @@ msgstr "Résultats de recherche:"
 
 msgid "Search videos"
 msgstr "Chercher les vidéos"
-
-#, fuzzy
-msgid "Show related videos"
-msgstr "Télécharger la vidéo"
 
 msgid "Shows"
 msgstr "Émissions"
@@ -467,9 +459,6 @@ msgstr "Oui"
 #, fuzzy
 msgid "Yes, and return to list"
 msgstr "Retour à la liste"
-
-msgid "Yes, and show related videos"
-msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Oui, mais jouer la vidéo suivante"

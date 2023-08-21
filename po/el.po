@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin greek translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-29 23:04+0200\n"
+"POT-Creation-Date: 2023-08-21 20:48+0300\n"
 "PO-Revision-Date: 2019-11-19 01:16+0200\n"
 "Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: MCelliot_g <mcelliot_g@hotmail.com>\n"
@@ -250,10 +250,6 @@ msgstr "Η αξιολόγηση αφαιρέθηκε!"
 msgid "Recent"
 msgstr "Πρόσφατα"
 
-#, fuzzy
-msgid "Related videos"
-msgstr "Βαθμολογία βίντεο"
-
 msgid "Relevance"
 msgstr "Συνάφεια"
 
@@ -307,10 +303,6 @@ msgstr "Αποτελέσματα αναζήτησης"
 
 msgid "Search videos"
 msgstr "Αναζήτηση βίντεο"
-
-#, fuzzy
-msgid "Show related videos"
-msgstr "Λήψη βίντεο"
 
 msgid "Shows"
 msgstr "Σόου"
@@ -449,9 +441,6 @@ msgstr "Ναι"
 #, fuzzy
 msgid "Yes, and return to list"
 msgstr "Επιστροφή στη λίστα"
-
-msgid "Yes, and show related videos"
-msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Ναι, αλλά αναπαραγωγή του επόμενου βίντεο"

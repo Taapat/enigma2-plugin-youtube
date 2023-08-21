@@ -231,9 +231,6 @@ msgstr ""
 msgid "Recent"
 msgstr ""
 
-msgid "Related videos"
-msgstr ""
-
 msgid "Relevance"
 msgstr ""
 
@@ -286,9 +283,6 @@ msgid "Search results:"
 msgstr ""
 
 msgid "Search videos"
-msgstr ""
-
-msgid "Show related videos"
 msgstr ""
 
 msgid "Shows"
@@ -420,9 +414,6 @@ msgid "Yes"
 msgstr ""
 
 msgid "Yes, and return to list"
-msgstr ""
-
-msgid "Yes, and show related videos"
 msgstr ""
 
 msgid "Yes, but play next video"

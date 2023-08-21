@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-29 23:04+0200\n"
+"POT-Creation-Date: 2023-08-21 20:48+0300\n"
 "PO-Revision-Date: 2015-06-25 00:44+0300\n"
 "Last-Translator: Tapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -257,9 +257,6 @@ msgstr "Novērtējums dzēsts!"
 msgid "Recent"
 msgstr "Jaunākie"
 
-msgid "Related videos"
-msgstr "Saistītie video"
-
 msgid "Relevance"
 msgstr "Atbilstības"
 
@@ -313,9 +310,6 @@ msgstr "Meklēšnas rezultāti:"
 
 msgid "Search videos"
 msgstr "Meklēt video"
-
-msgid "Show related videos"
-msgstr "Rādīt saistītos video"
 
 msgid "Shows"
 msgstr "Pārraides"
@@ -465,9 +459,6 @@ msgstr "Jā"
 
 msgid "Yes, and return to list"
 msgstr "Jā, un atgriesties sarakstā"
-
-msgid "Yes, and show related videos"
-msgstr "Jā, un parādīt saistītos video"
 
 msgid "Yes, but play next video"
 msgstr "Jā, atskaņot nākošo video"

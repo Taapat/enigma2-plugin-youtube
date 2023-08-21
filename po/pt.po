@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin for Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-29 23:04+0200\n"
+"POT-Creation-Date: 2023-08-21 20:48+0300\n"
 "PO-Revision-Date: 2018-11-19 00:44+0000\n"
 "Last-Translator: nunigaia\n"
 "Language-Team: BH Team\n"
@@ -264,10 +264,6 @@ msgstr "Classificação removida!"
 msgid "Recent"
 msgstr "Recente"
 
-#, fuzzy
-msgid "Related videos"
-msgstr "Classificar vídeo"
-
 msgid "Relevance"
 msgstr "Relevância"
 
@@ -321,10 +317,6 @@ msgstr "Resultados de busca:"
 
 msgid "Search videos"
 msgstr "Procurar vídeos"
-
-#, fuzzy
-msgid "Show related videos"
-msgstr "Descarga de vídeo"
 
 msgid "Shows"
 msgstr "Espetáculos"
@@ -474,9 +466,6 @@ msgstr "Sim"
 #, fuzzy
 msgid "Yes, and return to list"
 msgstr "Voltar à lista"
-
-msgid "Yes, and show related videos"
-msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Sim, mas repdroduz o vídeo seguinte"

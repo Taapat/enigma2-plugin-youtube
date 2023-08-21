@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-29 23:04+0200\n"
+"POT-Creation-Date: 2023-08-21 20:48+0300\n"
 "PO-Revision-Date: 2022-04-13 19:10+0300\n"
 "Last-Translator: Orlandox\n"
 "Language-Team: Samzam <http://www.world-of-satellite.com>, Orlandox\n"
@@ -254,9 +254,6 @@ msgstr "Arvostelu poistettu!"
 msgid "Recent"
 msgstr "Viimeisimmät"
 
-msgid "Related videos"
-msgstr "Liittyvät videot"
-
 msgid "Relevance"
 msgstr "Vastaavuus"
 
@@ -310,9 +307,6 @@ msgstr "Hakutulokset:"
 
 msgid "Search videos"
 msgstr "Hae videoita"
-
-msgid "Show related videos"
-msgstr "Näytä liittyvät videot"
 
 msgid "Shows"
 msgstr "Show:t"
@@ -462,9 +456,6 @@ msgstr "Kyllä"
 
 msgid "Yes, and return to list"
 msgstr "Kyllä, ja palaa listaan"
-
-msgid "Yes, and show related videos"
-msgstr "Kyllä, ja näytä liittyvät videot"
 
 msgid "Yes, but play next video"
 msgstr "Kyllä, mutta toista seuraava video"

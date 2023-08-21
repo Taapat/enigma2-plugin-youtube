@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-29 23:04+0200\n"
+"POT-Creation-Date: 2023-08-21 20:48+0300\n"
 "PO-Revision-Date: 2021-03-16 17:56+0100\n"
 "Last-Translator: LinuxSTV\n"
 "Language-Team: \n"
@@ -257,10 +257,6 @@ msgstr "Rating dibuang!"
 msgid "Recent"
 msgstr "Terbaru"
 
-#, fuzzy
-msgid "Related videos"
-msgstr "Beri rating pada video"
-
 msgid "Relevance"
 msgstr "Relevan"
 
@@ -314,10 +310,6 @@ msgstr "Hasil pencarian:"
 
 msgid "Search videos"
 msgstr "Cari video"
-
-#, fuzzy
-msgid "Show related videos"
-msgstr "Unduh video"
 
 msgid "Shows"
 msgstr "Tampilkan"
@@ -469,9 +461,6 @@ msgstr "Ya"
 #, fuzzy
 msgid "Yes, and return to list"
 msgstr "Kembali ke daftar"
-
-msgid "Yes, and show related videos"
-msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Ya, tapi putar video berikutnya"

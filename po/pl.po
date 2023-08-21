@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-29 23:04+0200\n"
+"POT-Creation-Date: 2023-08-21 20:48+0300\n"
 "PO-Revision-Date: 2020-11-03 23:02+0300\n"
 "Last-Translator: PrinceNorris\n"
 "Language-Team: \n"
@@ -255,9 +255,6 @@ msgstr "Ocena została usunięta!"
 msgid "Recent"
 msgstr "Na czasie"
 
-msgid "Related videos"
-msgstr "Podobne filmy"
-
 msgid "Relevance"
 msgstr "Trafność"
 
@@ -311,9 +308,6 @@ msgstr "Wyniki wyszukiwania:"
 
 msgid "Search videos"
 msgstr "Wyszukaj filmy"
-
-msgid "Show related videos"
-msgstr "Pokaż podobne filmy"
 
 msgid "Shows"
 msgstr "Programy telewizyjne"
@@ -463,9 +457,6 @@ msgstr "Tak"
 
 msgid "Yes, and return to list"
 msgstr "Tak i wróć do listy"
-
-msgid "Yes, and show related videos"
-msgstr "Tak i pokaż podobne filmy"
 
 msgid "Yes, but play next video"
 msgstr "Tak, ale odtwórz następny film"

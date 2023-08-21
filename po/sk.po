@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube Plugin slovenský preklad\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-29 23:04+0200\n"
+"POT-Creation-Date: 2023-08-21 20:48+0300\n"
 "PO-Revision-Date: 2023-01-16 13:24+0100\n"
 "Last-Translator: Warder <ciksa@seznam.cz>\n"
 "Language-Team: Italian <>\n"
@@ -255,9 +255,6 @@ msgstr "Hodnotenie odstránené!"
 msgid "Recent"
 msgstr "Najnovšie"
 
-msgid "Related videos"
-msgstr "Súvisiace videá"
-
 msgid "Relevance"
 msgstr "Relevantnosť"
 
@@ -311,9 +308,6 @@ msgstr "Výsledky vyhľadávania:"
 
 msgid "Search videos"
 msgstr "Vyhľadávanie videí"
-
-msgid "Show related videos"
-msgstr "Zobraziť súvisiace videá"
 
 msgid "Shows"
 msgstr "Relácie"
@@ -463,9 +457,6 @@ msgstr "Áno"
 
 msgid "Yes, and return to list"
 msgstr "Áno, a vráťte sa na zoznam"
-
-msgid "Yes, and show related videos"
-msgstr "Áno, a zobraziť súvisiace videá"
 
 msgid "Yes, but play next video"
 msgstr "Áno, ale prehrať ďalšie video"

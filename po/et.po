@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-29 23:04+0200\n"
+"POT-Creation-Date: 2023-08-21 20:48+0300\n"
 "PO-Revision-Date: 2018-11-18 12:37+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: \n"
@@ -257,10 +257,6 @@ msgstr "Hinnang eemaldati!"
 msgid "Recent"
 msgstr "Uusimad"
 
-#, fuzzy
-msgid "Related videos"
-msgstr "Hinda video"
-
 msgid "Relevance"
 msgstr "Tähtsus"
 
@@ -314,10 +310,6 @@ msgstr "Otsingu tulemusi:"
 
 msgid "Search videos"
 msgstr "Otsi videoid"
-
-#, fuzzy
-msgid "Show related videos"
-msgstr "Laadi alla"
 
 msgid "Shows"
 msgstr "Saated"
@@ -467,9 +459,6 @@ msgstr "Jah"
 #, fuzzy
 msgid "Yes, and return to list"
 msgstr "Tagasi nimekirja"
-
-msgid "Yes, and show related videos"
-msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Jah, aga esita järgmine video"

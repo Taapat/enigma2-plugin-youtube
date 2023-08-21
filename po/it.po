@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-29 23:04+0200\n"
+"POT-Creation-Date: 2023-08-21 20:48+0300\n"
 "PO-Revision-Date: 2023-01-10 15:10+0100\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <>\n"
@@ -257,9 +257,6 @@ msgstr "Valutazione cancellata"
 msgid "Recent"
 msgstr "Recenti"
 
-msgid "Related videos"
-msgstr "Video collegati"
-
 msgid "Relevance"
 msgstr "Rilevanza"
 
@@ -313,9 +310,6 @@ msgstr "Risultati di ricerca:"
 
 msgid "Search videos"
 msgstr "Cerca video"
-
-msgid "Show related videos"
-msgstr "Mostra video correlati"
 
 msgid "Shows"
 msgstr "Show"
@@ -467,9 +461,6 @@ msgstr "Sì"
 
 msgid "Yes, and return to list"
 msgstr "Sì, e torna all'elenco"
-
-msgid "Yes, and show related videos"
-msgstr "Sì, e mostra i video correlati"
 
 msgid "Yes, but play next video"
 msgstr "Sì, ma riproduci il prossimo video"

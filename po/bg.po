@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-29 23:04+0200\n"
+"POT-Creation-Date: 2023-08-21 20:48+0300\n"
 "PO-Revision-Date: 2018-04-13 10:46+0300\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -255,10 +255,6 @@ msgstr "Рейтинга е изтрит!"
 msgid "Recent"
 msgstr "Най-скорошни"
 
-#, fuzzy
-msgid "Related videos"
-msgstr "Оценка на клипа"
-
 msgid "Relevance"
 msgstr "Уместност"
 
@@ -312,10 +308,6 @@ msgstr "Резултати от търсенето:"
 
 msgid "Search videos"
 msgstr "Търсене на клипове"
-
-#, fuzzy
-msgid "Show related videos"
-msgstr "Изтегляне на видео"
 
 msgid "Shows"
 msgstr "Шоу"
@@ -462,9 +454,6 @@ msgstr "Да"
 #, fuzzy
 msgid "Yes, and return to list"
 msgstr "Връщане към списъка"
-
-msgid "Yes, and show related videos"
-msgstr ""
 
 msgid "Yes, but play next video"
 msgstr "Да, но възпроизведи следващия клип"
