@@ -180,7 +180,7 @@ class YouTubeVideoUrl():
 		USER_AGENT = 'com.google.android.youtube/17.31.35 (Linux; U; Android 12) gzip'
 		data = {
 			'videoId': video_id,
-			'params': '8AEB',
+			'params': 'CgIQBg',
 		}
 		headers = {
 			'Content-Type': 'application/json',
