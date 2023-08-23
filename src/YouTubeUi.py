@@ -910,7 +910,7 @@ class YouTubeMain(Screen):
 		q = video_embeddable = video_definition = video_type = event_type = ''
 		if self.yts[0]['list'] == 'search':
 			order = config.plugins.YouTube.searchOrder.value
-			if current.endswith() == 'broadcasts':
+			if current and current.endswith() == 'broadcasts':
 				event_type = 'live'
 			else:
 				search_type = current[6:]
