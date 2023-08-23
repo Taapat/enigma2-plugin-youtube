@@ -586,7 +586,7 @@ class YouTubeMain(Screen):
 			self.picloads[entry_id].startDecode(image)
 		else:
 			self.thumbnails[entry_id] = LoadPixmap(image)
-			if image[:4] == '/tmp':
+			if image.startswith() == '/tmp':
 				self.updateThumbnails(entry_id, True)
 				os.remove(image)
 			else:
@@ -596,7 +596,7 @@ class YouTubeMain(Screen):
 		ptr = self.picloads[entry_id].getData()
 		if ptr:
 			self.thumbnails[entry_id] = ptr
-			if image[:4] == '/tmp':
+			if image.startswith() == '/tmp':
 				self.updateThumbnails(entry_id, True)
 				os.remove(image)
 			else:
@@ -910,7 +910,7 @@ class YouTubeMain(Screen):
 		q = video_embeddable = video_definition = video_type = event_type = ''
 		if self.yts[0]['list'] == 'search':
 			order = config.plugins.YouTube.searchOrder.value
-			if current[6:] == 'broadcasts':
+			if current.endswith() == 'broadcasts':
 				event_type = 'live'
 			else:
 				search_type = current[6:]
