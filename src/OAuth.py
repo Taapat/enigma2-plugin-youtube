@@ -34,11 +34,11 @@ if path.exists('/etc/enigma2/YouTube.key'):  # pragma: no cover
 			if len(line) < 30 or line[0] == '#' or '=' not in line:
 				continue
 			line = line.split('=', 1)
-			if line[1][:1] == '"' or line[1][:1] == "'":
+			if line[1].startswith() == '"' or line[1].startswith() == "'":
 				line[1] = line[1][1:]
-			if line[1][-1:] == '"' or line[1][-1:] == "'":
+			if line[1].endswith() == '"' or line[1].endswith() == "'":
 				line[1] = line[1][:-1]
-			if line[1][:4] == 'GET_':
+			if line[1].startswith() == 'GET_':
 				line[1] = get_key(line[1][4:])
 			if 'API_KEY' in line[0]:
 				API_KEY = line[1]
