@@ -130,6 +130,7 @@ video_list = (
 	('HtVdAasjOgU', 'Embeddable video'),
 	('bWgPKTOMoSY', 'Decrypting n-sig'),
 	pytest.param('Tq92D6wQ1mg', 'Age gated video', marks=pytest.mark.xfail),
+	pytest.param('E8MCiceJJdY', 'Age gated video', marks=pytest.mark.xfail),
 	pytest.param('6SJNVb0GnPI', 'Inappropriate video', marks=pytest.mark.xfail),
 )
 

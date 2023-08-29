@@ -86,15 +86,15 @@ jobs:
           python -O -m compileall ./src/
       - name: Check code with flake8
         run: |
-          flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./src/compat.py,./test/enigmahelper.py,./test/try_plugin.py,./src/__init__.py
+          flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./src/compat.py,./src/jsinterp.py,./test/enigmahelper.py,./test/try_plugin.py,./src/__init__.py
           flake8 --ignore=W191,E501,F821 --show-source --filename=./test/try_plugin.py
-          flake8 --ignore=W191,F401,E128,E402,E501 --show-source --filename=./test/enigmahelper.py,./src/__init__.py
+          flake8 --ignore=W191,F401,E128,E402,E501 --show-source --filename=./src/jsinterp.py,./test/enigmahelper.py,./src/__init__.py
           flake8 --ignore=W191,F821,F401 --show-source --filename=./src/compat.py
       - name: Remove enigma2 imports and variables for test
         run: |
           echo "" > src/__init__.py
           sed -i 's/from Components/# from Components/g' src/YouTubeVideoUrl.py
-          sed -i 's/config.plugins.YouTube.maxResolution.value/"38"/g' src/YouTubeVideoUrl.py
+          sed -i 's/config.plugins.YouTube.maxResolution.value/"22"/g' src/YouTubeVideoUrl.py
           sed -i 's/config.plugins.YouTube.useDashMP4.value/True/g' src/YouTubeVideoUrl.py
       - name: Test code with pytest
         run: |

@@ -25,6 +25,7 @@ def get_key(x):
 API_KEY = get_key('Xhi3_LoIzw_OizD15SyCNReMvKL27nw_OizDWRR395T5uGWpvn451I2VYc78Gy463')
 CLIENT_ID = get_key('4113447027255-v15bgs05u1o3m278mpjs2vcd0394w_OizDfrg5160drbw_Oiz63D.w_OizDpp75s.googleus87ercontent.99com')
 CLIENT_SECRET = get_key('Zf93pqd2rxgY2ro159rK20BMxif27')
+YT_EMBKEY = get_key('Xhi3_LoIzw_OizD15SyXhi_LoO_27FJ2SlqU8Q439STEHLGCilw51_Y9_11qcW863')
 YT_KEY = get_key('Xhi3_LoIzw_OizD15SyXhi_Lo8e27iZmM1Fw_Oi39zDDVjRy-df512KTyQ_vz_y63YM39w')
 
 if path.exists('/etc/enigma2/YouTube.key'):  # pragma: no cover
