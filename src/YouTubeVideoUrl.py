@@ -91,6 +91,7 @@ class YouTubeVideoUrl():
 		self.use_dash_mp4 = ()
 		self._code_cache = {}
 		self._player_cache = {}
+		self.nsig_cache = (None, None)
 
 	@staticmethod
 	def _guess_encoding_from_content(content_type, webpage_bytes):
@@ -165,12 +166,10 @@ class YouTubeVideoUrl():
 	def _extract_n_function(self, player_id):
 		if player_id not in self._player_cache:
 			self._load_player(player_id)
+		jsi = JSInterpreter(self._player_cache[player_id])
 		if player_id not in self._code_cache:
-			jsi = JSInterpreter(self._player_cache[player_id])
 			funcname = self._extract_n_function_name(self._player_cache[player_id])
 			self._code_cache[player_id] = jsi.extract_function_code(funcname)
-		else:
-			jsi = JSInterpreter(self._player_cache[player_id])
 		return lambda s: jsi.extract_function_from_code(*self._code_cache[player_id])([s])
 
 	def _unthrottle_url(self, url, player_id):
@@ -179,16 +178,20 @@ class YouTubeVideoUrl():
 			print('[YouTubeVideoUrl] Cannot decrypt nsig without player info')
 			return url
 		n_param = search(r'&n=(.+?)&', url).group(1)
-		try:
-			ret = self._extract_n_function(player_id)(n_param)
-		except Exception as ex:
-			print('[YouTubeVideoUrl] Unable to decode nsig', ex)
-		else:
-			if ret.startswith('enhanced_except_'):
-				print('[YouTubeVideoUrl] Unhandled exception in decode', ret)
+		if self.nsig_cache[0] != n_param:
+			self.nsig_cache = (None, None)
+			try:
+				ret = self._extract_n_function(player_id)(n_param)
+			except Exception as ex:
+				print('[YouTubeVideoUrl] Unable to decode nsig', ex)
 			else:
-				print('[YouTubeVideoUrl] Decrypted nsig %s => %s' % (n_param, ret))
-				return url.replace(n_param, ret)
+				if ret.startswith('enhanced_except_'):
+					print('[YouTubeVideoUrl] Unhandled exception in decode', ret)
+				else:
+					self.nsig_cache = (n_param, ret)
+		if self.nsig_cache[1]:
+			print('[YouTubeVideoUrl] Decrypted nsig %s => %s' % self.nsig_cache)
+			return url.replace(self.nsig_cache[0], self.nsig_cache[1])
 		if player_id in self._code_cache:
 			del self._code_cache[player_id]
 		return url
@@ -265,7 +268,7 @@ class YouTubeVideoUrl():
 				if player_id not in self._player_cache:
 					self._load_player(player_id)
 				sts = search(
-					r'(?:signatureTimestamp|sts)\s*:\s*(?P<sts>[0-9]{5})',
+					r'(?:signatureTimestamp|sts)\s*:\s*(?P<sts>\d{5})',
 					self._player_cache[player_id]
 				).group('sts')
 				if sts:
