@@ -2,7 +2,6 @@ from __future__ import unicode_literals
 
 import calendar
 import datetime
-import email.utils
 import operator
 import re
 
@@ -17,24 +16,8 @@ from .compat import compat_zip_longest
 
 
 def js_to_json(code):
-	STRING_QUOTES = '\'"`'
 	COMMENT_RE = r'/\*(?:(?!\*/).)*?\*/|//[^\n]*\n'
 	SKIP_RE = r'\s*(?:{comment})?\s*'.format(comment=COMMENT_RE)
-
-	def process_escape(match):
-		JSON_PASSTHROUGH_ESCAPES = r'"\bfnrtu'
-		escape = match.group(1) or match.group(2)
-
-		return ('\\' + escape if escape in JSON_PASSTHROUGH_ESCAPES
-				else '\\u00' if escape == 'x'
-				else '' if escape == '\n'
-				else escape)
-
-	def template_substitute(match):
-		evaluated = js_to_json(match.group(1))
-		if evaluated[0] == '"':
-			return loads(evaluated)
-		return evaluated
 
 	def fix_kv(m):
 		v = m.group(0)
@@ -45,10 +28,15 @@ def js_to_json(code):
 		elif v.startswith('/*') or v.startswith('//') or v.startswith('!') or v == ',':
 			return ''
 
-		if v[0] in STRING_QUOTES:
-			v = re.sub(r'(?s)\${([^}]+)}', template_substitute, v[1:-1]) if v[0] == '`' else v[1:-1]
-			escaped = re.sub(r'(?s)(")|\\(.)', process_escape, v)
-			return '"%s"' % escaped
+		if v[0] in ("'", '"'):
+			v = re.sub(r'(?s)\\.|"', lambda m: {
+				'"': '\\"',
+				"\\'": "'",
+				'\\\n': '',
+				'\\x': '\\u00',
+			}.get(m.group(0), m.group(0)), v[1:-1])
+
+			return '"%s"' % v
 
 		raise ValueError('Unknown value:', v)
 
@@ -62,16 +50,6 @@ def js_to_json(code):
 		!+
 		'''.format(comment=COMMENT_RE, skip=SKIP_RE), fix_kv, code)
 
-
-# From https://github.com/python/cpython/blob/3.11/Lib/email/_parseaddr.py#L36-L42
-TIMEZONE_NAMES = {
-	'UT': 0, 'UTC': 0, 'GMT': 0, 'Z': 0,
-	'AST': -4, 'ADT': -3,  # Atlantic (used in Canada)
-	'EST': -5, 'EDT': -4,  # Eastern
-	'CST': -6, 'CDT': -5,  # Central
-	'MST': -7, 'MDT': -6,  # Mountain
-	'PST': -8, 'PDT': -7   # Pacific
-}
 
 DATE_FORMATS_MONTH_FIRST = (
 	'%d %B %Y',
@@ -136,27 +114,20 @@ def extract_timezone(date_str):
 				(?P<hours>[0-9]{2}):?(?P<minutes>[0-9]{2})	   # hh[:]mm
 			$)
 		''', date_str)
-	if not m:
-		m = re.search(r'\d{1,2}:\d{1,2}(?:\.\d+)?(?P<tz>\s*[A-Z]+)$', date_str)
-		timezone = TIMEZONE_NAMES.get(m and m.group('tz').strip())
-		if timezone is not None:
-			date_str = date_str[:-len(m.group('tz'))]
-		timezone = datetime.timedelta(hours=timezone or 0)
+	date_str = date_str[:-len(m.group('tz'))]
+	if not m.group('sign'):
+		timezone = datetime.timedelta()
 	else:
-		date_str = date_str[:-len(m.group('tz'))]
-		if not m.group('sign'):
-			timezone = datetime.timedelta()
-		else:
-			sign = 1 if m.group('sign') == '+' else -1
-			timezone = datetime.timedelta(
-				hours=sign * int(m.group('hours')),
-				minutes=sign * int(m.group('minutes')))
+		sign = 1 if m.group('sign') == '+' else -1
+		timezone = datetime.timedelta(
+			hours=sign * int(m.group('hours')),
+			minutes=sign * int(m.group('minutes')))
 	return timezone, date_str
 
 
 def unified_timestamp(date_str):
 	if date_str is None:
-		return None
+		return
 
 	date_str = re.sub(r'\s+', ' ', re.sub(
 		r'(?i)[,|]|(mon|tues?|wed(nes)?|thu(rs)?|fri|sat(ur)?)(day)?', '', date_str))
@@ -173,7 +144,7 @@ def unified_timestamp(date_str):
 		date_str = date_str[:-len(m.group('tz'))]
 
 	# Python only supports microseconds, so remove nanoseconds
-	m = re.search(r'^([0-9]{4,}-[0-9]{1,2}-[0-9]{1,2}T[0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}\.[0-9]{6})[0-9]+$', date_str)
+	m = re.search(r'^(\d{4,}-\d{1,2}-\d{1,2}T\d{1,2}:\d{1,2}:\d{1,2}\.\d{6})\d+$', date_str)
 	if m:
 		date_str = m.group(1)
 
@@ -183,10 +154,6 @@ def unified_timestamp(date_str):
 			return calendar.timegm(dt.timetuple())
 		except ValueError:
 			pass
-
-	timetuple = email.utils.parsedate_tz(date_str)
-	if timetuple:
-		return calendar.timegm(timetuple) + pm_delta * 3600 - timezone.total_seconds()
 
 
 # NB In principle NaN cannot be checked by membership.
@@ -326,8 +293,7 @@ class JSContinue(Exception):
 
 
 class JSThrow(Exception):
-	def __init__(self, e):
-		self.error = e
+	pass
 
 
 class LocalNameSpace(compat_map):
@@ -344,58 +310,6 @@ class JSInterpreter(object):
 	def __init__(self, code, objects=None):
 		self.code, self._functions = code, {}
 		self._objects = {} if objects is None else objects
-
-	class JSRegExp():
-		RE_FLAGS = {
-			# special knowledge: Python's re flags are bitmask values, current max 128
-			# invent new bitmask values well above that for literal parsing
-			# TODO: execute matches with these flags (remaining: d, y)
-			'd': 1024,  # Generate indices for substring matches
-			'g': 2048,  # Global search
-			'i': re.I,  # Case-insensitive search
-			'm': re.M,  # Multi-line search
-			's': re.S,  # Allows . to match newline characters
-			'u': re.U,  # Treat a pattern as a sequence of unicode code points
-			'y': 4096,  # Perform a "sticky" search that matches starting at the current position in the target string
-		}
-
-		def __init__(self, pattern_txt, flags=0):
-			if isinstance(flags, compat_str):
-				flags, _ = self.regex_flags(flags)
-			# First, avoid https://github.com/python/cpython/issues/74534
-			self.__self = None
-			self.__pattern_txt = pattern_txt.replace('[[', r'[\[')
-			self.__flags = flags
-
-		def __instantiate(self):
-			if self.__self:
-				return
-			self.__self = re.compile(self.__pattern_txt, self.__flags)
-			# Thx: https://stackoverflow.com/questions/44773522/setattr-on-python2-sre-sre-pattern
-			for name in dir(self.__self):
-				# Only these? Obviously __class__, __init__.
-				# PyPy creates a __weakref__ attribute with value None
-				# that can't be setattr'd but also can't need to be copied.
-				if name in ('__class__', '__init__', '__weakref__'):
-					continue
-				setattr(self, name, getattr(self.__self, name))
-
-		def __getattr__(self, name):
-			self.__instantiate()
-			if hasattr(self, name):
-				return getattr(self, name)
-			return super(JSInterpreter.JS_RegExp, self).__getattr__(name)
-
-		@classmethod
-		def regex_flags(cls, expr):
-			flags = 0
-			if not expr:
-				return flags, expr
-			for idx, ch in enumerate(expr):
-				if ch not in cls.RE_FLAGS:
-					break
-				flags |= cls.RE_FLAGS[ch]
-			return flags, expr[idx + 1:]
 
 	def _named_object(self, namespace, obj):
 		self.__named_object_counter += 1
@@ -482,14 +396,12 @@ class JSInterpreter(object):
 		except Exception as e:
 			raise RuntimeError('Failed to evaluate {left_val!r:.50} {op} {right_val!r:.50}'.format(**locals()), expr, cause=e)
 
-	def _index(self, obj, idx, allow_undefined=False):
+	def _index(self, obj, idx):
 		if idx == 'length':
 			return len(obj)
 		try:
 			return obj[int(idx)] if isinstance(obj, list) else obj[idx]
 		except Exception as e:
-			if allow_undefined:
-				return JSUndefined
 			raise RuntimeError('Cannot get index {idx:.100}'.format(**locals()), expr=repr(obj), cause=e)
 
 	def _dump(self, obj, namespace):
@@ -530,7 +442,7 @@ class JSInterpreter(object):
 		if m:
 			expr = stmt[len(m.group(0)):].strip()
 			if m.group('throw'):
-				raise JSThrow(self.interpret_expression(expr, local_vars, allow_recursion))
+				raise JSThrow()
 			should_return = not m.group('var')
 		if not expr:
 			return None, should_return
@@ -538,30 +450,24 @@ class JSInterpreter(object):
 		if expr[0] in _QUOTES:
 			inner, outer = self._separate(expr, expr[0], 1)
 			if expr[0] == '/':
-				flags, outer = self.JSRegExp.regex_flags(outer)
-				inner = self.JSRegExp(inner[1:], flags=flags)
+				inner = re.compile(inner[1:].replace('[[', r'[\['))
 			else:
-				inner = loads(js_to_json(inner + expr[0]))  # , strict=True))
+				inner = loads(js_to_json(inner + expr[0]))
 			if not outer:
 				return inner, should_return
 			expr = self._named_object(local_vars, inner) + outer
 
-		new_kw, _, obj = expr.partition('new ')
-		if not new_kw:
-			for klass, konstr in (('Date', lambda x: int(unified_timestamp(x) * 1000)),
-					('RegExp', self.JSRegExp),
-					('Error', RuntimeError('Failed to parse date'))):
-				if not obj.startswith(klass + '('):
-					continue
-				left, right = self._separate_at_paren(obj[len(klass):])
-				argvals = self.interpret_iter(left, local_vars, allow_recursion)
-				expr = konstr(*argvals)
-				if expr is None:
-					raise RuntimeError('Failed to parse {klass} {left!r:.100}'.format(**locals()))
-				expr = self._dump(expr, local_vars) + right
-				break
+		if expr.startswith('new '):
+			obj = expr[4:]
+			if obj.startswith('Date('):
+				left, right = self._separate_at_paren(obj[4:])
+				date = unified_timestamp(
+					self.interpret_expression(left, local_vars, allow_recursion))
+				if date is None:
+					raise RuntimeError('Failed to parse date', left)
+				expr = self._dump(int(date * 1000), local_vars) + right
 			else:
-				raise RuntimeError('Unsupported object {obj:.100}'.format(**locals()))
+				raise RuntimeError('Unsupported object', obj)
 
 		if expr.startswith('void '):
 			left = self.interpret_expression(expr[5:], local_vars, allow_recursion)
@@ -609,32 +515,11 @@ class JSInterpreter(object):
 		md = m.groupdict() if m else {}
 		if md.get('if'):
 			cndn, expr = self._separate_at_paren(expr[m.end() - 1:])
-			if expr.startswith('{'):
-				if_expr, expr = self._separate_at_paren(expr)
-			else:
-				# may lose ... else ... because of ll.368-374
-				if_expr, expr = self._separate_at_paren(expr, delim=';')
+			if_expr, expr = self._separate_at_paren(expr.lstrip())
 			else_expr = None
-			m = re.match(r'else\s*(?P<block>\{)?', expr)
+			m = re.match(r'else\s*{', expr)
 			if m:
-				if m.group('block'):
-					else_expr, expr = self._separate_at_paren(expr[m.end() - 1:])
-				else:
-					# handle subset ... else if (...) {...} else ...
-					# TODO: make interpret_statement do this properly, if possible
-					exprs = list(self._separate(expr[m.end():], delim='}', max_split=2))
-					if len(exprs) > 1:
-						if re.match(r'\s*if\s*\(', exprs[0]) and re.match(r'\s*else\b', exprs[1]):
-							else_expr = exprs[0] + '}' + exprs[1]
-							expr = (exprs[2] + '}') if len(exprs) == 3 else None
-						else:
-							else_expr = exprs[0]
-							exprs.append('')
-							expr = '}'.join(exprs[1:])
-					else:
-						else_expr = exprs[0]
-						expr = None
-					else_expr = else_expr.lstrip() + '}'
+				else_expr, expr = self._separate_at_paren(expr[m.end() - 1:])
 			cndn = _js_ternary(self.interpret_expression(cndn, local_vars, allow_recursion))
 			ret, should_abort = self.interpret_statement(
 				if_expr if cndn else else_expr, local_vars, allow_recursion)
@@ -649,7 +534,7 @@ class JSInterpreter(object):
 				if should_abort:
 					return ret, True
 			except Exception as e:
-				# XXX: This works for now, but makes debugging future issues very hard
+				# This works for now, but makes debugging future issues very hard
 				err = e
 
 			pending = (None, False)
@@ -659,7 +544,7 @@ class JSInterpreter(object):
 				if err:
 					catch_vars = {}
 					if m.group('err'):
-						catch_vars[m.group('err')] = err.error if isinstance(err, JSThrow) else err
+						catch_vars[m.group('err')] = err
 					catch_vars = local_vars.new_child(m=catch_vars)
 					err = None
 					pending = self.interpret_statement(sub_expr, catch_vars, allow_recursion)
@@ -683,7 +568,7 @@ class JSInterpreter(object):
 			if remaining.startswith('{'):
 				body, expr = self._separate_at_paren(remaining)
 			else:
-				switch_m = self._SWITCH_RE.match(remaining)  # FIXME
+				switch_m = self._SWITCH_RE.match(remaining)
 				if switch_m:
 					switch_val, remaining = self._separate_at_paren(remaining[switch_m.end() - 1:])
 					body, expr = self._separate_at_paren(remaining, '}')
@@ -883,16 +768,19 @@ class JSInterpreter(object):
 
 				# Member access
 				if arg_str is None:
-					return self._index(obj, member, nullish)
+					return self._index(obj, member)
 
 				# Function call
 				argvals = [
 					self.interpret_expression(v, local_vars, allow_recursion)
 					for v in self._separate(arg_str)]
 
+				ARG_ERROR = 'takes one or more arguments'
+				LIST_ERROR = 'must be applied on a list'
+
 				if obj == compat_str:
 					if member == 'fromCharCode':
-						assertion(argvals, 'takes one or more arguments')
+						assertion(argvals, ARG_ERROR)
 						return ''.join(map(compat_chr, argvals))
 					raise RuntimeError('Unsupported string method', member)
 				elif obj == float:
@@ -902,11 +790,11 @@ class JSInterpreter(object):
 					raise RuntimeError('Unsupported Math method', member)
 
 				if member == 'split':
-					assertion(argvals, 'takes one or more arguments')
+					assertion(argvals, ARG_ERROR)
 					assertion(len(argvals) == 1, 'with limit argument is not implemented')
 					return obj.split(argvals[0]) if argvals[0] else list(obj)
 				elif member == 'join':
-					assertion(isinstance(obj, list), 'must be applied on a list')
+					assertion(isinstance(obj, list), LIST_ERROR)
 					assertion(len(argvals) == 1, 'takes exactly one argument')
 					return argvals[0].join(obj)
 				elif member == 'reverse':
@@ -914,69 +802,51 @@ class JSInterpreter(object):
 					obj.reverse()
 					return obj
 				elif member == 'slice':
-					assertion(isinstance(obj, list), 'must be applied on a list')
+					assertion(isinstance(obj, list), LIST_ERROR)
 					assertion(len(argvals) == 1, 'takes exactly one argument')
 					return obj[argvals[0]:]
 				elif member == 'splice':
-					assertion(isinstance(obj, list), 'must be applied on a list')
-					assertion(argvals, 'takes one or more arguments')
-					index, howMany = map(int, (argvals + [len(obj)])[:2])
+					assertion(isinstance(obj, list), LIST_ERROR)
+					assertion(argvals, ARG_ERROR)
+					index, how_many = map(int, (argvals + [len(obj)])[:2])
 					if index < 0:
 						index += len(obj)
 					add_items = argvals[2:]
 					res = []
-					for i in range(index, min(index + howMany, len(obj))):
+					for i in range(index, min(index + how_many, len(obj))):
 						res.append(obj.pop(index))
 					for i, item in enumerate(add_items):
 						obj.insert(index + i, item)
 					return res
 				elif member == 'unshift':
-					assertion(isinstance(obj, list), 'must be applied on a list')
-					assertion(argvals, 'takes one or more arguments')
+					assertion(isinstance(obj, list), LIST_ERROR)
+					assertion(argvals, ARG_ERROR)
 					for item in reversed(argvals):
 						obj.insert(0, item)
 					return obj
 				elif member == 'pop':
-					assertion(isinstance(obj, list), 'must be applied on a list')
+					assertion(isinstance(obj, list), LIST_ERROR)
 					assertion(not argvals, 'does not take any arguments')
 					if not obj:
 						return
 					return obj.pop()
 				elif member == 'push':
-					assertion(argvals, 'takes one or more arguments')
+					assertion(argvals, ARG_ERROR)
 					obj.extend(argvals)
 					return obj
 				elif member == 'forEach':
-					assertion(argvals, 'takes one or more arguments')
+					assertion(argvals, ARG_ERROR)
 					assertion(len(argvals) <= 2, 'takes at-most 2 arguments')
 					f, this = (argvals + [''])[:2]
 					return [f((item, idx, obj), {'this': this}, allow_recursion) for idx, item in enumerate(obj)]
 				elif member == 'indexOf':
-					assertion(argvals, 'takes one or more arguments')
+					assertion(argvals, ARG_ERROR)
 					assertion(len(argvals) <= 2, 'takes at-most 2 arguments')
 					idx, start = (argvals + [0])[:2]
 					try:
 						return obj.index(idx, start)
 					except ValueError:
 						return -1
-				elif member == 'charCodeAt':
-					assertion(isinstance(obj, compat_str), 'must be applied on a string')
-					# assertion(len(argvals) == 1, 'takes exactly one argument') # but not enforced
-					idx = argvals[0] if isinstance(argvals[0], int) else 0
-					if idx >= len(obj):
-						return None
-					return ord(obj[idx])
-				elif member in ('replace', 'replaceAll'):
-					assertion(isinstance(obj, compat_str), 'must be applied on a string')
-					assertion(len(argvals) == 2, 'takes exactly two arguments')
-					# TODO: argvals[1] callable, other Py vs JS edge cases
-					if isinstance(argvals[0], self.JSRegExp):
-						count = 0 if argvals[0].flags & self.JSRegExp.RE_FLAGS['g'] else 1
-						assertion(member != 'replaceAll' or count == 0,
-							'replaceAll must be called with a global RegExp')
-						return argvals[0].sub(argvals[1], obj, count=count)
-					count = ('replaceAll', 'replace').index(member)
-					return re.sub(re.escape(argvals[0]), argvals[1], obj, count=count)
 
 				idx = int(member) if isinstance(obj, list) else member
 				return obj[idx](argvals, allow_recursion=allow_recursion)
