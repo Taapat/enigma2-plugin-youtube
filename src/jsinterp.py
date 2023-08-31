@@ -126,9 +126,6 @@ def extract_timezone(date_str):
 
 
 def unified_timestamp(date_str):
-	if date_str is None:
-		return
-
 	date_str = re.sub(r'\s+', ' ', re.sub(
 		r'(?i)[,|]|(mon|tues?|wed(nes)?|thu(rs)?|fri|sat(ur)?)(day)?', '', date_str))
 
@@ -137,16 +134,6 @@ def unified_timestamp(date_str):
 
 	# Remove AM/PM + timezone
 	date_str = re.sub(r'(?i)\s*(?:AM|PM)(?:\s+[A-Z]+)?', '', date_str)
-
-	# Remove unrecognized timezones from ISO 8601 alike timestamps
-	m = re.search(r'\d{1,2}:\d{1,2}(?:\.\d+)?(?P<tz>\s*[A-Z]+)$', date_str)
-	if m:
-		date_str = date_str[:-len(m.group('tz'))]
-
-	# Python only supports microseconds, so remove nanoseconds
-	m = re.search(r'^(\d{4,}-\d{1,2}-\d{1,2}T\d{1,2}:\d{1,2}:\d{1,2}\.\d{6})\d+$', date_str)
-	if m:
-		date_str = m.group(1)
 
 	for expression in DATE_FORMATS_MONTH_FIRST:
 		try:
@@ -367,7 +354,7 @@ class JSInterpreter(object):
 		separated = list(cls._separate(expr, delim, 1))
 
 		if len(separated) < 2:
-			raise RuntimeError('No terminating paren {delim} in {expr!r:.5500}'.format(**locals()))
+			raise RuntimeError('No terminating paren %s in %s' % (delim, expr))
 		return separated[0][1:].strip(), separated[1].strip()
 
 	@staticmethod
@@ -394,7 +381,7 @@ class JSInterpreter(object):
 		try:
 			return opfunc(left_val, right_val)
 		except Exception as e:
-			raise RuntimeError('Failed to evaluate {left_val!r:.50} {op} {right_val!r:.50}'.format(**locals()), expr, cause=e)
+			raise RuntimeError('Failed to evaluate', left_val, op, right_val, e)
 
 	def _index(self, obj, idx):
 		if idx == 'length':
@@ -402,7 +389,7 @@ class JSInterpreter(object):
 		try:
 			return obj[int(idx)] if isinstance(obj, list) else obj[idx]
 		except Exception as e:
-			raise RuntimeError('Cannot get index {idx:.100}'.format(**locals()), expr=repr(obj), cause=e)
+			raise RuntimeError('Cannot get index', idx, e)
 
 	def _dump(self, obj, namespace):
 		try:
@@ -749,12 +736,6 @@ class JSInterpreter(object):
 			else:
 				arg_str, remaining = None, arg_str
 
-			def assertion(cndn, msg):
-				""" assert, but without risk of getting optimized out """
-				if not cndn:
-					memb = member
-					raise RuntimeError('%s %s' % (memb, msg))
-
 			def eval_method():
 				if (variable, member) == ('console', 'debug'):
 					return
@@ -778,39 +759,25 @@ class JSInterpreter(object):
 					self.interpret_expression(v, local_vars, allow_recursion)
 					for v in self._separate(arg_str)]
 
-				ARG_ERROR = 'takes one or more arguments'
-				LIST_ERROR = 'must be applied on a list'
-
 				if obj == compat_str:
 					if member == 'fromCharCode':
-						assertion(argvals, ARG_ERROR)
 						return ''.join(map(compat_chr, argvals))
 					raise RuntimeError('Unsupported string method', member)
 				elif obj == float:
 					if member == 'pow':
-						assertion(len(argvals) == 2, 'takes two arguments')
 						return argvals[0] ** argvals[1]
 					raise RuntimeError('Unsupported Math method', member)
 
 				if member == 'split':
-					assertion(argvals, ARG_ERROR)
-					assertion(len(argvals) == 1, 'with limit argument is not implemented')
 					return obj.split(argvals[0]) if argvals[0] else list(obj)
 				elif member == 'join':
-					assertion(isinstance(obj, list), LIST_ERROR)
-					assertion(len(argvals) == 1, 'takes exactly one argument')
 					return argvals[0].join(obj)
 				elif member == 'reverse':
-					assertion(not argvals, 'does not take any arguments')
 					obj.reverse()
 					return obj
 				elif member == 'slice':
-					assertion(isinstance(obj, list), LIST_ERROR)
-					assertion(len(argvals) == 1, 'takes exactly one argument')
 					return obj[argvals[0]:]
 				elif member == 'splice':
-					assertion(isinstance(obj, list), LIST_ERROR)
-					assertion(argvals, ARG_ERROR)
 					index, how_many = map(int, (argvals + [len(obj)])[:2])
 					if index < 0:
 						index += len(obj)
@@ -822,29 +789,20 @@ class JSInterpreter(object):
 						obj.insert(index + i, item)
 					return res
 				elif member == 'unshift':
-					assertion(isinstance(obj, list), LIST_ERROR)
-					assertion(argvals, ARG_ERROR)
 					for item in reversed(argvals):
 						obj.insert(0, item)
 					return obj
 				elif member == 'pop':
-					assertion(isinstance(obj, list), LIST_ERROR)
-					assertion(not argvals, 'does not take any arguments')
 					if not obj:
 						return
 					return obj.pop()
 				elif member == 'push':
-					assertion(argvals, ARG_ERROR)
 					obj.extend(argvals)
 					return obj
 				elif member == 'forEach':
-					assertion(argvals, ARG_ERROR)
-					assertion(len(argvals) <= 2, 'takes at-most 2 arguments')
 					f, this = (argvals + [''])[:2]
 					return [f((item, idx, obj), {'this': this}, allow_recursion) for idx, item in enumerate(obj)]
 				elif member == 'indexOf':
-					assertion(argvals, ARG_ERROR)
-					assertion(len(argvals) <= 2, 'takes at-most 2 arguments')
 					idx, start = (argvals + [0])[:2]
 					try:
 						return obj.index(idx, start)
@@ -879,10 +837,6 @@ class JSInterpreter(object):
 		if should_return:
 			raise RuntimeError('Cannot return from an expression')
 		return ret
-
-	def interpret_iter(self, list_txt, local_vars, allow_recursion):
-		for v in self._separate(list_txt):
-			yield self.interpret_expression(v, local_vars, allow_recursion)
 
 	@staticmethod
 	def _offset_e_by_d(d, e, local_vars):
