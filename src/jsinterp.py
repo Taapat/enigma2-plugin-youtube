@@ -363,7 +363,7 @@ class JSInterpreter(object):
 			# Ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
 			_SC_OPERATORS, _LOG_OPERATORS, _COMP_OPERATORS, _OPERATORS)
 
-	def _operator(self, op, left_val, right_expr, expr, local_vars, allow_recursion):
+	def _operator(self, op, left_val, right_expr, local_vars, allow_recursion):
 		if op in ('||', '&&'):
 			if (op == '&&') ^ _js_ternary(left_val):
 				return left_val  # short circuiting
@@ -654,7 +654,7 @@ class JSInterpreter(object):
 
 			if not m.group('index'):
 				local_vars[m.group('out')] = self._operator(
-					m.group('op'), left_val, m.group('expr'), expr, local_vars, allow_recursion)
+					m.group('op'), left_val, m.group('expr'), local_vars, allow_recursion)
 				return local_vars[m.group('out')], should_return
 			elif left_val in (None, JSUndefined):
 				raise RuntimeError('Cannot index undefined variable', m.group('out'))
@@ -664,7 +664,7 @@ class JSInterpreter(object):
 				raise RuntimeError('List index %s must be integer' % idx)
 			idx = int(idx)
 			left_val[idx] = self._operator(
-				m.group('op'), self._index(left_val, idx), m.group('expr'), expr, local_vars, allow_recursion)
+				m.group('op'), self._index(left_val, idx), m.group('expr'), local_vars, allow_recursion)
 			return left_val[idx], should_return
 
 		elif expr.isdigit():
@@ -724,7 +724,7 @@ class JSInterpreter(object):
 					continue
 
 			left_val = self.interpret_expression(op.join(separated), local_vars, allow_recursion)
-			return self._operator(op, left_val, right_expr, expr, local_vars, allow_recursion), should_return
+			return self._operator(op, left_val, right_expr, local_vars, allow_recursion), should_return
 
 		if md.get('attribute'):
 			variable, member, nullish = m.group('var', 'member', 'nullish')
