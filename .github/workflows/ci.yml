@@ -87,9 +87,8 @@ jobs:
       - name: Check code with flake8
         run: |
           flake8 --ignore=W191,W504,E126,E127,E128,E501 --show-source --exclude=./src/compat.py,./src/jsinterp.py,./test/enigmahelper.py,./test/try_plugin.py,./src/__init__.py
-          flake8 --ignore=W191,E501,F821 --show-source --filename=./test/try_plugin.py
-          flake8 --ignore=W191,F401,E128,E402,E501 --show-source --filename=./src/jsinterp.py,./test/enigmahelper.py,./src/__init__.py
-          flake8 --ignore=W191,F821,F401 --show-source --filename=./src/compat.py
+          flake8 --ignore=W191,E501 --show-source --filename=./src/jsinterp.py,./test/enigmahelper.py,./test/try_plugin.py,./src/__init__.py
+          flake8 --ignore=W191,F401 --show-source --filename=./src/compat.py
       - name: Remove enigma2 imports and variables for test
         run: |
           echo "" > src/__init__.py

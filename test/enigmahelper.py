@@ -93,8 +93,7 @@ class eTimer:
 	def start(self, msec, singleshot=False):
 		if int(msec) == 1000:
 			from threading import Thread
-			self.callback_thread = Thread(target=self.start_callback,
-					args=(singleshot,))
+			self.callback_thread = Thread(target=self.start_callback, args=(singleshot,))
 			self.callback_thread.start()
 		else:
 			self.start_callback(singleshot)
@@ -500,8 +499,7 @@ class Session:
 	def open(self, screen, *arguments, **kwargs):
 		print('Session open ', screen)
 		self.pushCurrent()
-		dlg = self.current_dialog = self.instantiateDialog(screen,
-						*arguments, **kwargs)
+		dlg = self.current_dialog = self.instantiateDialog(screen, *arguments, **kwargs)
 
 		dlg.callback = None
 		self.execBegin()
@@ -541,7 +539,7 @@ def new_index(self, value):
 		return 0
 
 
-from Screens.Screen import Screen
+from Screens.Screen import Screen  # noqa: E402
 
 
 class new_movie_player(Screen):
@@ -594,7 +592,7 @@ def start_session():
 		from Screens import InfoBar
 	InfoBar.MoviePlayer = new_movie_player
 	try:
-		from Screens.SimpleSummary import SimpleSummary
+		from Screens.SimpleSummary import SimpleSummary  # noqa: F401
 	except ImportError:
 		pass
 

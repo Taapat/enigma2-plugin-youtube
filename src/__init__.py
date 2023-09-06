@@ -11,8 +11,10 @@ def locale_init():
 		environ["LANGUAGE"]
 	except KeyError:  # On old images LANGUAGE environment is not set
 		environ["LANGUAGE"] = language.getLanguage()[:2]
-	gettext.bindtextdomain("YouTube", resolveFilename(SCOPE_PLUGINS,
-			"Extensions/YouTube/locale"))
+	gettext.bindtextdomain(
+		"YouTube",
+		resolveFilename(SCOPE_PLUGINS, "Extensions/YouTube/locale")
+	)
 
 
 def _(txt):
@@ -35,8 +37,8 @@ language.addCallback(locale_init)
 
 try:
 	# Check functions for full svg and scaling support
-	from enigma import loadSVG
-	from skin import applySkinFactor
+	from enigma import loadSVG  # noqa: F401
+	from skin import applySkinFactor  # noqa: F401
 	screenwidth = 'svg'
 except ImportError:
 	from enigma import getDesktop
