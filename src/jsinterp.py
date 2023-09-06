@@ -822,8 +822,7 @@ class JSInterpreter(object):
 
 		elif md.get('function'):
 			fname = m.group('fname')
-			argvals = [self.interpret_expression(v, local_vars, allow_recursion)
-				for v in self._separate(m.group('args'))]
+			argvals = [self.interpret_expression(v, local_vars, allow_recursion) for v in self._separate(m.group('args'))]
 			if fname in local_vars:
 				return local_vars[fname](argvals, allow_recursion=allow_recursion), should_return
 			elif fname not in self._functions:
