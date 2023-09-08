@@ -141,7 +141,7 @@ jobs:
         with:
           python-version: ${{ steps.split.outputs._2 }}
       - name: Upgrade Python 3 pip
-        if: matrix.python-version != '2.7'
+        if: steps.split.outputs._2 != '2.7'
         run: |
           python -m pip install --upgrade pip
       - name: Set up Python 2
@@ -294,10 +294,13 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Set up Python 2.7
-        uses: MatteoH2O1999/setup-python@v1
+      - name: Set up Python 3
+        uses: actions/setup-python@v4
         with:
-          python-version: '2.7'
+          python-version: '3.10'
+      - name: Set up Python 2
+        run: |
+          sudo apt install -y python2
       - name: Install dependencies
         run: |
           sudo apt install gettext
@@ -316,33 +319,39 @@ jobs:
           mkdir -p deploy/data/etc/enigma2
           sed -i 's/Version:/Version: py3${{ env.PKGV }}/' deploy/control/control
           mkdir ipk
-      - name: Build python3 data package
+      - name: Compile Python 3 sources
+        run: |
+          python3 -m compileall -b deploy/data/usr/lib/enigma2/python/Plugins/Extensions/YouTube/
+      - name: Build Python 3 data package
         working-directory: './deploy/data'
         run: |
           tar --numeric-owner --group=0 --owner=0 -czf ../data.tar.gz ./*
-      - name: Build python3 control package
+      - name: Build Python 3 control package
         working-directory: './deploy/control'
         run: |
           tar --numeric-owner --group=0 --owner=0 -czf ../control.tar.gz ./*
-      - name: Build python3 ipk package
+      - name: Build Python 3 ipk package
         working-directory: './deploy'
         run: |
           echo 2.0 > debian-binary
           ar rv ../ipk/enigma2-plugin-extensions-youtube_py3${{ env.PKGV }}.ipk debian-binary data.tar.gz control.tar.gz
-      - name: Compile python2 sources
+      - name: Delete compiled Python 3 files
         run: |
-          python -O -m compileall deploy/data/usr/lib/enigma2/python/Plugins/Extensions/YouTube/
-      - name: Build python2 data package
+          rm deploy/data/usr/lib/enigma2/python/Plugins/Extensions/YouTube/*.pyc
+      - name: Compile Python 2 sources
+        run: |
+          python2 -O -m compileall deploy/data/usr/lib/enigma2/python/Plugins/Extensions/YouTube/
+      - name: Build Python 2 data package
         working-directory: './deploy/data'
         run: |
           tar --numeric-owner --group=0 --owner=0 -czf ../data.tar.gz ./*
-      - name: Build python2 control package
+      - name: Build Python 2 control package
         working-directory: './deploy/control'
         run: |
           sed -i 's/Version: py3+/Version: h1+/' control
           sed -i 's/python3-/python-/g' control
           tar --numeric-owner --group=0 --owner=0 -czf ../control.tar.gz ./*
-      - name: Build python2 ipk package
+      - name: Build Python 2 ipk package
         working-directory: './deploy'
         run: |
           ar rv ../ipk/enigma2-plugin-extensions-youtube_h1${{ env.PKGV }}.ipk debian-binary data.tar.gz control.tar.gz
