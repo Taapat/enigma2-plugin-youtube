@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         if: steps.src.outputs.changed != 'true'
         run: |
-          sudo apt-get install gettext
+          sudo apt install gettext
       - name: Compile language files
         if: steps.src.outputs.changed != 'true'
         run: |

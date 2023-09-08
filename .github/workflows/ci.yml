@@ -50,7 +50,7 @@ jobs:
       - name: Install dependencies
         if: steps.changed.outputs.translation == 'true'
         run: |
-          sudo apt-get install gettext
+          sudo apt install gettext
       - name: Check translation phrase changes
         if: steps.changed.outputs.translation == 'true'
         id: po
@@ -82,7 +82,7 @@ jobs:
       - name: Set up Python 2
         if: matrix.python-version == '2.7'
         run: |
-          sudo apt-get install -y python2
+          sudo apt install -y python2
           sudo ln -sf /usr/bin/python2 /usr/bin/python
           curl -L -O "https://bootstrap.pypa.io/pip/2.7/get-pip.py"
           python get-pip.py
@@ -147,7 +147,7 @@ jobs:
       - name: Set up Python 2
         if: steps.split.outputs._2 == '2.7'
         run: |
-          sudo apt-get install -y python2
+          sudo apt install -y python2
           sudo ln -sf /usr/bin/python2 /usr/bin/python
           curl -L -O "https://bootstrap.pypa.io/pip/2.7/get-pip.py"
           python get-pip.py
@@ -254,7 +254,7 @@ jobs:
           fetch-depth: 0
       - name: Install dependencies
         run: |
-          sudo apt-get install gettext
+          sudo apt install gettext
       - name: Compile language files
         run: |
           for i in $(ls -1 ./po/*.po); do $(msgfmt "$i" -o "$i".mo); done
@@ -269,7 +269,7 @@ jobs:
           fetch-depth: 0
       - name: Install dependencies
         run: |
-          sudo apt-get install gettext
+          sudo apt install gettext
       - name: Update translation files
         run: |
           xgettext --no-wrap --no-location -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d ./po/YouTube -s -o ./po/YouTube.pot `find ./src -type f -name '*.py'`
@@ -300,7 +300,7 @@ jobs:
           python-version: '2.7'
       - name: Install dependencies
         run: |
-          sudo apt-get install gettext
+          sudo apt install gettext
       - name: Build sources
         run: |
           python setup.py build --build-lib=build/lib
