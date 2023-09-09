@@ -356,7 +356,7 @@ jobs:
         run: |
           ar rv ../ipk/enigma2-plugin-extensions-youtube_h1${{ env.PKGV }}.ipk debian-binary data.tar.gz control.tar.gz
       - name: Create release
-        uses: meeDamian/github-release@2.0
+        uses: Taapat/github-release@2.1.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ env.SRCPV }}
