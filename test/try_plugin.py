@@ -416,4 +416,10 @@ def test_plugin():
 
 
 if __name__ == '__main__':
-	try_plugin_screens_load()
+	try:
+		try_plugin_screens_load()
+	except TypeError as ex:
+		print('Error %s, try second time' % str(ex))
+		from time import sleep
+		sleep(10)
+		try_plugin_screens_load()
