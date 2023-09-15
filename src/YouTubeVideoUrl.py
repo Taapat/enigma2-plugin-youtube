@@ -3,19 +3,19 @@
 
 from __future__ import print_function
 
-from re import search
-from re import match
-from re import sub
 from re import escape
-from json import loads
+from re import match
+from re import search
+from re import sub
 from json import dumps
+from json import loads
 
 from Components.config import config
 
-from .compat import compat_urlopen
 from .compat import compat_str
-from .compat import compat_URLError
 from .compat import compat_Request
+from .compat import compat_urlopen
+from .compat import compat_URLError
 from .compat import SUBURI
 from .jsinterp import JSInterpreter
 from .OAuth import YT_EMBKEY
@@ -46,52 +46,22 @@ def create_priority_formats():
 create_priority_formats()
 
 
-DASHMP4_FORMAT = (
-	'133', '134', '135', '136', '137', '138',
-	'160', '212', '264', '266', '298', '299',
-	'248', '303', '271', '313', '315', '272', '308'
-)
-
-IGNORE_VIDEO_FORMAT = (
-	'43', '44', '45', '46',  # webm
-	'82', '83', '84', '85',  # 3D
-	'100', '101', '102',  # 3D
-	'167', '168', '169',  # webm
-	'170', '171', '172',  # webm
-	'218', '219',  # webm
-	'242', '243', '244', '245', '246', '247',  # webm
-	'249', '250', '251',  # webm
-	'302'  # webm
-)
-
-
-def try_get(src, get, expected_type=None):
-	try:
-		v = get(src)
-	except (AttributeError, KeyError, TypeError, IndexError):
-		pass
-	else:
-		if expected_type is None or isinstance(v, expected_type):
-			return v
-
-
-def clean_html(html):
-	"""Clean an HTML snippet into a readable string"""
-
-	html = sub(r'\s+', ' ', html)
-	html = sub(r'(?u)\s?<\s?br\s?/?\s?>\s?', '\n', html)
-	html = sub(r'(?u)<\s?/\s?p\s?>\s?<\s?p[^>]*>', '\n', html)
-	# Strip html tags
-	html = sub('<[^>]*>', '', html)
-	return html.strip()
-
-
 class YouTubeVideoUrl():
 	def __init__(self):
 		self.use_dash_mp4 = ()
 		self._code_cache = {}
 		self._player_cache = {}
 		self.nsig_cache = (None, None)
+
+	@staticmethod
+	def try_get(src, get, expected_type=None):
+		try:
+			v = get(src)
+		except (AttributeError, KeyError, TypeError, IndexError):
+			pass
+		else:
+			if expected_type is None or isinstance(v, expected_type):
+				return v
 
 	@staticmethod
 	def _guess_encoding_from_content(content_type, webpage_bytes):
@@ -134,7 +104,8 @@ class YouTubeVideoUrl():
 
 		return content
 
-	def _extract_n_function_name(self, jscode):
+	@staticmethod
+	def _extract_n_function_name(jscode):
 		nfunc, idx = search(
 			r'\.get\("n"\)\)&&\(b=(?P<nfunc>[a-zA-Z0-9$]+)(?:\[(?P<idx>\d+)\])?\([a-zA-Z0-9]\)',
 			jscode
@@ -308,13 +279,24 @@ class YouTubeVideoUrl():
 			return None, None
 
 	def _real_extract(self, video_id):
+		IGNORE_VIDEO_FORMAT = (
+			'43', '44', '45', '46',  # webm
+			'82', '83', '84', '85',  # 3D
+			'100', '101', '102',  # 3D
+			'167', '168', '169',  # webm
+			'170', '171', '172',  # webm
+			'218', '219',  # webm
+			'242', '243', '244', '245', '246', '247',  # webm
+			'249', '250', '251',  # webm
+			'302'  # webm
+		)
 		url = ''
 
 		player_response, player_id = self._extract_player_response(video_id, 3)
 		if not player_response:
 			raise RuntimeError('Player response not found!')
 
-		is_live = try_get(player_response, lambda x: x['videoDetails']['isLive'])
+		is_live = self.try_get(player_response, lambda x: x['videoDetails']['isLive'])
 		playability_status = player_response.get('playabilityStatus', {})
 
 		if not is_live and playability_status.get('status') == 'LOGIN_REQUIRED':
@@ -325,7 +307,7 @@ class YouTubeVideoUrl():
 
 			playability_status = player_response.get('playabilityStatus', {})
 
-		trailer_video_id = try_get(
+		trailer_video_id = self.try_get(
 			playability_status,
 			lambda x: x['errorScreen']['playerLegacyDesktopYpcTrailerRenderer']['trailerVideoId'],
 			compat_str
@@ -342,6 +324,11 @@ class YouTubeVideoUrl():
 			create_priority_formats()
 
 		if not is_live and streaming_formats:
+			DASHMP4_FORMAT = (
+				'133', '134', '135', '136', '137', '138',
+				'160', '212', '264', '266', '298', '299',
+				'248', '303', '271', '313', '315', '272', '308'
+			)
 			streaming_formats.extend(streaming_data.get('adaptiveFormats', []))
 
 			if config.plugins.YouTube.useDashMP4.value:
@@ -390,22 +377,12 @@ class YouTubeVideoUrl():
 					url = list(url_map.values())[0]
 
 		if not url:
-			if streaming_data.get('licenseInfos'):
-				raise RuntimeError('This video is DRM protected!')
-			pemr = try_get(
-				playability_status,
-				lambda x: x['errorScreen']['playerErrorMessageRenderer'],
-				dict) or {}
-
-			def get_text(x):
-				if x and 'runs' in x:
-					return x.get('simpleText', '').join([r['text'] for r in x['runs']])
-
-			reason = get_text(pemr.get('reason')) or playability_status.get('reason')
+			reason = playability_status.get('reason')
 			if reason:
-				subreason = pemr.get('subreason')
-				if subreason:  # pragma: no cover
-					subreason = clean_html(get_text(subreason))
+				subreason = playability_status.get('messages')
+				if subreason:
+					if isinstance(subreason, list):
+						subreason = subreason[0]
 					reason += '\n%s' % subreason
 			raise RuntimeError(reason)
 
@@ -417,7 +394,7 @@ class YouTubeVideoUrl():
 			try:
 				return self._real_extract(video_id)
 			except Exception as ex:
-				if str(ex) == 'None':
+				if ex is None:
 					print('No supported formats found, trying again!')
 				else:
 					error_message = str(ex)

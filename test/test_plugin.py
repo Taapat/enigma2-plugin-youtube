@@ -131,25 +131,14 @@ video_list = (
 	('bWgPKTOMoSY', 'Decrypting n-sig'),
 	pytest.param('Tq92D6wQ1mg', 'Age gated video', marks=pytest.mark.xfail),
 	pytest.param('E8MCiceJJdY', 'Age gated video', marks=pytest.mark.xfail),
+	pytest.param('K9TRaGNnjEU', 'Age gated video', marks=pytest.mark.xfail),
 	pytest.param('6SJNVb0GnPI', 'Inappropriate video', marks=pytest.mark.xfail),
+	pytest.param('s7_qI6_mIXc', 'DRM protected video', marks=pytest.mark.xfail),
+	pytest.param('yYr8q0y5Jfg', 'Not available video', marks=pytest.mark.xfail),
+	pytest.param('wrong_id', 'Wrong id', marks=pytest.mark.xfail),
 )
 
 
 @pytest.mark.parametrize('videos,descr', video_list)
 def test_url(videos, descr):
 	check_video_url(videos=videos, descr=descr)
-
-
-def test_clean_html():
-	from src.YouTubeVideoUrl import clean_html
-	clean_html('<i>html</i><b>remove</b><br>-><a href="http://www.bbc.co.uk">BBC</a>1<br><p>stuff</p>')
-
-
-@pytest.mark.xfail
-def test_wrong_id():
-	get_url('test_wrong_id')
-
-
-@pytest.mark.xfail
-def test_age_gate():
-	get_url('K9TRaGNnjEU')
