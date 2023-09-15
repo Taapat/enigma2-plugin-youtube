@@ -245,7 +245,7 @@ class YouTubeVideoUrl():
 					data['playbackContext']['contentPlaybackContext']['signatureTimestamp'] = sts
 			data['context'] = {
 				'client': {
-					'hl': 'en',
+					'hl': config.plugins.YouTube.searchLanguage.value,
 					'clientName': 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
 					'clientVersion': '2.0',
 				},
@@ -258,7 +258,7 @@ class YouTubeVideoUrl():
 		else:
 			data['context'] = {
 				'client': {
-					'hl': 'en',
+					'hl': config.plugins.YouTube.searchLanguage.value,
 					'clientVersion': '17.31.35',
 					'androidSdkVersion': 31,
 					'clientName': 'ANDROID',
