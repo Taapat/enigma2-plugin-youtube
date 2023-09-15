@@ -6,7 +6,6 @@ from __future__ import print_function
 from re import escape
 from re import match
 from re import search
-from re import sub
 from json import dumps
 from json import loads
 
