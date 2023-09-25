@@ -190,6 +190,7 @@ jobs:
           sed -i 's/\/root/./g' enigma2/lib/python/Components/UsageConfig.py
           sed -i 's/\/usr/./g' enigma2/lib/python/Components/UsageConfig.py
           sed -i 's/addNotifier(iAVSwitch/addNotifier(iAVSwitch.setPolicy169) #/g' enigma2/lib/python/Components/AVSwitch.py
+          sed -i 's/instance, eListbox/instance, type(eListbox)/g' enigma2/lib/python/Components/GUIComponent.py
       - name: Patch enigma step 4
         if: matrix.enigma2-version == 'OpenPLi develop 3.10'
         working-directory: './enigma2/data'
