@@ -187,6 +187,7 @@ jobs:
           echo "hdmifhdin=no" >> enigma2/enigma.info
           echo "avjack=no" >> enigma2/enigma.info
           echo "rca=no" >> enigma2/enigma.info
+          echo "scart=no" >> enigma2/enigma.info
           echo "scartyuv=no" >> enigma2/enigma.info
           echo "yuv=no" >> enigma2/enigma.info
       - name: Patch enigma step 3
