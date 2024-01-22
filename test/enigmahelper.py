@@ -444,6 +444,13 @@ def getFontFaces():
 modules['enigma'].getFontFaces = getFontFaces
 
 
+def getE2Rev():
+	return ''
+
+
+modules['enigma'].getE2Rev = getE2Rev
+
+
 def ngettext(singular, plural, n):
 	return singular
 
@@ -583,11 +590,12 @@ def start_session():
 	try:
 		from Screens import InfoBar
 	except AttributeError:  # ATV-7.0
-		from Components.config import config, ConfigSubsection, ConfigYesNo
+		from Components.config import config, ConfigSubsection, ConfigText, ConfigYesNo
 		config.crash = ConfigSubsection()
 		config.crash.debugActionMaps = ConfigYesNo(default=False)
 		config.crash.debugKeyboards = ConfigYesNo(default=False)
 		config.crash.debugTimers = ConfigYesNo(default=False)
+		config.misc.autocamDefault = ConfigText(default='')
 		config.plugins = ConfigSubsection()
 		from Screens import InfoBar
 	InfoBar.MoviePlayer = new_movie_player

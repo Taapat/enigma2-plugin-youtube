@@ -356,33 +356,38 @@ def try_plugin_screens_load():
 	session.current_dialog.keyLeft()
 	# Cancel update access data
 	session.current_dialog.cancel()
-	# Choice YouTubeDirBrowser
-	config.plugins.YouTube.downloadDir.value = '/media/hdd/movie/'
-	session.current_dialog['config'].setCurrentIndex(11)
-	# Open YouTubeDirBrowser
-	session.current_dialog.ok()
-	# Close YouTubeDirBrowser
-	session.current_dialog.cancel()
-	# Open YouTubeDirBrowser again to test all other methods
-	session.current_dialog['config'].setCurrentIndex(11)
-	session.current_dialog.ok()
-	session.current_dialog.ok()
-	session.current_dialog.use()
-	# Test removeCallback
-	config.plugins.YouTube.mergeFiles.value = False
-	session.current_dialog['config'].setCurrentIndex(1)
-	session.current_dialog.ok()
-	session.current_dialog.close(True)
-	session.current_dialog.cancel()
+	if hasattr(session.current_dialog, 'config'):
+		# Choice YouTubeDirBrowser
+		config.plugins.YouTube.downloadDir.value = '/media/hdd/movie/'
+		session.current_dialog['config'].setCurrentIndex(11)
+		# Open YouTubeDirBrowser
+		session.current_dialog.ok()
+		# Close YouTubeDirBrowser
+		session.current_dialog.cancel()
+		# Open YouTubeDirBrowser again to test all other methods
+		session.current_dialog['config'].setCurrentIndex(11)
+		session.current_dialog.ok()
+		session.current_dialog.ok()
+		session.current_dialog.use()
+		# Test removeCallback
+		config.plugins.YouTube.mergeFiles.value = False
+		session.current_dialog['config'].setCurrentIndex(1)
+		session.current_dialog.ok()
+		session.current_dialog.close(True)
+		session.current_dialog.cancel()
+	elif session.current_dialog:
+		# Close MessageBox if exist
+		session.current_dialog.close(True)
 	# Open YouTubeSetup to test installCallback
 	yt.openMenu()
 	config.plugins.YouTube.mergeFiles.value = True
 	session.current_dialog.ok()
 	session.current_dialog.close(False)
-	config.plugins.YouTube.mergeFiles.value = True
-	session.current_dialog.ok()
-	session.current_dialog.close(True)
-	session.current_dialog.cancel()
+	if session.current_dialog:
+		config.plugins.YouTube.mergeFiles.value = True
+		session.current_dialog.ok()
+		session.current_dialog.close(True)
+		session.current_dialog.cancel()
 	# Open YouTubeSetup to test keySave
 	yt.openMenu()
 	session.current_dialog.ok()

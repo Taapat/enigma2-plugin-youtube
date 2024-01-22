@@ -183,6 +183,12 @@ jobs:
           echo "mtdrootfs=hdd" >> enigma2/enigma.info
           echo "displaymodel=vu" >> enigma2/enigma.info
           echo "machinebuild=vu" >> enigma2/enigma.info
+          echo "imagetype=developer" >> enigma2/enigma.info
+          echo "hdmifhdin=no" >> enigma2/enigma.info
+          echo "avjack=no" >> enigma2/enigma.info
+          echo "rca=no" >> enigma2/enigma.info
+          echo "scartyuv=no" >> enigma2/enigma.info
+          echo "yuv=no" >> enigma2/enigma.info
       - name: Patch enigma step 3
         if: steps.split.outputs._0 == 'OpenViX'
         run: |
