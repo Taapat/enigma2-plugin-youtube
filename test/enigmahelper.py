@@ -422,9 +422,13 @@ class EnigmaAVControl(EnimaInstance):
 	def getPreferredModes(self, flags):
 		return self.getAvailableModes()
 
+	def readAvailableModes(self, flags=None):
+		return self.getAvailableModes()
+
 
 eAVControl = EnigmaAVControl()
 modules['enigma'].eAVControl = eAVControl
+modules['enigma'].eAVSwitch = eAVControl
 
 enigma_fonts = {}
 
