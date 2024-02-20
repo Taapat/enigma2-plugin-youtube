@@ -107,11 +107,12 @@ jobs:
       - name: Test code with pytest
         run: |
           pytest -rx -v --cov=src --cov-report=xml --cov-report=html
+          mv .coverage .coverage_${{ matrix.python-version }}
       - name: Upload code coverage results
         uses: actions/upload-artifact@v4
         with:
           name: coverage_${{ matrix.python-version }}
-          path: .coverage
+          path: .coverage_${{ matrix.python-version }}
   test-gui:
     needs: test-python
     if: always() && (github.event_name == 'schedule' && github.ref == 'refs/heads/master') || ((needs.check_source.outputs.gui-changed == 'true' || contains(github.event.head_commit.message,'force-test')) && (needs.test-python.result == 'success' || needs.test-python.result == 'skipped'))
@@ -214,12 +215,13 @@ jobs:
         if: github.event_name != 'schedule'
         run: |
           YOUTUBE_PLUGIN_TOKEN=${{ secrets.YOUTUBE_PLUGIN_TOKEN }} E2_VERSION=${{ steps.split.outputs._0 }} PYTHONPATH=./test:./enigma2:./enigma2/lib/python python -m pytest -rx -v --cov=src --cov-report=xml --cov-report=html test/try_plugin.py -s
+          mv .coverage .coverage_${{ steps.split.outputs._0 }}_${{ steps.split.outputs._1 }}
       - name: Upload code coverage results
         if: github.event_name != 'schedule'
         uses: actions/upload-artifact@v4
         with:
           name: coverage_${{ steps.split.outputs._0 }}_${{ steps.split.outputs._1 }}
-          path: .coverage
+          path: .coverage_${{ steps.split.outputs._0 }}_${{ steps.split.outputs._1 }}
   sonarcloud:
     needs: [test-python, test-gui]
     if: always() && needs.test-python.result == 'success' && needs.test-gui.result == 'success'
@@ -240,7 +242,6 @@ jobs:
         with:
           pattern: coverage_*
           merge-multiple: true
-          path: coverage
       - name: Combine coverage results
         run: |
           coverage combine .coverage_*
