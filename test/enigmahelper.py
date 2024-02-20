@@ -422,7 +422,7 @@ class EnigmaAVControl(EnimaInstance):
 	def getPreferredModes(self, flags):
 		return self.getAvailableModes()
 
-	def readAvailableModes(self, flags):
+	def readAvailableModes(self, flags=None):
 		return self.getAvailableModes()
 
 
