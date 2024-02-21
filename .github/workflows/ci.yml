@@ -20,11 +20,11 @@ jobs:
       language-changed: ${{ steps.changed.outputs.language }}
       translation-changed: ${{ steps.po.outputs.po_changed }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 2
       - name: Check code changes
-        uses: dorny/paths-filter@v2
+        uses: dorny/paths-filter@v3
         id: changed
         with:
           filters: |
@@ -67,12 +67,12 @@ jobs:
       matrix:
         python-version: ['2.7', '3.11']
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Set up Python 3
         if: matrix.python-version != '2.7'
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
       - name: Upgrade Python 3 pip
@@ -109,9 +109,9 @@ jobs:
           pytest -rx -v --cov=src --cov-report=xml --cov-report=html
           mv .coverage .coverage_${{ matrix.python-version }}
       - name: Upload code coverage results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: coverage
+          name: coverage_${{ matrix.python-version }}
           path: .coverage_${{ matrix.python-version }}
   test-gui:
     needs: test-python
@@ -121,7 +121,7 @@ jobs:
       matrix:
         enigma2-version: ['OpenPLi develop 3.10', 'OpenPLi release-8.3 2.7', 'OpenPLi release-6.2 2.7', 'openatv master 3.11', 'openatv 6.4 2.7', 'OpenViX Developer 3.10', 'Taapat bh 2.7']
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Set enigma2 repository
@@ -130,7 +130,7 @@ jobs:
         with:
           msg: ${{ matrix.enigma2-version }}
       - name: Checkout ${{ steps.split.outputs._0 }} ${{ steps.split.outputs._1 }} repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: '${{ steps.split.outputs._0 }}/enigma2'
           ref: ${{ steps.split.outputs._1 }}
@@ -138,7 +138,7 @@ jobs:
           fetch-depth: 0
       - name: Set up Python 3
         if: steps.split.outputs._2 != '2.7'
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ steps.split.outputs._2 }}
       - name: Upgrade Python 3 pip
@@ -218,29 +218,30 @@ jobs:
           mv .coverage .coverage_${{ steps.split.outputs._0 }}_${{ steps.split.outputs._1 }}
       - name: Upload code coverage results
         if: github.event_name != 'schedule'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: coverage
+          name: coverage_${{ steps.split.outputs._0 }}_${{ steps.split.outputs._1 }}
           path: .coverage_${{ steps.split.outputs._0 }}_${{ steps.split.outputs._1 }}
   sonarcloud:
     needs: [test-python, test-gui]
     if: always() && needs.test-python.result == 'success' && needs.test-gui.result == 'success'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Set up Python 3.11
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - name: Install coverage dependencies
         run: |
           pip install coverage
       - name: Download code coverage results
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
-          name: coverage
+          pattern: coverage_*
+          merge-multiple: true
       - name: Combine coverage results
         run: |
           coverage combine .coverage_*
@@ -258,7 +259,7 @@ jobs:
     if: needs.check_source.outputs.language-changed == 'true' || contains(github.event.head_commit.message,'force-test')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Install dependencies
@@ -272,7 +273,7 @@ jobs:
     if: needs.check_source.outputs.translation-changed == 'true' || contains(github.event.head_commit.message,'force-test')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
           fetch-depth: 0
@@ -290,7 +291,7 @@ jobs:
           for i in $(ls -1 ./po/*.po); do $(msgfmt "$i" -o "$i".mo); done
           rm ./po/*.mo
       - name: Commit and push translation updates
-        uses: actions-js/push@master
+        uses: Taapat/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           message: 'Update language files'
@@ -300,11 +301,11 @@ jobs:
     if: always() && !contains(github.event.head_commit.message,'skip-release') && github.event_name == 'push' && (needs.test-python.result == 'success' || needs.test-python.result == 'skipped') && (needs.test-gui.result == 'success' || needs.test-gui.result == 'skipped') && (needs.test-language.result == 'success' || needs.test-language.result == 'skipped') && github.repository == 'Taapat/enigma2-plugin-youtube' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Set up Python 3
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
       - name: Set up Python 2

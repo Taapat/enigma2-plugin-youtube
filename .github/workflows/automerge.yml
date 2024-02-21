@@ -14,11 +14,11 @@ jobs:
       MERGE_COMMIT_MESSAGE: "pull-request-title-and-description"
       UPDATE_LABELS: ""
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 2
       - name: Check other source changes
-        uses: dorny/paths-filter@v2
+        uses: dorny/paths-filter@v3
         id: src
         with:
           filters: |
