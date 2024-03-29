@@ -232,7 +232,7 @@ class YouTubeVideoUrl():
 			'content-type': 'application/json',
 			'Origin': 'https://www.youtube.com'
 		}
-		if client == 85:
+		if client in (1, 85):
 			player_id = self._extract_player_info()
 			if player_id:
 				if player_id not in self._player_cache:
@@ -243,18 +243,29 @@ class YouTubeVideoUrl():
 				).group('sts')
 				if sts:
 					data['playbackContext']['contentPlaybackContext']['signatureTimestamp'] = sts
-			data['context'] = {
-				'client': {
-					'hl': config.plugins.YouTube.searchLanguage.value,
-					'clientName': 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
-					'clientVersion': '2.0',
-				},
-				'thirdParty': {
-					'embedUrl': 'https://www.youtube.com/'
+			if client == 85:
+				data['context'] = {
+					'client': {
+						'hl': config.plugins.YouTube.searchLanguage.value,
+						'clientName': 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
+						'clientVersion': '2.0',
+					},
+					'thirdParty': {
+						'embedUrl': 'https://www.youtube.com/'
+					}
 				}
-			}
-			headers['X-YouTube-Client-Name'] = 85
-			headers['X-YouTube-Client-Version'] = '2.0'
+				headers['X-YouTube-Client-Name'] = 85
+				headers['X-YouTube-Client-Version'] = '2.0'
+			else:
+				data['context'] = {
+					'client': {
+						'hl': config.plugins.YouTube.searchLanguage.value,
+						'clientName': 'WEB',
+						'clientVersion': '2.20220801.00.00',
+					}
+				}
+				headers['X-YouTube-Client-Name'] = 1
+				headers['X-YouTube-Client-Version'] = '2.20220801.00.00'
 		else:
 			data['context'] = {
 				'client': {
@@ -295,6 +306,10 @@ class YouTubeVideoUrl():
 		player_response, player_id = self._extract_player_response(video_id, 3)
 		if not player_response:
 			raise RuntimeError('Player response not found!')
+
+		if self.try_get(player_response, lambda x: x['videoDetails']['videoId']) != video_id:
+			print('[YouTubeVideoUrl] Got wrong player response, try web client')
+			player_response, player_id = self._extract_player_response(video_id, 1)
 
 		is_live = self.try_get(player_response, lambda x: x['videoDetails']['isLive'])
 		playability_status = player_response.get('playabilityStatus', {})
