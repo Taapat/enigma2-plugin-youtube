@@ -119,7 +119,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        enigma2-version: ['OpenPLi develop 3.10', 'OpenPLi release-8.3 2.7', 'OpenPLi release-6.2 2.7', 'openatv master 3.11', 'openatv 6.4 2.7', 'Taapat bh 2.7']
+        enigma2-version: ['OpenPLi develop 3.10', 'OpenPLi release-9.0 3.10', 'OpenPLi release-8.3 2.7', 'OpenPLi release-6.2 2.7', 'openatv master 3.11', 'openatv 6.4 2.7', 'Taapat bh 2.7']
     steps:
       - uses: actions/checkout@v4
         with:
@@ -199,7 +199,7 @@ jobs:
           sed -i 's/addNotifier(iAVSwitch/addNotifier(iAVSwitch.setPolicy169) #/g' enigma2/lib/python/Components/AVSwitch.py
           sed -i 's/instance, eListbox/instance, type(eListbox)/g' enigma2/lib/python/Components/GUIComponent.py
       - name: Patch enigma step 4
-        if: matrix.enigma2-version == 'OpenPLi develop 3.10' || matrix.enigma2-version == 'OpenViX Developer 3.10'
+        if: matrix.enigma2-version == 'OpenPLi develop 3.10' || matrix.enigma2-version == 'OpenPLi release-9.0 3.10' || matrix.enigma2-version == 'OpenViX Developer 3.10'
         working-directory: './enigma2/data'
         run: |
           python convert-iso-639-3.py
