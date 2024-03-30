@@ -143,6 +143,15 @@ def unified_timestamp(date_str):
 			pass
 
 
+def remove_quotes(s):
+	if s is None or len(s) < 2:
+		return s
+	for quote in ('"', "'", ):
+		if s[0] == quote and s[-1] == quote:
+			return s[1:-1]
+	return s
+
+
 # NB In principle NaN cannot be checked by membership.
 # Here all NaN values are actually this one, so _NaN is _NaN,
 # although _NaN != _NaN.
@@ -746,6 +755,14 @@ class JSInterpreter(object):
 				obj = local_vars.get(variable)
 				if obj in (JSUndefined, None):
 					obj = types.get(variable, JSUndefined)
+				if obj is JSUndefined:
+					try:
+						if variable not in self._objects:
+							self._objects[variable] = self.extract_object(variable)
+						obj = self._objects[variable]
+					except Exception:
+						if not nullish:
+							raise
 
 				if nullish and obj is JSUndefined:
 					return JSUndefined
@@ -836,6 +853,34 @@ class JSInterpreter(object):
 		if should_return:
 			raise RuntimeError('Cannot return from an expression')
 		return ret
+
+	def extract_object(self, objname):
+		_FUNC_NAME_RE = r'''(?:[a-zA-Z$0-9]+|"[a-zA-Z$0-9]+"|'[a-zA-Z$0-9]+')'''
+		obj = {}
+		fields = None
+		for obj_m in re.finditer(
+			r'''(?xs)
+				{0}\s*\.\s*{1}|{1}\s*=\s*\{{\s*
+				(?P<fields>({2}\s*:\s*function\s*\(.*?\)\s*\{{.*?}}(?:,\s*)?)*)
+				}}\s*;
+			'''.format(_NAME_RE, re.escape(objname), _FUNC_NAME_RE),
+			self.code):
+			fields = obj_m.group('fields')
+			if fields:
+				break
+		else:
+			raise RuntimeError('Could not find object ' + objname)
+		# Currently, it only supports function definitions
+		fields_m = re.finditer(
+			r'''(?x)
+				(?P<key>%s)\s*:\s*function\s*\((?P<args>(?:%s|,)*)\){(?P<code>[^}]+)}
+			''' % (_FUNC_NAME_RE, _NAME_RE),
+			fields)
+		for f in fields_m:
+			argnames = self.build_arglist(f.group('args'))
+			obj[remove_quotes(f.group('key'))] = self.build_function(argnames, f.group('code'))
+
+		return obj
 
 	@staticmethod
 	def _offset_e_by_d(d, e, local_vars):

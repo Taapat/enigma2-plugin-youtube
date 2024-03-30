@@ -11,6 +11,7 @@ from json import loads
 
 from Components.config import config
 
+from .compat import compat_parse_qs
 from .compat import compat_str
 from .compat import compat_Request
 from .compat import compat_urlopen
@@ -133,25 +134,26 @@ class YouTubeVideoUrl():
 				'https://www.youtube.com/s/player/%s/player_ias.vflset/en_US/base.js' % player_id
 			)
 
-	def _extract_n_function(self, player_id):
+	def _extract_function(self, player_id, s_id):
 		if player_id not in self._player_cache:
 			self._load_player(player_id)
 		jsi = JSInterpreter(self._player_cache[player_id])
-		if player_id not in self._code_cache:
-			funcname = self._extract_n_function_name(self._player_cache[player_id])
-			self._code_cache[player_id] = jsi.extract_function_code(funcname)
-		return lambda s: jsi.extract_function_from_code(*self._code_cache[player_id])([s])
+		if s_id not in self._code_cache:
+			if s_id.startswith('nsig_'):
+				funcname = self._extract_n_function_name(self._player_cache[player_id])
+			else:
+				funcname = self._parse_sig_js(self._player_cache[player_id])
+			self._code_cache[s_id] = jsi.extract_function_code(funcname)
+		return lambda s: jsi.extract_function_from_code(*self._code_cache[s_id])([s])
 
 	def _unthrottle_url(self, url, player_id):
-		print('[YouTubeVideoUrl] Try unthrottle url')
-		if not player_id:
-			print('[YouTubeVideoUrl] Cannot decrypt nsig without player info')
-			return url
 		n_param = search(r'&n=(.+?)&', url).group(1)
+		n_id = 'nsig_%s_%s' % (player_id, '.'.join(str(len(p)) for p in n_param.split('.')))
+		print('[YouTubeVideoUrl] Decrypt nsig', n_id)
 		if self.nsig_cache[0] != n_param:
 			self.nsig_cache = (None, None)
 			try:
-				ret = self._extract_n_function(player_id)(n_param)
+				ret = self._extract_function(player_id, n_id)(n_param)
 			except Exception as ex:
 				print('[YouTubeVideoUrl] Unable to decode nsig', ex)
 			else:
@@ -162,9 +164,47 @@ class YouTubeVideoUrl():
 		if self.nsig_cache[1]:
 			print('[YouTubeVideoUrl] Decrypted nsig %s => %s' % self.nsig_cache)
 			return url.replace(self.nsig_cache[0], self.nsig_cache[1])
-		if player_id in self._code_cache:
-			del self._code_cache[player_id]
+		if n_id in self._code_cache:
+			del self._code_cache[n_id]
 		return url
+
+	def _decrypt_signature(self, s, player_id):
+		"""Turn the encrypted s field into a working signature"""
+		s_id = 'sig_%s_%s' % (player_id, '.'.join(str(len(p)) for p in s.split('.')))
+		print('[YouTubeVideoUrl] Decrypt signature', s_id)
+		try:
+			return self._extract_function(player_id, s_id)(s)
+		except Exception as ex:
+			print('[YouTubeVideoUrl] Signature extraction failed', ex)
+			if s_id in self._code_cache:
+				del self._code_cache[s_id]
+
+	def _parse_sig_js(self, jscode):
+
+		def _search_regex(pattern, string):
+			mobj = ''
+			for p in pattern:
+				mobj = search(p, string, 0)
+				if mobj:
+					break
+			return mobj
+
+		return _search_regex(
+			(r'\b[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\(',
+				r'\b[a-zA-Z0-9]+\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\(',
+				r'\bm=(?P<sig>[a-zA-Z0-9$]{2,})\(decodeURIComponent\(h\.s\)\)',
+				r'\bc&&\(c=(?P<sig>[a-zA-Z0-9$]{2,})\(decodeURIComponent\(c\)\)',
+				r'(?:\b|[^a-zA-Z0-9$])(?P<sig>[a-zA-Z0-9$]{2,})\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)(?:;[a-zA-Z0-9$]{2}\.[a-zA-Z0-9$]{2}\(a,\d+\))?',
+				r'(?P<sig>[a-zA-Z0-9$]+)\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)',
+				# Obsolete patterns
+				r'("|\')signature\1\s*,\s*(?P<sig>[a-zA-Z0-9$]+)\(',
+				r'\.sig\|\|(?P<sig>[a-zA-Z0-9$]+)\(',
+				r'yt\.akamaized\.net/\)\s*\|\|\s*.*?\s*[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*(?:encodeURIComponent\s*\()?\s*(?P<sig>[a-zA-Z0-9$]+)\(',
+				r'\b[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*(?P<sig>[a-zA-Z0-9$]+)\(',
+				r'\b[a-zA-Z0-9]+\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*(?P<sig>[a-zA-Z0-9$]+)\(',
+				r'\bc\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*\([^)]*\)\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\('),
+			jscode
+		).group('sig')
 
 	def _extract_from_m3u8(self, manifest_url):
 		url_map = {}
@@ -190,30 +230,39 @@ class YouTubeVideoUrl():
 			itag in self.use_dash_mp4
 		)
 
-	def _extract_fmt_video_format(self, streaming_formats):
+	def _extract_url(self, our_format, streaming_formats, player_id):
+		for fmt in streaming_formats:
+			itag = str(fmt.get('itag', ''))
+			if itag == our_format and self._not_in_fmt(fmt, itag):
+				url = fmt.get('url')
+				if not url and 'signatureCipher' in fmt:
+					sc = compat_parse_qs(fmt.get('signatureCipher', ''))
+					sig = self._decrypt_signature(sc['s'][0], player_id)
+					if sig:
+						url = '%s&%s=%s' % (sc['url'][0], sc['sp'][0] if 'sp' in sc else 'signature', sig)
+				if url:
+					if '&n=' in url:
+						url = self._unthrottle_url(url, player_id)
+					return url
+
+	def _extract_fmt_video_format(self, streaming_formats, player_id):
 		""" Find the best format from our format priority map """
 		print('[YouTubeVideoUrl] Try fmt url')
 		for our_format in PRIORITY_VIDEO_FORMAT:
-			for fmt in streaming_formats:
-				itag = str(fmt.get('itag', ''))
-				if itag == our_format and self._not_in_fmt(fmt, itag):
-					url = fmt.get('url')
-					if url:
-						print('[YouTubeVideoUrl] Found fmt url')
-						return url, our_format
+			url = self._extract_url(our_format, streaming_formats, player_id)
+			if url:
+				print('[YouTubeVideoUrl] Found fmt url')
+				return url, our_format
 		return '', ''
 
-	def _extract_dash_audio_format(self, streaming_formats):
+	def _extract_dash_audio_format(self, streaming_formats, player_id):
 		""" If DASH MP4 video add link also on Dash MP4 Audio """
 		print('[YouTubeVideoUrl] Try fmt audio url')
 		for our_format in ('141', '140', '139', '258', '265', '325', '328'):
-			for fmt in streaming_formats:
-				itag = str(fmt.get('itag', ''))
-				if itag == our_format and self._not_in_fmt(fmt, itag):
-					url = fmt.get('url')
-					if url:
-						print('[YouTubeVideoUrl] Found fmt audio url')
-						return url
+			url = self._extract_url(our_format, streaming_formats, player_id)
+			if url:
+				print('[YouTubeVideoUrl] Found fmt audio url')
+				return url
 		return ''
 
 	def _extract_player_response(self, video_id, client):
@@ -352,14 +401,10 @@ class YouTubeVideoUrl():
 				print('[YouTubeVideoUrl] skip DASH MP4 format')
 				self.use_dash_mp4 = DASHMP4_FORMAT
 
-			url, our_format = self._extract_fmt_video_format(streaming_formats)
-			if url and '&n=' in url:
-				url = self._unthrottle_url(url, player_id)
+			url, our_format = self._extract_fmt_video_format(streaming_formats, player_id)
 			if url and our_format in DASHMP4_FORMAT:
-				audio_url = self._extract_dash_audio_format(streaming_formats)
+				audio_url = self._extract_dash_audio_format(streaming_formats, player_id)
 				if audio_url:
-					if '&n=' in audio_url:
-						audio_url = self._unthrottle_url(audio_url, player_id)
 					url += SUBURI + audio_url
 			if not url:  # pragma: no cover
 				for fmt in streaming_formats:
