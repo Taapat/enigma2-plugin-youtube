@@ -87,7 +87,7 @@ def check_video_url(videos, descr):
 		elif str(ex) == 'No supported formats found in video info!':
 			pytest.xfail('Error in get_url, No supported formats found in video info!')
 		else:
-			pytest.xfail(str(ex))
+			raise RuntimeError(ex)
 	else:
 		from src.compat import compat_urlopen
 		response = compat_urlopen(video_url)
