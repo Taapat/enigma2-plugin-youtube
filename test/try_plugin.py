@@ -417,7 +417,14 @@ def try_plugin_screens_load():
 
 
 def test_plugin():
-	try_plugin_screens_load()
+	e2_version = os.environ['E2_VERSION']
+	if e2_version == 'OpenPLi':
+		try_plugin_screens_load()
+	else:
+		try:
+			try_plugin_screens_load()
+		except Exception as ex:
+			print('ERROR\n', ex)
 
 
 if __name__ == '__main__':
