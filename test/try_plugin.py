@@ -424,7 +424,7 @@ def test_plugin():
 		try:
 			try_plugin_screens_load()
 		except Exception as ex:
-			print('Error' ex)
+			print('Error', ex)
 
 
 if __name__ == '__main__':
