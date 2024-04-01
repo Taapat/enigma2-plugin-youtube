@@ -268,7 +268,8 @@ class YouTubeVideoUrl():
 	def _extract_player_response(self, video_id, client):
 		player_id = None
 		url = 'https://www.youtube.com/youtubei/v1/player?key=%s&bpctr=9999999999&has_verified=1' % (YT_EMBKEY if client == 85 else YT_KEY)
-		USER_AGENT = 'com.google.android.youtube/19.09.37 (Linux; U; Android 12) gzip'
+		ANDROID = '18.48.37'
+		USER_AGENT = 'com.google.android.youtube/%s(Linux; U; Android 13; en_US; sdk_gphone64_x86_64 Build/UPB4.230623.005) gzip' % ANDROID
 		data = {
 			'videoId': video_id,
 			'playbackContext': {
@@ -319,17 +320,17 @@ class YouTubeVideoUrl():
 			data['context'] = {
 				'client': {
 					'hl': config.plugins.YouTube.searchLanguage.value,
-					'clientVersion': '19.09.37',
-					'androidSdkVersion': 31,
+					'clientVersion': ANDROID,
+					'androidSdkVersion': 33,
 					'clientName': 'ANDROID',
 					'osName': 'Android',
-					'osVersion': '12',
+					'osVersion': '13',
 					'userAgent': USER_AGENT
 				}
 			}
-			data['params'] = 'CgIQBg'
+			data['params'] = 'CgIIAQ=='
 			headers['X-YouTube-Client-Name'] = 3
-			headers['X-YouTube-Client-Version'] = '19.09.37'
+			headers['X-YouTube-Client-Version'] = ANDROID
 			headers['User-Agent'] = USER_AGENT
 		try:
 			return loads(self._download_webpage(url, data, headers)), player_id
