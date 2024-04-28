@@ -328,7 +328,7 @@ class YouTubeVideoUrl():
 					'userAgent': USER_AGENT
 				}
 			}
-			data['params'] = 'CgIIAQ=='
+			data['params'] = 'wgYCCAA='
 			headers['X-YouTube-Client-Name'] = 3
 			headers['X-YouTube-Client-Version'] = ANDROID
 			headers['User-Agent'] = USER_AGENT
