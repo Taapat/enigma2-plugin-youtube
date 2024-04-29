@@ -268,8 +268,8 @@ class YouTubeVideoUrl():
 	def _extract_player_response(self, video_id, client):
 		player_id = None
 		url = 'https://www.youtube.com/youtubei/v1/player?key=%s&bpctr=9999999999&has_verified=1' % (YT_EMBKEY if client == 85 else YT_KEY)
-		ANDROID = '18.48.37'
-		USER_AGENT = 'com.google.android.youtube/%s(Linux; U; Android 13; en_US; sdk_gphone64_x86_64 Build/UPB4.230623.005) gzip' % ANDROID
+		ANDROID = '1.9'
+		USER_AGENT = 'com.google.android.youtube/%s (Linux; U; Android 12; US) gzip' % ANDROID
 		data = {
 			'videoId': video_id,
 			'playbackContext': {
@@ -280,7 +280,8 @@ class YouTubeVideoUrl():
 		}
 		headers = {
 			'content-type': 'application/json',
-			'Origin': 'https://www.youtube.com'
+			'Origin': 'https://www.youtube.com',
+			'X-YouTube-Client-Name': client
 		}
 		if client in (1, 85):
 			player_id = self._extract_player_info()
@@ -304,7 +305,6 @@ class YouTubeVideoUrl():
 						'embedUrl': 'https://www.youtube.com/'
 					}
 				}
-				headers['X-YouTube-Client-Name'] = 85
 				headers['X-YouTube-Client-Version'] = '2.0'
 			else:
 				data['context'] = {
@@ -314,22 +314,20 @@ class YouTubeVideoUrl():
 						'clientVersion': '2.20220801.00.00',
 					}
 				}
-				headers['X-YouTube-Client-Name'] = 1
 				headers['X-YouTube-Client-Version'] = '2.20220801.00.00'
 		else:
 			data['context'] = {
 				'client': {
 					'hl': config.plugins.YouTube.searchLanguage.value,
 					'clientVersion': ANDROID,
-					'androidSdkVersion': 33,
-					'clientName': 'ANDROID',
+					'androidSdkVersion': 31,
+					'clientName': 'ANDROID_TESTSUITE',
 					'osName': 'Android',
-					'osVersion': '13',
+					'osVersion': '12',
 					'userAgent': USER_AGENT
 				}
 			}
-			data['params'] = 'wgYCCAA='
-			headers['X-YouTube-Client-Name'] = 3
+			data['params'] = '2AMB'
 			headers['X-YouTube-Client-Version'] = ANDROID
 			headers['User-Agent'] = USER_AGENT
 		try:
@@ -353,7 +351,7 @@ class YouTubeVideoUrl():
 		)
 		url = ''
 
-		player_response, player_id = self._extract_player_response(video_id, 3)
+		player_response, player_id = self._extract_player_response(video_id, 30)
 		if not player_response:
 			raise RuntimeError('Player response not found!')
 
