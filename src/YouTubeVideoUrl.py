@@ -4,6 +4,7 @@
 from __future__ import print_function
 
 from re import escape
+from re import findall
 from re import match
 from re import search
 from json import dumps
@@ -18,6 +19,7 @@ from .compat import compat_urlopen
 from .compat import compat_URLError
 from .compat import SUBURI
 from .jsinterp import JSInterpreter
+from .OAuth import YT_IOSKEY
 from .OAuth import YT_EMBKEY
 from .OAuth import YT_KEY
 
@@ -208,18 +210,30 @@ class YouTubeVideoUrl():
 
 	def _extract_from_m3u8(self, manifest_url):
 		url_map = {}
+		audio_urls = {}
+		audio_url = ''
 
-		def _get_urls(_manifest):
-			lines = _manifest.split('\n')
-			urls = [x for x in lines if x and not x.startswith('#')]
-			return urls
+		def _parse_m3u8_attributes(_attrib):
+			return {key: val[1:-1] if val.startswith('"') else val for (key, val) in findall(r'(?P<key>[A-Z0-9-]+)=(?P<val>"[^"]+"|[^",]+)(?:,|$)', _attrib)}
 
 		manifest = self._download_webpage(manifest_url)
-		formats_urls = _get_urls(manifest)
-		for format_url in formats_urls:
-			itag = search(r'itag/(\d+?)/', format_url)
-			itag = itag.group(1) if itag else ''
-			url_map[itag] = format_url
+
+		if '#EXT-X-MEDIA:' in manifest:
+			for line in manifest.splitlines():
+				if line.startswith('#EXT-X-MEDIA:'):
+					audio_info = _parse_m3u8_attributes(line)
+					audio_urls[audio_info.get('GROUP-ID')] = audio_info.get('URI')
+
+		for line in manifest.splitlines():
+			if audio_urls and line.startswith('#EXT-X-STREAM-INF:'):
+				audio_id = _parse_m3u8_attributes(line).get('AUDIO')
+				if audio_id and audio_id in audio_urls:
+					audio_url = SUBURI + audio_urls.get(audio_id)
+			elif line.startswith('https'):
+				itag = search(r'/sgovp/gir%3Dyes%3Bitag%3D(\d+?)/', line)
+				if itag:
+					url_map[itag.group(1)] = line + audio_url
+					audio_url = ''
 		return url_map
 
 	def _not_in_fmt(self, fmt, itag):
@@ -267,9 +281,7 @@ class YouTubeVideoUrl():
 
 	def _extract_player_response(self, video_id, client):
 		player_id = None
-		url = 'https://www.youtube.com/youtubei/v1/player?key=%s&bpctr=9999999999&has_verified=1' % (YT_EMBKEY if client == 85 else YT_KEY)
-		ANDROID = '1.9'
-		USER_AGENT = 'com.google.android.youtube/%s (Linux; U; Android 12; US) gzip' % ANDROID
+		url = 'https://www.youtube.com/youtubei/v1/player?key=%s' % (YT_IOSKEY if client == 5 else YT_EMBKEY if client == 85 else YT_KEY)
 		data = {
 			'videoId': video_id,
 			'playbackContext': {
@@ -283,7 +295,21 @@ class YouTubeVideoUrl():
 			'Origin': 'https://www.youtube.com',
 			'X-YouTube-Client-Name': client
 		}
-		if client in (1, 85):
+		if client == 5:
+			VERSION = '19.09.3'
+			USER_AGENT = 'com.google.ios.youtube/%s (iPhone14,3; U; CPU iOS 15_6 like Mac OS X)' % VERSION
+			data['context'] = {
+				'client': {
+					'hl': config.plugins.YouTube.searchLanguage.value,
+					'clientVersion': VERSION,
+					'clientName': 'IOS',
+					'deviceModel': 'iPhone14,3',
+					'userAgent': USER_AGENT
+				}
+			}
+			headers['X-YouTube-Client-Version'] = VERSION
+			headers['User-Agent'] = USER_AGENT
+		elif client == 85:
 			player_id = self._extract_player_info()
 			if player_id:
 				if player_id not in self._player_cache:
@@ -294,32 +320,24 @@ class YouTubeVideoUrl():
 				).group('sts')
 				if sts:
 					data['playbackContext']['contentPlaybackContext']['signatureTimestamp'] = sts
-			if client == 85:
-				data['context'] = {
-					'client': {
-						'hl': config.plugins.YouTube.searchLanguage.value,
-						'clientName': 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
-						'clientVersion': '2.0',
-					},
-					'thirdParty': {
-						'embedUrl': 'https://www.youtube.com/'
-					}
-				}
-				headers['X-YouTube-Client-Version'] = '2.0'
-			else:
-				data['context'] = {
-					'client': {
-						'hl': config.plugins.YouTube.searchLanguage.value,
-						'clientName': 'WEB',
-						'clientVersion': '2.20220801.00.00',
-					}
-				}
-				headers['X-YouTube-Client-Version'] = '2.20220801.00.00'
-		else:
 			data['context'] = {
 				'client': {
 					'hl': config.plugins.YouTube.searchLanguage.value,
-					'clientVersion': ANDROID,
+					'clientName': 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
+					'clientVersion': '2.0',
+				},
+				'thirdParty': {
+					'embedUrl': 'https://www.youtube.com/'
+				}
+			}
+			headers['X-YouTube-Client-Version'] = '2.0'
+		else:
+			VERSION = '1.9'
+			USER_AGENT = 'com.google.android.youtube/%s (Linux; U; Android 12; US) gzip' % VERSION
+			data['context'] = {
+				'client': {
+					'hl': config.plugins.YouTube.searchLanguage.value,
+					'clientVersion': VERSION,
 					'androidSdkVersion': 31,
 					'clientName': 'ANDROID_TESTSUITE',
 					'osName': 'Android',
@@ -328,7 +346,7 @@ class YouTubeVideoUrl():
 				}
 			}
 			data['params'] = '2AMB'
-			headers['X-YouTube-Client-Version'] = ANDROID
+			headers['X-YouTube-Client-Version'] = VERSION
 			headers['User-Agent'] = USER_AGENT
 		try:
 			return loads(self._download_webpage(url, data, headers)), player_id
@@ -356,8 +374,8 @@ class YouTubeVideoUrl():
 			raise RuntimeError('Player response not found!')
 
 		if self.try_get(player_response, lambda x: x['videoDetails']['videoId']) != video_id:
-			print('[YouTubeVideoUrl] Got wrong player response, try web client')
-			player_response, player_id = self._extract_player_response(video_id, 1)
+			print('[YouTubeVideoUrl] Got wrong player response, try ios client')
+			player_response, player_id = self._extract_player_response(video_id, 5)
 
 		is_live = self.try_get(player_response, lambda x: x['videoDetails']['isLive'])
 		playability_status = player_response.get('playabilityStatus', {})
@@ -386,7 +404,7 @@ class YouTubeVideoUrl():
 		if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.value:
 			create_priority_formats()
 
-		if not is_live and streaming_formats:
+		if not is_live:
 			DASHMP4_FORMAT = (
 				'133', '134', '135', '136', '137', '138',
 				'160', '212', '264', '266', '298', '299',
