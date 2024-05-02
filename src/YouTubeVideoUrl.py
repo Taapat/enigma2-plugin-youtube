@@ -281,7 +281,12 @@ class YouTubeVideoUrl():
 
 	def _extract_player_response(self, video_id, client):
 		player_id = None
-		url = 'https://www.youtube.com/youtubei/v1/player?key=%s' % (YT_IOSKEY if client == 5 else YT_EMBKEY if client == 85 else YT_KEY)
+		KEY = {
+			5: YT_IOSKEY,
+			30: YT_KEY,
+			85: YT_EMBKEY
+		}
+		url = 'https://www.youtube.com/youtubei/v1/player?key=%s' % KEY[client]
 		data = {
 			'videoId': video_id,
 			'playbackContext': {
