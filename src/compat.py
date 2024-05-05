@@ -110,9 +110,6 @@ else:
 					return m[k]
 			raise KeyError(k)
 
-		def __setitem__(self, k, v):
-			self.maps[0][k] = v
-
 		def __contains__(self, k):
 			return any((k in m) for m in self.maps)
 

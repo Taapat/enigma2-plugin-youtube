@@ -299,6 +299,13 @@ class LocalNameSpace(compat_map):
 		except KeyError:
 			return JSUndefined
 
+	def __setitem__(self, key, value):
+		for scope in self.maps:
+			if key in scope:
+				scope[key] = value
+				return
+		self.maps[0][key] = value
+
 
 class JSInterpreter(object):
 	__named_object_counter = 0
@@ -825,6 +832,11 @@ class JSInterpreter(object):
 						return obj.index(idx, start)
 					except ValueError:
 						return -1
+				elif member == 'charCodeAt':
+					idx = argvals[0] if isinstance(argvals[0], int) else 0
+					if idx >= len(obj):
+						return None
+					return ord(obj[idx])
 
 				idx = int(member) if isinstance(obj, list) else member
 				return obj[idx](argvals, allow_recursion=allow_recursion)
