@@ -19,9 +19,6 @@ from .compat import compat_urlopen
 from .compat import compat_URLError
 from .compat import SUBURI
 from .jsinterp import JSInterpreter
-from .OAuth import YT_IOSKEY
-from .OAuth import YT_EMBKEY
-from .OAuth import YT_KEY
 
 
 PRIORITY_VIDEO_FORMAT = ()
@@ -281,12 +278,7 @@ class YouTubeVideoUrl():
 
 	def _extract_player_response(self, video_id, client):
 		player_id = None
-		KEY = {
-			5: YT_IOSKEY,
-			30: YT_KEY,
-			85: YT_EMBKEY
-		}
-		url = 'https://www.youtube.com/youtubei/v1/player?key=%s' % KEY[client]
+		url = 'https://www.youtube.com/youtubei/v1/player?prettyPrint\u003dfalse'
 		data = {
 			'videoId': video_id,
 			'playbackContext': {
