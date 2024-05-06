@@ -143,3 +143,13 @@ video_list = (
 @pytest.mark.parametrize('videos,descr', video_list)
 def test_url(videos, descr):
 	check_video_url(videos=videos, descr=descr)
+
+
+def test_function_exceptions():
+	from src.YouTubeVideoUrl import YouTubeVideoUrl
+	ytdl = YouTubeVideoUrl()
+	player_id = ytdl._extract_player_info()
+	ytdl._decrypt_signature('', player_id)
+	ytdl._unthrottle_url('&n=a&', player_id)
+	ytdl._guess_encoding_from_content('', br'<meta charset=ascii>')
+	ytdl._guess_encoding_from_content('', b'\xff\xfe')
