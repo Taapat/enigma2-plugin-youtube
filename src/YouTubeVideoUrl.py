@@ -284,7 +284,7 @@ class YouTubeVideoUrl():
 		url = 'https://www.youtube.com/watch?v=%s&bpctr=9999999999&has_verified=1' % video_id
 		webpage = self._download_webpage(url)
 		if webpage:
-			player_response = search(r'ytInitialPlayerResponse\s*=\s*({.+?})\s*;\s*(?:var\s+meta|</script|\n)', webpage)
+			player_response = search(r'ytInitialPlayerResponse\s*=\s*({[^>]*})\s*;\s*(?:var\s+meta|</script|\n)', webpage)
 			if player_response:
 				try:
 					return loads(player_response.group(1)), self._extract_player_info()
