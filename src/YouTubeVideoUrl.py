@@ -28,12 +28,12 @@ def create_priority_formats():
 	global PRIORITY_VIDEO_FORMAT
 	itag = config.plugins.YouTube.maxResolution.value
 	video_formats = (
-		('17', '91', '13', '151', '160'),  # 176x144
-		('5', '36', '92', '132', '133'),  # 400x240
-		('18', '93', '34', '6', '134'),  # 640x360
-		('35', '59', '78', '94', '135', '212'),  # 854x480
-		('22', '95', '300', '136', '298'),  # 1280x720
-		('37', '96', '301', '137', '299', '248', '303', '271'),  # 1920x1080
+		('17', '91', '13', '151', '160', '269'),  # 176x144
+		('5', '36', '92', '132', '133', '229'),  # 400x240
+		('18', '93', '34', '6', '134', '230'),  # 640x360
+		('35', '59', '78', '94', '135', '212', '231'),  # 854x480
+		('22', '95', '300', '136', '298', '232'),  # 1280x720
+		('37', '96', '301', '137', '299', '248', '303', '271', '270'),  # 1920x1080
 		('38', '266', '264', '138', '313', '315', '272', '308')  # 4096x3072
 	)
 	for video_format in video_formats:
@@ -216,7 +216,7 @@ class YouTubeVideoUrl():
 				if line.startswith('#EXT-X-MEDIA:'):
 					audio_info = self._parse_m3u8_attributes(line)
 					audio_urls[audio_info.get('GROUP-ID')] = audio_info.get('URI')
-		return 	audio_urls
+		return audio_urls
 
 	def _extract_from_m3u8(self, manifest_url):
 		url_map = {}
@@ -273,16 +273,28 @@ class YouTubeVideoUrl():
 	def _extract_dash_audio_format(self, streaming_formats, player_id):
 		""" If DASH MP4 video add link also on Dash MP4 Audio """
 		print('[YouTubeVideoUrl] Try fmt audio url')
-		for our_format in ('141', '140', '139', '258', '265', '325', '328'):
+		for our_format in ('141', '140', '139', '258', '265', '325', '328', '233', '234'):
 			url = self._extract_url(our_format, streaming_formats, player_id)
 			if url:
 				print('[YouTubeVideoUrl] Found fmt audio url')
 				return url
 		return ''
 
+	def _extract_web_response(self, video_id):
+		url = 'https://www.youtube.com/watch?v=%s&bpctr=9999999999&has_verified=1' % video_id
+		webpage = self._download_webpage(url)
+		if webpage:
+			player_response = search(r'ytInitialPlayerResponse\s*=\s*({.+?})\s*;\s*(?:var\s+meta|</script|\n)', webpage)
+			if player_response:
+				try:
+					return loads(player_response.group(1)), self._extract_player_info()
+				except ValueError:  # pragma: no cover
+					print('[YouTubeVideoUrl] Failed to parse web JSON')
+		return None, None
+
 	def _extract_player_response(self, video_id, client):
 		player_id = None
-		url = 'https://www.youtube.com/youtubei/v1/player?prettyPrint\u003dfalse'
+		url = 'https://www.youtube.com/youtubei/v1/player?prettyPrint=false'
 		data = {
 			'videoId': video_id,
 			'playbackContext': {
@@ -368,15 +380,31 @@ class YouTubeVideoUrl():
 			'249', '250', '251',  # webm
 			'302'  # webm
 		)
+		DASHMP4_FORMAT = (
+			'133', '134', '135', '136', '137', '138', '160',
+			'212', '229', '230', '231', '232', '248', '264',
+			'271', '272', '266', '269', '270', '298', '299',
+			'303', '313', '315', '308'
+		)
 		url = ''
+
+		if config.plugins.YouTube.useDashMP4.value:
+			self.use_dash_mp4 = ()
+		else:
+			print('[YouTubeVideoUrl] skip DASH MP4 format')
+			self.use_dash_mp4 = DASHMP4_FORMAT
 
 		player_response, player_id = self._extract_player_response(video_id, 30)
 		if not player_response:
 			raise RuntimeError('Player response not found!')
 
 		if self.try_get(player_response, lambda x: x['videoDetails']['videoId']) != video_id:
-			print('[YouTubeVideoUrl] Got wrong player response, try ios client')
-			player_response, player_id = self._extract_player_response(video_id, 5)
+			if self.use_dash_mp4:
+				print('[YouTubeVideoUrl] Got wrong player response, try web response')
+				player_response, player_id = self._extract_web_response(video_id)
+			else:
+				print('[YouTubeVideoUrl] Got wrong player response, try ios client')
+				player_response, player_id = self._extract_player_response(video_id, 5)
 
 		is_live = self.try_get(player_response, lambda x: x['videoDetails']['isLive'])
 		playability_status = player_response.get('playabilityStatus', {})
@@ -406,19 +434,7 @@ class YouTubeVideoUrl():
 			create_priority_formats()
 
 		if not is_live:
-			DASHMP4_FORMAT = (
-				'133', '134', '135', '136', '137', '138',
-				'160', '212', '264', '266', '298', '299',
-				'248', '303', '271', '313', '315', '272', '308'
-			)
 			streaming_formats.extend(streaming_data.get('adaptiveFormats', []))
-
-			if config.plugins.YouTube.useDashMP4.value:
-				self.use_dash_mp4 = ()
-			else:  # pragma: no cover
-				print('[YouTubeVideoUrl] skip DASH MP4 format')
-				self.use_dash_mp4 = DASHMP4_FORMAT
-
 			url, our_format = self._extract_fmt_video_format(streaming_formats, player_id)
 			if url and our_format in DASHMP4_FORMAT:
 				audio_url = self._extract_dash_audio_format(streaming_formats, player_id)

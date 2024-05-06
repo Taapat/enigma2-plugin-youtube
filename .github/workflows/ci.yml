@@ -102,8 +102,9 @@ jobs:
           echo "" > src/__init__.py
           sed -i 's/from Components/# from Components/g' src/YouTubeVideoUrl.py
           sed -i 's/config.plugins.YouTube.maxResolution.value/"22"/g' src/YouTubeVideoUrl.py
-          sed -i 's/config.plugins.YouTube.useDashMP4.value/True/g' src/YouTubeVideoUrl.py
+          sed -i 's/config.plugins.YouTube.useDashMP4.value/video_id != "bWgPKTOMoSY"/g' src/YouTubeVideoUrl.py
           sed -i 's/config.plugins.YouTube.searchLanguage.value/"en"/g' src/YouTubeVideoUrl.py
+          sed -i 's/ != video_id/ != video_id or video_id in ("bWgPKTOMoSY", "MeJVWBSsPAY")/g' src/YouTubeVideoUrl.py
       - name: Test code with pytest
         run: |
           pytest -rx -v --cov=src --cov-report=xml --cov-report=html

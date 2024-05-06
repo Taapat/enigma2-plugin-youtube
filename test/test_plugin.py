@@ -129,6 +129,7 @@ video_list = (
 	('zaPI8MvL8pg', 'Multifeed videos'),
 	('HtVdAasjOgU', 'Embeddable video'),
 	('bWgPKTOMoSY', 'Decrypting n-sig'),
+	('9UMxZofMNbA', 'm3u8 playlist'),
 	pytest.param('Tq92D6wQ1mg', 'Age gated video', marks=pytest.mark.xfail),
 	pytest.param('E8MCiceJJdY', 'Age gated video', marks=pytest.mark.xfail),
 	pytest.param('K9TRaGNnjEU', 'Age gated video', marks=pytest.mark.xfail),
