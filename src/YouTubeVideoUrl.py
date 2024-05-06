@@ -205,29 +205,33 @@ class YouTubeVideoUrl():
 			jscode
 		).group('sig')
 
-	def _extract_from_m3u8(self, manifest_url):
-		url_map = {}
+	@staticmethod
+	def _parse_m3u8_attributes(attrib):
+		return {key: val[1:-1] if val.startswith('"') else val for (key, val) in findall(r'(?P<key>[A-Z0-9-]+)=(?P<val>"[^"]+"|[^",]+)(?:,|$)', attrib)}
+
+	def _get_m3u8_audio_urls(self, manifest):
 		audio_urls = {}
-		audio_url = ''
-
-		def _parse_m3u8_attributes(_attrib):
-			return {key: val[1:-1] if val.startswith('"') else val for (key, val) in findall(r'(?P<key>[A-Z0-9-]+)=(?P<val>"[^"]+"|[^",]+)(?:,|$)', _attrib)}
-
-		manifest = self._download_webpage(manifest_url)
-
 		if '#EXT-X-MEDIA:' in manifest:
 			for line in manifest.splitlines():
 				if line.startswith('#EXT-X-MEDIA:'):
-					audio_info = _parse_m3u8_attributes(line)
+					audio_info = self._parse_m3u8_attributes(line)
 					audio_urls[audio_info.get('GROUP-ID')] = audio_info.get('URI')
+		return 	audio_urls
+
+	def _extract_from_m3u8(self, manifest_url):
+		url_map = {}
+		audio_url = ''
+
+		manifest = self._download_webpage(manifest_url)
+		audio_urls = self._get_m3u8_audio_urls(manifest)
 
 		for line in manifest.splitlines():
 			if audio_urls and line.startswith('#EXT-X-STREAM-INF:'):
-				audio_id = _parse_m3u8_attributes(line).get('AUDIO')
+				audio_id = self._parse_m3u8_attributes(line).get('AUDIO')
 				if audio_id and audio_id in audio_urls:
 					audio_url = SUBURI + audio_urls.get(audio_id)
 			elif line.startswith('https'):
-				itag = search(r'/sgovp/gir%3Dyes%3Bitag%3D(\d+?)/', line)
+				itag = search(r'/sgovp/[^/]+itag%3D(\d+?)/', line) or search(r'/itag/(\d+?)/', line)
 				if itag:
 					url_map[itag.group(1)] = line + audio_url
 					audio_url = ''
