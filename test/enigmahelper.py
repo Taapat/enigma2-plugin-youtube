@@ -640,7 +640,7 @@ def start_session():
 		from Components.config import config, ConfigSubsection, ConfigText
 		config.osd = ConfigSubsection()
 		config.osd.language = ConfigText(default="de_DE")
-		config.misc.language = ConfigText(default="de_DE")
+		config.misc.locale = ConfigText(default="de_DE")
 		Components.UsageConfig.InitUsageConfig()
 
 	print('init skin')
