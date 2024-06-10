@@ -717,7 +717,7 @@ class YouTubeMain(Screen):
 		if not video_url:  # Get and remember video url
 			er = 'Video url not found!'
 			try:
-				video_url = self.ytdl.extract(video_id)
+				video_url = self.ytdl.extract(video_id, self.ytapi.get_yt_auth())
 			except Exception as e:
 				er = e
 				print('[YouTube] Error in extract info:', er)
@@ -803,10 +803,7 @@ class YouTubeMain(Screen):
 				config.plugins.YouTube.login.value):
 			from .YouTubeApi import YouTubeApi
 			self.ytapi = YouTubeApi(refresh_token)
-			if self.ytapi.access_token:
-				self.is_auth = True
-			else:
-				self.is_auth = False
+			self.is_auth = self.ytapi.is_auth()
 
 	def mySubscriptions(self):
 		videos = []

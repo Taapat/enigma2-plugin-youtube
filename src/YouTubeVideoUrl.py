@@ -292,7 +292,7 @@ class YouTubeVideoUrl():
 					print('[YouTubeVideoUrl] Failed to parse web JSON')
 		return None, None
 
-	def _extract_player_response(self, video_id, client):
+	def _extract_player_response(self, video_id, yt_auth, client):
 		player_id = None
 		url = 'https://www.youtube.com/youtubei/v1/player?prettyPrint=false'
 		data = {
@@ -308,6 +308,8 @@ class YouTubeVideoUrl():
 			'Origin': 'https://www.youtube.com',
 			'X-YouTube-Client-Name': client
 		}
+		if yt_auth:
+			headers['Authorization'] = yt_auth
 		if client == 5:
 			VERSION = '19.09.3'
 			USER_AGENT = 'com.google.ios.youtube/%s (iPhone14,3; U; CPU iOS 15_6 like Mac OS X)' % VERSION
@@ -367,7 +369,7 @@ class YouTubeVideoUrl():
 			print('[YouTubeVideoUrl] Failed to parse JSON')
 			return None, None
 
-	def _real_extract(self, video_id):
+	def _real_extract(self, video_id, yt_auth):
 		IGNORE_VIDEO_FORMAT = (
 			'43', '44', '45', '46',  # webm
 			'82', '83', '84', '85',  # 3D
@@ -394,7 +396,7 @@ class YouTubeVideoUrl():
 			print('[YouTubeVideoUrl] skip DASH MP4 format')
 			self.use_dash_mp4 = DASHMP4_FORMAT
 
-		player_response, player_id = self._extract_player_response(video_id, 30)
+		player_response, player_id = self._extract_player_response(video_id, yt_auth, 30)
 		if not player_response:
 			raise RuntimeError('Player response not found!')
 
@@ -404,14 +406,14 @@ class YouTubeVideoUrl():
 				player_response, player_id = self._extract_web_response(video_id)
 			else:
 				print('[YouTubeVideoUrl] Got wrong player response, try ios client')
-				player_response, player_id = self._extract_player_response(video_id, 5)
+				player_response, player_id = self._extract_player_response(video_id, yt_auth, 5)
 
 		is_live = self.try_get(player_response, lambda x: x['videoDetails']['isLive'])
 		playability_status = player_response.get('playabilityStatus', {})
 
 		if not is_live and playability_status.get('status') == 'LOGIN_REQUIRED':
 			print('[YouTubeVideoUrl] Age gate content')
-			player_response, player_id = self._extract_player_response(video_id, 85)
+			player_response, player_id = self._extract_player_response(video_id, yt_auth, 85)
 			if not player_response:
 				raise RuntimeError('Age gate content player response not found!')
 
@@ -482,11 +484,11 @@ class YouTubeVideoUrl():
 
 		return str(url)
 
-	def extract(self, video_id):
+	def extract(self, video_id, yt_auth=None):
 		error_message = None
 		for _ in range(3):
 			try:
-				return self._real_extract(video_id)
+				return self._real_extract(video_id, yt_auth)
 			except Exception as ex:
 				if ex is None:
 					print('No supported formats found, trying again!')
