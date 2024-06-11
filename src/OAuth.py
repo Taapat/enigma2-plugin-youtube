@@ -94,23 +94,15 @@ class OAuth:
 			return data['refresh_token'], 1
 		return None, self.retry_interval + 2
 
-	def get_token(self, url, refresh_token):
+	def get_access_token(self, refresh_token):
+		url = 'https://accounts.google.com/o/oauth2/token'
 		data = {'client_id': CLIENT_ID,
 				'client_secret': CLIENT_SECRET,
 				'refresh_token': refresh_token,
 				'grant_type': 'refresh_token'}
-		return self.get_oauth_response(url, data)
-
-	def get_access_token(self, refresh_token):
-		url = 'https://accounts.google.com/o/oauth2/token'
-		data = self.get_token(url, refresh_token)
-		if 'access_token' in data:
-			url = 'https://www.youtube.com/o/oauth2/token'
-			yt_data = self.get_token(url, refresh_token)
-			if 'token_type' in yt_data and 'access_token' in yt_data:
-				yt_auth = '%s %s' % (yt_data['token_type'], yt_data['access_token'])
-			else:
-				yt_auth = None
-			return data['access_token'], yt_auth
+		res = self.get_oauth_response(url, data)
+		if 'access_token' in res:
+			yt_auth = '%s %s' % (res['token_type'], res['access_token']) if 'token_type' in res else None
+			return res['access_token'], yt_auth
 		print('[OAuth] Error in get access token')
 		return None, None
