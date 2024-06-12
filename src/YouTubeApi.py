@@ -18,12 +18,12 @@ class YouTubeApi:
 			self.renew_access_token()
 		else:
 			self.access_token = None
-			self.yt_auth = None
+			self.token_type = None
 			self.key = '&key=%s' % API_KEY
 
 	def renew_access_token(self):
 		self.key = '&key=%s' % API_KEY
-		self.access_token, self.yt_auth = OAuth().get_access_token(self.refresh_token)
+		self.access_token, self.token_type = OAuth().get_access_token(self.refresh_token)
 		if self.access_token:
 			self.key += '&access_token=%s' % self.access_token
 
@@ -31,7 +31,8 @@ class YouTubeApi:
 		return bool(self.access_token)
 
 	def get_yt_auth(self):
-		return self.yt_auth
+		if self.token_type and self.access_token:
+			return '%s %s' % (self.token_type, self.access_token)
 
 	def try_response(self, url_or_request, renew=True):
 		response = {}

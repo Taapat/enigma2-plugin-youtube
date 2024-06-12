@@ -76,33 +76,35 @@ class OAuth:
 
 	def get_user_code(self):  # pragma: no cover
 		url = 'https://accounts.google.com/o/oauth2/device/code'
-		data = {'client_id': CLIENT_ID,
-				'scope': 'https://www.googleapis.com/auth/youtube'}
-		data = self.get_oauth_response(url, data)
-		self.device_code = data.get('device_code', '')
-		self.retry_interval = data.get('interval', 2)
-		return str(data.get('verification_url', '')), str(data.get('user_code', ''))
+		data = {
+			'client_id': CLIENT_ID,
+			'scope': 'https://www.googleapis.com/auth/youtube'
+		}
+		res = self.get_oauth_response(url, data)
+		self.device_code = res.get('device_code', '')
+		self.retry_interval = res.get('interval', 2)
+		return str(res.get('verification_url', '')), str(res.get('user_code', ''))
 
 	def get_new_token(self):  # pragma: no cover
 		url = 'https://accounts.google.com/o/oauth2/token'
-		data = {'client_id': CLIENT_ID,
-				'client_secret': CLIENT_SECRET,
-				'code': self.device_code,
-				'grant_type': 'http://oauth.net/grant_type/device/1.0'}
-		data = self.get_oauth_response(url, data)
-		if 'access_token' in data and 'refresh_token' in data:
-			return data['refresh_token'], 1
+		data = {
+			'client_id': CLIENT_ID,
+			'client_secret': CLIENT_SECRET,
+			'code': self.device_code,
+			'grant_type': 'http://oauth.net/grant_type/device/1.0'
+		}
+		res = self.get_oauth_response(url, data)
+		if 'access_token' in res and 'refresh_token' in res:
+			return res['refresh_token'], 1
 		return None, self.retry_interval + 2
 
 	def get_access_token(self, refresh_token):
 		url = 'https://accounts.google.com/o/oauth2/token'
-		data = {'client_id': CLIENT_ID,
-				'client_secret': CLIENT_SECRET,
-				'refresh_token': refresh_token,
-				'grant_type': 'refresh_token'}
+		data = {
+			'client_id': CLIENT_ID,
+			'client_secret': CLIENT_SECRET,
+			'refresh_token': refresh_token,
+			'grant_type': 'refresh_token'
+		}
 		res = self.get_oauth_response(url, data)
-		if 'access_token' in res:
-			yt_auth = '%s %s' % (res['token_type'], res['access_token']) if 'token_type' in res else None
-			return res['access_token'], yt_auth
-		print('[OAuth] Error in get access token')
-		return None, None
+		return res.get('access_token'), res.get('token_type')
