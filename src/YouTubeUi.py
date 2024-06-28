@@ -54,7 +54,7 @@ config.plugins.YouTube.searchResult = ConfigSelection(default='24',
 		('24', '24'),
 		('50', '50')])
 config.plugins.YouTube.searchRegion = ConfigSelection(
-	default=language.getLanguage().split('_')[1] if language.getLanguage().split('_')[1] != 'EN' else '',
+	default=language.getLanguage().split('_')[1] if language.getLanguage() and language.getLanguage().split('_')[1] != 'EN' else '',
 	choices=[('', _('All'))] + [(x[1], x[0]) for x in ISO3166])
 config.plugins.YouTube.searchLanguage = ConfigSelection(
 	default=language.getLanguage().split('_')[0],
