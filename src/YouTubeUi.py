@@ -45,6 +45,15 @@ except ImportError:
 	ISO3166 = [(x[1][0], x[1][2]) for x in language.getLanguageList() if x[1][2] != 'EN']
 
 
+def default_language():
+	lang = language.getLanguage().split('_')
+	if len(lang) > 1:
+		if lang[1] == 'EN':
+			lang[1] = ''
+		return lang
+	return ['', '']
+
+
 config.plugins.YouTube = ConfigSubsection()
 config.plugins.YouTube.saveHistory = ConfigYesNo(default=True)
 config.plugins.YouTube.searchResult = ConfigSelection(default='24',
@@ -54,10 +63,10 @@ config.plugins.YouTube.searchResult = ConfigSelection(default='24',
 		('24', '24'),
 		('50', '50')])
 config.plugins.YouTube.searchRegion = ConfigSelection(
-	default=language.getLanguage().split('_')[1] if language.getLanguage() and language.getLanguage().split('_')[1] != 'EN' else '',
+	default=default_language()[1],
 	choices=[('', _('All'))] + [(x[1], x[0]) for x in ISO3166])
 config.plugins.YouTube.searchLanguage = ConfigSelection(
-	default=language.getLanguage().split('_')[0],
+	default=default_language()[0],
 	choices=[('', _('All'))] + [(x[1][1], x[1][0]) for x in language.getLanguageList()])
 config.plugins.YouTube.searchOrder = ConfigSelection(default='relevance',
 	choices=[('relevance', _('Relevance')),
