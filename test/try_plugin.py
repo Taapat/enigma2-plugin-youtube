@@ -131,6 +131,7 @@ def try_plugin_screens_load():
 		from Components.ServiceEventTracker import ServiceEventTracker
 		func = list(ServiceEventTracker.EventMap.values())[0][0][2]
 		config.plugins.YouTube.lastPosition.value = '["%s", 1]' % session.current_dialog.current[0]
+		config.plugins.YouTube.player.value = '5002'
 		func()
 		session.current_dialog.close(True)
 		session.current_dialog.started = False
