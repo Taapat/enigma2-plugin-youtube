@@ -430,6 +430,29 @@ eAVControl = EnigmaAVControl()
 modules['enigma'].eAVControl = eAVControl
 modules['enigma'].eAVSwitch = eAVControl
 
+
+class EnigmaSettings(EnimaInstance):
+	def __init__(self):
+		EnimaInstance.__init__(self)
+		self.getInstance = self
+
+	def setAudioDefaultAC3(self, configElement):
+		pass  # Dummy method
+
+	def setAudioDefaultDDP(self, configElement):
+		pass  # Dummy method
+
+	def setSubtitleDefaultImpaired(self, configElement):
+		pass  # Dummy method
+
+	def setSubtitleDefaultDVB(self, configElement):
+		pass  # Dummy method
+
+
+eSettings = EnigmaSettings()
+modules['enigma'].eSettings = eSettings
+modules['enigma'].eSubtitleSettings = eSettings
+
 enigma_fonts = {}
 
 
