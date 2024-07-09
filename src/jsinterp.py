@@ -817,7 +817,7 @@ class JSInterpreter(object):
 					obj = argvals[0]
 					argvals = argvals[1:]
 					if func_prototype == 'apply':
-						if not len(argvals) == 1:
+						if len(argvals) != 1:
 							raise RuntimeError('Takes two arguments')
 						if not isinstance(argvals, list):
 							raise RuntimeError('Second argument needs to be a list')
