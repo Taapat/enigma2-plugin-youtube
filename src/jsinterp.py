@@ -765,9 +765,10 @@ class JSInterpreter(object):
 			return self._operator(op, left_val, right_expr, local_vars, allow_recursion), should_return
 
 		if md.get('attribute'):
-			variable, member, nullish = m.group('var', 'member', 'nullish')
-			if not member:
-				member = self.interpret_expression(m.group('member2'), local_vars, allow_recursion)
+			d = {'member': ''}  # To change in eval_method
+			variable, d['member'], nullish = m.group('var', 'member', 'nullish')
+			if not d['member']:
+				d['member'] = self.interpret_expression(m.group('member2'), local_vars, allow_recursion)
 			arg_str = expr[m.end():]
 			if arg_str.startswith('('):
 				arg_str, remaining = self._separate_at_paren(arg_str)
@@ -775,11 +776,12 @@ class JSInterpreter(object):
 				arg_str, remaining = None, arg_str
 
 			def eval_method():
-				if (variable, member) == ('console', 'debug'):
+				if (variable, d['member']) == ('console', 'debug'):
 					return
 				types = {
 					'String': compat_str,
 					'Math': float,
+					'Array': list,
 				}
 				obj = local_vars.get(variable)
 				if obj in (JSUndefined, None):
@@ -798,32 +800,50 @@ class JSInterpreter(object):
 
 				# Member access
 				if arg_str is None:
-					return self._index(obj, member)
+					return self._index(obj, d['member'])
 
 				# Function call
 				argvals = [
 					self.interpret_expression(v, local_vars, allow_recursion)
 					for v in self._separate(arg_str)]
 
-				if obj == compat_str:
-					if member == 'fromCharCode':
-						return ''.join(map(compat_chr, argvals))
-					raise RuntimeError('Unsupported string method', member)
-				elif obj == float:
-					if member == 'pow':
-						return argvals[0] ** argvals[1]
-					raise RuntimeError('Unsupported Math method', member)
+				# Fixup prototype call
+				if isinstance(obj, type) and d['member'].startswith('prototype.'):
+					new_member, _, func_prototype = d['member'].partition('.')[2].partition('.')
+					if not argvals:
+						raise RuntimeError('Takes one or more arguments')
+					if not isinstance(argvals[0], obj):
+						raise RuntimeError('Needs binding to type', obj)
+					obj = argvals[0]
+					argvals = argvals[1:]
+					if func_prototype == 'apply':
+						if not len(argvals) == 1:
+							raise RuntimeError('Takes two arguments')
+						if not isinstance(argvals, list):
+							raise RuntimeError('Second argument needs to be a list')
+					elif func_prototype != 'call':
+						raise RuntimeError('Unsupported Function method', func_prototype)
+					d['member'] = new_member
 
-				if member == 'split':
+				if obj == compat_str:
+					if d['member'] == 'fromCharCode':
+						return ''.join(map(compat_chr, argvals))
+					raise RuntimeError('Unsupported string method', d['member'])
+				elif obj == float:
+					if d['member'] == 'pow':
+						return argvals[0] ** argvals[1]
+					raise RuntimeError('Unsupported Math method', d['member'])
+
+				if d['member'] == 'split':
 					return obj.split(argvals[0]) if argvals[0] else list(obj)
-				elif member == 'join':
+				elif d['member'] == 'join':
 					return argvals[0].join(obj)
-				elif member == 'reverse':
+				elif d['member'] == 'reverse':
 					obj.reverse()
 					return obj
-				elif member == 'slice':
+				elif d['member'] == 'slice':
 					return obj[argvals[0]:]
-				elif member == 'splice':
+				elif d['member'] == 'splice':
 					index, how_many = map(int, (argvals + [len(obj)])[:2])
 					if index < 0:
 						index += len(obj)
@@ -834,33 +854,33 @@ class JSInterpreter(object):
 					for i, item in enumerate(add_items):
 						obj.insert(index + i, item)
 					return res
-				elif member == 'unshift':
+				elif d['member'] == 'unshift':
 					for item in reversed(argvals):
 						obj.insert(0, item)
 					return obj
-				elif member == 'pop':
+				elif d['member'] == 'pop':
 					if not obj:
 						return
 					return obj.pop()
-				elif member == 'push':
+				elif d['member'] == 'push':
 					obj.extend(argvals)
 					return obj
-				elif member == 'forEach':
+				elif d['member'] == 'forEach':
 					f, this = (argvals + [''])[:2]
 					return [f((item, idx, obj), {'this': this}, allow_recursion) for idx, item in enumerate(obj)]
-				elif member == 'indexOf':
+				elif d['member'] == 'indexOf':
 					idx, start = (argvals + [0])[:2]
 					try:
 						return obj.index(idx, start)
 					except ValueError:
 						return -1
-				elif member == 'charCodeAt':
+				elif d['member'] == 'charCodeAt':
 					idx = argvals[0] if isinstance(argvals[0], int) else 0
 					if idx >= len(obj):
 						return None
 					return ord(obj[idx])
 
-				idx = int(member) if isinstance(obj, list) else member
+				idx = int(d['member']) if isinstance(obj, list) else d['member']
 				return obj[idx](argvals, allow_recursion=allow_recursion)
 
 			if remaining:
