@@ -106,7 +106,8 @@ class YouTubeVideoUrl():
 	@staticmethod
 	def _extract_n_function_name(jscode):
 		nfunc, idx = search(
-			r'\.get\("n"\)\)&&\(b=(?P<nfunc>[a-zA-Z0-9$]+)(?:\[(?P<idx>\d+)\])?\([a-zA-Z0-9]\)',
+			r'''(?x)(?:\.get\("n"\)\)&&\(b=|b=String\.fromCharCode\(110\),c=a\.get\(b\)\)&&\(c=)
+			(?P<nfunc>[a-zA-Z0-9$]+)(?:\[(?P<idx>\d+)\])?\([a-zA-Z0-9]\)''',
 			jscode
 		).group('nfunc', 'idx')
 		if not idx:
