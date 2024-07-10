@@ -775,14 +775,28 @@ class JSInterpreter(object):
 			else:
 				arg_str, remaining = None, arg_str
 
+			def assertion(cndn, msg):
+				""" assert, but without risk of getting optimized out """
+				if not cndn:
+					raise RuntimeError(d['member'], msg)
+
 			def eval_method():
 				if (variable, d['member']) == ('console', 'debug'):
 					return
+
+				ARG_MSG = 'takes one or more arguments'
+				ARG_ONE_MSG = 'takes exactly one argument'
+				ARG_TWO_MSG = 'takes two arguments'
+				ARG_NOT_MSG = 'does not take any arguments'
+				ARG_2_MSG = 'takes at-most 2 arguments'
+				LIST_MSG = 'must be applied on a list'
+
 				types = {
 					'String': compat_str,
 					'Math': float,
 					'Array': list,
 				}
+
 				obj = local_vars.get(variable)
 				if obj in (JSUndefined, None):
 					obj = types.get(variable, JSUndefined)
@@ -810,40 +824,46 @@ class JSInterpreter(object):
 				# Fixup prototype call
 				if isinstance(obj, type) and d['member'].startswith('prototype.'):
 					new_member, _, func_prototype = d['member'].partition('.')[2].partition('.')
-					if not argvals:
-						raise RuntimeError('Takes one or more arguments')
-					if not isinstance(argvals[0], obj):
-						raise RuntimeError('Needs binding to type', obj)
+					assertion(argvals, ARG_MSG)
+					assertion(isinstance(argvals[0], obj), 'needs binding to type %s' % obj)
 					obj = argvals[0]
 					argvals = argvals[1:]
 					if func_prototype == 'apply':
-						if len(argvals) != 1:
-							raise RuntimeError('Takes two arguments')
-						if not isinstance(argvals, list):
-							raise RuntimeError('Second argument needs to be a list')
+						assertion(len(argvals) == 1, ARG_TWO_MSG)
+						assertion(isinstance(argvals, list), 'second argument needs to be a list')
 					elif func_prototype != 'call':
-						raise RuntimeError('Unsupported Function method', func_prototype)
+						raise RuntimeError('Unsupported function method', func_prototype)
 					d['member'] = new_member
 
 				if obj == compat_str:
 					if d['member'] == 'fromCharCode':
+						assertion(argvals, ARG_MSG)
 						return ''.join(map(compat_chr, argvals))
 					raise RuntimeError('Unsupported string method', d['member'])
 				elif obj == float:
 					if d['member'] == 'pow':
+						assertion(len(argvals) == 2, ARG_TWO_MSG)
 						return argvals[0] ** argvals[1]
 					raise RuntimeError('Unsupported Math method', d['member'])
 
 				if d['member'] == 'split':
+					assertion(len(argvals) == 1, 'with limit argument is not implemented')
 					return obj.split(argvals[0]) if argvals[0] else list(obj)
 				elif d['member'] == 'join':
+					assertion(isinstance(obj, list), LIST_MSG)
+					assertion(len(argvals) == 1, ARG_ONE_MSG)
 					return argvals[0].join(obj)
 				elif d['member'] == 'reverse':
+					assertion(not argvals, ARG_NOT_MSG)
 					obj.reverse()
 					return obj
 				elif d['member'] == 'slice':
+					assertion(isinstance(obj, list), LIST_MSG)
+					assertion(len(argvals) == 1, ARG_ONE_MSG)
 					return obj[argvals[0]:]
 				elif d['member'] == 'splice':
+					assertion(isinstance(obj, list), LIST_MSG)
+					assertion(argvals, ARG_MSG)
 					index, how_many = map(int, (argvals + [len(obj)])[:2])
 					if index < 0:
 						index += len(obj)
@@ -855,26 +875,37 @@ class JSInterpreter(object):
 						obj.insert(index + i, item)
 					return res
 				elif d['member'] == 'unshift':
+					assertion(isinstance(obj, list), LIST_MSG)
+					assertion(argvals, ARG_MSG)
 					for item in reversed(argvals):
 						obj.insert(0, item)
 					return obj
 				elif d['member'] == 'pop':
+					assertion(isinstance(obj, list), LIST_MSG)
+					assertion(not argvals, ARG_NOT_MSG)
 					if not obj:
 						return
 					return obj.pop()
 				elif d['member'] == 'push':
+					assertion(argvals, ARG_MSG)
 					obj.extend(argvals)
 					return obj
 				elif d['member'] == 'forEach':
+					assertion(argvals, ARG_MSG)
+					assertion(len(argvals) <= 2, ARG_2_MSG)
 					f, this = (argvals + [''])[:2]
 					return [f((item, idx, obj), {'this': this}, allow_recursion) for idx, item in enumerate(obj)]
 				elif d['member'] == 'indexOf':
+					assertion(argvals, ARG_MSG)
+					assertion(len(argvals) <= 2, ARG_2_MSG)
 					idx, start = (argvals + [0])[:2]
 					try:
 						return obj.index(idx, start)
 					except ValueError:
 						return -1
 				elif d['member'] == 'charCodeAt':
+					assertion(isinstance(obj, str), 'must be applied on a string')
+					assertion(len(argvals) == 1, ARG_ONE_MSG)
 					idx = argvals[0] if isinstance(argvals[0], int) else 0
 					if idx >= len(obj):
 						return None
