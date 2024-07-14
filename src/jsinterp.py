@@ -776,7 +776,7 @@ class JSInterpreter(object):
 			def assertion(cndn, msg):
 				""" assert, but without risk of getting optimized out """
 				if not cndn:
-					raise RuntimeError(member, msg)
+					raise RuntimeError('{0} {1}'.format(member, msg))
 
 			def eval_method(variable, member):
 				if (variable, member) == ('console', 'debug'):
@@ -829,7 +829,7 @@ class JSInterpreter(object):
 						if func_prototype == 'call':
 							obj = argvals.pop(0)
 						elif func_prototype == 'apply':
-							assertion(len(argvals) == 1, ARG_TWO_MSG)
+							assertion(len(argvals) == 2, ARG_TWO_MSG)
 							obj, argvals = argvals
 							assertion(isinstance(argvals, list), 'second argument must be a list')
 						else:
