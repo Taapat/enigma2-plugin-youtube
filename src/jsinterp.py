@@ -562,8 +562,7 @@ class JSInterpreter(object):
 					if m.group('err'):
 						catch_vars[m.group('err')] = err
 					catch_vars = local_vars.new_child(m=catch_vars)
-					err = None
-					pending = self.interpret_statement(sub_expr, catch_vars, allow_recursion)
+					err, pending = None, self.interpret_statement(sub_expr, catch_vars, allow_recursion)
 
 			m = self._FINALLY_RE.match(expr)
 			if m:
@@ -765,10 +764,9 @@ class JSInterpreter(object):
 			return self._operator(op, left_val, right_expr, local_vars, allow_recursion), should_return
 
 		if md.get('attribute'):
-			d = {'member': ''}  # To change in eval_method
-			variable, d['member'], nullish = m.group('var', 'member', 'nullish')
-			if not d['member']:
-				d['member'] = self.interpret_expression(m.group('member2'), local_vars, allow_recursion)
+			variable, member, nullish = m.group('var', 'member', 'nullish')
+			if not member:
+				member = self.interpret_expression(m.group('member2'), local_vars, allow_recursion)
 			arg_str = expr[m.end():]
 			if arg_str.startswith('('):
 				arg_str, remaining = self._separate_at_paren(arg_str)
@@ -778,10 +776,10 @@ class JSInterpreter(object):
 			def assertion(cndn, msg):
 				""" assert, but without risk of getting optimized out """
 				if not cndn:
-					raise RuntimeError(d['member'], msg)
+					raise RuntimeError(member, msg)
 
-			def eval_method():
-				if (variable, d['member']) == ('console', 'debug'):
+			def eval_method(variable, member):
+				if (variable, member) == ('console', 'debug'):
 					return
 
 				ARG_MSG = 'takes one or more arguments'
@@ -814,7 +812,7 @@ class JSInterpreter(object):
 
 				# Member access
 				if arg_str is None:
-					return self._index(obj, d['member'])
+					return self._index(obj, member)
 
 				# Function call
 				argvals = [
@@ -822,46 +820,49 @@ class JSInterpreter(object):
 					for v in self._separate(arg_str)]
 
 				# Fixup prototype call
-				if isinstance(obj, type) and d['member'].startswith('prototype.'):
-					new_member, _, func_prototype = d['member'].partition('.')[2].partition('.')
-					assertion(argvals, ARG_MSG)
-					assertion(isinstance(argvals[0], obj), 'needs binding to type %s' % obj)
-					obj = argvals[0]
-					argvals = argvals[1:]
-					if func_prototype == 'apply':
-						assertion(len(argvals) == 1, ARG_TWO_MSG)
-						assertion(isinstance(argvals, list), 'second argument needs to be a list')
-					elif func_prototype != 'call':
-						raise RuntimeError('Unsupported function method', func_prototype)
-					d['member'] = new_member
+				if isinstance(obj, type):
+					new_member, rest = member.partition('.')[0::2]
+					if new_member == 'prototype':
+						new_member, func_prototype = rest.partition('.')[0::2]
+						assertion(argvals, ARG_MSG)
+						assertion(isinstance(argvals[0], obj), 'must bind to type {0}'.format(obj))
+						if func_prototype == 'call':
+							obj = argvals.pop(0)
+						elif func_prototype == 'apply':
+							assertion(len(argvals) == 1, ARG_TWO_MSG)
+							obj, argvals = argvals
+							assertion(isinstance(argvals, list), 'second argument must be a list')
+						else:
+							raise RuntimeError('Unsupported function method ' + func_prototype)
+						member = new_member
 
-				if obj == compat_str:
-					if d['member'] == 'fromCharCode':
+				if obj is compat_str:
+					if member == 'fromCharCode':
 						assertion(argvals, ARG_MSG)
 						return ''.join(map(compat_chr, argvals))
-					raise RuntimeError('Unsupported string method', d['member'])
-				elif obj == float:
-					if d['member'] == 'pow':
+					raise RuntimeError('Unsupported string method', member)
+				elif obj is float:
+					if member == 'pow':
 						assertion(len(argvals) == 2, ARG_TWO_MSG)
 						return argvals[0] ** argvals[1]
-					raise RuntimeError('Unsupported Math method', d['member'])
+					raise RuntimeError('Unsupported Math method', member)
 
-				if d['member'] == 'split':
+				if member == 'split':
 					assertion(len(argvals) == 1, 'with limit argument is not implemented')
 					return obj.split(argvals[0]) if argvals[0] else list(obj)
-				elif d['member'] == 'join':
+				elif member == 'join':
 					assertion(isinstance(obj, list), LIST_MSG)
 					assertion(len(argvals) == 1, ARG_ONE_MSG)
 					return argvals[0].join(obj)
-				elif d['member'] == 'reverse':
+				elif member == 'reverse':
 					assertion(not argvals, ARG_NOT_MSG)
 					obj.reverse()
 					return obj
-				elif d['member'] == 'slice':
+				elif member == 'slice':
 					assertion(isinstance(obj, list), LIST_MSG)
 					assertion(len(argvals) == 1, ARG_ONE_MSG)
 					return obj[argvals[0]:]
-				elif d['member'] == 'splice':
+				elif member == 'splice':
 					assertion(isinstance(obj, list), LIST_MSG)
 					assertion(argvals, ARG_MSG)
 					index, how_many = map(int, (argvals + [len(obj)])[:2])
@@ -869,33 +870,33 @@ class JSInterpreter(object):
 						index += len(obj)
 					add_items = argvals[2:]
 					res = []
-					for i in range(index, min(index + how_many, len(obj))):
+					for _ in range(index, min(index + how_many, len(obj))):
 						res.append(obj.pop(index))
 					for i, item in enumerate(add_items):
 						obj.insert(index + i, item)
 					return res
-				elif d['member'] == 'unshift':
+				elif member == 'unshift':
 					assertion(isinstance(obj, list), LIST_MSG)
 					assertion(argvals, ARG_MSG)
 					for item in reversed(argvals):
 						obj.insert(0, item)
 					return obj
-				elif d['member'] == 'pop':
+				elif member == 'pop':
 					assertion(isinstance(obj, list), LIST_MSG)
 					assertion(not argvals, ARG_NOT_MSG)
 					if not obj:
 						return
 					return obj.pop()
-				elif d['member'] == 'push':
+				elif member == 'push':
 					assertion(argvals, ARG_MSG)
 					obj.extend(argvals)
 					return obj
-				elif d['member'] == 'forEach':
+				elif member == 'forEach':
 					assertion(argvals, ARG_MSG)
 					assertion(len(argvals) <= 2, ARG_2_MSG)
 					f, this = (argvals + [''])[:2]
 					return [f((item, idx, obj), {'this': this}, allow_recursion) for idx, item in enumerate(obj)]
-				elif d['member'] == 'indexOf':
+				elif member == 'indexOf':
 					assertion(argvals, ARG_MSG)
 					assertion(len(argvals) <= 2, ARG_2_MSG)
 					idx, start = (argvals + [0])[:2]
@@ -903,7 +904,7 @@ class JSInterpreter(object):
 						return obj.index(idx, start)
 					except ValueError:
 						return -1
-				elif d['member'] == 'charCodeAt':
+				elif member == 'charCodeAt':
 					assertion(isinstance(obj, str), 'must be applied on a string')
 					assertion(len(argvals) == 1, ARG_ONE_MSG)
 					idx = argvals[0] if isinstance(argvals[0], int) else 0
@@ -911,16 +912,16 @@ class JSInterpreter(object):
 						return None
 					return ord(obj[idx])
 
-				idx = int(d['member']) if isinstance(obj, list) else d['member']
+				idx = int(member) if isinstance(obj, list) else member
 				return obj[idx](argvals, allow_recursion=allow_recursion)
 
 			if remaining:
 				ret, should_abort = self.interpret_statement(
-					self._named_object(local_vars, eval_method()) + remaining,
+					self._named_object(local_vars, eval_method(variable, member)) + remaining,
 					local_vars, allow_recursion)
 				return ret, should_return or should_abort
 			else:
-				return eval_method(), should_return
+				return eval_method(variable, member), should_return
 
 		elif md.get('function'):
 			fname = m.group('fname')
@@ -956,12 +957,11 @@ class JSInterpreter(object):
 		else:
 			raise RuntimeError('Could not find object ' + objname)
 		# Currently, it only supports function definitions
-		fields_m = re.finditer(
+		for f in re.finditer(
 			r'''(?x)
 				(?P<key>%s)\s*:\s*function\s*\((?P<args>(?:%s|,)*)\){(?P<code>[^}]+)}
 			''' % (_FUNC_NAME_RE, _NAME_RE),
-			fields)
-		for f in fields_m:
+			fields):
 			argnames = self.build_arglist(f.group('args'))
 			obj[remove_quotes(f.group('key'))] = self.build_function(argnames, f.group('code'))
 
@@ -1002,7 +1002,7 @@ class JSInterpreter(object):
 			if mobj is None:
 				break
 			start, body_start = mobj.span()
-			body, remaining = self._separate_at_paren(code[body_start - 1:], '}')
+			body, remaining = self._separate_at_paren(code[body_start - 1:])
 			name = self._named_object(local_vars, self.extract_function_from_code(
 				[x.strip() for x in mobj.group('args').split(',')],
 				body, local_vars, *global_stack))
@@ -1027,8 +1027,7 @@ class JSInterpreter(object):
 		argnames = tuple(argnames)
 
 		def resf(args, kwargs={}, allow_recursion=100):
-			global_stack[0].update(
-				compat_zip_longest(argnames, args, fillvalue=None))
+			global_stack[0].update(compat_zip_longest(argnames, args, fillvalue=None))
 			global_stack[0].update(kwargs)
 			var_stack = LocalNameSpace(*global_stack)
 			ret, should_abort = self.interpret_statement(code.replace('\n', ' '), var_stack, allow_recursion - 1)
