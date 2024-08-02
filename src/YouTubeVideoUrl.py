@@ -105,21 +105,37 @@ class YouTubeVideoUrl():
 
 	@staticmethod
 	def _extract_n_function_name(jscode):
-		nfunc, idx = search(
+		func_name, idx = search(
 			r'''(?x)
-				(?:\(\s*(?P<b>[a-z])\s*=\s*(?:
+				(?:\((?:[\w$()\s]+,)*?\s*(?P<b>[a-z])\s*=\s*(?:
 					String\s*\.\s*fromCharCode\s*\(\s*110\s*\)|
-					"n+"\[\s*\+?s*[\w$.]+\s*]
-				)\s*,(?P<c>[a-z])\s*=\s*[a-z]\s*)?
-				\.\s*get\s*\(\s*(?(b)(?P=b)|"n{1,2}")(?:\s*\)){2}\s*&&\s*\(\s*(?(c)(?P=c)|b)\s*=\s*
+					"n+"\[\s*\+?s*[\w$.]+\s*]|
+					(?P<b1>(?:[\w$]+\s*\.\s*)+n\b(?:(?!&&).)+\))
+				)\s*
+					(?(b1)
+						&&\s*\(\s*(?P=b)|
+						(?:
+							,(?P<c>[a-z])\s*=\s*[a-z]\s*)?
+								\.\s*get\s*\(\s*(?(b)(?P=b)|"n{1,2}")(?:\s*\)){2}\s*
+							&&\s*\(\s*(?(c)(?P=c)|(?P=b))
+						)
+					)\s*=\s*
 				(?P<nfunc>[a-zA-Z_$][\w$]*)(?:\s*\[(?P<idx>\d+)\])?\s*\(\s*[\w$]+\s*\)
 			''', jscode
 		).group('nfunc', 'idx')
+		if not func_name:
+			return search(
+				r'''(?xs)
+					(?:(?<=[^\w$])|^)       # instead of \b, which ignores $
+					(?P<name>(?!\d)[a-zA-Z\d_$]+)\s*=\s*function\((?!\d)[a-zA-Z\d_$]+\)
+					\s*\{(?:(?!};).)+?["']enhanced_except_
+				''', jscode
+			).group('name')
 		if not idx:
-			return nfunc
+			return func_name
 		if int(idx) == 0:
 			real_nfunc = search(
-				r'var %s\s*=\s*\[([a-zA-Z_$][\w$]*)\];' % (escape(nfunc), ),
+				r'var %s\s*=\s*\[([a-zA-Z_$][\w$]*)\];' % (escape(func_name), ),
 				jscode
 			)
 			if real_nfunc:
