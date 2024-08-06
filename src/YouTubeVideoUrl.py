@@ -107,23 +107,25 @@ class YouTubeVideoUrl():
 	def _extract_n_function_name(jscode):
 		func_name, idx = search(
 			r'''(?x)
-				(?:\((?:[\w$()\s]+,)*?\s*(?P<b>[a-z])\s*=\s*(?:
-					String\s*\.\s*fromCharCode\s*\(\s*110\s*\)|
-					"n+"\[\s*\+?s*[\w$.]+\s*]|
-					(?P<b1>(?:[\w$]+\s*\.\s*)+n\b(?:(?!&&).)+\))
-				)\s*
-					(?(b1)
-						&&\s*\(\s*(?P=b)|
+				(?:
+					\.get\("n"\)\)&&\(b=|
+					(?:
+						b=String\.fromCharCode\(110\)|
+						(?P<str_idx>[a-zA-Z0-9_$.]+)&&\(b="nn"\[\+(?P=str_idx)\]
+					)
+					(?:
+						,[a-zA-Z0-9_$]+\(a\))?,c=a\.
 						(?:
-							,(?P<c>[a-z])\s*=\s*[a-z]\s*)?
-								\.\s*get\s*\(\s*(?(b)(?P=b)|"n{1,2}")(?:\s*\)){2}\s*
-							&&\s*\(\s*(?(c)(?P=c)|(?P=b))
-						)
-					)\s*=\s*
-				(?P<nfunc>[a-zA-Z_$][\w$]*)(?:\s*\[(?P<idx>\d+)\])?\s*\(\s*[\w$]+\s*\)
+							get\(b\)|
+							[a-zA-Z0-9_$]+\[b\]\|\|null
+						)\)&&\(c=|
+					\b(?P<var>[a-zA-Z0-9_$]+)=
+				)(?P<nfunc>[a-zA-Z0-9_$]+)(?:\[(?P<idx>\d+)\])?\([a-zA-Z]\)
+				(?(var),[a-zA-Z0-9_$]+\.set\("n"\,(?P=var)\),(?P=nfunc)\.length)
 			''', jscode
 		).group('nfunc', 'idx')
 		if not func_name:
+			print('[YouTubeVideoUrl] Falling back to generic n function search')
 			return search(
 				r'''(?xs)
 					(?:(?<=[^\w$])|^)       # instead of \b, which ignores $
