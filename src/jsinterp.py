@@ -862,9 +862,9 @@ class JSInterpreter(object):
 					obj.reverse()
 					return obj
 				elif member == 'slice':
-					assertion(isinstance(obj, list), LIST_MSG)
-					assertion(len(argvals) == 1, ARG_ONE_MSG)
-					return obj[argvals[0]:]
+					assertion(isinstance(obj, (list, compat_str)), 'must be applied on a list or string')
+					assertion(len(argvals) <= 2, 'takes between 0 and 2 arguments')
+					return obj[argvals[0]:argvals[1]]
 				elif member == 'splice':
 					assertion(isinstance(obj, list), LIST_MSG)
 					assertion(argvals, ARG_MSG)
@@ -908,7 +908,7 @@ class JSInterpreter(object):
 					except ValueError:
 						return -1
 				elif member == 'charCodeAt':
-					assertion(isinstance(obj, str), 'must be applied on a string')
+					assertion(isinstance(obj, compat_str), 'must be applied on a string')
 					assertion(len(argvals) == 1, ARG_ONE_MSG)
 					idx = argvals[0] if isinstance(argvals[0], int) else 0
 					if idx >= len(obj):
