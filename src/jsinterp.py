@@ -864,7 +864,9 @@ class JSInterpreter(object):
 				elif member == 'slice':
 					assertion(isinstance(obj, (list, compat_str)), 'must be applied on a list or string')
 					assertion(len(argvals) <= 2, 'takes between 0 and 2 arguments')
-					return obj[argvals[0]:argvals[1]]
+					if len(argvals) < 2:
+						argvals += (None,)
+					return obj[slice(*argvals)]
 				elif member == 'splice':
 					assertion(isinstance(obj, list), LIST_MSG)
 					assertion(argvals, ARG_MSG)
