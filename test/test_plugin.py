@@ -59,8 +59,10 @@ def get_video_id(q, event_type, order, s_type):
 
 def get_url(videos):
 	from src.YouTubeVideoUrl import YouTubeVideoUrl
+	from src.YouTubeApi import YouTubeApi
 	ytdl = YouTubeVideoUrl()
-	video_url = ytdl.extract(videos)
+	ytapi = YouTubeApi(os.environ['YOUTUBE_PLUGIN_TOKEN'])
+	video_url = ytdl.extract(videos, ytapi.get_yt_auth())
 	video_url = video_url.split('&suburi=', 1)[0]
 	print('Video Url', video_url)
 	return video_url

@@ -473,7 +473,7 @@ class YouTubeVideoUrl():
 						url = fmt.get('url')
 						if url:
 							break
-			if not url:  # pragma: no cover
+			if not url and streaming_formats:  # pragma: no cover
 				url = streaming_formats[0].get('url', '')
 
 		if not url:

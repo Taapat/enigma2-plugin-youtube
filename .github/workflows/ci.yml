@@ -107,7 +107,7 @@ jobs:
           sed -i 's/ != video_id/ != video_id or video_id in ("bWgPKTOMoSY", "9UMxZofMNbA")/g' src/YouTubeVideoUrl.py
       - name: Test code with pytest
         run: |
-          pytest -rx -v --cov=src --cov-report=xml --cov-report=html
+          YOUTUBE_PLUGIN_TOKEN=${{ secrets.YOUTUBE_PLUGIN_TOKEN }} pytest -rx -v --cov=src --cov-report=xml --cov-report=html
           mv .coverage .coverage_${{ matrix.python-version }}
       - name: Upload code coverage results
         uses: actions/upload-artifact@v4
@@ -160,7 +160,7 @@ jobs:
       - name: Install additional dependencies
         if: matrix.enigma2-version == 'openatv master 3.12' || matrix.enigma2-version == 'OpenViX Developer 3.12'
         run: |
-          pip install requests chardet
+          pip install requests chardet six
       - name: Link plugin files for test
         working-directory: './enigma2/lib/python/Plugins/Extensions'
         run: |
