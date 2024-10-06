@@ -335,14 +335,17 @@ class YouTubeVideoUrl():
 		if yt_auth:
 			headers['Authorization'] = yt_auth
 		if client == 5:
-			VERSION = '19.09.3'
-			USER_AGENT = 'com.google.ios.youtube/%s (iPhone14,3; U; CPU iOS 15_6 like Mac OS X)' % VERSION
+			VERSION = '19.29.1'
+			USER_AGENT = 'com.google.ios.youtube/%s (iPhone16,2; U; CPU iOS 17_5_1 like Mac OS X;)' % VERSION
 			data['context'] = {
 				'client': {
 					'hl': config.plugins.YouTube.searchLanguage.value,
 					'clientVersion': VERSION,
 					'clientName': 'IOS',
-					'deviceModel': 'iPhone14,3',
+					'deviceMake': 'Apple',
+					'deviceModel': 'iPhone16,2',
+					'osName': 'iPhone',
+					'osVersion': '17.5.1.21F90',
 					'userAgent': USER_AGENT
 				}
 			}
@@ -371,16 +374,16 @@ class YouTubeVideoUrl():
 			}
 			headers['X-YouTube-Client-Version'] = '2.0'
 		else:
-			VERSION = '1.9'
-			USER_AGENT = 'com.google.android.youtube/%s (Linux; U; Android 12; US) gzip' % VERSION
+			VERSION = '19.29.37'
+			USER_AGENT = 'com.google.android.youtube/%s (Linux; U; Android 11) gzip' % VERSION
 			data['context'] = {
 				'client': {
 					'hl': config.plugins.YouTube.searchLanguage.value,
 					'clientVersion': VERSION,
-					'androidSdkVersion': 31,
-					'clientName': 'ANDROID_TESTSUITE',
+					'androidSdkVersion': 30,
+					'clientName': 'ANDROID',
 					'osName': 'Android',
-					'osVersion': '12',
+					'osVersion': '11',
 					'userAgent': USER_AGENT
 				}
 			}
@@ -420,7 +423,7 @@ class YouTubeVideoUrl():
 			print('[YouTubeVideoUrl] skip DASH MP4 format')
 			self.use_dash_mp4 = DASHMP4_FORMAT
 
-		player_response, player_id = self._extract_player_response(video_id, yt_auth, 30)
+		player_response, player_id = self._extract_player_response(video_id, yt_auth, 3)
 		if not player_response:
 			raise RuntimeError('Player response not found!')
 
