@@ -113,6 +113,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage_${{ matrix.python-version }}
+          include-hidden-files: true
           path: .coverage_${{ matrix.python-version }}
   test-gui:
     needs: test-python
@@ -222,6 +223,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage_${{ steps.split.outputs._0 }}_${{ steps.split.outputs._1 }}
+          include-hidden-files: true
           path: .coverage_${{ steps.split.outputs._0 }}_${{ steps.split.outputs._1 }}
   sonarcloud:
     needs: [test-python, test-gui]
