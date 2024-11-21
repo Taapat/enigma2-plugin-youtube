@@ -22,7 +22,7 @@ def get_key(x):
 	return x
 
 
-API_KEY = get_key('Xhi3_LoIzw_OizD15SyBrnrR-Zk27O-jIgLwEfr39Cb754gUDI4514DGx0')
+API_KEY = get_key('Xhi3_LoIzw_OizD15SyCxlIUY-027MEVDgo8O1l39JcjHUCd_Xh51i_Lo7mByoM63')
 CLIENT_ID = get_key('4113447027255-v15bgs05u1o3m278mpjs2vcd0394w_OizDfrg5160drbw_Oiz63D.w_OizDpp75s.googleus87ercontent.99com')
 CLIENT_SECRET = get_key('Zf93pqd2rxgY2ro159rK20BMxif27')
 
