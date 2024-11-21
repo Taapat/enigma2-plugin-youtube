@@ -82,6 +82,7 @@ jobs:
       - name: Set up Python 2
         if: matrix.python-version == '2.7'
         run: |
+          sudo apt-get update
           sudo apt install -y python2
           sudo ln -sf /usr/bin/python2 /usr/bin/python
           curl -L -O "https://bootstrap.pypa.io/pip/2.7/get-pip.py"
@@ -150,6 +151,7 @@ jobs:
       - name: Set up Python 2
         if: steps.split.outputs._2 == '2.7'
         run: |
+          sudo apt-get update
           sudo apt install -y python2
           sudo ln -sf /usr/bin/python2 /usr/bin/python
           curl -L -O "https://bootstrap.pypa.io/pip/2.7/get-pip.py"
@@ -157,7 +159,8 @@ jobs:
       - name: Install dependencies
         run: |
           [ '${{ steps.split.outputs._2 }}' == '3.12' ] && tw_ver="" || tw_ver="==20.3.0"
-          pip install twisted${tw_ver} pyopenssl service_identity
+          [ '${{ steps.split.outputs._2 }}' == '2.7' ] && zi="zope.interface==4.4.2 PyHamcrest==1.9.0 " || zi=" "
+          pip install twisted${tw_ver} ${zi}pyopenssl service_identity
       - name: Install additional dependencies
         if: matrix.enigma2-version == 'openatv master 3.12' || matrix.enigma2-version == 'OpenViX Developer 3.12'
         run: |
@@ -313,6 +316,7 @@ jobs:
           python-version: '3.10'
       - name: Set up Python 2
         run: |
+          sudo apt-get update
           sudo apt install -y python2
       - name: Install dependencies
         run: |
