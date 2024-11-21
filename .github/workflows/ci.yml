@@ -82,6 +82,7 @@ jobs:
       - name: Set up Python 2
         if: matrix.python-version == '2.7'
         run: |
+          sudo apt-get update
           sudo apt install -y python2
           sudo ln -sf /usr/bin/python2 /usr/bin/python
           curl -L -O "https://bootstrap.pypa.io/pip/2.7/get-pip.py"
