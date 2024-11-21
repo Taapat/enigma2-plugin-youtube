@@ -159,7 +159,7 @@ jobs:
       - name: Install dependencies
         run: |
           [ '${{ steps.split.outputs._2 }}' == '3.12' ] && tw_ver="" || tw_ver="==20.3.0"
-          [ '${{ steps.split.outputs._2 }}' == '3.12' ] && zi="zope.interface==4.4.2 " || zi=" "
+          [ '${{ steps.split.outputs._2 }}' == '3.12' ] && zi=" " || zi="zope.interface==4.4.2 "
           pip install twisted${tw_ver} ${zi}pyopenssl service_identity -v
       - name: Install additional dependencies
         if: matrix.enigma2-version == 'openatv master 3.12' || matrix.enigma2-version == 'OpenViX Developer 3.12'
