@@ -304,18 +304,6 @@ class YouTubeVideoUrl():
 				return url
 		return ''
 
-	def _extract_web_response(self, video_id):
-		url = 'https://www.youtube.com/watch?v=%s&bpctr=9999999999&has_verified=1' % video_id
-		webpage = self._download_webpage(url)
-		if webpage:
-			player_response = search(r'ytInitialPlayerResponse\s*=\s*({[^>]*})\s*;\s*(?:var\s+meta|</script|\n)', webpage)
-			if player_response:
-				try:
-					return loads(player_response.group(1)), self._extract_player_info()
-				except ValueError:  # pragma: no cover
-					print('[YouTubeVideoUrl] Failed to parse web JSON')
-		return None, None
-
 	def _extract_player_response(self, video_id, yt_auth, client):
 		player_id = None
 		url = 'https://www.youtube.com/youtubei/v1/player?prettyPrint=false'
@@ -349,9 +337,8 @@ class YouTubeVideoUrl():
 					'userAgent': USER_AGENT
 				}
 			}
-			headers['X-YouTube-Client-Version'] = VERSION
 			headers['User-Agent'] = USER_AGENT
-		elif client == 85:
+		elif client in (2, 85):
 			player_id = self._extract_player_info()
 			if player_id:
 				if player_id not in self._player_cache:
@@ -362,17 +349,27 @@ class YouTubeVideoUrl():
 				).group('sts')
 				if sts:
 					data['playbackContext']['contentPlaybackContext']['signatureTimestamp'] = sts
-			data['context'] = {
-				'client': {
-					'hl': config.plugins.YouTube.searchLanguage.value,
-					'clientName': 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
-					'clientVersion': '2.0',
-				},
-				'thirdParty': {
-					'embedUrl': 'https://www.youtube.com/'
+			if client == 2:
+				VERSION = '2.20240726.01.00'
+				data['context'] = {
+					'client': {
+						'hl': config.plugins.YouTube.searchLanguage.value,
+						'clientVersion': VERSION,
+						'clientName': 'MWEB'
+					}
 				}
-			}
-			headers['X-YouTube-Client-Version'] = '2.0'
+			else:
+				VERSION = '2.0'
+				data['context'] = {
+					'client': {
+						'hl': config.plugins.YouTube.searchLanguage.value,
+						'clientVersion': VERSION,
+						'clientName': 'TVHTML5_SIMPLY_EMBEDDED_PLAYER'
+					},
+					'thirdParty': {
+						'embedUrl': 'https://www.youtube.com/'
+					}
+				}
 		else:
 			VERSION = '19.44.38'
 			USER_AGENT = 'com.google.android.youtube/%s (Linux; U; Android 11) gzip' % VERSION
@@ -388,8 +385,8 @@ class YouTubeVideoUrl():
 				}
 			}
 			data['params'] = '2AMB'
-			headers['X-YouTube-Client-Version'] = VERSION
 			headers['User-Agent'] = USER_AGENT
+		headers['X-YouTube-Client-Version'] = VERSION
 		try:
 			return loads(self._download_webpage(url, data, headers)), player_id
 		except ValueError:  # pragma: no cover
@@ -429,8 +426,8 @@ class YouTubeVideoUrl():
 
 		if self.try_get(player_response, lambda x: x['videoDetails']['videoId']) != video_id:
 			if self.use_dash_mp4:
-				print('[YouTubeVideoUrl] Got wrong player response, try web response')
-				player_response, player_id = self._extract_web_response(video_id)
+				print('[YouTubeVideoUrl] Got wrong player response, try mweb response')
+				player_response, player_id = self._extract_player_response(video_id, None, 2)
 			else:
 				print('[YouTubeVideoUrl] Got wrong player response, try ios client')
 				player_response, player_id = self._extract_player_response(video_id, None, 5)
