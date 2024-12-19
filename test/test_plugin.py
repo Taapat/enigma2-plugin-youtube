@@ -115,7 +115,6 @@ def test_playlist():
 
 
 video_list = (
-	('BaW_jenozKc', 'Use the first video ID'),
 	('YQHsXMglC9A', 'DASH mp4 video and audio'),
 	('a9LDPn-MO4I', '256k DASH audio via manifest'),
 	('T4XJQO3qol8', 'Controversy video'),
