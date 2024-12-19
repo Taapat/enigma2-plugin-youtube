@@ -280,7 +280,7 @@ class YouTubeVideoUrl():
 			itag = str(fmt.get('itag', ''))
 			if get_audio:
 				audio_track = fmt.get('audioTrack') or {}
-				if audio_track and not ('original' in audio_track.get('displayName').lower() or audio_track.get('audioIsDefault')):
+				if audio_track and not ('original' in audio_track.get('displayName', '').lower() or audio_track.get('audioIsDefault')):
 					# Skips non original track
 					continue
 			if itag == our_format and self._not_in_fmt(fmt, itag):
