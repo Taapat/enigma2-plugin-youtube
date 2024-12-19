@@ -182,7 +182,7 @@ jobs:
           sed -i 's/config.crash.pystackonspinner.addNotifier/# config.crash.pystackonspinner.addNotifier/g' enigma2/lib/python/Components/UsageConfig.py
           echo "model=duo4k" > enigma2/enigma.info
           echo "architecture=arm" >> enigma2/enigma.info
-          echo "socfamily=brcmstb" >> enigma2/enigma.info
+          echo "socfamily=bcm7376" >> enigma2/enigma.info
           echo "brand=vu" >> enigma2/enigma.info
           echo "displaytype=lcd" >> enigma2/enigma.info
           echo "mtdrootfs=hdd" >> enigma2/enigma.info
@@ -195,6 +195,7 @@ jobs:
           echo "scart=no" >> enigma2/enigma.info
           echo "scartyuv=no" >> enigma2/enigma.info
           echo "yuv=no" >> enigma2/enigma.info
+          echo "oe=OE-Alliance 5.4" >> enigma2/enigma.info
       - name: Patch enigma step 3
         if: steps.split.outputs._0 == 'OpenViX'
         run: |
