@@ -275,9 +275,14 @@ class YouTubeVideoUrl():
 			itag in self.use_dash_mp4
 		)
 
-	def _extract_url(self, our_format, streaming_formats, player_id):
+	def _extract_url(self, our_format, streaming_formats, player_id, get_audio=False):
 		for fmt in streaming_formats:
 			itag = str(fmt.get('itag', ''))
+			if get_audio:
+				audio_track = fmt.get('audioTrack') or {}
+				if audio_track and not ('original' in audio_track.get('displayName').lower() or audio_track.get('audioIsDefault')):
+					# Skips non original track
+					continue
 			if itag == our_format and self._not_in_fmt(fmt, itag):
 				url = fmt.get('url')
 				if not url and 'signatureCipher' in fmt:
@@ -304,7 +309,7 @@ class YouTubeVideoUrl():
 		""" If DASH MP4 video add link also on Dash MP4 Audio """
 		print('[YouTubeVideoUrl] Try fmt audio url')
 		for our_format in ('141', '140', '139', '258', '265', '325', '328', '233', '234'):
-			url = self._extract_url(our_format, streaming_formats, player_id)
+			url = self._extract_url(our_format, streaming_formats, player_id, True)
 			if url:
 				print('[YouTubeVideoUrl] Found fmt audio url')
 				return url
