@@ -372,7 +372,7 @@ class GoogleSuggestionsConfigText(ConfigText):
 
 		gl = config.plugins.YouTube.searchRegion.value
 		hl = config.plugins.YouTube.searchLanguage.value
-		self.url = 'https://www.google.com/complete/search?output=toolbar&client=youtube&json=true&ds=yt{}{}&q='.format(
+		self.url = 'https://www.google.com/complete/search?output=toolbar&client=firefox&json=true&ds=yt{}{}&q='.format(
 				gl and '&gl=%s' % gl,
 				hl and '&hl=%s' % hl)
 
