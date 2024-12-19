@@ -7,6 +7,7 @@ from re import escape
 from re import findall
 from re import match
 from re import search
+from re import sub
 from json import dumps
 from json import loads
 
@@ -121,27 +122,26 @@ class YouTubeVideoUrl():
 						)\)&&\(c=|
 					\b(?P<var>[a-zA-Z0-9_$]+)=
 				)(?P<nfunc>[a-zA-Z0-9_$]+)(?:\[(?P<idx>\d+)\])?\([a-zA-Z]\)
-				(?(var),[a-zA-Z0-9_$]+\.set\("n"\,(?P=var)\),(?P=nfunc)\.length)
+				(?(var),[a-zA-Z0-9_$]+\.set\((?:"n+"|[a-zA-Z0-9_$]+)\,(?P=var)\))
 			''', jscode
 		).group('nfunc', 'idx')
 		if not func_name:
 			print('[YouTubeVideoUrl] Falling back to generic n function search')
 			return search(
 				r'''(?xs)
-					(?:(?<=[^\w$])|^)       # instead of \b, which ignores $
-					(?P<name>(?!\d)[a-zA-Z\d_$]+)\s*=\s*function\((?!\d)[a-zA-Z\d_$]+\)
-					\s*\{(?:(?!};).)+?["']enhanced_except_
+					;\s*(?P<name>[a-zA-Z0-9_$]+)\s*=\s*function\([a-zA-Z0-9_$]+\)
+					\s*\{(?:(?!};).)+?return\s*(?P<q>["'])[\w-]+_w8_(?P=q)\s*\+\s*[a-zA-Z0-9_$]+
 				''', jscode
 			).group('name')
 		if not idx:
 			return func_name
 		if int(idx) == 0:
 			real_nfunc = search(
-				r'var %s\s*=\s*\[([a-zA-Z_$][\w$]*)\];' % (escape(func_name), ),
+				r'var %s\s*=\s*(\[.+?\])\s*[,;]' % (escape(func_name), ),
 				jscode
 			)
 			if real_nfunc:
-				return real_nfunc.group(1)
+				return real_nfunc.group(1)[1:-1]
 
 	def _extract_player_info(self):
 		res = self._download_webpage('https://www.youtube.com/iframe_api')
@@ -157,6 +157,12 @@ class YouTubeVideoUrl():
 				'https://www.youtube.com/s/player/%s/player_ias.vflset/en_US/base.js' % player_id
 			)
 
+	@staticmethod
+	def _fixup_n_function_code(argnames, code):
+		return argnames, sub(
+			r';\s*if\s*\(\s*typeof\s+[a-zA-Z0-9_$]+\s*===?\s*(["\'])undefined\1\s*\)\s*return\s+%s;' % argnames[0],
+			';', code)
+
 	def _extract_function(self, player_id, s_id):
 		if player_id not in self._player_cache:
 			self._load_player(player_id)
@@ -166,7 +172,7 @@ class YouTubeVideoUrl():
 				funcname = self._extract_n_function_name(self._player_cache[player_id])
 			else:
 				funcname = self._parse_sig_js(self._player_cache[player_id])
-			self._code_cache[s_id] = jsi.extract_function_code(funcname)
+			self._code_cache[s_id] = self._fixup_n_function_code(*jsi.extract_function_code(funcname))
 		return lambda s: jsi.extract_function_from_code(*self._code_cache[s_id])([s])
 
 	def _unthrottle_url(self, url, player_id):
@@ -180,7 +186,7 @@ class YouTubeVideoUrl():
 			except Exception as ex:
 				print('[YouTubeVideoUrl] Unable to decode nsig', ex)
 			else:
-				if ret.startswith('enhanced_except_'):
+				if ret.startswith('enhanced_except_') or ret.endswith(n_param):
 					print('[YouTubeVideoUrl] Unhandled exception in decode', ret)
 				else:
 					self.nsig_cache = (n_param, ret)
@@ -213,18 +219,18 @@ class YouTubeVideoUrl():
 			return mobj
 
 		return _search_regex(
-			(r'\b[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\(',
+			(r'\b(?P<var>[a-zA-Z0-9_$]+)&&\((?P=var)=(?P<sig>[a-zA-Z0-9_$]{2,})\(decodeURIComponent\((?P=var)\)\)',
+				r'(?P<sig>[a-zA-Z0-9_$]+)\s*=\s*function\(\s*(?P<arg>[a-zA-Z0-9_$]+)\s*\)\s*{\s*(?P=arg)\s*=\s*(?P=arg)\.split\(\s*""\s*\)\s*;\s*[^}]+;\s*return\s+(?P=arg)\.join\(\s*""\s*\)',
+				r'(?:\b|[^a-zA-Z0-9_$])(?P<sig>[a-zA-Z0-9_$]{2,})\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)(?:;[a-zA-Z0-9_$]{2}\.[a-zA-Z0-9_$]{2}\(a,\d+\))?',
+				# Old patterns
+				r'\b[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\(',
 				r'\b[a-zA-Z0-9]+\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\(',
 				r'\bm=(?P<sig>[a-zA-Z0-9$]{2,})\(decodeURIComponent\(h\.s\)\)',
-				r'\bc&&\(c=(?P<sig>[a-zA-Z0-9$]{2,})\(decodeURIComponent\(c\)\)',
-				r'(?:\b|[^a-zA-Z0-9$])(?P<sig>[a-zA-Z0-9$]{2,})\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)(?:;[a-zA-Z0-9$]{2}\.[a-zA-Z0-9$]{2}\(a,\d+\))?',
-				r'(?P<sig>[a-zA-Z0-9$]+)\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)',
 				# Obsolete patterns
 				r'("|\')signature\1\s*,\s*(?P<sig>[a-zA-Z0-9$]+)\(',
 				r'\.sig\|\|(?P<sig>[a-zA-Z0-9$]+)\(',
 				r'yt\.akamaized\.net/\)\s*\|\|\s*.*?\s*[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*(?:encodeURIComponent\s*\()?\s*(?P<sig>[a-zA-Z0-9$]+)\(',
 				r'\b[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*(?P<sig>[a-zA-Z0-9$]+)\(',
-				r'\b[a-zA-Z0-9]+\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*(?P<sig>[a-zA-Z0-9$]+)\(',
 				r'\bc\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*\([^)]*\)\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\('),
 			jscode
 		).group('sig')
