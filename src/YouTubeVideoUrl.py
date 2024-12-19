@@ -361,14 +361,17 @@ class YouTubeVideoUrl():
 				if sts:
 					data['playbackContext']['contentPlaybackContext']['signatureTimestamp'] = sts
 			if client == 2:
-				VERSION = '2.20240726.01.00'
+				VERSION = '2.20241202.07.00'
+				USER_AGENT = 'Mozilla/5.0 (iPad; CPU OS 16_7_10 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1,gzip(gfe)'
 				data['context'] = {
 					'client': {
 						'hl': config.plugins.YouTube.searchLanguage.value,
 						'clientVersion': VERSION,
+						'userAgent': USER_AGENT,
 						'clientName': 'MWEB'
 					}
 				}
+				headers['User-Agent'] = USER_AGENT
 			else:
 				VERSION = '2.0'
 				data['context'] = {
