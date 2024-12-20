@@ -278,10 +278,9 @@ class YouTubeVideoUrl():
 	def _extract_url(self, our_format, streaming_formats, player_id, get_audio=False):
 		for fmt in streaming_formats:
 			itag = str(fmt.get('itag', ''))
-			if get_audio:
-				if fmt.get('audioTrack', {}).get('audioIsDefault') is False:
-					# Skip non-default track
-					continue
+			if get_audio and fmt.get('audioTrack', {}).get('audioIsDefault') is False:
+				# Skip non-default track
+				continue
 			if itag == our_format and self._not_in_fmt(fmt, itag):
 				url = fmt.get('url')
 				if not url and 'signatureCipher' in fmt:
