@@ -322,6 +322,11 @@ class YouTubeVideoUrl():
 				'contentPlaybackContext': {
 					'html5Preference': 'HTML5_PREF_WANTS'
 				}
+			},
+			'context': {
+				'client': {
+					'hl': config.plugins.YouTube.searchLanguage.value
+				}
 			}
 		}
 		headers = {
@@ -334,20 +339,38 @@ class YouTubeVideoUrl():
 		if client == 5:
 			VERSION = '19.45.4'
 			USER_AGENT = 'com.google.ios.youtube/%s (iPhone16,2; U; CPU iOS 18_1_0 like Mac OS X;)' % VERSION
-			data['context'] = {
-				'client': {
-					'hl': config.plugins.YouTube.searchLanguage.value,
-					'clientVersion': VERSION,
-					'clientName': 'IOS',
-					'deviceMake': 'Apple',
-					'deviceModel': 'iPhone16,2',
-					'osName': 'iPhone',
-					'osVersion': '18.1.0.22B83',
-					'userAgent': USER_AGENT
-				}
+			CLIENT_CONTEXT = {
+				'clientName': 'IOS',
+				'deviceMake': 'Apple',
+				'deviceModel': 'iPhone16,2',
+				'osName': 'iPhone',
+				'osVersion': '18.1.0.22B83'
 			}
+		elif client == 2:
+			VERSION = '2.20241202.07.00'
+			USER_AGENT = 'Mozilla/5.0 (iPad; CPU OS 16_7_10 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1,gzip(gfe)'
+			CLIENT_CONTEXT = {'clientName': 'MWEB'}
+		elif client == 85:
+			VERSION = '2.0'
+			USER_AGENT = None
+			CLIENT_CONTEXT = {'clientName': 'TVHTML5_SIMPLY_EMBEDDED_PLAYER'}
+			data['context']['thirdParty'] = {'embedUrl': 'https://www.youtube.com/'}
+		else:
+			VERSION = '19.44.38'
+			USER_AGENT = 'com.google.android.youtube/%s (Linux; U; Android 11) gzip' % VERSION
+			CLIENT_CONTEXT = {
+				'clientName': 'ANDROID',
+				'androidSdkVersion': 30,
+				'osName': 'Android',
+				'osVersion': '11'
+			}
+			data['params'] = '2AMB'
+		data['context']['client']['clientVersion'] = VERSION
+		data['context']['client'].update(CLIENT_CONTEXT)
+		if USER_AGENT:
+			data['context']['client']['userAgent'] = USER_AGENT
 			headers['User-Agent'] = USER_AGENT
-		elif client in (2, 85):
+		if client in (2, 85):
 			player_id = self._extract_player_info()
 			if player_id:
 				if player_id not in self._player_cache:
@@ -358,46 +381,6 @@ class YouTubeVideoUrl():
 				).group('sts')
 				if sts:
 					data['playbackContext']['contentPlaybackContext']['signatureTimestamp'] = sts
-			if client == 2:
-				VERSION = '2.20241202.07.00'
-				USER_AGENT = 'Mozilla/5.0 (iPad; CPU OS 16_7_10 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1,gzip(gfe)'
-				data['context'] = {
-					'client': {
-						'hl': config.plugins.YouTube.searchLanguage.value,
-						'clientVersion': VERSION,
-						'userAgent': USER_AGENT,
-						'clientName': 'MWEB'
-					}
-				}
-				headers['User-Agent'] = USER_AGENT
-			else:
-				VERSION = '2.0'
-				data['context'] = {
-					'client': {
-						'hl': config.plugins.YouTube.searchLanguage.value,
-						'clientVersion': VERSION,
-						'clientName': 'TVHTML5_SIMPLY_EMBEDDED_PLAYER'
-					},
-					'thirdParty': {
-						'embedUrl': 'https://www.youtube.com/'
-					}
-				}
-		else:
-			VERSION = '19.44.38'
-			USER_AGENT = 'com.google.android.youtube/%s (Linux; U; Android 11) gzip' % VERSION
-			data['context'] = {
-				'client': {
-					'hl': config.plugins.YouTube.searchLanguage.value,
-					'clientVersion': VERSION,
-					'androidSdkVersion': 30,
-					'clientName': 'ANDROID',
-					'osName': 'Android',
-					'osVersion': '11',
-					'userAgent': USER_AGENT
-				}
-			}
-			data['params'] = '2AMB'
-			headers['User-Agent'] = USER_AGENT
 		headers['X-YouTube-Client-Version'] = VERSION
 		try:
 			return loads(self._download_webpage(url, data, headers)), player_id
