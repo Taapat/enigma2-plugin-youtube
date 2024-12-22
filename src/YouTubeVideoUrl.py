@@ -197,16 +197,19 @@ class YouTubeVideoUrl():
 			del self._code_cache[n_id]
 		return url
 
-	def _decrypt_signature(self, s, player_id):
+	def _decrypt_signature_url(self, sc, player_id):
 		"""Turn the encrypted s field into a working signature"""
+		s = sc.get('s', [''])[0]
 		s_id = 'sig_%s_%s' % (player_id, '.'.join(str(len(p)) for p in s.split('.')))
 		print('[YouTubeVideoUrl] Decrypt signature', s_id)
 		try:
-			return self._extract_function(player_id, s_id)(s)
+			sig = self._extract_function(player_id, s_id)(s)
 		except Exception as ex:
 			print('[YouTubeVideoUrl] Signature extraction failed', ex)
 			if s_id in self._code_cache:
 				del self._code_cache[s_id]
+		else:
+			return '%s&%s=%s' % (sc['url'][0], sc['sp'][0] if 'sp' in sc else 'signature', sig)
 
 	def _parse_sig_js(self, jscode):
 
@@ -292,9 +295,7 @@ class YouTubeVideoUrl():
 				url = fmt.get('url')
 				if not url and 'signatureCipher' in fmt:
 					sc = compat_parse_qs(fmt.get('signatureCipher', ''))
-					sig = self._decrypt_signature(sc['s'][0], player_id)
-					if sig:
-						url = '%s&%s=%s' % (sc['url'][0], sc['sp'][0] if 'sp' in sc else 'signature', sig)
+					url = self._decrypt_signature_url(sc, player_id)
 				if url:
 					if '&n=' in url:
 						url = self._unthrottle_url(url, player_id)
@@ -320,6 +321,18 @@ class YouTubeVideoUrl():
 				print('[YouTubeVideoUrl] Found fmt audio url')
 				return url
 		return ''
+
+	def _extract_signature_timestamp(self):
+		sts = None
+		player_id = self._extract_player_info()
+		if player_id:
+			if player_id not in self._player_cache:
+				self._load_player(player_id)
+			sts = search(
+				r'(?:signatureTimestamp|sts)\s*:\s*(?P<sts>\d{5})',
+				self._player_cache[player_id]
+			).group('sts')
+		return sts, player_id
 
 	def _extract_player_response(self, video_id, yt_auth, client):
 		player_id = None
@@ -379,16 +392,9 @@ class YouTubeVideoUrl():
 			data['context']['client']['userAgent'] = USER_AGENT
 			headers['User-Agent'] = USER_AGENT
 		if client in (2, 85):
-			player_id = self._extract_player_info()
-			if player_id:
-				if player_id not in self._player_cache:
-					self._load_player(player_id)
-				sts = search(
-					r'(?:signatureTimestamp|sts)\s*:\s*(?P<sts>\d{5})',
-					self._player_cache[player_id]
-				).group('sts')
-				if sts:
-					data['playbackContext']['contentPlaybackContext']['signatureTimestamp'] = sts
+			sts, player_id = self._extract_signature_timestamp()
+			if sts:
+				data['playbackContext']['contentPlaybackContext']['signatureTimestamp'] = sts
 		headers['X-YouTube-Client-Version'] = VERSION
 		try:
 			return loads(self._download_webpage(url, data, headers)), player_id

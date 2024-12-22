@@ -155,7 +155,7 @@ def test_function_exceptions():
 	from src.YouTubeVideoUrl import YouTubeVideoUrl
 	ytdl = YouTubeVideoUrl()
 	player_id = ytdl._extract_player_info()
-	ytdl._decrypt_signature('', player_id)
+	ytdl._decrypt_signature_url({}, player_id)
 	ytdl._unthrottle_url('&n=a&', player_id)
 	ytdl._guess_encoding_from_content('', br'<meta charset=ascii>')
 	ytdl._guess_encoding_from_content('', b'\xff\xfe')
