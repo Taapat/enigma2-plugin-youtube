@@ -199,7 +199,7 @@ class YouTubeVideoUrl():
 
 	def _decrypt_signature_url(self, sc, player_id):
 		"""Turn the encrypted s field into a working signature"""
-		s = sc['s'][0]
+		s = sc.get('s', [''])[0]
 		s_id = 'sig_%s_%s' % (player_id, '.'.join(str(len(p)) for p in s.split('.')))
 		print('[YouTubeVideoUrl] Decrypt signature', s_id)
 		try:
