@@ -275,13 +275,20 @@ class YouTubeVideoUrl():
 			itag in self.use_dash_mp4
 		)
 
-	def _extract_url(self, our_format, streaming_formats, player_id, get_audio=False):
+	@staticmethod
+	def _use_track(fmt, get_audio):
+		if get_audio is not None:
+			if get_audio == '':
+				if not 'original' in fmt.get('audioTrack', {}).get('displayName', '').lower():
+					return
+			elif fmt.get('audioTrack', {}).get('audioIsDefault') is False:
+				return
+		return True
+
+	def _extract_url(self, our_format, streaming_formats, player_id, get_audio=None):
 		for fmt in streaming_formats:
 			itag = str(fmt.get('itag', ''))
-			if get_audio and fmt.get('audioTrack', {}).get('audioIsDefault') is False:
-				# Skip non-default track
-				continue
-			if itag == our_format and self._not_in_fmt(fmt, itag):
+			if itag == our_format and self._not_in_fmt(fmt, itag) and self._use_track(fmt, get_audio):
 				url = fmt.get('url')
 				if not url and 'signatureCipher' in fmt:
 					sc = compat_parse_qs(fmt.get('signatureCipher', ''))
@@ -306,8 +313,9 @@ class YouTubeVideoUrl():
 	def _extract_dash_audio_format(self, streaming_formats, player_id):
 		""" If DASH MP4 video add link also on Dash MP4 Audio """
 		print('[YouTubeVideoUrl] Try fmt audio url')
+		get_audio = config.plugins.YouTube.searchLanguage.value
 		for our_format in ('141', '140', '139', '258', '265', '325', '328', '233', '234'):
-			url = self._extract_url(our_format, streaming_formats, player_id, True)
+			url = self._extract_url(our_format, streaming_formats, player_id, get_audio)
 			if url:
 				print('[YouTubeVideoUrl] Found fmt audio url')
 				return url
