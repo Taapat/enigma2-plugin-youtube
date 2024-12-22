@@ -279,7 +279,7 @@ class YouTubeVideoUrl():
 	def _use_track(fmt, get_audio):
 		if get_audio is not None:
 			if get_audio == '':
-				if not 'original' in fmt.get('audioTrack', {}).get('displayName', '').lower():
+				if 'original' not in fmt.get('audioTrack', {}).get('displayName', '').lower():
 					return
 			elif fmt.get('audioTrack', {}).get('audioIsDefault') is False:
 				return
