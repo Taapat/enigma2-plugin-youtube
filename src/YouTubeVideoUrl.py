@@ -22,6 +22,19 @@ from .compat import SUBURI
 from .jsinterp import JSInterpreter
 
 
+IGNORE_VIDEO_FORMAT = (
+	'43', '44', '45', '46',  # webm
+	'82', '83', '84', '85',  # 3D
+	'100', '101', '102',  # 3D
+	'167', '168', '169',  # webm
+	'170', '171', '172',  # webm
+	'218', '219',  # webm
+	'242', '243', '244', '245', '246', '247',  # webm
+	'394', '395', '396', '397', '398', '399', '400', '401', '402', '694', '695', '696', '697', '698', '699', '700', '701', '571',  # AV1
+	'249', '250', '251',  # webm
+	'302'  # webm
+)
+
 PRIORITY_VIDEO_FORMAT = ()
 
 
@@ -270,53 +283,73 @@ class YouTubeVideoUrl():
 					audio_url = ''
 		return url_map
 
-	def _not_in_fmt(self, fmt, itag):
-		return not (
+	def _in_fmt(self, fmt, itag):
+		return (
 			fmt.get('targetDurationSec') or
 			fmt.get('drmFamilies') or
 			fmt.get('type') == 'FORMAT_STREAM_TYPE_OTF' or
+			itag in IGNORE_VIDEO_FORMAT or
 			itag in self.use_dash_mp4
 		)
 
-	@staticmethod
-	def _use_track(fmt, get_audio):
-		if get_audio is not None:
-			if get_audio == '':
-				if 'original' not in fmt.get('audioTrack', {}).get('displayName', '').lower():
-					return
-			elif fmt.get('audioTrack', {}).get('audioIsDefault') is False:
-				return
-		return True
+	def _extract_url(self, fmt, player_id):
+		url = fmt.get('url')
+		if not url and 'signatureCipher' in fmt:
+			sc = compat_parse_qs(fmt.get('signatureCipher', ''))
+			url = self._decrypt_signature_url(sc, player_id)
+		if url:
+			if '&n=' in url:
+				url = self._unthrottle_url(url, player_id)
+			return url
 
-	def _extract_url(self, our_format, streaming_formats, player_id, get_audio=None):
+	@staticmethod
+	def _video_pref(fmt, prefer):
+		if prefer == 100:
+			prefer = 20 if 'video/mp4' in fmt.get('mimeType').lower() else 200
+		return prefer
+
+	@staticmethod
+	def _audio_pref(fmt, prefer, get_audio):
+		audio_track = fmt.get('audioTrack', {})
+		if get_audio == '' and 'original' in audio_track.get('displayName', '').lower():
+			prefer -= 40
+		if audio_track.get('audioIsDefault'):
+			prefer -= 20
+		if prefer == 100:
+			prefer = 20 if 'audio/mp4' in fmt.get('mimeType').lower() else 200
+		return prefer
+
+	def _sort_formats(self, priority_formats, streaming_formats, get_audio=None):
+		sorted_fmt = []
 		for fmt in streaming_formats:
 			itag = str(fmt.get('itag', ''))
-			if itag == our_format and self._not_in_fmt(fmt, itag) and self._use_track(fmt, get_audio):
-				url = fmt.get('url')
-				if not url and 'signatureCipher' in fmt:
-					sc = compat_parse_qs(fmt.get('signatureCipher', ''))
-					url = self._decrypt_signature_url(sc, player_id)
-				if url:
-					if '&n=' in url:
-						url = self._unthrottle_url(url, player_id)
-					return url
+			if self._in_fmt(fmt, itag):
+				continue
+			prefer = priority_formats.index(itag) if itag in priority_formats else 100
+			prefer = self._video_pref(fmt, prefer) if get_audio is None else self._audio_pref(fmt, prefer, get_audio)
+			if prefer < 200:
+				fmt['preference'] = prefer
+				sorted_fmt.append(fmt)
+		return sorted(sorted_fmt, key=lambda k: k['preference'])
 
 	def _extract_fmt_video_format(self, streaming_formats, player_id):
-		""" Find the best format from our format priority map """
 		print('[YouTubeVideoUrl] Try fmt url')
-		for our_format in PRIORITY_VIDEO_FORMAT:
-			url = self._extract_url(our_format, streaming_formats, player_id)
+		sorted_formats = self._sort_formats(PRIORITY_VIDEO_FORMAT, streaming_formats)
+		for fmt in sorted_formats:
+			url = self._extract_url(fmt, player_id)
 			if url:
 				print('[YouTubeVideoUrl] Found fmt url')
-				return url, our_format
+				return url, str(fmt.get('itag'))
 		return '', ''
 
 	def _extract_dash_audio_format(self, streaming_formats, player_id):
-		""" If DASH MP4 video add link also on Dash MP4 Audio """
+		""" If DASH MP4 video add also DASH MP4 audio track"""
 		print('[YouTubeVideoUrl] Try fmt audio url')
 		get_audio = config.plugins.YouTube.searchLanguage.value
-		for our_format in ('141', '140', '139', '258', '265', '325', '328', '233', '234'):
-			url = self._extract_url(our_format, streaming_formats, player_id, get_audio)
+		DASH_AUDIO_FORMATS = ('141', '140', '139', '258', '265', '325', '328', '233', '234')
+		sorted_formats = self._sort_formats(DASH_AUDIO_FORMATS, streaming_formats, get_audio)
+		for fmt in sorted_formats:
+			url = self._extract_url(fmt, player_id)
 			if url:
 				print('[YouTubeVideoUrl] Found fmt audio url')
 				return url
@@ -403,18 +436,6 @@ class YouTubeVideoUrl():
 			return None, None
 
 	def _real_extract(self, video_id, yt_auth):
-		IGNORE_VIDEO_FORMAT = (
-			'43', '44', '45', '46',  # webm
-			'82', '83', '84', '85',  # 3D
-			'100', '101', '102',  # 3D
-			'167', '168', '169',  # webm
-			'170', '171', '172',  # webm
-			'218', '219',  # webm
-			'242', '243', '244', '245', '246', '247',  # webm
-			'394', '395', '396', '397', '398', '399', '400', '401', '402', '694', '695', '696', '697', '698', '699', '700', '701', '571',  # AV1
-			'249', '250', '251',  # webm
-			'302'  # webm
-		)
 		DASHMP4_FORMAT = (
 			'133', '134', '135', '136', '137', '138', '160',
 			'212', '229', '230', '231', '232', '248', '264',
@@ -475,15 +496,6 @@ class YouTubeVideoUrl():
 				audio_url = self._extract_dash_audio_format(streaming_formats, player_id)
 				if audio_url:
 					url += SUBURI + audio_url
-			if not url:  # pragma: no cover
-				for fmt in streaming_formats:
-					itag = str(fmt.get('itag', ''))
-					if itag not in IGNORE_VIDEO_FORMAT and self._not_in_fmt(fmt, itag):
-						url = fmt.get('url')
-						if url:
-							break
-			if not url and streaming_formats:  # pragma: no cover
-				url = streaming_formats[0].get('url', '')
 
 		if not url:
 			print('[YouTubeVideoUrl] Try manifest url')
