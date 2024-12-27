@@ -279,9 +279,13 @@ class YouTubeVideoUrl():
 			elif line.startswith('https'):
 				itag = search(r'/sgovp/[^/]+itag%3D(\d+?)/', line) or search(r'/itag/(\d+?)/', line)
 				if itag:
-					url_map.append({'itag': itag.group(1), 'url': line + audio_url, 'mimeType': 'video/mp4'})
+					itag = itag.group(1)
+					url_map.append({
+						'url': line + audio_url,
+						'preference': PRIORITY_VIDEO_FORMAT.index(itag) if itag in PRIORITY_VIDEO_FORMAT else 100
+					})
 					audio_url = ''
-		return url_map
+		return sorted(url_map, key=lambda k: k['preference'])
 
 	def _skip_fmt(self, fmt, itag):
 		return (
@@ -498,7 +502,7 @@ class YouTubeVideoUrl():
 			print('[YouTubeVideoUrl] Try manifest url')
 			hls_manifest_url = streaming_data.get('hlsManifestUrl')
 			if hls_manifest_url:
-				for fmt in self._sort_formats(PRIORITY_VIDEO_FORMAT, self._extract_from_m3u8(hls_manifest_url)):
+				for fmt in self._extract_from_m3u8(hls_manifest_url):
 					url = fmt.get('url')
 					if url:
 						print('[YouTubeVideoUrl] Found manifest url')
