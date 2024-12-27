@@ -265,7 +265,7 @@ class YouTubeVideoUrl():
 		return audio_urls
 
 	def _extract_from_m3u8(self, manifest_url):
-		url_map = {}
+		url_map = []
 		audio_url = ''
 
 		manifest = self._download_webpage(manifest_url)
@@ -279,11 +279,11 @@ class YouTubeVideoUrl():
 			elif line.startswith('https'):
 				itag = search(r'/sgovp/[^/]+itag%3D(\d+?)/', line) or search(r'/itag/(\d+?)/', line)
 				if itag:
-					url_map[itag.group(1)] = line + audio_url
+					url_map.append({'itag': itag.group(1), 'url': line + audio_url, 'mimeType':'video/mp4'})
 					audio_url = ''
 		return url_map
 
-	def _in_fmt(self, fmt, itag):
+	def _skip_fmt(self, fmt, itag):
 		return (
 			fmt.get('targetDurationSec') or
 			fmt.get('drmFamilies') or
@@ -295,8 +295,7 @@ class YouTubeVideoUrl():
 	def _extract_url(self, fmt, player_id):
 		url = fmt.get('url')
 		if not url and 'signatureCipher' in fmt:
-			sc = compat_parse_qs(fmt.get('signatureCipher', ''))
-			url = self._decrypt_signature_url(sc, player_id)
+			url = self._decrypt_signature_url(compat_parse_qs(fmt.get('signatureCipher', '')), player_id)
 		if url:
 			if '&n=' in url:
 				url = self._unthrottle_url(url, player_id)
@@ -323,7 +322,7 @@ class YouTubeVideoUrl():
 		sorted_fmt = []
 		for fmt in streaming_formats:
 			itag = str(fmt.get('itag', ''))
-			if self._in_fmt(fmt, itag):
+			if self._skip_fmt(fmt, itag):
 				continue
 			prefer = priority_formats.index(itag) if itag in priority_formats else 100
 			prefer = self._video_pref(fmt, prefer) if get_audio is None else self._audio_pref(fmt, prefer, get_audio)
@@ -334,8 +333,7 @@ class YouTubeVideoUrl():
 
 	def _extract_fmt_video_format(self, streaming_formats, player_id):
 		print('[YouTubeVideoUrl] Try fmt url')
-		sorted_formats = self._sort_formats(PRIORITY_VIDEO_FORMAT, streaming_formats)
-		for fmt in sorted_formats:
+		for fmt in self._sort_formats(PRIORITY_VIDEO_FORMAT, streaming_formats):
 			url = self._extract_url(fmt, player_id)
 			if url:
 				print('[YouTubeVideoUrl] Found fmt url')
@@ -347,8 +345,7 @@ class YouTubeVideoUrl():
 		print('[YouTubeVideoUrl] Try fmt audio url')
 		get_audio = config.plugins.YouTube.searchLanguage.value
 		DASH_AUDIO_FORMATS = ('141', '140', '139', '258', '265', '325', '328', '233', '234')
-		sorted_formats = self._sort_formats(DASH_AUDIO_FORMATS, streaming_formats, get_audio)
-		for fmt in sorted_formats:
+		for fmt in self._sort_formats(DASH_AUDIO_FORMATS, streaming_formats, get_audio):
 			url = self._extract_url(fmt, player_id)
 			if url:
 				print('[YouTubeVideoUrl] Found fmt audio url')
@@ -501,21 +498,11 @@ class YouTubeVideoUrl():
 			print('[YouTubeVideoUrl] Try manifest url')
 			hls_manifest_url = streaming_data.get('hlsManifestUrl')
 			if hls_manifest_url:
-				url_map = self._extract_from_m3u8(hls_manifest_url)
-
-				# Find the best format from our format priority map
-				for our_format in PRIORITY_VIDEO_FORMAT:
-					if our_format in url_map:
-						url = url_map[our_format]
+				for fmt in self._sort_formats(PRIORITY_VIDEO_FORMAT, self._extract_from_m3u8(hls_manifest_url)):
+					url = fmt.get('url')
+					if url:
+						print('[YouTubeVideoUrl] Found manifest url')
 						break
-				# If anything not found, used first in the list if it not in ignore map
-				if not url:  # pragma: no cover
-					for url_map_key in list(url_map.keys()):
-						if url_map_key not in IGNORE_VIDEO_FORMAT:
-							url = url_map[url_map_key]
-							break
-				if not url and url_map:  # pragma: no cover
-					url = list(url_map.values())[0]
 
 		if not url:
 			reason = playability_status.get('reason')
