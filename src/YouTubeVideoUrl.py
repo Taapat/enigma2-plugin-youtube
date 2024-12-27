@@ -279,7 +279,7 @@ class YouTubeVideoUrl():
 			elif line.startswith('https'):
 				itag = search(r'/sgovp/[^/]+itag%3D(\d+?)/', line) or search(r'/itag/(\d+?)/', line)
 				if itag:
-					url_map.append({'itag': itag.group(1), 'url': line + audio_url, 'mimeType':'video/mp4'})
+					url_map.append({'itag': itag.group(1), 'url': line + audio_url, 'mimeType': 'video/mp4'})
 					audio_url = ''
 		return url_map
 
