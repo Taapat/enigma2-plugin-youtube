@@ -264,6 +264,14 @@ class YouTubeVideoUrl():
 					audio_urls[audio_info.get('GROUP-ID')] = audio_info.get('URI')
 		return audio_urls
 
+	@staticmethod
+	def _url_map_append(url_map, itag, url):
+		if itag not in IGNORE_VIDEO_FORMAT:
+			url_map.append({
+				'url': url,
+				'preference': PRIORITY_VIDEO_FORMAT.index(itag) if itag in PRIORITY_VIDEO_FORMAT else 100
+			})
+
 	def _extract_from_m3u8(self, manifest_url):
 		url_map = []
 		audio_url = ''
@@ -279,11 +287,7 @@ class YouTubeVideoUrl():
 			elif line.startswith('https'):
 				itag = search(r'/sgovp/[^/]+itag%3D(\d+?)/', line) or search(r'/itag/(\d+?)/', line)
 				if itag:
-					itag = itag.group(1)
-					url_map.append({
-						'url': line + audio_url,
-						'preference': PRIORITY_VIDEO_FORMAT.index(itag) if itag in PRIORITY_VIDEO_FORMAT else 100
-					})
+					self._url_map_append(url_map, itag.group(1), line + audio_url)
 					audio_url = ''
 		return sorted(url_map, key=lambda k: k['preference'])
 
@@ -504,9 +508,8 @@ class YouTubeVideoUrl():
 			if hls_manifest_url:
 				for fmt in self._extract_from_m3u8(hls_manifest_url):
 					url = fmt.get('url')
-					if url:
-						print('[YouTubeVideoUrl] Found manifest url')
-						break
+					print('[YouTubeVideoUrl] Found manifest url')
+					break
 
 		if not url:
 			reason = playability_status.get('reason')
