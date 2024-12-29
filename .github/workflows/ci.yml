@@ -254,9 +254,6 @@ jobs:
         run: |
           coverage combine .coverage_*
           coverage xml
-      - name: Override coverage source path for Sonarcloud
-        run: |
-          sed -i "s/<source>\/home\/runner\/work\/enigma2-plugin-youtube\/enigma2-plugin-youtube<\/source>/<source>\/github\/workspace<\/source>/g" coverage.xml
       - name: Sonarcloud scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
