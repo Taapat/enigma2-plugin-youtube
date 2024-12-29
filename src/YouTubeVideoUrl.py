@@ -409,6 +409,10 @@ class YouTubeVideoUrl():
 			VERSION = '2.20241202.07.00'
 			USER_AGENT = 'Mozilla/5.0 (iPad; CPU OS 16_7_10 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1,gzip(gfe)'
 			CLIENT_CONTEXT = {'clientName': 'MWEB'}
+		elif client == 56:
+			VERSION = '1.20241201.00.00'
+			USER_AGENT = None
+			CLIENT_CONTEXT = {'clientName': 'WEB_EMBEDDED_PLAYER'}
 		elif client == 85:
 			VERSION = '2.0'
 			USER_AGENT = None
@@ -429,7 +433,7 @@ class YouTubeVideoUrl():
 		if USER_AGENT:
 			data['context']['client']['userAgent'] = USER_AGENT
 			headers['User-Agent'] = USER_AGENT
-		if client in (2, 85):
+		if client in (2, 56, 85):
 			sts, player_id = self._extract_signature_timestamp()
 			if sts:
 				data['playbackContext']['contentPlaybackContext']['signatureTimestamp'] = sts
@@ -461,7 +465,7 @@ class YouTubeVideoUrl():
 
 		if self.try_get(player_response, lambda x: x['videoDetails']['videoId']) != video_id:
 			if self.use_dash_mp4:
-				print('[YouTubeVideoUrl] Got wrong player response, try mweb response')
+				print('[YouTubeVideoUrl] Got wrong player response, try mweb client')
 				player_response, player_id = self._extract_player_response(video_id, None, 2)
 			else:
 				print('[YouTubeVideoUrl] Got wrong player response, try ios client')
@@ -471,8 +475,11 @@ class YouTubeVideoUrl():
 		playability_status = player_response.get('playabilityStatus', {})
 
 		if not is_live and playability_status.get('status') == 'LOGIN_REQUIRED':
-			print('[YouTubeVideoUrl] Age gate content')
-			player_response, player_id = self._extract_player_response(video_id, yt_auth, 85)
+			print('[YouTubeVideoUrl] Age gate content, try web embedded client')
+			player_response, player_id = self._extract_player_response(video_id, None, 56)
+			if not player_response or self.try_get(player_response, lambda x: x['playabilityStatus']['status']) != 'OK':
+				print('[YouTubeVideoUrl] Player response is not usable, try tv embedded client')
+				player_response, player_id = self._extract_player_response(video_id, yt_auth, 85)
 			if not player_response:
 				raise RuntimeError('Age gate content player response not found!')
 
