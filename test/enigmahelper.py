@@ -478,6 +478,13 @@ def getE2Rev():
 modules['enigma'].getE2Rev = getE2Rev
 
 
+def getDeviceDB():
+	return {"/devices/platform/sdhci-brcmstb.1/": "SD"}
+
+
+modules['enigma'].getDeviceDB = getDeviceDB
+
+
 def ngettext(singular, plural, n):
 	return singular
 
