@@ -479,7 +479,7 @@ modules['enigma'].getE2Rev = getE2Rev
 
 
 def getDeviceDB():
-	return {"/devices/platform/sdhci-brcmstb.1/", "SD"}
+	return {"/devices/platform/sdhci-brcmstb.1/": "SD"}
 
 
 modules['enigma'].getDeviceDB = getDeviceDB
