@@ -1268,7 +1268,7 @@ class YouTubeMain(Screen):
 				job_title = title.decode('utf-8', 'ignore')[:20].encode('utf-8')
 			else:
 				job_title = title[:20]
-			outputfile = os.path.join(download_dir, ''.join(s if s not in '!”"#$%&()*+,-.:;<=>?@[]^`{|}~\'\\' else '\\' + s for s in title if s not in '/') + '.mp4')
+			outputfile = os.path.join(download_dir, ''.join('_' if s in '/' else s if s not in '!”"#$%&()*+,-.:;<=>?@[]^`{|}~\'\\' else '\\' + s for s in title) + '.mp4')
 			if os.path.exists(outputfile) or \
 					os.path.exists('%s.m4a' % outputfile[:-4]) or \
 					os.path.exists('%s_suburi.mp4' % outputfile[:-4]) or \
