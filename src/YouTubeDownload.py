@@ -80,7 +80,7 @@ class DownloadTask(Task):
 			os.path.exists('%s.m4a' % self.outputfile[:-11]) and \
 			not os.path.exists('%s.mkv' % self.outputfile[:-11]):
 			from Components.Console import Console
-			Console().ePopen('ffmpeg -i "%s" -i "%s.m4a" -c copy "%s.mkv"' % (self.outputfile,
+			Console().ePopen("ffmpeg -i '%s' -i '%s.m4a' -c copy '%s.mkv'" % (self.outputfile,
 				self.outputfile[:-11], self.outputfile[:-11]), self.mergeCompleted)
 
 	def mergeCompleted(self, result, retval, extra_args):
