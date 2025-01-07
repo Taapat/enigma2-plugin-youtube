@@ -78,13 +78,13 @@ class DownloadTask(Task):
 		if '_suburi.mp4' in self.outputfile and \
 			config.plugins.YouTube.mergeFiles.value and \
 			os.path.exists('%s.m4a' % self.outputfile[:-11]) and \
-			not os.path.exists('%s.mkv' % self.outputfile[:-11]):
+			not os.path.exists('%s.ts' % self.outputfile[:-11]):
 			from Components.Console import Console
-			Console().ePopen("ffmpeg -i '%s' -i '%s.m4a' -c copy '%s.mkv'" % (self.outputfile,
+			Console().ePopen("ffmpeg -i '%s' -i '%s.m4a' -c copy '%s.ts'" % (self.outputfile,
 				self.outputfile[:-11], self.outputfile[:-11]), self.mergeCompleted)
 
 	def mergeCompleted(self, result, retval, extra_args):
-		if os.path.exists('%s.mkv' % self.outputfile[:-11]):
+		if os.path.exists('%s.ts' % self.outputfile[:-11]):
 			try:
 				os.remove(self.outputfile)
 				os.remove('%s.m4a' % self.outputfile[:-11])

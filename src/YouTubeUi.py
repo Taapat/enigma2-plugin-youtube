@@ -1268,12 +1268,11 @@ class YouTubeMain(Screen):
 				job_title = title.decode('utf-8', 'ignore')[:20].encode('utf-8')
 			else:
 				job_title = title[:20]
-			outputfile = os.path.join(download_dir, title.replace('/', '-').replace("'", '"') + '.mp4')
-			if os.path.exists(outputfile) or \
-					os.path.exists('%s.m4a' % outputfile[:-4]) or \
-					os.path.exists('%s_suburi.mp4' % outputfile[:-4]) or \
-					os.path.exists('%s.mkv' % outputfile[:-4]):
-				msg = _('Sorry, this file already exists:\n%s') % title
+			outputfile = os.path.join(download_dir, title.replace('/', '-').replace("'", '’') + '.mp4')
+			for x in ('%s.mp4', '%s.m4a', '%s_suburi.mp4', '%s.ts'):
+				if os.path.exists(x % outputfile[:-4]):
+					msg = _('Sorry, this file already exists:\n%s') % title
+					break
 			else:
 				from .YouTubeDownload import DownloadJob
 				if SUBURI in url:  # download DASH MP4 video and audio
