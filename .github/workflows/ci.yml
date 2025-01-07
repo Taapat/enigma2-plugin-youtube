@@ -196,6 +196,7 @@ jobs:
           echo "scartyuv=no" >> enigma2/enigma.info
           echo "yuv=no" >> enigma2/enigma.info
           echo "oe=OE-Alliance 5.4" >> enigma2/enigma.info
+          echo "mtdblack=sda" >> enigma2/enigma.info
       - name: Patch enigma step 3
         if: steps.split.outputs._0 == 'OpenViX'
         run: |
