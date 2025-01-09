@@ -630,6 +630,7 @@ def start_session():
 		config.crash.debugKeyboards = ConfigYesNo(default=False)
 		config.crash.debugTimers = ConfigYesNo(default=False)
 		config.crash.debugEPG = ConfigYesNo(default=False)
+		config.crash.debugStorage = ConfigYesNo(default=False)
 		config.misc.autocamDefault = ConfigText(default='')
 		config.plugins = ConfigSubsection()
 		from Screens import InfoBar
