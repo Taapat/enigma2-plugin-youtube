@@ -14,7 +14,6 @@ from json import loads
 from Components.config import config
 
 from .compat import compat_parse_qs
-from .compat import compat_str
 from .compat import compat_Request
 from .compat import compat_urlopen
 from .compat import compat_URLError
@@ -67,14 +66,13 @@ class YouTubeVideoUrl():
 		self.nsig_cache = (None, None)
 
 	@staticmethod
-	def try_get(src, get, expected_type=None):
-		try:
-			v = get(src)
-		except (AttributeError, KeyError, TypeError, IndexError):
-			pass
-		else:
-			if expected_type is None or isinstance(v, expected_type):
-				return v
+	def try_get(src, get):
+		for x in get:
+			try:
+				src = src.get(x)
+			except (AttributeError, KeyError, TypeError, IndexError):
+				return None
+		return src
 
 	@staticmethod
 	def _guess_encoding_from_content(content_type, webpage_bytes):
@@ -463,7 +461,7 @@ class YouTubeVideoUrl():
 		if not player_response:
 			raise RuntimeError('Player response not found!')
 
-		if self.try_get(player_response, lambda x: x['videoDetails']['videoId']) != video_id:
+		if self.try_get(player_response, ('videoDetails', 'videoId')) != video_id:
 			if self.use_dash_mp4:
 				print('[YouTubeVideoUrl] Got wrong player response, try mweb client')
 				player_response, player_id = self._extract_player_response(video_id, None, 2)
@@ -471,28 +469,16 @@ class YouTubeVideoUrl():
 				print('[YouTubeVideoUrl] Got wrong player response, try ios client')
 				player_response, player_id = self._extract_player_response(video_id, None, 5)
 
-		is_live = self.try_get(player_response, lambda x: x['videoDetails']['isLive'])
-		playability_status = player_response.get('playabilityStatus', {})
+		is_live = self.try_get(player_response, ('videoDetails', 'isLive'))
 
-		if not is_live and playability_status.get('status') == 'LOGIN_REQUIRED':
+		if not is_live and self.try_get(player_response, ('playabilityStatus', 'status')) == 'LOGIN_REQUIRED':
 			print('[YouTubeVideoUrl] Age gate content, try web embedded client')
 			player_response, player_id = self._extract_player_response(video_id, None, 56)
-			if not player_response or self.try_get(player_response, lambda x: x['playabilityStatus']['status']) != 'OK':
+			if not player_response or self.try_get(player_response, ('playabilityStatus', 'status')) != 'OK':
 				print('[YouTubeVideoUrl] Player response is not usable, try tv embedded client')
 				player_response, player_id = self._extract_player_response(video_id, yt_auth, 85)
 			if not player_response:
 				raise RuntimeError('Age gate content player response not found!')
-
-			playability_status = player_response.get('playabilityStatus', {})
-
-		trailer_video_id = self.try_get(
-			playability_status,
-			lambda x: x['errorScreen']['playerLegacyDesktopYpcTrailerRenderer']['trailerVideoId'],
-			compat_str
-		)
-		if trailer_video_id:
-			print('[YouTubeVideoUrl] Trailer video')
-			return str(trailer_video_id)
 
 		streaming_data = player_response.get('streamingData', {})
 		streaming_formats = streaming_data.get('formats', [])
@@ -519,6 +505,7 @@ class YouTubeVideoUrl():
 					break
 
 		if not url:
+			playability_status = player_response.get('playabilityStatus', {})
 			reason = playability_status.get('reason')
 			if reason:
 				subreason = playability_status.get('messages')
