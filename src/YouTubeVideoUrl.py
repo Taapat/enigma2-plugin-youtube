@@ -189,8 +189,8 @@ class YouTubeVideoUrl():
 	def _unthrottle_url(self, url, player_id):
 		n_param = search(r'&n=(.+?)&', url).group(1)
 		n_id = 'nsig_%s_%s' % (player_id, '.'.join(str(len(p)) for p in n_param.split('.')))
-		print('[YouTubeVideoUrl] Decrypt nsig', n_id)
 		if self.nsig_cache[0] != n_param:
+			print('[YouTubeVideoUrl] Decrypt nsig', n_id)
 			self.nsig_cache = (None, None)
 			try:
 				ret = self._extract_function(player_id, n_id)(n_param)
@@ -443,7 +443,13 @@ class YouTubeVideoUrl():
 			print('[YouTubeVideoUrl] skip DASH MP4 format')
 			self.use_dash_mp4 = DASHMP4_FORMAT
 
-		player_response, player_id = self._extract_player_response(video_id, None, 3)
+		if yt_auth:  # Use authentication if available
+			print('[YouTubeVideoUrl] Try authorized tv embedded client')
+			player_response, player_id = self._extract_player_response(video_id, yt_auth, 85)
+		else:
+			print('[YouTubeVideoUrl] Try android client')
+			player_response, player_id = self._extract_player_response(video_id, None, 3)
+
 		if not player_response:
 			raise RuntimeError('Player response not found!')
 
@@ -453,10 +459,7 @@ class YouTubeVideoUrl():
 			print('[YouTubeVideoUrl] Age gate content, try web embedded client')
 			player_response, player_id = self._extract_player_response(video_id, None, 56)
 			if not player_response or self.try_get(player_response, ('playabilityStatus', 'status')) != 'OK':
-				print('[YouTubeVideoUrl] Player response is not usable, try tv embedded client')
-				player_response, player_id = self._extract_player_response(video_id, yt_auth, 85)
-			if not player_response:
-				raise RuntimeError('Age gate content player response not found!')
+				raise RuntimeError('Player response is not usable!')
 
 		streaming_data = player_response.get('streamingData', {})
 		streaming_formats = streaming_data.get('formats', [])
