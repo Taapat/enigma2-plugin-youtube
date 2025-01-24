@@ -66,11 +66,11 @@ class YouTubeVideoUrl():
 		self.nsig_cache = (None, None)
 
 	@staticmethod
-	def try_get(src, get):
-		for x in get:
-			try:
-				src = src.get(x)
-			except (AttributeError, KeyError, TypeError, IndexError):
+	def try_get(src, getter):
+		for x in getter:
+			if isinstance(src, dict) and x in src:
+				src = src[x]
+			else:
 				return None
 		return src
 
@@ -393,21 +393,7 @@ class YouTubeVideoUrl():
 		}
 		if yt_auth:
 			headers['Authorization'] = yt_auth
-		if client == 5:
-			VERSION = '19.45.4'
-			USER_AGENT = 'com.google.ios.youtube/%s (iPhone16,2; U; CPU iOS 18_1_0 like Mac OS X;)' % VERSION
-			CLIENT_CONTEXT = {
-				'clientName': 'IOS',
-				'deviceMake': 'Apple',
-				'deviceModel': 'iPhone16,2',
-				'osName': 'iPhone',
-				'osVersion': '18.1.0.22B83'
-			}
-		elif client == 2:
-			VERSION = '2.20241202.07.00'
-			USER_AGENT = 'Mozilla/5.0 (iPad; CPU OS 16_7_10 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1,gzip(gfe)'
-			CLIENT_CONTEXT = {'clientName': 'MWEB'}
-		elif client == 56:
+		if client == 56:
 			VERSION = '1.20241201.00.00'
 			USER_AGENT = None
 			CLIENT_CONTEXT = {'clientName': 'WEB_EMBEDDED_PLAYER'}
@@ -431,7 +417,7 @@ class YouTubeVideoUrl():
 		if USER_AGENT:
 			data['context']['client']['userAgent'] = USER_AGENT
 			headers['User-Agent'] = USER_AGENT
-		if client in (2, 56, 85):
+		if client in (56, 85):
 			sts, player_id = self._extract_signature_timestamp()
 			if sts:
 				data['playbackContext']['contentPlaybackContext']['signatureTimestamp'] = sts
@@ -460,14 +446,6 @@ class YouTubeVideoUrl():
 		player_response, player_id = self._extract_player_response(video_id, None, 3)
 		if not player_response:
 			raise RuntimeError('Player response not found!')
-
-		if self.try_get(player_response, ('videoDetails', 'videoId')) != video_id:
-			if self.use_dash_mp4:
-				print('[YouTubeVideoUrl] Got wrong player response, try mweb client')
-				player_response, player_id = self._extract_player_response(video_id, None, 2)
-			else:
-				print('[YouTubeVideoUrl] Got wrong player response, try ios client')
-				player_response, player_id = self._extract_player_response(video_id, None, 5)
 
 		is_live = self.try_get(player_response, ('videoDetails', 'isLive'))
 
