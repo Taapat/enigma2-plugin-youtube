@@ -133,6 +133,7 @@ video_list = (
 	('bWgPKTOMoSY', 'Decrypting n-sig'),
 	('9UMxZofMNbA', 'm3u8 playlist'),
 	('8scG3KhC6Wo', 'Multiple audio languages'),
+	pytest.param('hLQl3WQQoQ0', 'Android client', marks=pytest.mark.xfail),
 	pytest.param('uGpuVWrhIzE', 'Rental video preview', marks=pytest.mark.xfail),
 	pytest.param('MeJVWBSsPAY', 'Non-agegated non-embeddable', marks=pytest.mark.xfail),
 	pytest.param('7Do70nztRNE', 'Age gated embedded', marks=pytest.mark.xfail),

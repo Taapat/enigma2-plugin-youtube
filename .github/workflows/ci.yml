@@ -105,7 +105,7 @@ jobs:
           sed -i 's/config.plugins.YouTube.maxResolution.value/"22"/g' src/YouTubeVideoUrl.py
           sed -i 's/config.plugins.YouTube.useDashMP4.value/video_id != "bWgPKTOMoSY"/g' src/YouTubeVideoUrl.py
           sed -i 's/config.plugins.YouTube.searchLanguage.value/"en"/g' src/YouTubeVideoUrl.py
-          sed -i 's/yt_auth:  # U/yt_auth and video_id not in ("bWgPKTOMoSY", "9UMxZofMNbA"):  # U/g' src/YouTubeVideoUrl.py
+          sed -i 's/yt_auth:  # U/yt_auth and video_id != "hLQl3WQQoQ0":  # U/g' src/YouTubeVideoUrl.py
       - name: Test code with pytest
         run: |
           YOUTUBE_PLUGIN_TOKEN=${{ secrets.YOUTUBE_PLUGIN_TOKEN }} pytest -rx -v --cov=src --cov-report=xml --cov-report=html
