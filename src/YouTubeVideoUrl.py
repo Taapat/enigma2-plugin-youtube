@@ -373,7 +373,7 @@ class YouTubeVideoUrl():
 	def _extract_visitor_id(self, video_id):
 		webpage = self._download_webpage('https://www.youtube.com/watch?v=%s&bpctr=9999999999&has_verified=1' % video_id)
 		if webpage:
-			ytcfg = search(r'ytcfg\.set\s*\(\s*({.+?})\s*\)\s*;', webpage)
+			ytcfg = search(r'ytcfg\.set\s*\(\s*({[^}]+})\s*\)\s*;', webpage)
 			if ytcfg:
 				return self.try_get(loads(ytcfg.group(1)), ('INNERTUBE_CONTEXT', 'client', 'visitorData'))
 
