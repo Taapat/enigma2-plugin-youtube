@@ -447,6 +447,7 @@ class YouTubeVideoUrl():
 			if sts:
 				data['playbackContext']['contentPlaybackContext']['signatureTimestamp'] = sts
 		headers['X-YouTube-Client-Version'] = VERSION
+		print('[YouTubeVideoUrl] headers', headers)
 		try:
 			return loads(self._download_webpage(url, data, headers)), player_id
 		except ValueError:  # pragma: no cover
@@ -472,6 +473,7 @@ class YouTubeVideoUrl():
 		if not player_response:
 			raise RuntimeError('Player response not found!')
 
+		print('[YouTubeVideoUrl] streaming formats', len(player_response.get('streamingData', {}).get('formats', [])))
 		is_live = self.try_get(player_response, ('videoDetails', 'isLive'))
 
 		if is_live:
