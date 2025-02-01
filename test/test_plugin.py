@@ -7,7 +7,7 @@ import pytest
 import sys
 
 if sys.version_info.major < 3:
-	reload(sys)
+	reload(sys)  # noqa: F821
 	sys.setdefaultencoding('utf8')
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
