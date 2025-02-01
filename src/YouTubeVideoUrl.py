@@ -379,7 +379,7 @@ class YouTubeVideoUrl():
 				pass
 		print('[YouTubeVideoUrl] Failed to extract visitor id')
 
-	def _extract_web_response(self, video_id, webpage):
+	def _extract_web_response(self, webpage):
 		player_response = search(r'ytInitialPlayerResponse\s*=\s*({[^>]*})\s*;\s*(?:var\s+meta|</script|\n)', webpage)
 		if player_response:
 			try:
@@ -481,7 +481,7 @@ class YouTubeVideoUrl():
 		if is_live:
 			if self.use_dash_mp4:
 				print('[YouTubeVideoUrl] Live content, try web response')
-				player_response, player_id = self._extract_web_response(video_id, webpage)
+				player_response, player_id = self._extract_web_response(webpage)
 			else:
 				print('[YouTubeVideoUrl] Live content, try ios client')
 				player_response, player_id = self._extract_player_response(video_id, None, 5, webpage)
