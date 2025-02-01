@@ -400,6 +400,8 @@ class YouTubeVideoUrl():
 		url = 'https://www.youtube.com/youtubei/v1/player?prettyPrint=false'
 		data = {
 			'videoId': video_id,
+			'contentCheckOk': True,
+			'racyCheckOk': True,
 			'playbackContext': {
 				'contentPlaybackContext': {
 					'html5Preference': 'HTML5_PREF_WANTS'
@@ -454,6 +456,7 @@ class YouTubeVideoUrl():
 				data['playbackContext']['contentPlaybackContext']['signatureTimestamp'] = sts
 		headers['X-YouTube-Client-Version'] = VERSION
 		print('[YouTubeVideoUrl] headers', headers)
+		print('[YouTubeVideoUrl] data', data)
 		try:
 			return loads(self._download_webpage(url, data, headers)), player_id
 		except ValueError:  # pragma: no cover
