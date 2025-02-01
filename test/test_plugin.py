@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 """Test file to use pytest to test some plugin functions"""
 from __future__ import print_function
 
