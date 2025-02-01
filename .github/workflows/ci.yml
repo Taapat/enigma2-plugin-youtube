@@ -177,6 +177,7 @@ jobs:
         run: |
           cp test/RcModel.py enigma2/lib/python/Components
           cp test/skin_display.xml ./
+          sudo mkdir -p /var/lib/opkg/info
           sed -i 's/\/home/./g' enigma2/lib/python/Components/UsageConfig.py
           sed -i 's/config.crash.pystackonspinner.addNotifier/# config.crash.pystackonspinner.addNotifier/g' enigma2/lib/python/Components/UsageConfig.py
           echo "model=duo4k" > enigma2/enigma.info
