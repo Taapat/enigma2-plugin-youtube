@@ -376,9 +376,9 @@ class YouTubeVideoUrl():
 			ytcfg = search(r'ytcfg\.set\s*\(\s*({[^}]+})\s*\)\s*;', webpage)
 			if ytcfg:
 				data = loads(ytcfg.group(1))
-				print([YouTubeVideoUrl] visitor data0', data.get('VISITOR_DATA'))
-				print([YouTubeVideoUrl] visitor data1', self.try_get(data, ('INNERTUBE_CONTEXT', 'client', 'visitorData')))
-				print([YouTubeVideoUrl] visitor data3', self.try_get(data, ('responseContext', 'visitorData')))
+				print('[YouTubeVideoUrl] visitor data0', data.get('VISITOR_DATA'))
+				print('[YouTubeVideoUrl] visitor data1', self.try_get(data, ('INNERTUBE_CONTEXT', 'client', 'visitorData')))
+				print('[YouTubeVideoUrl] visitor data3', self.try_get(data, ('responseContext', 'visitorData')))
 				return self.try_get(data, ('INNERTUBE_CONTEXT', 'client', 'visitorData'))
 
 	def _extract_web_response(self, video_id):
