@@ -430,8 +430,8 @@ class YouTubeVideoUrl():
 			}
 			headers['X-Goog-Visitor-Id'] = self._extract_visitor_id(video_id) or ''
 		elif client == 7:
-			VERSION = '7.20250120.19.00'
-			USER_AGENT = 'Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version'
+			VERSION = '7.20250129.15.00'
+			USER_AGENT = 'Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version,gzip(gfe)'
 			CLIENT_CONTEXT = {'clientName': 'TVHTML5'}
 			headers['X-Goog-Visitor-Id'] = self._extract_visitor_id(video_id) or ''
 		elif client == 56:
