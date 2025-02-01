@@ -370,26 +370,26 @@ class YouTubeVideoUrl():
 			).group('sts')
 		return sts, player_id
 
-	def _extract_visitor_id(self, video_id):
-		webpage = self._download_webpage('https://www.youtube.com/watch?v=%s&bpctr=9999999999&has_verified=1' % video_id)
-		if webpage:
-			ytcfg = search(r'ytcfg\.set\s*\(\s*({[^}]+})\s*\)\s*;', webpage)
-			if ytcfg:
+	def _extract_visitor_id(self, webpage):
+		ytcfg = search(r'ytcfg\.set\s*\(\s*({.+?})\s*\)\s*;', webpage)
+		if ytcfg:
+			try:
 				return self.try_get(loads(ytcfg.group(1)), ('INNERTUBE_CONTEXT', 'client', 'visitorData'))
+			except ValueError:  # pragma: no cover
+				pass
+		print('[YouTubeVideoUrl] Failed to extract visitor id')
 
-	def _extract_web_response(self, video_id):
-		url = 'https://www.youtube.com/watch?v=%s&bpctr=9999999999&has_verified=1' % video_id
-		webpage = self._download_webpage(url)
-		if webpage:
-			player_response = search(r'ytInitialPlayerResponse\s*=\s*({[^>]*})\s*;\s*(?:var\s+meta|</script|\n)', webpage)
-			if player_response:
-				try:
-					return loads(player_response.group(1)), self._extract_player_info()
-				except ValueError:  # pragma: no cover
-					print('[YouTubeVideoUrl] Failed to parse web JSON')
+	def _extract_web_response(self, video_id, webpage):
+		player_response = search(r'ytInitialPlayerResponse\s*=\s*({[^>]*})\s*;\s*(?:var\s+meta|</script|\n)', webpage)
+		if player_response:
+			try:
+				return loads(player_response.group(1)), self._extract_player_info()
+			except ValueError:  # pragma: no cover
+				pass
+		print('[YouTubeVideoUrl] Failed to extract web response')
 		return None, None
 
-	def _extract_player_response(self, video_id, yt_auth, client):
+	def _extract_player_response(self, video_id, yt_auth, client, webpage=None):
 		player_id = None
 		url = 'https://www.youtube.com/youtubei/v1/player?prettyPrint=false'
 		data = {
@@ -422,12 +422,10 @@ class YouTubeVideoUrl():
 				'osName': 'iPhone',
 				'osVersion': '18.2.1.22C161'
 			}
-			headers['X-Goog-Visitor-Id'] = self._extract_visitor_id(video_id) or ''
 		elif client == 7:
-			VERSION = '7.20250120.19.00'
-			USER_AGENT = 'Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version'
+			VERSION = '7.20250129.15.00'
+			USER_AGENT = 'Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version,gzip(gfe)'
 			CLIENT_CONTEXT = {'clientName': 'TVHTML5'}
-			headers['X-Goog-Visitor-Id'] = self._extract_visitor_id(video_id) or ''
 		elif client == 56:
 			VERSION = '1.20241201.00.00'
 			USER_AGENT = None
@@ -446,6 +444,8 @@ class YouTubeVideoUrl():
 			sts, player_id = self._extract_signature_timestamp()
 			if sts:
 				data['playbackContext']['contentPlaybackContext']['signatureTimestamp'] = sts
+		if client in (5, 7):
+			headers['X-Goog-Visitor-Id'] = self._extract_visitor_id(webpage) or ''
 		headers['X-YouTube-Client-Version'] = VERSION
 		try:
 			return loads(self._download_webpage(url, data, headers)), player_id
@@ -468,7 +468,11 @@ class YouTubeVideoUrl():
 			print('[YouTubeVideoUrl] skip DASH MP4 format')
 			self.use_dash_mp4 = DASHMP4_FORMAT
 
-		player_response, player_id = self._extract_player_response(video_id, None, 7)
+		webpage = self._download_webpage('https://www.youtube.com/watch?v=%s&bpctr=9999999999&has_verified=1' % video_id)
+		if not webpage:
+			raise RuntimeError('Webpage not found!')
+
+		player_response, player_id = self._extract_player_response(video_id, None, 7, webpage)
 		if not player_response:
 			raise RuntimeError('Player response not found!')
 
@@ -477,10 +481,10 @@ class YouTubeVideoUrl():
 		if is_live:
 			if self.use_dash_mp4:
 				print('[YouTubeVideoUrl] Live content, try web response')
-				player_response, player_id = self._extract_web_response(video_id)
+				player_response, player_id = self._extract_web_response(video_id, webpage)
 			else:
 				print('[YouTubeVideoUrl] Live content, try ios client')
-				player_response, player_id = self._extract_player_response(video_id, None, 5)
+				player_response, player_id = self._extract_player_response(video_id, None, 5, webpage)
 		elif self.try_get(player_response, ('playabilityStatus', 'status')) == 'LOGIN_REQUIRED':
 			print('[YouTubeVideoUrl] Age gate content, try web embedded client')
 			player_response, player_id = self._extract_player_response(video_id, None, 56)
