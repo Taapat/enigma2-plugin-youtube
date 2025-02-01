@@ -107,7 +107,7 @@ jobs:
           sed -i 's/config.plugins.YouTube.searchLanguage.value/"en"/g' src/YouTubeVideoUrl.py
       - name: Test code with pytest
         run: |
-          YOUTUBE_PLUGIN_TOKEN=${{ secrets.YOUTUBE_PLUGIN_TOKEN }} pytest -rx -v --cov=src --cov-report=xml --cov-report=html
+          YOUTUBE_PLUGIN_TOKEN=${{ secrets.YOUTUBE_PLUGIN_TOKEN }} pytest -rx -v --cov=src --cov-report=xml --cov-report=html -s
           mv .coverage .coverage_${{ matrix.python-version }}
       - name: Upload code coverage results
         uses: actions/upload-artifact@v4
