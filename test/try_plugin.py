@@ -190,8 +190,8 @@ def try_plugin_screens_load():
 	# Open search channels
 	yt['list'].setIndex(1)
 	yt.ok()
-	# Choice 'ello' in suggestions list
-	session.current_dialog.updateSuggestions([('', None), ('ello', None)])
+	# Choice 'music' in suggestions list
+	session.current_dialog.updateSuggestions([('', None), ('music', None)])
 	session.current_dialog['list'].setIndex(1)
 	session.current_dialog.ok()
 	session.current_dialog.ok()
