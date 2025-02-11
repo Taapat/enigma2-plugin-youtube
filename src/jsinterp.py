@@ -1,3 +1,4 @@
+# coding: utf-8
 from __future__ import unicode_literals
 
 import calendar
@@ -9,7 +10,11 @@ from itertools import chain
 from json import dumps
 from json import loads
 
+from .compat import compat_basestring
 from .compat import compat_chr
+from .compat import compat_int
+from .compat import compat_integer_types
+from .compat import compat_numeric_types
 from .compat import compat_str
 from .compat import compat_map
 from .compat import compat_zip_longest
@@ -152,6 +157,15 @@ def remove_quotes(s):
 	return s
 
 
+def float_or_none(v, default=None):
+	if v is None:
+		return default
+	try:
+		return float(v)
+	except (ValueError, TypeError):
+		return default
+
+
 # NB In principle NaN cannot be checked by membership.
 # Here all NaN values are actually this one, so _NaN is _NaN,
 # although _NaN != _NaN. Ditto Infinity.
@@ -160,52 +174,140 @@ _NaN = float('nan')
 _Infinity = float('inf')
 
 
-def _js_bit_op(op):
+class JSUndefined():
+	pass
 
-	def zeroise(x):
-		return 0 if x in (None, JSUndefined, _NaN, _Infinity) else x
+
+def _js_bit_op(op, is_shift=False):
+
+	def zeroise(x, is_shift_arg=False):
+		if isinstance(x, compat_integer_types):
+			return (x % 32) if is_shift_arg else (x & 0xffffffff)
+		try:
+			x = float(x)
+			if is_shift_arg:
+				x = int(x % 32)
+			elif x < 0:
+				x = -compat_int(-x % 0xffffffff)
+			else:
+				x = compat_int(x % 0xffffffff)
+		except (ValueError, TypeError):
+			# also here for int(NaN), including float('inf') % 32
+			x = 0
+		return x
 
 	def wrapped(a, b):
-		return op(zeroise(a), zeroise(b)) & 0xffffffff
+		return op(zeroise(a), zeroise(b, is_shift)) & 0xffffffff
 
 	return wrapped
 
 
-def _js_arith_op(op):
+def _js_arith_op(op, div=False):
 
 	def wrapped(a, b):
 		if JSUndefined in (a, b):
 			return _NaN
-		return op(a or 0, b or 0)
+		# null, "" --> 0
+		a, b = (float_or_none(
+			(x.strip() if isinstance(x, compat_basestring) else x) or 0,
+			default=_NaN) for x in (a, b))
+		if _NaN in (a, b):
+			return _NaN
+		try:
+			return op(a, b)
+		except ZeroDivisionError:
+			return _NaN if not (div and (a or b)) else _Infinity
 
 	return wrapped
 
 
-def _js_div(a, b):
-	if JSUndefined in (a, b) or not (a or b):
-		return _NaN
-	return operator.truediv(a or 0, b) if b else _Infinity
+_js_arith_add = _js_arith_op(operator.add)
 
 
-def _js_mod(a, b):
-	if JSUndefined in (a, b) or not b:
-		return _NaN
-	return (a or 0) % b
+def _js_add(a, b):
+	if not (isinstance(a, compat_basestring) or isinstance(b, compat_basestring)):
+		return _js_arith_add(a, b)
+	if not isinstance(a, compat_basestring):
+		a = _js_to_string(a)
+	elif not isinstance(b, compat_basestring):
+		b = _js_to_string(b)
+	return operator.concat(a, b)
+
+
+_js_mod = _js_arith_op(operator.mod)
+__js_exp = _js_arith_op(operator.pow)
 
 
 def _js_exp(a, b):
 	if not b:
 		return 1  # even 0 ** 0 !!
-	elif JSUndefined in (a, b):
-		return _NaN
-	return (a or 0) ** b
+	return __js_exp(a, b)
 
 
-def _js_eq_op(op):
+def _js_to_primitive(v):
+	return (
+		','.join(map(_js_to_string, v)) if isinstance(v, list)
+		else '[object Object]' if isinstance(v, dict)
+		else compat_str(v) if not isinstance(v, (
+			compat_numeric_types, compat_basestring))
+		else v
+	)
+
+
+def _js_to_string(v):
+	return (
+		'undefined' if v is JSUndefined
+		else 'Infinity' if v == _Infinity
+		else 'NaN' if v is _NaN
+		else 'null' if v is None
+		# bool <= int: do this first
+		else ('false', 'true')[v] if isinstance(v, bool)
+		else '{0:.7f}'.format(v).rstrip('.0') if isinstance(v, compat_numeric_types)
+		else _js_to_primitive(v))
+
+
+_nullish = frozenset((None, JSUndefined))
+
+
+def _js_eq(a, b):
+	# NaN != any
+	if _NaN in (a, b):
+		return False
+	# Object is Object
+	if isinstance(a, type(b)) and isinstance(b, (dict, list)):
+		return operator.is_(a, b)
+	# general case
+	if a == b:
+		return True
+	# null == undefined
+	a_b = set((a, b))
+	if a_b & _nullish:
+		return a_b <= _nullish
+	a, b = _js_to_primitive(a), _js_to_primitive(b)
+	if not isinstance(a, compat_basestring):
+		a, b = b, a
+	# Number to String: convert the string to a number
+	# Conversion failure results in ... false
+	if isinstance(a, compat_basestring):
+		return float_or_none(a) == b
+	return a == b
+
+
+def _js_neq(a, b):
+	return not _js_eq(a, b)
+
+
+def _js_id_op(op):
 
 	def wrapped(a, b):
-		if set((a, b)) <= set((None, JSUndefined)):
-			return op(a, a)
+		if _NaN in (a, b):
+			return op(_NaN, None)
+		if not isinstance(a, (compat_basestring, compat_numeric_types)):
+			a, b = b, a
+		# strings are === if ==
+		# why 'a' is not 'a': https://stackoverflow.com/a/1504848
+		if isinstance(a, (compat_basestring, compat_numeric_types)):
+			return a == b if op(0, 0) else a != b
 		return op(a, b)
 
 	return wrapped
@@ -236,21 +338,21 @@ def _js_ternary(cndn, if_true=True, if_false=False):
 # avoid dict to maintain order
 # definition None => Defined in JSInterpreter._operator
 _OPERATORS = (
-	('>>', _js_bit_op(operator.rshift)),
-	('<<', _js_bit_op(operator.lshift)),
-	('+', _js_arith_op(operator.add)),
+	('>>', _js_bit_op(operator.rshift, True)),
+	('<<', _js_bit_op(operator.lshift, True)),
+	('+', _js_add),
 	('-', _js_arith_op(operator.sub)),
 	('*', _js_arith_op(operator.mul)),
 	('%', _js_mod),
-	('/', _js_div),
+	('/', _js_arith_op(operator.truediv, div=True)),
 	('**', _js_exp),
 )
 
 _COMP_OPERATORS = (
-	('===', operator.is_),
-	('!==', operator.is_not),
-	('==', _js_eq_op(operator.eq)),
-	('!=', _js_eq_op(operator.ne)),
+	('===', _js_id_op(operator.is_)),
+	('!==', _js_id_op(operator.is_not)),
+	('==', _js_eq),
+	('!=', _js_neq),
 	('<=', _js_comp_op(operator.le)),
 	('>=', _js_comp_op(operator.ge)),
 	('<', _js_comp_op(operator.lt)),
@@ -275,10 +377,6 @@ _OPERATOR_RE = '|'.join(map(lambda x: re.escape(x[0]), _OPERATORS + _LOG_OPERATO
 _NAME_RE = r'[a-zA-Z_$][\w$]*'
 _MATCHING_PARENS = dict(zip(*zip('()', '{}', '[]')))
 _QUOTES = '\'"/'
-
-
-class JSUndefined():
-	pass
 
 
 class JSBreak(Exception):
@@ -306,6 +404,9 @@ class LocalNameSpace(compat_map):
 				scope[key] = value
 				return
 		self.maps[0][key] = value
+
+	def __repr__(self):
+		return 'LocalNameSpace%s' % (self.maps, )
 
 
 class JSInterpreter(object):
@@ -651,7 +752,7 @@ class JSInterpreter(object):
 			start, end = m.span()
 			sign = m.group('pre_sign') or m.group('post_sign')
 			ret = local_vars[var]
-			local_vars[var] += 1 if sign[0] == '+' else -1
+			local_vars[var] = _js_add(ret, 1 if sign[0] == '+' else -1)
 			if m.group('pre_sign'):
 				ret = local_vars[var]
 			expr = expr[:start] + self._dump(ret, local_vars) + expr[end:]
@@ -842,7 +943,7 @@ class JSInterpreter(object):
 				if obj is compat_str:
 					if member == 'fromCharCode':
 						assertion(argvals, ARG_MSG)
-						return ''.join(map(compat_chr, argvals))
+						return ''.join(compat_chr(int(n)) for n in argvals)
 					raise RuntimeError('Unsupported string method', member)
 				elif obj is float:
 					if member == 'pow':

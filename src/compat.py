@@ -10,7 +10,9 @@ if version_info >= (2, 7, 9):
 
 if version_info[0] == 2:
 	# Python 2
-	compat_chr, compat_str = (unichr, unicode)
+	compat_str, compat_basestring, compat_chr = (unicode, basestring, unichr)
+	compat_integer_types = (int, long)
+	compat_numeric_types = (int, float, long, complex)
 
 	from re import compile
 	from urllib import _hextochr
@@ -82,7 +84,9 @@ if version_info[0] == 2:
 
 else:
 	# Python 3
-	compat_chr, compat_str = (chr, str)
+	compat_str, compat_basestring, compat_chr = (str, (str, bytes), chr)
+	compat_integer_types = (int, )
+	compat_numeric_types = (int, float, complex)
 
 	from itertools import zip_longest as compat_zip_longest
 	from urllib.parse import urlencode as compat_urlencode
@@ -130,6 +134,8 @@ else:
 			m.update(kwargs)
 			return self.__class__(m, *self.maps)
 
+
+compat_int = compat_integer_types[-1]
 
 SUBURI = '&suburi='
 
