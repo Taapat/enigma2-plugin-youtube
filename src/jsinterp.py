@@ -245,25 +245,29 @@ def _js_exp(a, b):
 
 
 def _js_to_primitive(v):
-	return (
-		','.join(map(_js_to_string, v)) if isinstance(v, list)
-		else '[object Object]' if isinstance(v, dict)
-		else compat_str(v) if not isinstance(v, (
-			compat_numeric_types, compat_basestring))
-		else v
-	)
+	if isinstance(v, list):
+		return ','.join(map(_js_to_string, v))
+	if isinstance(v, dict):
+		return '[object Object]'
+	if not isinstance(v, (compat_numeric_types, compat_basestring)):
+		return compat_str(v)
+	return v
 
 
 def _js_to_string(v):
-	return (
-		'undefined' if v is JSUndefined
-		else 'Infinity' if v == _Infinity
-		else 'NaN' if v is _NaN
-		else 'null' if v is None
-		# bool <= int: do this first
-		else ('false', 'true')[v] if isinstance(v, bool)
-		else '{0:.7f}'.format(v).rstrip('.0') if isinstance(v, compat_numeric_types)
-		else _js_to_primitive(v))
+	if v is JSUndefined:
+		return 'undefined'
+	if v == _Infinity:
+		return 'Infinity'
+	if v is _NaN:
+		return 'NaN'
+	if v is None:
+		return 'null'
+	if isinstance(v, bool):
+		return ('false', 'true')[v]
+	if isinstance(v, compat_numeric_types):
+		return '{0:.7f}'.format(v).rstrip('.0')
+	return _js_to_primitive(v)
 
 
 _nullish = frozenset((None, JSUndefined))
