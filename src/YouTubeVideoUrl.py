@@ -346,12 +346,11 @@ class YouTubeVideoUrl():
 				return url, str(fmt.get('itag'))
 		return '', ''
 
-	def _extract_dash_audio_format(self, streaming_formats, player_id):
+	def _extract_dash_audio_format(self, streaming_formats, player_id, lang):
 		""" If DASH MP4 video add also DASH MP4 audio track"""
 		print('[YouTubeVideoUrl] Try fmt audio url')
-		get_audio = config.plugins.YouTube.searchLanguage.value
 		DASH_AUDIO_FORMATS = ('141', '140', '139', '258', '265', '325', '328', '233', '234')
-		for fmt in self._sort_formats(DASH_AUDIO_FORMATS, streaming_formats, get_audio):
+		for fmt in self._sort_formats(DASH_AUDIO_FORMATS, streaming_formats, lang):
 			url = self._extract_url(fmt, player_id)
 			if url:
 				print('[YouTubeVideoUrl] Found fmt audio url')
@@ -389,7 +388,7 @@ class YouTubeVideoUrl():
 		print('[YouTubeVideoUrl] Failed to extract web response')
 		return None, None
 
-	def _extract_player_response(self, video_id, yt_auth, client, webpage=None):
+	def _extract_player_response(self, video_id, yt_auth, client, lang, webpage=None):
 		player_id = None
 		url = 'https://www.youtube.com/youtubei/v1/player?prettyPrint=false'
 		data = {
@@ -401,7 +400,7 @@ class YouTubeVideoUrl():
 			},
 			'context': {
 				'client': {
-					'hl': config.plugins.YouTube.searchLanguage.value
+					'hl': lang if lang else 'en'
 				}
 			}
 		}
@@ -461,6 +460,7 @@ class YouTubeVideoUrl():
 			'303', '313', '315', '308'
 		)
 		url = ''
+		lang = config.plugins.YouTube.searchLanguage.value
 
 		if config.plugins.YouTube.useDashMP4.value:
 			self.use_dash_mp4 = ()
@@ -472,7 +472,7 @@ class YouTubeVideoUrl():
 		if not webpage:
 			raise RuntimeError('Webpage not found!')
 
-		player_response, player_id = self._extract_player_response(video_id, None, 7, webpage)
+		player_response, player_id = self._extract_player_response(video_id, None, 7, lang, webpage)
 		if not player_response:
 			raise RuntimeError('Player response not found!')
 
@@ -484,13 +484,13 @@ class YouTubeVideoUrl():
 				player_response, player_id = self._extract_web_response(webpage)
 			else:
 				print('[YouTubeVideoUrl] Live content, try ios client')
-				player_response, player_id = self._extract_player_response(video_id, None, 5, webpage)
+				player_response, player_id = self._extract_player_response(video_id, None, 5, lang, webpage)
 		elif self.try_get(player_response, ('playabilityStatus', 'status')) == 'LOGIN_REQUIRED':
 			print('[YouTubeVideoUrl] Age gate content, try web embedded client')
-			player_response, player_id = self._extract_player_response(video_id, None, 56)
+			player_response, player_id = self._extract_player_response(video_id, None, 56, lang)
 			if not player_response or self.try_get(player_response, ('playabilityStatus', 'status')) != 'OK':
 				print('[YouTubeVideoUrl] Player response is not usable, try authorized tv embedded client')
-				player_response, player_id = self._extract_player_response(video_id, yt_auth, 85)
+				player_response, player_id = self._extract_player_response(video_id, yt_auth, 85, lang)
 			if not player_response:
 				raise RuntimeError('Age gate content player response not found!')
 
@@ -505,7 +505,7 @@ class YouTubeVideoUrl():
 			streaming_formats.extend(streaming_data.get('adaptiveFormats', []))
 			url, our_format = self._extract_fmt_video_format(streaming_formats, player_id)
 			if url and our_format in DASHMP4_FORMAT:
-				audio_url = self._extract_dash_audio_format(streaming_formats, player_id)
+				audio_url = self._extract_dash_audio_format(streaming_formats, player_id, lang)
 				if audio_url:
 					url += SUBURI + audio_url
 
