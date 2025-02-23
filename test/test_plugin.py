@@ -169,6 +169,7 @@ function_list = (
 	('function f(a, b){return Array.prototype.join.apply(a, [b])}', [[], '-'], 'prototype apply'),
 	('function f(i){return "test".charCodeAt(i)}', [0], 'charCodeAt'),
 	('function f() {(d%e.length+e.length)%e.length;}', (), 'length'),
+	('function f(){return 19 & 21;}', (), 'bit operator'),
 )
 
 function_repr_list = [(x, function_list[x][2]) for x in range(len(function_list))]
