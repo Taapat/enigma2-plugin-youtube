@@ -723,38 +723,35 @@ class YouTubeMain(Screen):
 
 	def useVideoUrl(self):
 		current = self.yts[1]['entry_list'][self.yts[1]['index']]
-		video_url = current[6]
 		video_id = current[0]
-		if not video_url:  # Get and remember video url
-			er = 'Video url not found!'
-			try:
-				video_url = self.ytdl.extract(video_id, self.ytapi.get_yt_auth())
-			except Exception as e:
-				er = e
-				print('[YouTube] Error in extract info:', er)
-			if not video_url:
-				self.session.open(MessageBox,
-					_('There was an error in extract video url:\n%s\nVideo Id %s') % (er, str(video_id)),
-					MessageBox.TYPE_INFO, timeout=8)
-				self.yts.pop(0)
-				self.setEntryList()
-			else:
-				self.yts[1]['entry_list'][self.yts[1]['index']] = (
-					current[0],  # Id
-					current[1],  # Thumbnail url
-					current[2],  # Thumbnail
-					current[3],  # Title
-					current[4],  # Views
-					current[5],  # Duration
-					video_url,  # Video url
-					current[7],  # Description
-					current[8],  # Likes
-					current[9],  # Big thumbnail url
-					current[10],  # Channel Id
-					current[11]  # Published
-				)
-				current = self.yts[1]['entry_list'][self.yts[1]['index']]
-		if video_url:
+		er = 'Video url not found!'
+		try:
+			video_url = self.ytdl.extract(video_id, self.ytapi.get_yt_auth())
+		except Exception as e:
+			er = e
+			print('[YouTube] Error in extract info:', er)
+		if not video_url:
+			self.session.open(MessageBox,
+				_('There was an error in extract video url:\n%s\nVideo Id %s') % (er, str(video_id)),
+				MessageBox.TYPE_INFO, timeout=8)
+			self.yts.pop(0)
+			self.setEntryList()
+		else:
+			self.yts[1]['entry_list'][self.yts[1]['index']] = (
+				current[0],  # Id
+				current[1],  # Thumbnail url
+				current[2],  # Thumbnail
+				current[3],  # Title
+				current[4],  # Views
+				current[5],  # Duration
+				video_url,  # Video url
+				current[7],  # Description
+				current[8],  # Likes
+				current[9],  # Big thumbnail url
+				current[10],  # Channel Id
+				current[11]  # Published
+			)
+			current = self.yts[1]['entry_list'][self.yts[1]['index']]
 			if self.yts[0]['list'] == 'playVideo':
 				service = eServiceReference(int(config.plugins.YouTube.player.value), 0, video_url)
 				service.setName(current[3])
@@ -1195,13 +1192,9 @@ class YouTubeMain(Screen):
 				current = self['list'].getCurrent()
 				self.screenCallback(current[3][:40], 'channel')
 			elif answer == 'download':
-				current = self['list'].getCurrent()
-				if current[6]:
-					self.videoDownload(current[6], current[3])
-				else:
-					self.yts[0]['index'] = self['list'].index
-					self.yts.insert(0, {})
-					self.screenCallback('', 'downloadVideo')
+				self.yts[0]['index'] = self['list'].index
+				self.yts.insert(0, {})
+				self.screenCallback('', 'downloadVideo')
 			elif answer == 'download_list':
 				from .YouTubeDownload import YouTubeDownloadList
 				self.session.open(YouTubeDownloadList)
