@@ -98,6 +98,12 @@ def check_video_url(videos, descr):
 		print(info, descr, 'Video Url exist')
 
 
+def check_jsinterpreter(code, args):
+	from src.jsinterp import JSInterpreter
+	jsi = JSInterpreter(code)
+	print(jsi.extract_function_from_code(*jsi.extract_function_code('f'))(args))
+
+
 def test_search_url():
 	check_example(q='official video', descr='Search')
 
@@ -151,6 +157,27 @@ video_list = (
 @pytest.mark.parametrize('videos,descr', video_list)
 def test_url(videos, descr):
 	check_video_url(videos=videos, descr=descr)
+
+
+function_list = (
+	('function f(dt) { return new Date(dt) - 0; }', ['8/7/2009'], 'date'),
+	('function f() { return new Date("December 15, 2017 at 7:49 am") - 0; }', (), 'date'),
+	("function f(){return Math.pow(3, 5) + new Date('December 15, 2017 at 7:49 am') / 1000 * -239 - -24205;}", (), 'date'),
+	('function f(){return 1 + "2" + [3,4] + {k: 56} + null + undefined + Infinity;}', (), 'infinity'),
+	('function f() { return void 42; }', (), 'void'),
+	('function f(a, b){return Array.prototype.join.call(a, b)}', [[], '-'], 'prototype call'),
+	('function f(a, b){return Array.prototype.join.apply(a, [b])}', [[], '-'], 'prototype apply'),
+	('function f(i){return "test".charCodeAt(i)}', [0], 'charCodeAt'),
+	('function f() {(d%e.length+e.length)%e.length;}', (), 'length'),
+)
+
+function_repr_list = [(x, function_list[x][2]) for x in range(len(function_list))]
+
+
+@pytest.mark.parametrize('line,descr', function_repr_list)
+def test_jsinterpreter(line, descr):  # NOSONAR Description in parameter for log
+	val = function_list[line]
+	check_jsinterpreter(code=val[0], args=val[1])
 
 
 def test_function_exceptions():

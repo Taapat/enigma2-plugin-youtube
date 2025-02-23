@@ -56,6 +56,16 @@ def js_to_json(code):
 		'''.format(comment=COMMENT_RE, skip=SKIP_RE), fix_kv, code)
 
 
+TIMEZONE_NAMES = {
+	'UT': 0, 'UTC': 0, 'GMT': 0, 'Z': 0,
+	'AST': -4, 'ADT': -3,  # Atlantic (used in Canada)
+	'EST': -5, 'EDT': -4,  # Eastern
+	'CST': -6, 'CDT': -5,  # Central
+	'MST': -7, 'MDT': -6,  # Mountain
+	'PST': -8, 'PDT': -7   # Pacific
+}
+
+
 DATE_FORMATS_MONTH_FIRST = (
 	'%d %B %Y',
 	'%d %b %Y',
@@ -108,25 +118,11 @@ DATE_FORMATS_MONTH_FIRST = (
 
 
 def extract_timezone(date_str):
-	m = re.search(
-		r'''(?x)
-			^.{8,}?											  # >=8 char non-TZ prefix, if present
-			(?P<tz>Z|											# just the UTC Z, or
-				(?:(?<=.\b\d{4}|\b\d{2}:\d\d)|				   # preceded by 4 digits or hh:mm or
-					(?<!.\b[a-zA-Z]{3}|[a-zA-Z]{4}|..\b\d\d))	 # not preceded by 3 alpha word or >= 4 alpha or 2 digits
-					[ ]?										  # optional space
-				(?P<sign>\+|-)								   # +/-
-				(?P<hours>[0-9]{2}):?(?P<minutes>[0-9]{2})	   # hh[:]mm
-			$)
-		''', date_str)
-	date_str = date_str[:-len(m.group('tz'))]
-	if not m.group('sign'):
-		timezone = datetime.timedelta()
-	else:
-		sign = 1 if m.group('sign') == '+' else -1
-		timezone = datetime.timedelta(
-			hours=sign * int(m.group('hours')),
-			minutes=sign * int(m.group('minutes')))
+	m = re.search(r'\d{1,2}:\d{1,2}(?:\.\d+)?(?P<tz>\s*[A-Z]+)$', date_str)
+	timezone = TIMEZONE_NAMES.get(m and m.group('tz').strip())
+	if timezone is not None:
+		date_str = date_str[:-len(m.group('tz'))]
+	timezone = datetime.timedelta(hours=timezone or 0)
 	return timezone, date_str
 
 
