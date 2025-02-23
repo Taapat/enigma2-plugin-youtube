@@ -725,6 +725,7 @@ class YouTubeMain(Screen):
 		current = self.yts[1]['entry_list'][self.yts[1]['index']]
 		video_id = current[0]
 		er = 'Video url not found!'
+		video_url = None
 		try:
 			video_url = self.ytdl.extract(video_id, self.ytapi.get_yt_auth())
 		except Exception as e:
