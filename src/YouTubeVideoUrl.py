@@ -411,7 +411,17 @@ class YouTubeVideoUrl():
 		}
 		if yt_auth:
 			headers['Authorization'] = yt_auth
-		if client == 5:
+		if client == 3:
+			VERSION = '19.44.38'
+			USER_AGENT = 'com.google.android.youtube/%s (Linux; U; Android 11) gzip' % VERSION
+			CLIENT_CONTEXT = {
+				'clientName': 'ANDROID',
+				'androidSdkVersion': 30,
+				'osName': 'Android',
+				'osVersion': '11'
+			}
+			data['params'] = '2AMB'
+		elif client == 5:
 			VERSION = '20.03.02'
 			USER_AGENT = 'com.google.ios.youtube/%s (iPhone16,2; U; CPU iOS 18_2_1 like Mac OS X;)' % VERSION
 			CLIENT_CONTEXT = {
@@ -468,24 +478,29 @@ class YouTubeVideoUrl():
 			print('[YouTubeVideoUrl] skip DASH MP4 format')
 			self.use_dash_mp4 = DASHMP4_FORMAT
 
-		webpage = self._download_webpage('https://www.youtube.com/watch?v=%s&bpctr=9999999999&has_verified=1' % video_id)
-		if not webpage:
-			raise RuntimeError('Webpage not found!')
-
-		player_response, player_id = self._extract_player_response(video_id, None, 7, lang, webpage)
+		player_response, player_id = self._extract_player_response(video_id, None, 3, lang)
 		if not player_response:
 			raise RuntimeError('Player response not found!')
 
 		is_live = self.try_get(player_response, ('videoDetails', 'isLive'))
 
-		if is_live:
-			if self.use_dash_mp4:
-				print('[YouTubeVideoUrl] Live content, try web response')
-				player_response, player_id = self._extract_web_response(webpage)
+		if self.try_get(player_response, ('videoDetails', 'videoId')) != video_id:
+			webpage = self._download_webpage('https://www.youtube.com/watch?v=%s&bpctr=9999999999&has_verified=1' % video_id)
+			if not webpage:
+				raise RuntimeError('Webpage not found!')
+
+			if not is_live:
+				print('[YouTubeVideoUrl] Got wrong player response, try mweb response')
+				player_response, player_id = self._extract_player_response(video_id, None, 7, lang, webpage)
 			else:
-				print('[YouTubeVideoUrl] Live content, try ios client')
-				player_response, player_id = self._extract_player_response(video_id, None, 5, lang, webpage)
-		elif self.try_get(player_response, ('playabilityStatus', 'status')) == 'LOGIN_REQUIRED':
+				if self.use_dash_mp4:
+					print('[YouTubeVideoUrl] Got wrong player response, try for live web response')
+					player_response, player_id = self._extract_web_response(webpage)
+				else:
+					print('[YouTubeVideoUrl] Got wrong player response, try for live ios client')
+					player_response, player_id = self._extract_player_response(video_id, None, 5, lang, webpage)
+
+		if self.try_get(player_response, ('playabilityStatus', 'status')) == 'LOGIN_REQUIRED':
 			print('[YouTubeVideoUrl] Age gate content, try web embedded client')
 			player_response, player_id = self._extract_player_response(video_id, None, 56, lang)
 			if not player_response or self.try_get(player_response, ('playabilityStatus', 'status')) != 'OK':
