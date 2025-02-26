@@ -164,6 +164,7 @@ function_list = (
 	('function f() { return new Date("December 15, 2017 at 7:49 am") - 0; }', (), 'date'),
 	("function f(){return Math.pow(3, 5) + new Date('December 15, 2017 at 7:49 am') / 1000 * -239 - -24205;}", (), 'date'),
 	('function f() { return new Date("Wednesday 31 December 1969 18:01:26 MDT") - 0; }', (), 'date'),
+	('function f() { return new Date("1970-01-01T06:15:13.000+06:15") - 0; }', (), 'date'),
 	('function f(){return 1 + "2" + [3,4] + {k: 56} + null + undefined + Infinity;}', (), 'infinity'),
 	('function f() { return void 42; }', (), 'void'),
 	('function f() { var g = function(){}; return typeof g; }', (), 'typeof'),
@@ -175,7 +176,9 @@ function_list = (
 	('function f(){return 11 >> 2;}', (), 'bit operator'),
 	('function f(){return 42 << Infinity}', (), 'bit operator'),
 	('function f(){return 42 ** "spam";}', (), 'bit operator'),
+	('function f(){return 0 ?? 42;}', (), 'bit operator'),
 	('function f() { if (0!=0) {return 1} else if (1==0) {return 2} else {return 10} }', (), 'else if'),
+	('function f() { var x = /* 1 + */ 2; var y = /* 30 * 40 */ 50; return x + y; }', (), 'comments'),
 )
 
 function_repr_list = [(x, function_list[x][2]) for x in range(len(function_list))]
