@@ -100,11 +100,11 @@ else:
 
 
 if version_info >= (3, 4):
-	from collections import ChainMap as compat_map
+	from collections import ChainMap as compat_chain_map
 else:
 	from collections import MutableMapping
 
-	class compat_map(MutableMapping):
+	class compat_chain_map(MutableMapping):
 		def __init__(self, *maps):
 			self.maps = list(maps) or [{}]
 
@@ -133,6 +133,15 @@ else:
 			m = m or {}
 			m.update(kwargs)
 			return self.__class__(m, *self.maps)
+
+
+try:
+	from future_builtins import map as compat_map
+except ImportError:
+	try:
+		from itertools import imap as compat_map
+	except ImportError:
+		compat_map = map
 
 
 compat_int = compat_integer_types[-1]
