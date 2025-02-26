@@ -1121,7 +1121,9 @@ class JSInterpreter(object):
 				elif member in ('shift', 'pop'):
 					assertion(isinstance(obj, list), LIST_MSG)
 					assertion(not argvals, ARG_NOT_MSG)
-					return obj.pop(0 if member == 'shift' else -1) if len(obj) > 0 else JSUndefined
+					if len(obj) > 0:
+						return obj.pop(0 if member == 'shift' else -1)
+					return JSUndefined
 				elif member == 'unshift':
 					assertion(isinstance(obj, list), LIST_MSG)
 					# not enforced: assertion(argvals, ARG_MSG)
