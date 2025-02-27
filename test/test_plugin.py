@@ -98,10 +98,12 @@ def check_video_url(videos, descr):
 		print(info, descr, 'Video Url exist')
 
 
-def check_jsinterpreter(code, args):
+def check_jsinterpreter(code, args, expected):
 	from src.jsinterp import JSInterpreter
 	jsi = JSInterpreter(code)
-	print(jsi.extract_function_from_code(*jsi.extract_function_code('f'))(args))
+	got = jsi.extract_function_from_code(*jsi.extract_function_code('f'))(args)
+	print('JSInterpreter expected % s return %s' % (str(expected), str(got)))
+	assert expected == got
 
 
 def test_search_url():
@@ -159,35 +161,36 @@ def test_url(videos, descr):
 	check_video_url(videos=videos, descr=descr)
 
 
+from src.jsinterp import JSUndefined  # noqa: E402
+
 function_list = (
-	('function f(dt) { return new Date(dt) - 0; }', ['8/7/2009'], 'date'),
-	('function f() { return new Date("December 15, 2017 at 7:49 am") - 0; }', (), 'date'),
-	("function f(){return Math.pow(3, 5) + new Date('December 15, 2017 at 7:49 am') / 1000 * -239 - -24205;}", (), 'date'),
-	('function f() { return new Date("Wednesday 31 December 1969 18:01:26 MDT") - 0; }', (), 'date'),
-	('function f() { return new Date("1970-01-01T06:15:13.000+06:15") - 0; }', (), 'date'),
-	('function f(){return 1 + "2" + [3,4] + {k: 56} + null + undefined + Infinity;}', (), 'infinity'),
-	('function f() { return void 42; }', (), 'void'),
-	('function f() { var g = function(){}; return typeof g; }', (), 'typeof'),
-	('function f(a, b){return Array.prototype.join.call(a, b)}', [[], '-'], 'prototype call'),
-	('function f(a, b){return Array.prototype.join.apply(a, [b])}', [[], '-'], 'prototype apply'),
-	('function f(i){return "test".charCodeAt(i)}', [0], 'charCodeAt'),
-	('function f() {(d%e.length+e.length)%e.length;}', (), 'length'),
-	('function f(){return (19 & 21) + (19.0 & NaN);}', (), 'bit operator'),
-	('function f(){return 11 >> 2;}', (), 'bit operator'),
-	('function f(){return 42 << Infinity}', (), 'bit operator'),
-	('function f(){return 42 ** "spam";}', (), 'bit operator'),
-	('function f(){return 0 ?? 42;}', (), 'bit operator'),
-	('function f() { if (0!=0) {return 1} else if (1==0) {return 2} else {return 10} }', (), 'else if'),
-	('function f() { var x = /* 1 + */ 2; var y = /* 30 * 40 */ 50; return x + y; }', (), 'comments'),
+	('function f(dt) { return new Date(dt) - 0; }', ['8/7/2009'], 'date', 1249603200000),
+	('function f() { return new Date("December 15, 2017 at 7:49 am") - 0; }', (), 'date', 1513324140000),
+	("function f(){return Math.pow(3, 5) + new Date('December 15, 2017 at 7:49 am') / 1000 * -239 - -24205;}", (), 'date', -361684445012),
+	('function f() { return new Date("Wednesday 31 December 1969 18:01:26 MDT") - 0; }', (), 'date', 86000),
+	('function f() { return new Date("1970-01-01T06:15:13.000+06:15") - 0; }', (), 'date', 13000),
+	('function f(){return 1 + "2" + [3,4] + {k: 56} + null + undefined + Infinity;}', (), 'infinity', '123,4[object Object]nullundefinedInfinity'),
+	('function f() { return void 42; }', (), 'void', JSUndefined),
+	('function f() { var g = function(){}; return typeof g; }', (), 'typeof', 'function'),
+	('function f(a, b){return Array.prototype.join.call(a, b)}', [[], '-'], 'prototype call', ''),
+	('function f(a, b){return Array.prototype.join.apply(a, [b])}', [[], '-'], 'prototype apply', ''),
+	('function f(i){return "test".charCodeAt(i)}', [0], 'charCodeAt', 116),
+	('function f() {(d%e.length+e.length)%e.length;}', (), 'length', None),
+	('function f(){return (19 & 21) + (19.0 & NaN);}', (), 'bit operator', 17.0),
+	('function f(){return 11 >> 2;}', (), 'bit operator', 2),
+	('function f(){return 42 << Infinity}', (), 'bit operator', 42),
+	('function f(){return 42 ** "2";}', (), 'bit operator', 1764),
+	('function f(){return 0 ?? 42;}', (), 'bit operator', 0),
+	('function f() { if (0!=0) {return 1} else if (1==0) {return 2} else {return 10} }', (), 'else if', 10),
+	('function f() { var x = /* 1 + */ 2; var y = /* 30 * 40 */ 50; return x + y; }', (), 'comments', 52),
 )
 
 function_repr_list = [(x, function_list[x][2]) for x in range(len(function_list))]
 
-
 @pytest.mark.parametrize('line,descr', function_repr_list)
 def test_jsinterpreter(line, descr):  # NOSONAR Description in parameter for log
 	val = function_list[line]
-	check_jsinterpreter(code=val[0], args=val[1])
+	check_jsinterpreter(code=val[0], args=val[1], expected=val[3])
 
 
 def test_function_exceptions():
