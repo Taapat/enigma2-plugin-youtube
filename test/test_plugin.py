@@ -187,6 +187,7 @@ function_list = (
 
 function_repr_list = [(x, function_list[x][2]) for x in range(len(function_list))]
 
+
 @pytest.mark.parametrize('line,descr', function_repr_list)
 def test_jsinterpreter(line, descr):  # NOSONAR Description in parameter for log
 	val = function_list[line]
