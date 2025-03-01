@@ -9,4 +9,4 @@ License: PD
 Architecture: all
 OE: enigma2-plugin-extensions-youtube
 Homepage: https://github.com/Taapat/enigma2-plugin-youtube
-Depends: python3-core, python3-datetime, python3-email, python3-json, python3-netclient, python3-threading
+Depends: python3-core, python3-datetime, python3-email, python3-io, python3-json
