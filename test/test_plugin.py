@@ -220,7 +220,7 @@ sig_list = (
 sig_repr_list = [(x, sig_list[x][0]) for x in range(len(sig_list))]
 
 
-@pytest.mark.parametrize('line,descr', nsig_repr_list)
+@pytest.mark.parametrize('line,descr', sig_repr_list)
 def test_signature_extraction(line, descr):
 	ytdl = YouTubeVideoUrl()
 	sig = '2aq0aqSyOoJXtK73m-uME_jv7-pT15gOFC02RFkGMqWpzEICs69VdbwQ0LDp1v7j8xx92efCJlYFYb1sUkkBSPOlPmXgIARw8JQ0qOAOAA'
