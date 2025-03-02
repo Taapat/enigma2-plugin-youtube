@@ -509,7 +509,7 @@ class JSInterpreter(object):
 		start, splits, pos, delim_len = 0, 0, 0, len(delim) - 1
 		in_quote, escaping, after_op, in_regex_char_group = None, False, True, False
 		skipping = 0
-		if skip_delims:
+		if skip_delims and not isinstance(skip_delims, tuple):
 			skip_delims = (skip_delims,)
 		skip_txt = None
 		for idx, char in enumerate(expr):
@@ -1099,7 +1099,7 @@ class JSInterpreter(object):
 					obj.reverse()
 					return obj
 				elif member == 'slice':
-					assertion(isinstance(obj, (list, compat_str)), 'must be applied on a list or string')
+					assertion(isinstance(obj, (list, str, compat_str)), 'must be applied on a list or string')
 					# From [1]:
 					# .slice() - like [:]
 					# .slice(n) - like [n:] (not [slice(n)]
@@ -1147,7 +1147,7 @@ class JSInterpreter(object):
 					except ValueError:
 						return -1
 				elif member == 'charCodeAt':
-					assertion(isinstance(obj, compat_str), STR_MSG)
+					assertion(isinstance(obj, (str, compat_str)), STR_MSG)
 					# assertion(len(argvals) == 1, 'takes exactly one argument') # but not enforced
 					idx = argvals[0] if len(argvals) > 0 and isinstance(argvals[0], int) else 0
 					if idx >= len(obj):

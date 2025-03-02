@@ -7,9 +7,14 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from src.compat import compat_urlopen  # noqa: E402
+from src.jsinterp import JSInterpreter  # noqa: E402
+from src.jsinterp import JSUndefined  # noqa: E402
+from src.YouTubeApi import YouTubeApi  # noqa: E402
+from src.YouTubeVideoUrl import YouTubeVideoUrl  # noqa: E402
+
 
 def get_video_id(q, event_type, order, s_type):
-	from src.YouTubeApi import YouTubeApi
 	youtube = YouTubeApi('')
 
 	search_response = youtube.search_list_full(
@@ -58,8 +63,6 @@ def get_video_id(q, event_type, order, s_type):
 
 
 def get_url(videos):
-	from src.YouTubeVideoUrl import YouTubeVideoUrl
-	from src.YouTubeApi import YouTubeApi
 	ytdl = YouTubeVideoUrl()
 	ytapi = YouTubeApi(os.environ['YOUTUBE_PLUGIN_TOKEN'])
 	video_url = ytdl.extract(videos, ytapi.get_yt_auth())
@@ -91,7 +94,6 @@ def check_video_url(videos, descr):
 		else:
 			raise RuntimeError(ex)
 	else:
-		from src.compat import compat_urlopen
 		response = compat_urlopen(video_url)
 		info = response.info()
 		print('Video Url info:')
@@ -99,7 +101,6 @@ def check_video_url(videos, descr):
 
 
 def check_jsinterpreter(code, args, expected):
-	from src.jsinterp import JSInterpreter
 	jsi = JSInterpreter(code)
 	got = jsi.extract_function_from_code(*jsi.extract_function_code('f'))(args)
 	print('JSInterpreter expected % s return %s' % (str(expected), str(got)))
@@ -161,8 +162,6 @@ def test_url(videos, descr):
 	check_video_url(videos=videos, descr=descr)
 
 
-from src.jsinterp import JSUndefined  # noqa: E402
-
 function_list = (
 	('function f(dt) { return new Date(dt) - 0; }', ['8/7/2009'], 'date', 1249603200000),
 	('function f() { return new Date("December 15, 2017 at 7:49 am") - 0; }', (), 'date', 1513324140000),
@@ -189,13 +188,49 @@ function_repr_list = [(x, function_list[x][2]) for x in range(len(function_list)
 
 
 @pytest.mark.parametrize('line,descr', function_repr_list)
-def test_jsinterpreter(line, descr):  # NOSONAR Description in parameter for log
+def test_jsinterpreter(line, descr):
 	val = function_list[line]
 	check_jsinterpreter(code=val[0], args=val[1], expected=val[3])
 
 
+nsig_list = (
+	('7862ca1f', 'X_LCxVDjAavgE5t', 'yxJ1dM6iz5ogUg'),
+	('2f1832d2', 'YWt1qdbe8SAfkoPHW5d', 'RrRjWQOJmBiP'),
+	('9c6dfc4a', 'jbu7ylIosQHyJyJV', 'uwI0ESiynAmhNg'),
+)
+
+nsig_repr_list = [(x, nsig_list[x][0]) for x in range(len(nsig_list))]
+
+
+@pytest.mark.parametrize('line,descr', nsig_repr_list)
+def test_nsig_extraction(line, descr):
+	ytdl = YouTubeVideoUrl()
+	val = nsig_list[line]
+	ret = ytdl._unthrottle_url('&n=%s&' % val[1], val[0])[3:-1]
+	print('Expected nsig % s return %s' % (val[2], ret))
+	assert val[2] == ret
+
+
+sig_list = (
+	('6ed0d907', 'AOq0QJ8wRAIgXmPlOPSBkkUs1bYFYlJCfe29xx8j7v1pDL2QwbdV96sCIEzpWqMGkFR20CFOg51Tp-7vj_EMu-m37KtXJoOySqa0'),
+	('3bb1f723', 'MyOSJXtKI3m-uME_jv7-pT12gOFC02RFkGoqWpzE0Cs69VdbwQ0LDp1v7j8xx92efCJlYFYb1sUkkBSPOlPmXgIARw8JQ0qOAOAA'),
+	('2f1832d2', '0QJ8wRAIgXmPlOPSBkkUs1bYFYlJCfe29xxAj7v1pDL0QwbdV96sCIEzpWqMGkFR20CFOg51Tp-7vj_EMu-m37KtXJ2OySqa0q'),
+)
+
+sig_repr_list = [(x, sig_list[x][0]) for x in range(len(sig_list))]
+
+
+@pytest.mark.parametrize('line,descr', nsig_repr_list)
+def test_signature_extraction(line, descr):
+	ytdl = YouTubeVideoUrl()
+	sig = '2aq0aqSyOoJXtK73m-uME_jv7-pT15gOFC02RFkGMqWpzEICs69VdbwQ0LDp1v7j8xx92efCJlYFYb1sUkkBSPOlPmXgIARw8JQ0qOAOAA'
+	val = sig_list[line]
+	ret = ytdl._decrypt_signature_url({'s': [sig], 'url': ['']}, val[0])[11:]
+	print('Expected signature % s return %s' % (val[1], ret))
+	assert val[1] == ret
+
+
 def test_function_exceptions():
-	from src.YouTubeVideoUrl import YouTubeVideoUrl
 	ytdl = YouTubeVideoUrl()
 	player_id = ytdl._extract_player_info()
 	ytdl._unthrottle_url('&n=a&', player_id)
