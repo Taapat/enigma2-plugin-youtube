@@ -103,8 +103,8 @@ jobs:
           echo "" > src/__init__.py
           sed -i 's/from Components/# from Components/g' src/YouTubeVideoUrl.py
           sed -i 's/config.plugins.YouTube.maxResolution.value/"22"/g' src/YouTubeVideoUrl.py
-          sed -i 's/config.plugins.YouTube.useDashMP4.value/video_id not in ("bWgPKTOMoSY", "IUPU2Ygj_OQ")/g' src/YouTubeVideoUrl.py
-          sed -i 's/!= video_id/!= video_id or video_id in ("bWgPKTOMoSY", "IUPU2Ygj_OQ", "Q_Nf4YoYY7E")/g' src/YouTubeVideoUrl.py
+          sed -i 's/config.plugins.YouTube.useDashMP4.value/video_id not in ("bWgPKTOMoSY", "YDvsBbKfLPA")/g' src/YouTubeVideoUrl.py
+          sed -i 's/!= video_id/!= video_id or video_id in ("bWgPKTOMoSY", "YDvsBbKfLPA", "Q_Nf4YoYY7E")/g' src/YouTubeVideoUrl.py
           sed -i 's/config.plugins.YouTube.searchLanguage.value/"en"/g' src/YouTubeVideoUrl.py
       - name: Test code with pytest
         run: |
@@ -181,7 +181,7 @@ jobs:
           sudo mkdir -p /var/lib/opkg/info
           sed -i 's/\/home/./g' enigma2/lib/python/Components/UsageConfig.py
           sed -i 's/config.crash.pystackonspinner.addNotifier/# config.crash.pystackonspinner.addNotifier/g' enigma2/lib/python/Components/UsageConfig.py
-          echo "model=duo4k" > enigma2/enigma.info
+          echo "model=dm900" > enigma2/enigma.info
           echo "architecture=arm" >> enigma2/enigma.info
           echo "socfamily=bcm7376" >> enigma2/enigma.info
           echo "brand=vu" >> enigma2/enigma.info
