@@ -143,7 +143,7 @@ video_list = (
 	('9UMxZofMNbA', 'm3u8 playlist'),
 	('8scG3KhC6Wo', 'Multiple audio languages'),
 	('IUPU2Ygj_OQ', 'Live video'),
-	('Q_Nf4YoYY7E', 'Live video'),
+	('YDvsBbKfLPA', 'Live video'),
 	pytest.param('uGpuVWrhIzE', 'Rental video preview', marks=pytest.mark.xfail),
 	pytest.param('MeJVWBSsPAY', 'Non-agegated non-embeddable', marks=pytest.mark.xfail),
 	pytest.param('7Do70nztRNE', 'Age gated embedded', marks=pytest.mark.xfail),

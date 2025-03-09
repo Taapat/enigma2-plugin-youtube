@@ -103,8 +103,8 @@ jobs:
           echo "" > src/__init__.py
           sed -i 's/from Components/# from Components/g' src/YouTubeVideoUrl.py
           sed -i 's/config.plugins.YouTube.maxResolution.value/"22"/g' src/YouTubeVideoUrl.py
-          sed -i 's/config.plugins.YouTube.useDashMP4.value/video_id not in ("bWgPKTOMoSY", "IUPU2Ygj_OQ")/g' src/YouTubeVideoUrl.py
-          sed -i 's/!= video_id/!= video_id or video_id in ("bWgPKTOMoSY", "IUPU2Ygj_OQ", "Q_Nf4YoYY7E")/g' src/YouTubeVideoUrl.py
+          sed -i 's/config.plugins.YouTube.useDashMP4.value/video_id not in ("bWgPKTOMoSY", "YDvsBbKfLPA")/g' src/YouTubeVideoUrl.py
+          sed -i 's/!= video_id/!= video_id or video_id in ("bWgPKTOMoSY", "YDvsBbKfLPA", "Q_Nf4YoYY7E")/g' src/YouTubeVideoUrl.py
           sed -i 's/config.plugins.YouTube.searchLanguage.value/"en"/g' src/YouTubeVideoUrl.py
       - name: Test code with pytest
         run: |
