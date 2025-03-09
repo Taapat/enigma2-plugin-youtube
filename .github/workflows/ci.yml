@@ -181,7 +181,7 @@ jobs:
           sudo mkdir -p /var/lib/opkg/info
           sed -i 's/\/home/./g' enigma2/lib/python/Components/UsageConfig.py
           sed -i 's/config.crash.pystackonspinner.addNotifier/# config.crash.pystackonspinner.addNotifier/g' enigma2/lib/python/Components/UsageConfig.py
-          echo "model=duo4k" > enigma2/enigma.info
+          echo "model=dm900" > enigma2/enigma.info
           echo "architecture=arm" >> enigma2/enigma.info
           echo "socfamily=bcm7376" >> enigma2/enigma.info
           echo "brand=vu" >> enigma2/enigma.info
