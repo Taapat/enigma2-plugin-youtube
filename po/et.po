@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-21 20:48+0300\n"
+"POT-Creation-Date: 2025-03-13 20:19+0200\n"
 "PO-Revision-Date: 2018-11-18 12:37+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: \n"
@@ -48,6 +48,9 @@ msgstr "Tähtsus"
 
 msgid "Cancel"
 msgstr "Tühista"
+
+msgid "Channel "
+msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Vali soovitud tegevus"

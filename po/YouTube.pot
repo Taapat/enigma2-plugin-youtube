@@ -33,6 +33,9 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
+msgid "Channel "
+msgstr ""
+
 msgid "Choose what you want to do"
 msgstr ""
 

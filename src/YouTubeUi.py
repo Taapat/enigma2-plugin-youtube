@@ -760,7 +760,7 @@ class YouTubeMain(Screen):
 				self.session.openWithCallback(self.playCallback,
 					YouTubePlayer, service=service, current=current)
 			else:
-				self.videoDownload(video_url, current[3])
+				self.videoDownload(video_url, current)
 				self.yts.pop(0)
 				self.setEntryList()
 
@@ -1036,6 +1036,7 @@ class YouTubeMain(Screen):
 				self._tryComplStr(result, lambda x: x['statistics']['viewCount'], _(' views')),  # Views
 				duration,
 				None,
+				_('Channel ') + self._tryStr(result, lambda x: x['snippet']['channelTitle']) + '\n\n' +
 				self._tryStr(result, lambda x: x['snippet']['description']),  # Description
 				self._tryComplStr(result, lambda x: x['statistics']['likeCount'], _(' likes')),  # Likes
 				self._tryStr(result, lambda x: x['snippet']['thumbnails']['medium']['url']),  # Big thumbnail url
@@ -1251,7 +1252,8 @@ class YouTubeMain(Screen):
 			current = self['list'].getCurrent()
 			self.session.open(YouTubeInfo, current=current)
 
-	def videoDownload(self, url, title):
+	def videoDownload(self, url, current):
+		title = current[3]
 		download_dir = config.plugins.YouTube.downloadDir.value
 		if download_dir[0] == "'":
 			download_dir = download_dir[2:-2]
@@ -1277,6 +1279,11 @@ class YouTubeMain(Screen):
 					url = url[0]
 					outputfile = outputfile[:-4] + '_suburi.mp4'
 				job_manager.AddJob(DownloadJob(url, outputfile, job_title, self.downloadStop))
+				try:
+					with open('%s.ts.meta' % outputfile[:-11], 'w') as meta_file:
+						meta_file.write('\n%s\n%s\n\n\n\n\n\n\n0\n' % (title.replace('\n', ' '), current[7].replace('\n', ' ')))
+				except IOError as e:
+					print('[YouTube] Meta file creation error', e)
 				self.active_downloads += 1
 				msg = _('Video download started!')
 		self.session.open(MessageBox, msg, MessageBox.TYPE_INFO, timeout=5)

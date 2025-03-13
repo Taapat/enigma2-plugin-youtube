@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2.plugins.mytube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-21 20:48+0300\n"
+"POT-Creation-Date: 2025-03-13 20:19+0200\n"
 "PO-Revision-Date: 2015-07-25 18:37+0100\n"
 "Last-Translator: kvinto <kvinto@rambler.ru>\n"
 "Language-Team: <kvinto  sat-ukraine.info>\n"
@@ -48,6 +48,9 @@ msgstr "Актуальність"
 
 msgid "Cancel"
 msgstr "Скасувати"
+
+msgid "Channel "
+msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Виберіть, що будете робити"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube plugin for Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-21 20:48+0300\n"
+"POT-Creation-Date: 2025-03-13 20:19+0200\n"
 "PO-Revision-Date: 2018-11-19 00:44+0000\n"
 "Last-Translator: nunigaia\n"
 "Language-Team: BH Team\n"
@@ -55,6 +55,9 @@ msgstr "Relevância"
 
 msgid "Cancel"
 msgstr "Cancelar"
+
+msgid "Channel "
+msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Escolha o que pretende fazer"

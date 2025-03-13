@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube-plus-minitv-git1172-r0.0-Mod-Petry\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-11 18:18+0200\n"
+"POT-Creation-Date: 2025-03-13 20:19+0200\n"
 "PO-Revision-Date: 2023-12-08 17:23+0100\n"
 "Last-Translator: Dario Croci <spaeleus@croci.org>\n"
 "Language-Team: Dario Croci <spaeleus@croci.org>\n"
@@ -51,6 +51,9 @@ msgstr "Per rilevanza"
 
 msgid "Cancel"
 msgstr "Annullare"
+
+msgid "Channel "
+msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Scegliere cosa fare"

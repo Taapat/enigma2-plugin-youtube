@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YouTube / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-21 20:48+0300\n"
+"POT-Creation-Date: 2025-03-13 20:19+0200\n"
 "PO-Revision-Date: 2020-06-12 23:54+0300\n"
 "Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish\n"
@@ -53,6 +53,9 @@ msgstr "Uygunluk"
 
 msgid "Cancel"
 msgstr "İptal"
+
+msgid "Channel "
+msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Ne yapmak istediğinizi seçin"

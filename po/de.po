@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Youtube\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"POT-Creation-Date: 2025-03-13 20:19+0200\n"
 "PO-Revision-Date: 2023-08-23 20:18+0200\n"
 "Last-Translator: Masta2002\n"
 "Language-Team: OpenPlus <open-plus.es>\n"
@@ -47,6 +47,9 @@ msgstr "Nach Relevanz"
 
 msgid "Cancel"
 msgstr "Abbrechen"
+
+msgid "Channel "
+msgstr ""
 
 msgid "Choose what you want to do"
 msgstr "Bitte wählen Sie"
