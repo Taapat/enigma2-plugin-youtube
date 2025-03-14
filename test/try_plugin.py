@@ -208,10 +208,11 @@ def try_plugin_screens_load():
 	# Open search playlists
 	yt['list'].setIndex(2)
 	yt.ok()
-	# Choice 'hdvideo' in suggestions list
-	session.current_dialog.updateSuggestions([('', None), ('hdvideo', None)])
-	session.current_dialog['list'].setIndex(1)
-	session.current_dialog.ok()
+	# If suggestions list exist choice 'hdvideo'
+	if hasattr(session.current_dialog, 'updateSuggestions'):
+		session.current_dialog.updateSuggestions([('', None), ('hdvideo', None)])
+		session.current_dialog['list'].setIndex(1)
+		session.current_dialog.ok()
 	# Close playlists list
 	yt.cancel()
 	# Open search live broadcasts
